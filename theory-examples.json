@@ -1,0 +1,281 @@
+{
+  "grouping": {
+    "id": "bsp004",
+    "name": "결제 입력과 주문 요약",
+    "preview": "./examples/bsp004/index.html",
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/checkout/",
+    "license": "MIT",
+    "note": "주문 정보와 결제 입력이 구역별로 묶인 방식을 살펴보세요."
+  },
+  "navigation": {
+    "id": "bsp010",
+    "name": "다양한 사이드 내비게이션",
+    "preview": "./examples/bsp010/index.html",
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/sidebars/",
+    "license": "MIT",
+    "note": "여러 사이드 내비게이션의 현재 위치와 메뉴 구조를 살펴보세요."
+  },
+  "search": {
+    "id": "ui03",
+    "name": "대화 검색",
+    "preview": "./examples/ui03/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/chat-layout/conversation-search/component.html",
+    "license": "MIT",
+    "note": "대화 목록에서 검색어 입력과 결과 표시를 살펴보세요."
+  },
+  "disclosure": {
+    "id": "apg-01",
+    "name": "접근성 아코디언",
+    "preview": "./examples/apg/ap01/index.html",
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/accordion/examples/accordion.html",
+    "license": "W3C Software and Document License",
+    "note": "항목을 펼치고 접을 때 정보를 어떻게 나누는지 살펴보세요."
+  },
+  "workspace": {
+    "id": "lay02",
+    "name": "대시보드와 접는 내비게이션",
+    "preview": "./examples/lay02/index.html",
+    "sourceName": "Start Bootstrap",
+    "sourceUrl": "https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/adde34b9616b9840c4da756323131f59ac445090/dist/index.html",
+    "license": "MIT",
+    "note": "사이드바와 데이터 영역의 공간 배분을 살펴보세요."
+  },
+  "visual-hierarchy": {
+    "id": "bsp020",
+    "name": "제품 소개 화면",
+    "preview": "./examples/bsp020/index.html",
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/product/",
+    "license": "MIT",
+    "note": "제품 소개에서 제목, 이미지와 행동의 강조 순서를 살펴보세요."
+  },
+  "density": {
+    "id": "bsp006",
+    "name": "관리자 대시보드",
+    "preview": "./examples/bsp006/index.html",
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/dashboard/",
+    "license": "MIT",
+    "note": "표, 차트와 탐색 영역이 한 화면에 얼마나 들어가는지 살펴보세요."
+  },
+  "grid": {
+    "id": "bsp007",
+    "name": "반응형 그리드 구성",
+    "preview": "./examples/bsp007/index.html",
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/grid/",
+    "license": "MIT",
+    "note": "화면 폭과 열 구성에 따라 콘텐츠가 배치되는 방식을 살펴보세요."
+  },
+  "responsive": {
+    "id": "bsp001",
+    "name": "앨범형 카드 목록",
+    "preview": "./examples/bsp001/index.html",
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/album/",
+    "license": "MIT",
+    "note": "화면 폭에 따라 카드 목록이 달라지는 반응형 예시입니다."
+  },
+  "master-detail": {
+    "id": "ui02",
+    "name": "분할 보기",
+    "preview": "./examples/ui02/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/chat-layout/split-view-chat/component.html",
+    "license": "MIT",
+    "note": "두 영역을 함께 배치해 내용을 비교하거나 확인하는 분할 화면입니다."
+  },
+  "sidebar": {
+    "id": "lay01",
+    "name": "접을 수 있는 사이드바",
+    "preview": "./examples/lay01/index.html",
+    "sourceName": "Start Bootstrap",
+    "sourceUrl": "https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/72f0de1eda0350496100c8a077795fe93752d419/dist/index.html",
+    "license": "MIT",
+    "note": "보조 탐색 패널을 접을 때 본문 공간이 어떻게 달라지는지 살펴보세요."
+  },
+  "layout-patterns": {
+    "id": "bsp008",
+    "name": "다양한 히어로 영역",
+    "preview": "./examples/bsp008/index.html",
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/heroes/",
+    "license": "MIT",
+    "note": "같은 목적을 가진 여러 히어로 영역 구성을 비교해 보세요."
+  },
+  "typography": {
+    "id": "bsp002",
+    "name": "매거진형 블로그 화면",
+    "preview": "./examples/bsp002/index.html",
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/blog/",
+    "license": "MIT",
+    "note": "블로그의 제목과 본문, 보조 정보의 글자 위계를 살펴보세요."
+  },
+  "writing": {
+    "id": "bsp004",
+    "name": "결제 입력과 주문 요약",
+    "preview": "./examples/bsp004/index.html",
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/checkout/",
+    "license": "MIT",
+    "note": "입력 라벨과 주문 요약의 텍스트를 살펴보세요."
+  },
+  "buttons": {
+    "id": "mo03",
+    "name": "버튼 누름 반응",
+    "preview": "./examples/mo03/index.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/button-press-scale/index.html",
+    "license": "MIT",
+    "note": "누르는 순간 버튼에 나타나는 반응을 확인해 보세요."
+  },
+  "selection": {
+    "id": "mo04",
+    "name": "토글 스위치",
+    "preview": "./examples/mo04/index.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/toggle-switch/index.html",
+    "license": "MIT",
+    "note": "선택 상태가 스위치에 어떻게 표시되는지 살펴보세요."
+  },
+  "tabs": {
+    "id": "apg-02",
+    "name": "자동 활성화 탭",
+    "preview": "./examples/apg/ap02/index.html",
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/tabs/examples/tabs-automatic.html",
+    "license": "W3C Software and Document License",
+    "note": "탭 선택과 연결된 패널의 변화를 살펴보세요."
+  },
+  "menus": {
+    "id": "apg-04",
+    "name": "선택형 콤보박스",
+    "preview": "./examples/apg/ap04/index.html",
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/combobox/examples/combobox-select-only.html",
+    "license": "W3C Software and Document License",
+    "note": "선택형 콤보박스에서 선택지와 현재 값을 살펴보세요."
+  },
+  "accordion": {
+    "id": "apg-01",
+    "name": "접근성 아코디언",
+    "preview": "./examples/apg/ap01/index.html",
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/accordion/examples/accordion.html",
+    "license": "W3C Software and Document License",
+    "note": "아코디언의 열림과 닫힘, 키보드 동작을 살펴보세요."
+  },
+  "modal": {
+    "id": "apg-05",
+    "name": "접근성 모달 대화상자",
+    "preview": "./examples/apg/ap05/index.html",
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/dialog-modal/examples/dialog.html",
+    "license": "W3C Software and Document License",
+    "note": "대화상자를 열고 닫으며 포커스 이동을 살펴보세요."
+  },
+  "drawer": {
+    "id": "mo06",
+    "name": "슬라이드 패널",
+    "preview": "./examples/mo06/index.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/drawer-slide/index.html",
+    "license": "MIT",
+    "note": "화면 밖 패널이 등장하고 사라지는 방식을 살펴보세요."
+  },
+  "toast": {
+    "id": "mo05",
+    "name": "토스트 알림",
+    "preview": "./examples/mo05/index.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/toast-notification/index.html",
+    "license": "MIT",
+    "note": "작업 후 짧게 표시되는 알림을 살펴보세요."
+  },
+  "loading": {
+    "id": "mo08",
+    "name": "스켈레톤 로딩",
+    "preview": "./examples/mo08/index.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/skeleton-loader/index.html",
+    "license": "MIT",
+    "note": "콘텐츠가 준비되기 전 표시되는 스켈레톤을 살펴보세요."
+  },
+  "step": {
+    "id": "ui08",
+    "name": "작업 단계 표시",
+    "preview": "./examples/ui08/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/thinking/agent-progress-steps/component.html",
+    "license": "MIT",
+    "note": "작업의 여러 단계와 현재 상태를 어떻게 표시하는지 살펴보세요."
+  },
+  "keyboard": {
+    "id": "apg-02",
+    "name": "자동 활성화 탭",
+    "preview": "./examples/apg/ap02/index.html",
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/tabs/examples/tabs-automatic.html",
+    "license": "W3C Software and Document License",
+    "note": "탭과 화살표 키를 사용해 패턴의 키보드 조작을 살펴보세요."
+  },
+  "desktop": {
+    "id": "lay02",
+    "name": "대시보드와 접는 내비게이션",
+    "preview": "./examples/lay02/index.html",
+    "sourceName": "Start Bootstrap",
+    "sourceUrl": "https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/adde34b9616b9840c4da756323131f59ac445090/dist/index.html",
+    "license": "MIT",
+    "note": "넓은 화면에서 탐색, 지표와 표를 함께 배치한 구성입니다."
+  },
+  "mobile": {
+    "id": "ai014",
+    "name": "모바일 채팅 화면",
+    "preview": "./examples/ai014/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/chat-layout/mobile-chat/component.html",
+    "license": "MIT",
+    "note": "작은 화면을 대상으로 구성된 채팅 예시입니다."
+  },
+  "gesture": {
+    "id": "mo07",
+    "name": "드래그로 순서 바꾸기",
+    "preview": "./examples/mo07/index.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/drag-to-reorder/index.html",
+    "license": "MIT",
+    "note": "항목을 끌어서 순서를 바꿀 때의 반응을 살펴보세요."
+  },
+  "micro": {
+    "id": "mo03",
+    "name": "버튼 누름 반응",
+    "preview": "./examples/mo03/index.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/button-press-scale/index.html",
+    "license": "MIT",
+    "note": "작은 누름 반응이 사용자의 행동에 어떤 피드백을 주는지 살펴보세요."
+  },
+  "magnetic": {
+    "id": "mo01",
+    "name": "마그네틱 버튼",
+    "preview": "./examples/mo01/index.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/magnetic-button/index.html",
+    "license": "MIT",
+    "note": "포인터가 다가갈 때 원본 버튼이 반응하는 방식을 살펴보세요."
+  },
+  "cursor": {
+    "id": "mo02",
+    "name": "커서 팔로워",
+    "preview": "./examples/mo02/index.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/cursor-follower/index.html",
+    "license": "MIT",
+    "note": "포인터를 따라 움직이는 커서 표현을 살펴보세요."
+  }
+}

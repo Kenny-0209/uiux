@@ -148,6 +148,13 @@ by_category={
   ('콘텐츠·미디어',r'콘텐츠|매거진|블로그|\bblog\b|\bmedia\b|포트폴리오|portfolio|gallery|갤러리|profile|프로필'),
   ('행사·프로젝트',r'프로젝트|project|업무 보드|행사|\bevent\b|ticket|티켓'),
   ('화면 원리·가독성',r'명도|대비|contrast|아이콘|\bicon\b|선 굵기|stroke|글자 크기|line spacing|줄 간격|pixel density|화면 밀도|\bdp\b|text shrinking|wrapping|텍스트 처리'),
+  ('상세·본문',r'\bdetail\b|상세|기사|\barticle\b|\blesson\b|학습|본문|\bcase\b|\broom\b|\bvehicle\b|\bproperty\b|\brelease\b'),
+  ('오류·완료·점검',r'오류|점검|완료|\b404\b|\b500\b|maintenance|\bthanks\b'),
+  ('연락·문의',r'연락|문의|\bcontact\b'),
+  ('커뮤니티·대화',r'커뮤니티|대화|\bthread\b|\bforum\b|\bcategories\b'),
+  ('링크 모음',r'링크 모음|link.in.bio'),
+  ('폼·컴포넌트 모음',r'\bforms\b|\bcomponents\b'),
+  ('기부·모금',r'기부|모금|\bdonate\b|\bdonation\b|\bappeal\b'),
  ],
  '모션과 인터랙션':[
   ('버튼·클릭',r'버튼|\bbutton\b|\bclick\b|클릭|\bpress\b|\bhold\b|누르기|눌러|ripple|리플'),

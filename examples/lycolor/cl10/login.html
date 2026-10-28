@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in — Helm | Free Bootstrap 6 Admin Dashboard</title>
+<meta name="description" content="Sign-in page from the Helm Bootstrap 6 admin dashboard template.">
+<!-- Bootstrap 6, bundled in assets/vendor/bootstrap6 (version in the JS bundle header). To load it from jsDelivr instead, replace both paths below with https://cdn.jsdelivr.net/npm/bootstrap@VERSION/dist/... -->
+<link rel="stylesheet" href="assets/vendor/bootstrap6/css/bootstrap.min.css">
+<script type="importmap">{"imports": {"bootstrap": "./assets/vendor/bootstrap6/js/bootstrap.bundle.min.js"}}</script>
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<meta http-equiv="Content-Security-Policy" content="form-action 'none'; connect-src 'self'"><script>document.addEventListener("submit",function(e){e.preventDefault()},true)</script></head>
+<body>
+
+<main class="auth-stage">
+  <div class="auth-card">
+    <div class="text-center mb-5">
+      <span class="side-mark mx-auto mb-4" aria-hidden="true">H</span>
+      <h1 class="fs-2xl fw-bold mb-1" style="letter-spacing:-.02em">Sign in to Helm</h1>
+      <p class="fg-3 fs-sm mb-0">Welcome back. Use your work account.</p>
+    </div>
+    <div class="panel"><form class="panel-body vstack gap-4" data-demo-form data-bs-validate novalidate>
+      <div class="form-field">
+        <label class="form-label" for="liEmail">Email</label>
+        <input type="email" class="form-control" id="liEmail" required>
+        <div class="invalid-feedback">A valid email, please.</div>
+      </div>
+      <div class="form-field">
+        <label class="form-label" for="liPass">Password</label>
+        <input type="password" class="form-control" id="liPass" required>
+        <div class="invalid-feedback">Required.</div>
+      </div>
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="form-field mb-0">
+          <input type="checkbox" class="check" id="liRemember" checked>
+          <label for="liRemember">Remember me</label>
+        </div>
+        <a class="fs-sm" href="#">Forgot password?</a>
+      </div>
+      <button class="btn-solid theme-primary w-100" type="submit" data-done-text="Signed in &#10003;">Sign in</button>
+    </form></div>
+    <p class="text-center fs-sm fg-3 mt-5 mb-0">Not registered? <a href="#">Create an account</a></p>
+    <p class="text-center fs-sm mt-4 mb-0"><a href="index.html">&#8592; Back to the dashboard</a></p>
+  </div>
+</main>
+
+<script type="module" src="assets/js/main.js"></script>
+</body>
+</html>

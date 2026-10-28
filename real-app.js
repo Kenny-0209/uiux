@@ -320,11 +320,11 @@ document.addEventListener('click',async event=>{
 });
 $('#search').addEventListener('input',e=>{query=e.target.value;renderFilters();render();searchController?.drawSuggestions()});
 document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'&&!$('#code-dialog').open){event.preventDefault();$('#search').focus();}});
-const manifests=['manifest.json','camera-manifest.json','spatial-manifest.json','ui-more.json','hand-all.json','ai-all.json','apg-more.json','bootstrap.json','templates.json','camera-more.json','3d-more.json','motion-more.json','text-more.json','scroll-more.json','vanta-more.json','env-more.json','entry-more.json','animate-more.json','course-labs.json','codscroll.json','ics-scroll.json','scroll-drive.json','transition-manifest.json','movin.json'];
-const taxonomyRequest=fetch('./taxonomy.json?v=title-tags-20261028').then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}).catch(error=>({error}));
+const manifests=['manifest.json','camera-manifest.json','spatial-manifest.json','ui-more.json','hand-all.json','ai-all.json','apg-more.json','bootstrap.json','templates.json','layout-more.json','camera-more.json','3d-more.json','motion-more.json','text-more.json','scroll-more.json','vanta-more.json','env-more.json','entry-more.json','animate-more.json','codscroll.json','ics-scroll.json','scroll-drive.json','transition-manifest.json','movin.json'];
+const taxonomyRequest=fetch('./taxonomy.json?v=layouts-20261028').then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}).catch(error=>({error}));
 const batches=await Promise.all(manifests.map(async name=>{try{const res=await fetch(`./examples/${name}`);if(!res.ok)throw new Error(`HTTP ${res.status}`);const data=await res.json();if(!Array.isArray(data))throw new Error('잘못된 목록 형식');return {name,data};}catch(error){return {name,error};}}));
 const taxonomy=await taxonomyRequest;
-const tagGroups=await fetch('./tag-groups.json?v=title-tags-20261028').then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}).catch(error=>({error,groups:['기타·검토'],tags:{}}));
+const tagGroups=await fetch('./tag-groups.json?v=layouts-20261028').then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}).catch(error=>({error,groups:['기타·검토'],tags:{}}));
 const failed=batches.filter(x=>x.error);const seen=new Set();examples=[...batches.flatMap(x=>x.data||[]),...motion].filter(e=>{if(!e||!e.id||seen.has(e.id))return false;seen.add(e.id);return true});
 examples.forEach(e=>{const detail=taxonomy.items?.[e.id];e.taxonomy=detail||{subcategories:['세부 분류 검토'],related:{},needsReview:true};if(detail?.tags?.length)e.tags=detail.tags;});
 if(failed.length){$('#load-note').textContent=`일부 예시 목록을 불러오지 못했습니다: ${failed.map(x=>x.name).join(', ')}`;failed.forEach(x=>console.warn('목록 오류',x.name,x.error));}
