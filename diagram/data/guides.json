@@ -78,6 +78,18 @@
     {"id": "energy-profile-reference-level", "title": "겹친 에너지 곡선은 각자의 출발점부터 읽기", "summary": "조건별 곡선을 겹치면 전이 상태의 높이와 반응물의 높이가 함께 달라질 수 있습니다. 활성화 장벽은 각 곡선의 출발점과 전이 상태 사이의 차이입니다.", "apply": "색이 나타내는 조건, 각 곡선의 기준 수준, 에너지 종류와 가상·계산·실험 여부를 원문에서 대조합니다. 축에 수치가 없는 개념도는 정량 측정 결과처럼 읽지 않습니다.", "caution": "서로 다른 반응물과 용매가 섞인 사례를 하나의 인과 요인으로 설명하거나 용매 효과를 모든 반응에 일반화하지 않습니다.", "source": {"name": "Onyido 등 — solvent effects on phosphoryl transfer, Figure 10", "url": "https://doi.org/10.3389/fchem.2023.1176746"}}
 ,
     {"id": "energy-curves-components-or-conditions", "title": "겹친 곡선이 조건인지 분해 성분인지 구별", "summary": "에너지 그림에서 여러 선은 서로 다른 조건뿐 아니라 같은 총 에너지를 구성하는 계산상의 성분을 나타낼 수 있습니다.", "apply": "색 범례, 식과 본문을 함께 읽어 선들이 대안인지 합산 성분인지 확인하고 축의 물리량과 기준 구조를 기록합니다.", "caution": "캡션의 일반적 설명이 개별 패널에 그대로 적용되지 않을 수 있습니다. 수치 계산과 가상 개념도를 실측 자료로 취급하지 않습니다.", "source": {"name": "Kubelka & Bickelhaupt — activation strain analysis", "url": "https://doi.org/10.1021/acs.jpca.6b12240"}}
+,
+    {"id": "orthogonal-visual-channels", "title": "색·선 모양·패널이 나타내는 차원 분리", "summary": "복잡한 비교에서 색은 반응 경로, 선 모양은 계산 성분, 패널은 대상과 같이 여러 시각적 속성이 서로 다른 정보 차원을 나타낼 수 있습니다.", "apply": "색·선·점·패널별 범례를 기록하고 각 조합이 무엇을 가리키는지 확인합니다. 서로 다른 논문에서 같은 색의 뜻을 가져오지 않습니다.", "caution": "동일한 기호를 쓴 논문도 모델과 대상이 다를 수 있습니다. 차원 분리가 저자 의도나 실제 독해 성능이라는 주장은 별도 근거가 필요합니다.", "source": {"name": "Vermeeren 등 — Figure 8", "url": "https://doi.org/10.1002/chem.202003831"}}
+,
+    {"id": "detection-representation-level", "title": "입출력과 내부 구조 중 무엇을 드러내는가", "summary": "같은 객체 탐지 과제라도 한 그림은 사진의 입력과 검출 결과를, 다른 그림은 특징 맵과 예측 가지를 자세히 보여줄 수 있습니다.", "apply": "그림이 강조하는 수준을 문서 위치·캡션과 대조하고 특징 맵의 형태와 화살표, 예측 결과를 실제 입력 사진과 구별합니다.", "caution": "구조도에 빠진 학습 손실이나 후처리가 모델에 없다고 단정하지 않습니다. 방법 자체의 차이와 시각적으로 생략된 차이를 분리합니다.", "source": {"name": "YOLO와 RetinaNet", "url": "https://arxiv.org/abs/1708.02002"}}
+,
+    {"id": "diagram-variant-or-model-difference", "title": "그림의 표현 차이와 알고리즘 차이 분리", "summary": "비슷한 인코더라도 정규화와 잔차 연결의 실제 순서가 달라 상자와 더하기 기호의 관계가 달라질 수 있습니다.", "apply": "원문 식과 실행 순서에서 구성 요소의 동일성을 확인하고 결합된 상자, 분리된 기호, 우회 연결의 입출력을 대응시킵니다.", "caution": "도식이 다른 이유를 미적 선택으로만 환원하지 않습니다. 원의 채움이나 특정 배치의 의도는 저자가 밝히지 않았다면 가설로 둡니다.", "source": {"name": "Transformer와 Vision Transformer", "url": "https://arxiv.org/abs/2010.11929"}}
+,
+    {"id": "boundary-window-vs-object", "title": "빈 테두리와 화살표가 표시하는 범위", "summary": "이미지 위의 빈 테두리는 사물 윤곽이 아니라 특정 연산이 적용되는 공간적 범위를 나타낼 수 있습니다.", "apply": "범례와 본문에서 테두리의 내부 구성, 층별 창의 변화, 화살표가 연결한 대상을 확인합니다.", "caution": "테두리가 내부 내용을 보이게 한다는 기능적 해석과 저자의 실제 미적 의도를 구분합니다. 화살표를 곧바로 항목 간 주의 가중치로 해석하지 않습니다.", "source": {"name": "Swin Transformer — Figure 2", "url": "https://arxiv.org/abs/2103.14030"}}
+,
+    {"id": "attention-structure-value-attribution", "title": "연결이 구조인지 값인지 사후 추정인지 구분", "summary": "주의 모델에서 연결은 계산이 가능한 범위, 실제 입력의 주의 가중치, 가중치를 가공한 사후 추정 등 서로 다른 대상을 나타냅니다.", "apply": "연결이 어느 입력·층·모델에 대응하는지, 수치가 관찰값인지 계산 구조나 후처리 결과인지 논문의 방법과 범례에서 확인합니다.", "caution": "주의 가중치나 사후 추정을 모델 판단의 확정적인 인과 설명으로 취급하지 않습니다. 분야와 실험 대상이 다를 때 표현 차이의 원인을 단정하지 않습니다.", "source": {"name": "Quantifying Attention Flow in Transformers", "url": "https://arxiv.org/abs/2005.00928"}}
+,
+    {"id": "attention-observed-counterfactual", "title": "관측값·대안·사후 추정과 주장을 함께 읽기", "summary": "같은 attention 개념도 층별 가중치의 추적, 인위적인 대안과 원래 결과의 비교 등 서로 다른 논증을 위해 그릴 수 있습니다.", "apply": "각 패널의 값이 관측인지 인위적인 대안인지 사후 추정인지, 강조의 강도가 어떤 주장에 쓰이는지 원문을 대조합니다.", "caution": "표시된 가중치를 확정적인 인과적 중요도로 간주하지 않습니다. 서로 다른 모델과 과제를 같은 실험으로 취급하지 않습니다.", "source": {"name": "Jain & Wallace — Attention is not Explanation", "url": "https://arxiv.org/abs/1902.10186"}}
   ],
   "documents": [
     {"id":"proposal","title":"과제 제안서","summary":"문제의 중요성부터 해결 전략, 검증, 추진 가능성과 예상 성과까지 연결해 심사자가 연구의 타당성을 판단하도록 돕습니다. 공고와 제출 서식이 우선입니다.","sections":[
