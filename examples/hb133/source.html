@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurora / Northern Lights — Animation Handbook</title>
+  <meta name="description" content="Blurred bands of light sway like the northern lights. Best for dark backgrounds.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/07-ambient-background/aurora/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Aurora / Northern Lights — Animation Handbook">
+  <meta property="og:description" content="Blurred bands of light sway like the northern lights. Best for dark backgrounds.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/07-ambient-background/aurora/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aurora / Northern Lights — Animation Handbook">
+  <meta name="twitter:description" content="Blurred bands of light sway like the northern lights. Best for dark backgrounds.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Aurora / Northern Lights", "name": "Aurora / Northern Lights", "description": "Blurred bands of light sway like the northern lights. Best for dark backgrounds.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/07-ambient-background/aurora/", "inLanguage": "en", "articleSection": "Ambient & Background", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Ambient & Background, Aurora / Northern Lights"}</script>
+  <style>
+    :root{--ui-accent:#ffce5a;--dur:30s}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;overflow:hidden}
+    /* Sky gradient */
+    .sky{position:absolute;inset:0;background:linear-gradient(180deg,#010508 0%,#020a12 40%,#030e1a 100%)}
+    /* Star layer */
+    .stars-layer{position:absolute;inset:0;display:none}
+    /* Aurora bands — vertically tall, horizontally drifting */
+    .aurora-wrap{position:absolute;inset:0;overflow:hidden}
+    .band{
+      position:absolute;left:-30%;right:-30%;
+      filter:blur(35px);
+      opacity:.75;
+      transform-origin:center bottom;
+    }
+    .band1{top:5%;height:45%;background:linear-gradient(to bottom,transparent 0%,rgba(0,220,100,.5) 35%,rgba(0,180,80,.6) 55%,rgba(0,100,50,.2) 80%,transparent 100%);animation:drift1 var(--dur) ease-in-out infinite}
+    .band2{top:10%;height:55%;background:linear-gradient(to bottom,transparent 0%,rgba(50,150,255,.4) 30%,rgba(30,100,220,.5) 55%,rgba(20,50,150,.15) 80%,transparent 100%);animation:drift2 calc(var(--dur)*1.15) ease-in-out infinite}
+    .band3{top:0%;height:50%;background:linear-gradient(to bottom,transparent 0%,rgba(150,50,220,.35) 30%,rgba(100,30,180,.4) 55%,rgba(80,20,120,.1) 80%,transparent 100%);animation:drift3 calc(var(--dur)*0.85) ease-in-out infinite;display:none}
+    .band4{top:5%;height:40%;background:linear-gradient(to bottom,transparent 0%,rgba(255,100,180,.3) 35%,rgba(200,50,120,.35) 55%,rgba(150,30,80,.1) 80%,transparent 100%);animation:drift4 calc(var(--dur)*1.25) ease-in-out infinite;display:none}
+    .band5{top:15%;height:35%;background:linear-gradient(to bottom,transparent 0%,rgba(255,50,50,.3) 35%,rgba(200,20,20,.35) 55%,rgba(150,10,10,.1) 80%,transparent 100%);animation:drift5 calc(var(--dur)*1.1) ease-in-out infinite;display:none}
+    @keyframes drift1{0%{transform:translateX(-8%) skewY(-1deg) scaleX(1)}33%{transform:translateX(5%) skewY(1.5deg) scaleX(1.1)}66%{transform:translateX(-3%) skewY(-.5deg) scaleX(.95)}100%{transform:translateX(-8%) skewY(-1deg) scaleX(1)}}
+    @keyframes drift2{0%{transform:translateX(6%) skewY(.5deg) scaleX(1.05)}40%{transform:translateX(-7%) skewY(-1deg) scaleX(.92)}80%{transform:translateX(4%) skewY(1deg) scaleX(1.08)}100%{transform:translateX(6%) skewY(.5deg) scaleX(1.05)}}
+    @keyframes drift3{0%{transform:translateX(-5%) skewY(1deg)}50%{transform:translateX(8%) skewY(-1.5deg)}100%{transform:translateX(-5%) skewY(1deg)}}
+    @keyframes drift4{0%{transform:translateX(10%) skewY(-1deg)}50%{transform:translateX(-6%) skewY(1deg)}100%{transform:translateX(10%) skewY(-1deg)}}
+    @keyframes drift5{0%{transform:translateX(-4%) skewY(.5deg)}50%{transform:translateX(9%) skewY(-1deg)}100%{transform:translateX(-4%) skewY(.5deg)}}
+    /* Ground strip */
+    .horizon{position:absolute;bottom:0;left:0;right:0;height:28%;background:linear-gradient(to top,#01030a,transparent)}
+    /* Stars */
+    .star{position:absolute;border-radius:50%;background:#fff;animation:twinkle 3s ease-in-out infinite alternate}
+    @keyframes twinkle{0%{opacity:.2}100%{opacity:.9}}
+    /* Card */
+    .fg-card{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);width:clamp(200px,60%,300px);background:rgba(2,5,10,.75);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:18px 20px;z-index:10}
+    .fg-eyebrow{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(0,220,100,.7);margin-bottom:6px}
+    .fg-title{font-size:clamp(14px,1.8vw,18px);font-weight:700;color:#e8f4f0;margin-bottom:6px;line-height:1.3}
+    .fg-body{font-size:13px;color:rgba(255,255,255,.72);line-height:1.6}
+    /* Blur is the costly part on phones, and their stage is less than half as wide, so half the blur looks as soft */
+    @media(max-width:600px){.band{filter:blur(18px)}}
+    /* On phones and short screens the stage is small, so the card shrinks to leave the bands in view */
+    @media(max-width:600px),(max-height:760px){
+      .fg-card{padding:12px 14px}
+      .fg-eyebrow{margin-bottom:4px}
+      .fg-title{margin-bottom:0}
+      .fg-body{display:none}
+    }
+    /* ── See inside and Compare: every view rule starts at the stage in that mode, and Normal has none ── */
+    .cap,.win,.ol-wrap,.cwrap,.cdiv,.arr{display:none}
+    .cap{position:absolute;z-index:12;left:50%;transform:translateX(-50%);width:max-content;max-width:calc(100% - 16px);padding:3px 8px;border-radius:6px;background:rgba(8,8,10,.92);color:#f4f4f2;font:600 12px/16px var(--hb-font);text-align:center;text-wrap:balance}
+    .bc,.bo,.bs{position:absolute;left:-30%;right:-30%;transform-origin:center bottom}
+    .bc{left:0;right:0;opacity:.75;filter:blur(35px)}
+    @media(max-width:600px){.bc{filter:blur(18px)}}
+    .ol-wrap .bo,.ol-wrap .bs{background:none;border:4px solid var(--c)}
+    .ol-wrap .bs{border-width:0 4px;border-style:dashed;opacity:.6;animation-play-state:paused}
+    .ol-wrap .arr{position:absolute;height:16px;background:linear-gradient(var(--c),var(--c)) center/100% 6px no-repeat}
+    .arr::before,.arr::after{content:"";position:absolute;top:0;border:solid transparent;border-width:8px 10px}
+    .arr::before{left:0;border-left-width:0;border-right-color:var(--c)}
+    .arr::after{right:0;border-right-width:0;border-left-color:var(--c)}
+    .stage[data-hb-mode="inside"],.stage[data-hb-mode="compare"]{background:#04070c}
+    .stage[data-hb-mode="inside"] .fg-card,.stage[data-hb-mode="compare"] .fg-card{display:none}
+    /* See inside: the sky, the stars, the bands (their clip opened) and the ground strip at half size around the box's middle,
+       a dashed window where the box's own picture is, a veil outside it, and the bands' outlines above the veil */
+    .stage[data-hb-mode="inside"] .sky,.stage[data-hb-mode="inside"] .stars-layer,.stage[data-hb-mode="inside"] .aurora-wrap,.stage[data-hb-mode="inside"] .horizon{scale:.5}
+    /* Each star keeps its own size while the sky is drawn at half size */
+    .stage[data-hb-mode="inside"] .star{scale:2}
+    .stage[data-hb-mode="inside"] .horizon{transform-origin:50% calc(-22 / 28 * 100%)}
+    .stage[data-hb-mode="inside"] .aurora-wrap{overflow:visible}
+    .stage[data-hb-mode="inside"] .win{display:block;position:absolute;left:25%;top:25%;width:50%;height:50%;outline:2px dashed #f4f4f2;box-shadow:0 0 0 100vmax rgba(2,5,10,.62)}
+    .stage[data-hb-mode="inside"] .ol-wrap{display:block;position:absolute;inset:0;scale:.5}
+    .stage[data-hb-mode="inside"].still .arr{display:block}
+    .stage[data-hb-mode="inside"] .cap-in{display:block}
+    .stage[data-hb-mode="inside"] .cap-up{bottom:calc(75% + 32px)}
+    .stage[data-hb-mode="inside"] .cap-win{bottom:calc(75% + 6px)}
+    .stage[data-hb-mode="inside"] .cap-cyc{top:calc(75% + 8px)}
+    /* Compare: on the left bands only as wide as the half, on the right the real ones, wider than it; each half starts under its name */
+    .stage[data-hb-mode="compare"] .aurora-wrap{left:50%;top:36px}
+    .stage[data-hb-mode="compare"] .cwrap{display:block;position:absolute;left:0;right:50%;top:36px;bottom:0;overflow:hidden}
+    .stage[data-hb-mode="compare"] .cdiv{display:block;position:absolute;left:50%;top:0;bottom:0;z-index:12;width:2px;margin-left:-1px;background:rgba(244,244,242,.45)}
+    .stage[data-hb-mode="compare"]::after{content:"";position:absolute;z-index:11;left:0;right:0;top:36px;height:28px;background:linear-gradient(rgb(1,6,11),transparent)}
+    .stage[data-hb-mode="compare"] .cap-cmp{display:block;top:8px;max-width:calc(50% - 16px)}
+    .stage[data-hb-mode="compare"] .cap-l{left:8px;transform:none}
+    .stage[data-hb-mode="compare"] .cap-r{left:calc(50% + 8px);transform:none}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="loop">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../mesh-gradient/" rel="prev" aria-label="Previous: Mesh Gradient Animation"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Mesh Gradient Animation</span></a><a href="../grain-overlay/" rel="next" aria-label="Next: Grain / Film Noise Overlay"><span><span class="hb-dir">Next: </span>Grain / Film Noise Overlay</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">07.03 · Ambient &amp; Background</p>
+    <h1>Aurora / Northern Lights</h1>
+    <p class="hb-lede">Blurred bands of light sway like the northern lights. Best for dark backgrounds.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Watch it</h2><p>It moves by itself. Pause it to look closely, or turn on slow motion to see each part of the movement.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage">
+      <div class="sky" aria-hidden="true"></div>
+      <div class="stars-layer" id="stars-layer" aria-hidden="true"></div>
+      <div class="aurora-wrap" aria-hidden="true">
+        <div class="band band1"></div>
+        <div class="band band2"></div>
+        <div class="band band3"></div>
+        <div class="band band4"></div>
+        <div class="band band5"></div>
+      </div>
+      <div class="horizon" aria-hidden="true"></div>
+      <div class="fg-card">
+        <div class="fg-eyebrow">Aurora</div>
+        <div class="fg-title">Charged particles. Magnetic fields. Light.</div>
+        <div class="fg-body">Green is oxygen high in the sky; red is rarer, and higher still.</div>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-pause" data-hb-pause="css" data-state="playing"><svg class="hb-ic hb-i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="hb-ic hb-i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9z"/></svg><span class="hb-pause-label">Pause</span></button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo="css" autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, shown at half size: each band is a wide, blurred strip of color, wider than the box so its ends never show. Each sways and leans on its own slow cycle.</p>
+      <p data-hb-for="compare" hidden>Too narrow shows bands only as wide as the box, so their soft ends show and leave dark gaps at the sides. Wide enough, as in Normal, keeps the ends out of sight.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting and see the difference as it moves.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="count-lbl">Number of bands</p>
+        <div class="seg" id="count-seg" role="group" aria-labelledby="count-lbl">
+          <button type="button" data-n="2" class="on" aria-pressed="true">2</button>
+          <button type="button" data-n="3" aria-pressed="false">3</button>
+          <button type="button" data-n="4" aria-pressed="false">4</button>
+          <button type="button" data-n="5" aria-pressed="false">5</button>
+        </div>
+        <p class="hb-hint">More bands make a fuller sky.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-secs="48" aria-pressed="false">Slow</button>
+          <button type="button" data-secs="30" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-secs="18" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">Longer cycles feel calmer.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="pal-lbl">Colors</p>
+        <div class="seg" id="pal-seg" role="group" aria-labelledby="pal-lbl">
+          <button type="button" data-pal="classic" class="on" aria-pressed="true">Green</button>
+          <button type="button" data-pal="vivid" aria-pressed="false">Purple</button>
+          <button type="button" data-pal="rare" aria-pressed="false">Red</button>
+        </div>
+        <p class="hb-hint">Green is the most common aurora; red is rare.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="bri-lbl">Brightness</p>
+          <div class="seg" id="bri-seg" role="group" aria-labelledby="bri-lbl">
+            <button type="button" data-op=".5" aria-pressed="false">Dim</button>
+            <button type="button" data-op=".75" class="on" aria-pressed="true">Medium</button>
+            <button type="button" data-op="1" aria-pressed="false">Bright</button>
+          </div>
+          <p class="hb-hint">How strongly the bands glow.</p>
+        </div>
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Stars in the sky</span><input class="hb-switch" type="checkbox" role="switch" id="stars-tog" autocomplete="off"></label>
+          <p class="hb-hint">Adds twinkling stars behind the bands.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add an aurora background to [the dark section you want it behind]. Stack a few tall, wide bands of color that fade to transparent at the top and bottom, blur them softly, and let each one sway sideways and lean a little on its own slow cycle, so they drift apart and together like curtains of light. Make the bands wider than the section and clip them, so their ends never show. Blur less on phones to keep it smooth. If the visitor has reduced motion turned on, keep the bands still. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Hero sections</li><li>Night and space themes</li><li>Music and meditation apps</li><li>Travel sites</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Light pages</li><li>Busy layouts</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const bands=[...document.querySelectorAll('.band')];
+  const starsLayer=document.getElementById('stars-layer');
+  const vars=document.documentElement.style;
+  let starsBuilt=false,count=2,palette='classic',secs=30;
+
+  function buildStars(){
+    if(starsBuilt)return;starsBuilt=true;
+    for(let i=0;i<120;i++){
+      const s=document.createElement('div');s.className='star';
+      const sz=Math.random()*2+0.5;
+      s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*65}%;left:${Math.random()*100}%;opacity:${.2+Math.random()*.5};animation-delay:${Math.random()*4}s;animation-duration:${2+Math.random()*4}s`;
+      starsLayer.appendChild(s);
+    }
+  }
+
+  // Each palette is the band order it prefers (0=green 1=blue 2=purple 3=pink 4=red);
+  // Number of bands takes the first N off that list.
+  const PALETTES={
+    classic:[0,1,2,3,4],
+    vivid:[2,3,1,4,0],
+    rare:[4,3,2,1,0]
+  };
+
+  function applyPalette(){
+    const on=new Set(PALETTES[palette].slice(0,count));
+    bands.forEach((b,i)=>{b.style.display=on.has(i)?'block':'none'});
+    syncViews();
+  }
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  choices('count-seg',d=>{count=+d.n;applyPalette()});
+  // A new --dur keeps the time already played, so every band would jump to another point of its cycle.
+  // Scaling each band's time by the same factor as its cycle keeps it where it is, moving or paused.
+  choices('speed-seg',d=>{
+    const next=+d.secs;
+    bands.forEach(b=>b.getAnimations().forEach(a=>{if(a.currentTime!=null)a.currentTime=a.currentTime*next/secs}));
+    secs=next;
+    vars.setProperty('--dur',next+'s');
+    syncViews();
+  });
+  choices('pal-seg',d=>{palette=d.pal;applyPalette()});
+  choices('bri-seg',d=>{bands.forEach(b=>{b.style.opacity=d.op});syncViews()});
+  document.getElementById('stars-tog').addEventListener('change',e=>{
+    if(e.target.checked){buildStars();starsLayer.style.display='block'}
+    else starsLayer.style.display='none';
+  });
+
+  // ── See inside and Compare: built once, from the real bands ──
+  const stage=document.querySelector('.stage'),wrap=document.querySelector('.aurora-wrap'),slow=document.getElementById('slow-tog');
+  const reduceMQ=matchMedia('(prefers-reduced-motion: reduce)');
+  const COLORS=['#34e68c','#5aa8ff','#b87cff','#ff7ec2','#ff6b6b'];
+  const ARROW_Y=[.18,.555,.055,.305,.43]; // where each band's sway arrow sits (a share of the box's height), spread so they never meet
+  const part=(cls,parent,css)=>{const e=document.createElement('div');e.className=cls;if(css)e.style.cssText=css;parent.appendChild(e);return e};
+  const cwrap=part('cwrap',stage);cwrap.setAttribute('inert','');cwrap.setAttribute('aria-hidden','true');wrap.after(cwrap);
+  const win=part('win',stage),ols=part('ol-wrap',stage),cdiv=part('cdiv',stage);
+  [win,ols,cdiv].forEach(e=>{e.setAttribute('aria-hidden','true');e.setAttribute('inert','')});
+  const caption=(cls,text)=>{const c=document.createElement('span');c.className='cap '+cls;c.textContent=text;c.setAttribute('data-hb-caption','');c.setAttribute('aria-hidden','true');stage.appendChild(c);return c};
+  caption('cap-in cap-up','Each band: a wide, blurred strip, wider than the box');
+  caption('cap-in cap-win','The box shows only this part');
+  const capCyc=caption('cap-in cap-cyc','');
+  caption('cap-cmp cap-l','Too narrow');caption('cap-cmp cap-r','Wide enough');
+  // Each band's copy, its moving outline, its outline at the start and its sway arrow share the band's number class, so they
+  // take its place and its keyframes; none has the class band, which the settings act on
+  const view=bands.map((b,i)=>{
+    const n='band'+(i+1),v={bc:part('bc '+n,cwrap),bo:part('bo '+n,ols),bs:part('bs '+n,ols),arr:part('arr',ols)};
+    for(const k of ['bo','bs','arr'])v[k].style.setProperty('--c',COLORS[i]);
+    return v;
+  });
+  // How far each band's left end sways, from its own keyframes: the left edge is the band's center, moved by its translate,
+  // less half its width at its stretch (as a share of the box's width)
+  const sway=bands.map((b,i)=>{
+    const L=getComputedStyle(b).left,w=1-2*(L.endsWith('%')?parseFloat(L)/100:parseFloat(L)/stage.clientWidth),xs=[];
+    for(const sheet of document.styleSheets){
+      let rules;try{rules=sheet.cssRules}catch(e){continue}
+      for(const r of rules)if(r.name==='drift'+(i+1))for(const k of r.cssRules){
+        const t=k.style.transform,sx=/scaleX\(([\d.]+)/.exec(t);
+        xs.push(.5+parseFloat(/translateX\((-?[\d.]+)%/.exec(t)[1])/100*w-(sx?+sx[1]:1)*w/2);
+      }
+    }
+    return [Math.min(...xs),Math.max(...xs)];
+  });
+  const notes=[...document.querySelectorAll('[data-hb-for]')],moving=notes.map(n=>n.textContent);
+  const stillWords=['Inside, shown still at half size: each band is a wide, blurred strip, wider than the box. The arrows show how far each would sway.'];
+  let paused=reduceMQ.matches;
+  // Under reduced motion with the loop paused, See inside is a still and says so (its arrows show); after Play the moving words
+  // come back and the arrows go. A note is rewritten only when its words change, as its box reads changes out loud.
+  function describe(){
+    const shown=reduceMQ.matches&&paused;
+    stage.classList.toggle('still',shown);
+    notes.forEach((n,i)=>{const words=shown&&stillWords[i]||moving[i];if(n.textContent!==words)n.textContent=words});
+    const on=bands.filter(b=>b.style.display!=='none').map(b=>parseFloat(getComputedStyle(b).animationDuration)*(slow.checked?3:1));
+    const lo=Math.round(Math.min(...on)),hi=Math.round(Math.max(...on)),t=lo===hi?lo+' seconds':lo+' to '+hi+' seconds';
+    const words=shown?'Each can sway and lean: a full cycle takes '+t:'Each sways and leans on its own cycle: '+t;
+    if(capCyc.textContent!==words)capCyc.textContent=words;
+  }
+  // The views show the real bands: the same ones on, the same glow, and each moving part at the real band's place in its cycle
+  // (a part just shown starts a frame later than asked, so it is set again once it runs)
+  function syncViews(){
+    const live=stage.hasAttribute('data-hb-mode')&&stage.getAttribute('data-hb-mode')!=='normal';
+    bands.forEach((b,i)=>{
+      const v=view[i],a=b.getAnimations()[0];
+      for(const k of ['bc','bo','bs'])v[k].style.display=b.style.display;
+      v.arr.style.visibility=b.style.display==='none'?'hidden':'';
+      v.bc.style.opacity=b.style.opacity;
+      if(live&&a)for(const x of [v.bc.getAnimations()[0],v.bo.getAnimations()[0]]){
+        if(!x)continue;
+        const go=()=>{if(a.currentTime!=null){x.currentTime=a.currentTime;x.playbackRate=a.playbackRate}};
+        go();x.ready.then(go,()=>{});
+      }
+    });
+    describe();
+  }
+  function layout(){
+    const W=stage.clientWidth;
+    view.forEach((v,i)=>{
+      v.arr.style.left=sway[i][0]*W+'px';v.arr.style.width=(sway[i][1]-sway[i][0])*W+'px';
+      v.arr.style.top='calc('+ARROW_Y[i]*100+'% - 8px)';
+    });
+  }
+  document.addEventListener('hb:mode',()=>{layout();syncViews()});
+  document.addEventListener('hb:pause',e=>{paused=e.detail.paused;describe()});
+  reduceMQ.addEventListener('change',describe);
+  slow.addEventListener('change',describe);
+  addEventListener('resize',layout);
+  layout();
+
+  applyPalette();
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 06 Chromia — brushed-metal letters with a passing sheen */
+.fx-chrome {
+  font: 600 32px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .06em;
+  background: linear-gradient(105deg,
+      color-mix(in srgb, var(--ink) 40%, transparent) 0 38%,
+      var(--ink) 47%,
+      #fff 50%,
+      var(--ink) 53%,
+      color-mix(in srgb, var(--ink) 40%, transparent) 62% 100%
+    ) 0 0 / 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fx-chrome 2.8s ease-in-out infinite;
+}
+@keyframes fx-chrome {
+  0%   { background-position: 130% 0; }
+  60%, 100% { background-position: -130% 0; }
+}

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glassmorphism Animated — Animation Handbook</title>
+  <meta name="description" content="Frosted glass cards blur the colors behind them. Best for cards and panels.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/glassmorphism-animated/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Glassmorphism Animated — Animation Handbook">
+  <meta property="og:description" content="Frosted glass cards blur the colors behind them. Best for cards and panels.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/glassmorphism-animated/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Glassmorphism Animated — Animation Handbook">
+  <meta name="twitter:description" content="Frosted glass cards blur the colors behind them. Best for cards and panels.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Glassmorphism Animated", "name": "Glassmorphism Animated", "description": "Frosted glass cards blur the colors behind them. Best for cards and panels.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/glassmorphism-animated/", "inLanguage": "en", "articleSection": "3D & Advanced", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, 3D & Advanced, Glassmorphism Animated"}</script>
+  <style>
+    :root{--ui-accent:#3fd6c4;--blur:12px;--glass-op:0.12;--blob-spd:8s;--tint:rgba(88,166,255,var(--glass-op))}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;display:flex;align-items:center;justify-content:center;gap:16px;padding:24px;flex-wrap:wrap;background:#0b0b0d}
+    /* Animated gradient blobs behind everything */
+    .blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.75;animation:blob-move var(--blob-spd) ease-in-out infinite alternate}
+    .b1{width:280px;height:280px;background:#58a6ff;top:-80px;left:-60px;animation-delay:0s}
+    .b2{width:220px;height:220px;background:#d2a8ff;bottom:-60px;right:40px;animation-delay:calc(var(--blob-spd) * -.375)}
+    .b3{width:200px;height:200px;background:#56d364;top:30%;left:40%;animation-delay:calc(var(--blob-spd) * -.625)}
+    .b4{width:160px;height:160px;background:#ffa657;bottom:20%;left:-40px;animation-delay:calc(var(--blob-spd) * -.25)}
+    @keyframes blob-move{
+      0%{transform:translate(0,0) scale(1)}
+      33%{transform:translate(40px,-30px) scale(1.1)}
+      66%{transform:translate(-20px,40px) scale(.95)}
+      100%{transform:translate(30px,10px) scale(1.05)}
+    }
+    /* A faint pattern of soft white dots between the colors and the glass: the blurred colors alone leave the glass nothing to soften, so Light, Medium and Heavy frost would look alike. It fades out toward the edges of the stage. */
+    .stage::after{content:"";position:absolute;inset:0;--dots:rgba(255,255,255,.16);--dot-r:16px;--dot-pitch:56px;--fade:68%;
+      background:radial-gradient(circle,var(--dots) 0 var(--dot-r),transparent calc(var(--dot-r) + 2px)) 0 0/var(--dot-pitch) var(--dot-pitch);
+      -webkit-mask-image:radial-gradient(ellipse closest-side,#000 var(--fade),transparent);
+      mask-image:radial-gradient(ellipse closest-side,#000 var(--fade),transparent)}
+    /* Glass cards: all three share the glass; the middle one breathes and the right one shifts its tint */
+    .glass-card{position:relative;z-index:1;width:clamp(140px,22%,180px);min-height:200px;border-radius:16px;padding:20px 16px;display:flex;flex-direction:column;gap:8px;
+      background:var(--tint);
+      backdrop-filter:blur(var(--blur)) saturate(1.8);
+      -webkit-backdrop-filter:blur(var(--blur)) saturate(1.8);
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 8px 32px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.2)}
+    /* A see-through dark layer under the text (behind it, above the tint and the blurred backdrop) keeps the words readable over the bright colors */
+    .glass-card::before{content:"";position:absolute;inset:0;border-radius:inherit;background:rgba(6,8,14,.54);z-index:-1}
+    .glass-card.g2{animation:blur-breath 4s ease-in-out infinite}
+    .glass-card.g3{animation:tint-cycle 8s linear infinite}
+    /* !important so Frost's Off also beats the blur-breath keyframes on card 2 */
+    .stage.no-bf .glass-card{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+    @keyframes blur-breath{
+      0%,100%{backdrop-filter:blur(8px) saturate(1.8);-webkit-backdrop-filter:blur(8px) saturate(1.8)}
+      50%{backdrop-filter:blur(20px) saturate(2);-webkit-backdrop-filter:blur(20px) saturate(2)}
+    }
+    @keyframes tint-cycle{
+      0%{background:rgba(88,166,255,var(--glass-op))}25%{background:rgba(86,211,100,var(--glass-op))}50%{background:rgba(210,168,255,var(--glass-op))}75%{background:rgba(255,166,87,var(--glass-op))}100%{background:rgba(88,166,255,var(--glass-op))}
+    }
+    .card-tag{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.88)}
+    .card-title{font-size:clamp(13px,1.8vw,16px);font-weight:700;color:#fff;line-height:1.2}
+    .card-body{font-size:13px;color:rgba(255,255,255,.92);line-height:1.6;margin-top:4px}
+    /* Phones: the three cards share one row, so all of them show on the shorter stage */
+    @media(max-width:600px){
+      .blob{filter:blur(36px)}
+      .stage::after{--dots:rgba(255,255,255,.3);-webkit-mask-image:linear-gradient(transparent,#000 28%,#000 72%,transparent);mask-image:linear-gradient(transparent,#000 28%,#000 72%,transparent)}
+      .stage{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-content:center;align-items:stretch;gap:8px;padding:12px}
+      .glass-card{width:auto;min-width:0;min-height:0;padding:12px 8px;border-radius:12px;gap:6px}
+      .card-title{font-size:13px}
+      .card-tag{font-size:10px;letter-spacing:1px}
+      .card-body{font-size:12px;line-height:1.4}
+    }
+    /* See inside and Compare */
+    .clear,.cap{display:none}
+    .cap{position:absolute;z-index:3;left:0;top:0;padding:2px 7px;border-radius:5px;background:rgba(8,8,10,.92);color:#f4f4f2;font:600 12px/1.25 var(--hb-font);white-space:nowrap}
+    /* See inside: the colors lose their own blur, so each is a plain circle with a dashed outline; the cards stay as set, so the same
+       circles and dots come out soft through them */
+    .stage[data-hb-mode="inside"] .blob{filter:none;outline:2px dashed rgba(255,255,255,.85)}
+    .stage[data-hb-mode="inside"] .c-a,.stage[data-hb-mode="inside"] .c-b,.stage[data-hb-mode="inside"] .c-c{display:block}
+    /* Compare: a row of three cards for each half, one above the other (the first half's copies are in .clear, the real cards sit in
+       the second half by grid placement); the dots cover the box evenly, so both rows have some behind them */
+    .stage[data-hb-mode="compare"]{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(4,auto);align-content:center;align-items:stretch;gap:4px 8px;padding:12px}
+    .stage[data-hb-mode="compare"]::after{--dots:rgba(255,255,255,.32);-webkit-mask-image:none;mask-image:none}
+    .stage[data-hb-mode="compare"] .clear{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;grid-column:1/-1;grid-row:2}
+    .stage[data-hb-mode="compare"] .clear .glass-card{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+    .stage[data-hb-mode="compare"] .glass-card{width:auto;min-width:0;min-height:80px;padding:10px 8px;border-radius:12px;gap:4px}
+    .stage[data-hb-mode="compare"] .card-title{font-size:13px}
+    .stage[data-hb-mode="compare"] .card-tag{font-size:10px;letter-spacing:1px}
+    .stage[data-hb-mode="compare"] .card-body{display:none}
+    .stage[data-hb-mode="compare"]>.g1{grid-column:1;grid-row:4}
+    .stage[data-hb-mode="compare"]>.g2{grid-column:2;grid-row:4}
+    .stage[data-hb-mode="compare"]>.g3{grid-column:3;grid-row:4}
+    .stage[data-hb-mode="compare"] .h-a,.stage[data-hb-mode="compare"] .h-b{display:block;position:relative;justify-self:start;grid-column:1/-1}
+    .stage[data-hb-mode="compare"] .h-a{grid-row:1}
+    .stage[data-hb-mode="compare"] .h-b{grid-row:3;margin-top:6px}
+    @media(min-width:960px){
+      .stage[data-hb-mode="compare"]{grid-template-columns:repeat(3,minmax(0,1fr)) 16px repeat(3,minmax(0,1fr));grid-template-rows:auto auto;gap:6px 10px}
+      .stage[data-hb-mode="compare"]::before{content:"";grid-column:4;grid-row:1/3;justify-self:center;width:1px;background:rgba(255,255,255,.25)}
+      .stage[data-hb-mode="compare"] .clear{grid-column:1/4}
+      .stage[data-hb-mode="compare"] .glass-card{min-height:200px;padding:16px 12px;border-radius:16px;gap:8px}
+      .stage[data-hb-mode="compare"] .card-title{font-size:16px}
+      .stage[data-hb-mode="compare"] .card-tag{font-size:11px;letter-spacing:2px}
+      .stage[data-hb-mode="compare"] .card-body{display:block}
+      .stage[data-hb-mode="compare"]>.g1{grid-column:5;grid-row:2}
+      .stage[data-hb-mode="compare"]>.g2{grid-column:6;grid-row:2}
+      .stage[data-hb-mode="compare"]>.g3{grid-column:7;grid-row:2}
+      .stage[data-hb-mode="compare"] .h-a{grid-column:1/4}
+      .stage[data-hb-mode="compare"] .h-b{grid-column:5/8;grid-row:1;margin-top:0}
+    }
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="loop">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../fluid-simulation/" rel="prev" aria-label="Previous: Fluid / Liquid Simulation"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Fluid / Liquid Simulation</span></a><a href="../webgl-shader-animation/" rel="next" aria-label="Next: WebGL Shader Animation"><span><span class="hb-dir">Next: </span>WebGL Shader Animation</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">06.06 · 3D &amp; Advanced</p>
+    <h1>Glassmorphism Animated</h1>
+    <p class="hb-lede">Frosted glass cards blur the colors behind them. Best for cards and panels.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Watch it</h2><p>It moves by itself. Pause it to look closely, or turn on slow motion to see each part of the movement.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage">
+      <div class="blob b1" aria-hidden="true"></div>
+      <div class="blob b2" aria-hidden="true"></div>
+      <div class="blob b3" aria-hidden="true"></div>
+      <div class="blob b4" aria-hidden="true"></div>
+      <div class="glass-card g1">
+        <div class="card-tag">Still</div>
+        <div class="card-title">Fixed frost</div>
+        <div class="card-body">The blur stays the same.</div>
+      </div>
+      <div class="glass-card g2">
+        <div class="card-tag">Animated</div>
+        <div class="card-title">Breathing frost</div>
+        <div class="card-body">The blur grows and fades.</div>
+      </div>
+      <div class="glass-card g3">
+        <div class="card-tag">Shifting</div>
+        <div class="card-title">Shifting tint</div>
+        <div class="card-body">The tint keeps changing.</div>
+      </div>
+      <div class="clear" id="clear" aria-hidden="true" inert></div>
+      <p class="cap c-a" aria-hidden="true" data-hb-caption>Behind: plain color circles and dots</p>
+      <p class="cap c-b" aria-hidden="true" data-hb-caption>The glass blurs what is behind it</p>
+      <p class="cap c-c" aria-hidden="true" data-hb-caption>Tint and light edge finish the glass</p>
+      <p class="cap h-a" aria-hidden="true" data-hb-caption>Clear glass</p>
+      <p class="cap h-b" aria-hidden="true" data-hb-caption>Frosted glass</p>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-pause" data-hb-pause="css" data-state="playing"><svg class="hb-ic hb-i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="hb-ic hb-i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9z"/></svg><span class="hb-pause-label">Pause</span></button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo="css" autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the soft colors are plain circles, shown here without their own blur, drifting behind a dot pattern. The glass blurs whatever passes behind it, so they soften only through the cards.</p>
+      <p data-hb-for="compare" hidden>Clear glass has the tint and the light edge but no blur, so the dots behind it show sharp. Frosted glass blurs them into a soft glow.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting and see the difference as it moves.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="frost-lbl">Frost</p>
+        <div class="seg" id="frost-seg" role="group" aria-labelledby="frost-lbl">
+          <button type="button" data-blur="off" aria-pressed="false">Off</button>
+          <button type="button" data-blur="6px" aria-pressed="false">Light</button>
+          <button type="button" data-blur="12px" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-blur="20px" aria-pressed="false">Heavy</button>
+        </div>
+        <p class="hb-hint">How strongly the glass blurs what is behind it.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="op-lbl">Tint strength</p>
+        <div class="seg" id="op-seg" role="group" aria-labelledby="op-lbl">
+          <button type="button" data-op="0.06" aria-pressed="false">Faint</button>
+          <button type="button" data-op="0.12" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-op="0.25" aria-pressed="false">Strong</button>
+        </div>
+        <p class="hb-hint">How much color the glass adds.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-spd="13s" aria-pressed="false">Slow</button>
+          <button type="button" data-spd="8s" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-spd="5s" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">How fast the colors drift behind the glass.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="tint-lbl">Tint color</p>
+          <div class="swatches" id="tint-sw" role="group" aria-labelledby="tint-lbl">
+            <button type="button" aria-pressed="false" aria-label="Pink" data-color="#ff6f8b" style="background:#ff6f8b"></button>
+            <button type="button" aria-pressed="false" aria-label="White" data-color="#f4f4f2" style="background:#f4f4f2"></button>
+            <button type="button" class="on" aria-pressed="true" aria-label="Blue" data-color="#58a6ff" style="background:#58a6ff"></button>
+            <button type="button" aria-pressed="false" aria-label="Purple" data-color="#d2a8ff" style="background:#d2a8ff"></button>
+            <button type="button" aria-pressed="false" aria-label="Green" data-color="#56d364" style="background:#56d364"></button>
+            <button type="button" aria-pressed="false" aria-label="Orange" data-color="#ffa657" style="background:#ffa657"></button>
+          </div>
+          <p class="hb-hint">The color of the glass.</p>
+        </div>
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Breathing frost</span><input class="hb-switch" type="checkbox" role="switch" id="breath-tog" checked autocomplete="off"></label>
+          <p class="hb-hint">The middle card's blur grows and fades.</p>
+        </div>
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Shifting tint</span><input class="hb-switch" type="checkbox" role="switch" id="shift-tog" checked autocomplete="off"></label>
+          <p class="hb-hint">The right card slowly changes color.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add frosted glass to [the cards or panels you want to style]. Give each card a see-through tinted background, blur whatever sits behind it, and add a thin light edge. Put colorful shapes that drift slowly behind the cards, with a faint pattern of dots over them, because glass over plain color looks gray and shows no frost. Put a see-through dark layer inside each card under its text so the words stay readable. A card can also breathe, its blur growing and fading, or slowly change its tint. Blurring costs a lot, so keep the glass to small cards and blur the shapes less on phones. If the visitor has reduced motion turned on, keep everything still. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Cards and panels</li><li>Dashboards</li><li>Modals</li><li>Navigation bars</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Plain backgrounds</li><li>Large surfaces</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const root=document.documentElement.style;
+  const stage=document.getElementById('stage');
+  // The notes: Frost Off, and a picture held still under reduced motion (the loop starts paused), say so. The markup holds the usual
+  // words, and a note is rewritten only when its words change.
+  const reduceMQ=matchMedia('(prefers-reduced-motion: reduce)');
+  const notes=[...document.querySelectorAll('[data-hb-for]')],usual=notes.map(n=>n.textContent);
+  const inside=['Shown still: inside, the soft colors are plain circles, drawn here without their own blur, behind a dot pattern.',
+    ' The glass blurs whatever is behind it, so they soften only through the cards.',' Frost is Off, so the glass does not blur them.'];
+  let paused=reduceMQ.matches,frostOff=false;
+  function describe(){
+    const still=reduceMQ.matches&&paused;
+    const words=[
+      still?inside[0]+inside[frostOff?2:1]:frostOff?usual[0].slice(0,usual[0].indexOf('. ')+1)+inside[2]:usual[0],
+      frostOff?'Frost is Off, so Clear glass and Frosted glass look the same. Pick a frost in Try it to see the difference.':usual[1]];
+    notes.forEach((n,i)=>{if(n.textContent!==words[i])n.textContent=words[i]});
+  }
+  describe();
+  document.addEventListener('hb:pause',e=>{paused=e.detail.paused;describe()});
+  // Compare's first half is three copies of the real cards, made once, without the backdrop blur and the middle card's breathing.
+  // The copy of the shifting card starts its tint cycle when it is shown, so it is set to the real card's moment on every entry
+  // and after the Shifting tint switch changes.
+  const real=[...stage.querySelectorAll(':scope > .glass-card')],caps=['a','b','c'].map(k=>stage.querySelector('.c-'+k));
+  real.forEach(c=>{const k=c.cloneNode(true);k.classList.remove('g2');document.getElementById('clear').appendChild(k)});
+  function syncTint(){
+    const r=real[2].getAnimations()[0],c=stage.querySelector('.clear .g3').getAnimations()[0];
+    if(r&&c&&r.currentTime!=null)c.currentTime=r.currentTime;
+  }
+  // See inside's three captions sit above and below the row of cards, from the cards' measured places (again on a resize and when
+  // the font arrives). Where the stage is short, the first two share the band above the row, side by side.
+  function place(){
+    if(stage.dataset.hbMode!=='inside')return;
+    const [a,b,c]=caps,W=stage.clientWidth,H=stage.clientHeight;
+    caps.forEach(el=>{el.style.left=el.style.top='0px'});
+    const top=Math.min(...real.map(g=>g.offsetTop)),bottom=Math.max(...real.map(g=>g.offsetTop+g.offsetHeight)),left=real[0].offsetLeft,mid=(left+real[2].offsetLeft+real[2].offsetWidth)/2;
+    const at=(el,x,y)=>{el.style.left=Math.max(4,Math.min(x,W-el.offsetWidth-4))+'px';el.style.top=y+'px'};
+    const ay=Math.max(4,Math.min(5,top-a.offsetHeight-4)),by=top-b.offsetHeight-3;
+    const ax=10+a.offsetWidth+8,bx=mid-b.offsetWidth/2;
+    at(a,10,ay);
+    at(b,by<ay+a.offsetHeight+3&&bx<ax?ax:bx,by);
+    at(c,mid-c.offsetWidth/2,Math.min(H-c.offsetHeight-4,bottom+4));
+  }
+  document.addEventListener('hb:mode',e=>{
+    if(e.detail.mode==='inside')place();
+    if(e.detail.mode==='compare')syncTint();
+  });
+  addEventListener('resize',place);
+  if(document.fonts)document.fonts.ready.then(place);
+  let secs=8;
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  // Off keeps the last blur in --blur, so choosing a strength again brings it back
+  choices('frost-seg',d=>{
+    stage.classList.toggle('no-bf',d.blur==='off');
+    frostOff=d.blur==='off';describe();
+    if(d.blur!=='off')root.setProperty('--blur',d.blur);
+    caps[1].textContent=frostOff?'Frost is Off, so nothing blurs':'The glass blurs what is behind it';place();
+  });
+  choices('op-seg',d=>{root.setProperty('--glass-op',d.op)});
+  // The blobs' clocks are rescaled with the new length (their delays are fractions of it), so each blob stays where it is;
+  // the two card animations have fixed lengths and are left alone
+  choices('speed-seg',d=>{
+    const next=parseFloat(d.spd);
+    document.querySelectorAll('.blob').forEach(el=>el.getAnimations().forEach(a=>{if(a.currentTime!=null)a.currentTime=a.currentTime*next/secs}));
+    secs=next;
+    root.setProperty('--blob-spd',d.spd);
+  });
+  choices('tint-sw',d=>{
+    const r=parseInt(d.color.slice(1,3),16);
+    const g=parseInt(d.color.slice(3,5),16);
+    const b=parseInt(d.color.slice(5,7),16);
+    root.setProperty('--tint',`rgba(${r},${g},${b},var(--glass-op))`);
+  });
+  /* 'none' (not 'paused') so the card falls back to the Frost and Tint settings while off */
+  document.getElementById('breath-tog').addEventListener('change',e=>{
+    document.querySelector('.g2').style.animation=e.target.checked?'':'none';
+  });
+  document.getElementById('shift-tog').addEventListener('change',e=>{
+    document.querySelectorAll('.g3').forEach(g=>{g.style.animation=e.target.checked?'':'none'});
+    syncTint();
+  });
+</script>
+</body>
+</html>

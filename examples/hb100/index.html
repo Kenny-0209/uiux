@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variable Font Morph — Animation Handbook</title>
+  <meta name="description" content="A word smoothly turns bold, then light, and leans over. Best for headlines.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/05-text-typography/variable-font-morph/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Variable Font Morph — Animation Handbook">
+  <meta property="og:description" content="A word smoothly turns bold, then light, and leans over. Best for headlines.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/05-text-typography/variable-font-morph/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Variable Font Morph — Animation Handbook">
+  <meta name="twitter:description" content="A word smoothly turns bold, then light, and leans over. Best for headlines.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Variable Font Morph", "name": "Variable Font Morph", "description": "A word smoothly turns bold, then light, and leans over. Best for headlines.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/05-text-typography/variable-font-morph/", "inLanguage": "en", "articleSection": "Text & Typography", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Text & Typography, Variable Font Morph"}</script>
+  <style>
+    :root{--ui-accent:#ff6f8b;--wght:400;--slnt:0;--morph-dur:600ms}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{display:flex;align-items:center;justify-content:center;background:#04060c;padding:clamp(20px,4vw,48px)}
+    .vf-text{
+      width:100%;max-width:720px;
+      font-size:clamp(44px,9vw,100px);
+      line-height:1.15;
+      color:#fff;
+      text-align:center;
+      overflow-wrap:anywhere;
+      font-weight:var(--wght);
+      font-variation-settings:'wght' var(--wght);
+      /* the site font has no slant axis, so slnt is drawn as a skewX tilt */
+      transform:skewX(calc(var(--slnt) * 1deg));
+      transition:font-variation-settings var(--morph-dur) cubic-bezier(.4,0,.2,1),
+                  font-weight var(--morph-dur) cubic-bezier(.4,0,.2,1),
+                  transform var(--morph-dur) cubic-bezier(.4,0,.2,1);
+      -webkit-user-select:none;user-select:none
+    }
+    @media(prefers-reduced-motion:reduce){.vf-text{transition:none!important}}
+
+    /* ── See inside and Compare ── */
+    :root{--vp:clamp(20px,4vw,48px)}
+    .stage{position:relative}
+    .vfi,.vfc{position:absolute;z-index:2;pointer-events:none;visibility:hidden}
+    .vfc{inset:0}
+    .vfi{left:var(--vp);right:var(--vp);bottom:var(--vp);display:flex;flex-direction:column;gap:10px;overflow:clip}
+    .vfl{padding:3px 7px;border-radius:5px;background:rgba(4,6,12,.92);color:#f4f4f2;font:600 13px/1.25 var(--hb-font);text-wrap:balance}
+    /* the twins of the word: the holder keeps Normal's layout; Jumps reads the same variables with no easing */
+    .vfh,.vfjump{display:none}
+    .vfh{visibility:hidden}
+    .vfjump{font-weight:var(--cw,var(--wght));font-variation-settings:'wght' var(--cw,var(--wght));transform:skewX(calc(var(--cs,var(--slnt)) * 1deg));transition:none}
+    .vfm{display:none;position:absolute;left:0;top:0;max-width:none;visibility:hidden;font-weight:900;font-variation-settings:'wght' 900;transform:none;transition:none}
+    /* See inside: the word sits above a bar that is one font's range of weights; the dot rides it by the word's own weight and easing */
+    .vfrow{display:flex;align-items:center;gap:12px}
+    .vfend{flex:none;font-size:14px;white-space:nowrap;text-wrap:wrap}
+    .vfreg{font-weight:400}
+    .vfblk{font-weight:900}
+    .vftrack{position:relative;flex:1;min-width:0;height:24px}
+    .vfwedge{position:absolute;left:0;right:0;top:50%;height:12px;margin-top:-6px;background:linear-gradient(90deg,rgba(255,255,255,.22),rgba(255,255,255,.62));clip-path:polygon(0 40%,100% 0,100% 100%,0 60%)}
+    .vftk{position:absolute;top:50%;width:2px;height:22px;margin:-11px 0 0 -1px;border-radius:1px;background:#f4f4f2}
+    /* the rail is as wide as the bar and moves by a share of its own width, so a resize changes nothing the dot is easing */
+    .vfrail{position:absolute;inset:0;transform:translateX(calc((var(--wght) - 400) / 500 * 100%));transition:transform var(--morph-dur) cubic-bezier(.4,0,.2,1)}
+    .vfdot{position:absolute;left:0;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;border:2px solid #04060c;background:var(--ui-accent)}
+    @media(prefers-reduced-motion:reduce){.vfrail{transition:none}}
+    .vfcaps{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 10px}
+    .vfcaps .vfl{max-width:100%}
+    .vflean{position:relative;display:inline-block;width:24px;height:20px;margin-right:6px;vertical-align:-5px}
+    .vflean::before,.vflean::after{content:"";position:absolute;left:11px;bottom:0;height:20px;border-left:2px dashed #c9ccd6}
+    .vflean::after{border-left:2px solid var(--ui-accent);transform-origin:50% 100%;transform:rotate(24deg)}
+    .vfcap.off .vflean::after{display:none}
+    .stage[data-hb-mode="inside"] .vfi{visibility:visible}
+    .stage[data-hb-mode="inside"] #vf-text{translate:0 var(--vty,0px);scale:var(--vs,1)}
+    .stage[data-hb-mode="inside"] .vfm,.stage[data-hb-mode="compare"] .vfm{display:block}
+    /* Compare: the word in each half, broken into the same lines and drawn the same size; the holder keeps the box the height Normal gives it */
+    .vfn,.vfp{position:absolute;width:max-content;max-width:calc(50% - 14px);text-align:center;translate:-50% 0}
+    .vfn{top:10px;font-weight:700}
+    .vfp{bottom:10px;visibility:hidden}
+    .vfa{left:25%}
+    .vfb{left:75%}
+    .vfdiv{position:absolute;left:50%;top:10px;bottom:10px;border-left:1px dashed rgba(244,244,242,.2)}
+    .stage[data-hb-mode="compare"] .vfc{visibility:visible}
+    .stage[data-hb-mode="compare"].vfposed .vfp{visibility:visible}
+    .stage[data-hb-mode="compare"] .vfh,.stage[data-hb-mode="compare"] .vfjump{display:block}
+    .stage[data-hb-mode="compare"] :is(#vf-text,.vfjump){position:absolute;top:var(--vt,0px);width:max-content;max-width:none;white-space:nowrap;scale:var(--vs,1);translate:-50% 0}
+    .stage[data-hb-mode="compare"] #vf-text{left:75%}
+    .stage[data-hb-mode="compare"] .vfjump{left:25%}
+    .stage[data-hb-mode="compare"] #vf-text{z-index:1}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="loop">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../scramble-text/" rel="prev" aria-label="Previous: Scramble / Glitch Text"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Scramble / Glitch Text</span></a><a href="../text-clip-path-reveal/" rel="next" aria-label="Next: Text Clip-Path Reveal"><span><span class="hb-dir">Next: </span>Text Clip-Path Reveal</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">05.04 · Text &amp; Typography</p>
+    <h1>Variable Font Morph</h1>
+    <p class="hb-lede">A word smoothly turns bold, then light, and leans over. Best for headlines.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Watch it</h2><p>It moves by itself. Pause it to look closely, or turn on slow motion to see each part of the movement.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage hb-dots hb-grow" id="stage">
+      <div class="vf-text" id="vf-text">Type</div>
+      <div class="vf-text vfh" aria-hidden="true" inert>Type</div>
+      <div class="vf-text vfjump" aria-hidden="true" inert>Type</div>
+      <div class="vf-text vfm" aria-hidden="true" inert>Type</div>
+      <div class="vfi" aria-hidden="true" inert>
+        <div class="vfrow">
+          <span class="vfl vfend vfreg" data-hb-caption>Regular</span>
+          <div class="vftrack"><i class="vfwedge"></i><i class="vftk" style="left:0"></i><i class="vftk" style="left:20%"></i><i class="vftk" style="left:60%"></i><i class="vftk" style="left:100%"></i><i class="vfrail"><i class="vfdot"></i></i></div>
+          <span class="vfl vfend vfblk" data-hb-caption>Black</span>
+        </div>
+        <div class="vfcaps">
+          <span class="vfl vfg" data-hb-caption>Glides through every weight in between, in about half a second</span>
+          <span class="vfl vfcap" data-hb-caption><span class="vflean"></span><span class="vflt">Leans by tilting a little</span></span>
+        </div>
+      </div>
+      <div class="vfc" aria-hidden="true" inert>
+        <i class="vfdiv"></i>
+        <span class="vfl vfn vfa" data-hb-caption>Jumps</span>
+        <span class="vfl vfn vfb" data-hb-caption>Glides</span>
+        <span class="vfl vfp vfa" data-hb-caption>At the next style</span>
+        <span class="vfl vfp vfb" data-hb-caption>Half way through a change</span>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-pause" data-hb-pause data-state="playing"><svg class="hb-ic hb-i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="hb-ic hb-i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9z"/></svg><span class="hb-pause-label">Pause</span></button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the word slides along one font's range of weights, from regular to black, and rests at a few stops on the way; the dot shows where it is now.</p>
+      <p data-hb-for="compare" hidden>Jumps snaps from one style to the next, as two separate fonts would. Glides moves through every weight in between, because one variable font holds them all.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting and see the difference as it moves.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-dur="1000" aria-pressed="false">Slow</button>
+          <button type="button" data-dur="600" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-dur="350" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">How long each change of style takes.</p>
+      </div>
+      <div class="hb-setting">
+        <label class="hb-switch-row"><span>Leans as it changes</span><input class="hb-switch" type="checkbox" role="switch" id="lean-tog" checked autocomplete="off"></label>
+        <p class="hb-hint">Adds a slant to some of the changes.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <label class="hb-setting-name" for="text-inp">Your text</label>
+          <input class="hb-text" type="text" id="text-inp" value="Type" autocomplete="off">
+          <p class="hb-hint">Short words show the change best.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a variable font morph to [your headline or word]. Use a variable font, which holds a whole range of weights in one file, and change the weight smoothly so the letters grow heavier and lighter as you watch, moving through a few styles in turn and resting briefly on each. When the settings include it, the word also leans over during some changes: a font with its own slant does this best, and a slight tilt works for fonts without one. Change the weight through the font itself, not by scaling, so the text stays sharp. If the visitor has reduced motion turned on, keep the word in one style. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Headlines</li><li>Logos</li><li>Loading text</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Body text</li><li>Small text</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const vfText=document.getElementById('vf-text');
+  const stage=document.getElementById('stage');
+  const vars=document.documentElement.style;
+  const slowTog=document.getElementById('slow-tog');
+  const leanTog=document.getElementById('lean-tog');
+  const txtIn=document.getElementById('text-inp');
+  const PRESETS=[
+    {wght:400,slnt:0},{wght:900,slnt:0},{wght:700,slnt:-15},
+    {wght:500,slnt:0},{wght:400,slnt:-15},{wght:900,slnt:0}
+  ];
+  let morph=600,idx=0,current=PRESETS[0],from={w:400,k:0};
+  const num=n=>+vars.getPropertyValue(n);
+
+  function curDur(){return slowTog.checked?morph*3:morph}
+
+  // Pause freezes the step under way: its transitions stop where they are and its timer keeps the time it
+  // had left. Every timer of the loop goes through wait(), so there is always exactly one chain and Play can
+  // never start a second one.
+  let timer=0,next=null,due=0,left=0,held=[],paused=false;
+  function wait(fn,ms){clearTimeout(timer);next=fn;if(paused){left=ms;return}due=performance.now()+ms;timer=setTimeout(()=>{next=null;fn()},ms)}
+  function freeze(){paused=true;clearTimeout(timer);if(next)left=Math.max(0,due-performance.now());held=stage.getAnimations({subtree:true}).filter(a=>a.playState==='running');held.forEach(a=>a.pause())}
+  // A transition that Pause caught at or past its end is finished, not played: play() would rewind it to the start.
+  function thaw(){paused=false;held.forEach(a=>{if(a.playState!=='paused')return;if(a.currentTime>=a.effect.getComputedTiming().endTime)a.finish();else a.play()});held=[];if(next)wait(next,left)}
+  document.addEventListener('hb:pause',e=>e.detail.paused?freeze():thaw());
+
+  // Applies the next preset, then schedules the step after it. --morph-dur is set fresh on every call, so a
+  // Slow motion change takes effect on this step's own transition (and the wait that matches it), never on
+  // one already drawn.
+  function step(){
+    const d=curDur();
+    from={w:num('--wght')||400,k:num('--slnt')}; // where this change starts, for Compare's pose
+    vars.setProperty('--morph-dur',d+'ms');
+    current=PRESETS[idx%PRESETS.length];
+    idx++;
+    vars.setProperty('--wght',current.wght);
+    vars.setProperty('--slnt',leanTog.checked?current.slnt:0);
+    wait(step,d+800);
+  }
+
+  // Applied to the word on screen at once, so the change shows even while paused: a tilt that would ease in is
+  // finished on the spot, while the held weight transitions stay frozen and Play carries on from there.
+  leanTog.addEventListener('change',()=>{
+    vars.setProperty('--slnt',leanTog.checked?current.slnt:0);
+    if(paused)vfText.getAnimations().filter(a=>a.transitionProperty==='transform').forEach(a=>a.finish());
+  });
+  txtIn.addEventListener('input',()=>{
+    vfText.textContent=txtIn.value.trim()?txtIn.value:'Type';
+  });
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  choices('speed-seg',d=>{morph=+d.dur});
+
+  // ── See inside and Compare ──
+  // Both are drawn from the loop's own numbers. See inside: the dot rides the bar by the word's own --wght with its easing, so Pause
+  // and Slow motion reach it with the word. Compare: Jumps is a twin that reads the same variables with no easing; while the
+  // loop is paused, the change next or under way is posed half way (a script animation on the word, a style on the twin), and lifted at once.
+  const reduceMQ=matchMedia('(prefers-reduced-motion: reduce)');
+  const $=s=>stage.querySelector(s);
+  const vfi=$('.vfi'),vfm=$('.vfm'),jump=$('.vfjump');
+  const twins=[...stage.querySelectorAll('.vf-text:not(#vf-text)')];
+  const glide=$('.vfg'),leanCap=$('.vfcap'),leanWords=$('.vflt');
+  const notes=[...document.querySelectorAll('[data-hb-for]')],plain=notes.map(n=>n.textContent);
+  // Under reduced motion the loop starts paused, so both views are stills; once Play has moved it on, the words say so
+  const still=[
+    "Shown still: the bar is one font's whole range of weights, from regular to black, and the dot marks where the word rests on it.",
+    'Shown still, half way through a change: Jumps is already at the next style, while Glides is in between, a weight that only a variable font can show.'];
+  const jumping=[
+    "With reduced motion on, the word and its dot jump from stop to stop along one font's range of weights, regular to black.",
+    'With reduced motion on, Jumps and Glides both jump from style to style. Press Pause to see them half way through a change.'];
+  let mode='normal';
+  const put=(el,t)=>{if(el.textContent!==t)el.textContent=t};
+  const describe=()=>notes.forEach((n,i)=>put(n,!reduceMQ.matches?plain[i]:paused?still[i]:jumping[i]));
+  const ago=ms=>ms<=450?'about a third of a second':ms<=800?'about half a second':ms<=1250?'about a second':ms<=2100?'nearly two seconds':'about three seconds';
+  function captions(){
+    put(glide,reduceMQ.matches?'The weights in between are skipped with reduced motion':'Glides through every weight in between, in '+ago(curDur()));
+    put(leanWords,leanTog.checked?'Leans by tilting a little':'Lean is off: stays upright');
+    leanCap.classList.toggle('off',!leanTog.checked);
+    if(mode!=='normal')layout();
+  }
+  const src=()=>txtIn.value.trim()?txtIn.value:'Type';
+  function sync(){twins.forEach(w=>put(w,src()))}
+  // The lines of a text as it wraps now, one string each
+  function linesOf(el){
+    const n=el.firstChild,r=document.createRange(),out=[];let top=null;
+    for(let i=0;i<n.length;i++){
+      r.setStart(n,i);r.setEnd(n,i+1);
+      const b=r.getBoundingClientRect();
+      if(!b.height)continue;
+      if(top===null||b.top-top>b.height/2){out.push('');top=b.top}
+      out[out.length-1]+=n.data[i];
+    }
+    return out.map(l=>l.trim());
+  }
+  const fill=(el,lines)=>el.replaceChildren(...lines.flatMap((l,i)=>i?[document.createElement('br'),l]:[l]));
+  let broken=false;
+  // Where the word goes: above the bar in See inside, and one line in the right half in Compare, both scaled alike to fit
+  function layout(){
+    if(broken&&mode!=='compare'){vfText.textContent=jump.textContent=src();broken=false}
+    if(mode==='normal')return;
+    const st=getComputedStyle(stage),W=stage.clientWidth,H=stage.clientHeight,fs=parseFloat(getComputedStyle(vfText).fontSize);
+    let s,ty=0,at=0;
+    if(mode==='inside'){
+      const low=vfi.offsetHeight+10;
+      vfm.style.width=vfText.offsetWidth+'px';vfm.style.overflowWrap='';
+      s=Math.min(1,(H-parseFloat(st.paddingTop)-parseFloat(st.paddingBottom)-low)/vfm.offsetHeight);
+      ty=-low/2;
+    }else{
+      // the largest size at which the text, broken to fit a half, still fits between the names and the notes (a word is kept
+      // whole down to a third of its size; a word that is longer than that holds is broken, at that size or smaller, into the
+      // fewest pieces); the lines it breaks into at its black weight are kept in both halves, so the two never wrap apart
+      const room=W/2-24-.3*fs,WHOLE=.35,fits=()=>vfm.offsetHeight*s<=H-96&&vfm.scrollWidth<=room/s+1;
+      vfm.style.overflowWrap='normal';
+      for(s=1;;s=Math.max(WHOLE,s-.04)){vfm.style.width=room/s+'px';if(fits()||s===WHOLE)break}
+      if(!fits()){
+        vfm.style.overflowWrap='anywhere';
+        for(;;s=Math.max(.13,s-.04)){vfm.style.width=room/s+'px';if(fits()||s===.13)break}
+      }
+      const lines=linesOf(vfm);
+      fill(vfText,lines);fill(jump,lines);broken=true;
+      at=(H-vfText.offsetHeight)/2;
+    }
+    stage.style.setProperty('--vs',s);stage.style.setProperty('--vty',ty+'px');stage.style.setProperty('--vt',at+'px');
+  }
+  // The pose is a finished script animation laid over the word, so the transitions Pause holds stay alive under it: lifting it
+  // (Play, Normal, See inside) shows the true frame again, and nothing eases from the pose
+  let poseAnim=null;
+  function unpose(){
+    if(poseAnim){poseAnim.cancel();poseAnim=null}
+    jump.style.cssText='';
+  }
+  function pose(){
+    // Paused in Compare, the two halves never rest alike. Paused between two changes, the next change is posed half way; paused in
+    // the middle of one, that change is: Jumps at the style it goes to, Glides half way from the style it left
+    const on=mode==='compare'&&paused;
+    stage.classList.toggle('vfposed',on);
+    if(!on)return unpose();
+    const caught=held.length>0,here={w:num('--wght'),k:num('--slnt')},to=PRESETS[idx%PRESETS.length];
+    const a=caught?from:here,b=caught?here:{w:to.wght,k:leanTog.checked?to.slnt:0},w=(a.w+b.w)/2;
+    jump.style.cssText=caught?'':'--cw:'+b.w+';--cs:'+b.k;
+    if(poseAnim)poseAnim.cancel();
+    poseAnim=vfText.animate({fontWeight:w,fontVariationSettings:"'wght' "+w,transform:'skewX('+(a.k+b.k)/2+'deg)'},{duration:0,fill:'forwards'});
+  }
+  document.addEventListener('hb:mode',e=>{mode=e.detail.mode;layout();pose()});
+  document.addEventListener('hb:pause',()=>{describe();pose()});
+  reduceMQ.addEventListener('change',()=>{describe();captions();pose()});
+  leanTog.addEventListener('change',()=>{captions();pose()});
+  slowTog.addEventListener('change',captions);
+  document.getElementById('speed-seg').addEventListener('click',captions);
+  txtIn.addEventListener('input',()=>{sync();layout()});
+  new ResizeObserver(layout).observe(stage);
+  if(document.fonts)document.fonts.ready.then(layout);
+  sync();captions();
+
+  step();
+</script>
+</body>
+</html>

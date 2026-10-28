@@ -1,0 +1,1264 @@
+[
+  {
+    "id": "th3-01",
+    "name": "볼록 껍질 형상",
+    "english": "geometry convex",
+    "category": "3D",
+    "description": "점 집합으로 만든 볼록 형상을 회전해 살펴봅니다.",
+    "tags": [
+      "3D",
+      "볼록 껍질 형상",
+      "geometry",
+      "convex"
+    ],
+    "preview": "https://threejs.org/examples/webgl_geometry_convex.html",
+    "codePath": "./examples/3d공식/01.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_geometry_convex.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-02",
+    "name": "입체 도형 불리언 연산",
+    "english": "geometry csg",
+    "category": "3D",
+    "description": "입체 도형의 합집합과 차집합 등을 조절합니다.",
+    "tags": [
+      "3D",
+      "입체 도형 불리언 연산",
+      "geometry",
+      "csg"
+    ],
+    "preview": "https://threejs.org/examples/webgl_geometry_csg.html",
+    "codePath": "./examples/3d공식/02.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_geometry_csg.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-03",
+    "name": "곡선 경로 돌출",
+    "english": "geometry extrude splines",
+    "category": "3D",
+    "description": "곡선 경로를 따라 돌출한 입체 형상을 조절합니다.",
+    "tags": [
+      "3D",
+      "곡선 경로 돌출",
+      "geometry",
+      "extrude",
+      "splines"
+    ],
+    "preview": "https://threejs.org/examples/webgl_geometry_extrude_splines.html",
+    "codePath": "./examples/3d공식/03.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_geometry_extrude_splines.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-04",
+    "name": "3D 곡선 편집",
+    "english": "geometry spline editor",
+    "category": "3D",
+    "description": "제어점을 움직여 공간 곡선의 경로를 편집합니다.",
+    "tags": [
+      "3D",
+      "3D 곡선 편집",
+      "geometry",
+      "spline",
+      "editor"
+    ],
+    "preview": "https://threejs.org/examples/webgl_geometry_spline_editor.html",
+    "codePath": "./examples/3d공식/04.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_geometry_spline_editor.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-05",
+    "name": "찻주전자 형상 설정",
+    "english": "geometry teapot",
+    "category": "3D",
+    "description": "곡면과 형상 분할 설정을 바꾸고 3D 모델을 회전합니다.",
+    "tags": [
+      "3D",
+      "찻주전자 형상 설정",
+      "geometry",
+      "teapot"
+    ],
+    "preview": "https://threejs.org/examples/webgl_geometry_teapot.html",
+    "codePath": "./examples/3d공식/05.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_geometry_teapot.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-06",
+    "name": "지형과 표면 충돌",
+    "english": "geometry terrain raycast",
+    "category": "3D",
+    "description": "3D 지형을 회전하고 표면의 위치를 살펴봅니다.",
+    "tags": [
+      "3D",
+      "지형과 표면 충돌",
+      "geometry",
+      "terrain",
+      "raycast"
+    ],
+    "preview": "https://threejs.org/examples/webgl_geometry_terrain_raycast.html",
+    "codePath": "./examples/3d공식/06.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_geometry_terrain_raycast.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-07",
+    "name": "3D 텍스트 형상",
+    "english": "geometry text",
+    "category": "3D",
+    "description": "문자와 글꼴·입체 텍스트의 설정을 바꿉니다.",
+    "tags": [
+      "3D",
+      "3D 텍스트 형상",
+      "geometry",
+      "text"
+    ],
+    "preview": "https://threejs.org/examples/webgl_geometry_text.html",
+    "codePath": "./examples/3d공식/07.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_geometry_text.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-08",
+    "name": "삼각형 메시 선택",
+    "english": "interactive buffergeometry",
+    "category": "3D",
+    "description": "포인터로 3D 메시의 삼각형을 가리킵니다.",
+    "tags": [
+      "3D",
+      "삼각형 메시 선택",
+      "interactive",
+      "buffergeometry"
+    ],
+    "preview": "https://threejs.org/examples/webgl_interactive_buffergeometry.html",
+    "codePath": "./examples/3d공식/08.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_interactive_buffergeometry.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-09",
+    "name": "3D 큐브 포인터 선택",
+    "english": "interactive cubes",
+    "category": "3D",
+    "description": "마우스를 움직여 장면 안의 큐브를 선택합니다.",
+    "tags": [
+      "3D",
+      "3D 큐브 포인터 선택",
+      "interactive",
+      "cubes"
+    ],
+    "preview": "https://threejs.org/examples/webgl_interactive_cubes.html",
+    "codePath": "./examples/3d공식/09.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_interactive_cubes.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-10",
+    "name": "직교 투영 객체 선택",
+    "english": "interactive cubes ortho",
+    "category": "3D",
+    "description": "직교 카메라 장면에서 포인터로 객체를 가리킵니다.",
+    "tags": [
+      "3D",
+      "직교 투영 객체 선택",
+      "interactive",
+      "cubes",
+      "ortho"
+    ],
+    "preview": "https://threejs.org/examples/webgl_interactive_cubes_ortho.html",
+    "codePath": "./examples/3d공식/10.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_interactive_cubes_ortho.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-11",
+    "name": "3D 선 선택",
+    "english": "interactive lines",
+    "category": "3D",
+    "description": "포인터를 움직여 공간에 있는 선을 선택합니다.",
+    "tags": [
+      "3D",
+      "3D 선 선택",
+      "interactive",
+      "lines"
+    ],
+    "preview": "https://threejs.org/examples/webgl_interactive_lines.html",
+    "codePath": "./examples/3d공식/11.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_interactive_lines.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-12",
+    "name": "3D 점 선택",
+    "english": "interactive points",
+    "category": "3D",
+    "description": "포인터를 움직여 점으로 이뤄진 형상을 살펴봅니다.",
+    "tags": [
+      "3D",
+      "3D 점 선택",
+      "interactive",
+      "points"
+    ],
+    "preview": "https://threejs.org/examples/webgl_interactive_points.html",
+    "codePath": "./examples/3d공식/12.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_interactive_points.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-13",
+    "name": "포인트 클라우드 레이캐스팅",
+    "english": "interactive raycasting points",
+    "category": "3D",
+    "description": "3D 점에 대한 포인터 교차 판정을 살펴봅니다.",
+    "tags": [
+      "3D",
+      "포인트 클라우드 레이캐스팅",
+      "interactive",
+      "raycasting",
+      "points"
+    ],
+    "preview": "https://threejs.org/examples/webgl_interactive_raycasting_points.html",
+    "codePath": "./examples/3d공식/13.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_interactive_raycasting_points.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-14",
+    "name": "3D 복셀 그리기",
+    "english": "interactive voxelpainter",
+    "category": "3D",
+    "description": "격자 공간을 클릭해 복셀을 배치합니다.",
+    "tags": [
+      "3D",
+      "3D 복셀 그리기",
+      "interactive",
+      "voxelpainter"
+    ],
+    "preview": "https://threejs.org/examples/webgl_interactive_voxelpainter.html",
+    "codePath": "./examples/3d공식/14.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_interactive_voxelpainter.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-15",
+    "name": "반구광과 지면색",
+    "english": "lights hemisphere",
+    "category": "3D",
+    "description": "하늘과 지면에 따른 조명과 색 설정을 조절합니다.",
+    "tags": [
+      "3D",
+      "반구광과 지면색",
+      "lights",
+      "hemisphere"
+    ],
+    "preview": "https://threejs.org/examples/webgl_lights_hemisphere.html",
+    "codePath": "./examples/3d공식/15.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_lights_hemisphere.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-16",
+    "name": "물리 조명과 노출",
+    "english": "lights physical",
+    "category": "3D",
+    "description": "빛의 강도 및 노출을 조절하고 3D 장면을 회전합니다.",
+    "tags": [
+      "3D",
+      "물리 조명과 노출",
+      "lights",
+      "physical"
+    ],
+    "preview": "https://threejs.org/examples/webgl_lights_physical.html",
+    "codePath": "./examples/3d공식/16.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_lights_physical.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-17",
+    "name": "스포트라이트 설정",
+    "english": "lights spotlight",
+    "category": "3D",
+    "description": "조명 각도와 거리 등 스포트라이트 설정을 조절합니다.",
+    "tags": [
+      "3D",
+      "스포트라이트 설정",
+      "lights",
+      "spotlight"
+    ],
+    "preview": "https://threejs.org/examples/webgl_lights_spotlight.html",
+    "codePath": "./examples/3d공식/17.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_lights_spotlight.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-18",
+    "name": "태양광과 대기",
+    "english": "lights sunlight",
+    "category": "3D",
+    "description": "햇빛과 하늘의 설정에 따른 장면 변화를 살펴봅니다.",
+    "tags": [
+      "3D",
+      "태양광과 대기",
+      "lights",
+      "sunlight"
+    ],
+    "preview": "https://threejs.org/examples/webgl_lights_sunlight.html",
+    "codePath": "./examples/3d공식/18.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_lights_sunlight.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-19",
+    "name": "직사각형 면광원",
+    "english": "lights rectarealight",
+    "category": "3D",
+    "description": "직사각형 광원이 재질에 비치는 모습을 회전해 봅니다.",
+    "tags": [
+      "3D",
+      "직사각형 면광원",
+      "lights",
+      "rectarealight"
+    ],
+    "preview": "https://threejs.org/examples/webgl_lights_rectarealight.html",
+    "codePath": "./examples/3d공식/19.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_lights_rectarealight.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-20",
+    "name": "키프레임 모델 애니메이션",
+    "english": "animation keyframes",
+    "category": "3D",
+    "description": "모델의 키프레임 애니메이션을 시점 조작으로 살펴봅니다.",
+    "tags": [
+      "3D",
+      "키프레임 모델 애니메이션",
+      "animation",
+      "keyframes"
+    ],
+    "preview": "https://threejs.org/examples/webgl_animation_keyframes.html",
+    "codePath": "./examples/3d공식/20.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_animation_keyframes.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-21",
+    "name": "캐릭터 동작 혼합",
+    "english": "animation skinning blending",
+    "category": "3D",
+    "description": "캐릭터의 동작을 혼합하고 전환 설정을 조절합니다.",
+    "tags": [
+      "3D",
+      "캐릭터 동작 혼합",
+      "animation",
+      "skinning",
+      "blending"
+    ],
+    "preview": "https://threejs.org/examples/webgl_animation_skinning_blending.html",
+    "codePath": "./examples/3d공식/21.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_animation_skinning_blending.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-22",
+    "name": "역운동학 관절 조작",
+    "english": "animation skinning ik",
+    "category": "3D",
+    "description": "관절 목표점을 움직여 역운동학의 동작을 관찰합니다.",
+    "tags": [
+      "3D",
+      "역운동학 관절 조작",
+      "animation",
+      "skinning",
+      "ik"
+    ],
+    "preview": "https://threejs.org/examples/webgl_animation_skinning_ik.html",
+    "codePath": "./examples/3d공식/22.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_animation_skinning_ik.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-23",
+    "name": "스키닝과 모프 타깃",
+    "english": "animation skinning morph",
+    "category": "3D",
+    "description": "모프 타깃과 캐릭터 애니메이션의 설정을 조절합니다.",
+    "tags": [
+      "3D",
+      "스키닝과 모프 타깃",
+      "animation",
+      "skinning",
+      "morph"
+    ],
+    "preview": "https://threejs.org/examples/webgl_animation_skinning_morph.html",
+    "codePath": "./examples/3d공식/23.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_animation_skinning_morph.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-24",
+    "name": "여러 캐릭터 애니메이션",
+    "english": "animation multiple",
+    "category": "3D",
+    "description": "여러 모델의 애니메이션 재생을 조절합니다.",
+    "tags": [
+      "3D",
+      "여러 캐릭터 애니메이션",
+      "animation",
+      "multiple"
+    ],
+    "preview": "https://threejs.org/examples/webgl_animation_multiple.html",
+    "codePath": "./examples/3d공식/24.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_animation_multiple.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-25",
+    "name": "캐릭터 걷기 조작",
+    "english": "animation walk",
+    "category": "3D",
+    "description": "키보드로 캐릭터를 움직이고 걷기 동작을 살펴봅니다.",
+    "tags": [
+      "3D",
+      "캐릭터 걷기 조작",
+      "animation",
+      "walk"
+    ],
+    "preview": "https://threejs.org/examples/webgl_animation_walk.html",
+    "codePath": "./examples/3d공식/25.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_animation_walk.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-26",
+    "name": "Collada 스키닝 모델",
+    "english": "loader collada skinning",
+    "category": "3D",
+    "description": "Collada 형식으로 불러온 캐릭터와 스키닝을 살펴봅니다.",
+    "tags": [
+      "3D",
+      "Collada 스키닝 모델",
+      "loader",
+      "collada",
+      "skinning"
+    ],
+    "preview": "https://threejs.org/examples/webgl_loader_collada_skinning.html",
+    "codePath": "./examples/3d공식/26.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_loader_collada_skinning.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-27",
+    "name": "glTF 점진적 상세도",
+    "english": "loader gltf progressive lod",
+    "category": "3D",
+    "description": "glTF 모델의 상세도 변화와 시점 조작을 살펴봅니다.",
+    "tags": [
+      "3D",
+      "glTF 점진적 상세도",
+      "loader",
+      "gltf",
+      "progressive",
+      "lod"
+    ],
+    "preview": "https://threejs.org/examples/webgl_loader_gltf_progressive_lod.html",
+    "codePath": "./examples/3d공식/27.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_loader_gltf_progressive_lod.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-28",
+    "name": "glTF 빛 분산 재질",
+    "english": "loader gltf dispersion",
+    "category": "3D",
+    "description": "glTF 모델에서 빛의 분산 재질을 관찰합니다.",
+    "tags": [
+      "3D",
+      "glTF 빛 분산 재질",
+      "loader",
+      "gltf",
+      "dispersion"
+    ],
+    "preview": "https://threejs.org/examples/webgl_loader_gltf_dispersion.html",
+    "codePath": "./examples/3d공식/28.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_loader_gltf_dispersion.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-29",
+    "name": "glTF 무지갯빛 재질",
+    "english": "loader gltf iridescence",
+    "category": "3D",
+    "description": "glTF 모델의 박막 간섭 재질을 관찰합니다.",
+    "tags": [
+      "3D",
+      "glTF 무지갯빛 재질",
+      "loader",
+      "gltf",
+      "iridescence"
+    ],
+    "preview": "https://threejs.org/examples/webgl_loader_gltf_iridescence.html",
+    "codePath": "./examples/3d공식/29.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_loader_gltf_iridescence.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-30",
+    "name": "glTF 직물 광택 재질",
+    "english": "loader gltf sheen",
+    "category": "3D",
+    "description": "직물처럼 빛나는 glTF 재질의 설정을 살펴봅니다.",
+    "tags": [
+      "3D",
+      "glTF 직물 광택 재질",
+      "loader",
+      "gltf",
+      "sheen"
+    ],
+    "preview": "https://threejs.org/examples/webgl_loader_gltf_sheen.html",
+    "codePath": "./examples/3d공식/30.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_loader_gltf_sheen.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-31",
+    "name": "glTF 투과 재질",
+    "english": "loader gltf transmission",
+    "category": "3D",
+    "description": "빛이 투과하는 glTF 재질을 여러 시점에서 봅니다.",
+    "tags": [
+      "3D",
+      "glTF 투과 재질",
+      "loader",
+      "gltf",
+      "transmission"
+    ],
+    "preview": "https://threejs.org/examples/webgl_loader_gltf_transmission.html",
+    "codePath": "./examples/3d공식/31.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_loader_gltf_transmission.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-32",
+    "name": "glTF 재질 변형 선택",
+    "english": "loader gltf variants",
+    "category": "3D",
+    "description": "한 모델의 재질 변형을 선택하고 비교합니다.",
+    "tags": [
+      "3D",
+      "glTF 재질 변형 선택",
+      "loader",
+      "gltf",
+      "variants"
+    ],
+    "preview": "https://threejs.org/examples/webgl_loader_gltf_variants.html",
+    "codePath": "./examples/3d공식/32.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_loader_gltf_variants.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-33",
+    "name": "glTF 이방성 재질",
+    "english": "loader gltf anisotropy",
+    "category": "3D",
+    "description": "방향에 따라 달라지는 재질의 광택을 회전해 관찰합니다.",
+    "tags": [
+      "3D",
+      "glTF 이방성 재질",
+      "loader",
+      "gltf",
+      "anisotropy"
+    ],
+    "preview": "https://threejs.org/examples/webgl_loader_gltf_anisotropy.html",
+    "codePath": "./examples/3d공식/33.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_loader_gltf_anisotropy.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-34",
+    "name": "IFC 건축 모델",
+    "english": "loader ifc",
+    "category": "3D",
+    "description": "IFC 형식 건축 모델과 3D 장면을 살펴봅니다.",
+    "tags": [
+      "3D",
+      "IFC 건축 모델",
+      "loader",
+      "ifc"
+    ],
+    "preview": "https://threejs.org/examples/webgl_loader_ifc.html",
+    "codePath": "./examples/3d공식/34.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_loader_ifc.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-35",
+    "name": "PCD 포인트 클라우드",
+    "english": "loader pcd",
+    "category": "3D",
+    "description": "PCD 형식의 점군을 회전하고 설정을 조절합니다.",
+    "tags": [
+      "3D",
+      "PCD 포인트 클라우드",
+      "loader",
+      "pcd"
+    ],
+    "preview": "https://threejs.org/examples/webgl_loader_pcd.html",
+    "codePath": "./examples/3d공식/35.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_loader_pcd.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-36",
+    "name": "분자 구조 모델",
+    "english": "loader pdb",
+    "category": "3D",
+    "description": "분자 구조의 원자와 결합을 조절하고 살펴봅니다.",
+    "tags": [
+      "3D",
+      "분자 구조 모델",
+      "loader",
+      "pdb"
+    ],
+    "preview": "https://threejs.org/examples/webgl_loader_pdb.html",
+    "codePath": "./examples/3d공식/36.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_loader_pdb.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-37",
+    "name": "USDZ 모델",
+    "english": "loader usdz",
+    "category": "3D",
+    "description": "USDZ 형식의 3D 모델을 회전하며 관찰합니다.",
+    "tags": [
+      "3D",
+      "USDZ 모델",
+      "loader",
+      "usdz"
+    ],
+    "preview": "https://threejs.org/examples/webgl_loader_usdz.html",
+    "codePath": "./examples/3d공식/37.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_loader_usdz.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-38",
+    "name": "자동차 재질과 색",
+    "english": "materials car",
+    "category": "3D",
+    "description": "자동차의 재질·색을 조절하고 여러 각도에서 봅니다.",
+    "tags": [
+      "3D",
+      "자동차 재질과 색",
+      "materials",
+      "car"
+    ],
+    "preview": "https://threejs.org/examples/webgl_materials_car.html",
+    "codePath": "./examples/3d공식/38.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_materials_car.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-39",
+    "name": "변위 맵 재질",
+    "english": "materials displacementmap",
+    "category": "3D",
+    "description": "변위 맵의 설정을 바꾸며 형상과 표면을 비교합니다.",
+    "tags": [
+      "3D",
+      "변위 맵 재질",
+      "materials",
+      "displacementmap"
+    ],
+    "preview": "https://threejs.org/examples/webgl_materials_displacementmap.html",
+    "codePath": "./examples/3d공식/39.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_materials_displacementmap.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-40",
+    "name": "투명 코팅 재질",
+    "english": "materials physical clearcoat",
+    "category": "3D",
+    "description": "투명 코팅이 적용된 3D 재질을 회전해 봅니다.",
+    "tags": [
+      "3D",
+      "투명 코팅 재질",
+      "materials",
+      "physical",
+      "clearcoat"
+    ],
+    "preview": "https://threejs.org/examples/webgl_materials_physical_clearcoat.html",
+    "codePath": "./examples/3d공식/40.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_materials_physical_clearcoat.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-41",
+    "name": "물리 기반 투과 재질",
+    "english": "materials physical transmission",
+    "category": "3D",
+    "description": "투과 재질의 속성을 조절하고 3D 표면을 관찰합니다.",
+    "tags": [
+      "3D",
+      "물리 기반 투과 재질",
+      "materials",
+      "physical",
+      "transmission"
+    ],
+    "preview": "https://threejs.org/examples/webgl_materials_physical_transmission.html",
+    "codePath": "./examples/3d공식/41.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_materials_physical_transmission.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-42",
+    "name": "표면 아래 빛 산란",
+    "english": "materials subsurface scattering",
+    "category": "3D",
+    "description": "표면 아래 산란되는 빛의 재질 설정을 비교합니다.",
+    "tags": [
+      "3D",
+      "표면 아래 빛 산란",
+      "materials",
+      "subsurface",
+      "scattering"
+    ],
+    "preview": "https://threejs.org/examples/webgl_materials_subsurface_scattering.html",
+    "codePath": "./examples/3d공식/42.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_materials_subsurface_scattering.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-43",
+    "name": "툰 셰이딩",
+    "english": "materials toon",
+    "category": "3D",
+    "description": "단계적으로 표현되는 툰 재질을 시점에 따라 관찰합니다.",
+    "tags": [
+      "3D",
+      "툰 셰이딩",
+      "materials",
+      "toon"
+    ],
+    "preview": "https://threejs.org/examples/webgl_materials_toon.html",
+    "codePath": "./examples/3d공식/43.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_materials_toon.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-44",
+    "name": "와이어프레임 표시",
+    "english": "materials wireframe",
+    "category": "3D",
+    "description": "메시의 선 표시와 재질을 조절합니다.",
+    "tags": [
+      "3D",
+      "와이어프레임 표시",
+      "materials",
+      "wireframe"
+    ],
+    "preview": "https://threejs.org/examples/webgl_materials_wireframe.html",
+    "codePath": "./examples/3d공식/44.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_materials_wireframe.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-45",
+    "name": "점광원 그림자",
+    "english": "shadowmap pointlight",
+    "category": "3D",
+    "description": "점광원에 따른 그림자를 시점 조작으로 살펴봅니다.",
+    "tags": [
+      "3D",
+      "점광원 그림자",
+      "shadowmap",
+      "pointlight"
+    ],
+    "preview": "https://threejs.org/examples/webgl_shadowmap_pointlight.html",
+    "codePath": "./examples/3d공식/45.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_shadowmap_pointlight.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  },
+  {
+    "id": "th3-46",
+    "name": "분산 그림자 맵",
+    "english": "shadowmap vsm",
+    "category": "3D",
+    "description": "그림자 맵 방식의 설정을 바꾸고 결과를 비교합니다.",
+    "tags": [
+      "3D",
+      "분산 그림자 맵",
+      "shadowmap",
+      "vsm"
+    ],
+    "preview": "https://threejs.org/examples/webgl_shadowmap_vsm.html",
+    "codePath": "./examples/3d공식/46.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_shadowmap_vsm.html",
+    "license": "MIT",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "adaptation": "원본 HTML은 고정된 Git 리비전이며 패널 미리보기는 three.js의 온라인 예제를 불러옵니다. 라이브 예제는 리비전이 달라질 수 있습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인"
+  }
+]

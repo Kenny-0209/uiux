@@ -1,0 +1,12 @@
+{
+  "name": "Hexagonalize",
+  "source": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/Hexagonalize.glsl",
+  "params": {
+    "steps": 50,
+    "horizontalHexagons": 20
+  },
+  "types": {
+    "steps": "int",
+    "horizontalHexagons": "float"
+  }
+}

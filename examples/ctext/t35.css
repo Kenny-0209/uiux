@@ -1,0 +1,67 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 67 LED-Board — stadium LED matrix letters with a chasing brightness sweep */
+.fx-led {
+  position: relative;
+  font: 700 34px/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .18em;
+  color: color-mix(in srgb, var(--ink-2) 22%, transparent);
+  text-shadow: 0 0 1px color-mix(in srgb, var(--ink-2) 35%, transparent);
+}
+.fx-led::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background:
+    radial-gradient(circle closest-side,
+      #fff 0 28%,
+      var(--ink-2) 34% 62%,
+      transparent 68%) 0 0 / 4.5px 4.5px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter:
+    drop-shadow(0 0 6px color-mix(in srgb, var(--ink-2) 70%, transparent))
+    drop-shadow(0 0 16px color-mix(in srgb, var(--ink-2) 35%, transparent));
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 18%,
+    #000 42%,
+    transparent 68%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 18%,
+    #000 42%,
+    transparent 68%
+  );
+  -webkit-mask-size: 240% 100%;
+  mask-size: 240% 100%;
+  -webkit-mask-position: 120% 0;
+  mask-position: 120% 0;
+  animation: fx-led 2.1s linear infinite;
+}
+.fx-led::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background:
+    radial-gradient(circle closest-side,
+      color-mix(in srgb, var(--ink-2) 55%, transparent) 0 55%,
+      transparent 62%) 0 0 / 4.5px 4.5px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: .45;
+}
+@keyframes fx-led {
+  to {
+    -webkit-mask-position: -120% 0;
+    mask-position: -120% 0;
+  }
+}

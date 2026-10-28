@@ -1,0 +1,23 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 66 Rubber-Stamp — the word slams down like an ink stamp, then fades off the page */
+.fx-stamp {
+  font: 600 26px/1 "JetBrains Mono", monospace;
+  letter-spacing: .14em;
+  color: var(--ink-2);
+  padding: .38em .5em;
+  border: 3px solid var(--ink-2);
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--ink-2) 55%, transparent);
+  animation: fx-stamp 3.2s cubic-bezier(.22, 1.4, .36, 1) infinite;
+}
+@keyframes fx-stamp {
+  0%, 6%    { transform: rotate(-6deg) scale(2.4); opacity: 0; filter: blur(4px); }
+  14%       { transform: rotate(-6deg) scale(.96); opacity: 1; filter: blur(0); }
+  18%       { transform: rotate(-6deg) scale(1.04); }
+  22%, 78%  { transform: rotate(-6deg) scale(1); opacity: 1; filter: blur(0); }
+  94%, 100% { transform: rotate(-6deg) scale(1); opacity: 0; filter: blur(.6px); }
+}

@@ -1,0 +1,57 @@
+<!-- Markup: <div class="fx-hologram" data-text="HOLOGRAM">HOLOGRAM</div> -->
+
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 31 Holograph — translucent scanline projection with drifting chroma edges */
+.fx-hologram {
+  position: relative;
+  font: 600 28px/1.2 "JetBrains Mono", monospace;
+  letter-spacing: .12em;
+  color: color-mix(in srgb, var(--ink-3) 72%, var(--ink));
+  text-shadow:
+    0 0 6px color-mix(in srgb, var(--ink-3) 60%, transparent),
+    0 0 22px color-mix(in srgb, var(--ink-3) 45%, transparent);
+  isolation: isolate;
+  animation: fx-hologram-float 3.8s ease-in-out infinite;
+}
+.fx-hologram::before,
+.fx-hologram::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.fx-hologram::before {
+  color: var(--ink-2);
+  clip-path: inset(0 0 52% 0);
+  opacity: .58;
+  animation: fx-hologram-split 2.8s steps(1) infinite;
+}
+.fx-hologram::after {
+  color: transparent;
+  background: repeating-linear-gradient(
+      0deg,
+      color-mix(in srgb, var(--ink) 70%, transparent) 0 1px,
+      transparent 1px 4px
+    );
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: .48;
+  animation: fx-hologram-lines 1.2s linear infinite;
+}
+@keyframes fx-hologram-float {
+  0%, 100% { transform: translateY(2px) skewX(0deg); filter: brightness(1); }
+  50%      { transform: translateY(-4px) skewX(-3deg); filter: brightness(1.35); }
+}
+@keyframes fx-hologram-split {
+  0%, 14%, 40%, 72%, 100% { transform: translateX(0); opacity: .22; }
+  15% { transform: translateX(-5px); opacity: .8; }
+  17% { transform: translateX(4px);  opacity: .6; }
+  74% { transform: translateX(3px);  opacity: .7; }
+}
+@keyframes fx-hologram-lines {
+  to { background-position: 0 12px; }
+}

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebGL Shader Animation — Animation Handbook</title>
+  <meta name="description" content="Moving color patterns computed for every pixel. Best for bold backgrounds.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/webgl-shader-animation/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="WebGL Shader Animation — Animation Handbook">
+  <meta property="og:description" content="Moving color patterns computed for every pixel. Best for bold backgrounds.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/webgl-shader-animation/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WebGL Shader Animation — Animation Handbook">
+  <meta name="twitter:description" content="Moving color patterns computed for every pixel. Best for bold backgrounds.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "WebGL Shader Animation", "name": "WebGL Shader Animation", "description": "Moving color patterns computed for every pixel. Best for bold backgrounds.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/webgl-shader-animation/", "inLanguage": "en", "articleSection": "3D & Advanced", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, 3D & Advanced, WebGL Shader Animation"}</script>
+  <style>
+    :root{--ui-accent:#3fd6c4}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;background:#0b0b0d;touch-action:pan-y}
+    canvas{display:block;width:100%;height:100%}
+    .gl-msg{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:clamp(16px,4vw,32px);font-size:13px;line-height:1.7;color:rgba(255,255,255,.72);white-space:pre-wrap;overflow-y:auto}
+    .gl-msg.on{display:flex}
+    /* See inside and Compare: plain words over the picture (the picture itself is drawn by the shader) */
+    .lbl{position:absolute;display:none;padding:3px 8px;border-radius:5px;background:rgba(3,8,16,.9);color:#f4f4f2;font:600 13px/1.25 var(--hb-font);white-space:nowrap;pointer-events:none}
+    .stage[data-hb-mode="inside"] .v-in,.stage[data-hb-mode="compare"] .v-cmp{display:block}
+    .v-top{top:10px}.v-bot{bottom:10px}.v-a{left:10px}.v-b{left:calc(50% + 10px)}
+    .v-line{white-space:normal;max-width:calc(100% - 20px)}
+    .readout{left:0;top:0}
+    .readout span{display:block}
+    .readout .rd-h{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .sw{width:16px;height:16px;border-radius:3px;border:1px solid #fff;background:#000}
+    .pick{position:absolute;left:0;top:0;display:none;border:2px solid #fff;box-shadow:0 0 0 1px rgba(3,8,16,.8);pointer-events:none}
+    .stage[data-hb-mode="inside"] .pick{display:block}
+    .stage.failed .lbl,.stage.failed .pick{display:none!important}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="loop">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../glassmorphism-animated/" rel="prev" aria-label="Previous: Glassmorphism Animated"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Glassmorphism Animated</span></a><a href="../noise-based-motion/" rel="next" aria-label="Next: Noise-Based Motion"><span><span class="hb-dir">Next: </span>Noise-Based Motion</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">06.07 · 3D &amp; Advanced</p>
+    <h1>WebGL Shader Animation</h1>
+    <p class="hb-lede">Moving color patterns computed for every pixel. Best for bold backgrounds.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Watch it</h2><p>It moves by itself. Pause it to look closely, or turn on slow motion to see each part of the movement.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage">
+      <canvas id="cvs" role="img" aria-label="A moving pattern of bright colors that fills the stage"></canvas>
+      <div class="gl-msg" id="gl-msg" role="status"></div>
+      <span class="lbl v-in v-top v-a" data-hb-caption aria-hidden="true">Each square: one pixel, made big</span>
+      <span class="pick" aria-hidden="true"></span>
+      <div class="lbl v-in readout" data-hb-caption aria-hidden="true"><span class="rd-h">This pixel<i class="sw"></i></span><span class="rd-x"></span><span class="rd-y"></span><span class="rd-t"></span></div>
+      <span class="lbl v-in v-bot v-a v-line" data-hb-caption aria-hidden="true">Four waves added up pick each color</span>
+      <span class="lbl v-cmp v-top v-a" data-hb-caption aria-hidden="true">Drawn once</span>
+      <span class="lbl v-cmp v-top v-b" data-hb-caption aria-hidden="true">Every frame</span>
+      <span class="lbl v-cmp v-bot v-a clk-a" data-hb-caption aria-hidden="true">Time: stays at the start</span>
+      <span class="lbl v-cmp v-bot v-b clk-b" data-hb-caption aria-hidden="true">Time: 0 seconds and running</span>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-pause" data-hb-pause data-state="playing"><svg class="hb-ic hb-i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="hb-ic hb-i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9z"/></svg><span class="hb-pause-label">Pause</span></button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, each square is one pixel, made big: the same short formula works out every pixel's color from its place and the time, every frame. Point at a square to read it.</p>
+      <p data-hb-for="compare" hidden>Drawn once is the pattern worked out a single time, so it never changes. Every frame works it out again for each moment, so the colors flow.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting and see the difference as it moves.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="pattern-lbl">Pattern</p>
+        <div class="seg" id="pattern-seg" role="group" aria-labelledby="pattern-lbl">
+          <button type="button" data-pattern="0" class="on" aria-pressed="true">Plasma</button>
+          <button type="button" data-pattern="1" aria-pressed="false">Waves</button>
+          <button type="button" data-pattern="2" aria-pressed="false">Cells</button>
+          <button type="button" data-pattern="3" aria-pressed="false">Kaleidoscope</button>
+        </div>
+        <p class="hb-hint">Four patterns, each one short formula.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-spd="0.6" aria-pressed="false">Slow</button>
+          <button type="button" data-spd="1" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-spd="1.6" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">How fast the pattern moves.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Reacts to the pointer</span><input class="hb-switch" type="checkbox" role="switch" id="mouse-tog" autocomplete="off"></label>
+          <p class="hb-hint">The pattern bends around your pointer or finger.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a moving shader pattern to [the background or section you want it in]. Cover the area with one WebGL surface and write a fragment shader that works out the color of every pixel from its position and the time, so the whole pattern moves as the time runs on: flowing plasma, rippling waves, cells or a kaleidoscope. When the settings include it, let the pointer, or a finger on touch screens, bend the pattern near it. Draw fewer pixels on phones, and show a clear message where WebGL is not available. If the visitor has reduced motion turned on, show one still frame. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Hero backgrounds</li><li>Music and events</li><li>Loading screens</li><li>Art pages</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Behind text</li><li>Low-power devices</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+const VS=`attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}`;
+
+// Every pattern starts with this. uO is where a picture starts on the canvas (Compare draws two) and uCell is the size of
+// See inside's big squares; at 0 they change nothing, so Normal works out the same pixels as before.
+const HEAD=`precision mediump float;
+uniform vec2 R,M,uO;uniform float T,H,uCell;uniform bool uMouse;
+vec3 hsv(float h,float s,float v){vec4 K=vec4(1.,2./3.,1./3.,3.);vec3 p=abs(fract(vec3(h)+K.xyz)*6.-K.www);return v*mix(K.xxx,clamp(p-K.xxx,0.,1.),s);}
+vec2 fc(){vec2 p=gl_FragCoord.xy-uO;if(uCell>0.){p.y=R.y-p.y;p=(floor(p/uCell)+.5)*uCell;p.y=R.y-p.y;}return p;}
+vec4 fin(vec4 c){if(uCell>0.){vec2 p=gl_FragCoord.xy-uO;p.y=R.y-p.y;vec2 g=mod(p,uCell);g=min(g,uCell-g);if(min(g.x,g.y)<uCell*.03)c.rgb*=.15;}return c;}
+`;
+
+const SHADERS=[
+  // 0: Plasma
+  {name:'Plasma',src:HEAD+`void main(){
+  vec2 uv=fc()/R*2.-1.;uv.x*=R.x/R.y;
+  vec2 c=vec2(0.);if(uMouse)c=(M*2.-1.)*vec2(R.x/R.y,1.);
+  float v=sin(uv.x*5.+T)+sin(uv.y*5.+T*.7)+sin((uv.x+uv.y)*5.+T*.5)+sin(length(uv-c)*6.);
+  float hue=fract(v*.25+T*.05+H/360.);
+  gl_FragColor=fin(vec4(hsv(hue,.9,.95),1.));
+}`},
+  // 1: Wave distortion
+  {name:'Waves',src:HEAD+`void main(){
+  vec2 uv=fc()/R;
+  float wave=sin(uv.y*12.+T*2.)*.04+sin(uv.x*8.-T*1.5)*.03;
+  if(uMouse)wave*=1.+4.*exp(-14.*dot(uv-M,uv-M));
+  vec2 d=uv+vec2(wave,wave*1.3);
+  float stripe=sin(d.x*20.+T)*sin(d.y*20.-T*.6);
+  float hue=fract(stripe*.3+H/360.+T*.02);
+  gl_FragColor=fin(vec4(hsv(hue,.85,.9),1.));
+}`},
+  // 2: Voronoi
+  {name:'Cells',src:HEAD+`float rand(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5);}
+void main(){
+  vec2 q=fc()/R;
+  if(uMouse){vec2 dm=q-M;q+=dm*.7*exp(-16.*dot(dm,dm));}
+  vec2 uv=q*4.;
+  vec2 i=floor(uv),f=fract(uv);
+  float md=8.,mi=0.;
+  for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++){
+    vec2 n=vec2(float(x),float(y));
+    vec2 pt=n+vec2(rand(i+n+T*.01),rand(i+n+vec2(3.7,1.5)+T*.013));
+    float d=length(pt-f);if(d<md){md=d;mi=rand(i+n);}
+  }
+  float edge=smoothstep(.02,.06,md);
+  float hue=fract(mi+H/360.+T*.03);
+  gl_FragColor=fin(vec4(hsv(hue,.8,.8)*edge+vec3(.05)*(1.-edge),1.));
+}`},
+  // 3: Kaleidoscope
+  {name:'Kaleidoscope',src:HEAD+`void main(){
+  vec2 uv=(fc()-.5*R)/min(R.x,R.y);
+  float a=atan(uv.y,uv.x),r=length(uv);
+  float segs=uMouse?max(3.,M.x*12.):8.;
+  a=abs(mod(a,2.*3.14159/segs)-3.14159/segs);
+  uv=vec2(cos(a),sin(a))*r;
+  float v=sin(uv.x*8.+T)*sin(uv.y*8.-T*.7)+sin(r*10.-T*1.5)*.5;
+  float hue=fract(v*.3+H/360.+T*.04);
+  gl_FragColor=fin(vec4(hsv(hue,.9,.9),1.));
+}`},
+];
+
+const stage=document.getElementById('stage');const cvs=document.getElementById('cvs');
+const msgEl=document.getElementById('gl-msg');const slowTog=document.getElementById('slow-tog');
+let W,H,gl,prog=null,U=null,raf=null,paused=false,last=null,T=0;
+let PRESET=0,SPD=1,MOUSE_UV=[.5,.5],SHOWN_UV=[.5,.5],MOUSE_ON=false;
+const HUE=0; // every pattern already runs through the whole rainbow, so the shaders keep the hue shift at 0
+
+// See inside and Compare. Both draw with the one context: See inside snaps the pattern to big squares and reads one pixel
+// back; Compare draws it twice, side by side. The page's clock T and Normal's pointer are never changed for them.
+let mode='normal',havePt=false,havePt2=false,PT2=[.5,.5],SHOWN2=[.5,.5];
+let cols=1,cell=24,cellDev=24,rMin=0,rMax=0,topY=0,botY=0,sel=[0,0],txtAt=0,swC='';
+const ptr={x:0,y:0,on:false};
+const HOME=[.33,.6]; // the views' own bend point (a third across, two fifths down): the square read out before a pointer comes
+const LABELS={normal:cvs.getAttribute('aria-label'),
+  inside:'The moving pattern drawn as big squares, each one pixel worked out from its place and the time, with one pixel read out',
+  compare:'The pattern twice: worked out once and held still, and worked out again every frame'};
+const LINES=['Four waves added up pick each color','Stripes bent by two slow waves',
+  'Each pixel takes the color of its nearest moving point','One slice, mirrored around the middle'];
+const $=q=>stage.querySelector(q);
+const ring=$('.pick'),capTop=$('.v-top'),capLine=$('.v-line'),rd=$('.readout'),sw=$('.sw');
+const rdX=$('.rd-x'),rdY=$('.rd-y'),rdT=$('.rd-t'),clkA=$('.clk-a'),clkB=$('.clk-b');
+const noteC=document.querySelector('[data-hb-for="compare"]'),noteWas=noteC.textContent;
+const noteStill='Shown still: Drawn once is the pattern at the start. Every frame is worked out again for each moment; here, a little later.';
+const px=new Uint8Array(4);
+
+// A failed shader is otherwise invisible: the canvas just stays black. The captions go with it.
+function fail(msg){msgEl.textContent=msg;msgEl.classList.add('on');cvs.style.visibility='hidden';stage.classList.add('failed');}
+function clearFail(){msgEl.classList.remove('on');msgEl.textContent='';cvs.style.visibility='';stage.classList.remove('failed');}
+
+function mkProg(fs){
+  function sh(t,s){
+    const x=gl.createShader(t);gl.shaderSource(x,s);gl.compileShader(x);
+    if(!gl.getShaderParameter(x,gl.COMPILE_STATUS)){
+      const log=gl.getShaderInfoLog(x);gl.deleteShader(x);
+      throw new Error((t===gl.VERTEX_SHADER?'Vertex':'Fragment')+' shader failed to compile:\n'+log);
+    }
+    return x;
+  }
+  const p=gl.createProgram(),v=sh(gl.VERTEX_SHADER,VS),f=sh(gl.FRAGMENT_SHADER,fs);
+  gl.attachShader(p,v);gl.attachShader(p,f);gl.linkProgram(p);
+  gl.deleteShader(v);gl.deleteShader(f);
+  if(!gl.getProgramParameter(p,gl.LINK_STATUS)){
+    const log=gl.getProgramInfoLog(p);gl.deleteProgram(p);
+    throw new Error('Program failed to link:\n'+log);
+  }
+  return p;
+}
+
+function init(){
+  gl=cvs.getContext('webgl');if(!gl)return false;
+  const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  switchShader(PRESET);return true;
+}
+
+function switchShader(idx){
+  PRESET=idx;
+  if(!gl)return;
+  let next;
+  try{next=mkProg(SHADERS[idx].src);}
+  catch(err){
+    if(raf!==null){cancelAnimationFrame(raf);raf=null;}
+    prog=null;U=null;
+    fail(SHADERS[idx].name+' shader did not build.\n\n'+err.message);
+    return;
+  }
+  if(prog)gl.deleteProgram(prog);
+  prog=next;clearFail();
+  gl.useProgram(prog);
+  U={};['R','T','H','M','uMouse','uO','uCell'].forEach(n=>{U[n]=gl.getUniformLocation(prog,n);});
+  const a=gl.getAttribLocation(prog,'a');
+  gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a,2,gl.FLOAT,false,0,0);
+}
+
+// Render at device pixels so the shader is not upscaled from a smaller buffer.
+// Capped — and capped harder on phones (up to 600px wide, or up to 500px tall when held sideways),
+// where a full 3x buffer is 9x the fill cost.
+function resize(){
+  const dpr=Math.min(window.devicePixelRatio||1,innerWidth<=600||innerHeight<=500?1.5:2);
+  W=cvs.width=Math.max(1,Math.round(stage.clientWidth*dpr));
+  H=cvs.height=Math.max(1,Math.round(stage.clientHeight*dpr));
+  if(gl){gl.viewport(0,0,W,H);layout();texts(performance.now(),true);still();}
+}
+
+// One picture in a part of the canvas (x and w in canvas pixels): t is its clock, m the point it bends around (or false), cs the square size.
+function view(x,w,t,m,cs){
+  gl.viewport(x,0,w,H);
+  gl.uniform2f(U.R,w,H);gl.uniform2f(U.uO,x,0);gl.uniform1f(U.uCell,cs);
+  gl.uniform1f(U.T,t);gl.uniform1f(U.H,HUE);
+  if(m){gl.uniform2f(U.M,m[0],m[1]);gl.uniform1i(U.uMouse,1);}
+  else gl.uniform1i(U.uMouse,0);
+  gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+}
+const half=()=>Math.floor((W-Math.max(2,Math.round(W/500)))/2); // Compare: each picture's width, with a thin line between
+// Compare's second picture shows the page's own time; while the clock rests at its start (under a second, as on arrival
+// under reduced motion) it is posed two seconds on, so the two pictures differ.
+const t2=()=>paused&&T<1?2:T;
+function draw(){
+  gl.useProgram(prog);
+  if(mode==='compare'){
+    const w=half();
+    gl.viewport(0,0,W,H);gl.clearColor(.17,.17,.2,1);gl.clear(gl.COLOR_BUFFER_BIT);
+    view(0,w,0,false,0); // drawn once: the start, no time and no pointer
+    view(W-w,w,t2(),MOUSE_ON&&(havePt2?SHOWN2:HOME),0);
+  }else if(mode==='inside'){
+    view(0,W,T,MOUSE_ON&&(havePt?SHOWN_UV:HOME),cellDev);
+    // The drawing buffer is not kept, so the outlined square's pixel is read right after the draw.
+    gl.readPixels(Math.floor((sel[0]+.5)*cellDev),H-1-Math.floor((sel[1]+.5)*cellDev),1,1,gl.RGBA,gl.UNSIGNED_BYTE,px);
+    const c='rgb('+px[0]+','+px[1]+','+px[2]+')';
+    if(c!==swC){swC=c;sw.style.background=c;}
+  }else view(0,W,T,MOUSE_ON&&SHOWN_UV,0);
+}
+// Redraw the held frame while paused so controls still take effect.
+function still(){if(paused&&prog)draw();}
+
+// The loop keeps exactly one pending frame in raf. Slow motion adds a third of the frame's time to the clock T.
+function render(ts){
+  if(paused||!prog){raf=null;return;}
+  raf=requestAnimationFrame(render);
+  if(last===null){last=ts;return;} // the first frame after a start only takes the time
+  const dt=ts-last;if(dt<16)return;
+  last=ts;
+  T+=Math.min(dt,100)/1000*SPD/(slowTog.checked?3:1);
+  SHOWN_UV=MOUSE_UV;SHOWN2=PT2;
+  draw();texts(ts,false);
+}
+function start(){if(raf!==null||!prog)return;last=null;raf=requestAnimationFrame(render);}
+
+function setPaused(p){
+  paused=p;
+  if(paused){cancelAnimationFrame(raf);raf=null;still();}
+  else start();
+  note();texts(performance.now(),true);
+}
+// Registered at the top level, before the shared script (deferred) can run: under reduced motion it pauses the
+// loop on arrival, which this listener must catch. Play carries on from the current clock.
+document.addEventListener('hb:pause',e=>setPaused(e.detail.paused));
+// The mode switch: draw the mode at once (a frame, also while paused). It scrolls, focuses and presses nothing.
+document.addEventListener('hb:mode',e=>{
+  mode=e.detail.mode;cvs.setAttribute('aria-label',LABELS[mode]);
+  layout();texts(performance.now(),true);note();if(prog)draw();
+});
+matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',note);
+
+// Under reduced motion a paused Compare would rest on two matching pictures, so its note says the second is a little later.
+function note(){
+  const s=matchMedia('(prefers-reduced-motion: reduce)').matches&&paused?noteStill:noteWas;
+  if(noteC.textContent!==s)noteC.textContent=s;
+}
+const set=(el,s)=>{if(el.textContent!==s)el.textContent=s;};
+function words(s){
+  s=Math.floor(s);const u=s<100?[s,'second']:s<6000?[Math.floor(s/60),'minute']:[Math.floor(s/3600),'hour'];
+  return u[0]+' '+u[1]+(u[0]===1?'':'s');
+}
+// The words in the views; the time is written at most four times a second (force: after a press, a resize or a pause).
+function texts(now,force){
+  if(mode==='normal'||(!force&&now-txtAt<250))return;
+  txtAt=now;
+  if(mode==='inside'){
+    set(rdX,Math.round((sel[0]+.5)*cell/stage.clientWidth*100)+'% across');
+    set(rdY,Math.round((sel[1]+.5)*cell/stage.clientHeight*100)+'% down');
+    set(rdT,'Time: '+words(T));place();
+  }else{
+    const long=stage.clientWidth>=460; // each half is wide enough for the longer words
+    set(clkA,long?'Time: stays at the start':'Time: the start');
+    set(clkB,'Time: '+words(t2())+(long&&!paused?' and running':''));
+  }
+}
+
+// See inside's squares: whole squares across (about 24px, 20px on a phone), measured again on a resize and on a mode press.
+// The outlined square stays between the top caption and the pattern line, so no caption covers a square being read.
+function layout(){
+  const cw=stage.clientWidth;
+  cols=Math.max(2,Math.round(cw/(matchMedia('(max-width:600px),(max-height:500px)').matches?14:16)));
+  cell=cw/cols;cellDev=W/cols;
+  if(mode!=='inside')return;
+  ring.style.width=ring.style.height=cell+'px';
+  topY=capTop.offsetTop+capTop.offsetHeight+8;botY=capLine.offsetTop-8;
+  rMin=Math.ceil(topY/cell);rMax=Math.max(rMin,Math.floor(botY/cell)-1);
+  setSel();
+}
+// The square under the pointer or finger, else the home square; true when it changed.
+function setSel(){
+  const x=ptr.on?ptr.x:HOME[0]*stage.clientWidth,y=ptr.on?ptr.y:(1-HOME[1])*stage.clientHeight;
+  const n=[Math.min(cols-1,Math.max(0,Math.floor(x/cell))),Math.min(rMax,Math.max(rMin,Math.floor(y/cell)))];
+  if(n[0]===sel[0]&&n[1]===sel[1])return false;
+  sel=n;return true;
+}
+// The outline sits on the square; the readout goes beside it (right, left, below or above) inside the band.
+function place(){
+  const x0=sel[0]*cell,y0=sel[1]*cell,cw=stage.clientWidth,w=rd.offsetWidth,h=rd.offsetHeight,g=8;
+  ring.style.transform='translate('+x0+'px,'+y0+'px)';
+  let x=x0+cell+g,y=Math.min(Math.max(y0+cell/2-h/2,topY),botY-h);
+  if(x+w>cw-g)x=x0-g-w;
+  if(x<g){x=Math.min(Math.max(x0,g),cw-g-w);y=y0+cell+g+h<=botY?y0+cell+g:y0-g-h;}
+  rd.style.transform='translate('+x+'px,'+y+'px)';
+}
+function moved(){if(mode==='inside'&&setSel()){texts(performance.now(),true);still();}}
+
+// The pointer is only recorded here. The pattern takes it on the next frame that moves on (render sets SHOWN_UV),
+// so a repaint while paused shows a new setting and nothing else.
+// y is flipped because gl_FragCoord counts from the bottom of the buffer. Compare reads it over the second picture only.
+function aim(e){
+  const r=cvs.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+  MOUSE_UV=[x,1-y];havePt=true;
+  const hx=(W-half())/W;
+  if(x>=hx){PT2=[(x-hx)/(1-hx),1-y];havePt2=true;}
+  ptr.x=x*r.width;ptr.y=y*r.height;ptr.on=true;moved();
+}
+
+if(init()){
+  resize();
+  if(prog)draw(); // the first picture, so a loop that starts paused never shows an empty stage
+  start();
+  // Pointer Events, so the same handlers serve mouse, pen and touch: a tap bends the pattern where the finger lands.
+  stage.addEventListener('pointermove',aim);
+  stage.addEventListener('pointerdown',aim);
+  // A mouse that leaves sends the outline home; a finger that lifts leaves it on the tapped square.
+  stage.addEventListener('pointerleave',e=>{if(e.pointerType!=='touch'){ptr.on=false;moved();}});
+  window.addEventListener('resize',resize);
+  if(document.fonts)document.fonts.ready.then(()=>{layout();texts(performance.now(),true);});
+  // A GPU reset or a restored tab kills the context; without this the demo dies for good.
+  cvs.addEventListener('webglcontextlost',e=>{
+    e.preventDefault();
+    if(raf!==null){cancelAnimationFrame(raf);raf=null;}
+    prog=null;U=null;fail('WebGL context lost. Waiting for the browser to restore it…');
+  });
+  cvs.addEventListener('webglcontextrestored',()=>{
+    if(!init())return;
+    resize();
+    if(!paused)start();
+  });
+}else{
+  fail('WebGL is not available in this browser.\n\nThis demo needs a WebGL 1.0 context — the patterns are generated by fragment shaders on the GPU, so there is nothing to fall back to. Try a different browser, or enable hardware acceleration.');
+}
+
+function choices(id,pick){
+  const buttons=document.querySelectorAll('#'+id+' button');
+  buttons.forEach(b=>b.addEventListener('click',()=>{
+    buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+    pick(b.dataset);
+  }));
+}
+choices('pattern-seg',d=>{
+  switchShader(+d.pattern);capLine.textContent=LINES[+d.pattern];layout();texts(performance.now(),true);
+  if(paused)still();else start();
+});
+choices('speed-seg',d=>{SPD=+d.spd;});
+document.getElementById('mouse-tog').addEventListener('change',e=>{MOUSE_ON=e.target.checked;still();});
+</script>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrub Animation — Animation Handbook</title>
+  <meta name="description" content="Scroll plays it forward and back, like dragging a video. Best for product tours.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/scrub-animation/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Scrub Animation — Animation Handbook">
+  <meta property="og:description" content="Scroll plays it forward and back, like dragging a video. Best for product tours.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/scrub-animation/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Scrub Animation — Animation Handbook">
+  <meta name="twitter:description" content="Scroll plays it forward and back, like dragging a video. Best for product tours.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Scrub Animation", "name": "Scrub Animation", "description": "Scroll plays it forward and back, like dragging a video. Best for product tours.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/scrub-animation/", "inLanguage": "en", "articleSection": "Scroll-Based", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Scroll-Based, Scrub Animation"}</script>
+  <style>
+    :root{--bg:#0b0b0d;--ui-bg:#111114;--ui-border:rgba(255,255,255,.09);--ui-accent:#6ea8ff;--ui-text:#f4f4f2;--ui-muted:#8a8a92}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;overflow-y:auto;overflow-anchor:none;scrollbar-width:none;container:stg/size;background:#0b0b0d}
+    .stage::-webkit-scrollbar{display:none}
+    /* .track supplies the scroll budget; .pinned holds the scene still inside it */
+    .track{height:300cqh}
+    .pinned{position:sticky;top:0;height:100cqh;display:flex;flex-direction:column;
+            justify-content:center;gap:18px;padding:clamp(14px,3vw,26px)}
+    /* overflow:visible keeps a label over the top of the curve from being cut when the drawing is small; a flex item with
+       overflow:visible would not shrink below its full size, hence min-height:0 */
+    .flight{width:100%;overflow:visible;min-height:0}
+    .rail{fill:none;stroke:rgba(255,255,255,.13);stroke-width:2;stroke-dasharray:5 7;stroke-linecap:round}
+    .trail{fill:none;stroke:var(--ui-accent);stroke-width:3;stroke-linecap:round}
+    .mark{fill:var(--ui-border)}
+    .mark.done{fill:var(--ui-accent)}
+    /* paint-order draws a background-coloured outline first, so a label stays legible
+       where the curve passes behind it; its size and outline width are set in buildMarks() */
+    .mark-label{fill:var(--ui-muted);paint-order:stroke;stroke:var(--bg);stroke-linejoin:round}
+    .plane{fill:var(--ui-accent)}
+    .halo{fill:var(--ui-accent);opacity:.14}
+
+    /* the playhead: scroll is a position, not a play button */
+    .player{border:1px solid var(--ui-border);border-radius:8px;background:var(--ui-bg);padding:14px 16px}
+    .player-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;gap:12px}
+    .frame{font-weight:700;font-size:clamp(18px,3vw,26px);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+    .frame span{color:var(--ui-muted);font-size:12px;font-weight:400}
+    .dir{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ui-muted);
+         border:1px solid var(--ui-border);border-radius:20px;padding:4px 10px;white-space:nowrap}
+    .dir.fwd{color:var(--ui-accent);border-color:var(--ui-accent)}
+    .dir.rev{color:#f0883e;border-color:#f0883e}
+    .seek{position:relative;height:8px;border-radius:6px;background:rgba(255,255,255,.07);container-type:inline-size}
+    .seek-clip{position:absolute;inset:0;border-radius:6px;overflow:hidden}
+    .seek-fill{position:absolute;inset:0;border-radius:6px;background:var(--ui-accent);transform:translateX(-100%)}
+    .seek-head{position:absolute;top:50%;left:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;
+               background:var(--ui-text);border:3px solid var(--ui-accent)}
+    .ticks{display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:var(--ui-muted)}
+    @media(prefers-reduced-motion:reduce){.halo{display:none}}
+
+    /* The two views are drawn only in their own mode. In Normal the wrappers around the route take no box of their own, so the
+       drawing, the panel and every gap stay as they were. */
+    .routes,.half{display:contents}
+    .half.twin,.half-name,.graph,.cap-scr{display:none}
+    .half-name{font:600 13px/1.2 var(--hb-font);color:#f4f4f2;text-align:center;white-space:nowrap}
+
+    /* See inside: the rule that joins the bar to the plane, drawn as a graph right above the bar. It shares the bar's width, so
+       across is how far the box has scrolled and the dot stands above the handle; up is how far along the route the plane is.
+       The drawing above shrinks to make room, and the panel and the gaps tighten a little. */
+    .stage[data-hb-mode="inside"] .pinned,.stage[data-hb-mode="compare"] .pinned{gap:8px;padding:clamp(10px,2.5vw,20px)}
+    .stage[data-hb-mode="inside"] .player,.stage[data-hb-mode="compare"] .player{padding:10px 14px}
+    .stage[data-hb-mode="inside"] .player{align-self:center;width:100%;max-width:640px}
+    .stage[data-hb-mode="inside"] .player-top{margin-bottom:6px}
+    .stage[data-hb-mode="inside"] .graph{display:block;margin-bottom:4px}
+    .stage[data-hb-mode="inside"] .ticks{font-size:12px}
+    .stage[data-hb-mode="inside"] .ticks .mid{display:none}
+    .stage[data-hb-mode="inside"] .cap-scr{display:block;flex:1;text-align:center;color:#b4b4bb}
+    .g-caps{display:flex;flex-wrap:wrap;justify-content:space-between;column-gap:10px;margin-bottom:3px;font-size:12px;line-height:15px}
+    .g-cap{white-space:nowrap;color:#b4b4bb}
+    .g-feel{margin-left:auto;color:#f4f4f2}
+    .g-plot{position:relative;height:clamp(40px,21cqh,92px);container-type:size;border-radius:3px;background:rgba(255,255,255,.045)}
+    .g-plot svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+    .g-plot path{fill:none;vector-effect:non-scaling-stroke}
+    .g-guide{stroke:rgba(255,255,255,.1);stroke-width:1}
+    .g-axis{stroke:rgba(255,255,255,.34);stroke-width:1}
+    .g-diag{stroke:rgba(255,255,255,.28);stroke-width:1;stroke-dasharray:3 4}
+    .g-curve{stroke:var(--ui-accent);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+    /* the dot and the line under it move by transform only: across in percent of the plot's width, up in percent of its height */
+    .g-line{position:absolute;left:0;bottom:0;width:1px;height:100%;background:rgba(244,244,242,.4);transform-origin:50% 100%}
+    .g-dot{position:absolute;left:0;bottom:0;width:11px;height:11px;margin:0 0 -5.5px -5.5px;border-radius:50%;
+           background:var(--ui-text);border:3px solid var(--ui-accent)}
+    @container stg (max-height:290px){
+      .stage[data-hb-mode="inside"] .player-top{display:none}
+      .stage[data-hb-mode="inside"] .g-plot{height:30px}
+    }
+
+    /* Compare: the flight on its own clock beside the page's own route, each named at its top; the panel keeps its bar */
+    .stage[data-hb-mode="compare"] .routes{display:grid;flex:1 1 0;min-height:0;grid-template-columns:repeat(2,minmax(0,1fr));
+      grid-template-rows:minmax(0,1fr);gap:clamp(8px,2vw,18px)}
+    .stage[data-hb-mode="compare"] .half{display:flex;flex-direction:column;justify-content:center;gap:12px;min-height:0;min-width:0}
+    .stage[data-hb-mode="compare"] .half-name{display:block}
+    .stage[data-hb-mode="compare"] .player-top{display:none}
+    @media(max-width:600px){
+      .stage[data-hb-mode="compare"] .routes{grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr));gap:6px}
+    }
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="scroll" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../scroll-trigger/" rel="prev" aria-label="Previous: Scroll-Triggered Animation"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Scroll-Triggered Animation</span></a><a href="../pin-animation/" rel="next" aria-label="Next: Pin Animation"><span><span class="hb-dir">Next: </span>Pin Animation</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">01.08 · Scroll-Based</p>
+    <h1>Scrub Animation</h1>
+    <p class="hb-lede">Scroll plays it forward and back, like dragging a video. Best for product tours.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Scroll it</h2><p>Scroll inside the box, down and back up, or press Play and it scrolls for you.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage" tabindex="0" role="region" aria-label="A plane on a flight route">
+      <div class="track">
+        <div class="pinned">
+
+          <div class="routes"><div class="half main" id="half-main"><span class="half-name" data-hb-caption aria-hidden="true">Follows the scroll</span>
+          <svg class="flight" viewBox="0 0 620 250" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <!-- The curve IS the timeline. Drawing the whole route up front means you can
+                 always see where the current frame sits inside the animation. -->
+            <path id="rail" class="rail" d="M 45 205 C 165 205 150 45 280 45 S 435 200 575 78"/>
+            <path id="trail" class="trail" d="M 45 205 C 165 205 150 45 280 45 S 435 200 575 78"/>
+            <g id="marks"></g>
+            <g id="flyer">
+              <circle class="halo" r="17"/>
+              <path class="plane" d="M 13 0 L -9 -8 L -4 0 L -9 8 Z"/>
+            </g>
+          </svg></div></div>
+
+          <div class="player">
+            <div class="player-top">
+              <div class="frame" id="frame" role="img" aria-label="Frame 0 of 120">000<span> / 120</span></div>
+              <div class="dir" id="dir" aria-hidden="true">Still</div>
+            </div>
+            <div class="graph" aria-hidden="true">
+              <div class="g-caps"><span class="g-cap" data-hb-caption>How far it has flown</span><span class="g-cap g-feel" id="g-feel" data-hb-caption>Even: matches the scroll</span></div>
+              <div class="g-plot">
+                <svg viewBox="0 0 100 100" preserveAspectRatio="none"><path class="g-guide" d="M25 0V100M50 0V100M75 0V100M0 25H100M0 50H100M0 75H100"/><path class="g-diag" d="M0 100L100 0"/><path class="g-axis" d="M0 0V100H100"/><path class="g-curve" id="g-curve" d=""/></svg>
+                <i class="g-line" id="g-line"></i><i class="g-dot" id="g-dot"></i>
+              </div>
+            </div>
+            <div class="seek">
+              <div class="seek-clip"><div class="seek-fill" id="seek-fill"></div></div>
+              <div class="seek-head" id="seek-head"></div>
+            </div>
+            <div class="ticks"><span>0%</span><span class="mid">25%</span><span class="mid">50%</span><span class="mid">75%</span><span class="cap-scr" data-hb-caption>How far you scrolled</span><span>100%</span></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-scroll" data-hb-autoscroll><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>Play</button>
+      <button class="hb-play" type="button" id="btn-top" data-hb-top><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Back to top</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the dot on the graph shows how far the plane has flown for how far you scrolled; with Even the line is straight. Scroll the box or press Play to watch.</p>
+      <p data-hb-for="compare" hidden>Plays by itself flies the whole route on its own once you start scrolling; Follows the scroll goes only as far as you scroll, and back. Scroll the box or press Play to watch.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then scroll again or press Play.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="feel-lbl">Feel</p>
+        <div class="seg" id="feel-seg" role="group" aria-labelledby="feel-lbl">
+          <button type="button" data-ease="linear" class="on" aria-pressed="true">Even</button>
+          <button type="button" data-ease="inOut" aria-pressed="false">Gentle</button>
+          <button type="button" data-ease="out" aria-pressed="false">Smooth</button>
+          <button type="button" data-ease="in" aria-pressed="false">Slow start</button>
+        </div>
+        <p class="hb-hint">Even follows the scroll exactly; the others reshape it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a scroll-scrubbed animation to [your illustration or product explainer]. Hold the scene in view while the visitor scrolls through a taller section, and turn how far they have scrolled into a progress value from 0 to 1. Draw the whole route up front, place the moving object at the point on it that matches the progress, facing along the path, and fill in the part already traveled. Nothing plays on a timer: scrolling back simply moves it back. Shape the progress with the easing given in the settings. If the visitor has reduced motion turned on, drop decorative effects but keep the object following the scroll. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Product tours</li><li>Explainers</li><li>Step-by-step diagrams</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Short sections</li><li>Key information</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const $ = id => document.getElementById(id);
+  const stage = $('stage'), rail = $('rail'), trail = $('trail'), flyer = $('flyer'), marks = $('marks');
+  const frameEl = $('frame'), dirEl = $('dir'), seekFill = $('seek-fill'), seekHead = $('seek-head');
+  const FRAMES = 120, SVG_NS = 'http://www.w3.org/2000/svg';
+  const clamp = (v, a, b) => Math.min(Math.max(v, a), b);
+  const G = {}, set = (k, v, fn) => { if (G[k] !== v) { G[k] = v; fn(v); } };
+
+  const EASES = {
+    linear: t => t,
+    inOut: t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
+    out: t => 1 - Math.pow(1 - t, 3),
+    in: t => t * t * t };
+  let ease = 'linear';   // the curve the Feel setting picked
+  let mode = 'normal';
+
+  // See inside and Compare. Compare's left half is a copy of the route made once: no ids, inert, hidden from screen readers,
+  // and not drawn outside Compare. Both routes take their points from the page's own path, since the path is the same.
+  const mainHalf = $('half-main'), twinHalf = mainHalf.cloneNode(true);
+  twinHalf.classList.replace('main', 'twin');
+  twinHalf.querySelectorAll('[id]').forEach(n => n.removeAttribute('id'));
+  twinHalf.removeAttribute('id'); twinHalf.inert = true; twinHalf.setAttribute('aria-hidden', 'true');
+  twinHalf.querySelector('.half-name').textContent = 'Plays by itself';
+  mainHalf.before(twinHalf);
+  const twinParts = twinHalf.querySelectorAll('svg > g');
+  const MAIN = { pre: 'm', rail, trail, marks, flyer };
+  const TWIN = { pre: 't', rail: twinHalf.querySelector('.rail'), trail: twinHalf.querySelector('.trail'),
+                 marks: twinParts[0], flyer: twinParts[1] };
+
+  // Layout reads happen here only — never per frame, where they would force a reflow.
+  let LEN = 1, MAXS = 1;
+  function measure() {
+    LEN = rail.getTotalLength();
+    MAXS = Math.max(1, stage.scrollHeight - stage.clientHeight);
+    for (const r of mode === 'compare' ? [MAIN, TWIN] : [MAIN]) { r.trail.style.strokeDasharray = LEN; buildMarks(r); }
+  }
+
+  // The drawing scales to fit the box, so a label sized in drawing units would shrink with it. k is how many drawing
+  // units make one screen pixel, which keeps every label at 12px on screen, 14px above its mark.
+  function buildMarks(r) {
+    const ctm = r.rail.getScreenCTM();
+    const k = ctm && ctm.a > 0 ? 1 / ctm.a : 1;
+    r.marks.innerHTML = '';
+    for (let i = 0; i <= 4; i++) {
+      const pt = rail.getPointAtLength(LEN * i / 4);
+      const c = document.createElementNS(SVG_NS, 'circle');
+      c.setAttribute('class', 'mark'); c.setAttribute('r', '4');
+      c.setAttribute('cx', pt.x); c.setAttribute('cy', pt.y);
+      const t = document.createElementNS(SVG_NS, 'text');
+      t.setAttribute('class', 'mark-label'); t.setAttribute('x', pt.x); t.setAttribute('y', pt.y - 14 * k);
+      t.setAttribute('text-anchor', 'middle');
+      t.style.fontSize = 12 * k + 'px'; t.style.strokeWidth = 3 * k + 'px';
+      t.textContent = i * 25 + '%';
+      r.marks.append(c, t);
+    }
+    delete G[r.pre + 'marks']; // the new circles start unlit; the next render lights the ones already passed
+  }
+
+  // Puts one plane, its trail and its lit marks at e, the shaped share of the route
+  function draw(r, e) {
+    // Position and heading both come from the path itself, so the drawn trail and the
+    // moving plane can never disagree about where the current frame is.
+    const d = LEN * e, pt = rail.getPointAtLength(d);
+    const ahead = rail.getPointAtLength(Math.min(LEN, d + 1.5));
+    const behind = rail.getPointAtLength(Math.max(0, d - 1.5));
+    const angle = Math.atan2(ahead.y - behind.y, ahead.x - behind.x) * 180 / Math.PI;
+    set(r.pre + 'fly', `${pt.x.toFixed(1)},${pt.y.toFixed(1)},${angle.toFixed(1)}`,
+        () => r.flyer.setAttribute('transform', `translate(${pt.x} ${pt.y}) rotate(${angle})`));
+    set(r.pre + 'trail', Math.round(d * 10) / 10, v => r.trail.style.strokeDashoffset = LEN - v);
+    set(r.pre + 'marks', Math.floor(e * 4 + 1e-6), v => {
+      [...r.marks.querySelectorAll('.mark')].forEach((c, i) => c.classList.toggle('done', i <= v));
+    });
+  }
+
+  // Compare's left plane is on a clock: once the box is scrolled past the start line it flies the whole route in about two
+  // seconds, shaped by the same Feel, and back the same way when the box returns above the line. q is its time share (0 to 1)
+  // and qt where it is heading. The loop runs only during a flight, by elapsed time, and a mode change never starts one.
+  const START_LINE = .05, FLIGHT_MS = 2000, reduced = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let q = 0, qt = 0, lastT = null, raf = 0;
+  const share = () => clamp(stage.scrollTop / MAXS, 0, 1);
+  function stopFlight() { if (raf) cancelAnimationFrame(raf); raf = 0; lastT = null; }
+  function fly(ts) {
+    raf = 0;
+    const dt = lastT === null ? 0 : Math.min(ts - lastT, 50); lastT = ts;
+    const step = dt / FLIGHT_MS;   // a share of the flight per elapsed millisecond, the same at any frame rate
+    q = qt > q ? Math.min(qt, q + step) : Math.max(qt, q - step);
+    draw(TWIN, EASES[ease](q));
+    if (q !== qt) raf = requestAnimationFrame(fly); else lastT = null;
+  }
+  function aim(p) {
+    qt = p >= START_LINE ? 1 : 0;
+    if (mode !== 'compare') return;
+    if (reduced()) { q = qt; stopFlight(); }          // reduced motion: a jump, not a flight
+    else if (q !== qt && !raf) { lastT = null; raf = requestAnimationFrame(fly); }
+  }
+  document.addEventListener('visibilitychange', () => { lastT = null; });
+  // Back to top, and Play pressed at the end (it starts again from the top), are jumps: both planes stand at the start at once.
+  // These listeners come before the shared script's, so they see the box where it was.
+  const jump = () => { q = qt = 0; stopFlight(); if (mode === 'compare') draw(TWIN, 0); };   // no scroll event follows when the box is already at the top
+  $('btn-top').addEventListener('click', jump);
+  $('btn-scroll').addEventListener('click', () => { if (stage.scrollTop >= stage.scrollHeight - stage.clientHeight - 2) jump(); });
+
+  // See inside's graph: the Feel's own curve, drawn once per Feel from the same easing functions
+  const curveEl = $('g-curve'), feelEl = $('g-feel'), dotEl = $('g-dot'), lineEl = $('g-line');
+  const FEEL = {
+    linear: ['Even: matches the scroll', 'with Even the line is straight'],
+    inOut:  ['Gentle: slow, fast, slow', 'with Gentle it starts and ends slowly'],
+    out:    ['Smooth: fast, then slow', 'with Smooth it rushes, then slows'],
+    in:     ['Slow start: slow, then fast', 'with Slow start it creeps, then rushes'] };
+  const insideNote = document.querySelector('[data-hb-for="inside"]'), compareNote = document.querySelector('[data-hb-for="compare"]');
+  const NAMES = { normal: stage.getAttribute('aria-label'),
+    inside: 'A plane on a flight route, with a graph of how far it has flown for how far you scrolled',
+    compare: 'The flight twice: a plane that plays by itself, and one that follows the scroll' };
+  function describe() {
+    let d = '';
+    for (let i = 0; i <= 48; i++) d += (i ? 'L' : 'M') + (i * 100 / 48).toFixed(1) + ' ' + (100 - EASES[ease](i / 48) * 100).toFixed(1);
+    curveEl.setAttribute('d', d);
+    feelEl.textContent = FEEL[ease][0];
+    insideNote.textContent = 'Inside, the dot on the graph shows how far the plane has flown for how far you scrolled; ' + FEEL[ease][1] +
+      '. Scroll the box or press Play to watch.';
+    compareNote.textContent = reduced()
+      ? 'Shown without the flight: Plays by itself jumps to the end once you start scrolling; Follows the scroll goes only as far as you scroll, and back. Scroll the box to see.'
+      : 'Plays by itself flies the whole route on its own once you start scrolling; Follows the scroll goes only as far as you scroll, and back. Scroll the box or press Play to watch.';
+  }
+
+  let lastScroll = 0, idleTimer = null, ticking = false;
+
+  function render(p) {
+    const e = EASES[ease](p);
+    draw(MAIN, e);
+    const frame = Math.round(e * FRAMES), pct = Math.round(p * 100);
+    // The number changes on almost every frame, so it is an image with a label, not a live region
+    set('frame', frame, v => {
+      frameEl.firstChild.nodeValue = String(v).padStart(3, '0');
+      frameEl.setAttribute('aria-label', `Frame ${v} of ${FRAMES}`);
+    });
+    set('pct', pct, v => { seekFill.style.transform = `translateX(${v - 100}%)`; seekHead.style.transform = `translateX(${v}cqw)`; });
+    if (mode === 'inside') {   // the dot stands above the handle (same percent) at the plane's height
+      set('dot', pct + ',' + Math.round(e * 1000), () => {
+        dotEl.style.transform = `translate(${pct}cqw,${-e * 100}cqh)`;
+        lineEl.style.transform = `translateX(${pct}cqw) scaleY(${e})`;
+      });
+    }
+    if (mode === 'compare') draw(TWIN, EASES[ease](q));
+  }
+
+  function setDir(d) {
+    set('dir', d, v => {
+      dirEl.textContent = v === 'fwd' ? 'Forward' : v === 'rev' ? 'Backward' : 'Still';
+      dirEl.className = 'dir' + (v === 'idle' ? '' : ' ' + v);
+    });
+  }
+
+  function update() {
+    const st = stage.scrollTop;
+    if (st !== lastScroll) {
+      setDir(st > lastScroll ? 'fwd' : 'rev'); lastScroll = st;
+      clearTimeout(idleTimer); idleTimer = setTimeout(() => setDir('idle'), 260);
+    }
+    const p = clamp(st / MAXS, 0, 1);
+    aim(p);
+    render(p);
+    ticking = false;
+  }
+
+  // A mode shows the current state at once: Compare's left plane stands where its clock would have left it (at the end past
+  // the start line, else at the start), never mid-flight; the routes are measured again because each mode draws them at
+  // another size.
+  function relayout() {
+    stopFlight();
+    q = qt = share() >= START_LINE ? 1 : 0;
+    for (const k in G) delete G[k];
+    measure(); update();
+  }
+  document.addEventListener('hb:mode', e => {
+    mode = e.detail.mode;
+    stage.setAttribute('aria-label', NAMES[mode]);
+    relayout();
+  });
+
+  stage.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
+
+  function choices(id, pick) {
+    const buttons = document.querySelectorAll('#' + id + ' button');
+    buttons.forEach(b => b.addEventListener('click', () => {
+      buttons.forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', String(x === b)); });
+      pick(b.dataset);
+    }));
+  }
+  choices('feel-seg', d => { ease = d.ease; for (const k in G) delete G[k]; describe(); update(); });
+  matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', () => { describe(); relayout(); });
+
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { measure(); update(); }, 150); });
+
+  describe(); measure(); update();
+  // The drawing's size depends on the panel's text, which depends on the site font
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { measure(); update(); });
+</script>
+</body>
+</html>

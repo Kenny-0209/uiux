@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Gradient Animation — Animation Handbook</title>
+  <meta name="description" content="Colors flow through the letters while the text stays still. Best for headlines.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/05-text-typography/text-gradient-animation/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Text Gradient Animation — Animation Handbook">
+  <meta property="og:description" content="Colors flow through the letters while the text stays still. Best for headlines.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/05-text-typography/text-gradient-animation/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Text Gradient Animation — Animation Handbook">
+  <meta name="twitter:description" content="Colors flow through the letters while the text stays still. Best for headlines.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Text Gradient Animation", "name": "Text Gradient Animation", "description": "Colors flow through the letters while the text stays still. Best for headlines.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/05-text-typography/text-gradient-animation/", "inLanguage": "en", "articleSection": "Text & Typography", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Text & Typography, Text Gradient Animation"}</script>
+  <style>
+    :root{--ui-accent:#ff6f8b;--grad-dur:4s;--c1:#58a6ff;--c2:#d2a8ff}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{display:flex;align-items:center;justify-content:center;background:#08080a;padding:clamp(24px,4vw,48px)}
+    .grad-text{
+      font-weight:800;
+      font-size:clamp(64px,14vw,120px);
+      line-height:1;
+      letter-spacing:-0.02em;
+      background-clip:text;
+      -webkit-background-clip:text;
+      color:transparent;
+      background-size:300% 300%;
+      animation:grad-flow var(--grad-dur) linear infinite;
+      display:block;
+      text-align:center;
+      max-width:100%;overflow-wrap:anywhere;
+      -webkit-user-select:none;user-select:none
+    }
+    /* Linear */
+    .grad-linear{background-image:linear-gradient(90deg,#58a6ff,#56d364,#d2a8ff,#ffa657,#58a6ff)}
+    /* Conic — a registered <angle> property lets the gradient's "from" angle interpolate, so it truly rotates */
+    @property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+    .grad-conic{
+      background-image:conic-gradient(from var(--ang),#58a6ff,#56d364,#d2a8ff,#ffa657,#58a6ff);
+      animation:grad-spin var(--grad-dur) linear infinite;
+      background-size:200% 200%;background-position:50% 50%
+    }
+    /* Multi-stop */
+    .grad-multi{background-image:linear-gradient(135deg,#f85149,#ffa657,#56d364,#58a6ff,#d2a8ff,#f85149)}
+    /* Custom two-color */
+    .grad-custom{background-image:linear-gradient(90deg,var(--c1),var(--c2),var(--c1))}
+    @keyframes grad-flow{from{background-position:0% 50%}to{background-position:300% 50%}}
+    @keyframes grad-spin{from{--ang:0deg}to{--ang:360deg}}
+    /* See inside and Compare. In a mode the stage keeps its height because .gt-ghost, a hidden word of Normal's size, stays in the
+       flow; the real word leaves the flow and is laid over a hidden "slot" word that the view lays out (the script places it). */
+    .gt-ghost,.gt-in,.gt-cmp{display:none}
+    .gt-ghost,.gt-slot{animation:none;background:none;visibility:hidden}
+    .stage[data-hb-mode="inside"],.stage[data-hb-mode="compare"]{position:relative}
+    .stage[data-hb-mode="inside"] .gt-ghost,.stage[data-hb-mode="compare"] .gt-ghost{display:block}
+    .stage[data-hb-mode="inside"] #grad-text,.stage[data-hb-mode="compare"] #grad-text{position:absolute;z-index:1;font-size:var(--gt-fs)}
+    .stage[data-hb-mode="inside"] .gt-in{display:flex}
+    .stage[data-hb-mode="compare"] .gt-cmp{display:grid}
+    .gt-in,.gt-cmp{position:absolute;inset:0;padding:12px;pointer-events:none}
+    .gt-in .grad-text,.gt-cmp .grad-text{font-size:var(--gt-fs)}
+    .gt-cap{margin:0;max-width:100%;padding:3px 7px;border-radius:5px;background:rgba(8,8,10,.92);color:#f4f4f2;font:600 13px/1.2 var(--hb-font);text-align:center}
+    /* See inside: the faint box (the gradient, not clipped to the letters), then the band with the box as a window, or the wheel */
+    .gt-in{flex-direction:column;align-items:center;gap:6px}
+    .gt-in>:first-child{margin-top:auto}
+    .gt-in>:last-child{margin-bottom:auto}
+    .gt-in .gt-slot{position:relative}
+    .gt-in .gt-slot::after{content:"";position:absolute;inset:-2px;border:2px solid rgba(244,244,242,.55);border-radius:6px;visibility:visible}
+    .gt-fill{position:absolute;inset:0;background-clip:border-box;-webkit-background-clip:border-box;opacity:.2;visibility:visible}
+    .gt-band{position:relative;flex:none;width:var(--gw);height:var(--gh);margin-top:6px}
+    .gt-strip{display:block;position:absolute;left:0;top:0;width:calc(var(--bw)*4);height:var(--bh);border-radius:4px;
+      background-size:calc(var(--bw)*3) calc(var(--bh)*3);background-position:0 calc(var(--bh)*-1)}
+    .gt-strip::before,.gt-strip::after{content:"";position:absolute;top:0;bottom:0;border:0 dashed rgba(244,244,242,.55)}
+    .gt-strip::before{left:0;width:var(--bw);border-width:2px;border-radius:4px}
+    .gt-strip::after{left:75%;border-left-width:2px}
+    .gt-wheel{display:none;position:absolute;inset:0;border-radius:50%}
+    .gt-win{position:absolute;left:-3px;top:-3px;width:calc(var(--bw) + 6px);height:calc(var(--bh) + 6px);border:3px solid var(--ui-accent);border-radius:6px;
+      animation:gt-slide linear infinite;animation-duration:calc(var(--grad-dur)/2)}
+    .gt-win .gt-cap{position:absolute;left:-3px;top:calc(100% + 6px);white-space:nowrap}
+    .gt-in.wheel .gt-wheel{display:block}
+    .gt-in.wheel .gt-strip{display:none}
+    .gt-in.wheel .gt-win{left:calc(50% - var(--bw)/2 - 3px);top:calc(50% - var(--bh)/2 - 3px);animation:none}
+    .gt-in.wheel .gt-win .gt-cap{left:50%;transform:translateX(-50%)}
+    @keyframes gt-slide{to{transform:translateX(calc(var(--bw)*3))}}
+    /* Compare: two halves, side by side or stacked; the first lets its band end on the color before it, so the repeat has an edge */
+    .gt-cmp{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+    .gt-cmp.stack{grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr))}
+    .gt-half{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 8px 8px;border:1px solid rgba(255,255,255,.14);border-radius:8px;overflow:hidden}
+    .gt-name{position:absolute;top:6px;left:6px;white-space:nowrap}
+    /* the note under the first word has a room of the same size under the second, so the two words stand at the same height */
+    .gt-when,.gt-half:last-child::after{position:relative;flex:none;height:22px;margin-top:8px;white-space:nowrap}
+    .gt-half:last-child::after{content:""}
+    .gt-when::before{content:"";position:absolute;left:50%;bottom:100%;margin-left:-6px;border:6px solid transparent;border-top:0;border-bottom-color:var(--ui-accent)}
+    .stage[data-hb-mode="compare"]:not(.hb-paused) .gt-when{visibility:hidden}
+    .gt-seam.grad-linear{background-image:linear-gradient(90deg,#58a6ff,#56d364,#d2a8ff,#ffa657,#ffa657)}
+    .gt-seam.grad-conic{background-image:conic-gradient(from var(--ang),#58a6ff,#56d364,#d2a8ff,#ffa657,#ffa657)}
+    .gt-seam.grad-multi{background-image:linear-gradient(135deg,#f85149,#ffa657,#56d364,#58a6ff,#d2a8ff,#d2a8ff)}
+    .gt-seam.grad-custom{background-image:linear-gradient(90deg,var(--c1),var(--c2),var(--c2))}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="loop">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../text-morphing/" rel="prev" aria-label="Previous: Text Morphing"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Text Morphing</span></a><a href="../outline-to-fill/" rel="next" aria-label="Next: Outline to Fill"><span><span class="hb-dir">Next: </span>Outline to Fill</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">05.08 · Text &amp; Typography</p>
+    <h1>Text Gradient Animation</h1>
+    <p class="hb-lede">Colors flow through the letters while the text stays still. Best for headlines.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Watch it</h2><p>It moves by itself. Pause it to look closely, or turn on slow motion to see each part of the movement.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage hb-dots hb-grow">
+      <div class="grad-text grad-linear" id="grad-text">Flow</div>
+      <div class="grad-text gt-ghost" aria-hidden="true" inert data-t>Flow</div>
+      <div class="gt-in" aria-hidden="true" inert>
+        <p class="gt-cap" data-hb-caption>Colors fill the whole box; the letters let them through</p>
+        <div class="grad-text gt-slot"><span data-t>Flow</span><i class="gt-fill grad-text grad-linear"></i></div>
+        <div class="gt-band">
+          <i class="gt-strip grad-linear"></i><i class="gt-wheel grad-conic"></i>
+          <div class="gt-win"><p class="gt-cap" data-hb-caption>In the box</p></div>
+        </div>
+        <p class="gt-cap" data-hb-caption>A band three times as wide slides behind, one band every two seconds</p>
+      </div>
+      <div class="gt-cmp" aria-hidden="true" inert>
+        <div class="gt-half"><p class="gt-cap gt-name" data-hb-caption>Hard seam</p><div class="grad-text gt-seam grad-linear" aria-hidden="true" inert data-t>Flow</div><p class="gt-cap gt-when" data-hb-caption>Where the band starts over</p></div>
+        <div class="gt-half"><p class="gt-cap gt-name" data-hb-caption>Seamless</p><div class="grad-text gt-slot"><span data-t>Flow</span></div></div>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-pause" data-hb-pause="css" data-state="playing"><svg class="hb-ic hb-i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="hb-ic hb-i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9z"/></svg><span class="hb-pause-label">Pause</span></button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo="css" autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the gradient fills the whole box behind the word, shown faint, and the letters are holes that let it through. The band is three times as wide and keeps sliding past.</p>
+      <p data-hb-for="compare" hidden>Hard seam ends its band on a different color than it starts with, so a sharp edge slides through the letters. Seamless ends where it began, so the colors flow on without a break.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting and see the difference as it moves.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="grad-lbl">Gradient</p>
+        <div class="seg" id="grad-seg" role="group" aria-labelledby="grad-lbl">
+          <button type="button" data-cls="grad-linear" class="on" aria-pressed="true">Flowing</button>
+          <button type="button" data-cls="grad-conic" aria-pressed="false">Spinning</button>
+          <button type="button" data-cls="grad-multi" aria-pressed="false">Diagonal</button>
+          <button type="button" data-cls="grad-custom" aria-pressed="false">Two colors</button>
+        </div>
+        <p class="hb-hint">How the colors move through the letters.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-dur="6.4s" aria-pressed="false">Slow</button>
+          <button type="button" data-dur="4s" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-dur="2.4s" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">Slower feels calm; faster feels lively.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting" id="c1-setting" hidden>
+          <p class="hb-setting-name" id="c1-lbl">First color</p>
+          <div class="swatches" id="c1-sw" role="group" aria-labelledby="c1-lbl">
+            <button type="button" aria-pressed="false" aria-label="Pink" data-c="#ff6f8b" style="background:#ff6f8b"></button>
+            <button type="button" aria-pressed="false" aria-label="White" data-c="#f4f4f2" style="background:#f4f4f2"></button>
+            <button type="button" class="on" aria-pressed="true" aria-label="Blue" data-c="#58a6ff" style="background:#58a6ff"></button>
+            <button type="button" aria-pressed="false" aria-label="Purple" data-c="#d2a8ff" style="background:#d2a8ff"></button>
+            <button type="button" aria-pressed="false" aria-label="Green" data-c="#56d364" style="background:#56d364"></button>
+            <button type="button" aria-pressed="false" aria-label="Orange" data-c="#ffa657" style="background:#ffa657"></button>
+          </div>
+          <p class="hb-hint">The color the gradient starts and ends with.</p>
+        </div>
+        <div class="hb-setting" id="c2-setting" hidden>
+          <p class="hb-setting-name" id="c2-lbl">Second color</p>
+          <div class="swatches" id="c2-sw" role="group" aria-labelledby="c2-lbl">
+            <button type="button" aria-pressed="false" aria-label="Pink" data-c="#ff6f8b" style="background:#ff6f8b"></button>
+            <button type="button" aria-pressed="false" aria-label="White" data-c="#f4f4f2" style="background:#f4f4f2"></button>
+            <button type="button" aria-pressed="false" aria-label="Blue" data-c="#58a6ff" style="background:#58a6ff"></button>
+            <button type="button" class="on" aria-pressed="true" aria-label="Purple" data-c="#d2a8ff" style="background:#d2a8ff"></button>
+            <button type="button" aria-pressed="false" aria-label="Green" data-c="#56d364" style="background:#56d364"></button>
+            <button type="button" aria-pressed="false" aria-label="Orange" data-c="#ffa657" style="background:#ffa657"></button>
+          </div>
+          <p class="hb-hint">The color in the middle of the gradient.</p>
+        </div>
+        <div class="hb-setting">
+          <label class="hb-setting-name" for="text-inp">Your text</label>
+          <input class="hb-text" type="text" id="text-inp" value="Flow" autocomplete="off">
+          <p class="hb-hint">Short words show the flow best.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a flowing color gradient to [your headline or logo text]. Fill the letters with a gradient instead of a flat color: paint the gradient as the text's background, show it only inside the letter shapes, and make the text color itself see-through. Then keep moving the gradient behind the letters, or turn it like a color wheel, so color flows through the word while the letters stay still. End the gradient with the color it starts with so the loop has no seam. Give the text a solid fallback color for browsers that cannot clip a background to text. If the visitor has reduced motion turned on, keep the gradient still. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Headlines</li><li>Logos</li><li>Hero titles</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Body text</li><li>Small text</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const gradText=document.getElementById('grad-text');
+  const vars=document.documentElement.style;
+  const txtIn=document.getElementById('text-inp');
+  const c1Setting=document.getElementById('c1-setting'),c2Setting=document.getElementById('c2-setting');
+  const CLASSES=['grad-linear','grad-conic','grad-multi','grad-custom'];
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  // Gradient: swaps the gradient class, and shows First/Second color only for the two-color custom gradient
+  choices('grad-seg',d=>{
+    gradText.classList.remove(...CLASSES);
+    gradText.classList.add(d.cls);
+    const isCustom=d.cls==='grad-custom';
+    c1Setting.hidden=!isCustom;
+    c2Setting.hidden=!isCustom;
+    refresh();
+  });
+  // How far through its pass (0 to 1) an animation is. It is read from the animation itself, so it also holds
+  // while the animation is paused or slowed down.
+  function progressOf(a){
+    const dur=a.effect.getComputedTiming().duration;
+    return a.currentTime!=null&&dur>0?(a.currentTime%dur)/dur:0;
+  }
+  // A new --grad-dur keeps the time already played, not the progress, so the colors would jump to another point
+  // of the pass. Put each animation back at the progress it had, measured against the new duration.
+  choices('speed-seg',d=>{
+    const kept=gradText.getAnimations().map(a=>[a,progressOf(a)]);
+    vars.setProperty('--grad-dur',d.dur);
+    kept.forEach(([a,progress])=>{a.currentTime=progress*parseFloat(d.dur)*1000});
+    refresh();
+  });
+  choices('c1-sw',d=>{vars.setProperty('--c1',d.c);refresh()});
+  choices('c2-sw',d=>{vars.setProperty('--c2',d.c);refresh()});
+  txtIn.addEventListener('input',()=>{gradText.textContent=txtIn.value.trim()||'Flow';refresh()});
+
+  // ── See inside and Compare ──
+  // Every view animation is set to the real word's time, so the faint box, the window, the wheel and the copy run in step with it.
+  const root=document.documentElement,stage=document.querySelector('.stage'),$=s=>stage.querySelector(s);
+  const ghost=$('.gt-ghost'),inn=$('.gt-in'),cmp=$('.gt-cmp'),when=$('.gt-when'),copy=$('.gt-seam');
+  const fill=$('.gt-fill'),strip=$('.gt-strip'),win=$('.gt-win'),wheel=$('.gt-wheel');
+  const capB=inn.lastElementChild,lblC=win.firstElementChild,slotI=$('.gt-in .gt-slot'),slotC=$('.gt-cmp .gt-slot');
+  const slow=document.getElementById('slow-tog'),reduceMQ=matchMedia('(prefers-reduced-motion: reduce)');
+  const M=12,NUM=['','','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve'];
+  const cls=()=>CLASSES.find(c=>gradText.classList.contains(c));
+  const paused=()=>stage.classList.contains('hb-paused');
+  const real=()=>gradText.getAnimations()[0];
+  // Compare rests where the band starts over, in the middle of the word: the box has slid 2.5 of the band's 3 widths (5/12 of
+  // a loop), and the wheel has turned a quarter, so its edge runs right through the middle of the letters. The real word's own
+  // progress is kept meanwhile.
+  const poseAt=c=>c==='grad-conic'?.25:5/12;
+  let kept=null,lastAnim=null,raf=0;
+
+  const mirror=()=>stage.querySelectorAll('[data-t]').forEach(e=>{if(e.textContent!==gradText.textContent)e.textContent=gradText.textContent});
+  function style(){
+    const c=cls();
+    fill.className='gt-fill grad-text '+c;
+    copy.className='grad-text gt-seam '+c;
+    strip.className='gt-strip '+(c==='grad-conic'?'grad-linear':c);
+    inn.classList.toggle('wheel',c==='grad-conic');
+  }
+  function pose(){
+    const a=real();
+    if(!a)return;
+    if(a!==lastAnim){lastAnim=a;kept=null} // Spinning and the others are different animations: a switch starts over
+    const dur=a.effect.getComputedTiming().duration;
+    if(stage.dataset.hbMode==='compare'&&paused()){
+      if(kept===null)kept=progressOf(a);
+      a.currentTime=poseAt(cls())*dur;
+    }else if(kept!==null){a.currentTime=kept*dur;kept=null}
+  }
+  function sync(){
+    const a=real();
+    if(a&&a.currentTime!=null)[fill,copy,win,wheel].forEach(el=>el.getAnimations().forEach(b=>{
+      b.currentTime=a.currentTime%b.effect.getComputedTiming().duration;
+    }));
+  }
+  // Time in a beginner's words: "every two seconds", "about every three seconds"
+  function per(s){const r=Math.round(s);return(Math.abs(s-r)>.15?'about ':'')+'every '+(r<2?'second':(NUM[r]||r)+' seconds')}
+  const notes=[...document.querySelectorAll('[data-hb-for]')],plain=notes.map(n=>n.textContent);
+  const lead='Shown still: the faint box is the gradient behind the word, and the letters let it through. ';
+  const STILL=[lead+'Below, the whole band, three times as wide, with the box over the part you see.',lead+'Below, the color wheel that turns behind them.',
+    'Shown still where the band starts over: Hard seam has a sharp edge across the letters, while Seamless blends straight through.'];
+  const FLAT='Both colors are the same, so the word has no gradient and both halves match. Pick two different colors in Try it.';
+  // Diagonal's slanted stripes do not meet where the page's band repeats sideways, so its Seamless half shows an edge too
+  const DIAG='Slanted stripes do not meet where the band starts over, so Seamless shows an edge there too, like Hard seam. Pick another gradient in Try it to see the difference.';
+  const SPINC=["Hard seam's color wheel ends on a different color than it starts with, so a sharp edge sweeps through the letters. Seamless ends where it began, so the colors flow on without a break.",
+    'Shown still where the wheel starts over: Hard seam has a sharp edge across the letters, while Seamless blends straight through.'];
+  const SPIN='Inside, the gradient fills the whole box behind the word, shown faint, and the letters are holes that let it through. Behind them, a color wheel keeps turning.';
+  // The notes and captions are written only when their words change (the notes box is read aloud)
+  function describe(){
+    const spin=cls()==='grad-conic',still=reduceMQ.matches&&paused();
+    const flat=cls()==='grad-custom'&&getComputedStyle(root).getPropertyValue('--c1').trim()===getComputedStyle(root).getPropertyValue('--c2').trim();
+    const dur=parseFloat(getComputedStyle(root).getPropertyValue('--grad-dur'))*(slow.checked?3:1);
+    const say=[[notes[0],still?STILL[+spin]:spin?SPIN:plain[0]],[notes[1],flat?FLAT:cls()==='grad-multi'?DIAG:spin?SPINC[+still]:still?STILL[2]:plain[1]],
+      [capB,spin?'A color wheel turns behind, once '+per(dur):'A band three times as wide slides behind, one band '+per(dur/2)],
+      [when,spin?'Where the wheel starts over':'Where the band starts over']];
+    say.forEach(([el,words])=>{if(el.textContent!==words)el.textContent=words});
+  }
+  // The room under the faint box: a band with the box as a window over it, or a wheel with the box at its middle. The word is
+  // made smaller until all of it fits the stage, whatever the text. The wheel has no size of its own (its colors only turn), so
+  // it takes the room that is left and the box is drawn small enough to sit inside it.
+  function fitInside(){
+    const w=slotI.offsetWidth,h=slotI.offsetHeight,aw=inn.clientWidth-2*M,lw=lblC.offsetWidth,lh=lblC.offsetHeight,spin=inn.classList.contains('wheel');
+    const left=inn.clientHeight-(2*M+inn.firstElementChild.offsetHeight+h+capB.offsetHeight+24);
+    const d=Math.max(0,Math.min(aw,left,220)),bh0=Math.max(0,d-2*(lh+10)); // the wheel's box leaves room under it for its label
+    const bw=spin?Math.min(w,d/1.15*w/Math.hypot(w,h),bh0*w/h):Math.min(w,aw/4,(aw-lw)/3),bh=bw*h/w;
+    [['--bw',bw],['--bh',bh],['--gw',spin?d:Math.max(4*bw,3*bw+lw)],['--gh',spin?d:bh+12+lh]].forEach(([k,v])=>inn.style.setProperty(k,v+'px'));
+    const ir=inn.getBoundingClientRect();
+    return inn.firstElementChild.getBoundingClientRect().top>=ir.top+M-1&&capB.getBoundingClientRect().bottom<=ir.bottom-M+1&&(!spin||d>=100);
+  }
+  function layout(){
+    const mode=stage.dataset.hbMode,inside=mode==='inside';
+    if(!inside&&mode!=='compare'){gradText.removeAttribute('style');stage.style.removeProperty('--gt-fs');return}
+    const base=parseFloat(getComputedStyle(ghost).fontSize),slot=inside?slotI:slotC,half=slot.parentNode;
+    cmp.classList.toggle('stack',stage.clientWidth<440);
+    for(let s=1;s>=.3;s-=.05){
+      stage.style.setProperty('--gt-fs',base*s+'px');
+      if(inside?fitInside():slot.offsetHeight<=half.clientHeight-68)break;
+    }
+    const r=slot.getBoundingClientRect(),o=stage.getBoundingClientRect();
+    Object.assign(gradText.style,{left:r.left-o.left-stage.clientLeft+'px',top:r.top-o.top-stage.clientTop+'px',width:r.width+'px'});
+  }
+  function refresh(){
+    mirror();style();pose();describe();layout();sync();
+    requestAnimationFrame(sync); // an animation just shown starts a frame later than asked
+  }
+  document.addEventListener('hb:mode',refresh);
+  document.addEventListener('hb:pause',refresh);
+  slow.addEventListener('change',refresh);
+  reduceMQ.addEventListener('change',refresh);
+  new ResizeObserver(()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(refresh)}).observe(stage);
+  if(document.fonts)document.fonts.ready.then(refresh);
+  refresh();
+</script>
+</body>
+</html>

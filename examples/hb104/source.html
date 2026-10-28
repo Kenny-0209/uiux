@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASCII / Halftone — Animation Handbook</title>
+  <meta name="description" content="A moving picture is redrawn with letters or dots. Best for retro and tech looks.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/ascii-halftone/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="ASCII / Halftone — Animation Handbook">
+  <meta property="og:description" content="A moving picture is redrawn with letters or dots. Best for retro and tech looks.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/ascii-halftone/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ASCII / Halftone — Animation Handbook">
+  <meta name="twitter:description" content="A moving picture is redrawn with letters or dots. Best for retro and tech looks.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "ASCII / Halftone", "name": "ASCII / Halftone", "description": "A moving picture is redrawn with letters or dots. Best for retro and tech looks.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/ascii-halftone/", "inLanguage": "en", "articleSection": "3D & Advanced", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, 3D & Advanced, ASCII / Halftone"}</script>
+  <style>
+    :root{--ui-accent:#3fd6c4;--night:#07080c;--paper:#f1eadb;--ink-dark:#86e8c1;--ink-paper:#1f1c27}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;overflow:hidden;background:var(--night)}
+    .stage.paper{background:var(--paper)}
+    canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+    #pic{opacity:.4}
+    /* See inside and Compare: plain words over the picture, each on its own dark backing */
+    .cap{display:none;position:absolute;padding:3px 8px;border-radius:10px;background:rgba(5,6,10,.9);color:#f4f4f2;font:600 12px/15px var(--hb-font);pointer-events:none}
+    .cap.s{white-space:nowrap}
+    .stage[data-hb-mode="inside"] .cap.in,.stage[data-hb-mode="compare"] .cap.cm{display:block}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="loop">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../flocking/" rel="prev" aria-label="Previous: Flocking"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Flocking</span></a><a href="../physics-2d/" rel="next" aria-label="Next: 2D Physics"><span><span class="hb-dir">Next: </span>2D Physics</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">06.22 · 3D &amp; Advanced</p>
+    <h1>ASCII / Halftone</h1>
+    <p class="hb-lede">A moving picture is redrawn with letters or dots. Best for retro and tech looks.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Watch it</h2><p>It moves by itself. Pause it to look closely at the letters, or turn on slow motion.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage">
+      <canvas id="pic" aria-hidden="true" hidden></canvas>
+      <canvas id="cvs" role="img" aria-label="An evening scene with a sun and rolling hills, redrawn out of letters or dots of different sizes"></canvas>
+      <p class="cap in" id="cap-a" aria-hidden="true" data-hb-caption>The picture, shrunk to one block per cell</p>
+      <p class="cap in" id="cap-b" aria-hidden="true" data-hb-caption>Each block's brightness picks a mark</p>
+      <p class="cap in s" id="cap-c" aria-hidden="true" data-hb-caption>No ink</p>
+      <p class="cap in s" id="cap-d" aria-hidden="true" data-hb-caption>Most ink</p>
+      <p class="cap cm s" id="cap-e" aria-hidden="true" data-hb-caption>Original</p>
+      <p class="cap cm s" id="cap-f" aria-hidden="true" data-hb-caption>Letters</p>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-pause" data-hb-pause data-state="playing"><svg class="hb-ic hb-i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="hb-ic hb-i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9z"/></svg><span class="hb-pause-label">Pause</span></button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the picture is shrunk to one block per cell (left); each block's brightness then picks a mark from the strip, from no ink for dark to the most ink for bright.</p>
+      <p data-hb-for="compare" hidden>Original is the smooth moving picture; Letters redraws the same picture, cell by cell, with a mark whose ink matches each cell's brightness.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting and see the difference as it moves.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="mode-lbl">Drawn with</p>
+        <div class="seg" id="mode-seg" role="group" aria-labelledby="mode-lbl">
+          <button type="button" data-mode="letters" class="on" aria-pressed="true">Letters</button>
+          <button type="button" data-mode="dots" aria-pressed="false">Dots</button>
+        </div>
+        <p class="hb-hint">Brighter spots get letters with more ink, or bigger dots.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="size-lbl">Cell size</p>
+        <div class="seg" id="size-seg" role="group" aria-labelledby="size-lbl">
+          <button type="button" data-size="small" aria-pressed="false">Small</button>
+          <button type="button" data-size="medium" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-size="large" aria-pressed="false">Large</button>
+        </div>
+        <p class="hb-hint">Smaller letters or dots show more of the picture; phones use bigger ones.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="color-lbl">Colors</p>
+        <div class="seg" id="color-seg" role="group" aria-labelledby="color-lbl">
+          <button type="button" data-color="mono" class="on" aria-pressed="true">One color</button>
+          <button type="button" data-color="full" aria-pressed="false">Full color</button>
+        </div>
+        <p class="hb-hint">One color looks like an old screen; full color keeps the picture's colors.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Shows the original picture</span><input class="hb-switch" type="checkbox" role="switch" id="orig-tog" autocomplete="off"></label>
+          <p class="hb-hint">Lays the moving picture faintly under the letters or dots.</p>
+        </div>
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Light paper</span><input class="hb-switch" type="checkbox" role="switch" id="paper-tog" autocomplete="off"></label>
+          <p class="hb-hint">Prints dark marks on light paper, like a newspaper photo.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add an ASCII and halftone effect to [the picture or video you want to restyle]. Each frame, draw the picture onto a small hidden canvas with one pixel for every cell of a grid, and read back each pixel's brightness. On the visible canvas, draw a character in every cell, choosing characters with more ink for brighter cells, or draw a dot whose size grows with the brightness, like a printed photo. Color the marks with the picture's own colors or with one color. Copy the characters from a ready-made sheet instead of drawing each character separately every frame, so it stays smooth, and use bigger cells on phones. If the visitor has reduced motion turned on, show one still frame. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Retro and tech sites</li><li>Music and game pages</li><li>Hero images</li><li>Portfolio headers</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Photos people must see clearly</li><li>Long reading pages</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+const cvs=document.getElementById('cvs'),ctx=cvs.getContext('2d');
+const pic=document.getElementById('pic'),pctx=pic.getContext('2d');
+const stage=document.getElementById('stage');
+const slowTog=document.getElementById('slow-tog');
+const css=getComputedStyle(document.documentElement),INK={dark:css.getPropertyValue('--ink-dark'),paper:css.getPropertyValue('--ink-paper')};
+const FRAME=1000/60; // one step is what a 60 Hz frame adds, so a faster screen or a slow frame does not change the speed
+// Phones are screens up to 600px wide, or up to 500px tall when held sideways: they get bigger cells
+const phone=matchMedia('(max-width:600px),(max-height:500px)');
+const RAMP=' .-:*+=xo#'; // from no ink to the most ink, measured in the site font; each fits in its cell
+const DOTS=12; // dot sizes, from none to one that fills its cell
+const CELLS={small:[8,10],medium:[11,14],large:[16,20]}; // the height of a cell in px: [other screens, phones]
+// The picture is drawn into src at one pixel per cell and read back every frame
+const src=document.createElement('canvas'),sctx=src.getContext('2d',{willReadFrequently:true});
+// The marks are drawn in device pixels, cw × ch per cell; pats[n] repeats mark n (a character or a dot size) once per cell
+let W=0,H=0,dpr=1,cw=8,ch=11,cols=1,rows=1,pats=[],t=4,raf=null,lastT=null;
+let MODE='letters',SIZE='medium',COLOR='mono',ORIG=false,PAPER=false;
+// See inside and Compare. view: what the box shows. The marks' grid starts x0 device px in (Compare: the right half, from a whole
+// cell) and lc columns of it, from the left, show gray blocks instead of marks (See inside). sw: the width the picture is laid out
+// for, in stage px. paused: Pause is on.
+let view='normal',x0=0,lc=0,sw=0,paused=false;
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+const cap={};for(const k of 'abcdef')cap[k]=document.getElementById('cap-'+k);
+const noteIn=document.querySelector('[data-hb-for="inside"]'),noteCmp=document.querySelector('[data-hb-for="compare"]');
+const NAME=cvs.getAttribute('aria-label'),LINE='#f4f4f2';
+const blk=document.createElement('canvas'),bctx=blk.getContext('2d'); // the gray blocks: one pixel per cell of the left part
+const ramp=document.createElement('canvas'),rctx=ramp.getContext('2d'); // the strip along the bottom, drawn once
+let bimg=null,gridPat=null;
+const PAD=6,BAR=22,SWH=14,GAP=4; // the strip's spacing in stage px: edge, caption row, swatch height, space above the marks
+
+// The moving picture at time t (seconds): an evening sky that is brightest at the horizon, a glowing sun that bobs, two
+// drifting clouds and three rows of dark hills that slide by at their own speeds. It is drawn in stage pixels, w × h, on
+// either canvas: the tiny one that is read and the full-size one shown under the marks.
+function scene(g,w,h){
+  const sky=g.createLinearGradient(0,0,0,h*.7);
+  sky.addColorStop(0,'#0a0f2c');sky.addColorStop(.55,'#3a2c72');sky.addColorStop(1,'#ff9a7a');
+  g.fillStyle=sky;g.fillRect(0,0,w,h);
+  const sx=w*.66,sy=h*(.46+.04*Math.sin(t*.7)),sr=h*.16;
+  let gr=g.createRadialGradient(sx,sy,0,sx,sy,h*.55);
+  gr.addColorStop(0,'rgba(255,190,130,.5)');gr.addColorStop(1,'rgba(255,190,130,0)');
+  g.fillStyle=gr;g.fillRect(0,0,w,h);
+  gr=g.createRadialGradient(sx,sy,0,sx,sy,sr);
+  gr.addColorStop(0,'#fffbe8');gr.addColorStop(.75,'#ffd47e');gr.addColorStop(1,'#ffa25c');
+  g.fillStyle=gr;g.beginPath();g.arc(sx,sy,sr,0,Math.PI*2);g.fill();
+  g.fillStyle='rgba(255,255,255,.22)';
+  for(const [y,s,o] of [[.17,.02,0],[.29,.032,.6]]){const x=((o+t*s)%1.4-.2)*w;g.beginPath();g.ellipse(x,h*y,w*.14,h*.045,0,0,Math.PI*2);g.fill();}
+  for(const [base,amp,speed,col] of [[.62,.06,.02,'#5a4890'],[.74,.07,.05,'#1d3d50'],[.87,.06,.11,'#070f14']]){
+    g.fillStyle=col;g.beginPath();g.moveTo(0,h);
+    for(let i=0;i<=40;i++){const p=i/40*6.3+t*speed*6.3;g.lineTo(w*i/40,h*(base+amp*(Math.sin(p)*.7+Math.sin(p*2.3+1)*.3)));}
+    g.lineTo(w,h);g.fill();
+  }
+}
+
+// How bright the cell at pixel offset i of the tiny picture is, 0 to 1 (how dark it is, on paper)
+function lum(px,i){return(.2126*px[i]+.7152*px[i+1]+.0722*px[i+2])/255;}
+function level(px,i){const v=lum(px,i);return PAPER?1-v:v;}
+// One frame: the picture is drawn at one pixel per cell and read back. Each cell's level picks a mark, all drawn in white: a run
+// of cells with the same mark is one rectangle filled with that mark's pattern, so a frame is a few fills, not one per cell.
+// Then source-in paints every mark at once, in one color or in the cell's own color from the tiny picture stretched over the grid.
+function render(){
+  const gh=rows*ch/dpr; // the grid's height in stage px (it may reach a little past the bottom edge); sw is its width
+  sctx.setTransform(dpr/cw,0,0,dpr/ch,0,0);scene(sctx,sw,gh);
+  const px=sctx.getImageData(0,0,cols,rows).data,top=pats.length-1,runs=pats.map(()=>new Path2D());
+  for(let j=0;j<rows;j++){
+    let from=lc,run=0; // See inside: the first lc columns are blocks, so only the rest get marks
+    for(let k=lc;k<=cols;k++){
+      const n=k<cols?Math.round(level(px,(j*cols+k)*4)*top):0;
+      if(n===run)continue;
+      if(run)runs[run].rect(x0+from*cw,j*ch,(k-from)*cw,ch);
+      from=k;run=n;
+    }
+  }
+  ctx.clearRect(0,0,cvs.width,cvs.height);
+  for(let n=1;n<=top;n++){ctx.fillStyle=pats[n];ctx.fill(runs[n]);}
+  ctx.globalCompositeOperation='source-in';
+  if(COLOR==='full'){ctx.imageSmoothingEnabled=false;ctx.drawImage(src,x0,0,cols*cw,rows*ch);}
+  else{ctx.fillStyle=PAPER?INK.paper:INK.dark;ctx.fillRect(0,0,cvs.width,cvs.height);}
+  ctx.globalCompositeOperation='source-over';
+  if(view==='inside')drawInside(px);
+  else if(view==='compare')drawOriginal(gh);
+  if(ORIG){
+    pctx.setTransform(1,0,0,1,0,0);
+    if(view==='compare'){pctx.clearRect(0,0,pic.width,pic.height);pctx.save();pctx.beginPath();pctx.rect(x0,0,pic.width-x0,pic.height);pctx.clip();}
+    pctx.setTransform(dpr,0,0,dpr,x0,0);scene(pctx,sw,gh);
+    if(view==='compare')pctx.restore();
+  }
+}
+// See inside, after the marks: the first lc columns show the tiny picture the marks were read from (px, the same read) as one gray
+// block per cell, with faint grid lines, and the strip along the bottom shows which mark each brightness gets
+function drawInside(px){
+  const X=lc*cw,d=bimg.data;
+  for(let j=0;j<rows;j++)for(let k=0;k<lc;k++){
+    const o=(j*lc+k)*4;d[o]=d[o+1]=d[o+2]=Math.round(lum(px,(j*cols+k)*4)*255);d[o+3]=255;
+  }
+  bctx.putImageData(bimg,0,0);
+  ctx.imageSmoothingEnabled=false;ctx.drawImage(blk,0,0,X,rows*ch);
+  ctx.fillStyle=gridPat;ctx.fillRect(0,0,X,rows*ch);
+  const dv=Math.max(2,Math.round(dpr*1.5));ctx.fillStyle=LINE;ctx.fillRect(X-dv,0,dv,cvs.height);
+  ctx.drawImage(ramp,0,cvs.height-ramp.height);
+}
+// Compare, after the marks: the smooth picture in the first half, laid out for the same width as the half of marks
+function drawOriginal(gh){
+  ctx.save();ctx.beginPath();ctx.rect(0,0,x0,cvs.height);ctx.clip();
+  ctx.setTransform(dpr,0,0,dpr,0,0);scene(ctx,sw,gh);
+  ctx.restore();
+  const dv=Math.max(2,Math.round(dpr*1.5));ctx.fillStyle=LINE;ctx.fillRect(x0-dv,0,dv,cvs.height);
+}
+
+// The grid for the chosen cell size, in device pixels: letters are narrower than they are tall, dots sit in square cells. Each
+// mark is drawn once on a tile of one cell, which becomes a pattern repeating every cell: a character in the site font, or a
+// dot whose area grows evenly from none to one that fills the cell.
+function layout(){
+  const letters=MODE==='letters';
+  ch=Math.max(2,Math.round(CELLS[SIZE][phone.matches?1:0]*dpr));cw=letters?Math.round(ch*.7):ch;
+  // Compare: the marks' grid is the right half's and starts on a whole cell (the nearest to the middle), because the patterns repeat from the canvas's corner
+  x0=view==='compare'?Math.round(cvs.width/2/cw)*cw:0;
+  cols=Math.ceil((cvs.width-x0)/cw);rows=Math.ceil(cvs.height/ch);sw=Math.max(x0,cols*cw)/dpr;src.width=cols;src.height=rows;
+  lc=view==='inside'?Math.round(cols*.4):0;
+  pats=Array.from({length:letters?RAMP.length:DOTS},(_,n)=>{
+    const tile=document.createElement('canvas'),g=tile.getContext('2d');
+    tile.width=cw;tile.height=ch;g.fillStyle='#fff';
+    if(letters){
+      g.font=`600 ${ch}px "Schibsted Grotesk",system-ui,sans-serif`;
+      g.textAlign='center';g.textBaseline='middle';g.fillText(RAMP[n],cw/2,ch*.55);
+    }else{g.beginPath();g.arc(cw/2,ch/2,cw/2*Math.sqrt(n/(DOTS-1)),0,Math.PI*2);g.fill();}
+    return ctx.createPattern(tile,'repeat');
+  });
+  if(lc){ // See inside: the blocks and the grid lines that mark each cell's edge
+    blk.width=lc;blk.height=rows;bimg=bctx.createImageData(lc,rows);
+    const tile=document.createElement('canvas'),g=tile.getContext('2d');tile.width=cw;tile.height=ch;
+    g.fillStyle='rgba(255,255,255,.2)';g.fillRect(cw-2,0,1,ch);g.fillRect(0,ch-2,cw,1);
+    g.fillStyle='rgba(0,0,0,.22)';g.fillRect(cw-1,0,1,ch);g.fillRect(0,ch-1,cw,1);
+    gridPat=ctx.createPattern(tile,'repeat');
+  }
+}
+
+// What each view adds besides the picture: the words over it, the strip's picture, the notes and the canvas's name
+const bandH=()=>PAD+BAR+SWH+GAP+ch/dpr+PAD; // the strip's height in stage px
+function setText(el,s){if(el.textContent!==s)el.textContent=s;}
+function caps(){
+  if(view==='inside'){
+    const X=lc*cw/dpr,y=(H-bandH()+4)+'px';
+    cap.a.style.cssText=`left:8px;top:8px;max-width:${X-16}px`;
+    setText(cap.b,PAPER?"Each block's darkness picks a mark":"Each block's brightness picks a mark");
+    cap.b.style.cssText=`left:${X+8}px;top:8px;max-width:${W-X-16}px`;
+    cap.c.style.cssText=`left:${PAD}px;top:${y}`;cap.d.style.cssText=`right:${PAD}px;top:${y}`;
+  }else if(view==='compare'){
+    setText(cap.f,MODE==='letters'?'Letters':'Dots');
+    cap.e.style.cssText='left:8px;top:8px';cap.f.style.cssText=`left:${x0/dpr+8}px;top:8px`;
+  }
+}
+// The strip: one gray swatch per step of the ramp (the brightness that step's mark gets; on paper it runs the other way), the
+// mark itself under it, from the same tiles as the picture, and an arrow from "No ink" to "Most ink". Drawn once, not every frame.
+function buildRamp(){
+  const n=pats.length,w=cvs.width,h=Math.round(bandH()*dpr),g=rctx,pad=PAD*dpr,gap=3*dpr,o=Math.max(1,Math.round(dpr));
+  const swW=(w-2*pad-(n-1)*gap)/n,sy=Math.round((PAD+BAR)*dpr),sh=Math.round(SWH*dpr),my=Math.round((PAD+BAR+SWH+GAP)*dpr);
+  ramp.width=w;ramp.height=h;
+  for(let i=0;i<n;i++){
+    g.save();g.translate(Math.round(pad+i*(swW+gap)+(swW-cw)/2),my);g.fillStyle=pats[i];g.fillRect(0,0,cw,ch);g.restore();
+  }
+  g.globalCompositeOperation='source-in';g.fillStyle=COLOR==='mono'&&!PAPER?INK.dark:LINE;g.fillRect(0,0,w,h);
+  g.globalCompositeOperation='destination-over'; // from here on, everything is drawn behind the marks
+  for(let i=0;i<n;i++){
+    const x=Math.round(pad+i*(swW+gap)),y=Math.round(255*(PAPER?1-i/(n-1):i/(n-1))),sw2=Math.round(swW);
+    g.fillStyle=`rgb(${y},${y},${y})`;g.fillRect(x,sy,sw2,sh);
+    g.fillStyle='rgba(244,244,242,.6)';g.fillRect(x-o,sy-o,sw2+2*o,sh+2*o);
+  }
+  const ay=Math.round((4+cap.c.offsetHeight/2)*dpr),x1=(cap.c.offsetLeft+cap.c.offsetWidth+8)*dpr,x2=(cap.d.offsetLeft-8)*dpr;
+  if(x2-x1>20*dpr){
+    g.strokeStyle='rgba(244,244,242,.7)';g.lineWidth=Math.max(1,dpr*1.5);g.lineCap='round';g.beginPath();
+    g.moveTo(x1,ay);g.lineTo(x2,ay);g.moveTo(x2-5*dpr,ay-4*dpr);g.lineTo(x2,ay);g.lineTo(x2-5*dpr,ay+4*dpr);g.stroke();
+  }
+  g.fillStyle='rgba(5,6,10,.94)';g.fillRect(0,0,w,h);g.globalCompositeOperation='source-over';
+}
+// The notes use the markup's words for the moving picture; paused under reduced motion the picture is a still, and says so
+function words(){
+  const still=paused&&reduced.matches;
+  setText(noteIn,(still?'Shown still: the':'Inside, the')+' picture is shrunk to one block per cell (left); '+(PAPER
+    ?"on paper each block's darkness picks a mark from the strip, from no ink for light to the most ink for dark."
+    :"each block's brightness then picks a mark from the strip, from no ink for dark to the most ink for bright."));
+  setText(noteCmp,(still?'Shown still: Original is the smooth picture; ':'Original is the smooth moving picture; ')
+    +(MODE==='letters'?'Letters redraws the same picture, cell by cell, with a mark whose ink':'Dots redraws the same picture, cell by cell, with a dot whose size')
+    +" matches each cell's "+(PAPER?'darkness':'brightness')+'.');
+}
+const NAMES={
+  inside:'The scene shrunk to one gray block per cell on the left and redrawn from marks on the right, with a strip showing which mark each brightness gets',
+  compare:['The smooth scene on the left beside the same scene redrawn from letters on the right','The smooth scene on the left beside the same scene redrawn from dots on the right']
+};
+// Draws the current view for the current settings at once (also while paused); relayout: the grid changes too
+function refresh(relayout){
+  if(relayout)layout();
+  caps();
+  if(view==='inside')buildRamp();
+  words();
+  const name=view==='inside'?NAMES.inside:view==='compare'?NAMES.compare[MODE==='letters'?0:1]:NAME;
+  if(cvs.getAttribute('aria-label')!==name)cvs.setAttribute('aria-label',name);
+  render();
+}
+
+// loop() keeps exactly one frame requested in raf; Pause cancels it and Play starts one loop again. At most one frame per
+// 16 ms. The picture's clock moves by the time since the last frame (a third of it in slow motion), never more than 50 ms,
+// so a background tab does not leap; the first frame after a start has nothing to measure from and moves nothing.
+function loop(ts){
+  raf=requestAnimationFrame(loop);
+  if(lastT!==null&&ts-lastT<16)return;
+  const dt=lastT===null?0:Math.min(ts-lastT,50);
+  lastT=ts;
+  t+=dt/1000*(slowTog.checked?1/3:1);
+  render();
+}
+function start(){if(raf)return;lastT=null;raf=requestAnimationFrame(loop);}
+
+// Registered at the top level, before the shared script (deferred) can run: under reduced motion it pauses the
+// loop on arrival, which this listener must catch. The picture on screen stays as it is while paused.
+document.addEventListener('hb:pause',e=>{
+  paused=e.detail.paused;
+  if(paused){cancelAnimationFrame(raf);raf=null;}
+  else start();
+  words();
+});
+// The mode switch draws the mode at once, playing or paused; the clock t is shared by every view, so nothing else is kept. Normal
+// lays its grid out again for the whole box.
+document.addEventListener('hb:mode',e=>{view=e.detail.mode;refresh(true);});
+// A tab that comes back after being hidden has no earlier frame to measure from, so its first frame moves nothing
+document.addEventListener('visibilitychange',()=>{lastT=null;});
+
+// Setting the canvas size wipes it, so a real change of the stage's size draws the picture again at once, playing or
+// paused. A resize that leaves the stage as it was (a phone's address bar sliding in or out) does nothing.
+function resize(){
+  const w=stage.clientWidth,h=stage.clientHeight;
+  if(w===W&&h===H)return;
+  W=w;H=h;dpr=Math.min(window.devicePixelRatio||1,2);
+  for(const c of [cvs,pic]){c.width=Math.round(W*dpr);c.height=Math.round(H*dpr);}
+  refresh(true);
+}
+
+function choices(id,pick){
+  const buttons=document.querySelectorAll('#'+id+' button');
+  buttons.forEach(b=>b.addEventListener('click',()=>{
+    if(b.classList.contains('on'))return; // pressing the choice already made does nothing
+    buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+    pick(b.dataset);
+  }));
+}
+// Every setting draws the picture again at once, so the change shows while paused too
+choices('mode-seg',d=>{MODE=d.mode;refresh(true);});
+choices('size-seg',d=>{SIZE=d.size;refresh(true);});
+choices('color-seg',d=>{COLOR=d.color;refresh(false);});
+document.getElementById('orig-tog').addEventListener('change',e=>{ORIG=e.target.checked;pic.hidden=!ORIG;render();});
+document.getElementById('paper-tog').addEventListener('change',e=>{PAPER=e.target.checked;stage.classList.toggle('paper',PAPER);refresh(false);});
+
+resize();
+window.addEventListener('resize',resize);
+const regrid=()=>refresh(true);
+if(phone.addEventListener)phone.addEventListener('change',regrid);
+else if(phone.addListener)phone.addListener(regrid);
+// The characters are drawn with the site font, which loads on demand: the sheet is drawn again once it has arrived
+if(document.fonts&&document.fonts.load)document.fonts.load('600 16px "Schibsted Grotesk"').then(regrid,()=>{});
+start();
+</script>
+</body>
+</html>

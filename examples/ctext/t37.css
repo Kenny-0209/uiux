@@ -1,0 +1,56 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 76 Domino — letters topple in a chain reaction, then spring back upright */
+.fx-domino {
+  font: 600 32px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .14em;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: flex-end;
+  perspective: 800px;
+}
+.fx-domino b {
+  font-weight: inherit;
+  display: inline-block;
+  transform-origin: 0% 100%;
+  animation: fx-domino 3.6s linear infinite;
+  animation-delay: calc(var(--i) * .12s);
+}
+@keyframes fx-domino {
+  0%, 12% {
+    transform: rotate(0deg);
+    color: var(--ink);
+    text-shadow: 1px 0 0 color-mix(in srgb, var(--ink-3) 25%, transparent);
+    animation-timing-function: cubic-bezier(.6, .04, .98, .34);
+  }
+  30% {
+    transform: rotate(87deg);
+    color: var(--ink-2);
+    text-shadow: 0 0 14px color-mix(in srgb, var(--ink-2) 60%, transparent);
+    animation-timing-function: cubic-bezier(.2, .8, .3, 1);
+  }
+  35% {
+    transform: rotate(79deg);
+    color: var(--ink-2);
+    text-shadow: 0 0 6px color-mix(in srgb, var(--ink-2) 30%, transparent);
+  }
+  42%, 64% {
+    transform: rotate(84deg);
+    color: color-mix(in srgb, var(--ink) 45%, transparent);
+    text-shadow: none;
+    animation-timing-function: cubic-bezier(.5, -.35, .3, 1.45);
+  }
+  86% {
+    transform: rotate(-6deg);
+    color: var(--ink-3);
+    text-shadow: 0 0 10px color-mix(in srgb, var(--ink-3) 45%, transparent);
+  }
+  94%, 100% {
+    transform: rotate(0deg);
+    color: var(--ink);
+    text-shadow: 1px 0 0 color-mix(in srgb, var(--ink-3) 25%, transparent);
+  }
+}

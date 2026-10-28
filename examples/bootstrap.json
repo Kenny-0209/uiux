@@ -1,0 +1,939 @@
+[
+  {
+    "id": "bsp001",
+    "name": "앨범형 카드 목록",
+    "english": "Album",
+    "category": "화면 구성",
+    "description": "스크롤하며 카드와 접히는 상단 영역을 살펴보는 반응형 사진 목록입니다.",
+    "tags": [
+      "카드",
+      "갤러리",
+      "목록"
+    ],
+    "preview": "./examples/bsp001/index.html",
+    "codePath": "./examples/bsp001/source.html",
+    "codeFiles": [
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/album/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp002",
+    "name": "매거진형 블로그 화면",
+    "english": "Blog",
+    "category": "화면 구성",
+    "description": "본문과 보조 정보를 나란히 배치한 편집형 페이지입니다.",
+    "tags": [
+      "블로그",
+      "편집",
+      "사이드바"
+    ],
+    "preview": "./examples/bsp002/index.html",
+    "codePath": "./examples/bsp002/source.html",
+    "codeFiles": [
+      {
+        "label": "blog.rtl.css",
+        "path": "./examples/bsp002/blog.rtl.css"
+      },
+      {
+        "label": "blog.css",
+        "path": "./examples/bsp002/blog.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/blog/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서가 가로로 넘치는 것을 확인해 데스크톱 예시로만 분류했습니다."
+  },
+  {
+    "id": "bsp003",
+    "name": "캐러셀과 콘텐츠 섹션",
+    "english": "Carousel",
+    "category": "화면 구성",
+    "description": "상단 슬라이드와 여러 콘텐츠 영역을 조합한 페이지입니다.",
+    "tags": [
+      "캐러셀",
+      "슬라이드",
+      "랜딩"
+    ],
+    "preview": "./examples/bsp003/index.html",
+    "codePath": "./examples/bsp003/source.html",
+    "codeFiles": [
+      {
+        "label": "carousel.rtl.css",
+        "path": "./examples/bsp003/carousel.rtl.css"
+      },
+      {
+        "label": "carousel.css",
+        "path": "./examples/bsp003/carousel.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/carousel/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp004",
+    "name": "결제 입력과 주문 요약",
+    "english": "Checkout",
+    "category": "화면 구성",
+    "description": "배송 정보 입력과 주문 요약을 나란히 배치하고 입력 검증을 확인합니다.",
+    "tags": [
+      "결제",
+      "폼",
+      "요약"
+    ],
+    "preview": "./examples/bsp004/index.html",
+    "codePath": "./examples/bsp004/source.html",
+    "codeFiles": [
+      {
+        "label": "checkout.css",
+        "path": "./examples/bsp004/checkout.css"
+      },
+      {
+        "label": "checkout.js",
+        "path": "./examples/bsp004/checkout.js"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/checkout/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서가 가로로 넘치는 것을 확인해 데스크톱 예시로만 분류했습니다."
+  },
+  {
+    "id": "bsp005",
+    "name": "중앙 집중형 커버 화면",
+    "english": "Cover",
+    "category": "화면 구성",
+    "description": "중앙 메시지와 버튼, 상단 내비게이션을 배치한 한 화면 구성입니다.",
+    "tags": [
+      "커버",
+      "중앙",
+      "랜딩"
+    ],
+    "preview": "./examples/bsp005/index.html",
+    "codePath": "./examples/bsp005/source.html",
+    "codeFiles": [
+      {
+        "label": "cover.css",
+        "path": "./examples/bsp005/cover.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/cover/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp006",
+    "name": "관리자 대시보드",
+    "english": "Dashboard",
+    "category": "화면 구성",
+    "description": "사이드바, 데이터 표, 그래프와 상단 메뉴를 조합한 대시보드입니다.",
+    "tags": [
+      "대시보드",
+      "사이드바",
+      "표"
+    ],
+    "preview": "./examples/bsp006/index.html",
+    "codePath": "./examples/bsp006/source.html",
+    "codeFiles": [
+      {
+        "label": "dashboard.css",
+        "path": "./examples/bsp006/dashboard.css"
+      },
+      {
+        "label": "dashboard.js",
+        "path": "./examples/bsp006/dashboard.js"
+      },
+      {
+        "label": "dashboard.rtl.css",
+        "path": "./examples/bsp006/dashboard.rtl.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/dashboard/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp007",
+    "name": "반응형 그리드 구성",
+    "english": "Grid",
+    "category": "화면 구성",
+    "description": "화면 폭에 따른 열 분할과 중첩 배치 예시를 살펴봅니다.",
+    "tags": [
+      "그리드",
+      "열",
+      "반응형"
+    ],
+    "preview": "./examples/bsp007/index.html",
+    "codePath": "./examples/bsp007/source.html",
+    "codeFiles": [
+      {
+        "label": "grid.css",
+        "path": "./examples/bsp007/grid.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/grid/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp008",
+    "name": "다양한 히어로 영역",
+    "english": "Heroes",
+    "category": "화면 구성",
+    "description": "제목, 설명, 이미지와 주요 행동 버튼을 조합한 여러 히어로 구성을 살펴봅니다.",
+    "tags": [
+      "히어로",
+      "랜딩",
+      "CTA"
+    ],
+    "preview": "./examples/bsp008/index.html",
+    "codePath": "./examples/bsp008/source.html",
+    "codeFiles": [
+      {
+        "label": "heroes.css",
+        "path": "./examples/bsp008/heroes.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/heroes/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp009",
+    "name": "다양한 상단 헤더 구성",
+    "english": "Headers",
+    "category": "화면 구성",
+    "description": "로고, 검색, 메뉴와 사용자 액션을 조합한 여러 헤더를 비교합니다.",
+    "tags": [
+      "헤더",
+      "상단바",
+      "내비게이션"
+    ],
+    "preview": "./examples/bsp009/index.html",
+    "codePath": "./examples/bsp009/source.html",
+    "codeFiles": [
+      {
+        "label": "headers.css",
+        "path": "./examples/bsp009/headers.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/headers/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp010",
+    "name": "다양한 사이드 내비게이션",
+    "english": "Sidebars",
+    "category": "화면 구성",
+    "description": "아이콘, 하위 메뉴, 목록 등 여러 사이드바 구성을 살펴봅니다.",
+    "tags": [
+      "사이드바",
+      "내비게이션",
+      "목록"
+    ],
+    "preview": "./examples/bsp010/index.html",
+    "codePath": "./examples/bsp010/source.html",
+    "codeFiles": [
+      {
+        "label": "sidebars.css",
+        "path": "./examples/bsp010/sidebars.css"
+      },
+      {
+        "label": "sidebars.js",
+        "path": "./examples/bsp010/sidebars.js"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/sidebars/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서가 가로로 넘치는 것을 확인해 데스크톱 예시로만 분류했습니다."
+  },
+  {
+    "id": "bsp011",
+    "name": "다양한 하단 푸터 구성",
+    "english": "Footers",
+    "category": "화면 구성",
+    "description": "페이지 끝에서 링크, 정보와 보조 메뉴를 묶는 여러 푸터를 비교합니다.",
+    "tags": [
+      "푸터",
+      "하단",
+      "링크"
+    ],
+    "preview": "./examples/bsp011/index.html",
+    "codePath": "./examples/bsp011/source.html",
+    "codeFiles": [
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/footers/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp012",
+    "name": "하단 고정 내비게이션",
+    "english": "Navbar Bottom",
+    "category": "화면 구성",
+    "description": "화면 아래쪽에 붙는 내비게이션 바와 드롭다운을 조작합니다.",
+    "tags": [
+      "하단바",
+      "고정",
+      "내비게이션"
+    ],
+    "preview": "./examples/bsp012/index.html",
+    "codePath": "./examples/bsp012/source.html",
+    "codeFiles": [
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/navbar-bottom/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp013",
+    "name": "상단 고정 내비게이션",
+    "english": "Navbar Fixed",
+    "category": "화면 구성",
+    "description": "스크롤해도 상단에 남는 내비게이션과 드롭다운 메뉴를 살펴봅니다.",
+    "tags": [
+      "헤더",
+      "고정",
+      "스크롤"
+    ],
+    "preview": "./examples/bsp013/index.html",
+    "codePath": "./examples/bsp013/source.html",
+    "codeFiles": [
+      {
+        "label": "navbar-fixed.css",
+        "path": "./examples/bsp013/navbar-fixed.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/navbar-fixed/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp014",
+    "name": "일반 상단 내비게이션",
+    "english": "Navbar Static",
+    "category": "화면 구성",
+    "description": "스크롤과 함께 움직이는 상단 내비게이션과 메뉴를 조작합니다.",
+    "tags": [
+      "헤더",
+      "내비게이션",
+      "스크롤"
+    ],
+    "preview": "./examples/bsp014/index.html",
+    "codePath": "./examples/bsp014/source.html",
+    "codeFiles": [
+      {
+        "label": "navbar-static.css",
+        "path": "./examples/bsp014/navbar-static.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/navbar-static/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp015",
+    "name": "내비게이션 배치 비교",
+    "english": "Navbars",
+    "category": "화면 구성",
+    "description": "여러 폭과 정렬을 가진 상단 내비게이션과 접히는 메뉴를 비교합니다.",
+    "tags": [
+      "내비게이션",
+      "반응형",
+      "상단바"
+    ],
+    "preview": "./examples/bsp015/index.html",
+    "codePath": "./examples/bsp015/source.html",
+    "codeFiles": [
+      {
+        "label": "navbars.css",
+        "path": "./examples/bsp015/navbars.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/navbars/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp016",
+    "name": "화면 밖 패널 내비게이션",
+    "english": "Navbars Offcanvas",
+    "category": "화면 구성",
+    "description": "햄버거 메뉴에서 측면 패널을 열고 닫는 반응형 내비게이션입니다.",
+    "tags": [
+      "드로어",
+      "모바일",
+      "내비게이션"
+    ],
+    "preview": "./examples/bsp016/index.html",
+    "codePath": "./examples/bsp016/source.html",
+    "codeFiles": [
+      {
+        "label": "navbars-offcanvas.css",
+        "path": "./examples/bsp016/navbars-offcanvas.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/navbars-offcanvas/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp017",
+    "name": "화면 밖 사이드바 패널",
+    "english": "Offcanvas",
+    "category": "화면 구성",
+    "description": "버튼으로 열고 닫는 오프캔버스 패널과 본문을 확인합니다.",
+    "tags": [
+      "드로어",
+      "패널",
+      "상세"
+    ],
+    "preview": "./examples/bsp017/index.html",
+    "codePath": "./examples/bsp017/source.html",
+    "codeFiles": [
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/offcanvas/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp018",
+    "name": "접히는 메뉴와 콘텐츠 목록",
+    "english": "Offcanvas Navbar",
+    "category": "화면 구성",
+    "description": "상단 메뉴와 사용자 목록을 조합한 반응형 화면입니다.",
+    "tags": [
+      "메뉴",
+      "목록",
+      "모바일"
+    ],
+    "preview": "./examples/bsp018/index.html",
+    "codePath": "./examples/bsp018/source.html",
+    "codeFiles": [
+      {
+        "label": "offcanvas-navbar.css",
+        "path": "./examples/bsp018/offcanvas-navbar.css"
+      },
+      {
+        "label": "offcanvas-navbar.js",
+        "path": "./examples/bsp018/offcanvas-navbar.js"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/offcanvas-navbar/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp019",
+    "name": "요금제 비교 화면",
+    "english": "Pricing",
+    "category": "화면 구성",
+    "description": "요금제 카드와 비교표를 함께 배치한 가격 안내 화면입니다.",
+    "tags": [
+      "가격",
+      "비교",
+      "카드"
+    ],
+    "preview": "./examples/bsp019/index.html",
+    "codePath": "./examples/bsp019/source.html",
+    "codeFiles": [
+      {
+        "label": "pricing.css",
+        "path": "./examples/bsp019/pricing.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/pricing/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp020",
+    "name": "제품 소개 화면",
+    "english": "Product",
+    "category": "화면 구성",
+    "description": "제품 소개 영역과 반복되는 콘텐츠 섹션을 조합한 화면입니다.",
+    "tags": [
+      "제품",
+      "랜딩",
+      "소개"
+    ],
+    "preview": "./examples/bsp020/index.html",
+    "codePath": "./examples/bsp020/source.html",
+    "codeFiles": [
+      {
+        "label": "product.css",
+        "path": "./examples/bsp020/product.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/product/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp021",
+    "name": "로그인 폼 화면",
+    "english": "Sign In",
+    "category": "화면 구성",
+    "description": "로그인 입력과 버튼을 중앙에 배치한 화면입니다.",
+    "tags": [
+      "로그인",
+      "입력",
+      "폼"
+    ],
+    "preview": "./examples/bsp021/index.html",
+    "codePath": "./examples/bsp021/source.html",
+    "codeFiles": [
+      {
+        "label": "sign-in.css",
+        "path": "./examples/bsp021/sign-in.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/sign-in/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp022",
+    "name": "고정 헤더와 하단 푸터",
+    "english": "Sticky Footer Navbar",
+    "category": "화면 구성",
+    "description": "상단 내비게이션과 하단 푸터가 있는 페이지 구성입니다.",
+    "tags": [
+      "헤더",
+      "푸터",
+      "고정"
+    ],
+    "preview": "./examples/bsp022/index.html",
+    "codePath": "./examples/bsp022/source.html",
+    "codeFiles": [
+      {
+        "label": "sticky-footer-navbar.css",
+        "path": "./examples/bsp022/sticky-footer-navbar.css"
+      },
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/sticky-footer-navbar/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp023",
+    "name": "강조 소개와 보조 카드",
+    "english": "Jumbotron",
+    "category": "화면 구성",
+    "description": "넓은 소개 영역 아래에 보조 카드와 푸터를 배치한 화면입니다.",
+    "tags": [
+      "히어로",
+      "카드",
+      "소개"
+    ],
+    "preview": "./examples/bsp023/index.html",
+    "codePath": "./examples/bsp023/source.html",
+    "codeFiles": [
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/jumbotron/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "bsp024",
+    "name": "서로 다른 높이의 카드 그리드",
+    "english": "Masonry",
+    "category": "화면 구성",
+    "description": "높이가 다른 카드들을 빈 공간을 줄여 배치하는 메이슨리 예시입니다.",
+    "tags": [
+      "그리드",
+      "카드",
+      "메이슨리"
+    ],
+    "preview": "./examples/bsp024/index.html",
+    "codePath": "./examples/bsp024/source.html",
+    "codeFiles": [
+      {
+        "label": "Bootstrap 공통 CSS",
+        "path": "./examples/bsasset/dist/css/bootstrap.min.css"
+      },
+      {
+        "label": "Bootstrap 공통 JavaScript",
+        "path": "./examples/bsasset/dist/js/bootstrap.bundle.min.js"
+      }
+    ],
+    "sourceName": "Bootstrap 공식 예제",
+    "sourceUrl": "https://getbootstrap.com/docs/5.3/examples/masonry/",
+    "license": "MIT",
+    "licensePath": "./examples/bsasset/LICENSE.txt",
+    "adaptation": "공식 배포본 HTML과 개별 자산을 보존하고 패널용 공통 자산 경로만 조정",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  }
+]

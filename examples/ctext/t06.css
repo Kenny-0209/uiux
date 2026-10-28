@@ -1,0 +1,24 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 13 Echo-Verse — ghost copies of the word ripple outward */
+.fx-echo {
+  position: relative;
+  font: 600 32px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .12em;
+  color: var(--ink);
+}
+.fx-echo::before, .fx-echo::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  animation: fx-echo 2s ease-out infinite;
+}
+.fx-echo::before { color: var(--ink-2); }
+.fx-echo::after  { color: var(--ink-3); animation-delay: 1s; }
+@keyframes fx-echo {
+  0%   { opacity: .8; transform: scale(1);   filter: blur(0); }
+  100% { opacity: 0;  transform: scale(1.9); filter: blur(3px); }
+}

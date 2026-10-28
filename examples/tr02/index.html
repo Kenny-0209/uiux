@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dissolve Transition — Animation Handbook</title>
+  <meta name="description" content="The page breaks into tiles that give way to the next. Best for photo galleries.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/dissolve/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Dissolve Transition — Animation Handbook">
+  <meta property="og:description" content="The page breaks into tiles that give way to the next. Best for photo galleries.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/dissolve/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Dissolve Transition — Animation Handbook">
+  <meta name="twitter:description" content="The page breaks into tiles that give way to the next. Best for photo galleries.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Dissolve Transition", "name": "Dissolve Transition", "description": "The page breaks into tiles that give way to the next. Best for photo galleries.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/dissolve/", "inLanguage": "en", "articleSection": "Page Transitions", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Page Transitions, Dissolve Transition"}</script>
+  <style>
+    :root{--bg:#0b0b0d;--ui-bg:#111114;--ui-border:rgba(255,255,255,.09);--ui-accent:#b98cff;--ui-text:#f4f4f2;--ui-muted:#8a8a92}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{display:flex;flex-direction:column;overflow:hidden;background:var(--bg);color:var(--ui-text)}
+    .mini-nav{display:flex;gap:6px;padding:10px 12px;background:var(--ui-bg);border-bottom:1px solid var(--ui-border);flex-shrink:0}
+    .nav-btn{background:none;border:1px solid var(--ui-border);color:var(--ui-muted);font:inherit;font-size:13px;padding:0 12px;border-radius:4px;cursor:pointer;min-height:44px}
+    .nav-btn.active{border-color:var(--ui-accent);color:var(--ui-accent)}
+    @media(hover:hover){.nav-btn:hover{border-color:var(--ui-accent)}}
+    .page-area{flex:1;position:relative;overflow:hidden}
+    .page{position:absolute;inset:0;opacity:0;pointer-events:none}
+    .page.active{opacity:1;pointer-events:auto}
+    .pc{display:flex;flex-direction:column;justify-content:center;height:100%;padding:clamp(20px,4vw,40px);gap:12px}
+    .pe{font-size:10px;text-transform:uppercase;letter-spacing:3px;opacity:.6}
+    .ph{font-size:clamp(22px,3.5vw,36px);font-weight:bold;line-height:1.15}
+    .pp{font-size:12px;opacity:.6;line-height:1.65;max-width:320px}
+    .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:4px}
+    .gi{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:18px 12px;font-size:11px}
+    .pstat{display:flex;gap:20px;margin-top:4px}
+    .pstat b{display:block;font-size:clamp(18px,2.5vw,24px);color:var(--ui-accent)}
+    .pstat span{font-size:9px;opacity:.6;text-transform:uppercase;letter-spacing:1px}
+    /* Dissolve tile overlay */
+    #dissolve-overlay{position:absolute;inset:0;display:grid;z-index:10;pointer-events:none}
+    .dtile{background:var(--tile-bg,#060a10);opacity:0}
+    /* Short windows leave the page area under 220px: tighter spacing keeps the tallest page inside it with room to spare */
+    @media(max-height:640px){.pc{gap:8px}.gi{padding:12px}}
+    @media(prefers-reduced-motion:reduce){.page{transition:opacity 300ms linear}.dtile{transition:none!important}}
+    /* The small site sits in a box; in Compare a copy of it (the plain fade) stands beside it, and the half names sit under each page */
+    .box{display:flex;flex-direction:column;flex:1;min-height:0;min-width:0}
+    .twin,.steps,.side{display:none}
+    .twin .nav-btn{display:inline-flex;align-items:center}
+    .twin .page{transition:none}
+    .lbl{padding:2px 7px;border-radius:5px;background:#111114;color:#f4f4f2;font:600 12px/1.25 var(--hb-font);white-space:nowrap}
+    /* See inside: the tiles' plan stands over the page (each tile a see-through shade for its turn), and a strip under the box shows the
+       change on a time line: tiles covering the page, the swap, then the tiles fading away (if they do) */
+    .stage[data-hb-mode="inside"] .steps{display:block}
+    .stage[data-hb-mode="inside"] .dtile{box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+    .steps{flex:none;padding:8px 10px;background:#111114;border-top:1px solid var(--ui-border)}
+    .tl{position:relative;height:10px;border-radius:3px;background:rgba(255,255,255,.07)}
+    .tl i{position:absolute;top:0;bottom:0;left:0;border-radius:3px}
+    .tl .cv{background:var(--shade)}
+    .tl .gone{background:repeating-linear-gradient(135deg,rgba(255,255,255,.3) 0 3px,transparent 3px 6px)}
+    .tl .tick{width:2px;top:-3px;bottom:-3px;border-radius:0;background:var(--ui-accent)}
+    .key{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px}
+    .key .lbl{padding:2px 0}
+    .sw{display:inline-block;width:26px;height:8px;margin-right:6px;border-radius:2px;vertical-align:-1px;background:var(--shade);box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
+    /* Compare: on the left the plain fade, on the right the real site, both held part way through a change */
+    .stage[data-hb-mode="compare"]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;background:#2a2a30}
+    .stage[data-hb-mode="compare"] .box{background:var(--bg)}
+    .stage[data-hb-mode="compare"] .twin{display:flex}
+    .stage[data-hb-mode="compare"] .side{display:block;flex:none;align-self:flex-start;margin:4px 8px}
+    .stage[data-hb-mode="inside"] .pc,.stage[data-hb-mode="compare"] .pc{padding:clamp(12px,2.5vw,28px);gap:8px}
+    /* The strip and the half names take room from the page area, so on phones and short windows the page keeps its eyebrow and heading */
+    @media(max-width:600px),(max-height:780px){
+      .stage[data-hb-mode="inside"] :is(.pp,.pgrid,.pstat),.stage[data-hb-mode="compare"] :is(.pp,.pgrid,.pstat){display:none}
+    }
+    @media(max-width:600px){
+      .stage[data-hb-mode="inside"] .mini-nav,.stage[data-hb-mode="compare"] .mini-nav{gap:4px;padding:6px}
+      .stage[data-hb-mode="compare"] .nav-btn{padding:0 6px;font-size:12px;min-width:44px;justify-content:center}
+      .stage[data-hb-mode="compare"] .pc{padding:12px;gap:6px}
+      .stage[data-hb-mode="inside"] .ph{font-size:18px}
+      .stage[data-hb-mode="compare"] .ph{font-size:16px}
+    }
+    /* From 360px down the halves stack; a stacked half is short, so its page text starts at the top */
+    @media(max-width:360px){
+      .stage[data-hb-mode="compare"]{grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr))}
+      .stage[data-hb-mode="compare"] .pc{justify-content:flex-start}
+    }
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="do" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../portal-zoom/" rel="prev" aria-label="Previous: Portal / Tunnel Zoom"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Portal / Tunnel Zoom</span></a><a href="../flip-technique/" rel="next" aria-label="Next: FLIP Technique"><span><span class="hb-dir">Next: </span>FLIP Technique</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">03.11 · Page Transitions</p>
+    <h1>Dissolve Transition</h1>
+    <p class="hb-lede">The page breaks into tiles that give way to the next. Best for photo galleries.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Click it</h2><p>Click Work or About at the top of the box, or press Show me.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage">
+      <div class="box" id="box">
+        <nav class="mini-nav" id="nav" aria-label="Demo pages"></nav>
+        <div class="page-area" id="page-area">
+          <div id="dissolve-overlay" aria-hidden="true"></div>
+        </div>
+        <p class="lbl side" aria-hidden="true" data-hb-caption>Dissolves in tiles</p>
+      </div>
+      <div class="steps" aria-hidden="true">
+        <div class="tl"><i class="cv"></i><i class="gone"></i><i class="tick"></i></div>
+        <p class="key"><span class="lbl k" data-hb-caption><i class="sw"></i>Lighter tiles cover first</span><span class="lbl k" id="l-len" data-hb-caption>Covered in about half a second</span><span class="lbl k" data-hb-caption>The page swaps once every tile is in</span><span class="lbl k" id="l-end" data-hb-caption>Then the tiles vanish at once</span></p>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-demo" data-hb-demo><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>Show me</button>
+      <button class="hb-play" type="button" id="btn-reset" data-hb-reset><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>Reset</button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, each tile's shade is its turn: lighter tiles cover the page first, and once all are in, the page swaps underneath. Click Work or About, or press Show me.</p>
+      <p data-hb-for="compare" hidden>Plain fade blends the two pages evenly; Dissolves in tiles covers the old page tile by tile in the chosen pattern, then shows the new one. Click Work or About, or press Show me.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then try it again or press Show me.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="pattern-lbl">Pattern</p>
+        <div class="seg" id="pattern-seg" role="group" aria-labelledby="pattern-lbl">
+          <button type="button" data-pattern="random" class="on" aria-pressed="true">Random</button>
+          <button type="button" data-pattern="diagonal" aria-pressed="false">Diagonal</button>
+          <button type="button" data-pattern="radial" aria-pressed="false">From the middle</button>
+        </div>
+        <p class="hb-hint">The order in which the tiles appear.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="size-lbl">Tile size</p>
+        <div class="seg" id="size-seg" role="group" aria-labelledby="size-lbl">
+          <button type="button" data-tiles="16" aria-pressed="false">Small</button>
+          <button type="button" data-tiles="8" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-tiles="4" aria-pressed="false">Large</button>
+        </div>
+        <p class="hb-hint">Small tiles look like grain; large ones like blocks.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-ms="1300" aria-pressed="false">Slow</button>
+          <button type="button" data-ms="800" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-ms="500" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">How long the tiles take to cover the page.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Dissolves both ways</span><input class="hb-switch" type="checkbox" role="switch" id="bi-tog" autocomplete="off"></label>
+          <p class="hb-hint">The tiles also fade away to reveal the new page.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a dissolve transition to [the pages or images you want to switch between]. Lay a grid of tiles over the old page and fade each tile in at a slightly different moment, following a pattern such as random, a diagonal sweep or rings from the middle, so the old page breaks up instead of fading evenly. Swap the page while the tiles cover it, then remove the tiles, or fade them away in the same pattern to reveal the new page. Give each tile its own delay and let the browser run the fades. If the visitor has reduced motion turned on, use a short, plain fade instead. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Photo galleries</li><li>Slideshows</li><li>Retro and game sites</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Everyday navigation</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const PAGES=[
+    {name:'Home',bg:'linear-gradient(135deg,#0d1a2e,#192640)',html:`<div class="pc"><div class="pe">Creative Studio</div><p class="ph">Design without compromise.</p><p class="pp">We craft digital products that earn attention and keep it.</p></div>`},
+    {name:'Work',bg:'linear-gradient(135deg,#0d1f15,#152e1e)',html:`<div class="pc"><div class="pe">Selected Work</div><p class="ph">The Portfolio</p><div class="pgrid">${['Atlas','Orbit','Prism','Lumen','Frame','Echo'].map(n=>`<div class="gi">${n}</div>`).join('')}</div></div>`},
+    {name:'About',bg:'linear-gradient(135deg,#1f0d26,#2e1540)',html:`<div class="pc"><div class="pe">Our Story</div><p class="ph">Built on conviction.</p><p class="pp">18 people who care unreasonably about craft. Independent since 2016.</p><div class="pstat"><div><b>140+</b><span>Projects</span></div><div><b>9</b><span>Years</span></div></div></div>`},
+  ];
+  const nav=document.getElementById('nav'),area=document.getElementById('page-area'),overlay=document.getElementById('dissolve-overlay');
+  const box=document.getElementById('box'),stage=box.parentElement;
+  const biTog=document.getElementById('bi-tog'),slowTog=document.getElementById('slow-tog');
+  const motionOk=!window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  // One change as shares of its length d: a tile waits up to STAGGER and then fades over FADE (so the page is covered at COVER)
+  const STAGGER=.33,FADE=.27,COVER=.6;
+  let current=0,animating=false,dur=800,gran=8,pattern='random',afterMove=null,wayBack=0,runFrom=null,timers=[];
+  let mode='normal',seedN=0;
+  const pages=[],navBtns=[];
+
+  PAGES.forEach((p,i)=>{
+    const d=document.createElement('div');d.className='page';d.style.background=p.bg;d.innerHTML=p.html;area.insertBefore(d,overlay);pages.push(d);
+    const b=document.createElement('button');b.type='button';b.className='nav-btn';b.textContent=p.name;
+    b.addEventListener('click',()=>navigate(i));nav.appendChild(b);navBtns.push(b);
+  });
+  // Compare's first half: a copy of the small site (no ids, out of the Tab order, hidden from screen readers) that changes by a plain
+  // fade, the new page easing in evenly over the old one
+  const twin=document.createElement('div');
+  twin.className='box twin';twin.inert=true;twin.setAttribute('aria-hidden','true');
+  twin.innerHTML=`<div class="mini-nav">${PAGES.map(p=>`<span class="nav-btn">${p.name}</span>`).join('')}</div>`+
+    `<div class="page-area">${PAGES.map(p=>`<div class="page" style="background:${p.bg}">${p.html}</div>`).join('')}</div>`+
+    `<p class="lbl side" data-hb-caption>Plain fade</p>`;
+  box.before(twin);
+  const twinPages=[...twin.querySelectorAll('.page')],twinNav=[...twin.querySelectorAll('.nav-btn')];
+  function showTwin(n){
+    twinPages.forEach((el,i)=>{el.classList.toggle('active',i===n);el.style.transition=el.style.opacity=el.style.zIndex=''});
+    twinNav.forEach((b,i)=>b.classList.toggle('active',i===n));
+  }
+  function fadeTwin(prev,next,ms){
+    showTwin(prev);twinNav.forEach((b,i)=>b.classList.toggle('active',i===next));
+    const el=twinPages[next];
+    el.style.zIndex='1';el.style.opacity='0';void el.offsetWidth;
+    el.style.transition=`opacity ${ms}ms linear`;el.style.opacity='1';
+  }
+
+  // Drops a timer's id once it fires, so `timers` only holds the ones still waiting.
+  function later(fn,wait){
+    const id=setTimeout(()=>{
+      const i=timers.indexOf(id);
+      if(i>-1)timers.splice(i,1);
+      fn();
+    },wait);
+    timers.push(id);
+    return id;
+  }
+  function cancel(id){
+    clearTimeout(id);
+    const i=timers.indexOf(id);
+    if(i>-1)timers.splice(i,1);
+  }
+
+  function updateNav(n){navBtns.forEach((b,i)=>{b.classList.toggle('active',i===n);b.setAttribute('aria-current',i===n?'page':'false')})}
+  // One page's resting look: its class alone shows or hides it (its background stays), and a page that is not on show cannot be reached
+  function rest(el,on){el.classList.toggle('active',on);el.inert=!on}
+  // The resting state for page n, at once: its page alone, no tiles, and no page fade left running under reduced motion
+  function showPage(n){
+    overlay.textContent='';
+    pages.forEach((el,i)=>{rest(el,i===n);el.getAnimations().forEach(a=>a.cancel())});
+    updateNav(n);
+    showTwin(n);pose();
+  }
+
+  // Ends a transition: the demo is idle again, and a Show me run goes on to its next step
+  function finish(){
+    animating=false;
+    const then=afterMove;afterMove=null;
+    if(then)then();
+    pose();
+  }
+  // Stops everything at once and shows the resting state for `current`
+  function settle(){
+    timers.forEach(clearTimeout);timers=[];wayBack=0;afterMove=null;animating=false;
+    showPage(current);
+  }
+
+  function getDelays(n,style){
+    const total=n*n;
+    if(style==='random'){
+      const order=Array.from({length:total},(_,i)=>i).sort(()=>Math.random()-0.5);
+      return order.map((_,i)=>order.indexOf(i)/total);
+    }
+    if(style==='diagonal'){
+      return Array.from({length:total},(_,i)=>{const r=Math.floor(i/n),c=i%n;return(r+c)/(2*(n-1))});
+    }
+    // radial from center: tile-centre distance, normalised so the corners land at 1
+    return Array.from({length:total},(_,i)=>{
+      const r=Math.floor(i/n)-(n-1)/2,c=i%n-(n-1)/2;
+      return Math.sqrt(r*r+c*c)/(Math.SQRT2*(n-1)/2);
+    });
+  }
+
+  // An n×n grid of transparent tiles over the page, each with its own delay; returns the delays. In See inside a Random change takes
+  // the order the plan already shows
+  function buildTiles(n,bg,d,style){
+    const delays=mode==='inside'?planDelays(n,style):getDelays(n,style);
+    if(mode==='inside'&&style==='random')seedN++;
+    const tiles=document.createDocumentFragment();
+    delays.forEach(k=>{
+      const t=document.createElement('div');t.className='dtile';
+      // stagger (33%) + per-tile fade (27%) = fully covered at 60%, when the swap fires
+      t.style.cssText=`background:${bg};opacity:0;transition:opacity ${Math.round(d*FADE)}ms ease ${Math.round(k*d*STAGGER)}ms`;
+      tiles.appendChild(t);
+    });
+    overlay.textContent='';
+    overlay.style.gridTemplateColumns=`repeat(${n},1fr)`;
+    overlay.appendChild(tiles);
+    return delays;
+  }
+
+  // next is where the visitor goes; then (a Show me run's next step) runs once the transition has ended
+  function navigate(next,then){
+    if(next===current||animating)return;
+    const prev=current;current=next;updateNav(next);
+    afterMove=then||null;
+    // Reduced motion: no tiles, the pages cross in a plain fade (see the media rule above)
+    if(!motionOk){rest(pages[prev],false);rest(pages[next],true);showTwin(next);finish();return}
+    animating=true;
+    doDissolve(prev,next);
+  }
+
+  function doDissolve(prev,next){
+    // Everything a run needs is read now, so a setting changed mid-way cannot desync the tiles. d is the whole dissolve in ms
+    // (three times as long in slow motion); n is the grid's side, at most 10 on phones (256 tiles freeze the first frame there).
+    const d=dur*(slowTog.checked?3:1),both=biTog.checked;
+    const n=gridN();
+    if(mode==='compare')fadeTwin(prev,next,Math.round(d*(both?1:COVER)));
+    const delays=buildTiles(n,PAGES[prev].bg,d,pattern);
+    const tiles=[...overlay.children];
+    void overlay.offsetWidth; // commit the transparent tiles before they are switched on
+    // Tiles appear over the old page (dissolving it)
+    tiles.forEach(t=>{t.style.opacity='1'});
+    later(()=>{
+      rest(pages[prev],false);rest(pages[next],true);
+      if(!both){overlay.textContent='';finish();return}
+      // Dissolve out: the tiles fade back out, in the same pattern, over the remaining 40%
+      tiles.forEach((t,i)=>{t.style.transition=`opacity ${Math.round(d*0.18)}ms ease ${Math.round(delays[i]*d*0.22)}ms`;t.style.opacity='0'});
+      later(()=>{overlay.textContent='';finish()},Math.round(d*0.4)+50);
+    },Math.round(d*COVER));
+  }
+
+  // Show me: one visit to the next page, a hold of 1200ms, and the way back to where the run started
+  // runFrom is the page a run started from, kept until the way back ends: a Show me pressed during a run (a second press, or the one a
+  // mode press sends) goes back to it first, not to the page the run was heading for
+  function showMe(){
+    if(runFrom!==null)current=runFrom;
+    settle();
+    const start=runFrom=current;
+    navigate((start+1)%PAGES.length,()=>{wayBack=later(()=>{wayBack=0;navigate(start,()=>{runFrom=null})},1200)});
+  }
+  function reset(){runFrom=null;current=0;settle()}
+
+  document.getElementById('btn-demo').addEventListener('click',showMe);
+  document.getElementById('btn-reset').addEventListener('click',reset);
+  // The visitor took over: cancel what the run has not started yet. A dissolve already under way finishes on its own.
+  document.addEventListener('hb:input',()=>{afterMove=null;runFrom=null;cancel(wayBack);wayBack=0;pose()});
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+      drawSteps();pose();
+    }));
+  }
+  choices('pattern-seg',d=>{pattern=d.pattern});
+  choices('size-seg',d=>{gran=+d.tiles});
+  choices('speed-seg',d=>{dur=+d.ms});
+  [biTog,slowTog].forEach(t=>t.addEventListener('change',()=>{drawSteps();pose()}));
+
+  // ---- See inside and Compare ----
+  const gridN=()=>window.matchMedia('(max-width:600px),(max-height:500px)').matches?Math.min(gran,10):gran;
+  const SH0=.58,SH1=.08,SPAN=1300,POSE=.4; // a tile's shade for the first and the last turn; the strip's time line stands for SPAN ms; Compare holds a change at POSE of its length
+  const noteIn=document.querySelector('[data-hb-for="inside"]'),noteCmp=document.querySelector('[data-hb-for="compare"]');
+  const NOTE_POSED='Shown still, part way through a change: Plain fade is an even blend; Dissolves in tiles has covered part of the old page, tile by tile.';
+  const NOTE_RUN='Reduced motion: Plain fade and Dissolves in tiles both change quickly, with no tiles; the still part way through a change comes back when the run ends.';
+  if(!motionOk){
+    noteIn.textContent="Shown still: each tile's shade is its turn, lighter first; once all are in, the page swaps underneath.";
+    noteCmp.textContent=NOTE_POSED;
+  }
+  const steps=stage.querySelector('.steps'),[cv,gone,tick]=steps.querySelectorAll('.tl i'),lLen=document.getElementById('l-len'),lEnd=document.getElementById('l-end');
+  steps.style.setProperty('--shade',`linear-gradient(90deg,rgba(255,255,255,${SH0}),rgba(255,255,255,${SH1}))`);
+  const LEN={300:'about a third of a second',480:'about half a second',780:'about three quarters of a second',900:'almost a second',1440:'about a second and a half',2340:'a little over two seconds'};
+  function say(el,txt){if(el.textContent!==txt)el.textContent=txt}
+  // The time line: the tiles take COVER of the change, then (Dissolves both ways) fade away over the rest; the swap sits between
+  function drawSteps(){
+    const both=biTog.checked,c=100*COVER*dur/SPAN;
+    cv.style.width=c+'%';tick.style.left=`calc(${c}% - 1px)`;gone.style.left=c+'%';gone.style.width=100*(1-COVER)*dur/SPAN+'%';gone.hidden=!both;
+    say(lLen,'Covered in '+LEN[Math.round(COVER*dur*(slowTog.checked?3:1))]);
+    say(lEnd,both?'Then they fade away in the same order':'Then the tiles vanish at once');
+  }
+  // A repeatable Random order (the same shuffle for the same seed), so stills are stable
+  function seededDelays(n,seed){
+    let a=seed;const rnd=()=>{a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+    const total=n*n,order=Array.from({length:total},(_,i)=>i),out=[];
+    for(let i=total-1;i>0;i--){const j=Math.floor(rnd()*(i+1));[order[i],order[j]]=[order[j],order[i]]}
+    order.forEach((tile,turn)=>{out[tile]=turn/total});
+    return out;
+  }
+  // The plan the next change uses: Random takes the next of a fixed run of orders, the other patterns are always the same
+  function planDelays(n,style){return style==='random'?seededDelays(n,11+seedN):getDelays(n,style)}
+  // CSS "ease" (.25,.1,.25,1): the share of a fade done after a share x of its time, found by halving
+  function ease(x){
+    let lo=0,hi=1,t=.5;
+    for(let i=0;i<24;i++){t=(lo+hi)/2;const u=1-t;if(3*u*u*t*.25+3*u*t*t*.25+t*t*t<x)lo=t;else hi=t}
+    const u=1-t;return 3*u*u*t*.1+3*u*t*t+t*t*t;
+  }
+  // Tiles at rest. See inside: the plan, each tile a see-through shade for its turn (lighter covers first). Compare: the real tiles
+  // POSE of the way through a change, in the pattern's order (Random from a fixed seed). A change builds its own tiles (buildTiles).
+  function drawTiles(){
+    const n=gridN(),plan=mode==='inside',key=[mode,n,pattern,plan?seedN:current].join();
+    if(overlay.firstChild&&overlay.dataset.key===key)return;
+    const delays=plan?planDelays(n,pattern):pattern==='random'?seededDelays(n,11):getDelays(n,pattern),frag=document.createDocumentFragment();
+    delays.forEach(k=>{
+      const t=document.createElement('div');t.className='dtile';
+      if(plan){t.style.background=`rgba(255,255,255,${(SH1+(SH0-SH1)*(1-k)).toFixed(3)})`;t.style.opacity='1'}
+      else{t.style.background=PAGES[current].bg;t.style.opacity=ease(Math.min(1,Math.max(0,(POSE-k*STAGGER)/FADE)))}
+      frag.appendChild(t);
+    });
+    overlay.textContent='';overlay.dataset.key=key;
+    overlay.style.gridTemplateColumns=`repeat(${n},1fr)`;overlay.appendChild(frag);
+  }
+  // What the box shows when no change is running (a change lifts it): See inside the plan, Compare both halves held part way
+  // through a change, until a run's hold and way back are over
+  function pose(){
+    if(animating)return;
+    const posed=mode==='inside'||(mode==='compare'&&!wayBack);
+    if(posed)drawTiles();else overlay.textContent='';
+    if(mode!=='compare')return;
+    showTwin(current);
+    if(posed)Object.assign(twinPages[(current+1)%PAGES.length].style,{zIndex:'1',opacity:POSE/(biTog.checked?1:COVER)});
+    if(!motionOk)say(noteCmp,posed?NOTE_POSED:NOTE_RUN);
+  }
+  document.addEventListener('hb:mode',e=>{mode=e.detail.mode;drawSteps();pose()});
+  addEventListener('resize',()=>{if(mode!=='normal'&&!animating)pose()});
+
+  drawSteps();
+  showPage(0);
+</script>
+</body>
+</html>

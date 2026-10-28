@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="css/listbox.css">
+<link rel="stylesheet" href="css/listbox-actions.css">
+<style>html{background:#fff;color:#17201b}body{font-family:Arial,sans-serif;margin:0;padding:24px;box-sizing:border-box}*,*:before,*:after{box-sizing:border-box}button,input,select{font:inherit}.menu-button-actions [role="separator"]{background-image:none;border-top:1px solid currentColor}</style>
+</head><body>
+
+      <div id="ex">
+        <p>
+          Plan your bucket list: Select an item to view or edit its details.
+          Use the action buttons to mark your favorites and reorder or delete items.
+        </p>
+
+        <div class="contentRow">
+          <div class="contentColumn">
+
+            <div class="listbox-area">
+              <div>
+                <span id="ss_elem" class="listbox-label">Bucket List:</span>
+                <ul id="ss_elem_list" tabindex="0" role="listbox" aria-labelledby="ss_elem">
+                  <li id="ss_elem_IronMan" role="option" aria-controls="ss_elem_IronMan_detail_panel"
+                    aria-details="ss_elem_IronMan_detail_panel" aria-actions="">
+                    <span class="js-selection" aria-hidden="true"></span>
+                    <button aria-label="favorite" tabindex="-1"
+                      class="js-favorite favorite favoriteOptionIndication actionButton"
+                      id="ss_elem_IronMan_favorite"></button>
+                    Complete an Iron Man <span class="offscreen favoriteIndication"></span>
+                    <span class="actions">
+                      <button aria-label="move up" tabindex="-1" class="uparrow actionButton hide-actions-button"
+                        id="ss_elem_IronMan_uparrow"></button>
+                      <button aria-label="move down" tabindex="-1" class="downarrow actionButton"
+                        id="ss_elem_IronMan_downarrow"></button>
+                      <button aria-label="delete" tabindex="-1" class="delete actionButton"
+                        id="ss_elem_IronMan_delete"></button>
+                    </span>
+                  </li>
+                  <li id="ss_elem_Everest" role="option" aria-controls="ss_elem_Everest_detail_panel" aria-actions="">
+                    <span class="js-selection" aria-hidden="true"></span>
+                    <button aria-label="favorite" tabindex="-1"
+                      class="js-favorite favorite favoriteOptionIndication actionButton"
+                      id="ss_elem_Everest_favorite"></button>
+                    Climb Everest <span class="offscreen favoriteIndication"></span>
+                    <span class="actions">
+                      <button aria-label="move up" tabindex="-1" class="uparrow actionButton"
+                        id="ss_elem_Everest_uparrow"></button>
+                      <button aria-label="move down" tabindex="-1" class="downarrow actionButton"
+                        id="ss_elem_Everest_downarrow"></button>
+                      <button aria-label="delete" tabindex="-1" class="delete actionButton"
+                        id="ss_elem_Everest_delete"></button>
+                    </span>
+                  </li>
+                  <li id="ss_elem_Archery" role="option" aria-controls="ss_elem_Archery_detail_panel" aria-actions="">
+                    <span class="js-selection" aria-hidden="true"></span>
+                    <button aria-label="favorite" tabindex="-1"
+                      class="js-favorite favorite favoriteOptionIndication actionButton"
+                      id="ss_elem_Archery_favorite"></button>
+                    Learn archery <span class="offscreen favoriteIndication"></span>
+                    <span class="actions">
+                      <button aria-label="move up" tabindex="-1" class="uparrow actionButton"
+                        id="ss_elem_Archery_uparrow"></button>
+                      <button aria-label="move down" tabindex="-1" class="downarrow actionButton"
+                        id="ss_elem_Archery_downarrow"></button>
+                      <button aria-label="delete" tabindex="-1" class="delete actionButton"
+                        id="ss_elem_Archery_delete"></button>
+                    </span>
+                  </li>
+                  <li id="ss_elem_GuideDog" role="option" aria-controls="ss_elem_GuideDog_detail_panel" aria-actions="">
+                    <span class="js-selection" aria-hidden="true"></span>
+                    <button aria-label="favorite" tabindex="-1"
+                      class="js-favorite favorite favoriteOptionIndication actionButton"
+                      id="ss_elem_GuideDog_favorite"></button>
+                    Train a guide dog <span class="offscreen favoriteIndication"></span>
+                    <span class="actions">
+                      <button aria-label="move up" tabindex="-1" class="uparrow actionButton"
+                        id="ss_elem_GuideDog_uparrow"></button>
+                      <button aria-label="move down" tabindex="-1" class="downarrow actionButton"
+                        id="ss_elem_GuideDog_downarrow"></button>
+                      <button aria-label="delete" tabindex="-1" class="delete actionButton"
+                        id="ss_elem_GuideDog_delete"></button>
+                    </span>
+                  </li>
+                  <li id="ss_elem_Airplane" role="option" aria-controls="ss_elem_Airplane_detail_panel" aria-actions="">
+                    <span class="js-selection" aria-hidden="true"></span>
+                    <button aria-label="favorite" tabindex="-1"
+                      class="js-favorite favorite favoriteOptionIndication actionButton"
+                      id="ss_elem_Airplane_favorite"></button>
+                    Build an airplane <span class="offscreen favoriteIndication"></span>
+                    <span class="actions">
+                      <button aria-label="move up" tabindex="-1" class="uparrow actionButton"
+                        id="ss_elem_Airplane_uparrow"></button>
+                      <button aria-label="move down" tabindex="-1" class="downarrow actionButton hide-actions-button"
+                        id="ss_elem_Airplane_downarrow"></button>
+                      <button aria-label="delete" tabindex="-1" class="delete actionButton"
+                        id="ss_elem_Airplane_delete"></button>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="contentColumn">
+            <div class="listbox-area">
+              <h3 id="listboxDetailsLabel">Details:</h3>
+              <textarea aria-labelledby="listboxDetailsLabel" readonly id="ss_elem_IronMan_detail_panel"
+                class="js-detailPanel detailPanel is-hidden">Iron Man content goes here.</textarea>
+              <textarea aria-labelledby="listboxDetailsLabel" readonly id="ss_elem_Everest_detail_panel"
+                class="js-detailPanel detailPanel is-hidden">Climbing Mount Everest content goes here.</textarea>
+              <textarea aria-labelledby="listboxDetailsLabel" readonly id="ss_elem_Archery_detail_panel"
+                class="js-detailPanel detailPanel is-hidden">Archery content goes here.</textarea>
+              <textarea aria-labelledby="listboxDetailsLabel" readonly id="ss_elem_GuideDog_detail_panel"
+                class="js-detailPanel detailPanel is-hidden">Gide dog training content goes here.</textarea>
+              <textarea aria-labelledby="listboxDetailsLabel" readonly id="ss_elem_Airplane_detail_panel"
+                class="js-detailPanel detailPanel is-hidden">Airplane Building content goes here.
+              </textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+<script src="js/listbox-actions.js"></script>
+</body></html>

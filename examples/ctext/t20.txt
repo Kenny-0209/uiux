@@ -1,0 +1,48 @@
+<!-- Markup: <div class="fx-pixel" data-text="PIXELS">PIXELS</div> -->
+
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 33 Pixel-Sort — blocky offsets smear the word into stepped digital columns */
+.fx-pixel {
+  position: relative;
+  font: 600 30px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .08em;
+  color: var(--ink);
+  text-shadow:
+    1px 0 0 var(--ink-2),
+   -1px 0 0 var(--ink-3);
+}
+.fx-pixel::before,
+.fx-pixel::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: .85;
+}
+.fx-pixel::before {
+  color: var(--ink-2);
+  clip-path: polygon(0 0, 100% 0, 100% 28%, 0 28%, 0 44%, 100% 44%, 100% 58%, 0 58%);
+  animation: fx-pixel-a 2.2s steps(1) infinite;
+}
+.fx-pixel::after {
+  color: var(--ink-3);
+  clip-path: polygon(0 30%, 100% 30%, 100% 42%, 0 42%, 0 66%, 100% 66%, 100% 82%, 0 82%);
+  animation: fx-pixel-b 2.2s steps(1) infinite;
+}
+@keyframes fx-pixel-a {
+  0%, 20%, 54%, 100% { transform: translate(0); }
+  22% { transform: translate(7px, -2px); }
+  24% { transform: translate(-4px, 1px); }
+  56% { transform: translate(5px, 2px); }
+  58% { transform: translate(-7px, 0); }
+}
+@keyframes fx-pixel-b {
+  0%, 18%, 58%, 100% { transform: translate(0); }
+  19% { transform: translate(-6px, 2px); }
+  21% { transform: translate(4px, -1px); }
+  60% { transform: translate(-5px, -2px); }
+  63% { transform: translate(6px, 1px); }
+}

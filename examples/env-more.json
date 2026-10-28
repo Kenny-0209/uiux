@@ -1,0 +1,77 @@
+[
+  {
+    "id": "thenv-1",
+    "name": "바다 파도와 태양",
+    "english": "shaders ocean",
+    "category": "배경과 분위기",
+    "description": "파도와 태양 설정을 바꾸며 바다 장면의 분위기를 살펴봅니다.",
+    "tags": [
+      "three.js",
+      "바다 파도와 태양",
+      "환경"
+    ],
+    "preview": "https://threejs.org/examples/webgl_shaders_ocean.html",
+    "codePath": "./examples/3d공식/env1.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_shaders_ocean.html",
+    "license": "MIT (코드)",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인",
+    "adaptation": "고정 리비전의 HTML을 보관하고 three.js 공식 사이트에서 실시간 예제를 불러옵니다. 라이브 버전은 보관된 코드와 다를 수 있습니다."
+  },
+  {
+    "id": "thenv-2",
+    "name": "하늘과 태양 위치",
+    "english": "shaders sky",
+    "category": "배경과 분위기",
+    "description": "태양 각도와 대기 설정을 바꾸며 하늘 색 변화를 살펴봅니다.",
+    "tags": [
+      "three.js",
+      "하늘과 태양 위치",
+      "환경"
+    ],
+    "preview": "https://threejs.org/examples/webgl_shaders_sky.html",
+    "codePath": "./examples/3d공식/env2.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_shaders_sky.html",
+    "license": "MIT (코드)",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인",
+    "adaptation": "고정 리비전의 HTML을 보관하고 three.js 공식 사이트에서 실시간 예제를 불러옵니다. 라이브 버전은 보관된 코드와 다를 수 있습니다."
+  },
+  {
+    "id": "thenv-3",
+    "name": "톤 매핑과 노출",
+    "english": "tonemapping",
+    "category": "배경과 분위기",
+    "description": "톤 매핑과 노출값에 따른 장면의 색과 밝기를 비교합니다.",
+    "tags": [
+      "three.js",
+      "톤 매핑과 노출",
+      "환경"
+    ],
+    "preview": "https://threejs.org/examples/webgl_tonemapping.html",
+    "codePath": "./examples/3d공식/env3.html",
+    "sourceName": "three.js 공식 예제",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_tonemapping.html",
+    "license": "MIT (코드)",
+    "licensePath": "./examples/3d공식/LICENSE.txt",
+    "remote": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작 미확인",
+    "adaptation": "고정 리비전의 HTML을 보관하고 three.js 공식 사이트에서 실시간 예제를 불러옵니다. 라이브 버전은 보관된 코드와 다를 수 있습니다."
+  }
+]

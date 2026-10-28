@@ -1,0 +1,21 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 21 Pop-Riot — letters leap with a hard comic-book drop shadow */
+.fx-pop {
+  font: 600 34px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .04em;
+  color: var(--ink);
+}
+.fx-pop b {
+  font-weight: inherit;
+  display: inline-block;
+  animation: fx-pop 1.5s cubic-bezier(.3, 1.6, .4, 1) infinite;
+  animation-delay: calc(var(--i) * .09s);
+}
+@keyframes fx-pop {
+  0%, 55%, 100% { transform: translateY(0); text-shadow: 0 0 0 var(--ink-2); }
+  25% { transform: translateY(-12px) rotate(-4deg); text-shadow: 0 12px 0 var(--ink-2); }
+}

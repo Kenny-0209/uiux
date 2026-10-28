@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal / Tunnel Zoom — Animation Handbook</title>
+  <meta name="description" content="The next page opens out of a circle you click. Best for big reveals.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/portal-zoom/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Portal / Tunnel Zoom — Animation Handbook">
+  <meta property="og:description" content="The next page opens out of a circle you click. Best for big reveals.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/portal-zoom/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Portal / Tunnel Zoom — Animation Handbook">
+  <meta name="twitter:description" content="The next page opens out of a circle you click. Best for big reveals.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Portal / Tunnel Zoom", "name": "Portal / Tunnel Zoom", "description": "The next page opens out of a circle you click. Best for big reveals.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/portal-zoom/", "inLanguage": "en", "articleSection": "Page Transitions", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Page Transitions, Portal / Tunnel Zoom"}</script>
+  <style>
+    :root{--bg:#0b0b0d;--ui-bg:#111114;--ui-border:rgba(255,255,255,.09);--ui-accent:#b98cff;--ui-text:#f4f4f2;--ui-muted:#8a8a92;--mark:#ffd84d;--hb-stage-h-phone:360px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{display:flex;flex-direction:column;overflow:hidden;background:var(--bg);color:var(--ui-text)}
+    .mini-nav{display:flex;gap:6px;padding:10px 12px;background:var(--ui-bg);border-bottom:1px solid var(--ui-border);flex-shrink:0}
+    .nav-btn{background:none;border:1px solid var(--ui-border);color:var(--ui-muted);font:inherit;font-size:13px;padding:0 12px;border-radius:4px;cursor:pointer;min-height:44px}
+    .nav-btn.active{border-color:var(--ui-accent);color:var(--ui-accent)}
+    @media(hover:hover){.nav-btn:hover{border-color:var(--ui-accent)}}
+    .page-area{flex:1;position:relative;overflow:hidden}
+    /* A page that is not on show is hidden, so the portal on it cannot take focus */
+    .page{position:absolute;inset:0;pointer-events:none;opacity:0;visibility:hidden}
+    .page.active{pointer-events:auto;opacity:1;visibility:visible}
+    /* Portal element on each page, in the top-right corner where it never covers the Gallery grid */
+    .portal{position:absolute;top:24px;right:24px;width:80px;height:80px;display:flex;align-items:center;justify-content:center;border:3px solid rgba(255,255,255,.2);border-radius:50%;color:inherit;font:inherit;cursor:pointer;transition:transform .2s ease}
+    @media(hover:hover){.portal:hover{transform:scale(1.06)}}
+    .portal-label{font-size:11px;opacity:.8;text-align:center;padding:4px;line-height:1.3;pointer-events:none}
+    /* Page content */
+    .pc{display:flex;flex-direction:column;justify-content:center;height:100%;padding:clamp(20px,4vw,40px);gap:12px}
+    .pe{font-size:10px;text-transform:uppercase;letter-spacing:3px;opacity:.6}
+    .ph{font-size:clamp(20px,3vw,34px);font-weight:bold;line-height:1.15}
+    .pp{font-size:12px;opacity:.6;line-height:1.65;max-width:300px}
+    .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:4px}
+    .gi{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:14px 10px;font-size:11px}
+    .pstat{display:flex;gap:16px;margin-top:4px}
+    .pstat b{display:block;font-size:clamp(16px,2.2vw,22px);color:var(--ui-accent)}
+    .pstat span{font-size:9px;opacity:.6;text-transform:uppercase;letter-spacing:1px}
+    /* Phones and short windows get a smaller portal in a tighter corner. Short windows leave the page area about 190 to 245px: tighter
+       spacing keeps the tallest page clear of the portal and the edges, and a short window wider than a phone also lifts the portal
+       to 8px. A phone keeps its 16px corner: measured, the circle stays 24px or more from any text or tile there */
+    @media(max-width:600px),(max-height:640px){.portal{top:16px;right:16px;width:64px;height:64px}}
+    @media(max-height:640px){.pc{gap:8px}.gi{padding:12px}}
+    @media(max-height:640px) and (min-width:601px){.portal{top:8px}}
+    @media(prefers-reduced-motion:reduce){.portal{transition:none}}
+    /* The small site sits in a box, so Compare can lay two of them side by side. In Compare a copy of it, the twin, sits beside it. */
+    .stage{position:relative}
+    .box{display:flex;flex-direction:column;flex:1;min-height:0;min-width:0}
+    .twin,.rings,.cap{display:none}
+    .twin .nav-btn{display:inline-flex;align-items:center}
+    .cap{padding:2px 7px;border-radius:5px;background:#111114;color:#f4f4f2;font:600 12px/1.25 var(--hb-font);white-space:nowrap}
+    .cap.in{position:absolute;left:0;top:0;z-index:6;white-space:normal;max-width:calc(100% - 16px)}
+    /* See inside: ten dashed rings mark where the opening's edge is at each tenth of its time; four ticks (or a dot) mark where it
+       starts; the next page lies on top, cut to the opening, and the portal you click stays above it with its own words */
+    .stage[data-hb-mode="inside"] .rings,.stage[data-hb-mode="inside"] .cap.in{display:block}
+    .rings{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
+    .rg{fill:none;stroke:rgba(255,255,255,.8);stroke-width:1.5;stroke-dasharray:3 5}
+    .tick{stroke:var(--mark);stroke-width:2.5;stroke-linecap:round}
+    .dot{fill:var(--mark)}
+    .edge{fill:none;stroke:var(--mark);stroke-width:3;vector-effect:non-scaling-stroke;visibility:hidden}
+    .edge.on{visibility:visible}
+    .rings .off{display:none}
+    .rings.go .under{visibility:hidden}
+    .stage[data-hb-mode="inside"] .page.pose,.stage[data-hb-mode="compare"] .page.pose{opacity:1;visibility:visible}
+    .stage[data-hb-mode="inside"] .page.pose .portal,.stage[data-hb-mode="compare"] .page.pose .portal{visibility:hidden}
+    .stage[data-hb-mode="inside"].posed .page.active .portal,.stage[data-hb-mode="compare"].posed .page.active .portal{z-index:4}
+    /* Compare: on the left the copy, which changes page at once; on the right the real site, caught part way through its change. Both
+       halves draw the same page, its text clear of the portal at the top right and of the half's name at the bottom. */
+    .stage[data-hb-mode="compare"]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;background:#2a2a30}
+    .stage[data-hb-mode="compare"] .twin,.stage[data-hb-mode="compare"] .cap.side{display:block}
+    .stage[data-hb-mode="compare"] .twin{display:flex}
+    .cap.side{position:absolute;bottom:10px;z-index:11}
+    .cap.first{left:10px}
+    .cap.second{left:calc(50% + 10px)}
+    .stage[data-hb-mode="compare"] .pc{padding:12px 16px 44px}
+    .stage[data-hb-mode="compare"] :is(.pe,.ph,.pp){margin-right:clamp(92px,36%,174px)}
+    .stage[data-hb-mode="compare"] .ph{font-size:clamp(16px,2.4vw,24px)}
+    /* Phones and short windows leave a half little room: its page keeps only its eyebrow and heading */
+    @media(max-width:600px),(max-height:650px){
+      .stage[data-hb-mode="compare"] .pp,.stage[data-hb-mode="compare"] .pgrid,.stage[data-hb-mode="compare"] .pstat{display:none}
+    }
+    @media(max-width:600px){
+      .cap.in.wide{max-width:150px}
+      /* In See inside the labels fill the top of the box: the page keeps only its eyebrow and heading, below them */
+      .stage[data-hb-mode="inside"] .pc{justify-content:flex-start;padding-top:136px}
+      .stage[data-hb-mode="inside"] :is(.pp,.pgrid,.pstat){display:none}
+      .stage[data-hb-mode="compare"] .mini-nav{gap:4px;padding:6px}
+      .stage[data-hb-mode="compare"] .nav-btn{padding:0 4px;font-size:12px;min-width:44px;justify-content:center}
+      .stage[data-hb-mode="compare"] .pc{padding:128px 12px 44px;justify-content:flex-start}
+      .stage[data-hb-mode="compare"] :is(.pe,.ph,.pp){margin-right:0}
+    }
+    /* From 360px down the halves stack; a stacked half is short and wide, so its text sits left of the portal */
+    @media(max-width:360px){
+      .stage[data-hb-mode="compare"]{grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr))}
+      .cap.first{bottom:calc(50% + 10px)}
+      .cap.second{left:10px}
+      .stage[data-hb-mode="compare"] .pc{padding:12px 88px 44px 12px}
+    }
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="do" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../elastic-transition/" rel="prev" aria-label="Previous: Elastic Transition"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Elastic Transition</span></a><a href="../dissolve/" rel="next" aria-label="Next: Dissolve Transition"><span><span class="hb-dir">Next: </span>Dissolve Transition</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">03.10 · Page Transitions</p>
+    <h1>Portal / Tunnel Zoom</h1>
+    <p class="hb-lede">The next page opens out of a circle you click. Best for big reveals.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Click it</h2><p>Click the round portal or a page name, or press Show me.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage">
+      <div class="box" id="box">
+        <nav class="mini-nav" id="nav" aria-label="Demo pages"></nav>
+        <div class="page-area" id="page-area">
+          <svg class="rings" id="rings" aria-hidden="true"></svg>
+          <p class="cap in" aria-hidden="true" data-hb-caption>Starts as a point here</p>
+          <p class="cap in wide" aria-hidden="true" data-hb-caption>The whole next page, cut to the opening</p>
+          <p class="cap in" aria-hidden="true" data-hb-caption>Its edge every tenth of the time</p>
+          <p class="cap in" aria-hidden="true" data-hb-caption>The opening takes about a second</p>
+        </div>
+      </div>
+      <p class="cap side first" aria-hidden="true" data-hb-caption>Switches at once</p>
+      <p class="cap side second" aria-hidden="true" data-hb-caption>Opens from portal</p>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-demo" data-hb-demo><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>Show me</button>
+      <button class="hb-play" type="button" id="btn-reset" data-hb-reset><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>Reset</button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the next page sits on top, cut to an opening growing from a point at the portal; dashed lines mark its edge every tenth of the time. Click the portal or press Show me.</p>
+      <p data-hb-for="compare" hidden>Switches at once simply changes page; Opens from portal grows the next page out of the portal you click. Click the portal or a page name, or press Show me.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then try it again or press Show me.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="shape-lbl">Portal shape</p>
+        <div class="seg" id="shape-seg" role="group" aria-labelledby="shape-lbl">
+          <button type="button" data-shape="circle" class="on" aria-pressed="true">Circle</button>
+          <button type="button" data-shape="square" aria-pressed="false">Square</button>
+        </div>
+        <p class="hb-hint">A circle feels like a tunnel; a square like a window.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-ms="1900" aria-pressed="false">Slow</button>
+          <button type="button" data-ms="1200" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-ms="700" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">Slower reads as travel; too fast looks like a wipe.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="feel-lbl">Feel</p>
+          <div class="seg" id="feel-seg" role="group" aria-labelledby="feel-lbl">
+            <button type="button" data-ease="ease-in" class="on" aria-pressed="true">Speeds up</button>
+            <button type="button" data-ease="ease-out" aria-pressed="false">Smooth</button>
+            <button type="button" data-ease="ease-in-out" aria-pressed="false">Gentle</button>
+            <button type="button" data-ease="linear" aria-pressed="false">Even</button>
+          </div>
+          <p class="hb-hint">Speeding up feels like diving in.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a portal transition to [the element that should open into the next page]. When the visitor clicks it, show the next page through an opening that starts as a point at the element's center and grows until the new page fills the view, as if diving through a window. Put the new page underneath first and only grow the visible opening, measuring the element's position at the moment of the click so the opening starts exactly there. Make the opening big enough at the end to reach the corners. If the visitor has reduced motion turned on, show the new page at once. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Big reveals</li><li>Galleries</li><li>Story chapters</li><li>Calls to action</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Everyday navigation</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const PAGES=[
+    {name:'Home',bg:'linear-gradient(135deg,#0d1a2e,#192640)',portalBg:'#1a3060',portalLabel:'Enter gallery',
+     html:`<div class="pc"><div class="pe">Creative Studio</div><p class="ph">Design without compromise.</p><p class="pp">Click the portal to travel to the gallery.</p></div>`},
+    {name:'Gallery',bg:'linear-gradient(135deg,#0d1f15,#152e1e)',portalBg:'#2a5040',portalLabel:'View about',
+     html:`<div class="pc"><div class="pe">Selected Work</div><p class="ph">The Portfolio</p><div class="pgrid">${['Atlas','Orbit','Prism','Lumen','Frame','Echo'].map(n=>`<div class="gi">${n}</div>`).join('')}</div></div>`},
+    {name:'About',bg:'linear-gradient(135deg,#1f0d26,#2e1540)',portalBg:'#402060',portalLabel:'Return home',
+     html:`<div class="pc"><div class="pe">Our Story</div><p class="ph">Built on conviction.</p><p class="pp">18 people who care unreasonably about craft. Independent since 2016.</p><div class="pstat"><div><b>140+</b><span>Projects</span></div><div><b>9</b><span>Years</span></div></div></div>`},
+  ];
+  const box=document.getElementById('box'),stage=box.parentElement;
+  const nav=document.getElementById('nav'),area=document.getElementById('page-area'),slowTog=document.getElementById('slow-tog');
+  const motionOk=!window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let current=0,animating=false,shape='circle',dur=1200,ease='ease-in',afterMove=null,wayBack=0,timers=[],ownFocus=false;
+  const pages=[],portals=[],navBtns=[],rings=document.getElementById('rings');
+  let mode='normal',from=null; // from: the portal (or null, a page name) the next change starts at
+
+  PAGES.forEach((p,i)=>{
+    const d=document.createElement('div');d.className='page';d.style.background=p.bg;d.innerHTML=p.html;
+    // The portal opens the next page out of itself
+    const portal=document.createElement('button');portal.type='button';portal.className='portal';portal.style.background=p.portalBg;
+    const label=document.createElement('span');label.className='portal-label';label.textContent=p.portalLabel;
+    portal.appendChild(label);
+    portal.addEventListener('click',()=>navigate((i+1)%PAGES.length,portal));
+    d.appendChild(portal);area.insertBefore(d,rings);pages.push(d);portals.push(portal);
+    const b=document.createElement('button');b.type='button';b.className='nav-btn';b.textContent=p.name;
+    b.addEventListener('click',()=>navigate(i));nav.appendChild(b);navBtns.push(b);
+  });
+
+  // Drops a timer's id once it fires, so `timers` only holds the ones still waiting.
+  function later(fn,wait){
+    const id=setTimeout(()=>{
+      const i=timers.indexOf(id);
+      if(i>-1)timers.splice(i,1);
+      fn();
+    },wait);
+    timers.push(id);
+    return id;
+  }
+  function cancel(id){
+    clearTimeout(id);
+    const i=timers.indexOf(id);
+    if(i>-1)timers.splice(i,1);
+  }
+
+  function updateNav(n){navBtns.forEach((b,i)=>{b.classList.toggle('active',i===n);b.setAttribute('aria-current',i===n?'page':'false')})}
+  // One page's resting look: its class alone shows or hides it, with the opening's clip, transition and stacking gone (its background stays)
+  function rest(el,on){
+    el.classList.toggle('active',on);
+    el.classList.remove('pose');el.inert=false;
+    el.style.clipPath='';el.style.transition='';el.style.zIndex='';
+  }
+  // The resting state for page n, at once. A running opening is cancelled too, so no tail of it shows.
+  function showPage(n){
+    pages.forEach((el,i)=>{rest(el,i===n);el.getAnimations().forEach(a=>a.cancel())});
+    updateNav(n);showTwin(n);
+  }
+
+  // Ends an opening: the demo is idle again, and a Show me run goes on to its next step
+  function finish(){
+    animating=false;
+    // Focus that was on the portal of the page now hidden moves to the portal of the page on show, so a keyboard visitor keeps their place
+    const at=document.activeElement;
+    if(at&&pages.some(p=>p.contains(at))&&!pages[current].contains(at)){ownFocus=true;portals[current].focus({preventScroll:true});ownFocus=false}
+    const then=afterMove;afterMove=null;
+    if(then)then();
+    idle();
+  }
+  // Stops everything at once and shows the resting state for `current`
+  function settle(){
+    timers.forEach(clearTimeout);timers=[];wayBack=0;afterMove=null;
+    animating=false;
+    showPage(current);
+    idle();
+  }
+
+  // Where an opening starts, in % of the page area: the center of the portal that was clicked, or the middle for a page name
+  function startAt(portalEl){
+    const a=area.getBoundingClientRect(),w=a.width,h=a.height;
+    if(!portalEl)return{x:50,y:50,w,h,pr:0};
+    const r=portalEl.getBoundingClientRect();
+    return{x:+((r.left+r.width/2-a.left)/w*100).toFixed(1),y:+((r.top+r.height/2-a.top)/h*100).toFixed(1),w,h,pr:r.width/2};
+  }
+  // The clip of the incoming page when the opening has made the share s (0 to 1) of its way: nothing at the point, then a circle that
+  // ends at 150% (enough to reach the corners) or a square that ends at the whole page area
+  function clipAt(s,o){
+    if(shape==='square'){const k=1-s;return`inset(${(o.y*k).toFixed(1)}% ${((100-o.x)*k).toFixed(1)}% ${((100-o.y)*k).toFixed(1)}% ${(o.x*k).toFixed(1)}%)`}
+    return`circle(${(150*s).toFixed(1)}% at ${o.x.toFixed(1)}% ${o.y.toFixed(1)}%)`;
+  }
+
+  // portalEl is the portal that was clicked; without one (a page name, the way back) the opening starts in the middle of the page area
+  function navigate(next,portalEl,then){
+    if(next===current||animating)return;
+    const prev=current;current=next;updateNav(next);from=portalEl||null;
+    afterMove=then||null;
+    if(!motionOk){showPage(next);finish();return}
+    animating=true;showTwin(next);
+    const prevEl=pages[prev],nextEl=pages[next],d=dur*(slowTog.checked?3:1); // read when the opening starts; three times as long in slow motion
+    const o=startAt(portalEl);
+    lift();
+    // Clip the new page to nothing at the portal position, then open it out to fill the page area
+    nextEl.style.clipPath=clipAt(0,o);nextEl.style.zIndex='2'; // the incoming page paints above the outgoing one whatever the DOM order
+    nextEl.style.transition='none';
+    nextEl.classList.add('active');
+    nextEl.offsetHeight; // force reflow: commit the pinhole before the growth is switched on
+    nextEl.style.transition=`clip-path ${d}ms ${ease}`;
+    nextEl.style.clipPath=clipAt(1,o);
+    if(mode==='inside')runEdge(d);
+    later(()=>{rest(prevEl,false);rest(nextEl,true);finish()},d+50);
+  }
+
+  // Show me: click the portal of the page on show, hold the new page for 1200ms, then go back the way a page name does
+  // A press that interrupts a run (a mode press makes one) starts again from the page that run started at, so it ends where it began
+  let runFrom=null;
+  function showMe(){
+    if(runFrom!==null)current=runFrom;
+    settle();
+    const start=runFrom=current;
+    navigate((start+1)%PAGES.length,portals[start],()=>{wayBack=later(()=>{wayBack=0;navigate(start,null,()=>{runFrom=null})},1200)});
+  }
+  function reset(){current=0;runFrom=null;settle()}
+
+  document.getElementById('btn-demo').addEventListener('click',showMe);
+  document.getElementById('btn-reset').addEventListener('click',reset);
+  // The visitor took over: cancel what the run has not started yet. An opening already under way finishes on its own.
+  document.addEventListener('hb:input',()=>{afterMove=null;runFrom=null;cancel(wayBack);wayBack=0});
+  // A visitor who tabs into the box takes over, as a press does; the page's own focus move (in finish) does not count
+  document.querySelector('.stage').addEventListener('focusin',e=>{if(e.isTrusted&&!ownFocus){afterMove=null;runFrom=null;cancel(wayBack);wayBack=0}});
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);draw();
+    }));
+  }
+  choices('shape-seg',d=>{shape=d.shape});
+  choices('speed-seg',d=>{dur=+d.ms});
+  choices('feel-seg',d=>{ease=d.ease});
+  slowTog.addEventListener('change',draw);
+
+  // ---- Compare's first half: the same small site as a copy that changes page the moment a change starts. No ids, spans for buttons,
+  // and out of the Tab order and the screen reader's reach.
+  const twin=document.createElement('div');
+  twin.className='box twin';twin.inert=true;twin.setAttribute('aria-hidden','true');
+  twin.innerHTML=`<div class="mini-nav">${PAGES.map(p=>`<span class="nav-btn">${p.name}</span>`).join('')}</div>`+
+    `<div class="page-area">${PAGES.map(p=>`<div class="page" style="background:${p.bg}">${p.html}<span class="portal" style="background:${p.portalBg}"><span class="portal-label">${p.portalLabel}</span></span></div>`).join('')}</div>`;
+  box.before(twin);
+  const twinPages=[...twin.querySelectorAll('.page')],twinNav=[...twin.querySelectorAll('.nav-btn')];
+  function showTwin(n){twinPages.forEach((el,i)=>el.classList.toggle('active',i===n));twinNav.forEach((b,i)=>b.classList.toggle('active',i===n))}
+
+  // ---- See inside and its still. The share of the way the opening has made at time t (0 to 1) comes from the browser's own curve
+  // for the Feel, so the rings sit where the opening's edge really is.
+  const clock=new Animation(new KeyframeEffect(null,null,{duration:1000,fill:'both'}),document.timeline);
+  function shareAt(t){
+    clock.effect.updateTiming({easing:ease});clock.currentTime=t*1000;
+    const p=clock.effect.getComputedTiming().progress;
+    return typeof p==='number'?p:t;
+  }
+  const SVG='http://www.w3.org/2000/svg';
+  const make=(tag,cls)=>{const e=document.createElementNS(SVG,tag);e.setAttribute('class',cls);rings.appendChild(e);return e};
+  const ringEls=Array.from({length:10},()=>make('rect','rg')),edge=make('rect','edge');
+  const tickEls=[45,135,225,315].map(a=>{const l=make('line','tick');l.dataset.a=a;return l});
+  const dot=make('circle','dot');dot.setAttribute('r','5');
+  const caps=[...area.querySelectorAll('.cap.in')];
+  const NUM=['one','two','three','four','five','six'];
+  // A length as a beginner says it
+  function words(ms){
+    const s=ms/1000;
+    if(s<.85)return'about two thirds of a second';
+    if(s<1.5)return'about a second';
+    return`about ${NUM[Math.round(s)-1]} seconds`;
+  }
+  // Under reduced motion both views are still pictures, and their notes say so
+  if(!motionOk){
+    document.querySelector('[data-hb-for="inside"]').textContent='Shown still: the next page on top, cut to an opening caught part way out of the portal, and dashed lines marking its edge every tenth of the time.';
+    document.querySelector('[data-hb-for="compare"]').textContent='Shown still: Switches at once simply changes page; Opens from portal is caught part way, the next page showing in the opening.';
+  }
+  const setBox=(el,x,y,w,h,r)=>{el.setAttribute('x',x.toFixed(1));el.setAttribute('y',y.toFixed(1));el.setAttribute('width',w.toFixed(1));el.setAttribute('height',h.toFixed(1));el.setAttribute('rx',r.toFixed(1))};
+  // The rings, ticks, outline and labels, from the numbers the change itself uses: where it starts, the page area's size, the
+  // shape, and the share of the way at each tenth of its time
+  function mark(){
+    const o=startAt(from),W=o.w,H=o.h,ox=o.x*W/100,oy=o.y*H/100,R=1.5*Math.hypot(W,H)/Math.SQRT2,square=shape==='square';
+    const shares=ringEls.map((r,i)=>{
+      const s=shareAt((i+1)/10);
+      if(square)setBox(r,ox*(1-s),oy*(1-s),W*s,H*s,0);else setBox(r,ox-R*s,oy-R*s,2*R*s,2*R*s,R*s);
+      r.classList.toggle('under',R*s<o.pr+4);
+      return s;
+    });
+    if(square)setBox(edge,0,0,W,H,0);else setBox(edge,ox-R,oy-R,2*R,2*R,R);
+    edge.style.transformOrigin=`${ox}px ${oy}px`;
+    tickEls.forEach(l=>{
+      const a=l.dataset.a*Math.PI/180,c=Math.cos(a),n=Math.sin(a);
+      l.setAttribute('x1',(ox+c*(o.pr+6)).toFixed(1));l.setAttribute('y1',(oy+n*(o.pr+6)).toFixed(1));
+      l.setAttribute('x2',(ox+c*(o.pr+14)).toFixed(1));l.setAttribute('y2',(oy+n*(o.pr+14)).toFixed(1));
+      l.classList.toggle('off',!o.pr);
+    });
+    dot.setAttribute('cx',ox.toFixed(1));dot.setAttribute('cy',oy.toFixed(1));dot.classList.toggle('off',!!o.pr);
+    // Labels: the first beside the start, the second inside the opening below it, the third on a ring and the length at the bottom
+    const [c1,c2,c3,c4]=caps,g=8;
+    c4.textContent=`The opening ${motionOk?'takes':'would take'} ${words(dur*(slowTog.checked?3:1))}`;
+    const put=(el,x,y)=>{el.style.transform=`translate(${Math.round(Math.max(g,Math.min(x,W-g-el.offsetWidth)))}px,${Math.round(Math.max(g,Math.min(y,H-g-el.offsetHeight)))}px)`};
+    put(c1,ox-(o.pr||6)-g-c1.offsetWidth,oy-c1.offsetHeight/2);
+    put(c2,ox-c2.offsetWidth/2,oy+o.pr+14);
+    put(c4,g,H);
+    const y3=H-g-c4.offsetHeight-6-c3.offsetHeight,yc=y3+c3.offsetHeight/2;
+    let x3=W*.4,gap=1e9;
+    shares.forEach(s=>{
+      const x=square?(yc>=oy*(1-s)&&yc<=oy*(1-s)+H*s?ox*(1-s):NaN):ox-Math.sqrt((R*s)**2-(yc-oy)**2);
+      if(Math.abs(x-W*.4)<gap){gap=Math.abs(x-W*.4);x3=x}
+    });
+    put(c3,x3-c3.offsetWidth/2,y3);
+  }
+  // The outline: the end opening scaled from the start with the length and curve of the clip, started in the same step
+  function runEdge(d){
+    mark();rings.classList.add('go');
+    edge.style.transition='none';edge.style.transform='scale(0)';edge.classList.add('on');
+    edge.getBoundingClientRect(); // commit the point before the growth is switched on
+    edge.style.transition=`transform ${d}ms ${ease}`;edge.style.transform='scale(1)';
+  }
+  function stopEdge(){edge.classList.remove('on');edge.style.transition='none';edge.style.transform='scale(0)';rings.classList.remove('go')}
+  // The incoming page is not shown at rest, so the pose lifts it: visible, inert, cut to the opening at 40% of its time
+  function unpose(){pages.forEach(el=>{if(el.classList.contains('pose')){el.classList.remove('pose');el.inert=false;el.style.clipPath='';el.style.zIndex=''}})}
+  function lift(){stage.classList.remove('posed');unpose()}
+  // At rest in a mode the next change stands caught at 40% of its time, from the portal of the page on show; a change lifts the pose
+  // and it comes back when nothing is pending
+  function pose(){
+    unpose();
+    const still=mode!=='normal'&&!animating;
+    stage.classList.toggle('posed',still); // the portal of the page on show stays above the rings, in the hold of a Show me run too
+    caps[1].style.visibility=still&&wayBack?'hidden':''; // the hold shows no opening, so its label waits
+    if(!still||wayBack)return;
+    const el=pages[(current+1)%PAGES.length];
+    el.classList.add('pose');el.inert=true;el.style.zIndex='2';
+    el.style.clipPath=clipAt(shareAt(.4),startAt(portals[current]));
+  }
+  function draw(){
+    if(!animating)from=portals[current];
+    if(mode==='inside')mark();
+    pose();
+  }
+  function idle(){stopEdge();draw()}
+  // The mode switch: draws the mode at once. The shared script then presses Show me (not under reduced motion), which plays it.
+  document.addEventListener('hb:mode',e=>{mode=e.detail.mode;draw()});
+  addEventListener('resize',draw);
+  if(document.fonts)document.fonts.ready.then(draw);
+  showPage(0);
+</script>
+
+</body>
+</html>

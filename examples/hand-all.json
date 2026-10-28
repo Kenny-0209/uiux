@@ -1,0 +1,5584 @@
+[
+  {
+    "id": "hb001",
+    "name": "숫자 카운트 애니메이션",
+    "english": "Counter Animation",
+    "category": "스크롤",
+    "description": "스크롤로 보이는 순간 숫자가 증가합니다.",
+    "tags": [
+      "Counter Animation",
+      "counter animation",
+      "스크롤",
+      "카운터"
+    ],
+    "preview": "./examples/hb001/index.html",
+    "codePath": "./examples/hb001/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/counter-animation/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb002",
+    "name": "표지 카드에서 고정 헤더로",
+    "english": "Cover Card to Fixed Header",
+    "category": "스크롤",
+    "description": "스크롤하면 큰 표지가 얇은 상단 헤더로 줄어듭니다.",
+    "tags": [
+      "Cover Card to Fixed Header",
+      "cover card to fixed header",
+      "스크롤",
+      "카드",
+      "헤더"
+    ],
+    "preview": "./examples/hb002/index.html",
+    "codePath": "./examples/hb002/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/cover-card-to-fixed-header/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb003",
+    "name": "연락처 목록 진입·퇴장",
+    "english": "Fly-in Fly-out Contact List",
+    "category": "스크롤",
+    "description": "목록 행이 상하단에 가까워지면 이동하며 사라집니다.",
+    "tags": [
+      "Fly-in Fly-out Contact List",
+      "fly in fly out contact list",
+      "스크롤",
+      "목록"
+    ],
+    "preview": "./examples/hb003/index.html",
+    "codePath": "./examples/hb003/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/fly-in-fly-out-contact-list/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb004",
+    "name": "스크롤 시 숨는 헤더",
+    "english": "Hide-on-Scroll Header",
+    "category": "스크롤",
+    "description": "아래로 스크롤하면 숨고 위로 올리면 다시 나타납니다.",
+    "tags": [
+      "Hide-on-Scroll Header",
+      "hide on scroll header",
+      "스크롤",
+      "헤더"
+    ],
+    "preview": "./examples/hb004/index.html",
+    "codePath": "./examples/hb004/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/hide-on-scroll-header/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb005",
+    "name": "가로 스크롤",
+    "english": "Horizontal Scroll",
+    "category": "스크롤",
+    "description": "세로 스크롤에 따라 패널이 가로로 이동합니다.",
+    "tags": [
+      "Horizontal Scroll",
+      "horizontal scroll",
+      "스크롤",
+      "가로"
+    ],
+    "preview": "./examples/hb005/index.html",
+    "codePath": "./examples/hb005/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/horizontal-scroll/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb006",
+    "name": "패럴랙스 심도 효과",
+    "english": "Parallax Depth-of-Field",
+    "category": "스크롤",
+    "description": "초점이 변하는 동안 여러 층이 각기 다른 속도로 움직입니다.",
+    "tags": [
+      "Parallax Depth-of-Field",
+      "parallax depth of field",
+      "스크롤",
+      "패럴랙스",
+      "입력"
+    ],
+    "preview": "./examples/hb006/index.html",
+    "codePath": "./examples/hb006/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/parallax-depth-of-field/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb007",
+    "name": "패럴랙스 스크롤",
+    "english": "Parallax Scrolling",
+    "category": "스크롤",
+    "description": "스크롤할 때 먼 층은 느리게, 가까운 층은 빠르게 이동합니다.",
+    "tags": [
+      "Parallax Scrolling",
+      "parallax scrolling",
+      "스크롤",
+      "패럴랙스"
+    ],
+    "preview": "./examples/hb007/index.html",
+    "codePath": "./examples/hb007/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/parallax-scrolling/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb008",
+    "name": "스크롤 고정 애니메이션",
+    "english": "Pin Animation",
+    "category": "스크롤",
+    "description": "한 부분을 고정한 채 스크롤에 따라 설명을 바꿉니다.",
+    "tags": [
+      "Pin Animation",
+      "pin animation",
+      "스크롤"
+    ],
+    "preview": "./examples/hb008/index.html",
+    "codePath": "./examples/hb008/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/pin-animation/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb009",
+    "name": "읽기 진행 막대",
+    "english": "Progress Bar",
+    "category": "스크롤",
+    "description": "페이지를 읽어 내려갈수록 막대가 채워집니다.",
+    "tags": [
+      "Progress Bar",
+      "progress bar",
+      "스크롤",
+      "진행",
+      "바"
+    ],
+    "preview": "./examples/hb009/index.html",
+    "codePath": "./examples/hb009/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/progress-bar/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb010",
+    "name": "스크롤에 따른 등장",
+    "english": "Reveal on Scroll",
+    "category": "스크롤",
+    "description": "카드가 특정 위치를 지날 때 나타납니다.",
+    "tags": [
+      "Reveal on Scroll",
+      "reveal on scroll",
+      "스크롤",
+      "드러내기"
+    ],
+    "preview": "./examples/hb010/index.html",
+    "codePath": "./examples/hb010/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/reveal-on-scroll/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb011",
+    "name": "역방향 스크롤 열",
+    "english": "Reverse-Scrolling Columns",
+    "category": "스크롤",
+    "description": "양옆 열이 가운데 열과 반대 방향으로 움직입니다.",
+    "tags": [
+      "Reverse-Scrolling Columns",
+      "reverse scrolling columns",
+      "스크롤"
+    ],
+    "preview": "./examples/hb011/index.html",
+    "codePath": "./examples/hb011/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/reverse-scrolling-columns/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb012",
+    "name": "스크롤에 따른 배경색 변화",
+    "english": "Scroll-Driven Background Color",
+    "category": "스크롤",
+    "description": "구간을 지날 때마다 배경색이 바뀝니다.",
+    "tags": [
+      "Scroll-Driven Background Color",
+      "scroll background color",
+      "스크롤",
+      "배경"
+    ],
+    "preview": "./examples/hb012/index.html",
+    "codePath": "./examples/hb012/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/scroll-background-color/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb013",
+    "name": "스크롤 이미지 시퀀스",
+    "english": "Scroll Image Sequence",
+    "category": "스크롤",
+    "description": "스크롤에 따라 연속 이미지가 영상처럼 재생됩니다.",
+    "tags": [
+      "Scroll Image Sequence",
+      "scroll image sequence",
+      "스크롤",
+      "이미지"
+    ],
+    "preview": "./examples/hb013/index.html",
+    "codePath": "./examples/hb013/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/scroll-image-sequence/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb014",
+    "name": "스크롤 트리거 애니메이션",
+    "english": "Scroll-Triggered Animation",
+    "category": "스크롤",
+    "description": "지정한 스크롤 위치에서 애니메이션이 시작되거나 고정됩니다.",
+    "tags": [
+      "Scroll-Triggered Animation",
+      "scroll trigger",
+      "스크롤"
+    ],
+    "preview": "./examples/hb014/index.html",
+    "codePath": "./examples/hb014/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/scroll-trigger/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb015",
+    "name": "스크롤 속도에 따른 기울기",
+    "english": "Scroll Velocity Skew",
+    "category": "스크롤",
+    "description": "빠르게 스크롤하면 행이 기울고 멈추면 돌아옵니다.",
+    "tags": [
+      "Scroll Velocity Skew",
+      "scroll velocity skew",
+      "스크롤"
+    ],
+    "preview": "./examples/hb015/index.html",
+    "codePath": "./examples/hb015/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/scroll-velocity-skew/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb016",
+    "name": "현재 구간 내비게이션",
+    "english": "Scrollspy Navigation",
+    "category": "스크롤",
+    "description": "읽고 있는 구간을 메뉴에서 강조합니다.",
+    "tags": [
+      "Scrollspy Navigation",
+      "scrollspy nav",
+      "스크롤",
+      "내비게이션"
+    ],
+    "preview": "./examples/hb016/index.html",
+    "codePath": "./examples/hb016/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/scrollspy-nav/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb017",
+    "name": "스크롤 스토리텔링",
+    "english": "Scrollytelling",
+    "category": "스크롤",
+    "description": "이야기를 읽어 내려가면 옆의 이미지가 바뀝니다.",
+    "tags": [
+      "Scrollytelling",
+      "scrollytelling",
+      "스크롤"
+    ],
+    "preview": "./examples/hb017/index.html",
+    "codePath": "./examples/hb017/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/scrollytelling/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb018",
+    "name": "스크롤 연동 재생",
+    "english": "Scrub Animation",
+    "category": "스크롤",
+    "description": "스크롤 방향과 위치에 맞춰 애니메이션을 앞뒤로 재생합니다.",
+    "tags": [
+      "Scrub Animation",
+      "scrub animation",
+      "스크롤"
+    ],
+    "preview": "./examples/hb018/index.html",
+    "codePath": "./examples/hb018/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/scrub-animation/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb019",
+    "name": "섹션 와이프",
+    "english": "Section Wipe",
+    "category": "스크롤",
+    "description": "다음 섹션이 위로 올라오며 이전 섹션을 덮습니다.",
+    "tags": [
+      "Section Wipe",
+      "section wipe",
+      "스크롤",
+      "와이프"
+    ],
+    "preview": "./examples/hb019/index.html",
+    "codePath": "./examples/hb019/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/section-wipe/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb020",
+    "name": "관성 스크롤",
+    "english": "Smooth (Inertia) Scroll",
+    "category": "스크롤",
+    "description": "스크롤이 즉시 멈추지 않고 부드럽게 감속합니다.",
+    "tags": [
+      "Smooth (Inertia) Scroll",
+      "smooth scroll",
+      "스크롤",
+      "부드러움"
+    ],
+    "preview": "./examples/hb020/index.html",
+    "codePath": "./examples/hb020/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/smooth-scroll/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb021",
+    "name": "스냅 스크롤",
+    "english": "Snap Scrolling",
+    "category": "스크롤",
+    "description": "스크롤을 놓으면 한 섹션에 맞춰 정렬됩니다.",
+    "tags": [
+      "Snap Scrolling",
+      "snap scrolling",
+      "스크롤",
+      "스냅"
+    ],
+    "preview": "./examples/hb021/index.html",
+    "codePath": "./examples/hb021/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/snap-scrolling/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb022",
+    "name": "카드 쌓기",
+    "english": "Stacking Cards",
+    "category": "스크롤",
+    "description": "스크롤하면 카드가 상단에 고정되며 차례로 쌓입니다.",
+    "tags": [
+      "Stacking Cards",
+      "stacking cards",
+      "스크롤",
+      "쌓기",
+      "카드"
+    ],
+    "preview": "./examples/hb022/index.html",
+    "codePath": "./examples/hb022/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/stacking-cards/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb023",
+    "name": "순차 등장",
+    "english": "Stagger Reveal",
+    "category": "스크롤",
+    "description": "스크롤로 들어온 항목이 하나씩 차례로 나타납니다.",
+    "tags": [
+      "Stagger Reveal",
+      "stagger reveal",
+      "스크롤",
+      "순차",
+      "드러내기"
+    ],
+    "preview": "./examples/hb023/index.html",
+    "codePath": "./examples/hb023/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/stagger-reveal/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb024",
+    "name": "고정 섹션",
+    "english": "Sticky Section",
+    "category": "스크롤",
+    "description": "섹션은 고정하고 내부 콘텐츠를 바꿉니다.",
+    "tags": [
+      "Sticky Section",
+      "sticky section",
+      "스크롤",
+      "고정"
+    ],
+    "preview": "./examples/hb024/index.html",
+    "codePath": "./examples/hb024/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/sticky-section/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb025",
+    "name": "스크롤 SVG 선 그리기",
+    "english": "SVG Line Draw on Scroll",
+    "category": "스크롤",
+    "description": "스크롤에 맞춰 경로를 따라 선이 그려집니다.",
+    "tags": [
+      "SVG Line Draw on Scroll",
+      "svg line draw",
+      "스크롤"
+    ],
+    "preview": "./examples/hb025/index.html",
+    "codePath": "./examples/hb025/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/svg-line-draw/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb026",
+    "name": "스크롤 텍스트 채우기",
+    "english": "Text Fill on Scroll",
+    "category": "스크롤",
+    "description": "스크롤하면 단어가 차례로 밝아집니다.",
+    "tags": [
+      "Text Fill on Scroll",
+      "text fill on scroll",
+      "스크롤",
+      "텍스트"
+    ],
+    "preview": "./examples/hb026/index.html",
+    "codePath": "./examples/hb026/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/text-fill-on-scroll/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb027",
+    "name": "이미지 안으로 확대",
+    "english": "Zoom Into Image",
+    "category": "스크롤",
+    "description": "스크롤에 따라 작은 이미지 영역이 화면을 채우도록 커집니다.",
+    "tags": [
+      "Zoom Into Image",
+      "zoom into image",
+      "스크롤",
+      "줌",
+      "이미지"
+    ],
+    "preview": "./examples/hb027/index.html",
+    "codePath": "./examples/hb027/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/01-scroll-based/zoom-into-image/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb028",
+    "name": "흐림에서 선명하게 등장",
+    "english": "Blur In",
+    "category": "등장과 퇴장",
+    "description": "흐릿한 상태에서 카메라 초점처럼 선명해집니다.",
+    "tags": [
+      "Blur In",
+      "blur in",
+      "등장과 퇴장",
+      "블러"
+    ],
+    "preview": "./examples/hb028/index.html",
+    "codePath": "./examples/hb028/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/blur-in/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb029",
+    "name": "탄성 등장",
+    "english": "Bounce In",
+    "category": "등장과 퇴장",
+    "description": "요소가 튀어 오르듯 탄성 있게 나타납니다.",
+    "tags": [
+      "Bounce In",
+      "bounce in",
+      "등장과 퇴장",
+      "바운스"
+    ],
+    "preview": "./examples/hb029/index.html",
+    "codePath": "./examples/hb029/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/bounce-in/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb030",
+    "name": "클립 경로로 드러내기",
+    "english": "Clip-Path Reveal",
+    "category": "등장과 퇴장",
+    "description": "커지는 도형의 경계를 따라 이미지가 드러납니다.",
+    "tags": [
+      "Clip-Path Reveal",
+      "clip path reveal",
+      "등장과 퇴장",
+      "클립",
+      "경로",
+      "드러내기"
+    ],
+    "preview": "./examples/hb030/index.html",
+    "codePath": "./examples/hb030/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/clip-path-reveal/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb031",
+    "name": "커튼 걷기",
+    "english": "Curtain Reveal",
+    "category": "등장과 퇴장",
+    "description": "색 패널이 미끄러져 사라지며 콘텐츠를 드러냅니다.",
+    "tags": [
+      "Curtain Reveal",
+      "curtain reveal",
+      "등장과 퇴장",
+      "커튼",
+      "드러내기"
+    ],
+    "preview": "./examples/hb031/index.html",
+    "codePath": "./examples/hb031/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/curtain-reveal/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb032",
+    "name": "페이드 인·아웃",
+    "english": "Fade In / Fade Out",
+    "category": "등장과 퇴장",
+    "description": "투명도가 바뀌면서 나타나고 사라집니다.",
+    "tags": [
+      "Fade In / Fade Out",
+      "fade in out",
+      "등장과 퇴장",
+      "페이드"
+    ],
+    "preview": "./examples/hb032/index.html",
+    "codePath": "./examples/hb032/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/fade-in-out/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb033",
+    "name": "뒤집히며 등장",
+    "english": "Flip In",
+    "category": "등장과 퇴장",
+    "description": "카드를 뒤집듯 3D 회전하며 나타납니다.",
+    "tags": [
+      "Flip In",
+      "flip in",
+      "등장과 퇴장",
+      "뒤집기"
+    ],
+    "preview": "./examples/hb033/index.html",
+    "codePath": "./examples/hb033/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/flip-in/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb034",
+    "name": "잉크 확산 등장",
+    "english": "Ink Spread Reveal",
+    "category": "등장과 퇴장",
+    "description": "잉크 방울이 퍼지고 합쳐지면서 그림을 드러냅니다.",
+    "tags": [
+      "Ink Spread Reveal",
+      "ink spread reveal",
+      "등장과 퇴장",
+      "드러내기"
+    ],
+    "preview": "./examples/hb034/index.html",
+    "codePath": "./examples/hb034/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/ink-spread-reveal/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb035",
+    "name": "글자별 순차 등장",
+    "english": "Letter-by-Letter Stagger",
+    "category": "등장과 퇴장",
+    "description": "문장이 글자마다 순서대로 나타나거나 타이핑됩니다.",
+    "tags": [
+      "Letter-by-Letter Stagger",
+      "letter by letter stagger",
+      "등장과 퇴장",
+      "글자",
+      "순차"
+    ],
+    "preview": "./examples/hb035/index.html",
+    "codePath": "./examples/hb035/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/letter-by-letter-stagger/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb036",
+    "name": "회전 등장",
+    "english": "Rotate In",
+    "category": "등장과 퇴장",
+    "description": "회전하며 크기가 커져 제자리에 나타납니다.",
+    "tags": [
+      "Rotate In",
+      "rotate in",
+      "등장과 퇴장",
+      "회전"
+    ],
+    "preview": "./examples/hb036/index.html",
+    "codePath": "./examples/hb036/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/rotate-in/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb037",
+    "name": "크기 확대 등장",
+    "english": "Scale In / Zoom In",
+    "category": "등장과 퇴장",
+    "description": "작은 크기에서 원래 크기로 확대됩니다.",
+    "tags": [
+      "Scale In / Zoom In",
+      "scale in",
+      "등장과 퇴장",
+      "크기",
+      "줌"
+    ],
+    "preview": "./examples/hb037/index.html",
+    "codePath": "./examples/hb037/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/scale-in/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb038",
+    "name": "산산조각 효과",
+    "english": "Shatter Effect",
+    "category": "등장과 퇴장",
+    "description": "요소가 조각으로 부서져 흩어지고 사라집니다.",
+    "tags": [
+      "Shatter Effect",
+      "shatter effect",
+      "등장과 퇴장",
+      "파편"
+    ],
+    "preview": "./examples/hb038/index.html",
+    "codePath": "./examples/hb038/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/shatter-effect/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb039",
+    "name": "슬라이드 등장",
+    "english": "Slide In",
+    "category": "등장과 퇴장",
+    "description": "화면 가장자리에서 제자리로 이동합니다.",
+    "tags": [
+      "Slide In",
+      "slide in",
+      "등장과 퇴장",
+      "슬라이드"
+    ],
+    "preview": "./examples/hb039/index.html",
+    "codePath": "./examples/hb039/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/slide-in/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb040",
+    "name": "위로 밀어 올리며 등장",
+    "english": "Slide Up Reveal",
+    "category": "등장과 퇴장",
+    "description": "보이지 않는 경계 뒤에서 텍스트가 올라옵니다.",
+    "tags": [
+      "Slide Up Reveal",
+      "slide up reveal",
+      "등장과 퇴장",
+      "슬라이드",
+      "드러내기"
+    ],
+    "preview": "./examples/hb040/index.html",
+    "codePath": "./examples/hb040/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/slide-up-reveal/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb041",
+    "name": "텍스트 분할 등장",
+    "english": "Split Text Reveal",
+    "category": "등장과 퇴장",
+    "description": "텍스트를 나눈 조각이 차례로 나타납니다.",
+    "tags": [
+      "Split Text Reveal",
+      "split text reveal",
+      "등장과 퇴장",
+      "분할",
+      "텍스트",
+      "드러내기"
+    ],
+    "preview": "./examples/hb041/index.html",
+    "codePath": "./examples/hb041/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/split-text-reveal/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb042",
+    "name": "단어별 등장",
+    "english": "Word-by-Word Reveal",
+    "category": "등장과 퇴장",
+    "description": "단어가 읽는 속도에 맞춰 하나씩 나타납니다.",
+    "tags": [
+      "Word-by-Word Reveal",
+      "word by word reveal",
+      "등장과 퇴장",
+      "단어",
+      "드러내기"
+    ],
+    "preview": "./examples/hb042/index.html",
+    "codePath": "./examples/hb042/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/02-entrance-and-exit/word-by-word-reveal/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb043",
+    "name": "흐림 전환",
+    "english": "Blur Transition",
+    "category": "화면 전환",
+    "description": "이전 화면이 흐려지고 새 화면이 선명해집니다.",
+    "tags": [
+      "Blur Transition",
+      "blur transition",
+      "화면 전환",
+      "블러"
+    ],
+    "preview": "./examples/hb043/index.html",
+    "codePath": "./examples/hb043/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/blur-transition/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb044",
+    "name": "원형 드러내기 전환",
+    "english": "Circle Reveal",
+    "category": "화면 전환",
+    "description": "클릭한 지점에서 원이 커지거나 작아지며 화면을 전환합니다.",
+    "tags": [
+      "Circle Reveal",
+      "circle reveal",
+      "화면 전환",
+      "원",
+      "드러내기"
+    ],
+    "preview": "./examples/hb044/index.html",
+    "codePath": "./examples/hb044/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/circle-reveal/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb045",
+    "name": "큐브 화면 전환",
+    "english": "Cube Transition",
+    "category": "화면 전환",
+    "description": "큐브가 회전하듯 다음 화면이 나타납니다.",
+    "tags": [
+      "Cube Transition",
+      "cube transition",
+      "화면 전환",
+      "큐브"
+    ],
+    "preview": "./examples/hb045/index.html",
+    "codePath": "./examples/hb045/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/cube-transition/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb046",
+    "name": "탄성 화면 전환",
+    "english": "Elastic Transition",
+    "category": "화면 전환",
+    "description": "새 화면이 지나쳤다가 탄성으로 돌아옵니다.",
+    "tags": [
+      "Elastic Transition",
+      "elastic transition",
+      "화면 전환",
+      "탄성"
+    ],
+    "preview": "./examples/hb046/index.html",
+    "codePath": "./examples/hb046/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/elastic-transition/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb047",
+    "name": "빛 번짐 화면 전환",
+    "english": "Flash / Light Leak Transition",
+    "category": "화면 전환",
+    "description": "화면이 바뀌는 순간을 강한 빛으로 가립니다.",
+    "tags": [
+      "Flash / Light Leak Transition",
+      "flash transition",
+      "화면 전환"
+    ],
+    "preview": "./examples/hb047/index.html",
+    "codePath": "./examples/hb047/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/flash-transition/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb048",
+    "name": "FLIP 위치 전환",
+    "english": "FLIP Technique",
+    "category": "화면 전환",
+    "description": "레이아웃이 바뀔 때 카드가 새 위치로 부드럽게 이동합니다.",
+    "tags": [
+      "FLIP Technique",
+      "flip technique",
+      "화면 전환",
+      "뒤집기"
+    ],
+    "preview": "./examples/hb048/index.html",
+    "codePath": "./examples/hb048/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/flip-technique/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb049",
+    "name": "형태 변형 전환",
+    "english": "Morph Transition",
+    "category": "화면 전환",
+    "description": "이동한 페이지에 맞춰 로고의 모양이 바뀝니다.",
+    "tags": [
+      "Morph Transition",
+      "morph transition",
+      "화면 전환",
+      "모핑"
+    ],
+    "preview": "./examples/hb049/index.html",
+    "codePath": "./examples/hb049/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/morph-transition/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb050",
+    "name": "브라우저 화면 전환 API",
+    "english": "View Transitions API",
+    "category": "화면 전환",
+    "description": "브라우저가 두 화면 사이의 전환을 애니메이션으로 처리합니다.",
+    "tags": [
+      "View Transitions API",
+      "view transitions api",
+      "화면 전환"
+    ],
+    "preview": "./examples/hb050/index.html",
+    "codePath": "./examples/hb050/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/view-transitions-api/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb051",
+    "name": "장바구니로 날아가기",
+    "english": "Add-to-Cart Fly",
+    "category": "모션과 인터랙션",
+    "description": "상품이 장바구니로 날아가고 수량이 증가합니다.",
+    "tags": [
+      "Add-to-Cart Fly",
+      "add to cart fly",
+      "모션과 인터랙션",
+      "추가",
+      "장바구니"
+    ],
+    "preview": "./examples/hb051/index.html",
+    "codePath": "./examples/hb051/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/add-to-cart-fly/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb052",
+    "name": "알림 배지 맥박",
+    "english": "Notification Badge Pulse",
+    "category": "모션과 인터랙션",
+    "description": "아이콘의 배지가 반복해서 커졌다 작아집니다.",
+    "tags": [
+      "Notification Badge Pulse",
+      "badge pulse",
+      "모션과 인터랙션",
+      "알림",
+      "배지",
+      "펄스"
+    ],
+    "preview": "./examples/hb052/index.html",
+    "codePath": "./examples/hb052/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/badge-pulse/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb053",
+    "name": "전후 비교 슬라이더",
+    "english": "Before/After Slider",
+    "category": "모션과 인터랙션",
+    "description": "구분선을 드래그해 두 이미지를 비교합니다.",
+    "tags": [
+      "Before/After Slider",
+      "before after slider",
+      "모션과 인터랙션",
+      "전",
+      "후",
+      "슬라이더"
+    ],
+    "preview": "./examples/hb053/index.html",
+    "codePath": "./examples/hb053/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/before-after-slider/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb054",
+    "name": "버튼 로딩 상태",
+    "english": "Button Loading States",
+    "category": "모션과 인터랙션",
+    "description": "버튼이 로딩 표시를 거쳐 성공 또는 실패로 바뀝니다.",
+    "tags": [
+      "Button Loading States",
+      "button loading states",
+      "모션과 인터랙션",
+      "버튼",
+      "로딩"
+    ],
+    "preview": "./examples/hb054/index.html",
+    "codePath": "./examples/hb054/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/button-loading-states/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb055",
+    "name": "카드 덱 스와이프",
+    "english": "Card Deck Swipe",
+    "category": "모션과 인터랙션",
+    "description": "맨 위 카드를 좌우로 밀면 다음 카드가 올라옵니다.",
+    "tags": [
+      "Card Deck Swipe",
+      "card deck swipe",
+      "모션과 인터랙션",
+      "카드",
+      "스와이프"
+    ],
+    "preview": "./examples/hb055/index.html",
+    "codePath": "./examples/hb055/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/card-deck-swipe/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb056",
+    "name": "체크 표시 그리기",
+    "english": "Checkmark Draw",
+    "category": "모션과 인터랙션",
+    "description": "작업 성공 시 원 안에 체크 표시가 그려집니다.",
+    "tags": [
+      "Checkmark Draw",
+      "checkmark draw",
+      "모션과 인터랙션",
+      "체크"
+    ],
+    "preview": "./examples/hb056/index.html",
+    "codePath": "./examples/hb056/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/checkmark-draw/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb057",
+    "name": "클립보드 복사 피드백",
+    "english": "Copy to Clipboard",
+    "category": "모션과 인터랙션",
+    "description": "복사 후 체크 표시와 완료 문구가 잠시 표시됩니다.",
+    "tags": [
+      "Copy to Clipboard",
+      "copy to clipboard",
+      "모션과 인터랙션",
+      "복사",
+      "클립보드"
+    ],
+    "preview": "./examples/hb057/index.html",
+    "codePath": "./examples/hb057/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/copy-to-clipboard/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb058",
+    "name": "다이내믹 아일랜드",
+    "english": "Dynamic Island",
+    "category": "모션과 인터랙션",
+    "description": "알약 모양 영역이 알림으로 확장됐다 다시 줄어듭니다.",
+    "tags": [
+      "Dynamic Island",
+      "dynamic island",
+      "모션과 인터랙션"
+    ],
+    "preview": "./examples/hb058/index.html",
+    "codePath": "./examples/hb058/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/dynamic-island/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb059",
+    "name": "입력 오류 흔들기",
+    "english": "Error Shake",
+    "category": "모션과 인터랙션",
+    "description": "입력이 잘못되면 필드가 좌우로 흔들립니다.",
+    "tags": [
+      "Error Shake",
+      "error shake",
+      "모션과 인터랙션",
+      "오류"
+    ],
+    "preview": "./examples/hb059/index.html",
+    "codePath": "./examples/hb059/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/error-shake/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb060",
+    "name": "확장형 검색",
+    "english": "Expanding Search",
+    "category": "모션과 인터랙션",
+    "description": "검색 아이콘이 입력 필드로 확장되고 다시 닫힙니다.",
+    "tags": [
+      "Expanding Search",
+      "expanding search",
+      "모션과 인터랙션",
+      "검색"
+    ],
+    "preview": "./examples/hb060/index.html",
+    "codePath": "./examples/hb060/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/expanding-search/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb061",
+    "name": "포커스 링 애니메이션",
+    "english": "Focus Ring Animation",
+    "category": "모션과 인터랙션",
+    "description": "Tab으로 선택한 요소 주변에 포커스 링이 나타납니다.",
+    "tags": [
+      "Focus Ring Animation",
+      "focus ring",
+      "모션과 인터랙션",
+      "포커스"
+    ],
+    "preview": "./examples/hb061/index.html",
+    "codePath": "./examples/hb061/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/focus-ring/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb062",
+    "name": "입력 필드 라벨 이동",
+    "english": "Form Field Morph",
+    "category": "모션과 인터랙션",
+    "description": "입력할 때 라벨이 위로 이동해 공간을 확보합니다.",
+    "tags": [
+      "Form Field Morph",
+      "form field morph",
+      "모션과 인터랙션",
+      "폼",
+      "입력",
+      "모핑"
+    ],
+    "preview": "./examples/hb062/index.html",
+    "codePath": "./examples/hb062/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/form-field-morph/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb063",
+    "name": "구이 메뉴",
+    "english": "Gooey Menu",
+    "category": "모션과 인터랙션",
+    "description": "둥근 버튼에서 작은 버튼이 액체처럼 흘러나옵니다.",
+    "tags": [
+      "Gooey Menu",
+      "gooey menu",
+      "모션과 인터랙션",
+      "메뉴"
+    ],
+    "preview": "./examples/hb063/index.html",
+    "codePath": "./examples/hb063/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/gooey-menu/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb064",
+    "name": "움직이는 그라데이션 테두리",
+    "english": "Animated Gradient Border",
+    "category": "모션과 인터랙션",
+    "description": "카드나 버튼 테두리를 따라 색상이 움직입니다.",
+    "tags": [
+      "Animated Gradient Border",
+      "gradient border",
+      "모션과 인터랙션",
+      "그라디언트"
+    ],
+    "preview": "./examples/hb064/index.html",
+    "codePath": "./examples/hb064/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/gradient-border/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb065",
+    "name": "좋아요 하트 터짐",
+    "english": "Heart / Like Burst",
+    "category": "모션과 인터랙션",
+    "description": "하트를 누르면 작은 하트가 퍼지고 아이콘이 채워집니다.",
+    "tags": [
+      "Heart / Like Burst",
+      "heart burst",
+      "모션과 인터랙션",
+      "하트"
+    ],
+    "preview": "./examples/hb065/index.html",
+    "codePath": "./examples/hb065/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/heart-burst/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb066",
+    "name": "길게 눌러 확인",
+    "english": "Hold to Confirm",
+    "category": "모션과 인터랙션",
+    "description": "버튼을 누르고 있는 동안 채워지며 완료 시 실행됩니다.",
+    "tags": [
+      "Hold to Confirm",
+      "hold to confirm",
+      "모션과 인터랙션"
+    ],
+    "preview": "./examples/hb066/index.html",
+    "codePath": "./examples/hb066/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/hold-to-confirm/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb067",
+    "name": "호버 상태 애니메이션",
+    "english": "Hover State Animation",
+    "category": "모션과 인터랙션",
+    "description": "포인터를 올렸을 때 카드가 반응하는 여섯 가지 방식입니다.",
+    "tags": [
+      "Hover State Animation",
+      "hover state",
+      "모션과 인터랙션",
+      "호버"
+    ],
+    "preview": "./examples/hb067/index.html",
+    "codePath": "./examples/hb067/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/hover-state/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb068",
+    "name": "이미지 궤적",
+    "english": "Image Trail",
+    "category": "모션과 인터랙션",
+    "description": "포인터를 따라 이미지가 나타났다가 사라집니다.",
+    "tags": [
+      "Image Trail",
+      "image trail",
+      "모션과 인터랙션",
+      "이미지"
+    ],
+    "preview": "./examples/hb068/index.html",
+    "codePath": "./examples/hb068/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/image-trail/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb069",
+    "name": "로딩 스피너",
+    "english": "Loading Spinner",
+    "category": "모션과 인터랙션",
+    "description": "작은 도형 여섯 가지가 반복 움직이며 로딩을 알립니다.",
+    "tags": [
+      "Loading Spinner",
+      "loading spinner",
+      "모션과 인터랙션",
+      "로딩",
+      "스피너"
+    ],
+    "preview": "./examples/hb069/index.html",
+    "codePath": "./examples/hb069/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/loading-spinner/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb070",
+    "name": "확대 렌즈",
+    "english": "Magnifier Lens",
+    "category": "모션과 인터랙션",
+    "description": "포인터를 따라다니는 렌즈로 이미지 일부를 확대합니다.",
+    "tags": [
+      "Magnifier Lens",
+      "magnifier lens",
+      "모션과 인터랙션",
+      "돋보기"
+    ],
+    "preview": "./examples/hb070/index.html",
+    "codePath": "./examples/hb070/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/magnifier-lens/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb071",
+    "name": "진행률 애니메이션",
+    "english": "Progress Animation",
+    "category": "모션과 인터랙션",
+    "description": "막대, 원형 및 단계 표시가 진행 상황에 따라 채워집니다.",
+    "tags": [
+      "Progress Animation",
+      "progress animation",
+      "모션과 인터랙션",
+      "진행"
+    ],
+    "preview": "./examples/hb071/index.html",
+    "codePath": "./examples/hb071/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/progress-animation/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb072",
+    "name": "당겨서 새로고침",
+    "english": "Pull to Refresh",
+    "category": "모션과 인터랙션",
+    "description": "목록을 아래로 당기면 로딩 후 새 항목이 표시됩니다.",
+    "tags": [
+      "Pull to Refresh",
+      "pull to refresh",
+      "모션과 인터랙션"
+    ],
+    "preview": "./examples/hb072/index.html",
+    "codePath": "./examples/hb072/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/pull-to-refresh/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본 코드에 터치 조작이 구현되어 있습니다. 실제 휴대전화 검증은 별도로 필요합니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb073",
+    "name": "롤링 숫자",
+    "english": "Rolling Numbers",
+    "category": "모션과 인터랙션",
+    "description": "계기판처럼 각 숫자가 회전하며 새 값으로 바뀝니다.",
+    "tags": [
+      "Rolling Numbers",
+      "rolling numbers",
+      "모션과 인터랙션"
+    ],
+    "preview": "./examples/hb073/index.html",
+    "codePath": "./examples/hb073/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/rolling-numbers/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb074",
+    "name": "세그먼트 선택",
+    "english": "Segmented Control",
+    "category": "모션과 인터랙션",
+    "description": "선택한 옵션으로 강조 영역이 미끄러져 이동합니다.",
+    "tags": [
+      "Segmented Control",
+      "segmented control",
+      "모션과 인터랙션"
+    ],
+    "preview": "./examples/hb074/index.html",
+    "codePath": "./examples/hb074/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/segmented-control/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb075",
+    "name": "시머 로딩 효과",
+    "english": "Shimmer Effect",
+    "category": "모션과 인터랙션",
+    "description": "회색 자리표시자 위로 빛이 지나갑니다.",
+    "tags": [
+      "Shimmer Effect",
+      "shimmer effect",
+      "모션과 인터랙션"
+    ],
+    "preview": "./examples/hb075/index.html",
+    "codePath": "./examples/hb075/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/shimmer-effect/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb076",
+    "name": "스포트라이트 호버",
+    "english": "Spotlight Hover Glow",
+    "category": "모션과 인터랙션",
+    "description": "포인터를 따라 빛이 움직이며 카드 테두리를 밝힙니다.",
+    "tags": [
+      "Spotlight Hover Glow",
+      "spotlight hover",
+      "모션과 인터랙션",
+      "스포트라이트",
+      "호버"
+    ],
+    "preview": "./examples/hb076/index.html",
+    "codePath": "./examples/hb076/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/spotlight-hover/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb077",
+    "name": "별점 선택",
+    "english": "Star Rating",
+    "category": "모션과 인터랙션",
+    "description": "포인터 위치까지 별이 채워지고 선택할 때 튑니다.",
+    "tags": [
+      "Star Rating",
+      "star rating",
+      "모션과 인터랙션",
+      "별",
+      "평점"
+    ],
+    "preview": "./examples/hb077/index.html",
+    "codePath": "./examples/hb077/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/star-rating/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb078",
+    "name": "성공 색종이 효과",
+    "english": "Success Confetti",
+    "category": "모션과 인터랙션",
+    "description": "작업이 완료되면 버튼에서 색종이가 터집니다.",
+    "tags": [
+      "Success Confetti",
+      "success confetti",
+      "모션과 인터랙션",
+      "성공"
+    ],
+    "preview": "./examples/hb078/index.html",
+    "codePath": "./examples/hb078/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/success-confetti/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb079",
+    "name": "스와이프로 닫기",
+    "english": "Swipe to Dismiss",
+    "category": "모션과 인터랙션",
+    "description": "카드를 옆으로 밀어 제거하면 목록이 빈자리를 채웁니다.",
+    "tags": [
+      "Swipe to Dismiss",
+      "swipe to dismiss",
+      "모션과 인터랙션",
+      "스와이프"
+    ],
+    "preview": "./examples/hb079/index.html",
+    "codePath": "./examples/hb079/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/swipe-to-dismiss/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb080",
+    "name": "테마 전환 변형",
+    "english": "Theme Toggle Morph",
+    "category": "모션과 인터랙션",
+    "description": "밝은 테마의 태양이 어두운 테마의 달로 변합니다.",
+    "tags": [
+      "Theme Toggle Morph",
+      "theme toggle morph",
+      "모션과 인터랙션",
+      "테마",
+      "토글",
+      "모핑"
+    ],
+    "preview": "./examples/hb080/index.html",
+    "codePath": "./examples/hb080/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/theme-toggle-morph/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb081",
+    "name": "툴팁 등장",
+    "english": "Tooltip Reveal",
+    "category": "모션과 인터랙션",
+    "description": "짧은 지연 뒤에 작은 설명이 서서히 나타납니다.",
+    "tags": [
+      "Tooltip Reveal",
+      "tooltip reveal",
+      "모션과 인터랙션",
+      "툴팁",
+      "드러내기"
+    ],
+    "preview": "./examples/hb081/index.html",
+    "codePath": "./examples/hb081/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/tooltip-reveal/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb082",
+    "name": "입력 중 표시",
+    "english": "Typing Indicator",
+    "category": "모션과 인터랙션",
+    "description": "말풍선 안의 점 세 개가 차례로 움직입니다.",
+    "tags": [
+      "Typing Indicator",
+      "typing indicator",
+      "모션과 인터랙션",
+      "타이핑"
+    ],
+    "preview": "./examples/hb082/index.html",
+    "codePath": "./examples/hb082/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/typing-indicator/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb083",
+    "name": "텍스트 진입·퇴장",
+    "english": "Enter/Exit Typography",
+    "category": "타이포그래피",
+    "description": "문구가 등장해 읽을 시간을 준 뒤 사라집니다.",
+    "tags": [
+      "Enter/Exit Typography",
+      "enter exit typography",
+      "타이포그래피"
+    ],
+    "preview": "./examples/hb083/index.html",
+    "codePath": "./examples/hb083/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/enter-exit-typography/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb084",
+    "name": "글리치 텍스트",
+    "english": "Glitch Text",
+    "category": "타이포그래피",
+    "description": "문자가 빨강과 청록색으로 갈라지며 신호 오류처럼 보입니다.",
+    "tags": [
+      "Glitch Text",
+      "glitch text",
+      "타이포그래피",
+      "글리치",
+      "텍스트"
+    ],
+    "preview": "./examples/hb084/index.html",
+    "codePath": "./examples/hb084/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/glitch-text/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb085",
+    "name": "손글씨 그리기",
+    "english": "Handwriting Draw",
+    "category": "타이포그래피",
+    "description": "펜으로 쓰듯 글자가 획마다 그려집니다.",
+    "tags": [
+      "Handwriting Draw",
+      "handwriting draw",
+      "타이포그래피"
+    ],
+    "preview": "./examples/hb085/index.html",
+    "codePath": "./examples/hb085/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/handwriting-draw/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb086",
+    "name": "형광펜 강조",
+    "english": "Highlighter Sweep",
+    "category": "타이포그래피",
+    "description": "핵심 단어 뒤로 형광펜 표시가 차례로 지나갑니다.",
+    "tags": [
+      "Highlighter Sweep",
+      "highlighter sweep",
+      "타이포그래피"
+    ],
+    "preview": "./examples/hb086/index.html",
+    "codePath": "./examples/hb086/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/highlighter-sweep/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb087",
+    "name": "키네틱 타이포그래피",
+    "english": "Kinetic Typography",
+    "category": "타이포그래피",
+    "description": "단어가 각기 다른 움직임으로 나타나고 사라집니다.",
+    "tags": [
+      "Kinetic Typography",
+      "kinetic typography",
+      "타이포그래피"
+    ],
+    "preview": "./examples/hb087/index.html",
+    "codePath": "./examples/hb087/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/kinetic-typography/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb088",
+    "name": "마퀴·티커",
+    "english": "Marquee / Ticker",
+    "category": "타이포그래피",
+    "description": "텍스트가 끊김 없이 가로로 반복 이동합니다.",
+    "tags": [
+      "Marquee / Ticker",
+      "marquee ticker",
+      "타이포그래피"
+    ],
+    "preview": "./examples/hb088/index.html",
+    "codePath": "./examples/hb088/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/marquee-ticker/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb089",
+    "name": "네온 깜빡임",
+    "english": "Neon Flicker",
+    "category": "타이포그래피",
+    "description": "네온사인처럼 빛나는 글자가 간헐적으로 깜빡입니다.",
+    "tags": [
+      "Neon Flicker",
+      "neon flicker",
+      "타이포그래피"
+    ],
+    "preview": "./examples/hb089/index.html",
+    "codePath": "./examples/hb089/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/neon-flicker/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb090",
+    "name": "윤곽선에서 채우기로",
+    "english": "Outline to Fill",
+    "category": "타이포그래피",
+    "description": "속이 빈 글자가 와이프나 페이드로 채워집니다.",
+    "tags": [
+      "Outline to Fill",
+      "outline to fill",
+      "타이포그래피"
+    ],
+    "preview": "./examples/hb090/index.html",
+    "codePath": "./examples/hb090/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/outline-to-fill/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb091",
+    "name": "회전 단어 캐러셀",
+    "english": "Rotate Word Carousel",
+    "category": "타이포그래피",
+    "description": "문장 안의 단어가 계속 다른 단어로 교체됩니다.",
+    "tags": [
+      "Rotate Word Carousel",
+      "rotate word carousel",
+      "타이포그래피",
+      "회전",
+      "단어"
+    ],
+    "preview": "./examples/hb091/index.html",
+    "codePath": "./examples/hb091/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/rotate-word-carousel/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb092",
+    "name": "스크램블 텍스트",
+    "english": "Scramble / Glitch Text",
+    "category": "타이포그래피",
+    "description": "무작위 문자가 왼쪽부터 실제 텍스트로 바뀝니다.",
+    "tags": [
+      "Scramble / Glitch Text",
+      "scramble text",
+      "타이포그래피",
+      "글리치",
+      "텍스트"
+    ],
+    "preview": "./examples/hb092/index.html",
+    "codePath": "./examples/hb092/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/scramble-text/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb093",
+    "name": "플립 문자판",
+    "english": "Split-Flap Board",
+    "category": "타이포그래피",
+    "description": "공항 안내판처럼 타일이 뒤집히며 단어를 만듭니다.",
+    "tags": [
+      "Split-Flap Board",
+      "split flap board",
+      "타이포그래피",
+      "분할"
+    ],
+    "preview": "./examples/hb093/index.html",
+    "codePath": "./examples/hb093/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/split-flap-board/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb094",
+    "name": "텍스트 클립 등장",
+    "english": "Text Clip-Path Reveal",
+    "category": "타이포그래피",
+    "description": "제목의 각 줄이 순서대로 드러납니다.",
+    "tags": [
+      "Text Clip-Path Reveal",
+      "text clip path reveal",
+      "타이포그래피",
+      "텍스트",
+      "클립",
+      "경로",
+      "드러내기"
+    ],
+    "preview": "./examples/hb094/index.html",
+    "codePath": "./examples/hb094/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/text-clip-path-reveal/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb095",
+    "name": "텍스트 그라데이션",
+    "english": "Text Gradient Animation",
+    "category": "타이포그래피",
+    "description": "글자는 고정한 채 내부 색상만 흐릅니다.",
+    "tags": [
+      "Text Gradient Animation",
+      "text gradient animation",
+      "타이포그래피",
+      "텍스트",
+      "그라디언트"
+    ],
+    "preview": "./examples/hb095/index.html",
+    "codePath": "./examples/hb095/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/text-gradient-animation/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb096",
+    "name": "텍스트 형태 변형",
+    "english": "Text Morphing",
+    "category": "타이포그래피",
+    "description": "한 단어가 글자마다 다음 단어로 변합니다.",
+    "tags": [
+      "Text Morphing",
+      "text morphing",
+      "타이포그래피",
+      "텍스트"
+    ],
+    "preview": "./examples/hb096/index.html",
+    "codePath": "./examples/hb096/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/text-morphing/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb097",
+    "name": "경로를 따라 움직이는 텍스트",
+    "english": "Text on a Path",
+    "category": "타이포그래피",
+    "description": "글자가 곡선이나 원을 따라 이동합니다.",
+    "tags": [
+      "Text on a Path",
+      "text on path",
+      "타이포그래피",
+      "텍스트",
+      "경로"
+    ],
+    "preview": "./examples/hb097/index.html",
+    "codePath": "./examples/hb097/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/text-on-path/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb098",
+    "name": "텍스트 입자",
+    "english": "Text Particles",
+    "category": "타이포그래피",
+    "description": "점으로 된 글자가 포인터를 피해 흩어졌다 돌아옵니다.",
+    "tags": [
+      "Text Particles",
+      "text particles",
+      "타이포그래피",
+      "텍스트",
+      "파티클"
+    ],
+    "preview": "./examples/hb098/index.html",
+    "codePath": "./examples/hb098/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/text-particles/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb099",
+    "name": "타자기 효과",
+    "english": "Typewriter Effect",
+    "category": "타이포그래피",
+    "description": "깜빡이는 커서 뒤로 글자가 입력됩니다.",
+    "tags": [
+      "Typewriter Effect",
+      "typewriter effect",
+      "타이포그래피",
+      "타자기"
+    ],
+    "preview": "./examples/hb099/index.html",
+    "codePath": "./examples/hb099/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/typewriter-effect/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb100",
+    "name": "가변 폰트 변형",
+    "english": "Variable Font Morph",
+    "category": "타이포그래피",
+    "description": "글자의 굵기와 기울기가 부드럽게 바뀝니다.",
+    "tags": [
+      "Variable Font Morph",
+      "variable font morph",
+      "타이포그래피",
+      "모핑"
+    ],
+    "preview": "./examples/hb100/index.html",
+    "codePath": "./examples/hb100/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/variable-font-morph/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb101",
+    "name": "물결 텍스트",
+    "english": "Wavy Text",
+    "category": "타이포그래피",
+    "description": "글자를 따라 물결이 차례로 지나갑니다.",
+    "tags": [
+      "Wavy Text",
+      "wavy text",
+      "타이포그래피",
+      "텍스트"
+    ],
+    "preview": "./examples/hb101/index.html",
+    "codePath": "./examples/hb101/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/05-text-typography/wavy-text/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb102",
+    "name": "2.5D 입체 효과",
+    "english": "2.5D / Pseudo-3D",
+    "category": "3D",
+    "description": "평면 레이어가 서로 다른 거리로 이동해 깊이를 만듭니다.",
+    "tags": [
+      "2.5D / Pseudo-3D",
+      "2 5d pseudo 3d",
+      "3D"
+    ],
+    "preview": "./examples/hb102/index.html",
+    "codePath": "./examples/hb102/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/2-5d-pseudo-3d/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb103",
+    "name": "3D 모델 회전",
+    "english": "3D Model Orbit",
+    "category": "3D",
+    "description": "조명이 적용된 3D 도형이 회전하거나 포인터를 향합니다.",
+    "tags": [
+      "3D Model Orbit",
+      "3d model orbit",
+      "3D",
+      "모델"
+    ],
+    "preview": "./examples/hb103/index.html",
+    "codePath": "./examples/hb103/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/3d-model-orbit/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb104",
+    "name": "아스키·하프톤 효과",
+    "english": "ASCII / Halftone",
+    "category": "배경과 분위기",
+    "description": "움직이는 이미지를 문자나 점으로 다시 표현합니다.",
+    "tags": [
+      "ASCII / Halftone",
+      "ascii halftone",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb104/index.html",
+    "codePath": "./examples/hb104/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/ascii-halftone/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb105",
+    "name": "오디오 시각화",
+    "english": "Audio Visualizer",
+    "category": "모션과 인터랙션",
+    "description": "저음부터 고음까지 음악에 맞춰 막대가 움직입니다.",
+    "tags": [
+      "Audio Visualizer",
+      "audio visualizer",
+      "오디오",
+      "모션과 인터랙션"
+    ],
+    "preview": "./examples/hb105/index.html",
+    "codePath": "./examples/hb105/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/audio-visualizer/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb106",
+    "name": "캔버스 입자 효과",
+    "english": "Canvas Particle Effect",
+    "category": "배경과 분위기",
+    "description": "점이 떠다니며 가까우면 연결되고 포인터를 피합니다.",
+    "tags": [
+      "Canvas Particle Effect",
+      "canvas particle effect",
+      "파티클",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb106/index.html",
+    "codePath": "./examples/hb106/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/canvas-particle-effect/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본 코드에 터치 조작이 구현되어 있습니다. 실제 휴대전화 검증은 별도로 필요합니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb107",
+    "name": "3D 캐러셀",
+    "english": "3D Carousel",
+    "category": "3D",
+    "description": "드래그하면 원형으로 배치된 카드가 3D로 회전합니다.",
+    "tags": [
+      "3D Carousel",
+      "carousel 3d",
+      "3D"
+    ],
+    "preview": "./examples/hb107/index.html",
+    "codePath": "./examples/hb107/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/carousel-3d/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb108",
+    "name": "색수차 효과",
+    "english": "Chromatic Aberration",
+    "category": "배경과 분위기",
+    "description": "문자의 가장자리가 빨강·초록·파랑으로 갈라집니다.",
+    "tags": [
+      "Chromatic Aberration",
+      "chromatic aberration",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb108/index.html",
+    "codePath": "./examples/hb108/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/chromatic-aberration/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb109",
+    "name": "천·연체 시뮬레이션",
+    "english": "Cloth / Soft-Body Simulation",
+    "category": "모션과 인터랙션",
+    "description": "천이 바람에 흔들리며 드래그에 반응합니다.",
+    "tags": [
+      "Cloth / Soft-Body Simulation",
+      "cloth simulation",
+      "모션과 인터랙션"
+    ],
+    "preview": "./examples/hb109/index.html",
+    "codePath": "./examples/hb109/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/cloth-simulation/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb110",
+    "name": "깊이맵 사진",
+    "english": "Depth-Map Photo",
+    "category": "3D",
+    "description": "포인터에 따라 사진의 가까운 부분이 더 많이 움직입니다.",
+    "tags": [
+      "Depth-Map Photo",
+      "depth map photo",
+      "3D"
+    ],
+    "preview": "./examples/hb110/index.html",
+    "codePath": "./examples/hb110/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/depth-map-photo/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb111",
+    "name": "3D 뒤집기 카드",
+    "english": "3D Flip Card",
+    "category": "3D",
+    "description": "카드가 3D로 회전해 뒷면을 보여줍니다.",
+    "tags": [
+      "3D Flip Card",
+      "flip card 3d",
+      "3D",
+      "뒤집기",
+      "카드"
+    ],
+    "preview": "./examples/hb111/index.html",
+    "codePath": "./examples/hb111/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/flip-card-3d/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb112",
+    "name": "군집 이동",
+    "english": "Flocking",
+    "category": "모션과 인터랙션",
+    "description": "새들이 하나의 무리처럼 함께 방향을 바꿉니다.",
+    "tags": [
+      "Flocking",
+      "flocking",
+      "모션과 인터랙션"
+    ],
+    "preview": "./examples/hb112/index.html",
+    "codePath": "./examples/hb112/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/flocking/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본 코드에 터치 조작이 구현되어 있습니다. 실제 휴대전화 검증은 별도로 필요합니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb113",
+    "name": "유체·액체 시뮬레이션",
+    "english": "Fluid / Liquid Simulation",
+    "category": "배경과 분위기",
+    "description": "덩어리가 액체처럼 떠다니며 서로 합쳐집니다.",
+    "tags": [
+      "Fluid / Liquid Simulation",
+      "fluid simulation",
+      "셰이더",
+      "배경"
+    ],
+    "preview": "./examples/hb113/index.html",
+    "codePath": "./examples/hb113/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/fluid-simulation/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb114",
+    "name": "움직이는 글래스모피즘",
+    "english": "Glassmorphism Animated",
+    "category": "배경과 분위기",
+    "description": "반투명 유리 카드가 뒤의 색상을 흐리게 비춥니다.",
+    "tags": [
+      "Glassmorphism Animated",
+      "glassmorphism animated",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb114/index.html",
+    "codePath": "./examples/hb114/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/glassmorphism-animated/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb115",
+    "name": "GPGPU 입자 시스템",
+    "english": "GPGPU Particle System",
+    "category": "배경과 분위기",
+    "description": "그래픽 프로세서로 수많은 입자의 흐름을 계산합니다.",
+    "tags": [
+      "GPGPU Particle System",
+      "gpgpu particle system",
+      "파티클",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb115/index.html",
+    "codePath": "./examples/hb115/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/gpgpu-particle-system/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb116",
+    "name": "홀로그램 카드",
+    "english": "Holographic Card",
+    "category": "3D",
+    "description": "포인터에 따라 카드가 기울고 무지개 광택이 움직입니다.",
+    "tags": [
+      "Holographic Card",
+      "holographic card",
+      "3D",
+      "카드"
+    ],
+    "preview": "./examples/hb116/index.html",
+    "codePath": "./examples/hb116/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/holographic-card/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb117",
+    "name": "호버 이미지 왜곡",
+    "english": "Image Distortion on Hover",
+    "category": "모션과 인터랙션",
+    "description": "포인터 주변의 이미지가 물결치며 휘어집니다.",
+    "tags": [
+      "Image Distortion on Hover",
+      "image distortion hover",
+      "이미지",
+      "호버",
+      "모션과 인터랙션"
+    ],
+    "preview": "./examples/hb117/index.html",
+    "codePath": "./examples/hb117/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/image-distortion-hover/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb118",
+    "name": "무한 확대",
+    "english": "Infinite Zoom",
+    "category": "모션과 인터랙션",
+    "description": "이미지 속 이미지로 계속 확대해 들어갑니다.",
+    "tags": [
+      "Infinite Zoom",
+      "infinite zoom",
+      "줌",
+      "모션과 인터랙션"
+    ],
+    "preview": "./examples/hb118/index.html",
+    "codePath": "./examples/hb118/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/infinite-zoom/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb119",
+    "name": "리퀴드 글래스",
+    "english": "Liquid Glass",
+    "category": "배경과 분위기",
+    "description": "유리 패널을 드래그하면 뒤 이미지가 가장자리에서 굴절됩니다.",
+    "tags": [
+      "Liquid Glass",
+      "liquid glass",
+      "유리",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb119/index.html",
+    "codePath": "./examples/hb119/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/liquid-glass/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb120",
+    "name": "변형되는 액체 방울",
+    "english": "Morphing Blob",
+    "category": "배경과 분위기",
+    "description": "방울들이 합쳐지고 한 방울은 포인터를 따라갑니다.",
+    "tags": [
+      "Morphing Blob",
+      "morphing blob",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb120/index.html",
+    "codePath": "./examples/hb120/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/morphing-blob/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb121",
+    "name": "노이즈 기반 움직임",
+    "english": "Noise-Based Motion",
+    "category": "모션과 인터랙션",
+    "description": "부드러운 노이즈가 점을 흔들고 덩어리에 물결을 만듭니다.",
+    "tags": [
+      "Noise-Based Motion",
+      "noise based motion",
+      "노이즈",
+      "모션과 인터랙션"
+    ],
+    "preview": "./examples/hb121/index.html",
+    "codePath": "./examples/hb121/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/noise-based-motion/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb122",
+    "name": "패럴랙스 3D 기울기",
+    "english": "Parallax 3D Tilt",
+    "category": "3D",
+    "description": "포인터를 향해 카드가 기울고 빛이 이동합니다.",
+    "tags": [
+      "Parallax 3D Tilt",
+      "parallax 3d tilt",
+      "3D",
+      "패럴랙스"
+    ],
+    "preview": "./examples/hb122/index.html",
+    "codePath": "./examples/hb122/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/parallax-3d-tilt/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb123",
+    "name": "2D 물리 시뮬레이션",
+    "english": "2D Physics",
+    "category": "모션과 인터랙션",
+    "description": "클릭한 곳에서 공이 떨어져 튀고 쌓입니다.",
+    "tags": [
+      "2D Physics",
+      "physics 2d",
+      "모션과 인터랙션"
+    ],
+    "preview": "./examples/hb123/index.html",
+    "codePath": "./examples/hb123/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/physics-2d/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb124",
+    "name": "레이 마칭·SDF 장면",
+    "english": "Ray Marching / SDF Scene",
+    "category": "3D",
+    "description": "수학 공식으로 표현한 3D 장면을 카메라가 회전합니다.",
+    "tags": [
+      "Ray Marching / SDF Scene",
+      "ray marching sdf",
+      "3D"
+    ],
+    "preview": "./examples/hb124/index.html",
+    "codePath": "./examples/hb124/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/ray-marching-sdf/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb125",
+    "name": "스크롤에 따른 3D 회전",
+    "english": "Scroll-Driven 3D Rotation",
+    "category": "3D",
+    "description": "스크롤 위치에 맞춰 3D 큐브가 회전합니다.",
+    "tags": [
+      "Scroll-Driven 3D Rotation",
+      "scroll driven 3d rotation",
+      "3D",
+      "스크롤",
+      "회전"
+    ],
+    "preview": "./examples/hb125/index.html",
+    "codePath": "./examples/hb125/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/scroll-driven-3d-rotation/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb126",
+    "name": "SVG 경로 애니메이션",
+    "english": "SVG Path Animation",
+    "category": "모션과 인터랙션",
+    "description": "선으로 된 그림이 획마다 그려집니다.",
+    "tags": [
+      "SVG Path Animation",
+      "svg path animation",
+      "경로",
+      "모션과 인터랙션"
+    ],
+    "preview": "./examples/hb126/index.html",
+    "codePath": "./examples/hb126/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/svg-path-animation/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb127",
+    "name": "볼류메트릭 연기",
+    "english": "Volumetric Smoke / 3D Noise",
+    "category": "3D",
+    "description": "3D 구름으로 표현한 부드러운 연기가 피어오릅니다.",
+    "tags": [
+      "Volumetric Smoke / 3D Noise",
+      "volumetric smoke",
+      "3D",
+      "노이즈"
+    ],
+    "preview": "./examples/hb127/index.html",
+    "codePath": "./examples/hb127/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/volumetric-smoke/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb128",
+    "name": "물결 파문",
+    "english": "Water Ripple",
+    "category": "배경과 분위기",
+    "description": "손가락 주변으로 파문이 퍼지고 아래 이미지가 굴절됩니다.",
+    "tags": [
+      "Water Ripple",
+      "water ripple",
+      "물결",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb128/index.html",
+    "codePath": "./examples/hb128/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/water-ripple/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb129",
+    "name": "WebGL 셰이더 애니메이션",
+    "english": "WebGL Shader Animation",
+    "category": "배경과 분위기",
+    "description": "픽셀마다 계산한 색상 패턴이 움직입니다.",
+    "tags": [
+      "WebGL Shader Animation",
+      "webgl shader animation",
+      "셰이더",
+      "배경"
+    ],
+    "preview": "./examples/hb129/index.html",
+    "codePath": "./examples/hb129/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/06-3d-advanced/webgl-shader-animation/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb130",
+    "name": "추상 기하 모션",
+    "english": "Abstract Geometric Motion",
+    "category": "배경과 분위기",
+    "description": "도형이 회전하고 퍼지며 차분하게 반복됩니다.",
+    "tags": [
+      "Abstract Geometric Motion",
+      "abstract geometric motion",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb130/index.html",
+    "codePath": "./examples/hb130/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/abstract-geometric-motion/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb131",
+    "name": "잔잔한 파문 효과",
+    "english": "Ambient Ripple Effect",
+    "category": "배경과 분위기",
+    "description": "고요한 물 위에 떨어진 물방울처럼 원이 퍼집니다.",
+    "tags": [
+      "Ambient Ripple Effect",
+      "ambient ripple",
+      "배경과 분위기",
+      "물결"
+    ],
+    "preview": "./examples/hb131/index.html",
+    "codePath": "./examples/hb131/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/ambient-ripple/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb132",
+    "name": "움직이는 그라데이션 배경",
+    "english": "Animated Gradient Background",
+    "category": "배경과 분위기",
+    "description": "부드러운 배경 위로 색상이 천천히 이동합니다.",
+    "tags": [
+      "Animated Gradient Background",
+      "animated gradient background",
+      "배경과 분위기",
+      "그라디언트",
+      "배경"
+    ],
+    "preview": "./examples/hb132/index.html",
+    "codePath": "./examples/hb132/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/animated-gradient-background/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb133",
+    "name": "오로라",
+    "english": "Aurora / Northern Lights",
+    "category": "배경과 분위기",
+    "description": "흐릿한 빛의 띠가 오로라처럼 흔들립니다.",
+    "tags": [
+      "Aurora / Northern Lights",
+      "aurora",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb133/index.html",
+    "codePath": "./examples/hb133/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/aurora/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb134",
+    "name": "호흡하는 빛",
+    "english": "Breathing / Pulsing Glow",
+    "category": "배경과 분위기",
+    "description": "부드러운 빛이 호흡하듯 천천히 커졌다 작아집니다.",
+    "tags": [
+      "Breathing / Pulsing Glow",
+      "breathing glow",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb134/index.html",
+    "codePath": "./examples/hb134/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/breathing-glow/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb135",
+    "name": "불꽃 효과",
+    "english": "Fire Effect",
+    "category": "배경과 분위기",
+    "description": "불길이 깜빡이며 위로 올라갑니다.",
+    "tags": [
+      "Fire Effect",
+      "fire effect",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb135/index.html",
+    "codePath": "./examples/hb135/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/fire-effect/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb136",
+    "name": "불꽃놀이",
+    "english": "Fireworks",
+    "category": "배경과 분위기",
+    "description": "불꽃이 올라간 뒤 터져 빛나는 입자가 떨어집니다.",
+    "tags": [
+      "Fireworks",
+      "fireworks",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb136/index.html",
+    "codePath": "./examples/hb136/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/fireworks/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb137",
+    "name": "떠다니는 요소",
+    "english": "Floating Elements",
+    "category": "배경과 분위기",
+    "description": "작은 도형이 각자 다른 경로로 천천히 떠다닙니다.",
+    "tags": [
+      "Floating Elements",
+      "floating elements",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb137/index.html",
+    "codePath": "./examples/hb137/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/floating-elements/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb138",
+    "name": "흐름장",
+    "english": "Flow Field",
+    "category": "배경과 분위기",
+    "description": "입자가 보이지 않는 흐름을 따라 희미한 궤적을 남깁니다.",
+    "tags": [
+      "Flow Field",
+      "flow field",
+      "배경과 분위기",
+      "입력"
+    ],
+    "preview": "./examples/hb138/index.html",
+    "codePath": "./examples/hb138/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/flow-field/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb139",
+    "name": "생명 게임",
+    "english": "Game of Life",
+    "category": "배경과 분위기",
+    "description": "주변 세포에 따라 세포가 생기고 사라지며 패턴이 자랍니다.",
+    "tags": [
+      "Game of Life",
+      "game of life",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb139/index.html",
+    "codePath": "./examples/hb139/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/game-of-life/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb140",
+    "name": "필름 그레인 오버레이",
+    "english": "Grain / Film Noise Overlay",
+    "category": "배경과 분위기",
+    "description": "오래된 필름처럼 화면 위로 미세한 입자가 깜빡입니다.",
+    "tags": [
+      "Grain / Film Noise Overlay",
+      "grain overlay",
+      "배경과 분위기",
+      "노이즈"
+    ],
+    "preview": "./examples/hb140/index.html",
+    "codePath": "./examples/hb140/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/grain-overlay/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb141",
+    "name": "격자·점 패럴랙스",
+    "english": "Grid / Dot Pattern Parallax",
+    "category": "배경과 분위기",
+    "description": "포인터에 따라 점 격자가 살짝 움직여 깊이를 만듭니다.",
+    "tags": [
+      "Grid / Dot Pattern Parallax",
+      "grid dot pattern parallax",
+      "배경과 분위기",
+      "격자",
+      "패럴랙스"
+    ],
+    "preview": "./examples/hb141/index.html",
+    "codePath": "./examples/hb141/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/grid-dot-pattern-parallax/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb142",
+    "name": "켄 번스 효과",
+    "english": "Ken Burns Effect",
+    "category": "배경과 분위기",
+    "description": "사진이 천천히 확대·이동한 뒤 다음 사진으로 전환됩니다.",
+    "tags": [
+      "Ken Burns Effect",
+      "ken burns",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb142/index.html",
+    "codePath": "./examples/hb142/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/ken-burns/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb143",
+    "name": "빛샘 효과",
+    "english": "Light Leak",
+    "category": "배경과 분위기",
+    "description": "따뜻한 빛이 간헐적으로 화면 모서리에서 번집니다.",
+    "tags": [
+      "Light Leak",
+      "light leak",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb143/index.html",
+    "codePath": "./examples/hb143/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/light-leak/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb144",
+    "name": "빛줄기",
+    "english": "Light Rays",
+    "category": "배경과 분위기",
+    "description": "부드러운 빛줄기가 위에서 내려와 천천히 이동합니다.",
+    "tags": [
+      "Light Rays",
+      "light rays",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb144/index.html",
+    "codePath": "./examples/hb144/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/light-rays/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb145",
+    "name": "번개",
+    "english": "Lightning",
+    "category": "배경과 분위기",
+    "description": "구름에서 번개가 쳐 하늘을 밝힙니다.",
+    "tags": [
+      "Lightning",
+      "lightning",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb145/index.html",
+    "codePath": "./examples/hb145/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/lightning/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb146",
+    "name": "매트릭스 문자 비",
+    "english": "Matrix Rain",
+    "category": "배경과 분위기",
+    "description": "어두운 화면에 빛나는 문자가 열을 이루며 떨어집니다.",
+    "tags": [
+      "Matrix Rain",
+      "matrix rain",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb146/index.html",
+    "codePath": "./examples/hb146/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/matrix-rain/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb147",
+    "name": "메시 그라데이션",
+    "english": "Mesh Gradient Animation",
+    "category": "배경과 분위기",
+    "description": "흐릿한 색 덩어리가 움직이며 서로 섞입니다.",
+    "tags": [
+      "Mesh Gradient Animation",
+      "mesh gradient",
+      "배경과 분위기",
+      "메시",
+      "그라디언트"
+    ],
+    "preview": "./examples/hb147/index.html",
+    "codePath": "./examples/hb147/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/mesh-gradient/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb148",
+    "name": "입자 별자리",
+    "english": "Particle Constellation",
+    "category": "배경과 분위기",
+    "description": "떠다니는 점들이 가까워지면 선으로 연결됩니다.",
+    "tags": [
+      "Particle Constellation",
+      "particle constellation",
+      "배경과 분위기",
+      "파티클"
+    ],
+    "preview": "./examples/hb148/index.html",
+    "codePath": "./examples/hb148/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/particle-constellation/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb149",
+    "name": "플라스마 필드",
+    "english": "Plasma Field",
+    "category": "배경과 분위기",
+    "description": "수학적으로 만든 색상의 물결이 계속 흐릅니다.",
+    "tags": [
+      "Plasma Field",
+      "plasma",
+      "배경과 분위기",
+      "입력"
+    ],
+    "preview": "./examples/hb149/index.html",
+    "codePath": "./examples/hb149/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/plasma/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb150",
+    "name": "스캔라인 효과",
+    "english": "Scanline Effect",
+    "category": "배경과 분위기",
+    "description": "어두운 선과 지나가는 빛으로 오래된 TV 화면을 흉내 냅니다.",
+    "tags": [
+      "Scanline Effect",
+      "scanline",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb150/index.html",
+    "codePath": "./examples/hb150/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/scanline/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb151",
+    "name": "눈·비",
+    "english": "Snow / Rain",
+    "category": "배경과 분위기",
+    "description": "어두운 도시 위로 눈이나 빗줄기가 내립니다.",
+    "tags": [
+      "Snow / Rain",
+      "snow rain",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb151/index.html",
+    "codePath": "./examples/hb151/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/snow-rain/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb152",
+    "name": "별빛·우주 입자",
+    "english": "Starfield / Space Particles",
+    "category": "배경과 분위기",
+    "description": "어두운 공간의 별이 화면 앞으로 빠르게 다가옵니다.",
+    "tags": [
+      "Starfield / Space Particles",
+      "starfield",
+      "배경과 분위기",
+      "파티클"
+    ],
+    "preview": "./examples/hb152/index.html",
+    "codePath": "./examples/hb152/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/starfield/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb153",
+    "name": "신스웨이브 격자",
+    "english": "Synthwave Grid",
+    "category": "배경과 분위기",
+    "description": "줄무늬 태양 아래 빛나는 격자가 앞으로 움직입니다.",
+    "tags": [
+      "Synthwave Grid",
+      "synthwave grid",
+      "배경과 분위기",
+      "격자"
+    ],
+    "preview": "./examples/hb153/index.html",
+    "codePath": "./examples/hb153/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/synthwave-grid/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb154",
+    "name": "등고선",
+    "english": "Topographic Lines",
+    "category": "배경과 분위기",
+    "description": "지도 위 등고선 같은 선들이 천천히 휘고 움직입니다.",
+    "tags": [
+      "Topographic Lines",
+      "topographic lines",
+      "배경과 분위기"
+    ],
+    "preview": "./examples/hb154/index.html",
+    "codePath": "./examples/hb154/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/topographic-lines/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "hb155",
+    "name": "물결 레이어",
+    "english": "Wave Layers",
+    "category": "배경과 분위기",
+    "description": "여러 물결 층이 각기 다른 속도로 옆으로 움직입니다.",
+    "tags": [
+      "Wave Layers",
+      "wave layers",
+      "배경과 분위기",
+      "파도"
+    ],
+    "preview": "./examples/hb155/index.html",
+    "codePath": "./examples/hb155/source.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/07-ambient-background/wave-layers/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 공통 자산 경로와 패널 배치만 조정",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  }
+]

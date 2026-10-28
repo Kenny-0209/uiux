@@ -1,0 +1,116 @@
+[
+  {
+    "id": "sp01",
+    "name": "GLTF 3D 모델 뷰어",
+    "english": "GLTF model viewer",
+    "category": "3D",
+    "description": "실제 3D 헬멧 모델을 드래그해 회전하고 목록에서 다른 모델을 선택합니다.",
+    "tags": [
+      "3D",
+      "GLTF",
+      "모델",
+      "오빗"
+    ],
+    "preview": "https://threejs.org/examples/webgl_loader_gltf.html",
+    "sourceName": "three.js",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_loader_gltf.html",
+    "license": "MIT (코드)",
+    "licensePath": "./examples/sp3d/LICENSE.txt",
+    "codePath": "./examples/sp01/source.html",
+    "adaptation": "HTML 원본은 고정 커밋 그대로 보관하며 실행 화면과 모델은 three.js 원본 사이트를 사용합니다. 원격 예시는 갱신되어 보관본과 다를 수 있습니다.",
+    "codeFiles": [
+      {
+        "label": "HTML 원본",
+        "path": "./examples/sp01/source.html"
+      },
+      {
+        "label": "OrbitControls.js",
+        "path": "./examples/sp3d/orbit.js"
+      },
+      {
+        "label": "GLTFLoader.js",
+        "path": "./examples/sp3d/gltf.js"
+      },
+      {
+        "label": "UltraHDRLoader.js",
+        "path": "./examples/sp3d/hdr.js"
+      }
+    ],
+    "remote": true,
+    "requiresGPU": true,
+    "network": true
+  },
+  {
+    "id": "sp02",
+    "name": "3D 객체 이동·회전·크기",
+    "english": "Transform controls",
+    "category": "3D",
+    "description": "3D 객체의 축을 드래그하고 W·E·R 키로 이동·회전·크기 도구를 바꿉니다.",
+    "tags": [
+      "3D",
+      "이동",
+      "회전",
+      "스케일"
+    ],
+    "preview": "https://threejs.org/examples/misc_controls_transform.html",
+    "sourceName": "three.js",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/misc_controls_transform.html",
+    "license": "MIT (코드)",
+    "licensePath": "./examples/sp3d/LICENSE.txt",
+    "codePath": "./examples/sp02/source.html",
+    "adaptation": "HTML 원본은 고정 커밋 그대로 보관하며 실행 화면과 모델은 three.js 원본 사이트를 사용합니다. 원격 예시는 갱신되어 보관본과 다를 수 있습니다.",
+    "codeFiles": [
+      {
+        "label": "HTML 원본",
+        "path": "./examples/sp02/source.html"
+      },
+      {
+        "label": "TransformControls.js",
+        "path": "./examples/sp3d/transform.js"
+      },
+      {
+        "label": "OrbitControls.js",
+        "path": "./examples/sp3d/orbit.js"
+      }
+    ],
+    "remote": true,
+    "requiresGPU": true,
+    "network": true
+  },
+  {
+    "id": "sp03",
+    "name": "SVG 도형의 3D 표시",
+    "english": "SVG loader",
+    "category": "3D",
+    "description": "SVG 그림을 3D 장면에 불러오고 채우기·선·와이어프레임 설정을 바꿉니다.",
+    "tags": [
+      "3D",
+      "SVG",
+      "와이어프레임"
+    ],
+    "preview": "https://threejs.org/examples/webgl_loader_svg.html",
+    "sourceName": "three.js",
+    "sourceUrl": "https://github.com/mrdoob/three.js/blob/823ede35cb0213937b55430ceb403d769c36971d/examples/webgl_loader_svg.html",
+    "license": "MIT (코드)",
+    "licensePath": "./examples/sp3d/LICENSE.txt",
+    "codePath": "./examples/sp03/source.html",
+    "adaptation": "HTML 원본은 고정 커밋 그대로 보관하며 실행 화면과 모델은 three.js 원본 사이트를 사용합니다. 원격 예시는 갱신되어 보관본과 다를 수 있습니다.",
+    "codeFiles": [
+      {
+        "label": "HTML 원본",
+        "path": "./examples/sp03/source.html"
+      },
+      {
+        "label": "SVGLoader.js",
+        "path": "./examples/sp3d/svg.js"
+      },
+      {
+        "label": "OrbitControls.js",
+        "path": "./examples/sp3d/orbit.js"
+      }
+    ],
+    "remote": true,
+    "requiresGPU": true,
+    "network": true
+  }
+]

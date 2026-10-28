@@ -1,0 +1,627 @@
+[
+  {
+    "id": "tpl001",
+    "name": "분석 지표 대시보드",
+    "english": "Analytics dashboard",
+    "category": "화면 구성",
+    "description": "핵심 지표, 추이 그래프와 표를 함께 배치한 분석 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "분석",
+      "대시보드",
+      "지표"
+    ],
+    "preview": "./examples/tpl001/index.html",
+    "codePath": "./examples/tpl001/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/admin-dashboard/analytics-dashboard/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl002",
+    "name": "고객 관계 관리 대시보드",
+    "english": "CRM dashboard",
+    "category": "화면 구성",
+    "description": "거래 단계와 영업 실적을 함께 살펴보는 고객 관리 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "CRM",
+      "고객",
+      "대시보드"
+    ],
+    "preview": "./examples/tpl002/index.html",
+    "codePath": "./examples/tpl002/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/admin-dashboard/crm-dashboard/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl003",
+    "name": "쇼핑몰 운영 대시보드",
+    "english": "Ecommerce administration",
+    "category": "화면 구성",
+    "description": "주문과 매출, 운영 지표를 조합한 쇼핑몰 관리 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "쇼핑몰",
+      "관리",
+      "대시보드"
+    ],
+    "preview": "./examples/tpl003/index.html",
+    "codePath": "./examples/tpl003/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/admin-dashboard/ecommerce-admin/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl004",
+    "name": "재고 관리 작업 화면",
+    "english": "Inventory dashboard",
+    "category": "화면 구성",
+    "description": "상품 목록과 재고 상태를 함께 확인하는 재고 관리 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "재고",
+      "목록",
+      "관리"
+    ],
+    "preview": "./examples/tpl004/index.html",
+    "codePath": "./examples/tpl004/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/admin-dashboard/inventory-dashboard/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl005",
+    "name": "프로젝트 업무 보드",
+    "english": "Project management",
+    "category": "화면 구성",
+    "description": "업무 카드와 진행 상태를 나누어 보는 프로젝트 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "업무",
+      "보드",
+      "프로젝트"
+    ],
+    "preview": "./examples/tpl005/index.html",
+    "codePath": "./examples/tpl005/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/admin-dashboard/project-management/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl006",
+    "name": "인사 관리 대시보드",
+    "english": "HR dashboard",
+    "category": "화면 구성",
+    "description": "직원과 조직 정보를 조합하는 인사 관리 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "인사",
+      "직원",
+      "관리"
+    ],
+    "preview": "./examples/tpl006/index.html",
+    "codePath": "./examples/tpl006/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/admin-dashboard/hr-dashboard/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl007",
+    "name": "재무 지표 대시보드",
+    "english": "Finance dashboard",
+    "category": "화면 구성",
+    "description": "재무 지표와 거래 내역을 함께 보는 관리 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "재무",
+      "거래",
+      "대시보드"
+    ],
+    "preview": "./examples/tpl007/index.html",
+    "codePath": "./examples/tpl007/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/admin-dashboard/finance-dashboard/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl008",
+    "name": "병원 운영 대시보드",
+    "english": "Hospital management",
+    "category": "화면 구성",
+    "description": "예약과 운영 정보를 함께 보는 병원 관리 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "병원",
+      "예약",
+      "관리"
+    ],
+    "preview": "./examples/tpl008/index.html",
+    "codePath": "./examples/tpl008/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/admin-dashboard/hospital-management/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl009",
+    "name": "채용 공고 검색과 목록",
+    "english": "Job board",
+    "category": "화면 구성",
+    "description": "검색과 필터, 채용 공고를 함께 배치한 목록 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "채용",
+      "검색",
+      "목록"
+    ],
+    "preview": "./examples/tpl009/index.html",
+    "codePath": "./examples/tpl009/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/landing-pages/job-board/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl010",
+    "name": "행사 안내와 티켓 선택",
+    "english": "Event ticket",
+    "category": "화면 구성",
+    "description": "행사 정보와 티켓 선택을 조합한 이벤트 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "행사",
+      "티켓",
+      "선택"
+    ],
+    "preview": "./examples/tpl010/index.html",
+    "codePath": "./examples/tpl010/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/landing-pages/event-ticket/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl011",
+    "name": "개인 프로필 링크 모음",
+    "english": "Link in bio",
+    "category": "화면 구성",
+    "description": "프로필과 여러 외부 링크를 한 화면에 모은 모바일 중심 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "프로필",
+      "링크",
+      "모바일"
+    ],
+    "preview": "./examples/tpl011/index.html",
+    "codePath": "./examples/tpl011/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/landing-pages/link-in-bio/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl012",
+    "name": "자료 소개와 다운로드 입력",
+    "english": "Ebook download",
+    "category": "화면 구성",
+    "description": "자료 소개와 다운로드를 위한 입력 폼을 조합한 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "자료",
+      "폼",
+      "소개"
+    ],
+    "preview": "./examples/tpl012/index.html",
+    "codePath": "./examples/tpl012/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/landing-pages/ebook-download/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl013",
+    "name": "웨비나 안내와 참가 신청",
+    "english": "Webinar signup",
+    "category": "화면 구성",
+    "description": "강연 정보와 참가 신청 입력을 배치한 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "웨비나",
+      "신청",
+      "행사"
+    ],
+    "preview": "./examples/tpl013/index.html",
+    "codePath": "./examples/tpl013/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/landing-pages/webinar-signup/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl014",
+    "name": "출시 예고와 대기 목록",
+    "english": "Coming soon",
+    "category": "화면 구성",
+    "description": "출시 예고와 소식 신청 영역을 배치한 대기 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "출시",
+      "대기",
+      "랜딩"
+    ],
+    "preview": "./examples/tpl014/index.html",
+    "codePath": "./examples/tpl014/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/landing-pages/coming-soon/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl015",
+    "name": "패션 상품 탐색 화면",
+    "english": "Fashion store",
+    "category": "화면 구성",
+    "description": "상품 카드와 분류 메뉴를 제공하는 쇼핑 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "쇼핑",
+      "상품",
+      "카드"
+    ],
+    "preview": "./examples/tpl015/index.html",
+    "codePath": "./examples/tpl015/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/ecommerce/fashion-store/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl016",
+    "name": "전자제품 검색과 상품 탐색",
+    "english": "Electronics store",
+    "category": "화면 구성",
+    "description": "검색과 상품 목록을 조합한 상점 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "검색",
+      "상품",
+      "쇼핑"
+    ],
+    "preview": "./examples/tpl016/index.html",
+    "codePath": "./examples/tpl016/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/ecommerce/electronics-store/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl017",
+    "name": "단일 상품 상세와 구매 선택",
+    "english": "Single product store",
+    "category": "화면 구성",
+    "description": "하나의 상품 설명과 구매 선택을 중심에 둔 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "상품상세",
+      "구매",
+      "선택"
+    ],
+    "preview": "./examples/tpl017/index.html",
+    "codePath": "./examples/tpl017/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/ecommerce/single-product-store/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl018",
+    "name": "온라인 강의 소개와 커리큘럼",
+    "english": "Online course",
+    "category": "화면 구성",
+    "description": "강의 소개와 커리큘럼 영역을 구성한 교육 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "강의",
+      "커리큘럼",
+      "교육"
+    ],
+    "preview": "./examples/tpl018/index.html",
+    "codePath": "./examples/tpl018/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/education/online-course/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl019",
+    "name": "교육 플랫폼 강의 탐색",
+    "english": "Elearning platform",
+    "category": "화면 구성",
+    "description": "다양한 강의와 카테고리를 탐색하는 교육 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "교육",
+      "강의",
+      "탐색"
+    ],
+    "preview": "./examples/tpl019/index.html",
+    "codePath": "./examples/tpl019/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/education/elearning-platform/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl020",
+    "name": "부동산 매물 검색과 상세",
+    "english": "Property listing",
+    "category": "화면 구성",
+    "description": "매물 이미지, 주요 정보와 문의 영역을 함께 보여주는 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "부동산",
+      "매물",
+      "상세"
+    ],
+    "preview": "./examples/tpl020/index.html",
+    "codePath": "./examples/tpl020/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/real-estate-travel/property-listing/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl021",
+    "name": "숙소 소개와 예약 확인",
+    "english": "Hotel resort",
+    "category": "화면 구성",
+    "description": "숙소 이미지와 예약 정보, 편의시설을 조합한 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "숙소",
+      "예약",
+      "여행"
+    ],
+    "preview": "./examples/tpl021/index.html",
+    "codePath": "./examples/tpl021/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/real-estate-travel/hotel-resort/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl022",
+    "name": "카페 메뉴와 매장 정보",
+    "english": "Cafe and coffee shop",
+    "category": "화면 구성",
+    "description": "메뉴와 영업 정보, 브랜드 소개를 결합한 매장 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "카페",
+      "메뉴",
+      "매장"
+    ],
+    "preview": "./examples/tpl022/index.html",
+    "codePath": "./examples/tpl022/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/restaurant/cafe-coffee-shop/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl023",
+    "name": "크리에이티브 에이전시 소개",
+    "english": "Creative agency",
+    "category": "화면 구성",
+    "description": "프로젝트 사례와 서비스 소개를 나누어 보여주는 에이전시 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "포트폴리오",
+      "서비스",
+      "소개"
+    ],
+    "preview": "./examples/tpl023/index.html",
+    "codePath": "./examples/tpl023/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/business/creative-agency/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl024",
+    "name": "디자이너 포트폴리오",
+    "english": "Designer portfolio",
+    "category": "화면 구성",
+    "description": "작업물과 소개를 중심으로 구성한 포트폴리오 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "작업물",
+      "포트폴리오",
+      "프로필"
+    ],
+    "preview": "./examples/tpl024/index.html",
+    "codePath": "./examples/tpl024/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/portfolio/designer-portfolio/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  },
+  {
+    "id": "tpl025",
+    "name": "AI 채팅 제품 소개",
+    "english": "AI chatbot landing",
+    "category": "화면 구성",
+    "description": "AI 채팅 제품의 기능과 사용 예시를 소개하는 랜딩 화면입니다. 외부 서비스 전송은 차단된 데모입니다.",
+    "tags": [
+      "AI",
+      "채팅",
+      "제품"
+    ],
+    "preview": "./examples/tpl025/index.html",
+    "codePath": "./examples/tpl025/source.html",
+    "sourceName": "100 Free HTML Templates",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-html-templates/blob/bab6ec6c8900450aab90989d217942a67ad9b16d/saas-landing/ai-chatbot/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-TPL.txt",
+    "adaptation": "원본 HTML 보존. 미리보기에서는 양식의 외부 전송만 차단",
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "모바일 폭 375px에서 문서 가로 넘침 없음을 확인했으며, 실물 기기 및 전체 조작 검증은 하지 않았습니다."
+  }
+]

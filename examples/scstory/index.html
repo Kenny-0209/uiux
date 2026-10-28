@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>scroll-story-lab — scroll-driven animation patterns in vanilla JS and modern CSS</title>
+  <meta name="description" content="Reveals, parallax, pinned scenes and reading progress. Zero dependencies, view-source friendly.">
+  <style>
+    /* ------------------------------------------------------------------
+       scroll-story-lab — shared visual language
+       Dark zinc surfaces, one blue accent. No frameworks, no fonts loaded
+       over the network: the system stack is fast and looks native.
+       ------------------------------------------------------------------ */
+    :root {
+      --bg: #0A0D14;
+      --surface: #0F1626;
+      --border: #1E293B;
+      --accent: #2563EB;
+      --accent-bright: #38BDF8;
+      --title: #F1F5F9;
+      --body: #94A3B8;
+      --muted: #64748B;
+      --sans: -apple-system, 'Segoe UI', Inter, Roboto, sans-serif;
+      --mono: 'Cascadia Code', Consolas, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--body);
+      font-family: var(--sans);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent-bright);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* Header — consistent across every page of the repo */
+    .site-header { border-bottom: 1px solid var(--border); padding: 20px 0; }
+    .header-inner {
+      display: flex; flex-wrap: wrap; gap: 10px 28px;
+      align-items: baseline; justify-content: space-between;
+    }
+    .brand { font-family: var(--mono); font-size: 1.05rem; color: var(--accent-bright); text-decoration: none; }
+    .brand:hover { color: var(--title); }
+    .tagline { margin: 4px 0 0; font-size: .85rem; color: var(--muted); max-width: 46ch; }
+    .site-nav { display: flex; gap: 20px; }
+    .site-nav a {
+      color: var(--body); text-decoration: none; font-size: .9rem;
+      border-bottom: 1px solid transparent; transition: color .2s, border-color .2s;
+    }
+    .site-nav a:hover { color: var(--title); border-bottom-color: var(--accent); }
+
+    /* Hero */
+    .hero { padding: 88px 0 40px; max-width: 720px; }
+    .kicker {
+      font-family: var(--mono); font-size: .75rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--accent-bright); margin: 0 0 14px;
+    }
+    .hero h1 {
+      margin: 0 0 18px; color: var(--title);
+      font-size: clamp(2rem, 5.5vw, 3.2rem); line-height: 1.12; letter-spacing: -.02em;
+    }
+    .hero .lede { margin: 0; font-size: 1.05rem; max-width: 60ch; }
+
+    /* Demo cards */
+    .grid {
+      display: grid; gap: 18px; padding: 32px 0 8px;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    }
+    .card {
+      display: block; text-decoration: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 24px 20px;
+      transition: transform .25s ease, border-color .25s ease;
+    }
+    .card:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .card .file { font-family: var(--mono); font-size: .8rem; color: var(--accent-bright); margin: 0 0 10px; }
+    .card h2 { margin: 0 0 8px; color: var(--title); font-size: 1.15rem; line-height: 1.3; }
+    .card p { margin: 0 0 16px; font-size: .92rem; color: var(--body); }
+    .card .meta { font-family: var(--mono); font-size: .75rem; color: var(--muted); }
+
+    /* Principles strip */
+    .principles { padding: 56px 0 0; }
+    .principles h2 { color: var(--title); font-size: 1.3rem; margin: 0 0 18px; }
+    .principles ul {
+      list-style: none; margin: 0; padding: 0;
+      display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .principles li {
+      border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px;
+      font-size: .9rem;
+    }
+    .principles strong { color: var(--title); display: block; margin-bottom: 4px; font-weight: 600; }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      margin-top: 88px; padding: 26px 0 42px;
+      font-size: .85rem; color: var(--muted);
+    }
+    .site-footer a { color: var(--body); }
+    .site-footer a:hover { color: var(--accent-bright); }
+
+    /* Accessibility: this page only uses hover micro-motion, but we still
+       honour the preference — motion off means motion off. */
+    @media (prefers-reduced-motion: reduce) {
+      .card { transition: border-color .25s ease; }
+      .card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <a class="brand" href="index.html">scroll-story-lab</a>
+        <p class="tagline">Scroll-driven animation patterns in vanilla JS and modern CSS</p>
+      </div>
+      <nav class="site-nav" aria-label="Site">
+        <a href="https://github.com/AleBrito124356/scroll-story-lab">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="hero">
+      <p class="kicker">Open-source demo collection</p>
+      <h1>The scrollbar is a timeline. These pages play it.</h1>
+      <p class="lede">
+        Five self-contained pages, each teaching one family of scroll-driven techniques:
+        viewport reveals, performant parallax, pinned storytelling scenes, the new CSS
+        scroll timelines, and reading-progress UI. No build step, no libraries — clone,
+        open, view source. The comments are the documentation.
+      </p>
+    </section>
+
+    <section class="grid" aria-label="Demo pages">
+
+      <a class="card" href="reveals.html">
+        <p class="file">reveals.html</p>
+        <h2>Reveal on scroll</h2>
+        <p>
+          One reusable IntersectionObserver function drives fade-ups, staggered grids,
+          directional entrances, once-vs-repeat behaviour, and a hands-on look at
+          threshold and rootMargin.
+        </p>
+        <p class="meta">5 demos &middot; IntersectionObserver</p>
+      </a>
+
+      <a class="card" href="parallax.html">
+        <p class="file">parallax.html</p>
+        <h2>Parallax, done right</h2>
+        <p>
+          Depth without jank: transform-only layers updated inside requestAnimationFrame,
+          a layered hero, a speed comparison — and why background-attachment: fixed
+          betrays you on mobile.
+        </p>
+        <p class="meta">3 demos &middot; rAF + transform</p>
+      </a>
+
+      <a class="card" href="pinned-scenes.html">
+        <p class="file">pinned-scenes.html</p>
+        <h2>Pinned scenes</h2>
+        <p>
+          Editorial scrollytelling: a 300vh section pins its stage with position: sticky
+          while getBoundingClientRect turns raw scroll into a 0&ndash;1 progress value that
+          drives a three-step story.
+        </p>
+        <p class="meta">1 scene &middot; 3 steps &middot; sticky + progress math</p>
+      </a>
+
+      <a class="card" href="css-scroll-timelines.html">
+        <p class="file">css-scroll-timelines.html</p>
+        <h2>CSS scroll timelines</h2>
+        <p>
+          The zero-JavaScript future: animation-timeline: scroll() and view() power a
+          reading bar, an image that scales into view and sliding text — wrapped in
+          @supports with an honest fallback.
+        </p>
+        <p class="meta">3 demos &middot; no JavaScript at all</p>
+      </a>
+
+      <a class="card" href="progress.html">
+        <p class="file">progress.html</p>
+        <h2>Progress &amp; orientation</h2>
+        <p>
+          The quiet workhorses of long-form pages: a ten-line reading-progress bar, a
+          table of contents that highlights the section under your eyes, and a
+          back-to-top button that knows when to appear.
+        </p>
+        <p class="meta">3 demos &middot; scroll UI patterns</p>
+      </a>
+
+    </section>
+
+    <section class="principles">
+      <h2>House rules</h2>
+      <ul>
+        <li>
+          <strong>Zero dependencies</strong>
+          Plain HTML, CSS and vanilla JS. Everything renders offline; every demo fits
+          in one file you can actually read.
+        </li>
+        <li>
+          <strong>Reduced motion is respected</strong>
+          Every page carries a prefers-reduced-motion block. Decorative movement
+          collapses to opacity or disappears entirely — that is part of the craft.
+        </li>
+        <li>
+          <strong>Comments that teach</strong>
+          The source explains the technique, not just the syntax: why the observer
+          unobserves, why transforms beat top/left, why the runway is 300vh.
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      MIT &copy; 2026 Alejandro Brito &middot;
+      <a href="https://github.com/AleBrito124356/scroll-story-lab">github.com/AleBrito124356/scroll-story-lab</a>
+    </div>
+  </footer>
+
+</body>
+</html>

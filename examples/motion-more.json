@@ -1,0 +1,1239 @@
+[
+  {
+    "id": "codpt05",
+    "name": "페이드 후 측면 진입",
+    "english": "Fade out / slide in",
+    "category": "화면 전환",
+    "description": "기존 화면이 흐려지는 동안 새 화면이 측면에서 들어옵니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "Fade out / slide in",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=5",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt09",
+    "name": "이동하며 페이드",
+    "english": "Move with fade",
+    "category": "화면 전환",
+    "description": "두 화면이 서로 반대 방향으로 이동하며 투명도가 함께 변합니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "Move with fade",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=9",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt13",
+    "name": "서로 다른 속도의 슬라이드",
+    "english": "Asymmetric easing slide",
+    "category": "화면 전환",
+    "description": "나가는 화면과 들어오는 화면에 서로 다른 속도 곡선을 적용합니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "Asymmetric easing slide",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=13",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt17",
+    "name": "축소 후 슬라이드",
+    "english": "Scale down / slide in",
+    "category": "화면 전환",
+    "description": "기존 화면이 작아지는 동안 새 화면이 옆에서 들어옵니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "Scale down / slide in",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=17",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt21",
+    "name": "축소하며 겹치기",
+    "english": "Scale down / delayed zoom",
+    "category": "화면 전환",
+    "description": "기존 화면이 작아지고 새 화면이 시간 차를 두고 자리 잡습니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "Scale down / delayed zoom",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=21",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt22",
+    "name": "확대하며 겹치기",
+    "english": "Scale up / delayed zoom",
+    "category": "화면 전환",
+    "description": "화면이 확대되는 동작을 시간 차를 두어 연결합니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "Scale up / delayed zoom",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=22",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt23",
+    "name": "밀어내며 확대",
+    "english": "Slide away / scale in",
+    "category": "화면 전환",
+    "description": "기존 화면이 옆으로 밀려나면서 아래 화면이 확대됩니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "Slide away / scale in",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=23",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt28",
+    "name": "경첩처럼 회전 후 진입",
+    "english": "Hinged rotation / slide in",
+    "category": "화면 전환",
+    "description": "기존 화면이 한쪽 축을 중심으로 회전한 뒤 새 화면이 들어옵니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "Hinged rotation / slide in",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=28",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt32",
+    "name": "양면 플립 전환",
+    "english": "3D page flip",
+    "category": "화면 전환",
+    "description": "앞뒤 화면이 회전하며 카드의 양면처럼 뒤집힙니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "3D page flip",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=32",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt36",
+    "name": "쓰러지는 화면",
+    "english": "Falling page",
+    "category": "화면 전환",
+    "description": "기존 화면이 기울어 떨어지고 뒤에서 새 화면이 확대됩니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "Falling page",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=36",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt37",
+    "name": "신문 회전 전환",
+    "english": "Newspaper spin",
+    "category": "화면 전환",
+    "description": "기존 화면이 회전하며 작아지고 다음 화면이 회전하며 나타납니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "Newspaper spin",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=37",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt38",
+    "name": "화면 밀기와 진입",
+    "english": "3D push / slide in",
+    "category": "화면 전환",
+    "description": "기존 화면을 깊이 방향으로 밀며 다음 화면이 들어옵니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "3D push / slide in",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=38",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt42",
+    "name": "화면 밀기와 당기기",
+    "english": "3D push / pull",
+    "category": "화면 전환",
+    "description": "기존 화면은 밀리고 새 화면은 반대쪽에서 당겨집니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "3D push / pull",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=42",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt46",
+    "name": "접히는 화면",
+    "english": "3D fold / fade in",
+    "category": "화면 전환",
+    "description": "기존 화면이 가장자리를 중심으로 접히며 새 화면이 들어옵니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "3D fold / fade in",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=46",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt50",
+    "name": "펼쳐지는 화면",
+    "english": "3D unfold / slide out",
+    "category": "화면 전환",
+    "description": "기존 화면이 비켜나고 새 화면이 접힌 상태에서 펼쳐집니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "3D unfold / slide out",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=50",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt54",
+    "name": "방 회전 전환",
+    "english": "3D room rotation",
+    "category": "화면 전환",
+    "description": "두 화면이 방의 벽면처럼 함께 회전하며 장면이 바뀝니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "3D room rotation",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=54",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt62",
+    "name": "회전식 페이지 전환",
+    "english": "3D carousel transition",
+    "category": "화면 전환",
+    "description": "화면들이 회전판을 따라 돌아가는 방식으로 교체됩니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "3D carousel transition",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=62",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt66",
+    "name": "양쪽으로 회전 교체",
+    "english": "3D sides transition",
+    "category": "화면 전환",
+    "description": "기존 화면과 새 화면이 서로 다른 쪽 축을 중심으로 순차 회전합니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "3D sides transition",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=66",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codpt67",
+    "name": "입체 슬라이드 교체",
+    "english": "3D slide transition",
+    "category": "화면 전환",
+    "description": "기존 화면과 다음 화면이 깊이감을 가진 채 미끄러져 교체됩니다.",
+    "tags": [
+      "Codrops",
+      "화면 전환",
+      "3D slide transition",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/cdpt/index.html?effect=67",
+    "codePath": "./examples/cdpt/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdpt/js/pagetransitions.js"
+      },
+      {
+        "label": "원본 애니메이션 CSS",
+        "path": "./examples/cdpt/css/animations.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdpt/index.html"
+      }
+    ],
+    "sourceName": "Codrops PageTransitions",
+    "sourceUrl": "https://github.com/codrops/PageTransitions/tree/d608c934d683cab9558608409a912ef864bba2e8",
+    "license": "MIT",
+    "licensePath": "./examples/cdpt/LICENSE.txt",
+    "adaptation": "원본 CSS·JavaScript를 사용하고 갤러리의 패널에서 선택 전환을 반복하도록 HTML 구성",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codhover01",
+    "name": "배경이 위로 사라지는 버튼",
+    "english": "Button Pan",
+    "category": "모션과 인터랙션",
+    "description": "검은 배경이 위로 이동하며 버튼의 색과 글자 대비가 바뀝니다.",
+    "tags": [
+      "버튼",
+      "호버",
+      "Button Pan",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스 호버",
+      "터치 토글",
+      "키보드 클릭"
+    ],
+    "preview": "./examples/cdhover/pan.html",
+    "codePath": "./examples/cdhover/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdhover/css/base.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdhover/pan.html"
+      }
+    ],
+    "sourceName": "Codrops Button Hover Styles",
+    "sourceUrl": "https://github.com/codrops/ButtonHoverStyles/tree/3976fa1b65dced5d330db43c51081787c3e7b46e",
+    "license": "MIT",
+    "licensePath": "./examples/cdhover/LICENSE.txt",
+    "adaptation": "원본 버튼 HTML과 CSS를 사용하고 패널 배치 및 터치 토글을 추가",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codhover02",
+    "name": "글자가 교차하는 버튼",
+    "english": "Button Hyperion",
+    "category": "모션과 인터랙션",
+    "description": "배경이 사라지는 동시에 글자가 위로 나갔다 다시 들어옵니다.",
+    "tags": [
+      "버튼",
+      "호버",
+      "Button Hyperion",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스 호버",
+      "터치 토글",
+      "키보드 클릭"
+    ],
+    "preview": "./examples/cdhover/hyperion.html",
+    "codePath": "./examples/cdhover/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdhover/css/base.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdhover/hyperion.html"
+      }
+    ],
+    "sourceName": "Codrops Button Hover Styles",
+    "sourceUrl": "https://github.com/codrops/ButtonHoverStyles/tree/3976fa1b65dced5d330db43c51081787c3e7b46e",
+    "license": "MIT",
+    "licensePath": "./examples/cdhover/LICENSE.txt",
+    "adaptation": "원본 버튼 HTML과 CSS를 사용하고 패널 배치 및 터치 토글을 추가",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codhover03",
+    "name": "사선 배경 슬라이드",
+    "english": "Button Mimas",
+    "category": "모션과 인터랙션",
+    "description": "사선으로 기울어진 배경이 옆으로 이동하며 버튼의 색이 바뀝니다.",
+    "tags": [
+      "버튼",
+      "호버",
+      "Button Mimas",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스 호버",
+      "터치 토글",
+      "키보드 클릭"
+    ],
+    "preview": "./examples/cdhover/mimas.html",
+    "codePath": "./examples/cdhover/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdhover/css/base.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdhover/mimas.html"
+      }
+    ],
+    "sourceName": "Codrops Button Hover Styles",
+    "sourceUrl": "https://github.com/codrops/ButtonHoverStyles/tree/3976fa1b65dced5d330db43c51081787c3e7b46e",
+    "license": "MIT",
+    "licensePath": "./examples/cdhover/LICENSE.txt",
+    "adaptation": "원본 버튼 HTML과 CSS를 사용하고 패널 배치 및 터치 토글을 추가",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codhover04",
+    "name": "움직이는 텍스트 버튼",
+    "english": "Button Atlas",
+    "category": "모션과 인터랙션",
+    "description": "텍스트가 사라지며 반복되는 문구가 가로로 움직입니다.",
+    "tags": [
+      "버튼",
+      "호버",
+      "Button Atlas",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스 호버",
+      "터치 토글",
+      "키보드 클릭"
+    ],
+    "preview": "./examples/cdhover/atlas.html",
+    "codePath": "./examples/cdhover/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdhover/css/base.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdhover/atlas.html"
+      }
+    ],
+    "sourceName": "Codrops Button Hover Styles",
+    "sourceUrl": "https://github.com/codrops/ButtonHoverStyles/tree/3976fa1b65dced5d330db43c51081787c3e7b46e",
+    "license": "MIT",
+    "licensePath": "./examples/cdhover/LICENSE.txt",
+    "adaptation": "원본 버튼 HTML과 CSS를 사용하고 패널 배치 및 터치 토글을 추가",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codhover05",
+    "name": "겹친 레이어가 움직이는 버튼",
+    "english": "Button Pandora",
+    "category": "모션과 인터랙션",
+    "description": "앞쪽 버튼 레이어가 이동해 뒤에 있는 어두운 레이어가 드러납니다.",
+    "tags": [
+      "버튼",
+      "호버",
+      "Button Pandora",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스 호버",
+      "터치 토글",
+      "키보드 클릭"
+    ],
+    "preview": "./examples/cdhover/pandora.html",
+    "codePath": "./examples/cdhover/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdhover/css/base.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdhover/pandora.html"
+      }
+    ],
+    "sourceName": "Codrops Button Hover Styles",
+    "sourceUrl": "https://github.com/codrops/ButtonHoverStyles/tree/3976fa1b65dced5d330db43c51081787c3e7b46e",
+    "license": "MIT",
+    "licensePath": "./examples/cdhover/LICENSE.txt",
+    "adaptation": "원본 버튼 HTML과 CSS를 사용하고 패널 배치 및 터치 토글을 추가",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codhover06",
+    "name": "유기적 형태 변형 버튼",
+    "english": "Button Janus",
+    "category": "모션과 인터랙션",
+    "description": "곡선 배경의 모양과 테두리·텍스트의 위치가 함께 변합니다.",
+    "tags": [
+      "버튼",
+      "호버",
+      "Button Janus",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스 호버",
+      "터치 토글",
+      "키보드 클릭"
+    ],
+    "preview": "./examples/cdhover/janus.html",
+    "codePath": "./examples/cdhover/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdhover/css/base.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdhover/janus.html"
+      }
+    ],
+    "sourceName": "Codrops Button Hover Styles",
+    "sourceUrl": "https://github.com/codrops/ButtonHoverStyles/tree/3976fa1b65dced5d330db43c51081787c3e7b46e",
+    "license": "MIT",
+    "licensePath": "./examples/cdhover/LICENSE.txt",
+    "adaptation": "원본 버튼 HTML과 CSS를 사용하고 패널 배치 및 터치 토글을 추가",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codhover07",
+    "name": "화살표 모양 변형 버튼",
+    "english": "Button Anthe",
+    "category": "모션과 인터랙션",
+    "description": "배경이 사각형에서 화살표형으로 변하고 텍스트가 이동합니다.",
+    "tags": [
+      "버튼",
+      "호버",
+      "Button Anthe",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스 호버",
+      "터치 토글",
+      "키보드 클릭"
+    ],
+    "preview": "./examples/cdhover/anthe.html",
+    "codePath": "./examples/cdhover/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdhover/css/base.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdhover/anthe.html"
+      }
+    ],
+    "sourceName": "Codrops Button Hover Styles",
+    "sourceUrl": "https://github.com/codrops/ButtonHoverStyles/tree/3976fa1b65dced5d330db43c51081787c3e7b46e",
+    "license": "MIT",
+    "licensePath": "./examples/cdhover/LICENSE.txt",
+    "adaptation": "원본 버튼 HTML과 CSS를 사용하고 패널 배치 및 터치 토글을 추가",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  },
+  {
+    "id": "codhover08",
+    "name": "텍스트와 배경 교대",
+    "english": "Button Telesto",
+    "category": "모션과 인터랙션",
+    "description": "배경과 텍스트가 시간 차를 두고 변하는 호버입니다.",
+    "tags": [
+      "버튼",
+      "호버",
+      "Button Telesto",
+      "데스크톱",
+      "모바일",
+      "키보드",
+      "터치"
+    ],
+    "input": [
+      "마우스 호버",
+      "터치 토글",
+      "키보드 클릭"
+    ],
+    "preview": "./examples/cdhover/telesto.html",
+    "codePath": "./examples/cdhover/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdhover/css/base.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/cdhover/telesto.html"
+      }
+    ],
+    "sourceName": "Codrops Button Hover Styles",
+    "sourceUrl": "https://github.com/codrops/ButtonHoverStyles/tree/3976fa1b65dced5d330db43c51081787c3e7b46e",
+    "license": "MIT",
+    "licensePath": "./examples/cdhover/LICENSE.txt",
+    "adaptation": "원본 버튼 HTML과 CSS를 사용하고 패널 배치 및 터치 토글을 추가",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ]
+  }
+]

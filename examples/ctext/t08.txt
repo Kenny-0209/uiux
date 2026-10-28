@@ -1,0 +1,22 @@
+<!-- Markup: <div class="fx-anaglyph">DEPTH-3D</div> -->
+
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 18 Anaglyph-3D — red/cyan stereo channels drift apart and snap back */
+.fx-anaglyph {
+  font: 600 30px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .1em;
+  color: var(--ink);
+  animation: fx-anaglyph 2.4s ease-in-out infinite;
+}
+@keyframes fx-anaglyph {
+  0%, 100% { text-shadow: 0 0 0 #ff3355, 0 0 0 #33ddff; }
+  50% {
+    text-shadow:
+      -6px 0 1px #ff3355,
+       6px 0 1px #33ddff;
+  }
+}

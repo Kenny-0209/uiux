@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rotate Word Carousel — Animation Handbook</title>
+  <meta name="description" content="One word in a sentence keeps swapping for the next. Best for hero headlines.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/05-text-typography/rotate-word-carousel/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Rotate Word Carousel — Animation Handbook">
+  <meta property="og:description" content="One word in a sentence keeps swapping for the next. Best for hero headlines.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/05-text-typography/rotate-word-carousel/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Rotate Word Carousel — Animation Handbook">
+  <meta name="twitter:description" content="One word in a sentence keeps swapping for the next. Best for hero headlines.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Rotate Word Carousel", "name": "Rotate Word Carousel", "description": "One word in a sentence keeps swapping for the next. Best for hero headlines.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/05-text-typography/rotate-word-carousel/", "inLanguage": "en", "articleSection": "Text & Typography", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Text & Typography, Rotate Word Carousel"}</script>
+  <style>
+    :root{--ui-accent:#ff6f8b;--rot-dur:400ms;--rot-ease:cubic-bezier(.4,0,.2,1);--word-color:#ff6f8b;--hs:clamp(22px,3.5vw,42px)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;display:flex;align-items:center;justify-content:center;background:#04060c;padding:32px;overflow:hidden}
+    .headline{font-weight:700;font-size:var(--hs);line-height:1.3;color:#fff;text-align:center;display:flex;flex-direction:column;align-items:center;gap:0}
+    .static-line{display:flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:0.2em}
+    .static-text{color:rgba(255,255,255,.75)}
+    .rot-container{position:relative;display:inline-block;overflow:hidden;vertical-align:middle}
+    .rot-word{
+      display:block;
+      color:var(--word-color);
+      white-space:nowrap;
+      will-change:transform,opacity;
+      transition:transform var(--rot-dur) var(--rot-ease),opacity var(--rot-dur) ease
+    }
+    .rot-word.out-up{transform:translateY(-110%);opacity:0}
+    .rot-word.out-down{transform:translateY(110%);opacity:0}
+    .rot-word.out-left{transform:translateX(-110%);opacity:0}
+    .rot-word.out-right{transform:translateX(110%);opacity:0}
+    .rot-word.enter-below{transform:translateY(110%);opacity:0}
+    .rot-word.enter-above{transform:translateY(-110%);opacity:0}
+    .rot-word.enter-left{transform:translateX(-110%);opacity:0}
+    .rot-word.enter-right{transform:translateX(110%);opacity:0}
+    /* Multi-color classes */
+    .wc0{color:#58a6ff}.wc1{color:#56d364}.wc2{color:#d2a8ff}.wc3{color:#ffa657}.wc4{color:#f85149}
+    @media(prefers-reduced-motion:reduce){.rot-word{transition:none!important;transform:none!important;opacity:1!important}}
+    /* The views are hidden unless a mode shows them */
+    .ins,.cmp,.cap{display:none}
+    .cap{position:absolute;padding:3px 8px;border-radius:6px;background:rgba(8,10,16,.92);color:#f4f4f2;font:600 13px/1.25 var(--hb-font);text-align:center;max-width:calc(100% - 16px)}
+    @media(max-width:600px){.cap{font-size:12px}}
+    /* The window's edge is drawn on the real box, so it is always where the page puts it */
+    .stage[data-hb-mode="inside"] .rot-container,.stage[data-hb-mode="compare"] .rot-container{outline:2px dashed var(--ui-accent);outline-offset:2px}
+    /* See inside: the real headline, scaled so that what the window hides fits (--ins), put where the script measured (--ins-y, --ins-dx; its room shrinks with it, so it wraps as it did before) */
+    .stage[data-hb-mode="inside"]{align-items:flex-start;padding:var(--ins-y,0px) 10px 0}
+    .stage[data-hb-mode="inside"] .headline{position:relative;left:var(--ins-dx,0px);max-width:calc(100%*var(--ins,1));font-size:calc(var(--hs)*var(--ins,1))}
+    .stage[data-hb-mode="inside"] .static-line{row-gap:var(--ins-rg,.2em)} /* with Down, a window on a line of its own leaves room above it for the waiting word */
+    .stage[data-hb-mode="inside"] .ins{display:block;position:absolute;inset:0;pointer-events:none;font:700 calc(var(--hs)*var(--ins,1))/1.3 var(--hb-font)}
+    .stage[data-hb-mode="inside"] .ins .cap{display:block}
+    .gw{position:absolute;display:flex;justify-content:center;width:0}
+    .gtw{opacity:.6}
+    .gtw .rot-word[class*="out-"],.gtw .rot-word[class*="enter-"]{opacity:.55}
+    .gnx{opacity:.55}
+    .gword{display:block;white-space:nowrap}
+    .gnx,.gmeas,.garr{visibility:hidden}
+    .gnx.on,.garr.on{visibility:visible}
+    .gmeas{position:absolute;left:0;top:0}
+    .garr{position:absolute;height:12px;transform-origin:0 50%}
+    .garr::before{content:"";position:absolute;left:0;right:8px;top:4.5px;height:3px;border-radius:2px;background:var(--ui-accent)}
+    .garr::after{content:"";position:absolute;right:0;top:0;border:6px solid transparent;border-right:0;border-left:9px solid var(--ui-accent)}
+    /* Compare: two bands, each a headline. On top the mistake, a copy whose box does not clip; below it the real headline */
+    .stage[data-hb-mode="compare"]{flex-direction:column;align-items:stretch;padding:0}
+    .stage[data-hb-mode="compare"]::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:rgba(255,255,255,.14)}
+    .stage[data-hb-mode="compare"] .headline{flex:1 1 0;justify-content:center;padding:28px 12px 0;font-size:calc(var(--hs)*var(--cmp,1))}
+    .stage[data-hb-mode="compare"] .cmp{display:flex;overflow:hidden}
+    .cmp .rot-container{overflow:visible}
+    .stage[data-hb-mode="compare"] .side{display:block;left:12px;top:8px}
+    .stage[data-hb-mode="compare"] .side.second{top:calc(50% + 8px)}
+    .stage[data-hb-mode="compare"] .side.third{display:none;left:auto;right:12px;top:calc(50% + 8px)}
+    .stage[data-hb-mode="compare"].posed .side.third{display:block}
+    /* Held a moment into a slide: both words stand where the old one has slid 40% of its way out, with the fade it has there */
+    .stage[data-hb-mode="compare"].posed .rot-word{transition:none!important;transform:translate(var(--px),var(--py))!important;opacity:var(--po)!important}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="loop">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../enter-exit-typography/" rel="prev" aria-label="Previous: Enter/Exit Typography"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Enter/Exit Typography</span></a><a href="../glitch-text/" rel="next" aria-label="Next: Glitch Text"><span><span class="hb-dir">Next: </span>Glitch Text</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">05.11 · Text &amp; Typography</p>
+    <h1>Rotate Word Carousel</h1>
+    <p class="hb-lede">One word in a sentence keeps swapping for the next. Best for hero headlines.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Watch it</h2><p>It moves by itself. Pause it to look closely, or turn on slow motion to see each part of the movement.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage hb-dots hb-grow" id="stage">
+      <div class="headline" id="headline">
+        <div class="static-line">
+          <span class="static-text" id="static-text">We craft for</span>
+          <div class="rot-container" id="rot-container">
+            <span class="rot-word" id="rot-word">Designers</span>
+          </div>
+        </div>
+      </div>
+      <div class="ins" aria-hidden="true" inert>
+        <div class="gw gtw"><span class="rot-word"></span></div>
+        <div class="gw gnx"><span class="gword"></span></div>
+        <span class="gword gmeas"></span>
+        <span class="garr"></span>
+        <p class="cap" data-hb-caption>The window: only what is inside it shows</p>
+        <p class="cap" data-hb-caption>Next word waits here, out of sight</p>
+        <p class="cap" data-hb-caption>Slides in under half a second, stays two seconds</p>
+      </div>
+      <p class="cap side first" aria-hidden="true" data-hb-caption>No window</p>
+      <p class="cap side second" aria-hidden="true" data-hb-caption>In a window</p>
+      <p class="cap side third" aria-hidden="true" data-hb-caption>A moment into a slide</p>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-pause" data-hb-pause data-state="playing"><svg class="hb-ic hb-i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="hb-ic hb-i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9z"/></svg><span class="hb-pause-label">Pause</span></button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the changing word sits in a small window, and only what is inside it shows. The next word waits just outside, out of sight, and slides in as the old one leaves.</p>
+      <p data-hb-for="compare" hidden>No window lets the sliding words show outside the dashed box. In a window cuts them off at its edge, so each word seems to come from behind the text.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting and see the difference as it moves.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="dir-lbl">Slide direction</p>
+        <div class="seg" id="dir-seg" role="group" aria-labelledby="dir-lbl">
+          <button type="button" data-dir="up" class="on" aria-pressed="true">Up</button>
+          <button type="button" data-dir="down" aria-pressed="false">Down</button>
+          <button type="button" data-dir="left" aria-pressed="false">Left</button>
+          <button type="button" data-dir="right" aria-pressed="false">Right</button>
+        </div>
+        <p class="hb-hint">Which way the words slide.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-dur="650" aria-pressed="false">Slow</button>
+          <button type="button" data-dur="400" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-dur="250" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">How fast one word slides out and the next in.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="hold-lbl">Time on each word</p>
+        <div class="seg" id="hold-seg" role="group" aria-labelledby="hold-lbl">
+          <button type="button" data-hold="1200" aria-pressed="false">Short</button>
+          <button type="button" data-hold="2000" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-hold="3200" aria-pressed="false">Long</button>
+        </div>
+        <p class="hb-hint">How long each word stays still to be read.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Different color per word</span><input class="hb-switch" type="checkbox" role="switch" id="color-tog" checked autocomplete="off"></label>
+          <p class="hb-hint">A new color draws the eye to each change.</p>
+        </div>
+        <div class="hb-setting">
+          <label class="hb-setting-name" for="sentence-inp">Your sentence</label>
+          <input class="hb-text" type="text" id="sentence-inp" value="We craft for" autocomplete="off">
+          <p class="hb-hint">The words that stay still before the changing one.</p>
+        </div>
+        <div class="hb-setting">
+          <label class="hb-setting-name" for="words-inp">Your words, one per line</label>
+          <textarea class="hb-text" id="words-inp" autocomplete="off">Designers
+Developers
+Humans
+Teams
+Startups</textarea>
+          <p class="hb-hint">Words of similar length keep the sentence steady.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a rotating word to [your headline, with the word that should change]. Keep the rest of the sentence still and swap only that one word: the current word slides out of sight and the next one slides in from the opposite side, clipped by an invisible box so it seems to come from behind the text. Hold each word long enough to read, then move on, repeating the list forever. Words of similar length keep the sentence from jumping. Screen readers should hear each new word once. If the visitor has reduced motion turned on, swap the words without sliding. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Hero headlines</li><li>Taglines</li><li>Service lists</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Body text</li><li>Long word lists</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const rotWord=document.getElementById('rot-word');
+  const rotBox=document.getElementById('rot-container');
+  const headline=document.getElementById('headline');
+  const staticText=document.getElementById('static-text');
+  const stage=document.getElementById('stage');
+  const vars=document.documentElement.style;
+  const slowTog=document.getElementById('slow-tog');
+  const colorTog=document.getElementById('color-tog');
+  const sentenceIn=document.getElementById('sentence-inp');
+  const wordsIn=document.getElementById('words-inp');
+  const COLORS=['wc0','wc1','wc2','wc3','wc4'];
+  const outClasses=['out-up','out-down','out-left','out-right'];
+  const enterClasses=['enter-below','enter-above','enter-left','enter-right'];
+  const outMap={up:'out-up',down:'out-down',left:'out-left',right:'out-right'};
+  const enterMap={up:'enter-below',down:'enter-above',left:'enter-right',right:'enter-left'};
+  const DEFAULT_WORDS=['Designers','Developers','Humans','Teams','Startups'];
+  let dir='up',rotDur=400,hold=2000,wordIdx=0;
+  // Captured once at the start of each slide (startSlide), then reused by every phase of that same slide, so a
+  // setting change mid-slide never mismatches the exit and entry sides or the two waits' durations.
+  let curDir='up',stepDur=rotDur,nextIdx=0,nextWordVal='';
+  // The views draw look-alikes of the word; they take every class and text change at the same calls as the real word, so they move with it
+  const twins=[],each=fn=>{fn(rotWord);twins.forEach(fn)};
+  let mode='normal',phase='hold'; // phase is 'enter' from the swap to the end of the entry, else 'hold'
+
+  function getWords(){
+    const words=wordsIn.value.split('\n').map(w=>w.trim()).filter(Boolean);
+    return words.length?words:DEFAULT_WORDS; // an empty or blank list falls back to the defaults
+  }
+  function dur(){return slowTog.checked?rotDur*3:rotDur}
+
+  function setColor(el,i){
+    el.classList.remove(...COLORS);
+    if(colorTog.checked){el.style.color='';el.classList.add(COLORS[i%COLORS.length])}
+    else el.style.color='var(--word-color)';
+  }
+
+  // Pause freezes the step under way: its transition stops where it is and its timer keeps the time it had
+  // left. Every timer of the loop goes through wait(), so there is always exactly one chain and Play can
+  // never start a second one.
+  let timer=0,next=null,due=0,left=0,held=[],paused=false;
+  function wait(fn,ms){clearTimeout(timer);next=fn;if(paused){left=ms;return}due=performance.now()+ms;timer=setTimeout(()=>{next=null;fn()},ms)}
+  function freeze(){paused=true;clearTimeout(timer);if(next)left=Math.max(0,due-performance.now());held=stage.getAnimations({subtree:true}).filter(a=>a.playState==='running');held.forEach(a=>a.pause())}
+  function thaw(){
+    paused=false;
+    held.forEach(a=>{
+      if(a.playState!=='paused')return;
+      // play() on an animation that has already reached its end rewinds it to the start, so one that ended
+      // while its pause was still pending (Pause pressed in the last frame of a transition) is finished instead
+      if(a.currentTime>=a.effect.getComputedTiming().endTime)a.finish();else a.play();
+    });
+    held=[];
+    if(next)wait(next,left);
+  }
+  document.addEventListener('hb:pause',e=>{e.detail.paused?freeze():thaw();deal()});
+
+  // One slide, in four waited phases: exit transition, an instant snap to the entry side (needs a tick to
+  // register before it can transition), entry transition, then the hold before the next slide. Slow motion
+  // stretches --rot-dur and the two transition waits; the 20ms step and the hold stay the same either way.
+  function startSlide(){
+    const words=getWords();
+    if(words.length<2)return;
+    nextIdx=(wordIdx+1)%words.length;
+    nextWordVal=words[nextIdx];
+    curDir=dir;
+    stepDur=dur();
+    vars.setProperty('--rot-dur',stepDur+'ms');
+    each(w=>w.classList.add(outMap[curDir]));
+    wait(afterExit,stepDur+30);
+  }
+  // The same change on the word and its look-alikes, with transitions off, so none of them slides back through the line
+  function snap(change){
+    each(w=>w.getAnimations().forEach(a=>{if(!(a instanceof CSSTransition))a.cancel()})); // a copied slide stops with the real word's
+    each(w=>{w.style.transition='none';change(w)});
+    void rotWord.offsetWidth;
+    each(w=>{w.style.transition=''});
+  }
+  function afterExit(){
+    wordIdx=nextIdx; // update as soon as the incoming word is shown, so a color change mid-entry uses it
+    phase='enter';
+    // jump to the entry side without transitioning from the exit side
+    snap(w=>{w.textContent=nextWordVal;setColor(w,wordIdx);w.classList.remove(...outClasses,...enterClasses);w.classList.add(enterMap[curDir])});
+    wait(afterSnap,20);
+    setNext();layout();
+  }
+  function afterSnap(){
+    each(w=>w.classList.remove(...enterClasses));
+    wait(afterEnter,stepDur+50);
+  }
+  function afterEnter(){
+    phase='hold';showNext();
+    wait(startSlide,hold);
+  }
+
+  function start(){
+    clearTimeout(timer);next=null;
+    wordIdx=0;
+    const words=getWords();
+    // snap back to rest without replaying the exit slide in reverse
+    snap(w=>{w.classList.remove(...outClasses,...enterClasses);w.textContent=words[0];setColor(w,0)});
+    phase='hold';
+    wait(startSlide,hold); // while paused, wait() only records this; Play resumes from a fresh hold
+    showNext();deal();
+  }
+
+  sentenceIn.addEventListener('input',e=>{staticText.textContent=cStatic.textContent=e.target.value;layout()});
+  wordsIn.addEventListener('input',start);
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  choices('dir-seg',d=>{dir=d.dir;showNext();deal()});
+  choices('speed-seg',d=>{rotDur=+d.dur;vars.setProperty('--rot-dur',dur()+'ms');layout()});
+  choices('hold-seg',d=>{hold=+d.hold;layout()});
+  colorTog.addEventListener('change',()=>{each(w=>setColor(w,wordIdx));setNext()});
+  slowTog.addEventListener('change',layout);
+
+  // ---- See inside and Compare ----
+  const reduceMQ=matchMedia('(prefers-reduced-motion: reduce)');
+  const ins=stage.querySelector('.ins'),tw=ins.querySelector('.gtw'),nx=ins.querySelector('.gnx'),nxWord=nx.firstElementChild;
+  const meas=ins.querySelector('.gmeas'),arrow=ins.querySelector('.garr'),caps=[...ins.querySelectorAll('.cap')];
+  // Compare's top band: the headline again, its ids and live region left out, whose window does not clip
+  const copy=headline.cloneNode(true);
+  copy.className+=' cmp';copy.setAttribute('aria-hidden','true');copy.inert=true;
+  copy.removeAttribute('id');copy.querySelectorAll('[id]').forEach(n=>n.removeAttribute('id'));
+  const cStatic=copy.querySelector('.static-text'),cWord=copy.querySelector('.rot-word');
+  cWord.removeAttribute('aria-live');stage.insertBefore(copy,headline);
+  twins.push(tw.firstElementChild,cWord);
+
+  const ENTER={up:'translateY(110%)',down:'translateY(-110%)'};
+  const say=ms=>ms<=300?'a quarter of a second':ms<=500?'under half a second':ms<=800?'under a second':ms<=1300?'about a second':ms<=2100?'two seconds':'three seconds';
+  // The word that waits outside the window: the next one, shown while the word stands still
+  function setNext(){
+    const words=getWords(),i=(wordIdx+1)%words.length;
+    nxWord.textContent=words[i];setColor(nxWord,i);
+    const on=words.length>1&&(phase==='hold'||reduceMQ.matches);
+    nx.classList.toggle('on',on);arrow.classList.toggle('on',on);
+  }
+  function showNext(){setNext();layout()}
+  // A look-alike takes the word's state, and the rest of the slide under way, when its view is first shown
+  function mirror(w){
+    w.getAnimations().forEach(a=>a.cancel());
+    w.className=rotWord.className;w.textContent=rotWord.textContent;w.style.color=rotWord.style.color;
+    rotWord.getAnimations().forEach(a=>{
+      const kf=a.effect.getKeyframes();
+      if(w!==cWord&&'opacity' in kf[0])return; // the faint twin keeps its own fade, which holds it faint past the window's edge
+      const m=w.animate(kf,a.effect.getTiming());
+      if(a.playState==='paused'){m.currentTime=a.currentTime;m.pause();held.push(m)} // Play resumes it with the real word
+      else if(a.startTime!==null)m.startTime=a.startTime; // a running one keeps step with the real word
+    });
+  }
+  // See inside is measured, as the page sizes the window to the word: everything is scaled (the headline's font) to fit, the
+  // window's edge is on the real box, the faint twin and the waiting word sit centered on it, and the captions go next to them
+  function layout(){
+    if(mode==='compare'){ // a long text is scaled down until the headline fits one band
+      stage.style.setProperty('--cmp',1);
+      stage.style.setProperty('--cmp',Math.max(.5,Math.min(1,(parseFloat(getComputedStyle(stage).minHeight)/2-36)/headline.firstElementChild.offsetHeight)));
+    }
+    if(mode!=='inside')return;
+    const st=stage.style,GAP=6,words=getWords(),vert=dir==='up'||dir==='down',down=dir==='down';
+    caps[2].textContent='Slides in '+say(dur())+', stays '+say(hold);
+    for(const [k,v] of [['--ins',1],['--ins-y','0px'],['--ins-dx','0px'],['--ins-rg',down?'1.6em':'.2em']])st.setProperty(k,v);
+    caps.forEach(c=>{c.style.left=c.style.top='0px'}); // measured from the box's left edge, where they have all their room
+    const W=stage.clientWidth,Hs=stage.clientHeight,[h1,h2,h3]=caps.map(c=>c.offsetHeight);
+    let wmax=0;
+    words.forEach(w=>{meas.textContent=w;wmax=Math.max(wmax,meas.offsetWidth)});
+    // how far the picture reaches above and below the headline's top, and the pixels the row of the arrow adds below it (X, not scaled)
+    const X=vert?0:dir==='right'?24:22;
+    const reach=(bx,hd)=>{const ct=bx.top-hd.top,H=bx.height;return [vert?Math.min(0,ct-1.1*H):0,Math.max(hd.height,vert?ct+2.1*H:ct+(dir==='right'?2*H:H))]};
+    const b0=rotBox.getBoundingClientRect(),hd0=headline.getBoundingClientRect(),[ut,ub]=reach(b0,hd0);
+    // where the window stands beside the headline's middle (a word on a line of its own stands at its middle), and the widest headline's half
+    const c=b0.left+b0.width/2-hd0.left-hd0.width/2,hh=(hd0.width-b0.width+wmax)/2;
+    const fixT=GAP+(down?h2+4+h3:h1),fixB=GAP+(down?h1:h2+4+h3);
+    // the picture reaches a to the left and b to the right of the headline's middle
+    const a=dir==='right'?Math.max(hh,1.6*wmax-c):hh,b=vert?hh+28:dir==='left'?Math.max(hh,c+1.6*wmax):hh;
+    const k=Math.max(.3,Math.min(1,(Hs-16-fixT-fixB-X)/(ub-ut),(W-20)/(a+b)));
+    st.setProperty('--ins',k);
+    st.setProperty('--ins-y',Math.max(0,(Hs-((ub-ut)*k+X+fixT+fixB))/2+fixT-ut*k)+'px');
+    st.setProperty('--ins-dx',(a-b)*k/2+'px');
+    const o=stage.getBoundingClientRect(),bx=rotBox.getBoundingClientRect(),hd=headline.getBoundingClientRect();
+    const ox=o.left+stage.clientLeft,oy=o.top+stage.clientTop,[u,v]=reach(bx,hd);
+    const cx=bx.left+bx.width/2-ox,top=bx.top-oy,H=bx.height,wn=nxWord.offsetWidth;
+    // the waiting word stands a tenth of its width clear of the window, also when it is narrower than the word in the window
+    const mv=vert?0:(.6*wn+Math.max(wn,bx.width)/2)*(dir==='left'?1:-1);
+    for(const g of [tw,nx])Object.assign(g.style,{left:cx+'px',top:top+(g===nx&&dir==='right'?H+24:0)+'px',height:H+'px'});
+    nxWord.style.transform=vert?ENTER[dir]:'translateX('+mv+'px)';
+    // the arrow is as long as the move: from the waiting word to the window
+    const gx=cx+mv,ay=vert?top+H/2+(down?-1.1:1.1)*H:top+H+14;
+    Object.assign(arrow.style,{width:(vert?1.1*H:Math.abs(mv))+'px',left:(vert?cx+Math.max(bx.width,wn)/2+10:gx)+'px',top:ay-6+'px',transform:`rotate(${vert?(down?90:-90):dir==='left'?180:0}deg)`});
+    const put=(c,mid,y)=>{c.style.left=Math.max(8,Math.min(W-8-c.offsetWidth,mid-c.offsetWidth/2))+'px';c.style.top=y+'px'};
+    const yT=hd.top-oy+u-GAP,yB=hd.top-oy+v+X+GAP;
+    put(caps[0],cx,down?yB:yT-h1);
+    put(caps[1],gx,down?yT-h2:yB);
+    put(caps[2],gx,down?yT-h2-4-h3:yB+h2+4);
+  }
+
+  // Compare's rest pose: while the loop stands still (in a hold, or in the middle of a slide, where the fade has often taken both words
+  // away) both words stand a moment into a slide: moved POSE of the way, with the fade the page's own curves give at that moment
+  const EASE=[.4,0,.2,1],FADE=[.25,.1,.25,1],POSE=.4;
+  function curveAt([a,b,c,e],x){
+    const at=(p,q,t)=>3*p*t*(1-t)*(1-t)+3*q*t*t*(1-t)+t*t*t;
+    let lo=0,hi=1,t=x;
+    for(let i=0;i<30;i++){t=(lo+hi)/2;if(at(a,c,t)<x)lo=t;else hi=t}
+    return at(b,e,t);
+  }
+  let posed=false;
+  function deal(){
+    const want=mode==='compare'&&paused;
+    if(want){
+      let lo=0,hi=1; // the moment (0 to 1 of the slide) at which the move has gone POSE of its way
+      for(let i=0;i<30;i++){const t=(lo+hi)/2;if(curveAt(EASE,t)<POSE)lo=t;else hi=t}
+      const go=POSE*110;
+      stage.style.setProperty('--px',({left:-go,right:go}[dir]||0)+'%');
+      stage.style.setProperty('--py',({up:-go,down:go}[dir]||0)+'%');
+      stage.style.setProperty('--po',(1-curveAt(FADE,lo)).toFixed(3));
+    }
+    if(want!==posed){
+      posed=want;
+      if(want){
+        // the pose cancels the words' transitions, so a slide the pause stopped goes on as a paused copy, which Play resumes
+        [rotWord,cWord].forEach(w=>w.getAnimations().forEach(a=>{
+          if(!(a instanceof CSSTransition))return;
+          const m=w.animate(a.effect.getKeyframes(),a.effect.getTiming());
+          m.currentTime=a.currentTime;m.pause();held.push(m);a.cancel();
+        }));
+        stage.classList.add('posed');
+      }else{ // lifted at once, with no transition back
+        const ws=[rotWord,cWord];
+        ws.forEach(w=>w.style.transition='none');stage.classList.remove('posed');void rotWord.offsetWidth;ws.forEach(w=>w.style.transition='');
+      }
+    }
+    describe();
+  }
+  // Under reduced motion the loop starts paused and the views are stills; the notes say so only while that holds. A note is
+  // rewritten only when its words change, as its box is read out loud.
+  const notes=[...document.querySelectorAll('[data-hb-for]')],moving=notes.map(n=>n.textContent);
+  const still=['Shown still: the dashed box is the window, and only what is inside it shows. The faint word waits just outside it, out of sight, and would slide in.',
+    "Shown still, a moment into a slide: in No window the old word sticks out of the dashed box, whole; In a window cuts it off at the box's edge."];
+  const swaps=['With reduced motion on, the words swap in place and never slide. The dashed box is the window, and the faint word is the one that comes next.',
+    'With reduced motion on, No window and In a window both swap the word in place. Press Pause to see them a moment into a slide.'];
+  function describe(){
+    notes.forEach((n,i)=>{
+      const words=!reduceMQ.matches?moving[i]:paused&&(i===0||posed)?still[i]:swaps[i];
+      if(n.textContent!==words)n.textContent=words;
+    });
+  }
+  document.addEventListener('hb:mode',e=>{
+    mode=e.detail.mode;
+    if(mode==='inside'){mirror(tw.firstElementChild);setNext()}
+    if(mode==='compare')mirror(cWord);
+    layout();deal();
+  });
+  reduceMQ.addEventListener('change',()=>{setNext();layout();deal()});
+  let resizeTimer;
+  addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(layout,100)});
+  if(document.fonts)document.fonts.ready.then(layout);
+
+  rotWord.setAttribute('aria-live','polite');
+  vars.setProperty('--rot-dur',rotDur+'ms');
+  start();
+</script>
+</body>
+</html>

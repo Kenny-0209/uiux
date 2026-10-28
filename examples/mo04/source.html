@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toggle / Switch Slide — Animation Handbook</title>
+  <meta name="description" content="The knob slides across as the switch turns on or off. Best for settings.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/toggle-switch/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Toggle / Switch Slide — Animation Handbook">
+  <meta property="og:description" content="The knob slides across as the switch turns on or off. Best for settings.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/toggle-switch/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Toggle / Switch Slide — Animation Handbook">
+  <meta name="twitter:description" content="The knob slides across as the switch turns on or off. Best for settings.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Toggle / Switch Slide", "name": "Toggle / Switch Slide", "description": "The knob slides across as the switch turns on or off. Best for settings.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/toggle-switch/", "inLanguage": "en", "articleSection": "Micro-Interactions", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Micro-Interactions, Toggle / Switch Slide"}</script>
+  <style>
+    :root{--ui-accent:#ff9d5c;--ui-border:rgba(255,255,255,.09);--ui-text:#f4f4f2;--ui-muted:#8a8a92;--tog-dur:200ms;--tog-ease:cubic-bezier(.4,0,.2,1);--on-color:#58a6ff}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;padding:32px;background:#0b0b0d}
+    /* A window this short gives the stage 260px, less than the three switches need: the stage gives up some spacing, the switches keep their size */
+    @media(min-width:601px) and (max-height:620px){.stage{gap:20px;padding:20px}}
+    .tog-row{display:flex;align-items:center;gap:16px;width:100%;max-width:320px}
+    /* Each name is a label for its switch and a tap target of its own: 44px tall for touch */
+    .tog-label{flex:1;display:flex;align-items:center;min-height:44px;font-size:15px;font-weight:600;color:var(--ui-text);cursor:pointer;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+    /* Base track. The label is 44px tall for touch; the visible track is inset to 30px (36px for -lg) */
+    .sw{position:relative;width:52px;height:44px;flex-shrink:0;cursor:pointer;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+    .sw input{position:absolute;opacity:0;width:0;height:0}
+    .sw-track{position:absolute;inset:7px 0;border-radius:15px;background:var(--ui-border);transition:background var(--tog-dur) var(--tog-ease)}
+    .sw-thumb{position:absolute;top:10px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;transition:transform var(--tog-dur) var(--tog-ease);box-shadow:0 1px 4px rgba(0,0,0,.4)}
+    .sw input:checked~.sw-track{background:var(--on-color)}
+    .sw input:checked~.sw-thumb{transform:translateX(22px)}
+    /* The checkbox is invisible, so keyboard focus shows on the track beside it */
+    .sw input:focus-visible~.sw-track{outline:2px solid var(--ui-accent);outline-offset:2px}
+    /* Springy knob variant */
+    .sw.elastic .sw-thumb{transition:transform var(--tog-dur) cubic-bezier(.34,1.56,.64,1)}
+    /* Large with icons */
+    .sw-lg{width:68px}
+    .sw-lg .sw-track{inset:4px 0}
+    .sw-lg .sw-thumb{top:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--ui-muted)}
+    .sw-lg .sw-thumb::before{content:'🌙'}
+    .sw-lg input:checked~.sw-thumb{transform:translateX(32px)}
+    .sw-lg input:checked~.sw-thumb::before{content:'☀️'}
+    .sw-lg input:checked~.sw-track{background:#ffa657}
+    /* See inside and Compare. Their words are plain pills on a dark backing; everything they draw uses the page's own numbers and variables. */
+    .sw{--c-on:var(--on-color);--tr:22px}
+    .sw-lg{--c-on:#ffa657;--tr:32px}
+    .dia,.row-cap,.side,.when,.cp{display:none}
+    .dia,.row-cap,.side,.when{pointer-events:none}
+    .cap,.row-cap,.side,.when{margin:0;padding:4px 8px;border-radius:6px;background:rgba(11,11,13,.92);color:#f4f4f2;font:600 13px/1.25 var(--hb-font)}
+    /* See inside: the real rows stay on the left and keep working. On the right the top switch is drawn about three times bigger and pulled
+       apart into its layers, back to front: the hidden checkbox, the track, the knob (with a dashed ring where it was and an arrow along its
+       slide). Sized in units (--u) from the room it has; its parts follow the top switch, with the page's own Speed, Feel and On color. */
+    .stage[data-hb-mode="inside"]{--rg:20px;display:grid;grid-template-columns:minmax(200px,min(320px,38%)) minmax(0,1fr);
+      grid-template-rows:minmax(0,1fr) auto auto auto auto minmax(0,1fr);gap:0 clamp(16px,3vw,40px);align-items:center;padding:clamp(12px,3vw,32px)}
+    .stage[data-hb-mode="inside"] .tog-row{grid-column:1;grid-row:calc(var(--r) + 2)}
+    .stage[data-hb-mode="inside"] .tog-row + .tog-row{margin-top:var(--rg)}
+    .stage[data-hb-mode="inside"] .dia{display:block;grid-area:1/2/-1/3;align-self:stretch;min-width:0;min-height:0;container-type:size}
+    .dia-in{--u:max(1.2px,min(3px,calc(100cqh / 104),calc((100cqw - 170px) / 76)));--sheet:#17171c;--line:rgba(244,244,242,.55);--ink:#f4f4f2;
+      height:100%;display:grid;grid-template-columns:calc(var(--u) * 76) minmax(0,1fr);gap:clamp(8px,2cqw,16px);align-items:center}
+    .fan{position:relative;height:calc(var(--u) * 104)}
+    .d{position:absolute;left:calc(var(--u) * var(--x));top:calc(var(--u) * var(--y));width:calc(var(--u) * var(--w));height:calc(var(--u) * var(--h))}
+    .sheet{background:var(--sheet);outline:2px solid var(--line);outline-offset:-2px}
+    .cbx{border:3px solid var(--ink);border-radius:calc(var(--u) * 3)}
+    .cbx::after{content:'';position:absolute;left:31%;top:2%;width:28%;height:58%;border:solid var(--ink);border-width:0 3px 3px 0;transform:rotate(45deg);opacity:0}
+    .dia.on .cbx::after{opacity:1}
+    .d-track{border-radius:calc(var(--u) * 15);background:rgba(255,255,255,.22);transition:background var(--tog-dur) var(--tog-ease)}
+    .dia.on .d-track{background:var(--on-color)}
+    .d-knob,.d-ghost{border-radius:50%}
+    .d-knob{background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.4);transition:transform var(--tog-dur) var(--tog-ease)}
+    .dia.on .d-knob{transform:translateX(91.667%)}
+    .d-ghost{border:2px dashed rgba(244,244,242,.65);margin-left:calc(var(--u) * 22)}
+    .dia.on .d-ghost{margin-left:0}
+    .d-arrow{height:0;border-top:2px solid var(--ui-accent)}
+    .d-arrow::after{content:'';position:absolute;right:1px;top:-5px;width:8px;height:8px;border:solid var(--ui-accent);border-width:2px 2px 0 0;transform:rotate(45deg)}
+    .dia:not(.on) .d-arrow{transform:scaleX(-1)}
+    .caps{display:flex;flex-direction:column;justify-content:space-around;align-items:flex-start;gap:4px;height:calc(var(--u) * 104);min-width:0}
+    .cap{max-width:100%}
+    @media(min-width:761px){
+      .stage[data-hb-mode="inside"] .row-cap{display:block;grid-area:2/1;justify-self:start;margin-bottom:14px}
+      .stage[data-hb-mode="inside"] .tog-row:nth-child(1){outline:2px dashed rgba(244,244,242,.55);outline-offset:6px}
+    }
+    @media(max-width:600px),(min-width:601px) and (max-width:760px) and (min-height:621px){
+      .stage[data-hb-mode="inside"]{--rg:4px;grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto minmax(0,1fr);padding:10px 12px}
+      .stage[data-hb-mode="inside"] .tog-row{grid-row:auto}
+      .stage[data-hb-mode="inside"] .tog-lg{display:none}
+      .stage[data-hb-mode="inside"] .dia{grid-area:3/1;margin-top:6px}
+    }
+    /* Compare: the rows twice (stacked on phones, two rows each): on the left a copy that flips at once, on the right the real switches. At rest
+       the right half is held a moment after a click: each knob and track part way to where its switch now stands (the page's own curves, worked
+       out below) with a dashed ring where the knob started. A look only: the checkboxes keep their state. It lifts when a switch is pressed or Show me runs. */
+    .stage[data-hb-mode="compare"]{--rg:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:center;align-items:center;
+      justify-items:center;gap:var(--rg) clamp(12px,3vw,32px);padding:clamp(10px,2.5vw,24px)}
+    .stage[data-hb-mode="compare"]::after{content:'';position:absolute;top:0;bottom:0;left:50%;border-left:1px solid rgba(244,244,242,.12)}
+    .stage[data-hb-mode="compare"] .tog-row{grid-column:2;grid-row:calc(var(--r) + 1)}
+    .stage[data-hb-mode="compare"] .cp{display:flex;grid-column:1;pointer-events:none}
+    .stage[data-hb-mode="compare"] .side{display:block;grid-row:1}
+    .stage[data-hb-mode="compare"] .side.first{grid-column:1}
+    .stage[data-hb-mode="compare"] .side.second{grid-column:2}
+    .stage[data-hb-mode="compare"] .when{display:block;grid-area:5/2;visibility:hidden}
+    .stage[data-hb-mode="compare"].posed .when{visibility:visible}
+    .cp .sw-track,.cp .sw-thumb{transition:none!important}
+    .cp .sw.on .sw-track{background:var(--c-on)}
+    .cp .sw.on .sw-thumb{transform:translateX(var(--tr))}
+    .cp .sw-lg.on .sw-thumb::before{content:'☀️'}
+    .stage[data-hb-mode="compare"].posed .tog-row:not(.cp) .sw-thumb{transform:translateX(calc(var(--tr) * (1 - var(--f))))!important;transition:none!important}
+    .stage[data-hb-mode="compare"].posed .tog-row:not(.cp) .sw input:checked~.sw-thumb{transform:translateX(calc(var(--tr) * var(--f)))!important}
+    .stage[data-hb-mode="compare"].posed .tog-row:not(.cp) .sw-track{background:color-mix(in srgb,var(--c-on) calc(100% - var(--ft) * 100%),var(--ui-border))!important;transition:none!important}
+    .stage[data-hb-mode="compare"].posed .tog-row:not(.cp) .sw input:checked~.sw-track{background:color-mix(in srgb,var(--c-on) calc(var(--ft) * 100%),var(--ui-border))!important}
+    .stage[data-hb-mode="compare"].posed .tog-row:not(.cp) .sw-track::before{content:'';position:absolute;top:3px;left:calc(3px + var(--tr));width:24px;height:24px;
+      border-radius:50%;border:2px dashed rgba(244,244,242,.65)}
+    .stage[data-hb-mode="compare"].posed .tog-row:not(.cp) .sw input:checked~.sw-track::before{left:3px}
+    .stage[data-hb-mode="compare"].posed .tog-row:not(.cp) .sw-lg .sw-track::before{width:30px;height:30px}
+    @media(max-width:600px){
+      .cap,.row-cap,.side,.when{padding:3px 7px;font-size:12px}
+      .stage[data-hb-mode="compare"]{--rg:2px;grid-template-columns:minmax(0,1fr);padding:10px}
+      .stage[data-hb-mode="compare"]::after{display:none}
+      .stage[data-hb-mode="compare"] .tog-row,.stage[data-hb-mode="compare"] .cp,.stage[data-hb-mode="compare"] .side,.stage[data-hb-mode="compare"] .side.second,.stage[data-hb-mode="compare"] .when{grid-column:1;grid-row:auto}
+      .stage[data-hb-mode="compare"] .tog-lg{display:none}
+      .stage[data-hb-mode="compare"] .side.first{order:1}
+      .stage[data-hb-mode="compare"] .cp{order:2}
+      .stage[data-hb-mode="compare"] .side.second{order:3;margin-top:8px}
+      .stage[data-hb-mode="compare"] .tog-row:not(.cp){order:4}
+      .stage[data-hb-mode="compare"] .when{order:5}
+    }
+    @media(min-width:601px) and (max-height:620px){
+      .stage[data-hb-mode="inside"]{--rg:10px;padding:12px 20px}
+      .stage[data-hb-mode="compare"]{--rg:6px}
+    }
+    @media(prefers-reduced-motion:reduce){.sw-track,.sw-thumb,.d-track,.d-knob{transition:background .1s!important}}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="do" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../magnetic-button/" rel="prev" aria-label="Previous: Magnetic Button"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Magnetic Button</span></a><a href="../heart-burst/" rel="next" aria-label="Next: Heart / Like Burst"><span><span class="hb-dir">Next: </span>Heart / Like Burst</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">04.06 · Micro-Interactions</p>
+    <h1>Toggle / Switch Slide</h1>
+    <p class="hb-lede">The knob slides across as the switch turns on or off. Best for settings.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Click it</h2><p>Click or tap a switch to turn it on or off, or press Show me.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage hb-dots">
+      <div class="tog-row" style="--r:1">
+        <label class="tog-label" for="sw0">Notifications</label>
+        <label class="sw">
+          <input type="checkbox" id="sw0" checked autocomplete="off">
+          <span class="sw-track"></span>
+          <span class="sw-thumb" aria-hidden="true"></span>
+        </label>
+      </div>
+      <div class="tog-row tog-lg" style="--r:2">
+        <label class="tog-label" for="sw1">Appearance</label>
+        <label class="sw sw-lg">
+          <input type="checkbox" id="sw1" autocomplete="off">
+          <span class="sw-track"></span>
+          <span class="sw-thumb" aria-hidden="true"></span>
+        </label>
+      </div>
+      <div class="tog-row" style="--r:3">
+        <label class="tog-label" for="sw2">Auto-save</label>
+        <label class="sw elastic">
+          <input type="checkbox" id="sw2" checked autocomplete="off">
+          <span class="sw-track"></span>
+          <span class="sw-thumb" aria-hidden="true"></span>
+        </label>
+      </div>
+      <div class="dia" aria-hidden="true"><div class="dia-in">
+        <div class="fan">
+          <span class="d sheet" style="--x:0;--y:0;--w:60;--h:36"><i class="d cbx" style="--x:22;--y:10;--w:16;--h:16"></i></span>
+          <span class="d sheet" style="--x:8;--y:34;--w:60;--h:36"><i class="d d-track" style="--x:4;--y:3;--w:52;--h:30"></i></span>
+          <span class="d sheet" style="--x:16;--y:68;--w:60;--h:36">
+            <i class="d d-ghost" style="--x:7;--y:6;--w:24;--h:24"></i><i class="d d-knob" style="--x:7;--y:6;--w:24;--h:24"></i><i class="d d-arrow" style="--x:19;--y:2.6;--w:22;--h:0"></i>
+          </span>
+        </div>
+        <div class="caps">
+          <p class="cap" data-hb-caption>Hidden checkbox: holds on or off</p>
+          <p class="cap" data-hb-caption>Track: fills with color when on</p>
+          <p class="cap" data-hb-caption>Knob: slides across in about a fifth of a second, easing in and out</p>
+        </div>
+      </div></div>
+      <p class="row-cap" aria-hidden="true" data-hb-caption>The whole row is the tap area</p>
+      <p class="side first" aria-hidden="true" data-hb-caption>Flips at once</p>
+      <p class="side second" aria-hidden="true" data-hb-caption>Slides across</p>
+      <p class="when" aria-hidden="true" data-hb-caption>Just after the click</p>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-demo" data-hb-demo><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>Show me</button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo="css" autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the top switch is pulled apart: a hidden checkbox holds on or off, the track changes color and the knob slides across. Click a switch, or press Show me.</p>
+      <p data-hb-for="compare" hidden>Flips at once: the knob jumps and the color snaps; Slides across: the knob glides over, shown just after the click. Click a switch, or press Show me.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then try it again or press Show me.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-ms="320" aria-pressed="false">Slow</button>
+          <button type="button" data-ms="200" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-ms="120" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">Fast feels mechanical; slow can feel sluggish.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="feel-lbl">Feel</p>
+        <div class="seg" id="feel-seg" role="group" aria-labelledby="feel-lbl">
+          <button type="button" data-ease="ease-out" aria-pressed="false">Smooth</button>
+          <button type="button" data-ease="cubic-bezier(.4,0,.2,1)" class="on" aria-pressed="true">Gentle</button>
+          <button type="button" data-ease="linear" aria-pressed="false">Even</button>
+        </div>
+        <p class="hb-hint">Gentle gives the knob weight; Even feels robotic.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Springy knob</span><input class="hb-switch" type="checkbox" role="switch" id="elastic-tog" checked autocomplete="off"></label>
+          <p class="hb-hint">The third switch's knob goes past the end, then settles.</p>
+        </div>
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="color-lbl">On color</p>
+          <div class="swatches" id="color-sw" role="group" aria-labelledby="color-lbl">
+            <button type="button" aria-pressed="false" aria-label="Pink" data-c="#ff6f8b" style="background:#ff6f8b"></button>
+            <button type="button" class="on" aria-pressed="true" aria-label="Blue" data-c="#58a6ff" style="background:#58a6ff"></button>
+            <button type="button" aria-pressed="false" aria-label="Purple" data-c="#d2a8ff" style="background:#d2a8ff"></button>
+            <button type="button" aria-pressed="false" aria-label="Green" data-c="#56d364" style="background:#56d364"></button>
+            <button type="button" aria-pressed="false" aria-label="Orange" data-c="#ffa657" style="background:#ffa657"></button>
+          </div>
+          <p class="hb-hint">The track color when a switch is on.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add an animated toggle switch to [the on/off setting you want to control]. Build it on a real checkbox so it works with the keyboard and screen readers. When it is turned on, the round knob slides across the track and the track fills with color; when it is turned off, both go back. When the settings ask for it, let the knob go slightly past the end and settle, so it feels springy. Make the whole switch and its label easy to tap. If the visitor has reduced motion turned on, move the knob without sliding. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Settings</li><li>Preferences</li><li>Dark mode switches</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Forms sent later</li><li>More than two options</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const stage=document.querySelector('.stage');
+  const boxes=[...stage.querySelectorAll('.sw input')];
+  const parts=[...stage.querySelectorAll('.sw-track,.sw-thumb')];
+  const slowTog=document.getElementById('slow-tog');
+  const vars=document.documentElement.style;
+  const rest=boxes.map(b=>b.defaultChecked); // the arrival state: Notifications on, Appearance off, Auto-save on
+  let dur=200,ease='cubic-bezier(.4,0,.2,1)',runTimers=[];
+  // mode: the view on show. wanted: Compare's held moment is due (the visitor has not pressed a switch since). saved: Normal's switches while a view shows.
+  let mode='normal',wanted=true,saved=null;
+  const sws=boxes.map(b=>b.closest('.sw'));
+  const dia=stage.querySelector('.dia'),dparts=[...dia.querySelectorAll('.d-track,.d-knob')];
+  // Compare's first half: copies of the rows with no inputs, out of reach of the keyboard and screen readers; they follow the real switches (sync)
+  const rows=[...stage.querySelectorAll('.tog-row')];
+  const copies=rows.map(row=>{
+    const c=row.cloneNode(true);
+    c.classList.add('cp');c.inert=true;c.setAttribute('aria-hidden','true');
+    c.querySelector('input').remove();
+    c.querySelectorAll('label').forEach(l=>{const t=document.createElement('span');t.className=l.className;t.innerHTML=l.innerHTML;l.replaceWith(t)});
+    return c;
+  });
+  rows[2].after(...copies);
+  const copySw=copies.map(c=>c.querySelector('.sw'));
+
+  // Show me: one run at a time. Every timer of the run goes through later(); stopRun() cancels the whole run.
+  // later(fn, move, hold) waits move*(slow?3:1) + hold ms: Slow motion triples the movement, never the hold.
+  function later(fn,move,hold){
+    const id=setTimeout(()=>{runTimers=runTimers.filter(t=>t!==id);fn()},move*(slowTog.checked?3:1)+(hold||0));
+    runTimers.push(id);
+  }
+  function running(){return runTimers.length>0}
+  function stopRun(){runTimers.forEach(clearTimeout);runTimers=[]}
+  // A state is put in place without sliding: transitions off, the change made, a reflow makes it stick, transitions back. A run starts this way.
+  function snap(change){
+    const all=[...parts,...dparts];
+    all.forEach(p=>p.style.setProperty('transition','none','important'));
+    change();
+    void stage.offsetWidth;
+    all.forEach(p=>p.style.removeProperty('transition'));
+  }
+  function toRest(){snap(()=>{boxes.forEach((b,i)=>{b.checked=rest[i]});setPose(false);sync()})}
+  // Switch i slides to the other side (dur), the next one starts 200ms after it, and all three rest 600ms before they slide back.
+  document.getElementById('btn-demo').addEventListener('click',()=>{
+    stopRun();
+    toRest();
+    wanted=true;
+    boxes.forEach((b,i)=>{
+      later(()=>{b.checked=!rest[i];sync()},i*dur,i*200);
+      later(()=>{b.checked=rest[i];sync()},(3+i)*dur,1000+i*200);
+    });
+    later(deal,6*dur,1400); // the last switch has finished sliding: Compare's held moment can come back
+  });
+  // The visitor pressed, typed, scrolled or touched inside the stage: the run stops and the switches stay as they are.
+  document.addEventListener('hb:input',()=>{if(running()){stopRun();wanted=false;notes()}});
+
+  // The Feel choices as the numbers of their speed curves (the browser's own), the springy knob's curve, and how long after a click Compare holds (ms)
+  const CURVES={'ease-out':[0,0,.58,1],'cubic-bezier(.4,0,.2,1)':[.4,0,.2,1],linear:[0,0,1,1]};
+  const SPRING=[.34,1.56,.64,1],POSE_MS=70;
+  const FEEL={'ease-out':'slowing to a stop','cubic-bezier(.4,0,.2,1)':'easing in and out',linear:'at one steady pace'};
+  const motionMQ=window.matchMedia('(prefers-reduced-motion:reduce)');
+  const knobCap=dia.querySelectorAll('.cap')[2];
+  const noteIn=document.querySelector('[data-hb-for="inside"]'),noteCmp=document.querySelector('[data-hb-for="compare"]');
+  // Notes: the markup's words, the same views shown still, and Compare once the visitor has pressed a switch (its held moment is gone)
+  const NOTES={
+    inside:[noteIn.textContent,'Inside, the top switch is pulled apart, shown still: a hidden checkbox holds on or off, the track changes color and the knob moves across at once.'],
+    compare:[noteCmp.textContent,'Shown still, just after a click: Flips at once is already across; Slides across is still on its way. With reduced motion on, both jump.'],
+    live:['Flips at once: the knob jumps and the color snaps; Slides across: the knob glides over. Click a switch, or press Show me.',
+      'With reduced motion on, both halves jump across at once, so they look the same now. Press Show me to see them held just after a click.']
+  };
+  function put(el,text){if(el.textContent!==text)el.textContent=text}
+  function notes(){
+    const rm=motionMQ.matches?1:0;
+    put(noteIn,NOTES.inside[rm]);
+    put(noteCmp,(rm?stage.classList.contains('posed'):wanted)?NOTES.compare[rm]:NOTES.live[rm]);
+  }
+  function words(t){return t<=150?'about a tenth of a second':t<=260?'about a fifth of a second':t<=420?'about a third of a second':t<=700?'about half a second':'about a second'}
+  // The knob's caption follows Speed, Feel and Slow motion
+  function describe(){
+    put(knobCap,motionMQ.matches?'Knob: moves across at once; the color fades':'Knob: slides across in '+words(dur*(slowTog.checked?3:1))+', '+FEEL[ease]);
+    notes();
+  }
+  // The value of a speed curve at a share x of its time: the curve's own t for x found by halving, then its height there
+  function curveAt([a,b,c,e],x){
+    const at=(p,q,t)=>3*p*t*(1-t)*(1-t)+3*q*t*t*(1-t)+t*t*t;
+    let lo=0,hi=1,t=x;
+    for(let i=0;i<30;i++){t=(lo+hi)/2;if(at(a,c,t)<x)lo=t;else hi=t}
+    return at(b,e,t);
+  }
+  // How far each switch has come POSE_MS after a click by the page's own Speed and Feel (the springy knob by its own curve), as a share of the
+  // way; a share of Speed's time, so Slow motion never changes it
+  function poseVars(){
+    const x=Math.min(1,POSE_MS/dur),ft=curveAt(CURVES[ease],x);
+    sws.forEach(sw=>{
+      sw.style.setProperty('--ft',ft.toFixed(3));
+      sw.style.setProperty('--f',(sw.classList.contains('elastic')?curveAt(SPRING,x):ft).toFixed(3));
+    });
+  }
+  function setPose(on){stage.classList.toggle('posed',on);notes()}
+  function deal(){setPose(mode==='compare'&&wanted&&!running())}
+  // The copies and the top switch's drawing show the switches as they now stand
+  function sync(){
+    boxes.forEach((b,i)=>copySw[i].classList.toggle('on',b.checked));
+    dia.classList.toggle('on',boxes[0].checked);
+  }
+  function changed(){poseVars();describe();wanted=true;deal()}
+
+  // A view is pressed: it is drawn at once, then the shared script presses Show me (not under reduced motion), which puts the switches at their
+  // start. Normal's switches are kept meanwhile and put back, without sliding, when Normal is pressed.
+  document.addEventListener('hb:mode',e=>{
+    const was=mode,leaving=e.detail.mode==='normal'&&was!=='normal';
+    mode=e.detail.mode;wanted=true;
+    if(was==='normal'&&mode!=='normal')saved=running()?rest.slice():boxes.map(b=>b.checked);
+    const draw=()=>{
+      if(leaving){
+        stopRun();
+        if(saved)boxes.forEach((b,i)=>{b.checked=saved[i]});
+        saved=null;
+      }
+      deal();sync();
+    };
+    // Only what the view changes is put in place without sliding: a slide already under way goes on
+    if(leaving||stage.classList.contains('posed')!==(mode==='compare'&&!running()))snap(draw);else draw();
+  });
+  // The visitor presses a switch in Compare: the held moment lifts as the press ends, before the switch flips, so the knob starts from where it
+  // really stands; a finger that only scrolls the page across a row ends in pointercancel and leaves it
+  function lift(){wanted=false;if(stage.classList.contains('posed'))snap(()=>setPose(false));else notes()}
+  stage.addEventListener('pointerup',e=>{if(e.isTrusted&&mode==='compare'&&e.target.closest('.tog-row:not(.cp)'))lift()},true);
+  stage.addEventListener('keydown',e=>{if(e.isTrusted&&mode==='compare'&&e.key===' '&&e.target.closest('.sw'))lift()},true);
+  boxes.forEach(b=>b.addEventListener('change',()=>{if(stage.classList.contains('posed'))lift();sync()}));
+  slowTog.addEventListener('change',describe);
+  motionMQ.addEventListener('change',describe);
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+      changed();
+    }));
+  }
+  choices('speed-seg',d=>{dur=+d.ms;vars.setProperty('--tog-dur',dur+'ms')});
+  choices('feel-seg',d=>{ease=d.ease;vars.setProperty('--tog-ease',ease)});
+  choices('color-sw',d=>{vars.setProperty('--on-color',d.c)});
+  document.getElementById('elastic-tog').addEventListener('change',e=>{
+    document.getElementById('sw2').closest('.sw').classList.toggle('elastic',e.target.checked);
+    changed();
+  });
+  poseVars();
+  describe();
+  sync();
+</script>
+</body>
+</html>

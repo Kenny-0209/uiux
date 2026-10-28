@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Progress &amp; orientation — reading bar, live TOC, back to top — scroll-story-lab</title>
+  <meta name="description" content="A ten-line reading progress bar, a table of contents that tracks the active section with IntersectionObserver, and a back-to-top button that appears after 600px.">
+  <style>
+    :root {
+      --bg: #0A0D14;
+      --surface: #0F1626;
+      --border: #1E293B;
+      --accent: #2563EB;
+      --accent-bright: #38BDF8;
+      --title: #F1F5F9;
+      --body: #94A3B8;
+      --muted: #64748B;
+      --sans: -apple-system, 'Segoe UI', Inter, Roboto, sans-serif;
+      --mono: 'Cascadia Code', Consolas, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    /* Smooth anchor jumps for the TOC — and the very first thing this
+       page does with motion is offer to turn it off again below. */
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--body);
+      font-family: var(--sans);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent-bright);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .site-header { border-bottom: 1px solid var(--border); padding: 20px 0; }
+    .header-inner {
+      display: flex; flex-wrap: wrap; gap: 10px 28px;
+      align-items: baseline; justify-content: space-between;
+    }
+    .brand { font-family: var(--mono); font-size: 1.05rem; color: var(--accent-bright); text-decoration: none; }
+    .brand:hover { color: var(--title); }
+    .tagline { margin: 4px 0 0; font-size: .85rem; color: var(--muted); }
+    .site-nav { display: flex; gap: 20px; }
+    .site-nav a {
+      color: var(--body); text-decoration: none; font-size: .9rem;
+      border-bottom: 1px solid transparent; transition: color .2s, border-color .2s;
+    }
+    .site-nav a:hover { color: var(--title); border-bottom-color: var(--accent); }
+
+    h1 { color: var(--title); font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.15; letter-spacing: -.02em; margin: 0 0 18px; }
+    h2 { color: var(--title); font-size: 1.4rem; margin: 0 0 14px; }
+    .kicker {
+      font-family: var(--mono); font-size: .75rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--accent-bright); margin: 0 0 12px;
+    }
+
+    code {
+      font-family: var(--mono); font-size: .88em; color: var(--accent-bright);
+      background: rgba(37, 99, 235, .12); padding: .1em .35em; border-radius: 4px;
+    }
+    pre {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 18px 20px; overflow-x: auto; margin: 20px 0;
+    }
+    pre code { background: none; padding: 0; color: #CBD5E1; font-size: .8rem; line-height: 1.65; }
+
+    /* ==============================================================
+       DEMO 01 — reading progress bar (see the ten lines of JS below)
+       transform: scaleX is written by JS; everything painted is CSS.
+       ============================================================== */
+    .reading-progress {
+      position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 50;
+      background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+      transform-origin: left center;
+      transform: scaleX(0);
+    }
+
+    /* Page layout: sticky TOC beside a long article */
+    .page { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 48px; padding-top: 56px; }
+
+    /* ==============================================================
+       DEMO 02 — table of contents with a live "you are here"
+       The .is-active class is toggled by an IntersectionObserver whose
+       root is shrunk (rootMargin) to a thin band at reading height.
+       ============================================================== */
+    .toc { position: sticky; top: 32px; align-self: start; }
+    .toc h2 { font-size: .8rem; font-family: var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+    .toc ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--border); }
+    .toc a {
+      display: block; padding: 7px 0 7px 16px; margin-left: -1px;
+      color: var(--muted); text-decoration: none; font-size: .88rem;
+      border-left: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+    .toc a:hover { color: var(--title); }
+    .toc a.is-active { color: var(--accent-bright); border-left-color: var(--accent); }
+
+    article { max-width: 640px; padding-bottom: 40px; }
+    article section { padding: 28px 0 20px; scroll-margin-top: 24px; }
+    article p { margin: 0 0 18px; }
+
+    .pull {
+      border-left: 3px solid var(--accent); padding: 4px 0 4px 20px; margin: 24px 0;
+      color: var(--title); font-size: 1.05rem;
+    }
+
+    /* ==============================================================
+       DEMO 03 — back-to-top button
+       Hidden by default (opacity + pointer-events, so it never blocks
+       clicks while invisible); .is-shown arrives after 600px of scroll.
+       ============================================================== */
+    .back-to-top {
+      position: fixed; right: 22px; bottom: 22px; z-index: 40;
+      width: 46px; height: 46px; border-radius: 12px;
+      background: var(--surface); color: var(--accent-bright);
+      border: 1px solid var(--border);
+      display: grid; place-items: center; cursor: pointer;
+      opacity: 0; translate: 0 8px; pointer-events: none;
+      transition: opacity .3s ease, translate .3s ease, border-color .2s;
+    }
+    .back-to-top.is-shown { opacity: 1; translate: 0 0; pointer-events: auto; }
+    .back-to-top:hover { border-color: var(--accent); }
+    .back-to-top svg { width: 18px; height: 18px; }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      margin-top: 64px; padding: 26px 0 42px;
+      font-size: .85rem; color: var(--muted);
+    }
+    .site-footer a { color: var(--body); }
+    .site-footer a:hover { color: var(--accent-bright); }
+
+    /* Reduced motion: anchor jumps become instant, the button simply
+       appears, and the progress bar — pure position feedback — stays.
+       The click handler in the JS re-checks the same media query before
+       choosing smooth vs instant scrollTo. */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .back-to-top { transition: opacity .2s linear; translate: 0 0; }
+    }
+
+    @media (max-width: 760px) {
+      .page { grid-template-columns: 1fr; gap: 0; }
+      .toc { position: static; margin-bottom: 8px; }
+      .toc ol { display: flex; flex-wrap: wrap; gap: 2px 14px; border-left: 0; }
+      .toc a { border-left: 0; padding: 4px 0; }
+      .toc a.is-active { border-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Demo 01: the bar itself. Decorative feedback, hence aria-hidden;
+       the browser's own scrollbar remains the accessible instrument. -->
+  <div class="reading-progress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <a class="brand" href="index.html">scroll-story-lab</a>
+        <p class="tagline">Scroll-driven animation patterns in vanilla JS and modern CSS</p>
+      </div>
+      <nav class="site-nav" aria-label="Site">
+        <a href="index.html">All demos</a>
+        <a href="https://github.com/AleBrito124356/scroll-story-lab">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page">
+
+      <!-- Demo 02: the TOC. A nav landmark with a labelled list; the
+           active state also sets aria-current="true" from JS. -->
+      <nav class="toc" aria-label="Table of contents">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#why-motion">Why motion matters</a></li>
+          <li><a href="#timing">Timing and duration</a></li>
+          <li><a href="#easing">Easing is a voice</a></li>
+          <li><a href="#choreography">Choreography</a></li>
+          <li><a href="#performance">The performance budget</a></li>
+          <li><a href="#restraint">Restraint and preference</a></li>
+        </ol>
+      </nav>
+
+      <article>
+        <p class="kicker">Pattern 05 — progress &amp; orientation UI</p>
+        <h1>Notes on motion in interfaces</h1>
+        <p>
+          This page is the demo. As you read: the bar along the top measures your position
+          in the document, the table of contents tracks whichever section sits at reading
+          height, and after 600 pixels a button offers the way back. Three small
+          mechanisms, three short scripts — all annotated at the bottom of the source.
+          The essay they decorate is about the discipline they exemplify.
+        </p>
+
+        <section id="why-motion">
+          <h2>Why motion matters</h2>
+          <p>
+            Interfaces are explanations. Every screen makes claims about what exists, what
+            changed and what is about to happen — and motion is the only channel that can
+            express <em>change itself</em> rather than mere states. A panel that slides in
+            from the right tells you where it lives and how to send it home. A number that
+            counts up tells you it grew rather than being replaced. Remove the motion and
+            the information survives, but the reader is left doing the diffing by hand.
+          </p>
+          <p>
+            That framing keeps a designer honest. Motion that explains a change earns its
+            frames; motion that merely advertises the designer's toolbox is asking the
+            user to pay attention-tax on every visit. The progress bar above is a useful
+            baseline: it moves constantly, yet nobody would call this page animated. It is
+            pure feedback, spent exactly where feedback is due.
+          </p>
+        </section>
+
+        <section id="timing">
+          <h2>Timing and duration</h2>
+          <p>
+            Interface motion lives in a narrow band. Under about 100 milliseconds a
+            transition reads as instantaneous; past 400 the interface starts to feel like
+            it is performing for you; most micro-interactions belong between 150 and 300.
+            Scale shifts the band — a full-screen sheet can afford 350ms where a checkbox
+            cannot — but the ceiling is real, and it is lower than most first drafts.
+          </p>
+          <p class="pull">
+            A transition is a promise about causality: the shorter the promise, the more
+            often you can afford to make it.
+          </p>
+          <p>
+            Scroll-driven effects, like the ones across this repo, obey a different clock:
+            the user's own hand. That is their superpower — pace belongs to the reader —
+            and their trap, because a reader who scrolls fast compresses your carefully
+            planned choreography into a single frame. Design every scroll effect to be
+            skimmed past without loss.
+          </p>
+        </section>
+
+        <section id="easing">
+          <h2>Easing is a voice</h2>
+          <p>
+            Two animations with identical durations can feel like different products.
+            Linear easing is mechanical — right for progress meters, wrong for nearly
+            everything else. Ease-out curves, fast then settling, make interfaces feel
+            responsive: the element leaps to answer and lands softly. Ease-in belongs
+            almost exclusively to exits, letting departing elements gather speed like
+            something released from your attention.
+          </p>
+          <p>
+            The reveals in this repo use <code>cubic-bezier(.22, 1, .36, 1)</code> — a
+            hard deceleration with a whisper of overshoot absorbed before it lands. Pick
+            one or two such curves and repeat them everywhere: consistency of easing does
+            more for perceived quality than any individual flourish.
+          </p>
+        </section>
+
+        <section id="choreography">
+          <h2>Choreography</h2>
+          <p>
+            When several things move at once, their relationships carry the meaning.
+            Siblings stagger; a parent leads its children; unrelated elements never share
+            a cue. The 60&ndash;90ms sibling offset used in the reveals page is small enough to
+            feel like one gesture, large enough to imply order. Beyond four or five
+            participants, choreography collapses into weather — group them and move the
+            group.
+          </p>
+          <p>
+            Order is information, too. Revealing a list top-to-bottom confirms reading
+            order; revealing it edge-in suggests symmetry; revealing it randomly suggests
+            a bug. If you cannot say what a sequence claims about the content, the
+            sequence is not finished.
+          </p>
+        </section>
+
+        <section id="performance">
+          <h2>The performance budget</h2>
+          <p>
+            Animation quality is mostly the absence of interruption, and interruptions
+            come from work scheduled where work does not fit. The rules that keep 60
+            frames per second are unglamorous: animate only <code>transform</code> and
+            <code>opacity</code>; let IntersectionObserver watch geometry instead of
+            polling it; batch every read and write through requestAnimationFrame; mark
+            scroll listeners passive so the browser never waits for you before moving
+            the page.
+          </p>
+          <p>
+            The scripts on this page follow one more rule worth stealing: write only on
+            change. The TOC observer fires a handful of times per screenful, not per
+            pixel; the back-to-top toggle flips a class at one threshold. Between those
+            moments, scrolling this page costs almost nothing beyond the bar's single
+            transform — which is why it stays smooth on hardware you have never tested.
+          </p>
+        </section>
+
+        <section id="restraint">
+          <h2>Restraint and preference</h2>
+          <p>
+            Some readers find interface motion delightful; for others — vestibular
+            disorders, migraines, plain taste — it ranges from tiring to disabling.
+            <code>prefers-reduced-motion</code> is the contract between the two groups,
+            and honouring it is not a feature, it is table stakes. On this page the
+            preference switches anchor scrolling to instant, materialises the back-to-top
+            button without travel, and leaves the progress bar alone, because position
+            feedback that moves only with the reader's own gesture is information, not
+            decoration.
+          </p>
+          <p>
+            The deeper habit: design the still version first. If the page is complete,
+            legible and pleasant with every animation deleted, motion becomes what it
+            should have been all along — a generosity, offered to those who want it,
+            invisible to those who do not.
+          </p>
+        </section>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Demo 03: back-to-top. A real button with a real label; the arrow
+       is decorative SVG. -->
+  <button class="back-to-top" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+      <path d="M12 19V5"/><path d="m5 12 7-7 7 7"/>
+    </svg>
+  </button>
+
+  <footer class="site-footer">
+    <div class="container">
+      MIT &copy; 2026 Alejandro Brito &middot;
+      <a href="index.html">All demos</a> &middot;
+      <a href="https://github.com/AleBrito124356/scroll-story-lab">GitHub</a>
+    </div>
+  </footer>
+
+  <script>
+    /* ==============================================================
+       DEMO 01 — reading progress bar. Ten lines, as advertised.
+       scrollHeight - innerHeight = total scrollable distance; current
+       scrollY over that is completion. scaleX (not width!) keeps the
+       write compositor-only. The max(1, …) guard avoids dividing by
+       zero on pages shorter than the viewport.
+       ============================================================== */
+    const bar = document.querySelector('.reading-progress');
+    function updateProgress() {
+      const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      bar.style.transform = 'scaleX(' + Math.min(1, window.scrollY / max) + ')';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress, { passive: true });
+    updateProgress();
+
+    /* ==============================================================
+       DEMO 02 — live table of contents.
+
+       The trick is the rootMargin: "-40% 0px -55% 0px" shrinks the
+       intersection root to a horizontal band between 40% and 45% from
+       the top of the viewport — roughly where eyes rest while reading.
+       A section is "active" while it overlaps that band, so exactly
+       one wins at a time and the handoff happens mid-screen, not at
+       the edges. No scroll math, no offsets to maintain.
+       ============================================================== */
+    const tocLinks = new Map(
+      Array.from(document.querySelectorAll('.toc a'))
+        .map((a) => [a.getAttribute('href').slice(1), a])
+    );
+
+    const spy = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        // One winner: clear all, then mark the section in the band.
+        tocLinks.forEach((link) => {
+          link.classList.remove('is-active');
+          link.removeAttribute('aria-current');
+        });
+        const active = tocLinks.get(entry.target.id);
+        active.classList.add('is-active');
+        active.setAttribute('aria-current', 'true'); // a11y mirror of the highlight
+      }
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    document.querySelectorAll('article section[id]').forEach((s) => spy.observe(s));
+
+    /* ==============================================================
+       DEMO 03 — back-to-top after 600px.
+
+       600px ≈ one viewport of commitment: earlier and the button nags,
+       later and it misses the moment of regret. The class toggle is
+       idempotent, so firing on every scroll event is harmless; CSS
+       owns the entrance. The click respects reduced motion by
+       re-checking the media query at interaction time — preferences
+       can change mid-session.
+       ============================================================== */
+    const toTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      toTop.classList.toggle('is-shown', window.scrollY > 600);
+    }, { passive: true });
+
+    toTop.addEventListener('click', () => {
+      const instant = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: instant ? 'auto' : 'smooth' });
+    });
+  </script>
+
+</body>
+</html>

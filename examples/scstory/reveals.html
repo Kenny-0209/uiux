@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reveal on scroll — IntersectionObserver patterns — scroll-story-lab</title>
+  <meta name="description" content="Fade-up, stagger, directional reveals, once vs repeat, and rootMargin — all driven by one reusable IntersectionObserver function.">
+  <script>
+    /* Progressive-enhancement gate: every "hidden until revealed" rule in
+       the stylesheet is scoped under .js. If scripts never run, no class
+       is added, those rules are inert, and the page renders fully static —
+       content is never held hostage by an animation framework of 30 lines. */
+    document.documentElement.classList.add('js');
+  </script>
+  <style>
+    :root {
+      --bg: #0A0D14;
+      --surface: #0F1626;
+      --border: #1E293B;
+      --accent: #2563EB;
+      --accent-bright: #38BDF8;
+      --title: #F1F5F9;
+      --body: #94A3B8;
+      --muted: #64748B;
+      --sans: -apple-system, 'Segoe UI', Inter, Roboto, sans-serif;
+      --mono: 'Cascadia Code', Consolas, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--body);
+      font-family: var(--sans);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent-bright);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .site-header { border-bottom: 1px solid var(--border); padding: 20px 0; }
+    .header-inner {
+      display: flex; flex-wrap: wrap; gap: 10px 28px;
+      align-items: baseline; justify-content: space-between;
+    }
+    .brand { font-family: var(--mono); font-size: 1.05rem; color: var(--accent-bright); text-decoration: none; }
+    .brand:hover { color: var(--title); }
+    .tagline { margin: 4px 0 0; font-size: .85rem; color: var(--muted); }
+    .site-nav { display: flex; gap: 20px; }
+    .site-nav a {
+      color: var(--body); text-decoration: none; font-size: .9rem;
+      border-bottom: 1px solid transparent; transition: color .2s, border-color .2s;
+    }
+    .site-nav a:hover { color: var(--title); border-bottom-color: var(--accent); }
+
+    h1 { color: var(--title); font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.15; letter-spacing: -.02em; margin: 0 0 18px; }
+    h2 { color: var(--title); font-size: 1.35rem; margin: 0 0 12px; }
+    .kicker {
+      font-family: var(--mono); font-size: .75rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--accent-bright); margin: 0 0 12px;
+    }
+    .intro { padding: 72px 0 8px; }
+    .intro p { max-width: 62ch; }
+
+    .demo { padding: 96px 0 0; }
+    .demo-label {
+      font-family: var(--mono); font-size: .75rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted); margin: 0 0 10px;
+    }
+    .demo-label b { color: var(--accent-bright); font-weight: 600; }
+    .hint { font-size: .85rem; color: var(--muted); font-style: italic; }
+
+    .prose { padding: 72px 0 0; max-width: 62ch; }
+
+    code {
+      font-family: var(--mono); font-size: .88em; color: var(--accent-bright);
+      background: rgba(37, 99, 235, .12); padding: .1em .35em; border-radius: 4px;
+    }
+    pre {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 18px 20px; overflow-x: auto; margin: 20px 0 0;
+    }
+    pre code { background: none; padding: 0; color: #CBD5E1; font-size: .8rem; line-height: 1.65; }
+
+    /* Generic card used inside demos */
+    .r-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 22px 24px;
+    }
+    .r-card h3 { color: var(--title); margin: 0 0 6px; font-size: 1.02rem; }
+    .r-card p { margin: 0; font-size: .9rem; }
+
+    .stack { display: grid; gap: 16px; }
+    .cols-2 { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+
+    /* Demo 02: staggered tile grid */
+    .tile-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
+    .tile {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      height: 84px; display: grid; place-items: center;
+      font-family: var(--mono); font-size: .8rem; color: var(--muted);
+    }
+    .tile::before {
+      content: ""; width: 10px; height: 10px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+      margin-right: 8px;
+    }
+
+    /* Demo 05: rootMargin diagram (pure CSS sketch of a viewport) */
+    .viewport-sketch {
+      border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+      max-width: 340px; margin: 20px 0;
+    }
+    .viewport-sketch .zone { padding: 14px 16px; font-family: var(--mono); font-size: .72rem; }
+    .viewport-sketch .live { background: rgba(37, 99, 235, .14); color: var(--accent-bright); min-height: 130px; }
+    .viewport-sketch .dead {
+      background: repeating-linear-gradient(-45deg, transparent 0 8px, rgba(30, 41, 59, .5) 8px 16px);
+      color: var(--muted); border-top: 1px dashed var(--accent);
+    }
+
+    /* ------------------------------------------------------------------
+       THE REVEAL ENGINE (CSS half)
+
+       The JavaScript below only toggles the .is-visible class. Everything
+       about HOW elements move lives here, which means:
+         - the browser can optimise the transition (opacity + transform
+           are compositor-friendly: no layout, no paint),
+         - designers can retune motion without touching JS,
+         - prefers-reduced-motion can neutralise it in one block.
+       ------------------------------------------------------------------ */
+
+    /* Default reveal: fade in while rising 24px. The custom cubic-bezier
+       decelerates hard at the end — motion that arrives, not motion that
+       floats. (All hidden states are scoped under .js — see the gate in
+       the head — so a script failure degrades to a plain static page.) */
+    .js [data-reveal] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    /* Direction comes from the attribute VALUE, so markup stays declarative:
+       data-reveal="left" etc. Only the starting offset changes. */
+    .js [data-reveal="down"]  { transform: translateY(-24px); }
+    .js [data-reveal="left"]  { transform: translateX(-32px); }
+    .js [data-reveal="right"] { transform: translateX(32px); }
+
+    /* One class, added by the observer, lands every variant. */
+    .js [data-reveal].is-visible { opacity: 1; transform: none; }
+
+    /* Stagger: the parent is observed; its children inherit the reveal and
+       delay themselves by an index passed inline as --stagger. CSS cannot
+       count siblings into a variable, so the index travels in the markup —
+       one custom property instead of n hand-written delay classes. */
+    .js [data-reveal-stagger] > * {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .5s ease, transform .5s cubic-bezier(.22, 1, .36, 1);
+      transition-delay: calc(var(--stagger, 0) * 80ms);
+    }
+    .js [data-reveal-stagger].is-visible > * { opacity: 1; transform: none; }
+
+    /* Reduced motion: reveals become plain crossfades. Content is never
+       hidden from anyone — it just stops travelling. */
+    @media (prefers-reduced-motion: reduce) {
+      .js [data-reveal],
+      .js [data-reveal="down"], .js [data-reveal="left"], .js [data-reveal="right"],
+      .js [data-reveal-stagger] > * {
+        transform: none;
+        transition: opacity .3s linear;
+        transition-delay: 0s;
+      }
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      margin-top: 120px; padding: 26px 0 42px;
+      font-size: .85rem; color: var(--muted);
+    }
+    .site-footer a { color: var(--body); }
+    .site-footer a:hover { color: var(--accent-bright); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <a class="brand" href="index.html">scroll-story-lab</a>
+        <p class="tagline">Scroll-driven animation patterns in vanilla JS and modern CSS</p>
+      </div>
+      <nav class="site-nav" aria-label="Site">
+        <a href="index.html">All demos</a>
+        <a href="https://github.com/AleBrito124356/scroll-story-lab">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="intro">
+      <p class="kicker">Pattern 01 — IntersectionObserver</p>
+      <h1>Reveal on scroll</h1>
+      <p>
+        The reveal is the workhorse of scroll animation: content waits, slightly displaced
+        and transparent, until the reader brings it into view — then it settles into place.
+        Done well it gives a page rhythm, like paragraphs taking a breath before speaking.
+        Done badly it is a slideshow you cannot skip.
+      </p>
+      <p>
+        Everything on this page is driven by <strong>one</strong> observer function of about
+        thirty lines. It never animates anything itself; it only flips a class. The motion —
+        distance, direction, duration, easing, stagger — is entirely CSS, which keeps the
+        JavaScript boring and the animation cheap.
+      </p>
+    </section>
+
+    <!-- =============================================================
+         DEMO 01 — basic fade-up
+         ============================================================= -->
+    <section class="demo" aria-label="Demo 1: basic fade-up">
+      <p class="demo-label"><b>Demo 01</b> — Fade-up, the default</p>
+      <div class="stack">
+        <div class="r-card" data-reveal>
+          <h3>Enter low, land settled</h3>
+          <p>
+            A 24px rise with a decelerating curve reads as "arriving". Distances beyond
+            ~40px start to read as "flying", which gets tiring by the third section.
+          </p>
+        </div>
+        <div class="r-card" data-reveal>
+          <h3>Opacity and transform only</h3>
+          <p>
+            Both properties skip layout and paint — the browser composites them on the GPU.
+            Animating top, margin or height here would force reflow on every frame.
+          </p>
+        </div>
+        <div class="r-card" data-reveal>
+          <h3>Content is never hostage</h3>
+          <p>
+            Every hidden state is scoped under a .js class added by a one-line script in the
+            head. Scripts blocked? Nothing hides. Reduced motion? Reveals become crossfades.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="prose">
+      <h2>Why an observer, not a scroll listener</h2>
+      <p>
+        A scroll handler runs on every scrolled pixel and forces you to measure elements
+        yourself — and calling getBoundingClientRect in a hot loop invites layout thrash.
+        IntersectionObserver inverts the deal: the browser watches geometry off the main
+        thread and calls you only at the crossings you asked for. For reveals, which care
+        about a handful of moments rather than continuous progress, it is the right tool
+        almost every time.
+      </p>
+    </section>
+
+    <!-- =============================================================
+         DEMO 02 — stagger children
+         ============================================================= -->
+    <section class="demo" aria-label="Demo 2: staggered children">
+      <p class="demo-label"><b>Demo 02</b> — Stagger a group</p>
+      <!-- The PARENT is observed once; children delay off --stagger.
+           Observing every tile individually would fire six callbacks for
+           what is conceptually one event: "the grid arrived". -->
+      <div class="tile-grid" data-reveal data-reveal-stagger>
+        <div class="tile" style="--stagger: 0">tile 0</div>
+        <div class="tile" style="--stagger: 1">tile 1</div>
+        <div class="tile" style="--stagger: 2">tile 2</div>
+        <div class="tile" style="--stagger: 3">tile 3</div>
+        <div class="tile" style="--stagger: 4">tile 4</div>
+        <div class="tile" style="--stagger: 5">tile 5</div>
+      </div>
+      <p class="hint" style="margin-top:14px">
+        80ms between siblings. Under ~50ms a stagger blurs into a single blob; over ~120ms
+        the tail of the group feels late for the meeting.
+      </p>
+    </section>
+
+    <!-- =============================================================
+         DEMO 03 — direction from a data attribute
+         ============================================================= -->
+    <section class="demo" aria-label="Demo 3: directional reveals">
+      <p class="demo-label"><b>Demo 03</b> — Direction as data</p>
+      <div class="cols-2">
+        <div class="r-card" data-reveal="up">
+          <h3>data-reveal="up"</h3>
+          <p>The default. Upward entrances agree with reading direction: new content comes from where you are headed.</p>
+        </div>
+        <div class="r-card" data-reveal="down">
+          <h3>data-reveal="down"</h3>
+          <p>Falling in from above. Use sparingly — it reads as an interruption, which is occasionally exactly the point.</p>
+        </div>
+        <div class="r-card" data-reveal="left">
+          <h3>data-reveal="left"</h3>
+          <p>Slides in from the left edge. Pairs of left/right cards can imply dialogue or comparison.</p>
+        </div>
+        <div class="r-card" data-reveal="right">
+          <h3>data-reveal="right"</h3>
+          <p>The mirror. Note the CSS: only the STARTING transform differs; the visible state is one shared rule.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="prose">
+      <h2>Choreography is information</h2>
+      <p>
+        Direction, order and timing are not decoration — they are claims about structure.
+        A staggered grid says "these are siblings". A left/right pair says "compare us".
+        Everything rising the same way says "one list, keep going". Pick the claim first,
+        then the animation; motion that contradicts the content's structure is how pages
+        end up feeling busy without feeling alive.
+      </p>
+    </section>
+
+    <!-- =============================================================
+         DEMO 04 — once vs repeat
+         ============================================================= -->
+    <section class="demo" aria-label="Demo 4: once versus repeat">
+      <p class="demo-label"><b>Demo 04</b> — Once vs repeat</p>
+      <div class="cols-2">
+        <div class="r-card" data-reveal>
+          <h3>Once (default)</h3>
+          <p>
+            After revealing, the observer calls unobserve on this card: zero further work,
+            and content never blinks out while the reader scrolls back up. The right
+            default for prose and product pages.
+          </p>
+        </div>
+        <div class="r-card" data-reveal data-reveal-repeat>
+          <h3>Repeat (data-reveal-repeat)</h3>
+          <p>
+            This card resets when it fully leaves the viewport and replays on return.
+            Good for ambient, gallery-like pages; risky around text people actually read.
+          </p>
+        </div>
+      </div>
+      <p class="hint" style="margin-top:14px">
+        Scroll well past this section, then come back up — only the right card replays.
+      </p>
+    </section>
+
+    <!-- =============================================================
+         DEMO 05 — threshold and rootMargin
+         ============================================================= -->
+    <section class="demo" aria-label="Demo 5: threshold and rootMargin">
+      <p class="demo-label"><b>Demo 05</b> — Threshold &amp; rootMargin, the tuning knobs</p>
+      <p style="max-width:62ch">
+        <code>threshold: 0.15</code> means "call me when 15% of the element is visible" —
+        it stops slivers at the screen edge from counting as arrivals.
+        <code>rootMargin</code> is stranger and more useful: it insets (or outsets) the
+        rectangle intersections are tested against. A bottom margin of <code>-10%</code>
+        moves the finish line up, so elements reveal a beat after entering rather than
+        exactly at the edge:
+      </p>
+
+      <div class="viewport-sketch" role="img" aria-label="Diagram: a viewport with the bottom 10 percent hatched. Elements must cross above the hatched strip before the observer fires.">
+        <div class="zone live">intersection root after<br>rootMargin: "0px 0px -10% 0px"</div>
+        <div class="zone dead">bottom 10% — entries here do not count yet</div>
+      </div>
+
+      <div class="cols-2">
+        <div class="r-card" data-reveal>
+          <h3>Default line (-10%)</h3>
+          <p>Reveals just above the viewport edge. This is the house default: perceptible but prompt.</p>
+        </div>
+        <div class="r-card" data-reveal data-reveal-late>
+          <h3>Late line (-35%)</h3>
+          <p>Same function, second instance, rootMargin of -35%: this card waits until it is a third of the way up your screen.</p>
+        </div>
+      </div>
+      <p class="hint" style="margin-top:14px">
+        Scroll slowly here — the right card fires noticeably later than the left one.
+      </p>
+    </section>
+
+    <!-- =============================================================
+         The whole engine, printed
+         ============================================================= -->
+    <section class="prose">
+      <h2>The whole engine</h2>
+      <p>
+        This is the complete, unabridged script running every demo above — called once for
+        the default line and once for the late-line variant. (The only other JS on the page
+        is the one-line <code>.js</code> class gate in the head.)
+      </p>
+      <pre><code>/**
+ * initReveals — one observer for every scroll-reveal it is given.
+ *
+ * Markup contract:
+ *   data-reveal            fade-up (the default)
+ *   data-reveal="left"     direction: up | down | left | right
+ *   data-reveal-stagger    children delay off their --stagger index
+ *   data-reveal-repeat     re-arms when it leaves the viewport
+ *
+ * The observer only toggles a class; all motion lives in CSS, where the
+ * compositor can run it and prefers-reduced-motion can neutralise it.
+ */
+function initReveals(selector, { threshold = 0.15,
+                                 rootMargin = '0px 0px -10% 0px' } = {}) {
+  const targets = document.querySelectorAll(selector);
+
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+
+        // "Once" elements are finished: unobserve so the browser does
+        // zero work for them on every future scroll.
+        if (!entry.target.hasAttribute('data-reveal-repeat')) {
+          observer.unobserve(entry.target);
+        }
+      } else if (entry.target.hasAttribute('data-reveal-repeat')) {
+        // "Repeat" elements re-arm once fully out of view.
+        entry.target.classList.remove('is-visible');
+      }
+    }
+  }, { threshold, rootMargin });
+
+  targets.forEach((el) => observer.observe(el));
+  return observer; // callers can .disconnect() on teardown
+}</code></pre>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      MIT &copy; 2026 Alejandro Brito &middot;
+      <a href="index.html">All demos</a> &middot;
+      <a href="https://github.com/AleBrito124356/scroll-story-lab">GitHub</a>
+    </div>
+  </footer>
+
+  <script>
+    /**
+     * initReveals — one observer for every scroll-reveal it is given.
+     *
+     * Markup contract:
+     *   data-reveal            fade-up (the default)
+     *   data-reveal="left"     direction: up | down | left | right
+     *   data-reveal-stagger    children delay off their --stagger index
+     *   data-reveal-repeat     re-arms when it leaves the viewport
+     *
+     * The observer only toggles a class; all motion lives in CSS, where the
+     * compositor can run it and prefers-reduced-motion can neutralise it.
+     */
+    function initReveals(selector, { threshold = 0.15,
+                                     rootMargin = '0px 0px -10% 0px' } = {}) {
+      const targets = document.querySelectorAll(selector);
+
+      const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+
+            // "Once" elements are finished: unobserve so the browser does
+            // zero work for them on every future scroll.
+            if (!entry.target.hasAttribute('data-reveal-repeat')) {
+              observer.unobserve(entry.target);
+            }
+          } else if (entry.target.hasAttribute('data-reveal-repeat')) {
+            // "Repeat" elements re-arm once fully out of view.
+            entry.target.classList.remove('is-visible');
+          }
+        }
+      }, { threshold, rootMargin });
+
+      targets.forEach((el) => observer.observe(el));
+      return observer; // callers can .disconnect() on teardown
+    }
+
+    /* Two instances of the same function — the whole page needs nothing else.
+       Demo 05's "late" cards get their own observer with a deeper bottom
+       inset, which is exactly how you would tune hero sections vs footnotes
+       in production. */
+    initReveals('[data-reveal]:not([data-reveal-late])');
+    initReveals('[data-reveal-late]', { rootMargin: '0px 0px -35% 0px' });
+  </script>
+
+</body>
+</html>

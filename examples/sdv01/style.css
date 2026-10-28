@@ -1,0 +1,160 @@
+@layer demo {
+	@layer reset {
+		*,
+		*:after,
+		*:before {
+			box-sizing: border-box;
+		}
+
+		main * {
+			margin: 0;
+			padding: 0;
+		}
+
+		main ul[class] {
+			list-style: none;
+		}
+
+		main label {
+			cursor: pointer;
+			max-width: max-content;
+			user-select: none;
+		}
+	}
+
+	@layer baselayout {
+		html {
+			margin: auto;
+			font-size: 1.25em;
+			height: 100%;
+			min-height: 100dvh;
+		}
+
+		html {
+			background: white;
+			color: black;
+		}
+
+		body {
+			width: 100%;
+			max-width: 75ch;
+			margin: 0 auto;
+			padding: 2em;
+			height: 100%;
+			display: grid;
+			place-content: center;
+		}
+	}
+
+	@layer components {
+		@layer carousel {
+			/* Carousel Component */
+			[data-component="carousel"] {
+				border-radius: 0.5em;
+				border: 0.25em solid #6300ff;
+				position: relative;
+				margin: 0 auto 10vh;
+				background: white;
+				height: 70vmin;
+				width: 70vmin;
+				overflow: hidden;
+
+				&:hover,
+				&:has(.entries:focus) {
+					border-color: #ff00fa;
+				}
+
+				.entries {
+					display: flex;
+					width: 100%;
+					height: 100%;
+					flex-direction: row;
+
+					overflow-x: scroll;
+					scroll-snap-type: x mandatory;
+					scrollbar-width: none;
+					scroll-behavior: smooth;
+
+					overscroll-behavior: contain;
+
+					&:focus {
+						outline: none;
+					}
+
+					> li {
+						scroll-snap-align: center;
+						flex: 100% 1 0;
+						display: flex;
+						padding: 1rem 1rem 4rem 1rem;
+
+						& a {
+							display: flex;
+							align-self: stretch;
+						}
+
+						& img {
+							display: block;
+							width: 100%;
+							height: auto;
+							object-fit: contain;
+							object-position: 50% 100%;
+						}
+					}
+				}
+
+				.markers {
+					display: flex;
+					flex-direction: row;
+					gap: 0.25em;
+					font-size: 2em;
+
+					position: absolute;
+					bottom: 1.5rem;
+					left: 50%;
+					translate: -50% 0;
+
+					& li {
+						&:nth-child(1) {
+							--i: 1;
+						}
+						&:nth-child(2) {
+							--i: 2;
+						}
+						&:nth-child(3) {
+							--i: 3;
+						}
+						&:nth-child(4) {
+							--i: 4;
+						}
+						&:nth-child(5) {
+							--i: 5;
+						}
+					}
+
+					& a {
+						display: block;
+						width: 0.5em;
+						aspect-ratio: 1;
+						background: #6300ff;
+						border-radius: 50%;
+					}
+				}
+			}
+		}
+	}
+
+	@layer utilities {
+		.sr-only {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			padding: 0;
+			margin: -1px;
+			overflow: hidden;
+			clip: rect(0, 0, 0, 0);
+			white-space: nowrap;
+			border-width: 0;
+		}
+	}
+
+}

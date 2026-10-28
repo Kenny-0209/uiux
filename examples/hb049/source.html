@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morph Transition — Animation Handbook</title>
+  <meta name="description" content="The logo changes shape to match each page you visit. Best for brand marks.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/morph-transition/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Morph Transition — Animation Handbook">
+  <meta property="og:description" content="The logo changes shape to match each page you visit. Best for brand marks.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/morph-transition/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Morph Transition — Animation Handbook">
+  <meta name="twitter:description" content="The logo changes shape to match each page you visit. Best for brand marks.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Morph Transition", "name": "Morph Transition", "description": "The logo changes shape to match each page you visit. Best for brand marks.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/morph-transition/", "inLanguage": "en", "articleSection": "Page Transitions", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Page Transitions, Morph Transition"}</script>
+  <style>
+    :root{--bg:#0b0b0d;--ui-bg:#111114;--ui-border:rgba(255,255,255,.09);--ui-accent:#b98cff;--ui-text:#f4f4f2;--ui-muted:#8a8a92}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{display:flex;flex-direction:column;overflow:hidden;background:var(--bg);color:var(--ui-text)}
+    .mini-nav{display:flex;gap:6px;padding:10px 12px;background:var(--ui-bg);border-bottom:1px solid var(--ui-border);flex-shrink:0;align-items:center}
+    .nav-logo{flex-shrink:0;margin-right:8px}
+    .nav-logo svg{display:block}
+    #nav{display:flex;gap:6px;flex:1}
+    .nav-btn{background:none;border:1px solid var(--ui-border);color:var(--ui-muted);font:inherit;font-size:13px;padding:0 12px;border-radius:4px;cursor:pointer;min-height:44px}
+    .nav-btn.active{border-color:var(--ui-accent);color:var(--ui-accent)}
+    .page-area{flex:1;position:relative;overflow:hidden}
+    .page{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity var(--fade,300ms) ease}
+    .page.active{opacity:1;pointer-events:auto}
+    .pc{display:flex;flex-direction:column;justify-content:center;height:100%;padding:clamp(20px,4vw,40px);gap:12px}
+    .pe{font-size:10px;text-transform:uppercase;letter-spacing:3px;opacity:.6}
+    .ph{font-size:clamp(22px,3.5vw,36px);font-weight:bold;line-height:1.15}
+    .pp{font-size:12px;opacity:.6;line-height:1.65;max-width:320px}
+    .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:4px}
+    .gi{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:18px 12px;font-size:11px}
+    .pstat{display:flex;gap:20px;margin-top:4px}
+    .pstat b{display:block;font-size:clamp(18px,2.5vw,24px);color:#58a6ff}
+    .pstat span{font-size:9px;opacity:.6;text-transform:uppercase;letter-spacing:1px}
+    @media(hover:hover){.nav-btn:hover{border-color:var(--ui-accent)}}
+    /* Short windows leave the page area under 220px: tighter spacing keeps the tallest page inside it with room to spare */
+    @media(max-height:640px){.pc{gap:8px}.gi{padding:12px}}
+    @media(prefers-reduced-motion:reduce){.page{transition:none}}
+    /* See inside and Compare: over the page area a dark veil, with the logo drawn large from the same points as the small one.
+       The views are made once and hidden in Normal. */
+    .vin,.vcmp{display:none;position:absolute;inset:0;z-index:5;pointer-events:none}
+    .stage[data-hb-mode="inside"] .vin{display:block;background:rgba(11,11,13,.8)}
+    .stage[data-hb-mode="compare"] .vcmp{display:flex;gap:2px;background:#2a2a30}
+    .half{position:relative;flex:1 1 0;min-width:0;overflow:hidden;background:rgba(11,11,13,.8)}
+    .big{position:absolute;left:50%;top:50%;height:70%;max-width:90%;aspect-ratio:1;transform:translate(-50%,-50%);overflow:visible}
+    .half .big{max-width:86%}
+    .big *{vector-effect:non-scaling-stroke}
+    /* See inside keeps its logo a little high, so the two bottom labels stay clear of it where they wrap on narrow or short boxes */
+    .vin .big{top:47%}
+    @media(max-height:650px){.vin .big{height:64%}}
+    @media(max-width:600px){.vin .big{height:60%;top:45%}}
+    .o-from,.o-to{fill:none;stroke-width:2;stroke-dasharray:6 5}
+    .half .o-from{stroke:rgba(244,244,242,.55)}
+    .o-live{stroke-linejoin:round}
+    .vin .o-live{stroke:#f4f4f2;stroke-width:1.5;fill-opacity:.3}
+    .half .o-live{stroke-width:2;fill-opacity:.9}
+    .pl{stroke:rgba(244,244,242,.6);stroke-width:1.5}
+    .pd{fill:#f4f4f2;stroke:#0b0b0d;stroke-width:1}
+    .ring{fill:none;stroke:var(--ui-accent);stroke-width:2}
+    .lbl{position:absolute;padding:3px 7px;border-radius:5px;background:rgba(11,11,13,.9);color:#f4f4f2;font:600 12px/1.25 var(--hb-font);
+      border-left:3px solid var(--c,transparent)}
+    .vin .lbl{max-width:calc(50% - 12px)}
+    .l-tl,.nm{left:8px;top:8px}
+    .l-tr{right:8px;top:8px}
+    .l-bl{left:8px;bottom:8px}
+    .l-br{right:8px;bottom:8px}
+    .nm{white-space:nowrap}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="do" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../shared-element-transition/" rel="prev" aria-label="Previous: Shared Element Transition"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Shared Element Transition</span></a><a href="../crossfade/" rel="next" aria-label="Next: Crossfade Transition"><span><span class="hb-dir">Next: </span>Crossfade Transition</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">03.03 · Page Transitions</p>
+    <h1>Morph Transition</h1>
+    <p class="hb-lede">The logo changes shape to match each page you visit. Best for brand marks.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Click it</h2><p>Click Gallery or About at the top of the box, or press Show me.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage">
+      <div class="mini-nav">
+        <div class="nav-logo">
+          <svg id="morph-svg" width="44" height="44" viewBox="0 0 100 100" aria-hidden="true"><path id="morph-path" fill="#58a6ff" opacity=".9"/></svg>
+        </div>
+        <div id="nav"></div>
+      </div>
+      <div class="page-area" id="page-area">
+        <div class="vin" aria-hidden="true" inert>
+          <svg class="big" viewBox="0 0 100 100"><path class="o-from"/><path class="o-to"/><g class="lines"></g><path class="o-live"/><g class="dots"></g><circle class="ring" r="5"/></svg>
+          <p class="lbl l-tl" data-hb-caption></p><p class="lbl l-tr" data-hb-caption></p>
+          <p class="lbl l-bl" data-hb-caption>Each of 12 points slides straight to its partner</p><p class="lbl l-br" data-hb-caption></p>
+        </div>
+        <div class="vcmp" aria-hidden="true" inert>
+          <div class="half"><svg class="big" viewBox="0 0 100 100"><path class="o-from"/><path class="o-live"/></svg><p class="lbl nm" data-hb-caption>Order reversed</p></div>
+          <div class="half"><svg class="big" viewBox="0 0 100 100"><path class="o-from"/><path class="o-live"/></svg><p class="lbl nm" data-hb-caption>Same order</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-demo" data-hb-demo><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>Show me</button>
+      <button class="hb-play" type="button" id="btn-reset" data-hb-reset><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>Reset</button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the logo is drawn large: each of its 12 points slides straight to its partner in the next shape, from one dashed outline to the other. Click Gallery or About, or press Show me.</p>
+      <p data-hb-for="compare" hidden>Order reversed lists the new shape's points backward, so the outline folds through itself; Same order gives each point its partner and it flows. Click Gallery or About, or press Show me.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then try it again or press Show me.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-ms="1100" aria-pressed="false">Slow</button>
+          <button type="button" data-ms="700" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-ms="400" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">How long the logo takes to change shape.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="feel-lbl">Feel</p>
+        <div class="seg" id="feel-seg" role="group" aria-labelledby="feel-lbl">
+          <button type="button" data-ease="ease-out" aria-pressed="false">Smooth</button>
+          <button type="button" data-ease="springy" aria-pressed="false">Springy</button>
+          <button type="button" data-ease="ease-in-out" class="on" aria-pressed="true">Gentle</button>
+          <button type="button" data-ease="linear" aria-pressed="false">Even</button>
+        </div>
+        <p class="hb-hint">Springy stretches a little past the new shape.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a morphing logo to [your logo or icon, and the pages it belongs to]. Give each page its own shape for the logo, and when the visitor changes page, let the outline flow from the old shape into the new one while the page content fades across. Draw every shape with the same number of points in the same order, so each point has a partner to move to and the outline never tears or twists. Move the points yourself on every frame, because CSS cannot blend two different shapes. If the visitor has reduced motion turned on, switch to the new shape at once. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Logos</li><li>Brand marks</li><li>Icons that change state</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Detailed pictures</li><li>Text</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const PI2=Math.PI*2,cx=50,cy=50;
+  function pts2path(pts){return'M '+pts.map(([x,y])=>`${x.toFixed(2)} ${y.toFixed(2)}`).join(' L ')+' Z'}
+  // 12-point shapes
+  const circle12=Array.from({length:12},(_,i)=>{const a=i/12*PI2-Math.PI/2;return[cx+38*Math.cos(a),cy+38*Math.sin(a)]});
+  // Hexagon: 6 vertices interleaved with midpoints
+  const hexVerts=Array.from({length:6},(_,i)=>{const a=i/6*PI2-Math.PI/2;return[cx+38*Math.cos(a),cy+38*Math.sin(a)]});
+  const hex12=hexVerts.flatMap((v,i)=>{const n=hexVerts[(i+1)%6];return[v,[(v[0]+n[0])/2,(v[1]+n[1])/2]]});
+  // 12-point star (alternating outer/inner)
+  const star12=Array.from({length:12},(_,i)=>{const a=i/12*PI2-Math.PI/2,r=i%2===0?38:18;return[cx+r*Math.cos(a),cy+r*Math.sin(a)]});
+
+  const SHAPES=[{pts:circle12,color:'#58a6ff'},{pts:hex12,color:'#56d364'},{pts:star12,color:'#ffa657'}];
+  const PAGES=[
+    {name:'Home',shape:0,bg:'linear-gradient(135deg,#0d1a2e,#192640)',html:`<div class="pc"><div class="pe">Creative Studio</div><p class="ph">Design without compromise.</p><p class="pp">We craft digital products that earn attention and keep it.</p></div>`},
+    {name:'Gallery',shape:1,bg:'linear-gradient(135deg,#0d1f15,#152e1e)',html:`<div class="pc"><div class="pe">Selected Work</div><p class="ph">The Portfolio</p><div class="pgrid">${['Atlas','Orbit','Prism','Lumen','Frame','Echo'].map(n=>`<div class="gi">${n}</div>`).join('')}</div></div>`},
+    {name:'About',shape:2,bg:'linear-gradient(135deg,#1f0d26,#2e1540)',html:`<div class="pc"><div class="pe">Our Story</div><p class="ph">Built on conviction.</p><p class="pp">18 people who care unreasonably about craft. Independent since 2016.</p><div class="pstat"><div><b>140+</b><span>Projects</span></div><div><b>9</b><span>Years</span></div></div></div>`},
+  ];
+  const nav=document.getElementById('nav'),area=document.getElementById('page-area');
+  const morphPath=document.getElementById('morph-path'),slowTog=document.getElementById('slow-tog');
+  const motionOk=!window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let current=0,animating=false,dur=700,ease='ease-in-out',morphRaf=null,currentPts=[...circle12],afterMove=null,wayBack=0,timers=[];
+  // mode: Normal, See inside or Compare. chg: the change under way, or just finished (a Show me hold), as shapes a to b (indexes in
+  // SHAPES) and the eased share et of the way. runFrom: the page a Show me run started from, until its way back ends.
+  let mode='normal',chg=null,runFrom=null;
+  const pages=[],navBtns=[];
+  // Under reduced motion both views are still pictures, and their notes say so
+  if(!motionOk){
+    document.querySelector('[data-hb-for="inside"]').textContent='Shown still and large: the logo caught during a change, each of its 12 points on the straight line to its partner in the next shape.';
+    document.querySelector('[data-hb-for="compare"]').textContent='Shown still, part way through a change: Order reversed is pulled out of shape as its points cross over; Same order keeps the outline whole.';
+  }
+
+  PAGES.forEach((p,i)=>{
+    const d=document.createElement('div');d.className='page';d.style.background=p.bg;d.innerHTML=p.html;area.appendChild(d);pages.push(d);
+    const b=document.createElement('button');b.type='button';b.className='nav-btn';b.textContent=p.name;
+    b.addEventListener('click',()=>navigate(i));nav.appendChild(b);navBtns.push(b);
+  });
+
+  // Drops a timer's id once it fires, so `timers` only holds the ones still waiting.
+  function later(fn,wait){
+    const id=setTimeout(()=>{
+      const i=timers.indexOf(id);
+      if(i>-1)timers.splice(i,1);
+      fn();
+    },wait);
+    timers.push(id);
+    return id;
+  }
+  function cancel(id){
+    clearTimeout(id);
+    const i=timers.indexOf(id);
+    if(i>-1)timers.splice(i,1);
+  }
+
+  function lerp(a,b,t){return a+(b-a)*t}
+  function easeFn(t,e=ease){if(e==='linear')return t;if(e==='ease-out')return 1-(1-t)**3;if(e==='springy'){const ov=1.2;return t<0.5?ov*(1-(1-2*t)**2):(t<0.8?ov-(ov-1)*(t-0.5)/0.3:1);}return t<0.5?2*t*t:1-(-2*t+2)**2/2}
+
+  function blend(from,to,et){return from.map(([ax,ay],i)=>[lerp(ax,to[i][0],et),lerp(ay,to[i][1],et)])}
+  function render(pts){morphPath.setAttribute('d',pts2path(pts));currentPts=pts;paint()}
+  function drawShape(s){render([...s.pts]);morphPath.setAttribute('fill',s.color)}
+  function startMorph(from,to,done){
+    if(morphRaf)cancelAnimationFrame(morphRaf);
+    morphRaf=null;
+    if(!motionOk){render([...to]);done?.();return;}
+    const start=performance.now(),d=dur*(slowTog.checked?3:1),ez=ease;
+    function tick(now){
+      const t=Math.min((now-start)/d,1),et=easeFn(t,ez);
+      if(chg)chg.et=et;
+      render(blend(from,to,et));
+      if(t<1)morphRaf=requestAnimationFrame(tick);else{morphRaf=null;done?.();}
+    }
+    morphRaf=requestAnimationFrame(tick);
+  }
+
+  function updateNav(n){navBtns.forEach((b,i)=>{b.classList.toggle('active',i===n);b.setAttribute('aria-current',i===n?'page':'false')})}
+  // The resting state for page n, at once: it shows, the others are hidden and inert (out of the Tab order and the
+  // accessibility tree) and the logo has its shape. A fade that is already running toward the same opacity keeps its
+  // own length however short --fade is, so it is cancelled too.
+  function showPage(n){
+    area.style.setProperty('--fade','0ms');
+    pages.forEach((el,i)=>{el.classList.toggle('active',i===n);el.inert=i!==n;el.getAnimations().forEach(a=>a.cancel())});
+    updateNav(n);
+    drawShape(SHAPES[PAGES[n].shape]);
+  }
+
+  // Ends a morph: the demo is idle again, and a Show me run goes on to its next step
+  function finish(){
+    animating=false;
+    const then=afterMove;afterMove=null;
+    if(then)then();
+    paint();
+  }
+  // Stops everything at once and shows the resting state for `current`
+  function settle(){
+    timers.forEach(clearTimeout);timers=[];wayBack=0;afterMove=null;chg=null;
+    if(morphRaf){cancelAnimationFrame(morphRaf);morphRaf=null}
+    animating=false;
+    showPage(current);
+  }
+
+  function navigate(next,then){
+    if(next===current||animating)return;
+    const prev=current;current=next;updateNav(next);
+    afterMove=then||null;
+    // The pages fade across in 300ms, three times as long in slow motion, while the logo changes shape
+    area.style.setProperty('--fade',(slowTog.checked?900:300)+'ms');
+    pages[prev].classList.remove('active');pages[prev].inert=true;pages[next].classList.add('active');pages[next].inert=false;
+    const target=SHAPES[PAGES[next].shape];
+    animating=true;
+    chg={a:PAGES[prev].shape,b:PAGES[next].shape,et:0,done:false};paint();
+    startMorph(currentPts,target.pts,()=>{if(chg)chg.done=true;drawShape(target);finish()});
+  }
+
+  // Show me: one visit to the next page, a hold of 1200ms, and the way back to where the run started
+  function showMe(){
+    if(runFrom!==null)current=runFrom;
+    settle();
+    const start=current;runFrom=start;
+    navigate((start+1)%PAGES.length,()=>{wayBack=later(()=>{wayBack=0;navigate(start,()=>{runFrom=null;paint()})},1200)});
+  }
+  function reset(){runFrom=null;current=0;settle()}
+
+  document.getElementById('btn-demo').addEventListener('click',showMe);
+  document.getElementById('btn-reset').addEventListener('click',reset);
+  // The visitor took over: cancel what the run has not started yet. A morph already moving finishes on its own.
+  document.addEventListener('hb:input',()=>{afterMove=null;cancel(wayBack);wayBack=0;runFrom=null;paint()});
+
+  // See inside and Compare. Both are drawn from SHAPES with the same blend() as the logo, in the frame step that moves it (render).
+  // At rest, or under reduced motion, they hold a pose: the shape on show changing to the star (About: to the circle), POSE of the
+  // way along the Feel's curve. A change under way, and the hold of a Show me run, shows that change itself.
+  const NAMES=['circle','hexagon','star'],POSE=.4,NS='http://www.w3.org/2000/svg';
+  // The new shape's points listed the other way round: the top and the bottom one stay, every other point swaps with its mirror image
+  SHAPES.forEach(s=>{s.rev=s.pts.map((_,i)=>s.pts[(12-i)%12])});
+  const vin=area.querySelector('.vin'),halves=[...area.querySelectorAll('.half')];
+  const cFrom=halves.map(h=>h.querySelector('.o-from')),cLive=halves.map(h=>h.querySelector('.o-live'));
+  const sel=(root,q)=>[...root.querySelectorAll(q)];
+  const [iFrom,iTo,iLive,iRing]=['.o-from','.o-to','.o-live','.ring'].map(q=>vin.querySelector(q));
+  const [lFrom,lTo,,lTime]=sel(vin,'.lbl');
+  const lines=[],dots=[];
+  for(let i=0;i<12;i++){
+    for(const [list,tag,g] of [[lines,'line','.lines'],[dots,'circle','.dots']]){
+      const e=document.createElementNS(NS,tag);vin.querySelector(g).appendChild(e);list.push(e);
+      e.setAttribute('class',tag==='line'?'pl':'pd');
+    }
+    dots[i].setAttribute('r',2.6);
+  }
+  let drawn=-1,colored='',coloredIn='';
+  function words(ms){return ms<=450?'about half a second':ms<=800?'about three quarters of a second':ms<=1300?'about a second':ms<=2400?'about two seconds':'about three seconds'}
+  function paint(){
+    if(mode==='normal')return;
+    const posed=!motionOk||!chg||(!animating&&!wayBack);
+    const a=posed?PAGES[current].shape:chg.a,b=posed?(PAGES[current].shape===2?0:2):chg.b;
+    const A=SHAPES[a],B=SHAPES[b],et=posed?easeFn(POSE):chg.et,color=(posed||!chg.done?A:B).color;
+    const key=((mode==='inside'?1:2)*3+a)*3+b;
+    if(drawn!==key){
+      drawn=key;
+      const from=pts2path(A.pts);
+      if(mode==='inside'){
+        iFrom.setAttribute('d',from);iFrom.setAttribute('stroke',A.color);
+        iTo.setAttribute('d',pts2path(B.pts));iTo.setAttribute('stroke',B.color);
+        A.pts.forEach(([x,y],i)=>{
+          const moves=Math.hypot(B.pts[i][0]-x,B.pts[i][1]-y)>.5;
+          lines[i].style.display=moves?'':'none';
+          lines[i].setAttribute('x1',x);lines[i].setAttribute('y1',y);lines[i].setAttribute('x2',B.pts[i][0]);lines[i].setAttribute('y2',B.pts[i][1]);
+        });
+        iRing.setAttribute('cx',A.pts[0][0]);iRing.setAttribute('cy',A.pts[0][1]);
+        lFrom.textContent='From: '+NAMES[a];lFrom.style.setProperty('--c',A.color);
+        lTo.textContent='To: '+NAMES[b];lTo.style.setProperty('--c',B.color);
+        // Under reduced motion the page snaps, and its words say so
+        lTime.textContent=motionOk?'Takes '+words(dur*(slowTog.checked?3:1)):'Reduced motion: it snaps at once';
+      }else cFrom.forEach(e=>e.setAttribute('d',from));
+    }
+    const live=blend(A.pts,B.pts,et);
+    if(mode==='inside'){
+      iLive.setAttribute('d',pts2path(live));
+      live.forEach(([x,y],i)=>{dots[i].setAttribute('cx',x);dots[i].setAttribute('cy',y)});
+    }else{
+      cLive[0].setAttribute('d',pts2path(blend(A.pts,B.rev,et)));
+      cLive[1].setAttribute('d',pts2path(live));
+    }
+    if(colored!==color||coloredIn!==mode){
+      colored=color;coloredIn=mode;
+      (mode==='inside'?[iLive]:cLive).forEach(e=>{e.setAttribute('fill',color);if(mode==='compare')e.setAttribute('stroke',color)});
+    }
+  }
+  // The mode switch: draws the mode at once. The shared script then presses Show me (not under reduced motion), which plays it.
+  document.addEventListener('hb:mode',e=>{mode=e.detail.mode;drawn=-1;colored='';paint()});
+  slowTog.addEventListener('change',()=>{drawn=-1;paint()});
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+      drawn=-1;paint();
+    }));
+  }
+  choices('speed-seg',d=>{dur=+d.ms});
+  choices('feel-seg',d=>{ease=d.ease});
+  showPage(0);
+</script>
+</body>
+</html>

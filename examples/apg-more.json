@@ -1,0 +1,1114 @@
+[
+  {
+    "id": "apg-01",
+    "name": "접근성 아코디언",
+    "english": "Accessible accordion",
+    "category": "UI 패턴",
+    "description": "섹션을 열고 닫으며 관련 입력 양식을 표시합니다.",
+    "tags": [
+      "아코디언",
+      "접근성",
+      "폼"
+    ],
+    "preview": "./examples/apg/ap01/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap01/source.html",
+    "codeFiles": [
+      {
+        "label": "accordion.css",
+        "path": "./examples/apg/ap01/css/accordion.css"
+      },
+      {
+        "label": "accordion.js",
+        "path": "./examples/apg/ap01/js/accordion.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/accordion/examples/accordion.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-02",
+    "name": "자동 활성화 탭",
+    "english": "Automatic tabs",
+    "category": "UI 패턴",
+    "description": "탭에 초점을 옮기면 해당 내용이 바로 표시됩니다.",
+    "tags": [
+      "탭",
+      "키보드",
+      "접근성"
+    ],
+    "preview": "./examples/apg/ap02/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap02/source.html",
+    "codeFiles": [
+      {
+        "label": "tabs.css",
+        "path": "./examples/apg/ap02/css/tabs.css"
+      },
+      {
+        "label": "tabs-automatic.js",
+        "path": "./examples/apg/ap02/js/tabs-automatic.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/tabs/examples/tabs-automatic.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-03",
+    "name": "수동 활성화 탭",
+    "english": "Manual tabs",
+    "category": "UI 패턴",
+    "description": "키보드로 탭을 탐색하고 선택할 때 내용을 표시합니다.",
+    "tags": [
+      "탭",
+      "키보드",
+      "접근성"
+    ],
+    "preview": "./examples/apg/ap03/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap03/source.html",
+    "codeFiles": [
+      {
+        "label": "tabs.css",
+        "path": "./examples/apg/ap03/css/tabs.css"
+      },
+      {
+        "label": "tabs-manual.js",
+        "path": "./examples/apg/ap03/js/tabs-manual.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/tabs/examples/tabs-manual.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-04",
+    "name": "선택형 콤보박스",
+    "english": "Select-only combobox",
+    "category": "UI 패턴",
+    "description": "목록을 열어 과일을 선택하거나 키보드로 탐색합니다.",
+    "tags": [
+      "콤보박스",
+      "선택",
+      "키보드"
+    ],
+    "preview": "./examples/apg/ap04/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap04/source.html",
+    "codeFiles": [
+      {
+        "label": "select-only.css",
+        "path": "./examples/apg/ap04/css/select-only.css"
+      },
+      {
+        "label": "select-only.js",
+        "path": "./examples/apg/ap04/js/select-only.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/combobox/examples/combobox-select-only.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-05",
+    "name": "접근성 모달 대화상자",
+    "english": "Modal dialog",
+    "category": "UI 패턴",
+    "description": "배송지 입력 대화상자를 열고 하위 대화상자를 살펴봅니다.",
+    "tags": [
+      "모달",
+      "대화상자",
+      "포커스"
+    ],
+    "preview": "./examples/apg/ap05/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap05/source.html",
+    "codeFiles": [
+      {
+        "label": "dialog.css",
+        "path": "./examples/apg/ap05/css/dialog.css"
+      },
+      {
+        "label": "utils.js",
+        "path": "./examples/apg/ap05/utils.js"
+      },
+      {
+        "label": "dialog.js",
+        "path": "./examples/apg/ap05/js/dialog.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/dialog-modal/examples/dialog.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-06",
+    "name": "접근성 버튼",
+    "english": "Accessible button",
+    "category": "UI 패턴",
+    "description": "접근 가능한 버튼과 토글 버튼의 상태를 확인합니다.",
+    "tags": [
+      "버튼",
+      "토글",
+      "접근성"
+    ],
+    "preview": "./examples/apg/ap06/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap06/source.html",
+    "codeFiles": [
+      {
+        "label": "button.css",
+        "path": "./examples/apg/ap06/css/button.css"
+      },
+      {
+        "label": "button.js",
+        "path": "./examples/apg/ap06/js/button.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/button/examples/button.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-07",
+    "name": "접근성 체크박스",
+    "english": "Accessible checkbox",
+    "category": "UI 패턴",
+    "description": "항목을 선택하고 체크 상태의 변화를 확인합니다.",
+    "tags": [
+      "체크박스",
+      "선택",
+      "접근성"
+    ],
+    "preview": "./examples/apg/ap07/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap07/source.html",
+    "codeFiles": [
+      {
+        "label": "checkbox.css",
+        "path": "./examples/apg/ap07/css/checkbox.css"
+      },
+      {
+        "label": "checkbox.js",
+        "path": "./examples/apg/ap07/js/checkbox.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/checkbox/examples/checkbox.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-08",
+    "name": "접근성 라디오 그룹",
+    "english": "Accessible radio group",
+    "category": "UI 패턴",
+    "description": "하나의 옵션을 선택하고 키보드로 이동합니다.",
+    "tags": [
+      "라디오",
+      "선택",
+      "키보드"
+    ],
+    "preview": "./examples/apg/ap08/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap08/source.html",
+    "codeFiles": [
+      {
+        "label": "radio.css",
+        "path": "./examples/apg/ap08/css/radio.css"
+      },
+      {
+        "label": "radio.js",
+        "path": "./examples/apg/ap08/js/radio.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/radio/examples/radio.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-09",
+    "name": "버튼형 스위치",
+    "english": "Switch button",
+    "category": "UI 패턴",
+    "description": "스위치를 조작하여 켜짐과 꺼짐 상태를 전환합니다.",
+    "tags": [
+      "스위치",
+      "토글",
+      "접근성"
+    ],
+    "preview": "./examples/apg/ap09/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap09/source.html",
+    "codeFiles": [
+      {
+        "label": "switch-button.css",
+        "path": "./examples/apg/ap09/css/switch-button.css"
+      },
+      {
+        "label": "switch-button.js",
+        "path": "./examples/apg/ap09/js/switch-button.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/switch/examples/switch-button.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-10",
+    "name": "동작 메뉴 버튼",
+    "english": "Action menu button",
+    "category": "UI 패턴",
+    "description": "버튼을 열어 여러 동작 중 하나를 선택합니다.",
+    "tags": [
+      "메뉴",
+      "버튼",
+      "키보드"
+    ],
+    "preview": "./examples/apg/ap10/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap10/source.html",
+    "codeFiles": [
+      {
+        "label": "menu-button-actions.css",
+        "path": "./examples/apg/ap10/css/menu-button-actions.css"
+      },
+      {
+        "label": "menu-button-actions.js",
+        "path": "./examples/apg/ap10/js/menu-button-actions.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/menu-button/examples/menu-button-actions.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-11",
+    "name": "스크롤 목록상자",
+    "english": "Scrollable listbox",
+    "category": "UI 패턴",
+    "description": "긴 선택 목록을 스크롤하고 키보드로 탐색합니다.",
+    "tags": [
+      "리스트박스",
+      "선택",
+      "키보드"
+    ],
+    "preview": "./examples/apg/ap11/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap11/source.html",
+    "codeFiles": [
+      {
+        "label": "listbox.css",
+        "path": "./examples/apg/ap11/css/listbox.css"
+      },
+      {
+        "label": "listbox.js",
+        "path": "./examples/apg/ap11/js/listbox.js"
+      },
+      {
+        "label": "listbox-scrollable.js",
+        "path": "./examples/apg/ap11/js/listbox-scrollable.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/listbox/examples/listbox-scrollable.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-12",
+    "name": "접근성 온도 슬라이더",
+    "english": "Temperature slider",
+    "category": "UI 패턴",
+    "description": "슬라이더를 움직여 온도 값을 조절합니다.",
+    "tags": [
+      "슬라이더",
+      "값 조절",
+      "키보드"
+    ],
+    "preview": "./examples/apg/ap12/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap12/source.html",
+    "codeFiles": [
+      {
+        "label": "slider-temperature.css",
+        "path": "./examples/apg/ap12/css/slider-temperature.css"
+      },
+      {
+        "label": "slider-temperature.js",
+        "path": "./examples/apg/ap12/js/slider-temperature.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/slider/examples/slider-temperature.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-13",
+    "name": "수량 스핀 버튼",
+    "english": "Quantity spinbutton",
+    "category": "UI 패턴",
+    "description": "수량을 키보드 또는 버튼으로 증감합니다.",
+    "tags": [
+      "스핀버튼",
+      "수량",
+      "키보드"
+    ],
+    "preview": "./examples/apg/ap13/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap13/source.html",
+    "codeFiles": [
+      {
+        "label": "quantity-spinbutton.css",
+        "path": "./examples/apg/ap13/css/quantity-spinbutton.css"
+      },
+      {
+        "label": "quantity-spinbutton.js",
+        "path": "./examples/apg/ap13/js/quantity-spinbutton.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/spinbutton/examples/quantity-spinbutton.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-14",
+    "name": "접근성 알림",
+    "english": "Accessible alert",
+    "category": "UI 패턴",
+    "description": "알림 생성 버튼을 눌러 동적으로 표시되는 알림을 확인합니다.",
+    "tags": [
+      "알림",
+      "상태",
+      "접근성"
+    ],
+    "preview": "./examples/apg/ap14/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap14/source.html",
+    "codeFiles": [
+      {
+        "label": "alert.css",
+        "path": "./examples/apg/ap14/css/alert.css"
+      },
+      {
+        "label": "alert.js",
+        "path": "./examples/apg/ap14/js/alert.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/alert/examples/alert.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-15",
+    "name": "확인 알림 대화상자",
+    "english": "Alert dialog",
+    "category": "UI 패턴",
+    "description": "내용 삭제 동작에서 확인 대화상자가 열리는 방식을 살펴봅니다.",
+    "tags": [
+      "확인",
+      "대화상자",
+      "접근성"
+    ],
+    "preview": "./examples/apg/ap15/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap15/source.html",
+    "codeFiles": [
+      {
+        "label": "alertdialog.css",
+        "path": "./examples/apg/ap15/css/alertdialog.css"
+      },
+      {
+        "label": "utils.js",
+        "path": "./examples/apg/ap15/utils.js"
+      },
+      {
+        "label": "alertdialog.js",
+        "path": "./examples/apg/ap15/js/alertdialog.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/alertdialog/examples/alertdialog.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-16",
+    "name": "부분 선택 체크박스",
+    "english": "Mixed-state checkbox",
+    "category": "UI 패턴",
+    "description": "전체 및 개별 항목을 선택하여 부분 선택 상태를 확인합니다.",
+    "tags": [
+      "체크박스",
+      "부분 선택",
+      "접근성"
+    ],
+    "preview": "./examples/apg/ap16/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap16/source.html",
+    "codeFiles": [
+      {
+        "label": "checkbox-mixed.css",
+        "path": "./examples/apg/ap16/css/checkbox-mixed.css"
+      },
+      {
+        "label": "checkbox-mixed.js",
+        "path": "./examples/apg/ap16/js/checkbox-mixed.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/checkbox/examples/checkbox-mixed.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-17",
+    "name": "자동 완성과 목록 제안",
+    "english": "Combobox with list and inline autocomplete",
+    "category": "UI 패턴",
+    "description": "입력 중 목록과 인라인 자동 완성을 함께 살펴봅니다.",
+    "tags": [
+      "콤보박스",
+      "자동완성",
+      "입력"
+    ],
+    "preview": "./examples/apg/ap17/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap17/source.html",
+    "codeFiles": [
+      {
+        "label": "combobox-autocomplete.css",
+        "path": "./examples/apg/ap17/css/combobox-autocomplete.css"
+      },
+      {
+        "label": "combobox-autocomplete.js",
+        "path": "./examples/apg/ap17/js/combobox-autocomplete.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/combobox/examples/combobox-autocomplete-both.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-18",
+    "name": "목록 제안 콤보박스",
+    "english": "Combobox with list autocomplete",
+    "category": "UI 패턴",
+    "description": "입력에 따라 표시되는 제안 목록을 탐색하고 선택합니다.",
+    "tags": [
+      "콤보박스",
+      "자동완성",
+      "목록"
+    ],
+    "preview": "./examples/apg/ap18/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap18/source.html",
+    "codeFiles": [
+      {
+        "label": "combobox-autocomplete.css",
+        "path": "./examples/apg/ap18/css/combobox-autocomplete.css"
+      },
+      {
+        "label": "combobox-autocomplete.js",
+        "path": "./examples/apg/ap18/js/combobox-autocomplete.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/combobox/examples/combobox-autocomplete-list.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-19",
+    "name": "입력형 콤보박스",
+    "english": "Editable combobox without autocomplete",
+    "category": "UI 패턴",
+    "description": "직접 입력하거나 펼쳐진 목록에서 항목을 선택합니다.",
+    "tags": [
+      "콤보박스",
+      "입력",
+      "목록"
+    ],
+    "preview": "./examples/apg/ap19/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap19/source.html",
+    "codeFiles": [
+      {
+        "label": "combobox-autocomplete.css",
+        "path": "./examples/apg/ap19/css/combobox-autocomplete.css"
+      },
+      {
+        "label": "combobox-autocomplete.js",
+        "path": "./examples/apg/ap19/js/combobox-autocomplete.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/combobox/examples/combobox-autocomplete-none.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-20",
+    "name": "격자형 제안 콤보박스",
+    "english": "Combobox with grid popup",
+    "category": "UI 패턴",
+    "description": "검색어에 맞는 제안을 표 형태로 탐색합니다.",
+    "tags": [
+      "콤보박스",
+      "격자",
+      "검색"
+    ],
+    "preview": "./examples/apg/ap20/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap20/source.html",
+    "codeFiles": [
+      {
+        "label": "grid-combo.css",
+        "path": "./examples/apg/ap20/css/grid-combo.css"
+      },
+      {
+        "label": "utils.js",
+        "path": "./examples/apg/ap20/utils.js"
+      },
+      {
+        "label": "grid-combo.js",
+        "path": "./examples/apg/ap20/js/grid-combo.js"
+      },
+      {
+        "label": "grid-combo-example.js",
+        "path": "./examples/apg/ap20/js/grid-combo-example.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/combobox/examples/grid-combo.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-21",
+    "name": "FAQ 펼치기",
+    "english": "FAQ disclosure",
+    "category": "UI 패턴",
+    "description": "질문을 선택하여 개별 답변을 열고 닫습니다.",
+    "tags": [
+      "FAQ",
+      "펼치기",
+      "접근성"
+    ],
+    "preview": "./examples/apg/ap21/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap21/source.html",
+    "codeFiles": [
+      {
+        "label": "disclosure-faq.css",
+        "path": "./examples/apg/ap21/css/disclosure-faq.css"
+      },
+      {
+        "label": "disclosure-button.js",
+        "path": "./examples/apg/ap21/js/disclosure-button.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/disclosure/examples/disclosure-faq.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-22",
+    "name": "카드 상세 펼치기",
+    "english": "Disclosure cards",
+    "category": "UI 패턴",
+    "description": "카드에 담긴 추가 정보를 개별적으로 펼칩니다.",
+    "tags": [
+      "카드",
+      "펼치기",
+      "상세"
+    ],
+    "preview": "./examples/apg/ap22/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap22/source.html",
+    "codeFiles": [
+      {
+        "label": "disclosure-card.css",
+        "path": "./examples/apg/ap22/css/disclosure-card.css"
+      },
+      {
+        "label": "disclosure-card.js",
+        "path": "./examples/apg/ap22/js/disclosure-card.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/disclosure/examples/disclosure-card.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-23",
+    "name": "이미지 설명 펼치기",
+    "english": "Image description disclosure",
+    "category": "UI 패턴",
+    "description": "이미지의 긴 설명을 별도로 열어 확인합니다.",
+    "tags": [
+      "이미지",
+      "설명",
+      "접근성"
+    ],
+    "preview": "./examples/apg/ap23/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap23/source.html",
+    "codeFiles": [
+      {
+        "label": "disclosure-image-description.css",
+        "path": "./examples/apg/ap23/css/disclosure-image-description.css"
+      },
+      {
+        "label": "disclosure-button.js",
+        "path": "./examples/apg/ap23/js/disclosure-button.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/disclosure/examples/disclosure-image-description.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-24",
+    "name": "순서와 즐겨찾기 목록",
+    "english": "Listbox with actions",
+    "category": "UI 패턴",
+    "description": "목록 항목의 즐겨찾기와 순서 변경을 조작합니다.",
+    "tags": [
+      "리스트박스",
+      "순서 변경",
+      "즐겨찾기"
+    ],
+    "preview": "./examples/apg/ap24/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap24/source.html",
+    "codeFiles": [
+      {
+        "label": "listbox.css",
+        "path": "./examples/apg/ap24/css/listbox.css"
+      },
+      {
+        "label": "listbox-actions.css",
+        "path": "./examples/apg/ap24/css/listbox-actions.css"
+      },
+      {
+        "label": "listbox-actions.js",
+        "path": "./examples/apg/ap24/js/listbox-actions.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/listbox/examples/listbox-actions.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-25",
+    "name": "접을 수 있는 목록상자",
+    "english": "Collapsible listbox",
+    "category": "UI 패턴",
+    "description": "목록을 열고 닫으며 선택 항목을 변경합니다.",
+    "tags": [
+      "리스트박스",
+      "선택",
+      "펼치기"
+    ],
+    "preview": "./examples/apg/ap25/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap25/source.html",
+    "codeFiles": [
+      {
+        "label": "listbox.css",
+        "path": "./examples/apg/ap25/css/listbox.css"
+      },
+      {
+        "label": "listbox.js",
+        "path": "./examples/apg/ap25/js/listbox.js"
+      },
+      {
+        "label": "listbox-collapsible.js",
+        "path": "./examples/apg/ap25/js/listbox-collapsible.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/listbox/examples/listbox-collapsible.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-26",
+    "name": "그룹형 목록상자",
+    "english": "Grouped listbox",
+    "category": "UI 패턴",
+    "description": "분류된 선택 항목을 키보드로 탐색합니다.",
+    "tags": [
+      "리스트박스",
+      "그룹",
+      "선택"
+    ],
+    "preview": "./examples/apg/ap26/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap26/source.html",
+    "codeFiles": [
+      {
+        "label": "listbox.css",
+        "path": "./examples/apg/ap26/css/listbox.css"
+      },
+      {
+        "label": "listbox.js",
+        "path": "./examples/apg/ap26/js/listbox.js"
+      },
+      {
+        "label": "listbox-scrollable.js",
+        "path": "./examples/apg/ap26/js/listbox-scrollable.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/listbox/examples/listbox-grouped.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-27",
+    "name": "활성 항목 기반 라디오",
+    "english": "Radio group with aria-activedescendant",
+    "category": "UI 패턴",
+    "description": "방향키로 라디오 선택을 바꾸는 방식을 확인합니다.",
+    "tags": [
+      "라디오",
+      "키보드",
+      "접근성"
+    ],
+    "preview": "./examples/apg/ap27/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap27/source.html",
+    "codeFiles": [
+      {
+        "label": "radio.css",
+        "path": "./examples/apg/ap27/css/radio.css"
+      },
+      {
+        "label": "radio-activedescendant.js",
+        "path": "./examples/apg/ap27/js/radio-activedescendant.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/radio/examples/radio-activedescendant.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-28",
+    "name": "라디오 별점 선택",
+    "english": "Rating radio group",
+    "category": "UI 패턴",
+    "description": "별점을 하나 선택하고 방향키로 변경합니다.",
+    "tags": [
+      "별점",
+      "라디오",
+      "키보드"
+    ],
+    "preview": "./examples/apg/ap28/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap28/source.html",
+    "codeFiles": [
+      {
+        "label": "radio-rating.css",
+        "path": "./examples/apg/ap28/css/radio-rating.css"
+      },
+      {
+        "label": "radio-rating.js",
+        "path": "./examples/apg/ap28/js/radio-rating.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/radio/examples/radio-rating.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-29",
+    "name": "별점 슬라이더",
+    "english": "Rating slider",
+    "category": "UI 패턴",
+    "description": "슬라이더를 움직여 별점 값을 조절합니다.",
+    "tags": [
+      "슬라이더",
+      "별점",
+      "값 조절"
+    ],
+    "preview": "./examples/apg/ap29/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap29/source.html",
+    "codeFiles": [
+      {
+        "label": "slider-rating.css",
+        "path": "./examples/apg/ap29/css/slider-rating.css"
+      },
+      {
+        "label": "slider-rating.js",
+        "path": "./examples/apg/ap29/js/slider-rating.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/slider/examples/slider-rating.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-30",
+    "name": "재생 위치 슬라이더",
+    "english": "Seek slider",
+    "category": "UI 패턴",
+    "description": "재생 위치를 슬라이더와 키보드로 조절합니다.",
+    "tags": [
+      "슬라이더",
+      "재생",
+      "키보드"
+    ],
+    "preview": "./examples/apg/ap30/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap30/source.html",
+    "codeFiles": [
+      {
+        "label": "slider-seek.css",
+        "path": "./examples/apg/ap30/css/slider-seek.css"
+      },
+      {
+        "label": "slider-seek.js",
+        "path": "./examples/apg/ap30/js/slider-seek.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/slider/examples/slider-seek.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-31",
+    "name": "색상 조절 슬라이더",
+    "english": "Color viewer sliders",
+    "category": "UI 패턴",
+    "description": "색상 구성 값을 조절하며 결과 색을 확인합니다.",
+    "tags": [
+      "슬라이더",
+      "색상",
+      "값 조절"
+    ],
+    "preview": "./examples/apg/ap31/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap31/source.html",
+    "codeFiles": [
+      {
+        "label": "slider-color-viewer.css",
+        "path": "./examples/apg/ap31/css/slider-color-viewer.css"
+      },
+      {
+        "label": "slider-color-viewer.js",
+        "path": "./examples/apg/ap31/js/slider-color-viewer.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/slider/examples/slider-color-viewer.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-32",
+    "name": "범위 선택 슬라이더",
+    "english": "Multi-thumb slider",
+    "category": "UI 패턴",
+    "description": "두 손잡이를 움직여 값의 범위를 선택합니다.",
+    "tags": [
+      "슬라이더",
+      "범위",
+      "다중 손잡이"
+    ],
+    "preview": "./examples/apg/ap32/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap32/source.html",
+    "codeFiles": [
+      {
+        "label": "slider-multithumb.css",
+        "path": "./examples/apg/ap32/css/slider-multithumb.css"
+      },
+      {
+        "label": "slider-multithumb.js",
+        "path": "./examples/apg/ap32/js/slider-multithumb.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/slider-multithumb/examples/slider-multithumb.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-33",
+    "name": "체크박스형 스위치",
+    "english": "Checkbox switch",
+    "category": "UI 패턴",
+    "description": "체크박스를 스위치로 표현해 상태를 전환합니다.",
+    "tags": [
+      "스위치",
+      "체크박스",
+      "토글"
+    ],
+    "preview": "./examples/apg/ap33/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap33/source.html",
+    "codeFiles": [
+      {
+        "label": "switch-checkbox.css",
+        "path": "./examples/apg/ap33/css/switch-checkbox.css"
+      },
+      {
+        "label": "switch-checkbox.js",
+        "path": "./examples/apg/ap33/js/switch-checkbox.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/switch/examples/switch-checkbox.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-34",
+    "name": "스위치 그룹",
+    "english": "Switch examples",
+    "category": "UI 패턴",
+    "description": "스위치의 켜짐과 꺼짐 상태를 조작합니다.",
+    "tags": [
+      "스위치",
+      "상태",
+      "접근성"
+    ],
+    "preview": "./examples/apg/ap34/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap34/source.html",
+    "codeFiles": [
+      {
+        "label": "switch.css",
+        "path": "./examples/apg/ap34/css/switch.css"
+      },
+      {
+        "label": "switch.js",
+        "path": "./examples/apg/ap34/js/switch.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/switch/examples/switch.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-35",
+    "name": "정렬 가능한 표",
+    "english": "Sortable table",
+    "category": "UI 패턴",
+    "description": "표의 열 제목을 눌러 항목 정렬 순서를 바꿉니다.",
+    "tags": [
+      "표",
+      "정렬",
+      "데이터"
+    ],
+    "preview": "./examples/apg/ap35/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap35/source.html",
+    "codeFiles": [
+      {
+        "label": "sortable-table.css",
+        "path": "./examples/apg/ap35/css/sortable-table.css"
+      },
+      {
+        "label": "sortable-table.js",
+        "path": "./examples/apg/ap35/js/sortable-table.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/table/examples/sortable-table.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  },
+  {
+    "id": "apg-36",
+    "name": "활성 항목 기반 메뉴",
+    "english": "Menu button with aria-activedescendant",
+    "category": "UI 패턴",
+    "description": "메뉴를 열고 키보드로 항목을 탐색합니다.",
+    "tags": [
+      "메뉴",
+      "키보드",
+      "접근성"
+    ],
+    "preview": "./examples/apg/ap36/index.html",
+    "previewHeight": 400,
+    "codePath": "./examples/apg/ap36/source.html",
+    "codeFiles": [
+      {
+        "label": "menu-button-actions.css",
+        "path": "./examples/apg/ap36/css/menu-button-actions.css"
+      },
+      {
+        "label": "menu-button-actions-active-descendant.js",
+        "path": "./examples/apg/ap36/js/menu-button-actions-active-descendant.js"
+      }
+    ],
+    "sourceName": "W3C WAI-ARIA APG",
+    "sourceUrl": "https://github.com/w3c/aria-practices/blob/0f765e4dc33e966026114ac12a8380db1de3b787/content/patterns/menu-button/examples/menu-button-actions-active-descendant.html",
+    "license": "W3C Software and Document License",
+    "licensePath": "./examples/apg/LICENSE.md",
+    "adaptation": "원본 HTML 및 CSS·JavaScript를 보존하고 Example 영역만 패널용 HTML로 추출했습니다."
+  }
+]

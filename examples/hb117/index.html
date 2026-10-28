@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Distortion on Hover — Animation Handbook</title>
+  <meta name="description" content="The picture ripples and bends around your pointer. Best for portfolio images.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/image-distortion-hover/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Image Distortion on Hover — Animation Handbook">
+  <meta property="og:description" content="The picture ripples and bends around your pointer. Best for portfolio images.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/image-distortion-hover/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Image Distortion on Hover — Animation Handbook">
+  <meta name="twitter:description" content="The picture ripples and bends around your pointer. Best for portfolio images.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Image Distortion on Hover", "name": "Image Distortion on Hover", "description": "The picture ripples and bends around your pointer. Best for portfolio images.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/image-distortion-hover/", "inLanguage": "en", "articleSection": "3D & Advanced", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, 3D & Advanced, Image Distortion on Hover"}</script>
+  <style>
+    :root{--ui-accent:#3fd6c4}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;background:#0b0b0d}
+    /* Keyboard focus on the picture: the ring goes around the stage, on the page, where it shows against every color of the picture */
+    @supports selector(:has(*)){.hb-page .stage:has(> canvas:focus-visible){outline:2px solid var(--ui-accent);outline-offset:3px}.hb-page .stage canvas:focus-visible{outline:none}}
+    canvas{display:block;width:100%;height:100%;touch-action:none}
+    .fallback{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:clamp(16px,4vw,32px);font-size:13px;line-height:1.7;color:rgba(255,255,255,.72);white-space:pre-wrap;overflow-y:auto}
+    /* See inside and Compare: a strip along the top of the box holds the key (See inside) or the two names (Compare), the picture
+       is drawn below it, and the ring and arrows are drawn over the picture (a second canvas) */
+    .ov,.key,.cap,.ptr{display:none}
+    .ov{position:absolute;inset:0;pointer-events:none}
+    .key{position:absolute;left:0;right:0;top:0;padding:6px 8px;gap:6px 8px;flex-wrap:wrap;align-items:flex-start;pointer-events:none}
+    .cap{padding:3px 8px;border-radius:5px;background:rgba(3,8,16,.9);color:#f4f4f2;font:600 13px/1.25 var(--hb-font);max-width:100%;user-select:none}
+    .ptr{position:absolute;left:0;top:0;width:17px;height:24px;pointer-events:none}
+    .ptr path{fill:#f4f4f2;stroke:#0b0b0d;stroke-width:1.5;stroke-linejoin:round}
+    .gh{opacity:.7}
+    .stage[data-hb-mode="inside"] .ov,.stage[data-hb-mode="inside"] .in-cap{display:block}
+    .stage[data-hb-mode="inside"] .key{display:flex}
+    .stage[data-hb-mode="compare"] .key,.stage[data-hb-mode="compare"] .cmp-cap{display:block}
+    .stage[data-hb-mode="compare"] .cmp-cap{position:absolute;top:6px;left:8px;white-space:nowrap}
+    .stage[data-hb-mode="compare"] .cmp-cap + .cmp-cap{left:calc(50% + 9px)}
+    .stage[data-hb-mode="inside"].pretend .pt,.stage[data-hb-mode="compare"].pretend .pt,.stage[data-hb-mode="compare"] .gh{display:block}
+    .stage.failed .ov,.stage.failed .key,.stage.failed .ptr{display:none!important}
+    @media(max-width:600px){.cap{font-size:12px}}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="do" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../gpgpu-particle-system/" rel="prev" aria-label="Previous: GPGPU Particle System"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>GPGPU Particle System</span></a><a href="../cloth-simulation/" rel="next" aria-label="Next: Cloth / Soft-Body Simulation"><span><span class="hb-dir">Next: </span>Cloth / Soft-Body Simulation</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">06.14 · 3D &amp; Advanced</p>
+    <h1>Image Distortion on Hover</h1>
+    <p class="hb-lede">The picture ripples and bends around your pointer. Best for portfolio images.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Hover it</h2><p>Move your pointer over the picture, drag a finger across it (or Tab to it and use the arrow keys), or press Show me.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage">
+      <canvas id="cvs" role="img" tabindex="0" aria-label="A blue, purple and green patterned picture with a faint grid, bending where the pointer touches it. Press the arrow keys to move where it bends."></canvas>
+      <canvas class="ov" id="ov" aria-hidden="true"></canvas>
+      <div class="key" aria-hidden="true">
+        <span class="cap in-cap" data-hb-caption>Ring: how far the bend reaches</span>
+        <span class="cap in-cap" data-hb-caption>Arrows (drawn longer): which way each spot's color comes from</span>
+        <span class="cap in-cap" data-hb-caption>Thin dashes: where the grid lines really are</span>
+        <span class="cap cmp-cap" data-hb-caption>Untouched</span>
+        <span class="cap cmp-cap" data-hb-caption>Bends</span>
+      </div>
+      <svg class="ptr gh" id="gh" viewBox="-1 -1 17 24" aria-hidden="true"><path d="M0 0V19L5 14.5L8.5 22L11.5 20.7L8 13.3H14.5Z"/></svg>
+      <svg class="ptr pt" id="pt" viewBox="-1 -1 17 24" aria-hidden="true"><path d="M0 0V19L5 14.5L8.5 22L11.5 20.7L8 13.3H14.5Z"/></svg>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-demo" data-hb-demo><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>Show me</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the picture never changes: near the pointer, each spot copies its color from where its arrow points, so the grid bends. The dashed ring is how far the bend reaches.</p>
+      <p data-hb-for="compare" hidden>Untouched ignores the pointer, shown as a ghost. Bends copies each nearby spot's color from a shifted place, so the picture ripples there; point at it, or press Show me.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then try it again or press Show me.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="type-lbl">Effect</p>
+        <div class="seg" id="type-seg" role="group" aria-labelledby="type-lbl">
+          <button type="button" data-type="0" class="on" aria-pressed="true">Ripple</button>
+          <button type="button" data-type="1" aria-pressed="false">Push</button>
+          <button type="button" data-type="2" aria-pressed="false">Liquid</button>
+          <button type="button" data-type="3" aria-pressed="false">Pixels</button>
+        </div>
+        <p class="hb-hint">Rings, a bulge, a liquid swirl, or big square pixels.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="str-lbl">Strength</p>
+        <div class="seg" id="str-seg" role="group" aria-labelledby="str-lbl">
+          <button type="button" data-str="4" aria-pressed="false">Gentle</button>
+          <button type="button" data-str="8" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-str="14" aria-pressed="false">Strong</button>
+        </div>
+        <p class="hb-hint">How far the picture bends.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="rad-lbl">Size</p>
+        <div class="seg" id="rad-seg" role="group" aria-labelledby="rad-lbl">
+          <button type="button" data-rad="0.15" aria-pressed="false">Small</button>
+          <button type="button" data-rad="0.25" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-rad="0.4" aria-pressed="false">Large</button>
+        </div>
+        <p class="hb-hint">How wide an area around the pointer bends.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="dec-lbl">Fade-out speed</p>
+          <div class="seg" id="dec-seg" role="group" aria-labelledby="dec-lbl">
+            <button type="button" data-decay="0.9" aria-pressed="false">Slow</button>
+            <button type="button" data-decay="1.5" class="on" aria-pressed="true">Normal</button>
+            <button type="button" data-decay="2.4" aria-pressed="false">Fast</button>
+          </div>
+          <p class="hb-hint">How fast the picture settles after the pointer leaves.</p>
+        </div>
+        <div class="hb-setting" id="ripple-set">
+          <label class="hb-switch-row"><span>Moving ripples</span><input class="hb-switch" type="checkbox" role="switch" id="ripple-tog" checked autocomplete="off"></label>
+          <p class="hb-hint">The rings keep moving outward.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a hover distortion to [the image you want to react]. Draw the image with a WebGL shader and, in a circle around the pointer, read each pixel from a slightly shifted spot, so the picture seems to ripple, bulge, swirl like liquid or break into squares there while the image itself never changes. The bending fades out smoothly after the pointer leaves. On touch screens, dragging a finger across the image should do the same. If the visitor has reduced motion turned on, keep the image still. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Portfolio images</li><li>Gallery tiles</li><li>Hero images</li><li>Product photos</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Small thumbnails</li><li>Images with text</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+const VS=`attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}`;
+const FS=`
+precision mediump float;
+uniform vec2 uRes,uMouse,uO;uniform float uT,uStr,uRad,uPhase;uniform int uType;uniform bool uAnimate;
+
+vec3 pat(vec2 uv){
+  float s=sin(uv.x*8.+uT*.4)*sin(uv.y*8.+uT*.3);
+  float t=cos(uv.x*5.-uT*.2)*cos(uv.y*6.+uT*.25);
+  float mix1=(s+t)*.5+.5;
+  vec3 a=vec3(.18,.3,.6),b=vec3(.6,.2,.7),c=vec3(.1,.5,.4);
+  vec3 col=mix(mix(a,b,mix1),c,sin(uv.x*3.+uv.y*2.+uT*.15)*.5+.5);
+  // faint grid so UV displacement is readable on the smooth gradient
+  vec2 g=abs(fract(uv*vec2(16.,10.))-.5);
+  float ln=1.-smoothstep(0.,.06,min(g.x,g.y));
+  return mix(col,col*1.4+.08,ln*.5);
+}
+
+void main(){
+  vec2 uv=(gl_FragCoord.xy-uO)/uRes;
+  vec2 muv=uMouse/uRes;muv.y=1.-muv.y;
+  float ar=uRes.x/uRes.y;
+  vec2 dir=uv-muv;dir.x*=ar;
+  float dist=length(dir);
+  float r=uRad;
+  float falloff=1.-smoothstep(0.,r,dist);
+  vec2 duv=uv;
+  float str=uStr*.005;
+  if(uType==0){
+    float phase=uAnimate?uPhase:uPhase*0.;
+    float wave=sin(dist/r*12.-phase)*falloff*str;
+    if(dist>0.)duv+=normalize(vec2(dir.x/ar,dir.y))*wave;
+  }else if(uType==1){
+    if(dist>0.)duv+=normalize(vec2(dir.x/ar,dir.y))*falloff*str*1.6;
+  }else if(uType==2){
+    vec2 off=vec2(sin(dist*15.+uPhase)*cos(uv.y*10.+uPhase*.8),cos(dist*15.-uPhase)*sin(uv.x*10.+uPhase*.6));
+    duv+=off*falloff*str*.6;
+  }else{
+    float px=mix(.002,.04,falloff*(uStr/20.));
+    duv=floor(uv/px)*px;
+  }
+  gl_FragColor=vec4(pat(duv),1.);
+}`;
+
+const stage=document.getElementById('stage'),cvs=document.getElementById('cvs');
+const RUN_MS=3000;
+let W=0,H=0,gl,prog,U={},raf=null,lastT=0,startT=0,wasPhone=false,glErr='';
+let TYPE=0,STR=8,RAD=0.25,DECAY=1.5,ANIMATE=true;
+// The distortion is centred on (mouseX, mouseY), in canvas pixels. It is drawn at full strength while active (the pointer is on
+// the picture or Show me is running) and fades by DECAY once it is not. demoStart is when the Show me run began, 0 when none is.
+let mouseX=-999,mouseY=-999,phase=0,amp=0,active=false,demoStart=0;
+// Phones are screens up to 600px wide, or up to 500px tall when held sideways
+const PHONE=matchMedia('(max-width:600px),(max-height:500px)');
+
+// See inside and Compare. A strip along the top of the box (sd canvas pixels) holds the key or the two names; the picture is drawn
+// below it in the same context, once (See inside) or twice side by side (Compare). While nothing drives the bend, a pretend pointer
+// is parked on the picture at full strength with the ripple phase held still. Normal is drawn as it always was.
+let mode='normal',sd=0,src='run';
+const POSE=[.6,.44],POSE_PHASE=1.1;
+const key=document.querySelector('.key'),ov=document.getElementById('ov'),ctx=ov.getContext('2d');
+const gh=document.getElementById('gh'),pt=document.getElementById('pt');
+const noteIn=document.querySelector('[data-hb-for="inside"]'),noteCmp=document.querySelector('[data-hb-for="compare"]');
+const NOTE_IN=noteIn.textContent,NOTE_CMP=noteCmp.textContent;
+const VERBS=[['bends','ripples'],['bulges','bulges'],['swirls','swirls'],['breaks into squares','breaks into squares']];
+const LABELS={normal:cvs.getAttribute('aria-label'),
+  inside:'The patterned picture bending around a resting point, with a dashed ring for how far the bend reaches and arrows for where each spot copies its color from. Press the arrow keys to move where it bends.',
+  compare:'The picture twice: untouched, and bending around the same point. Press the arrow keys to move where it bends.'};
+// The picture the bend lives in, in canvas pixels from the box's top left corner (Compare: the second of two, a thin line apart)
+function fr(){
+  const w=Math.floor((W-Math.max(2,Math.round(W/500)))/2);
+  return mode==='compare'?{x:W-w,y:sd,w,h:H-sd}:mode==='inside'?{x:0,y:sd,w:W,h:H-sd}:{x:0,y:0,w:W,h:H};
+}
+// A change of mode, strip or box size keeps a point that is on show at the same share of the picture
+function remap(change){
+  const a=fr();change();
+  if(mouseX>=0){const b=fr();mouseX=b.x+(mouseX-a.x)/a.w*b.w;mouseY=b.y+(mouseY-a.y)/a.h*b.h;}
+}
+// The strip's height (the key wraps with the width and the font, so it is measured again on each resize, mode and font load)
+const stripH=()=>mode==='normal'?0:Math.round((mode==='inside'?key.offsetHeight:key.querySelector('.cmp-cap').offsetHeight+12)*H/stage.clientHeight);
+function strip(){const n=stripH();if(n!==sd)remap(()=>{sd=n;});}
+// The parked pretend pointer, in canvas pixels
+function park(){const f=fr();return{x:f.x+f.w*POSE[0],y:f.y+f.h*POSE[1]};}
+// What the picture bends around now: the point that drives it, or at rest (in a mode) the parked one
+function now(){
+  if(amp>0||mode==='normal')return{x:mouseX,y:mouseY,a:amp,ph:phase};
+  const q=park();return{x:q.x,y:q.y,a:1,ph:POSE_PHASE};
+}
+
+function init(){
+  gl=cvs.getContext('webgl');
+  if(!gl){glErr='WebGL is unavailable in this browser, so the distortion shader cannot run.';return false;}
+  function sh(t,s){
+    const x=gl.createShader(t);gl.shaderSource(x,s);gl.compileShader(x);
+    if(!gl.getShaderParameter(x,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(x)||'shader compile failed');
+    return x;
+  }
+  try{
+    prog=gl.createProgram();
+    gl.attachShader(prog,sh(gl.VERTEX_SHADER,VS));
+    gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FS));
+    gl.linkProgram(prog);
+    if(!gl.getProgramParameter(prog,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(prog)||'program link failed');
+  }catch(e){glErr=('Shader failed to build:\n'+e.message).replace(/\0/g,'').trim();return false;}
+  U={};['uRes','uMouse','uO','uT','uStr','uRad','uPhase','uType','uAnimate'].forEach(n=>{U[n]=gl.getUniformLocation(prog,n);});
+  const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  const a=gl.getAttribLocation(prog,'a');
+  gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a,2,gl.FLOAT,false,0,0);
+  return true;
+}
+// Setting the canvas size clears it, so nothing is touched when the stage is the same size and the phone limit is the same
+// (a phone's address bar showing or hiding also fires resize). Full pixel density is wasted on a fullscreen fragment shader,
+// and phones pay for every extra pixel: it is capped at 2, and at 1.5 on phones.
+function layout(force){
+  const phone=PHONE.matches,dpr=Math.min(window.devicePixelRatio||1,phone?1.5:2);
+  const w=Math.max(1,Math.round(stage.clientWidth*dpr)),h=Math.max(1,Math.round(stage.clientHeight*dpr));
+  if(!force&&w===W&&h===H&&phone===wasPhone)return false;
+  const size=()=>{W=cvs.width=w;H=cvs.height=h;};
+  if(mode==='normal')size();else remap(size);
+  ov.width=W;ov.height=H;wasPhone=phone;
+  if(gl)gl.viewport(0,0,W,H);
+  strip();
+  return true;
+}
+
+// One picture drawn into a part of the canvas: x, w, h in canvas pixels; the bend's center (mx,my) is from that picture's top left
+function view(x,w,h,mx,my,str,ph){
+  gl.viewport(x,0,w,h);
+  gl.uniform2f(U.uRes,w,h);
+  gl.uniform2f(U.uO,x,0);
+  gl.uniform2f(U.uMouse,mx,my);
+  gl.uniform1f(U.uStr,str);
+  gl.uniform1f(U.uPhase,ph);
+  gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+}
+function draw(){
+  gl.useProgram(prog);
+  gl.uniform1f(U.uT,0); // the picture stands still, as a real image would: only the distortion moves
+  gl.uniform1f(U.uRad,RAD);
+  gl.uniform1i(U.uType,TYPE);
+  gl.uniform1i(U.uAnimate,ANIMATE?1:0);
+  if(mode==='normal'){view(0,W,H,mouseX,mouseY,STR*amp,phase);return;}
+  const p=now(),f=fr();
+  gl.viewport(0,0,W,H);gl.clearColor(.07,.07,.09,1);gl.clear(gl.COLOR_BUFFER_BIT);
+  if(mode==='compare'){
+    view(0,f.w,f.h,-999,-999,0,0); // untouched: no bend, so the point and the phase change nothing
+    view(f.x,f.w,f.h,p.x-f.x,p.y-f.y,STR*p.a,p.ph);
+  }else view(0,W,f.h,p.x,p.y-f.y,STR*p.a,p.ph);
+  marks(p,f);
+}
+
+// Where the shader reads the color for the spot (ux,uy) (shares of the picture, y up) with the bend around (mx,my): the same four
+// formulas as the shader, as a shift in the same shares. s is the strength the shader gets, ph the phase.
+const smooth=(a,b,x)=>{const t=Math.min(1,Math.max(0,(x-a)/(b-a)));return t*t*(3-2*t);};
+function shift(ux,uy,mx,my,ar,s,ph){
+  const dx=(ux-mx)*ar,dy=uy-my,dist=Math.hypot(dx,dy),fall=1-smooth(0,RAD,dist),str=s*.005;
+  if(TYPE===3){
+    const px=.002+.038*fall*(s/20);
+    return[Math.floor(ux/px)*px-ux,Math.floor(uy/px)*px-uy];
+  }
+  if(TYPE===2){
+    const k=fall*str*.6;
+    return[Math.sin(dist*15+ph)*Math.cos(uy*10+ph*.8)*k,Math.cos(dist*15-ph)*Math.sin(ux*10+ph*.6)*k];
+  }
+  if(!(dist>0))return[0,0];
+  const nx=dx/ar,len=Math.hypot(nx,dy),m=TYPE===0?Math.sin(dist/RAD*12-(ANIMATE?ph:0))*fall*str:fall*str*1.6;
+  return[nx/len*m,dy/len*m];
+}
+// Strokes the path twice: a dark edge under, then the light line (dashed as asked)
+function stroke(under,color,w,dash){
+  ctx.setLineDash([]);ctx.strokeStyle=under;ctx.lineWidth=w+2;ctx.stroke();
+  ctx.setLineDash(dash);ctx.strokeStyle=color;ctx.lineWidth=w;ctx.stroke();
+}
+// See inside draws, over the picture and in CSS pixels, the ring (how far the bend reaches), thin dashes where the picture's real
+// grid lines are and an arrow from each spot to the spot it copies its color from. Compare and See inside place the pretend
+// pointer and, over the untouched half, its ghost.
+function marks(p,f){
+  const k=H/stage.clientHeight,fx=f.x/k,fy=f.y/k,fw=f.w/k,fh=f.h/k,px=(p.x-f.x)/k,py=(p.y-f.y)/k;
+  stage.classList.toggle('pretend',amp===0||src==='run'||src==='key');
+  const at=(el,x)=>{el.style.transform='translate('+(x-1)+'px,'+(fy+Math.min(py,fh-24)-1)+'px)';};
+  at(pt,fx+Math.min(px,fw-17));at(gh,Math.min(px,fw-17));
+  if(mode!=='inside')return;
+  const R=RAD*fh,S=Math.max(18,Math.min(PHONE.matches?32:40,R/2.6)),cx=fx+px,cy=fy+py;
+  ctx.setTransform(k,0,0,k,0,0);ctx.clearRect(0,0,W/k,H/k);
+  ctx.save();ctx.beginPath();ctx.rect(fx,fy,fw,fh);ctx.clip();
+  ctx.lineCap=ctx.lineJoin='round';
+  ctx.beginPath();ctx.arc(cx,cy,R,0,6.2832);stroke('rgba(3,8,16,.5)','#fff',2,[7,6]);
+  // each real grid line (16 columns, 10 rows, in the middle of its cell), the part inside the ring
+  ctx.beginPath();
+  for(let i=0;i<16;i++){const x=fx+fw*(i+.5)/16,d=Math.sqrt(R*R-(x-cx)**2);if(d>=0){ctx.moveTo(x,cy-d);ctx.lineTo(x,cy+d);}}
+  for(let j=0;j<10;j++){const y=fy+fh*(j+.5)/10,d=Math.sqrt(R*R-(y-cy)**2);if(d>=0){ctx.moveTo(cx-d,y);ctx.lineTo(cx+d,y);}}
+  stroke('rgba(3,8,16,.4)','#fff',1,[3,3]);
+  // the arrows are drawn twice as long as the real shift (a few pixels; the key says so), a dot where one is too short to point
+  ctx.beginPath();
+  for(let y=fy+S/2;y<fy+fh;y+=S)for(let x=fx+S/2;x<fx+fw;x+=S){
+    if(Math.hypot(x-cx,y-cy)>=R)continue;
+    const d=shift((x-fx)/fw,1-(y-fy)/fh,px/fw,1-py/fh,fw/fh,STR*p.a,p.ph),hx=x+d[0]*fw*2,hy=y-d[1]*fh*2,len=Math.hypot(hx-x,hy-y);
+    if(len<4){ctx.moveTo(x+2,y);ctx.arc(x,y,2,0,6.2832);continue;}
+    const a=Math.atan2(hy-y,hx-x),h=Math.min(7,len*.5);
+    ctx.moveTo(x,y);ctx.lineTo(hx,hy);
+    ctx.moveTo(hx-Math.cos(a-.5)*h,hy-Math.sin(a-.5)*h);ctx.lineTo(hx,hy);ctx.lineTo(hx-Math.cos(a+.5)*h,hy-Math.sin(a+.5)*h);
+  }
+  stroke('rgba(3,8,16,.7)','#ffe08a',1.8,[]);
+  ctx.restore();
+}
+// The loop runs only while something moves: the pointer is on the picture, the distortion is fading or Show me is running.
+// Otherwise raf is null and the picture at rest is not drawn again.
+function render(ts){
+  const dt=ts-lastT;
+  if(dt>=15){
+    lastT=ts;
+    phase+=(ts-startT)*.003;if(phase>Math.PI*10)phase-=Math.PI*10;startT=ts;
+    if(demoStart){
+      const p=Math.min(1,Math.max(0,(ts-demoStart)/RUN_MS));
+      const f=fr();
+      point(f.x+f.w*(.2+.6*p),f.y+f.h*(.5+.18*Math.sin(2*Math.PI*p)));
+      if(p>=1){demoStart=0;active=false;}
+    }
+    if(!active){amp*=Math.max(0,1-DECAY*dt/1000);if(amp<.01){amp=0;mouseX=mouseY=-999;}}
+    draw();
+  }
+  raf=(active||amp>0||demoStart)?requestAnimationFrame(render):null;
+}
+// Starts the loop again after it stopped; the clock restarts so the ripple phase does not jump.
+function wake(){if(raf!==null||!gl)return;lastT=startT=performance.now();raf=requestAnimationFrame(render);}
+// While the loop is stopped a setting or a resize draws the picture once, so the change shows.
+function redraw(){if(raf===null&&gl)draw();}
+
+// The visitor's pointer, a finger and Show me all move the distortion through point().
+function point(x,y,by){mouseX=x;mouseY=y;active=true;amp=1;src=by||'run';}
+function stopRun(){demoStart=0;active=false;}
+function show(){if(!gl)return;demoStart=performance.now();wake();}
+// The visitor pressed, typed, scrolled or touched inside the stage: only a run that is under way stops. A tap sends this twice,
+// the second time after the picture has started to bend under the finger, so it must leave the finger's distortion alone.
+document.addEventListener('hb:input',()=>{if(demoStart)stopRun();});
+
+if(init()){
+  layout(true);
+  draw(); // the first picture
+  document.getElementById('btn-demo').addEventListener('click',show);
+  // Pointer events, not mouse: touch and pen bend the picture the same way, and a tap leaves no pointer behind.
+  // Moving over the stage ends a Show me run first, so the visitor's own pointer takes over at once.
+  const track=e=>{
+    if(e.isTrusted&&demoStart)demoStart=0;
+    const r=cvs.getBoundingClientRect(),x=(e.clientX-r.left)*W/r.width,y=(e.clientY-r.top)*H/r.height;
+    // In a mode only a pointer over the picture (in Compare the second one) bends it; elsewhere the bend lets go
+    if(mode!=='normal'){const f=fr();if(x<f.x||y<f.y){release();return;}}
+    point(x,y,e.pointerType==='mouse'?'mouse':'touch');
+    wake();
+  };
+  const release=()=>{active=false;};
+  stage.addEventListener('pointermove',track);
+  stage.addEventListener('pointerdown',track);
+  stage.addEventListener('pointerleave',release);
+  stage.addEventListener('pointerup',e=>{if(e.pointerType!=='mouse')release();});
+  stage.addEventListener('pointercancel',release);
+  // The keyboard is a pretend pointer through the same point(): focus by keyboard ends a run and bends the picture where it last
+  // bent (the middle once the bending has faded), each arrow key moves that spot 6% of the picture (held, it repeats), and Escape
+  // or leaving the picture lets the bending fade as release() does
+  const STEP={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]};
+  let keys=false;
+  // In a mode the keys start from the parked pointer and stay inside the picture, with room left for the drawn pointer
+  const keyPoint=(dx,dy)=>{demoStart=0;keys=true;
+    if(mode==='normal')point(Math.max(0,Math.min(W,(mouseX<0?W/2:mouseX)+dx*W)),Math.max(0,Math.min(H,(mouseY<0?H/2:mouseY)+dy*H)),'key');
+    else{
+      const f=fr(),k=H/stage.clientHeight,b=mouseX<0?park():{x:mouseX,y:mouseY};
+      point(Math.max(f.x,Math.min(f.x+f.w-18*k,b.x+dx*f.w)),Math.max(f.y,Math.min(f.y+f.h-25*k,b.y+dy*f.h)),'key');
+    }
+    wake();};
+  cvs.addEventListener('focus',()=>{if(cvs.matches(':focus-visible'))keyPoint(0,0);});
+  cvs.addEventListener('keydown',e=>{
+    const d=!e.altKey&&!e.ctrlKey&&!e.metaKey&&STEP[e.key];
+    if(d){e.preventDefault();keyPoint(.06*d[0],.06*d[1]);}
+    else if(e.key==='Escape'&&keys){keys=false;release();}
+  });
+  cvs.addEventListener('blur',()=>{if(keys){keys=false;release();}});
+  window.addEventListener('resize',()=>{if(layout())draw();});
+  if(document.fonts)document.fonts.ready.then(()=>{if(mode!=='normal'){strip();draw();}});
+  cvs.addEventListener('webglcontextlost',e=>{
+    e.preventDefault();if(raf!==null)cancelAnimationFrame(raf);raf=null;
+  });
+  cvs.addEventListener('webglcontextrestored',()=>{
+    if(!init())return;
+    layout(true);draw();
+    if(active||amp>0||demoStart)wake();
+  });
+}else{
+  cvs.hidden=true;stage.classList.add('failed');
+  const msg=document.createElement('div');msg.className='fallback';msg.setAttribute('role','status');msg.textContent=glErr;
+  stage.appendChild(msg);
+}
+
+// The mode switch: the shared script has marked the stage and shown the note; this draws the mode at once. It scrolls, focuses and
+// presses nothing, and a bend that is on show stays where it is (as a share of the picture).
+document.addEventListener('hb:mode',e=>{
+  const m=e.detail.mode;
+  remap(()=>{mode=m;sd=stripH();});
+  cvs.setAttribute('aria-label',LABELS[m]);
+  if(m!=='inside')ctx.clearRect(0,0,ov.width,ov.height);
+  if(m==='normal')stage.classList.remove('pretend');
+  if(gl&&!cvs.hidden)draw(); // not when the shader failed: the message is on show
+});
+// The notes name what the effect does to the picture
+function words(){
+  const a=NOTE_IN.replace('so the grid bends','so the grid '+VERBS[TYPE][0]),b=NOTE_CMP.replace('picture ripples there','picture '+VERBS[TYPE][1]+' there');
+  if(noteIn.textContent!==a)noteIn.textContent=a;
+  if(noteCmp.textContent!==b)noteCmp.textContent=b;
+}
+
+function choices(id,pick){
+  const buttons=document.querySelectorAll('#'+id+' button');
+  buttons.forEach(b=>b.addEventListener('click',()=>{
+    buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+    pick(b.dataset);
+  }));
+}
+choices('type-seg',d=>{TYPE=+d.type;document.getElementById('ripple-set').hidden=TYPE!==0;words();redraw();});
+choices('str-seg',d=>{STR=+d.str;redraw();});
+choices('rad-seg',d=>{RAD=+d.rad;redraw();});
+choices('dec-seg',d=>{DECAY=+d.decay;});
+document.getElementById('ripple-tog').addEventListener('change',e=>{ANIMATE=e.target.checked;redraw();});
+</script>
+</body>
+</html>

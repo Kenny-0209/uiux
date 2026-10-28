@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pull to Refresh — Animation Handbook</title>
+  <meta name="description" content="Pulling a list down shows a spinner, then new items. Best for feeds.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/pull-to-refresh/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Pull to Refresh — Animation Handbook">
+  <meta property="og:description" content="Pulling a list down shows a spinner, then new items. Best for feeds.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/pull-to-refresh/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pull to Refresh — Animation Handbook">
+  <meta name="twitter:description" content="Pulling a list down shows a spinner, then new items. Best for feeds.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Pull to Refresh", "name": "Pull to Refresh", "description": "Pulling a list down shows a spinner, then new items. Best for feeds.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/pull-to-refresh/", "inLanguage": "en", "articleSection": "Micro-Interactions", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Micro-Interactions, Pull to Refresh"}</script>
+  <style>
+    :root{--ui-accent:#ff9d5c;--ui-bg:#111114;--ui-border:rgba(255,255,255,.09);--ui-muted:#8a8a92;--ind:64px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;display:flex;flex-direction:column;overflow:hidden;background:#0b0b0d}
+    /* The stage is a small app screen: a header bar with the Refresh button, then the feed */
+    .app-bar{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 6px 6px 16px;background:var(--ui-bg);border-bottom:1px solid var(--ui-border)}
+    .app-title{font-size:15px;font-weight:700}
+    .refresh-btn{flex:none;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--ui-border);border-radius:8px;background:none;color:inherit;font-family:inherit;cursor:pointer}
+    .refresh-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    @media(hover:hover){.refresh-btn:hover{border-color:var(--ui-accent);color:var(--ui-accent)}}
+    .feed{position:relative;flex:1;overflow:hidden}
+    /* Indicator zone sits just above the top edge of the feed; it slides down with the pull */
+    .indicator{position:absolute;top:calc(var(--ind)*-1);left:0;right:0;height:var(--ind);display:flex;align-items:center;justify-content:center;gap:10px;color:var(--ui-muted);font-size:11px;will-change:transform}
+    .indicator.ready{color:var(--ui-accent)}
+    .hint{letter-spacing:.06em;text-transform:uppercase}
+    .spin{width:26px;height:26px;position:relative;opacity:0;will-change:transform}
+    .spin>*{display:none;position:absolute;inset:0}
+    .spin.s-ring .ring{display:block;border-radius:50%;border:3px solid rgba(255,255,255,.14);border-top-color:var(--ui-accent)}
+    .spin.s-dots .dots{display:flex;align-items:center;justify-content:center;gap:5px}
+    .spin.s-dots .dots i{width:7px;height:7px;border-radius:50%;background:var(--ui-accent)}
+    .spin.s-bars .bars{display:flex;align-items:center;justify-content:center;gap:4px}
+    .spin.s-bars .bars i{width:5px;height:16px;border-radius:2px;background:var(--ui-accent)}
+    /* Continuous "refreshing" motion, per style */
+    .spin.spinning{opacity:1!important;transform:none!important}
+    .spin.spinning.s-ring .ring{animation:ah-rot .7s linear infinite}
+    .spin.spinning.s-dots i{animation:ah-blink .9s ease-in-out infinite}
+    .spin.spinning.s-dots i:nth-child(2){animation-delay:.15s}
+    .spin.spinning.s-dots i:nth-child(3){animation-delay:.3s}
+    .spin.spinning.s-bars i{animation:ah-stretch .8s ease-in-out infinite}
+    .spin.spinning.s-bars i:nth-child(2){animation-delay:.12s}
+    .spin.spinning.s-bars i:nth-child(3){animation-delay:.24s}
+    .spin.spinning.s-bars i:nth-child(4){animation-delay:.36s}
+    @keyframes ah-rot{to{transform:rotate(360deg)}}
+    @keyframes ah-blink{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:1;transform:scale(1)}}
+    @keyframes ah-stretch{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+    /* Scrollable list: the pull is only claimed when scrollTop is 0. pan-y keeps native vertical scrolling; user-select
+       keeps a mouse drag from selecting the text under it. */
+    .scroller{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y pinch-zoom;-webkit-overflow-scrolling:touch;will-change:transform;padding:10px;-webkit-user-select:none;user-select:none}
+    .list{display:flex;flex-direction:column;gap:8px}
+    .card{border:1px solid var(--ui-border);background:var(--ui-bg);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px}
+    .card.fresh{animation:ah-in .34s cubic-bezier(.22,1,.36,1)}
+    @keyframes ah-in{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--ui-accent);flex-shrink:0}
+    .card.old .dot{background:var(--ui-muted)}
+    .meta{min-width:0}
+    .meta .t{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .meta .s{font-size:11px;color:var(--ui-muted);margin-top:2px}
+    /* The status line is read by screen readers only */
+    .sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    @media(prefers-reduced-motion:reduce){.scroller,.indicator{transition:none!important}.card.fresh{animation:none}}
+    /* See inside and Compare, drawn over the feed from the page's own numbers. See inside: the line a pull must pass, an arrow for how far the
+       list moves and a longer one for how far the finger must, a still spinner where the real one stands at the line, the finger and the list's
+       top riding their arrows. Compare: a copy of the screen that ignores the finger (inert, no ids) beside the real one, a ghost fingertip in each. */
+    .twin,.views,.views .spin,.in-g,.in-l,.cmp-l,.v-knob,.v-tip{display:none}
+    .views{position:absolute;inset:0;pointer-events:none}
+    .views svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+    .v-line{stroke:var(--ui-accent);stroke-width:2;stroke-dasharray:7 6}
+    .v-edge,.v-list,.v-fing{fill:none;stroke:#0b0b0d;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+    .v-list,.v-fing{stroke:#f4f4f2;stroke-width:3}
+    .v-list{stroke:var(--ui-accent)}
+    .v-knob{fill:var(--ui-accent);stroke:#0b0b0d;stroke-width:2}
+    .v-tip circle{fill:rgba(244,244,242,.22);stroke:#f4f4f2;stroke-width:2}
+    .v-tip circle+circle{fill:#f4f4f2;stroke:none}
+    .lbl{position:absolute;padding:3px 8px;border-radius:5px;background:#0b0b0d;color:#f4f4f2;font:600 13px/1.25 var(--hb-font);white-space:nowrap}
+    .cmp-l{left:50%;bottom:8px;translate:-50% 0}
+    .views .spin{position:absolute;left:14px;z-index:1;opacity:1;border-radius:50%;background:#0b0b0d}
+    #l-spin{padding:2px 8px 2px 38px}
+    .twin .card.fresh{animation:none}
+    .views .on{display:inline}
+    .stage[data-hb-mode="inside"] .views,.stage[data-hb-mode="inside"] .views .spin,.stage[data-hb-mode="inside"] .in-l,.stage[data-hb-mode="compare"] .views,.stage[data-hb-mode="compare"] .cmp-l{display:block}
+    .stage[data-hb-mode="inside"] .in-g{display:inline}
+    .stage[data-hb-mode="compare"]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto minmax(0,1fr)}
+    .stage[data-hb-mode="compare"]::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,.2);pointer-events:none}
+    .stage[data-hb-mode="compare"]>.twin{display:flex;flex-direction:column;grid-row:1/3;min-width:0}
+    .stage[data-hb-mode="compare"]>.app-bar,.stage[data-hb-mode="compare"]>.feed{grid-column:2}
+    .stage[data-hb-mode="compare"] .indicator{padding:0 10px}
+    .stage[data-hb-mode="compare"] .indicator .spin{flex:none}
+    @media(max-width:600px){.lbl{font-size:12px}}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="do" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../segmented-control/" rel="prev" aria-label="Previous: Segmented Control"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Segmented Control</span></a><a href="../gradient-border/" rel="next" aria-label="Next: Animated Gradient Border"><span><span class="hb-dir">Next: </span>Animated Gradient Border</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">04.29 · Micro-Interactions</p>
+    <h1>Pull to Refresh</h1>
+    <p class="hb-lede">Pulling a list down shows a spinner, then new items. Best for feeds.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Drag it</h2><p>Drag the list down from the top and let go, or press Show me.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage">
+      <!-- Compare's first half: the same screen, made once, that never moves its list -->
+      <div class="twin" aria-hidden="true" inert>
+        <div class="app-bar"><span class="app-title">Updates</span><span class="refresh-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg></span></div>
+        <div class="feed">
+          <div class="scroller"><div class="list"></div></div>
+          <div class="views">
+            <svg><g class="v-tip"><circle r="12"/><circle r="4"/></g></svg>
+            <span class="lbl cmp-l" data-hb-caption>No pull</span>
+          </div>
+        </div>
+      </div>
+      <div class="app-bar">
+        <span class="app-title" id="feed-title">Updates</span>
+        <button class="refresh-btn" id="trigger" type="button" aria-label="Refresh"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg></button>
+      </div>
+      <div class="feed">
+        <div class="indicator" id="indicator" aria-hidden="true">
+          <div class="spin s-ring" id="spin"><span class="ring"></span><span class="dots"><i></i><i></i><i></i></span><span class="bars"><i></i><i></i><i></i><i></i></span></div>
+          <span class="hint" id="hint">Pull to refresh</span>
+        </div>
+        <div class="scroller" id="scroller" role="region" aria-labelledby="feed-title" tabindex="0"><div class="list" id="list"></div></div>
+        <div class="views" id="views" aria-hidden="true">
+          <svg>
+            <g class="in-g"><line class="v-line" id="v-line"/><path class="v-edge" id="v-edge"/><path class="v-list" id="v-list"/><path class="v-fing" id="v-fing"/></g>
+            <circle class="v-knob" id="v-knob" r="5"/><g class="v-tip" id="v-tip"><circle r="12"/><circle r="4"/></g>
+          </svg>
+          <div class="spin s-ring" id="v-spin"><span class="ring"></span><span class="dots"><i></i><i></i><i></i></span><span class="bars"><i></i><i></i><i></i><i></i></span></div>
+          <span class="lbl in-l" id="l-line" data-hb-caption>Let go past this line to refresh</span>
+          <span class="lbl in-l" id="l-list" data-hb-caption>The list: only to the line</span>
+          <span class="lbl in-l" id="l-fing" data-hb-caption>Your finger: almost twice as far</span>
+          <span class="lbl in-l" id="l-spin" data-hb-caption>Then it spins about a second</span>
+          <span class="lbl cmp-l" data-hb-caption>Pull to refresh</span>
+        </div>
+      </div>
+      <p class="sr-only" id="status" role="status" aria-live="polite"></p>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-demo" data-hb-demo><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>Show me</button>
+      <button class="hb-play" type="button" id="btn-reset" data-hb-reset><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>Reset</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the dashed line is where letting go refreshes; the arrows show your finger moves farther than the list, which resists. Drag the list down, or press Show me.</p>
+      <p data-hb-for="compare" hidden>No pull: the list ignores your finger and new items just pop in; Pull to refresh: it follows, resisting, and spins until new items arrive. Drag the list, or press Show me.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then try it again or press Show me.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="th-lbl">Pull distance</p>
+        <div class="seg" id="th-seg" role="group" aria-labelledby="th-lbl">
+          <button type="button" data-px="48" aria-pressed="false">Short</button>
+          <button type="button" data-px="64" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-px="80" aria-pressed="false">Long</button>
+        </div>
+        <p class="hb-hint">How far to pull before letting go refreshes.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="re-lbl">Resistance</p>
+        <div class="seg" id="re-seg" role="group" aria-labelledby="re-lbl">
+          <button type="button" data-r="1" aria-pressed="false">Low</button>
+          <button type="button" data-r="2" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-r="3" aria-pressed="false">High</button>
+        </div>
+        <p class="hb-hint">Higher makes the list fight back harder.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="sp-lbl">Spinner</p>
+        <div class="seg" id="sp-seg" role="group" aria-labelledby="sp-lbl">
+          <button type="button" data-s="ring" class="on" aria-pressed="true">Ring</button>
+          <button type="button" data-s="dots" aria-pressed="false">Dots</button>
+          <button type="button" data-s="bars" aria-pressed="false">Bars</button>
+        </div>
+        <p class="hb-hint">The shape that turns while it refreshes.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="du-lbl">Refresh time</p>
+          <div class="seg" id="du-seg" role="group" aria-labelledby="du-lbl">
+            <button type="button" data-ms="700" aria-pressed="false">Short</button>
+            <button type="button" data-ms="1200" class="on" aria-pressed="true">Medium</button>
+            <button type="button" data-ms="2000" aria-pressed="false">Long</button>
+          </div>
+          <p class="hb-hint">How long it spins before new items arrive.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add pull to refresh to [the scrolling list or feed that should reload]. When the list is already at its top and the visitor drags it down, move it with the finger but make it resist more the further it goes, and show a spinner above it that fades in and turns as it is pulled. Let go past the line and the list stays down while the spinner keeps turning and new items load, then everything slides back up with the new items on top; a shorter pull just springs back. Also offer a refresh button for people who cannot drag. If the visitor has reduced motion turned on, snap back without sliding. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Feeds</li><li>Inboxes</li><li>Notifications</li><li>Order lists</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Desktop-only pages</li><li>Lists that rarely change</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const $=id=>document.getElementById(id);
+  const scroller=$('scroller'),indicator=$('indicator'),spin=$('spin'),hint=$('hint'),listEl=$('list'),statusEl=$('status');
+  const reduceMq=window.matchMedia('(prefers-reduced-motion:reduce)');
+  const INDH=64;                       // resting offset held while refreshing
+  let threshold=64,resistance=2,dur=1200;
+  let startY=0,pid=null,pulling=false,pull=0,refreshing=false,refreshTimer=0,refreshFrom=0,n=0;
+  let runTimers=[],runFrame=0,demoRefresh=false;
+  // The mode on show, the finger's distance while it pulls (null while it does not), whether Compare's pose is on, and the timer that brings the pose back
+  let mode='normal',fing=null,posed=false,poseTimer=0,geo=null;
+  const feed=scroller.parentElement,twin=document.querySelector('.twin'),twList=twin.querySelector('.list'),twScroller=twin.querySelector('.scroller');
+
+  const SEED=['Design review moved to 3pm','Your order has shipped','Ana replied to your comment','Weekly report is ready','Invoice from Northwind paid','Team notes posted'];
+  function el(tag,cls,text){const e=document.createElement(tag);e.className=cls;if(text)e.textContent=text;return e}
+  function card(text,fresh){
+    const c=el('div','card '+(fresh?'fresh':'old')),meta=el('div','meta');
+    meta.append(el('div','t',text),el('div','s',fresh?'just now':'earlier'));
+    c.append(el('span','dot'),meta);
+    return c;
+  }
+  function build(){listEl.replaceChildren(...SEED.map(t=>card(t,false)));syncTwin()}
+  // Compare's first list is a copy of the real one, made again whenever the real one changes
+  function syncTwin(){twList.replaceChildren(...[...listEl.children].map(c=>c.cloneNode(true)));twScroller.scrollTop=scroller.scrollTop}
+  // The copy scrolls with the real list; a scrolled list lifts the pose, which comes back once the list is at its top again
+  scroller.addEventListener('scroll',()=>{twScroller.scrollTop=scroller.scrollTop;if(scroller.scrollTop<1)settle(900);else lift()});
+
+  // Move both the indicator and the list by the same amount; optionally tween (never under reduced motion).
+  function setY(y,animate){
+    const t=(animate&&!reduceMq.matches)?'transform .34s cubic-bezier(.22,1,.36,1)':'none';
+    scroller.style.transition=indicator.style.transition=t;
+    scroller.style.transform=indicator.style.transform='translateY('+y+'px)';
+    drawFinger();
+  }
+  // Rubber-band: the list follows the finger 1:1 at first and stiffens as the drag grows; Resistance sets how fast.
+  function resist(dy){const max=threshold*(1+2.4/resistance);return max*dy/(dy+max)}
+  function drawSpin(){
+    const p=Math.min(pull/threshold,1);
+    spin.style.opacity=String(p);
+    spin.style.transform='rotate('+(pull*2.2)+'deg) scale('+(0.55+p*0.45)+')';
+    indicator.classList.toggle('ready',p>=1);
+    const words=p>=1?'Release to refresh':'Pull to refresh';
+    if(hint.textContent!==words)hint.textContent=words;
+  }
+
+  // The visitor's drag: only the pointer that went down is followed, and the pull is only claimed at the very top of the list.
+  scroller.addEventListener('pointerdown',e=>{
+    if(refreshing||pulling)return;
+    if(e.pointerType==='mouse'&&e.button!==0)return;
+    lift();
+    pid=e.pointerId;startY=e.clientY;
+  });
+  scroller.addEventListener('pointermove',e=>{
+    if(e.pointerId!==pid||refreshing)return;
+    if(e.pointerType==='mouse'&&!(e.buttons&1)){letGo(true);return}   // the button was let go out of sight
+    const dy=e.clientY-startY;
+    if(!pulling){
+      if(dy>4&&scroller.scrollTop<=0){pulling=true;try{scroller.setPointerCapture(pid)}catch(_){}}
+      else return;
+    }
+    if(dy<=0){pull=0;fing=null;setY(0,false);drawSpin();pulling=false;return}
+    pull=resist(dy);fing=dy;
+    setY(pull,false);drawSpin();
+  });
+  // Letting go past the line refreshes; a shorter pull, or a gesture the browser cancelled, springs back.
+  function letGo(cancelled){
+    const was=pulling;
+    pid=null;pulling=false;
+    if(!was||refreshing){settle(0);return}
+    if(!cancelled&&pull>=threshold)startRefresh();
+    else{pull=0;fing=null;setY(0,true);drawSpin();settle(800)}
+  }
+  scroller.addEventListener('pointerup',e=>{if(e.pointerId===pid)letGo(false)});
+  scroller.addEventListener('pointercancel',e=>{if(e.pointerId===pid)letGo(true)});
+  // Once the pull is claimed, stop the browser from turning the touch into a native pan (which would cancel the pointer).
+  scroller.addEventListener('touchmove',e=>{if(pulling&&e.cancelable)e.preventDefault()},{passive:false});
+
+  // The list is held down by INDH while the spinner turns for Refresh time; then the new item arrives and everything springs back.
+  // The visitor's release, the Refresh button and Show me all start it here.
+  function startRefresh(){
+    if(refreshing)return;
+    cancelAnimationFrame(runFrame);runFrame=0;   // a Show me pull still being drawn hands over to the refresh
+    refreshing=true;pull=INDH;fing=null;
+    setY(INDH,true);
+    indicator.classList.add('ready');
+    hint.textContent='Refreshing…';
+    spin.style.transform='';spin.classList.add('spinning');
+    if(!demoRefresh)statusEl.textContent='Refreshing…';   // Show me's refresh says nothing aloud
+    refreshFrom=performance.now();
+    refreshTimer=setTimeout(finishRefresh,dur);
+  }
+  function finishRefresh(){
+    refreshTimer=0;
+    n++;
+    listEl.insertBefore(card('New update #'+n+' arrived',true),listEl.firstChild);syncTwin();
+    scroller.scrollTop=0;
+    spin.classList.remove('spinning');
+    pull=0;setY(0,true);drawSpin();
+    refreshing=false;
+    // Show me's refresh says nothing aloud, because nothing was really updated: its new item shows for 1.5 s, whatever Refresh time became,
+    // then the list is put back to its first six items
+    if(demoRefresh){demoRefresh=false;later(()=>{toRest();restPose()},0,1500);return}
+    statusEl.textContent='Updated — 1 new item added.';
+    settle(1500);
+  }
+
+  // Show me: one run at a time. Every timer of the run goes through later(); stopRun() cancels the whole run.
+  // later(fn, move, hold) waits move + hold ms; this page has no Slow motion, so every step is a hold: later(step, 0, ms).
+  // The pull is drawn frame by frame, and its one pending frame is kept in runFrame.
+  function later(fn,move,hold){
+    const id=setTimeout(()=>{runTimers=runTimers.filter(t=>t!==id);fn()},move+(hold||0));
+    runTimers.push(id);
+  }
+  // A run is under way while a timer or the drawn frame is pending, and while its own refresh is (demoRefresh: from the release until the new item arrives; the clean-up after it is a run timer).
+  function running(){return runTimers.length>0||runFrame!==0||demoRefresh}
+  function stopRun(){runTimers.forEach(clearTimeout);runTimers=[];cancelAnimationFrame(runFrame);runFrame=0;demoRefresh=false}
+  // A run starts with the first six items, the list at the top and nothing pulled, put there without animating: the transitions are
+  // turned off, the state is set, a reflow makes it stick, and the transitions come back. A refresh under way ends here too.
+  function toRest(){
+    clearTimeout(refreshTimer);refreshTimer=0;
+    refreshing=false;pulling=false;pid=null;posed=false;fing=null;
+    spin.classList.remove('spinning');
+    n=0;statusEl.textContent='';
+    if(listEl.children.length!==SEED.length)build();
+    scroller.scrollTop=0;
+    pull=0;setY(0,false);drawSpin();
+    void scroller.offsetWidth;
+    scroller.style.transition=indicator.style.transition='';
+  }
+  // Show me pulls the list the way a finger would: 700ms down to 1.25 x Pull distance, slowing as it goes like the rubber band,
+  // drawn with the visitor's own setY() and drawSpin(). After 150ms more it lets go, as a release past the line does.
+  function pullDown(ms){
+    const t0=performance.now();
+    (function frame(now){
+      const k=Math.min(1,Math.max(0,(now-t0)/ms));
+      pull=1.25*threshold*(1-Math.pow(1-k,3));fing=unresist(pull);
+      setY(pull,false);drawSpin();
+      runFrame=k<1?requestAnimationFrame(frame):0;
+    })(t0);
+  }
+  // The release starts the refresh as the visitor's would and marks it as the run's, so finishRefresh() ends the run at rest.
+  function release(){demoRefresh=true;startRefresh()}
+  $('btn-demo').addEventListener('click',()=>{
+    if(refreshing)return;                      // a refresh under way finishes on its own
+    stopRun();
+    toRest();
+    pullDown(700);
+    later(release,0,850);
+  });
+  $('btn-reset').addEventListener('click',()=>{stopRun();toRest();restPose()});
+  $('trigger').addEventListener('click',()=>{lift();startRefresh()});   // the keyboard and button way
+  // The visitor pressed, typed, scrolled or touched inside the stage: the run stops. A pull still under way springs back and the
+  // visitor's own drag takes over; a refresh that has started finishes as usual, and its new item stays.
+  document.addEventListener('hb:input',()=>{
+    if(!running())return;
+    stopRun();
+    if(!refreshing){pull=0;fing=null;setY(0,true);drawSpin()}
+    settle(900);
+  });
+
+  // See inside and Compare. The finger's drag that moves the list by p is the inverse of resist().
+  function unresist(p){const max=threshold*(1+2.4/resistance);return max*p/(max-p)}
+  // Compare rests on a pose: the list pulled to the line, its spinner saying "Release to refresh", the finger far below it. A press on the
+  // list, Show me, Reset or the Refresh button lifts it at once, with no glide; it comes back when nothing is pulled, running or pending.
+  function pose(){posed=true;pull=threshold;fing=unresist(pull);setY(pull,false);drawSpin()}
+  function lift(){
+    clearTimeout(poseTimer);poseTimer=0;
+    if(!posed)return;
+    posed=false;pull=0;fing=null;setY(0,false);drawSpin();
+    void scroller.offsetWidth;scroller.style.transition=indicator.style.transition='';
+  }
+  const idle=()=>!pulling&&pid===null&&!refreshing&&!running()&&!poseTimer&&scroller.scrollTop<1;
+  function restPose(){if(mode==='compare'&&idle())pose()}
+  function settle(ms){clearTimeout(poseTimer);poseTimer=mode==='compare'?setTimeout(()=>{poseTimer=0;restPose()},ms):0}
+
+  const V={line:$('v-line'),edge:$('v-edge'),list:$('v-list'),fing:$('v-fing'),knob:$('v-knob'),tip:$('v-tip'),still:$('v-spin'),
+    lLine:$('l-line'),lList:$('l-list'),lFing:$('l-fing'),lSpin:$('l-spin')};
+  const TW={tip:twin.querySelector('.v-tip')};
+  const at=(el,x,y)=>el.setAttribute('transform','translate('+x+' '+y+')');
+  // The finger on its arrow and the list's top on the short one (See inside), or a ghost fingertip in each half
+  // (Compare, kept clear of the half names; the real half shows none while the visitor's own finger pulls). Called by setY().
+  function drawFinger(){
+    if(!geo)return;
+    const on=fing!==null,{H,y0,xL,xF,cx}=geo;
+    if(mode==='inside'){
+      V.tip.classList.toggle('on',on);V.knob.classList.toggle('on',on);
+      if(on){at(V.tip,xF,Math.min(y0+fing,H-8));at(V.knob,xL,Math.min(y0+pull,H-8))}
+      return;
+    }
+    [[V,!pulling],[TW,true]].forEach(([h,show])=>{
+      h.tip.classList.toggle('on',on&&show);
+      if(on&&show)at(h.tip,cx,Math.min(y0+fing,H-48));
+    });
+  }
+  // Draws the mode on show from the page's own numbers (nothing in Normal): measured again on a mode press, a setting and a new size.
+  function drawViews(){
+    [V.tip,V.knob,TW.tip].forEach(e=>e.classList.remove('on'));
+    if(mode==='normal'){geo=null;return}
+    const W=feed.clientWidth,H=feed.clientHeight,sb=scroller.offsetWidth-scroller.clientWidth,y0=listEl.offsetTop,T=threshold,F=T*(1+resistance/2.4);
+    const xL=W-sb-36,xF=W-sb-14;
+    geo={H,y0,xL,xF,cx:(W-sb)/2};
+    if(mode==='inside'){
+      // The line is where the list's first card must get to; the short arrow is how far the list moves, the long one how far the finger must.
+      const ly=y0+T,arrow=(x,y)=>'M'+x+' '+y0+'V'+y+'M'+(x-5)+' '+(y-8)+'L'+x+' '+y+'L'+(x+5)+' '+(y-8),say=(el,t)=>{if(el.textContent!==t)el.textContent=t};
+      [['x1',0],['x2',W],['y1',ly],['y2',ly]].forEach(([k,v])=>V.line.setAttribute(k,v));
+      V.list.setAttribute('d',arrow(xL,ly));V.fing.setAttribute('d',arrow(xF,y0+F));V.edge.setAttribute('d',arrow(xL,ly)+arrow(xF,y0+F));
+      V.still.className=spin.className.replace(/ ?spinning/,'');V.still.style.top=(ly-55)+'px';   // where the real spinner stands with the list at the line
+      say(V.lFing,'Your finger: '+['nearly half as far again','almost twice as far','more than twice as far'][resistance-1]);
+      say(V.lSpin,'Then it spins '+(dur<1000?'under a second':dur<1600?'about a second':'for two seconds'));
+      // Each label takes the first place near what it names that covers no other label, arrow or the line
+      const taken=[{x:0,y:ly-3,r:W,b:ly+3},{x:xL-8,y:y0-3,r:xL+8,b:ly+4},{x:xF-8,y:y0-3,r:xF+8,b:y0+F+4}];
+      const hit=(a,b)=>a.x<b.r&&b.x<a.r&&a.y<b.b&&b.y<a.b;
+      const put=(el,x,y)=>{
+        const w=el.offsetWidth,h=el.offsetHeight;let best;
+        for(const j of [0,1,-1,2,-2,3,-3,4,-4]){
+          const px=Math.max(4,Math.min(W-w-4,x)),py=Math.max(4,Math.min(H-h-4,y+j*(h+4))),a={x:px,y:py,r:px+w,b:py+h},c=taken.filter(o=>hit(a,o)).length;
+          if(!best||c<best.c)best={a,c};
+          if(!c)break;
+        }
+        const a=best.a;el.style.left=a.x+'px';el.style.top=a.y+'px';taken.push({x:a.x-2,y:a.y-2,r:a.r+2,b:a.b+2});
+      };
+      put(V.lSpin,10,ly-43-V.lSpin.offsetHeight/2);   // the label's chip reaches under the spinner, so no part of the card's title shows between them
+      put(V.lList,xL-10-V.lList.offsetWidth,ly-6-V.lList.offsetHeight);
+      put(V.lLine,8,ly+7);
+      put(V.lFing,xF-10-V.lFing.offsetWidth,y0+F-V.lFing.offsetHeight-4);
+    }
+    drawFinger();
+  }
+  // The mode switch: draws the mode at once (Compare's pose, or the pose lifted). The shared script then presses Show me (not under
+  // reduced motion), which plays it. A pull or a refresh under way is left as it is.
+  document.addEventListener('hb:mode',e=>{
+    mode=e.detail.mode;
+    twScroller.scrollTop=scroller.scrollTop;
+    if(mode==='compare')restPose();else lift();
+    drawViews();
+  });
+  addEventListener('resize',drawViews);
+  const sizes=new ResizeObserver(drawViews);
+  sizes.observe(feed);sizes.observe(scroller);
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+      if(posed)pose();
+      drawViews();
+    }));
+  }
+  choices('th-seg',d=>{threshold=+d.px});
+  choices('re-seg',d=>{resistance=+d.r});
+  choices('sp-seg',d=>{spin.classList.remove('s-ring','s-dots','s-bars');spin.classList.add('s-'+d.s)});
+  // A refresh under way has its wait re-planned, so a new Refresh time shows soon: what is left of the new time, counted from the start.
+  choices('du-seg',d=>{
+    dur=+d.ms;
+    if(!refreshing)return;
+    clearTimeout(refreshTimer);
+    refreshTimer=setTimeout(finishRefresh,Math.max(0,dur-(performance.now()-refreshFrom)));
+  });
+
+  build();
+</script>
+</body>
+</html>

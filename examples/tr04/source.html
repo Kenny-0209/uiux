@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zoom Transition — Animation Handbook</title>
+  <meta name="description" content="The pages zoom as they swap, as if moving in depth. Best for opening details.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/zoom-transition/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Zoom Transition — Animation Handbook">
+  <meta property="og:description" content="The pages zoom as they swap, as if moving in depth. Best for opening details.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/zoom-transition/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Zoom Transition — Animation Handbook">
+  <meta name="twitter:description" content="The pages zoom as they swap, as if moving in depth. Best for opening details.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Zoom Transition", "name": "Zoom Transition", "description": "The pages zoom as they swap, as if moving in depth. Best for opening details.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/zoom-transition/", "inLanguage": "en", "articleSection": "Page Transitions", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Page Transitions, Zoom Transition"}</script>
+  <style>
+    :root{--bg:#0b0b0d;--ui-bg:#111114;--ui-border:rgba(255,255,255,.09);--ui-accent:#b98cff;--ui-text:#f4f4f2;--ui-muted:#8a8a92}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);color:var(--ui-text)}
+    .mini-nav{display:flex;gap:6px;padding:10px 12px;background:var(--ui-bg);border-bottom:1px solid var(--ui-border);flex-shrink:0}
+    .nav-btn{background:none;border:1px solid var(--ui-border);color:var(--ui-muted);font:inherit;font-size:13px;padding:0 12px;border-radius:4px;cursor:pointer;min-height:44px}
+    .nav-btn.active{border-color:var(--ui-accent);color:var(--ui-accent)}
+    @media(hover:hover){.nav-btn:hover{border-color:var(--ui-accent)}}
+    .page-area{flex:1;position:relative;overflow:hidden}
+    .page{position:absolute;inset:0;opacity:0;pointer-events:none}
+    .page.active{opacity:1;pointer-events:auto}
+    /* page content */
+    .pc{display:flex;flex-direction:column;justify-content:center;height:100%;padding:clamp(20px,4vw,40px);gap:12px}
+    .pe{font-size:10px;text-transform:uppercase;letter-spacing:3px;opacity:.6}
+    .ph{font-size:clamp(22px,3.5vw,36px);font-weight:bold;line-height:1.15}
+    .pp{font-size:12px;opacity:.6;line-height:1.65;max-width:320px}
+    .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:4px}
+    .gi{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:18px 12px;font-size:11px}
+    .pstat{display:flex;gap:20px;margin-top:4px}
+    .pstat b{display:block;font-size:clamp(18px,2.5vw,24px);color:var(--ui-accent)}
+    .pstat span{font-size:9px;opacity:.6;text-transform:uppercase;letter-spacing:1px}
+    /* Short windows leave the page area under 220px: tighter spacing keeps the tallest page inside it with room to spare */
+    @media(max-height:640px){.pc{gap:8px}.gi{padding:12px}}
+    @media(prefers-reduced-motion:reduce){.page{transition:none!important}}
+    /* The small site: its nav row over its page area, which holds the pages in a wrapper. In Compare a copy of it, the twin, sits beside it. */
+    .box{display:flex;flex-direction:column;flex:1;min-height:0;min-width:0}
+    .pages{position:absolute;inset:0}
+    .twin,.zv,.zg,.side{display:none}
+    .twin .nav-btn{display:inline-flex;align-items:center}
+    .lbl{padding:2px 7px;border-radius:5px;background:#111114;color:#f4f4f2;font:600 12px/1.25 var(--hb-font);white-space:nowrap}
+    /* See inside: the page area's pages (never the pages themselves, whose own transition would animate it) drawn smaller, so that the
+       largest size of the chosen style takes --f of the area and the labels have the bands above and below. On top, at their own
+       size: the box (bright, with a veil outside it for what Normal cuts off), the old page's end size and the new page's start
+       size (dashed, in each page's tint), and four labels. At rest the next change is held part way (the script poses the pages). */
+    .stage{--f:.65;--mx:1;--z:calc(var(--f) / var(--mx))}
+    .stage[data-hb-mode="inside"] .page-area{background:#202026}
+    .stage[data-hb-mode="inside"] .pages{transform:scale(var(--z))}
+    .stage[data-hb-mode="inside"] .zv{display:block;position:absolute;inset:0;z-index:5;pointer-events:none}
+    .zr{position:absolute;left:50%;top:50%;translate:-50% -50%;width:calc(var(--z) * var(--k) * 100%);height:calc(var(--z) * var(--k) * 100%);border:2px dashed var(--c)}
+    .zbox{--k:1;--c:#f4f4f2;border-style:solid;box-shadow:0 0 0 100vmax rgba(11,11,13,.62)}
+    .zold{--k:var(--ko);--c:var(--ot)}
+    .znew{--k:var(--kn);--c:var(--nt)}
+    /* Zoom out leaves the new page at the box's own size: its outline hugs the inside of the box line */
+    .zv.same .znew{width:calc(var(--z) * 100% - 12px);height:calc(var(--z) * 100% - 12px)}
+    .zb{position:absolute;left:0;right:0;height:calc(50% * (1 - var(--f)));display:flex;flex-wrap:wrap;justify-content:center;gap:3px 10px;padding:5px 8px}
+    .zbt{top:0;align-content:flex-end}
+    .zbb{bottom:0;align-content:flex-start}
+    .zl{padding:0 7px;border:1px solid #8a8a92}
+    .zl.zw{border-color:#f4f4f2}
+    .zl.zo{color:var(--ot);border-color:var(--ot)}
+    .zl.zn{color:var(--nt);border-color:var(--nt)}
+    /* Compare: on the left the copy, whose pages only crossfade; on the right the real site, whose pages change size too. At rest
+       both stand part way through the same change; on the right a faint dashed outline marks the size the new page started at. */
+    .stage[data-hb-mode="compare"]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;background:#2a2a30}
+    .stage[data-hb-mode="compare"] .box{background:var(--bg)}
+    .stage[data-hb-mode="compare"] .twin{display:flex}
+    .stage[data-hb-mode="compare"] .side{display:block}
+    .stage[data-hb-mode="compare"] .zg:not([hidden]){display:block;position:absolute;z-index:3;left:calc(50% - var(--kg) * 50%);top:calc(50% - var(--kg) * 50%);
+      width:calc(var(--kg) * 100%);height:calc(var(--kg) * 100%);border:2px dashed var(--nt);opacity:.6;pointer-events:none}
+    .side{position:absolute;bottom:10px;z-index:11}
+    .side.first{left:10px}
+    .side.second{left:calc(50% + 10px)}
+    @media(max-width:600px){
+      .stage{--f:.58}
+      .stage[data-hb-mode="compare"] .mini-nav{gap:4px;padding:6px}
+      .stage[data-hb-mode="compare"] .nav-btn{padding:0 6px;font-size:12px;min-width:44px;justify-content:center}
+      .stage[data-hb-mode="compare"] .pc{padding:12px;gap:6px}
+      .stage[data-hb-mode="compare"] .ph{font-size:16px}
+    }
+    /* Phones and short windows (a phone held sideways too) leave the page area short: in Compare the page keeps only its eyebrow and
+       heading, clear of the half names */
+    @media(max-width:600px),(max-height:650px){
+      .stage[data-hb-mode="compare"] .pp,.stage[data-hb-mode="compare"] .pgrid,.stage[data-hb-mode="compare"] .pstat{display:none}
+    }
+    /* From 360px down the halves stack; a stacked half is short, so its page text starts at the top, clear of its name */
+    @media(max-width:360px){
+      .stage[data-hb-mode="compare"]{grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr))}
+      .stage[data-hb-mode="compare"] .side.first{bottom:calc(50% + 10px)}
+      .stage[data-hb-mode="compare"] .side.second{left:10px}
+      .stage[data-hb-mode="compare"] .pc{justify-content:flex-start}
+    }
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="do" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../slide-transition/" rel="prev" aria-label="Previous: Slide Transition"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Slide Transition</span></a><a href="../flash-transition/" rel="next" aria-label="Next: Flash / Light Leak Transition"><span><span class="hb-dir">Next: </span>Flash / Light Leak Transition</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">03.06 · Page Transitions</p>
+    <h1>Zoom Transition</h1>
+    <p class="hb-lede">The pages zoom as they swap, as if moving in depth. Best for opening details.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Click it</h2><p>Click Work or About at the top of the box, or press Show me.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage">
+      <div class="box" id="box">
+        <nav class="mini-nav" id="nav" aria-label="Demo pages"></nav>
+        <div class="page-area" id="page-area">
+          <div class="pages" id="pages"></div>
+          <div class="zv" aria-hidden="true">
+            <span class="zr zbox"></span><span class="zr zold"></span><span class="zr znew"></span>
+            <div class="zb zbt"><span class="lbl zl zw" data-hb-caption>The box</span><span class="lbl zl zo" id="l-old" data-hb-caption></span></div>
+            <div class="zb zbb"><span class="lbl zl zn" id="l-new" data-hb-caption></span><span class="lbl zl" id="l-len" data-hb-caption></span></div>
+          </div>
+          <span class="zg" aria-hidden="true" hidden></span>
+        </div>
+      </div>
+      <p class="lbl side first" aria-hidden="true" data-hb-caption>Fade only</p>
+      <p class="lbl side second" aria-hidden="true" data-hb-caption>Fade and zoom</p>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-demo" data-hb-demo><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>Show me</button>
+      <button class="hb-play" type="button" id="btn-reset" data-hb-reset><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>Reset</button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the view is zoomed out so every size fits: the outlines are the sizes each page starts and ends at while it fades. Click Work or About, or press Show me.</p>
+      <p data-hb-for="compare" hidden>Fade only crossfades the pages; Fade and zoom does the same fade while the pages change size, as if moving in depth. Click Work or About, or press Show me.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then try it again or press Show me.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="zoom-lbl">Zoom style</p>
+        <div class="seg" id="zoom-seg" role="group" aria-labelledby="zoom-lbl">
+          <button type="button" data-v="zoom-in" class="on" aria-pressed="true">Zoom in</button>
+          <button type="button" data-v="zoom-out" aria-pressed="false">Zoom out</button>
+          <button type="button" data-v="pull" aria-pressed="false">Pull through</button>
+        </div>
+        <p class="hb-hint">Zoom in feels like arriving, zoom out like leaving.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-ms="900" aria-pressed="false">Slow</button>
+          <button type="button" data-ms="550" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-ms="330" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">How long the zoom takes.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="feel-lbl">Feel</p>
+          <div class="seg" id="feel-seg" role="group" aria-labelledby="feel-lbl">
+            <button type="button" data-ease="cubic-bezier(.2,.7,.3,1)" class="on" aria-pressed="true">Smooth</button>
+            <button type="button" data-ease="cubic-bezier(.34,1.56,.64,1)" aria-pressed="false">Springy</button>
+            <button type="button" data-ease="ease-in-out" aria-pressed="false">Gentle</button>
+          </div>
+          <p class="hb-hint">Springy grows a little past full size, then settles.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a zoom transition to [the pages or views you want to move between]. When the page changes, scale the old and the new page while one fades out and the other fades in, so the change seems to move through depth rather than across the screen. Zooming in, where the new page grows into place, feels like going deeper; zooming out feels like stepping back; a pull-through, where the new page rushes in from larger, feels like traveling forward. Scale with transforms only, and keep the fade so no hard edge shows. If the visitor has reduced motion turned on, swap pages without scaling. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Opening details</li><li>Galleries</li><li>Lightboxes</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Step-by-step flows</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const PAGES=[
+    {name:'Home',tint:'#7db4ff',bg:'linear-gradient(135deg,#0d1a2e,#192640)',html:`<div class="pc"><div class="pe">Creative Studio</div><p class="ph">Design without compromise.</p><p class="pp">We craft digital products that earn attention and keep it.</p></div>`},
+    {name:'Work',tint:'#6fe0a0',bg:'linear-gradient(135deg,#0d1f15,#152e1e)',html:`<div class="pc"><div class="pe">Selected Work</div><p class="ph">The Portfolio</p><div class="pgrid">${['Atlas','Orbit','Prism','Lumen','Frame','Echo'].map(n=>`<div class="gi">${n}</div>`).join('')}</div></div>`},
+    {name:'About',tint:'#d1a3ff',bg:'linear-gradient(135deg,#1f0d26,#2e1540)',html:`<div class="pc"><div class="pe">Our Story</div><p class="ph">Built on conviction.</p><p class="pp">18 people who care unreasonably about craft. Independent since 2016.</p><div class="pstat"><div><b>140+</b><span>Projects</span></div><div><b>9</b><span>Years</span></div></div></div>`},
+  ];
+  // Each style's four sizes: [oldStartScale,oldEndScale,newStartScale,newEndScale]. The change and both views read this table.
+  const SIZES={
+    'zoom-in': [1,0.9,0.75,1],
+    'zoom-out':[1,1.2,1,1],
+    'pull':    [1,0.7,1.3,1],
+  };
+  const OLD_WORDS={'zoom-in':'Old page shrinks to here','zoom-out':'Old page grows past the edge to here','pull':'Old page shrinks to here'};
+  const NEW_WORDS={'zoom-in':'New page grows from here','zoom-out':'New page fades in at full size','pull':'New page shrinks into place from here'};
+  const SHARE=.3; // at rest the views hold the next change at this share of its time
+  const box=document.getElementById('box'),stage=box.parentElement;
+  const nav=document.getElementById('nav'),pagesEl=document.getElementById('pages'),slowTog=document.getElementById('slow-tog');
+  const motionOk=!window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let current=0,animating=false,dur=550,variant='zoom-in',ease='cubic-bezier(.2,.7,.3,1)',afterMove=null,wayBack=0,timers=[],home=-1;
+  let mode='normal',posedNow=false,view=[0,1],run=null;
+  const pages=[],navBtns=[];
+
+  PAGES.forEach((p,i)=>{
+    const d=document.createElement('div');d.className='page';d.style.background=p.bg;d.innerHTML=p.html;pagesEl.appendChild(d);pages.push(d);
+    const b=document.createElement('button');b.type='button';b.className='nav-btn';b.textContent=p.name;
+    b.addEventListener('click',()=>navigate(i));nav.appendChild(b);navBtns.push(b);
+  });
+  // Compare's first half: the same small site whose pages only crossfade. A copy built from the same pages, with no ids and no
+  // buttons, out of the Tab order and hidden from screen readers; it starts its fade the moment a change of the real site starts
+  // (a click, Show me, Reset), so one input drives both halves.
+  const twin=document.createElement('div');
+  twin.className='box twin';twin.inert=true;twin.setAttribute('aria-hidden','true');
+  twin.innerHTML=`<div class="mini-nav">${PAGES.map(p=>`<span class="nav-btn">${p.name}</span>`).join('')}</div>`+
+    `<div class="page-area"><div class="pages">${PAGES.map(p=>`<div class="page" style="background:${p.bg}">${p.html}</div>`).join('')}</div></div>`;
+  box.before(twin);
+  const twinPages=[...twin.querySelectorAll('.page')],twinNav=[...twin.querySelectorAll('.nav-btn')];
+  const zv=stage.querySelector('.zv'),ghost=stage.querySelector('.zg');
+  const lOld=document.getElementById('l-old'),lNew=document.getElementById('l-new'),lLen=document.getElementById('l-len');
+  // Under reduced motion both views are still pictures, and their notes say so
+  if(!motionOk){
+    document.querySelector('[data-hb-for="inside"]').textContent='Shown still and zoomed out: both pages caught part way through the change, part see-through, at sizes between the outlines.';
+    document.querySelector('[data-hb-for="compare"]').textContent='Shown still, part way through a change: Fade only is a flat blend of the two pages; Fade and zoom is the same blend with the pages changing size.';
+  }
+
+  // Drops a timer's id once it fires, so `timers` only holds the ones still waiting.
+  function later(fn,wait){
+    const id=setTimeout(()=>{
+      const i=timers.indexOf(id);
+      if(i>-1)timers.splice(i,1);
+      fn();
+    },wait);
+    timers.push(id);
+    return id;
+  }
+  function cancel(id){
+    clearTimeout(id);
+    const i=timers.indexOf(id);
+    if(i>-1)timers.splice(i,1);
+  }
+
+  function updateNav(n){navBtns.forEach((b,i)=>{b.classList.toggle('active',i===n);b.setAttribute('aria-current',i===n?'page':'false')})}
+  // One page's resting look: its class alone shows or hides it, with nothing left over from a zoom (its background stays).
+  // A page that is not shown is also out of the Tab order and the accessibility tree (inert). A zoom that is already
+  // heading for the same look keeps its own length when its inline transition goes, so it is cancelled too.
+  function rest(el,on){
+    el.classList.toggle('active',on);
+    el.inert=!on;
+    el.style.transition='';el.style.opacity='';el.style.transform='';el.style.pointerEvents='';
+    el.getAnimations().forEach(a=>a.cancel());
+  }
+  // The copy's resting look for page n
+  function showTwin(n){
+    twinPages.forEach((el,i)=>{el.classList.toggle('active',i===n);el.style.transition='';el.style.opacity='';el.getAnimations().forEach(a=>a.cancel())});
+    twinNav.forEach((b,i)=>b.classList.toggle('active',i===n));
+  }
+  // The resting state for page n, at once
+  function showPage(n){
+    pages.forEach((el,i)=>rest(el,i===n));
+    updateNav(n);showTwin(n);posedNow=false;
+  }
+
+  // Ends a zoom: the demo is idle again, and a Show me run goes on to its next step
+  function finish(){
+    animating=false;run=null;
+    const then=afterMove;afterMove=null;
+    if(then)then();
+    pose();
+  }
+  // Stops everything at once and shows the resting state for `current`
+  function settle(){
+    timers.forEach(clearTimeout);timers=[];wayBack=0;afterMove=null;
+    animating=false;run=null;
+    showPage(current);
+    pose();
+  }
+
+  function navigate(next,then){
+    if(next===current||animating)return;
+    const prev=current;current=next;updateNav(next);
+    afterMove=then||null;
+    unpose();
+    if(!motionOk){showPage(next);finish();return}
+    animating=true;
+    const ms=dur*(slowTog.checked?3:1);
+    run={style:variant,ms};view=[prev,next];drawView();
+    doTransition(prev,next,ms,ease);
+  }
+
+  // dur is the zoom's length in ms (three times as long in slow motion) and ease its curve, both read when the zoom starts
+  function doTransition(prev,next,dur,ease){
+    const o=pages[prev],n=pages[next];
+    const t=`all ${dur}ms ${ease}`;
+    const V=SIZES[variant];
+
+    o.style.transition='none';n.style.transition='none';
+    o.style.transform=`scale(${V[0]})`;
+    n.style.opacity='0';n.style.transform=`scale(${V[2]})`;n.classList.add('active');
+    void n.offsetWidth; // commit the start scales
+    o.style.transition=t;n.style.transition=t;
+    o.style.opacity='0';o.style.transform=`scale(${V[1]})`;
+    n.style.opacity='1';n.style.transform=`scale(${V[3]})`;
+    fadeTwin(prev,next,dur,ease);
+    later(()=>{rest(o,false);rest(n,true);showTwin(next);finish()},dur+50);
+  }
+  // The copy's pages crossfade over the same length and curve, starting with the real change
+  function fadeTwin(prev,next,dur,ease){
+    const o=twinPages[prev],n=twinPages[next];
+    o.style.transition='none';n.style.transition='none';
+    o.style.opacity='1';n.style.opacity='0';n.classList.add('active');
+    void n.offsetWidth;
+    o.style.transition=n.style.transition=`opacity ${dur}ms ${ease}`;
+    o.style.opacity='0';n.style.opacity='1';
+    twinNav.forEach((b,i)=>b.classList.toggle('active',i===next));
+  }
+
+  // Show me: one visit to the next page, a hold of 1200ms, and the way back to where the run started (also when pressed again
+  // or after a mode press in the middle of a run)
+  function showMe(){
+    if(home<0)home=current;else current=home;
+    settle();
+    const start=current;
+    navigate((start+1)%PAGES.length,()=>{wayBack=later(()=>{wayBack=0;navigate(start,()=>{home=-1})},1200)});
+  }
+  function reset(){home=-1;current=0;settle()}
+
+  document.getElementById('btn-demo').addEventListener('click',showMe);
+  document.getElementById('btn-reset').addEventListener('click',reset);
+  // The visitor took over: cancel what the run has not started yet. A zoom already moving finishes on its own.
+  document.addEventListener('hb:input',()=>{afterMove=null;cancel(wayBack);wayBack=0;home=-1;pose()});
+
+  // How far a curve has got at x of its time (the Feel's own numbers)
+  function progress(curve,x){
+    const c=curve==='ease-in-out'?[.42,0,.58,1]:curve.match(/[\d.]+/g).map(Number);
+    const f=(t,a,b)=>3*(1-t)*(1-t)*t*a+3*(1-t)*t*t*b+t*t*t;
+    let lo=0,hi=1;
+    for(let i=0;i<24;i++){const m=(lo+hi)/2;if(f(m,c[0],c[2])<x)lo=m;else hi=m}
+    return f((lo+hi)/2,c[1],c[3]);
+  }
+  const lengthWords=ms=>ms<400?'about a third of a second':ms<700?'about half a second':ms<1300?'about a second':ms<2000?'about a second and a half':'almost three seconds';
+  const setText=(el,t)=>{if(el.textContent!==t)el.textContent=t};
+  // The outlines, their tints and the four labels, for the change in `view` (the next one at rest, the running one while it plays)
+  function drawView(){
+    const st=run?run.style:variant,ms=run?run.ms:dur*(slowTog.checked?3:1),V=SIZES[st],[a,b]=view;
+    stage.style.setProperty('--mx',Math.max(1,V[1],V[2]));
+    stage.style.setProperty('--ot',PAGES[a].tint);stage.style.setProperty('--nt',PAGES[b].tint);
+    stage.style.setProperty('--kg',V[2]);
+    zv.style.setProperty('--ko',V[1]);zv.style.setProperty('--kn',V[2]);
+    zv.classList.toggle('same',V[2]===1);
+    setText(lOld,OLD_WORDS[st]);setText(lNew,NEW_WORDS[st]);setText(lLen,(motionOk?'The zoom takes ':'A zoom would take ')+lengthWords(ms));
+    ghost.hidden=!(posedNow&&V[2]<1);
+  }
+  // Takes the pose off: the pages go back to their resting look (only when a pose is on, so a run is never cut short)
+  function unpose(){
+    if(!posedNow)return;
+    posedNow=false;ghost.hidden=true;
+    [...pages,...twinPages].forEach(el=>{el.style.transition='';el.style.opacity='';el.style.transform=''});
+  }
+  // At rest in See inside and Compare the next change is held part way (at SHARE of its time, where the Feel has got by then): both
+  // pages between their sizes and part see-through; the copy only blends. A change lifts the pose.
+  function pose(){
+    if(mode==='normal'||animating||wayBack){unpose();return}
+    const next=(current+1)%PAGES.length,V=SIZES[variant],p=progress(ease,SHARE),o=pages[current],n=pages[next];
+    view=[current,next];
+    [o,n].forEach(el=>el.style.transition='none');
+    o.style.opacity=1-p;o.style.transform=`scale(${V[0]+p*(V[1]-V[0])})`;
+    n.style.opacity=p;n.style.transform=`scale(${V[2]+p*(V[3]-V[2])})`;
+    twinPages[current].style.opacity=1-p;twinPages[next].style.opacity=p;
+    posedNow=true;drawView();
+  }
+  // The mode switch: draws the mode at once. The shared script then presses Show me (not under reduced motion), which plays it.
+  document.addEventListener('hb:mode',e=>{
+    mode=e.detail.mode;
+    drawView();pose();
+  });
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+      drawView();pose();
+    }));
+  }
+  choices('zoom-seg',d=>{variant=d.v});
+  choices('speed-seg',d=>{dur=+d.ms});
+  choices('feel-seg',d=>{ease=d.ease});
+  slowTog.addEventListener('change',drawView);
+  showPage(0);
+  drawView();
+</script>
+</body>
+</html>

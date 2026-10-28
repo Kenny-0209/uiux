@@ -1,0 +1,222 @@
+[
+  {
+    "id": "animate37rollIn",
+    "name": "굴러오며 등장",
+    "english": "rollIn",
+    "category": "등장과 퇴장",
+    "description": "화면 바깥에서 회전하며 이동해 제자리에 나타납니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Animate.css",
+      "rollIn",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/animate37/rollIn.html",
+    "codePath": "./examples/animate37/rollIn.css",
+    "codeFiles": [
+      {
+        "label": "패널 HTML",
+        "path": "./examples/animate37/rollIn.html"
+      },
+      {
+        "label": "원본 애니메이션 라이브러리",
+        "path": "./examples/animate37/animate.css"
+      }
+    ],
+    "sourceName": "Animate.css 3.7.2",
+    "sourceUrl": "https://github.com/animate-css/animate.css/blob/ab5fe9dae4fdb936eee698ce1850a263008f0a99/source/specials/rollIn.css",
+    "license": "MIT · 3.7.2",
+    "licensePath": "./examples/animate37/LICENSE.txt",
+    "adaptation": "MIT인 구버전 3.7.2의 원본 CSS를 그대로 사용하고 재생 버튼과 카드 미리보기를 별도 구성",
+    "requiresGPU": false,
+    "codeLabel": "원본 CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "animate37rollOut",
+    "name": "굴러가며 퇴장",
+    "english": "rollOut",
+    "category": "등장과 퇴장",
+    "description": "제자리에서 회전하며 화면 바깥으로 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Animate.css",
+      "rollOut",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/animate37/rollOut.html",
+    "codePath": "./examples/animate37/rollOut.css",
+    "codeFiles": [
+      {
+        "label": "패널 HTML",
+        "path": "./examples/animate37/rollOut.html"
+      },
+      {
+        "label": "원본 애니메이션 라이브러리",
+        "path": "./examples/animate37/animate.css"
+      }
+    ],
+    "sourceName": "Animate.css 3.7.2",
+    "sourceUrl": "https://github.com/animate-css/animate.css/blob/ab5fe9dae4fdb936eee698ce1850a263008f0a99/source/specials/rollOut.css",
+    "license": "MIT · 3.7.2",
+    "licensePath": "./examples/animate37/LICENSE.txt",
+    "adaptation": "MIT인 구버전 3.7.2의 원본 CSS를 그대로 사용하고 재생 버튼과 카드 미리보기를 별도 구성",
+    "requiresGPU": false,
+    "codeLabel": "원본 CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "animate37jackInTheBox",
+    "name": "상자에서 튀어나오기",
+    "english": "jackInTheBox",
+    "category": "등장과 퇴장",
+    "description": "작은 상태에서 회전과 크기 변화를 거쳐 등장합니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Animate.css",
+      "jackInTheBox",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/animate37/jackInTheBox.html",
+    "codePath": "./examples/animate37/jackInTheBox.css",
+    "codeFiles": [
+      {
+        "label": "패널 HTML",
+        "path": "./examples/animate37/jackInTheBox.html"
+      },
+      {
+        "label": "원본 애니메이션 라이브러리",
+        "path": "./examples/animate37/animate.css"
+      }
+    ],
+    "sourceName": "Animate.css 3.7.2",
+    "sourceUrl": "https://github.com/animate-css/animate.css/blob/ab5fe9dae4fdb936eee698ce1850a263008f0a99/source/specials/jackInTheBox.css",
+    "license": "MIT · 3.7.2",
+    "licensePath": "./examples/animate37/LICENSE.txt",
+    "adaptation": "MIT인 구버전 3.7.2의 원본 CSS를 그대로 사용하고 재생 버튼과 카드 미리보기를 별도 구성",
+    "requiresGPU": false,
+    "codeLabel": "원본 CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "animate37flipInX",
+    "name": "수평축으로 뒤집혀 등장",
+    "english": "flipInX",
+    "category": "등장과 퇴장",
+    "description": "수평축으로 회전하며 원근감을 가지고 나타납니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Animate.css",
+      "flipInX",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/animate37/flipInX.html",
+    "codePath": "./examples/animate37/flipInX.css",
+    "codeFiles": [
+      {
+        "label": "패널 HTML",
+        "path": "./examples/animate37/flipInX.html"
+      },
+      {
+        "label": "원본 애니메이션 라이브러리",
+        "path": "./examples/animate37/animate.css"
+      }
+    ],
+    "sourceName": "Animate.css 3.7.2",
+    "sourceUrl": "https://github.com/animate-css/animate.css/blob/ab5fe9dae4fdb936eee698ce1850a263008f0a99/source/flippers/flipInX.css",
+    "license": "MIT · 3.7.2",
+    "licensePath": "./examples/animate37/LICENSE.txt",
+    "adaptation": "MIT인 구버전 3.7.2의 원본 CSS를 그대로 사용하고 재생 버튼과 카드 미리보기를 별도 구성",
+    "requiresGPU": false,
+    "codeLabel": "원본 CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "animate37flipOutX",
+    "name": "수평축으로 뒤집혀 퇴장",
+    "english": "flipOutX",
+    "category": "등장과 퇴장",
+    "description": "수평축으로 회전하며 원근감을 가지고 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Animate.css",
+      "flipOutX",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/animate37/flipOutX.html",
+    "codePath": "./examples/animate37/flipOutX.css",
+    "codeFiles": [
+      {
+        "label": "패널 HTML",
+        "path": "./examples/animate37/flipOutX.html"
+      },
+      {
+        "label": "원본 애니메이션 라이브러리",
+        "path": "./examples/animate37/animate.css"
+      }
+    ],
+    "sourceName": "Animate.css 3.7.2",
+    "sourceUrl": "https://github.com/animate-css/animate.css/blob/ab5fe9dae4fdb936eee698ce1850a263008f0a99/source/flippers/flipOutX.css",
+    "license": "MIT · 3.7.2",
+    "licensePath": "./examples/animate37/LICENSE.txt",
+    "adaptation": "MIT인 구버전 3.7.2의 원본 CSS를 그대로 사용하고 재생 버튼과 카드 미리보기를 별도 구성",
+    "requiresGPU": false,
+    "codeLabel": "원본 CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  }
+]

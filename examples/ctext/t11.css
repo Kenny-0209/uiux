@@ -1,0 +1,20 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 23 Rubber-Band — the word squashes and stretches like an elastic band */
+.fx-elastic {
+  font: 600 32px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .08em;
+  color: var(--ink-2);
+  animation: fx-elastic 1.6s ease-in-out infinite;
+}
+@keyframes fx-elastic {
+  0%, 100% { transform: scale(1, 1); }
+  28% { transform: scale(1.28, .72); }
+  44% { transform: scale(.78, 1.24); }
+  60% { transform: scale(1.12, .9); }
+  74% { transform: scale(.96, 1.05); }
+  86% { transform: scale(1.02, .98); }
+}

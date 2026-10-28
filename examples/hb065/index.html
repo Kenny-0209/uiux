@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart / Like Burst — Animation Handbook</title>
+  <meta name="description" content="The heart pops and fills as small hearts burst out. Best for like buttons.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/heart-burst/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Heart / Like Burst — Animation Handbook">
+  <meta property="og:description" content="The heart pops and fills as small hearts burst out. Best for like buttons.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/heart-burst/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Heart / Like Burst — Animation Handbook">
+  <meta name="twitter:description" content="The heart pops and fills as small hearts burst out. Best for like buttons.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Heart / Like Burst", "name": "Heart / Like Burst", "description": "The heart pops and fills as small hearts burst out. Best for like buttons.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/heart-burst/", "inLanguage": "en", "articleSection": "Micro-Interactions", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Micro-Interactions, Heart / Like Burst"}</script>
+  <style>
+    :root{--ui-accent:#ff9d5c;--ui-text:#f4f4f2;--ui-muted:#8a8a92;--like:#ff5470}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;overflow:hidden;touch-action:manipulation;background:#0b0b0d}
+    canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+    .like-wrap{position:relative;z-index:2}
+    .like-btn{position:relative;background:none;border:none;border-radius:50%;cursor:pointer;font:inherit;width:96px;height:96px;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent}
+    .heart{width:64px;height:64px;color:var(--ui-muted);transition:color .2s;transform-origin:center}
+    .like-btn.on .heart{color:var(--like)}
+    /* Pop: overshoot scale keyframe applied on like */
+    @keyframes pop{0%{transform:scale(1)}30%{transform:scale(.8)}55%{transform:scale(1.25)}75%{transform:scale(.92)}100%{transform:scale(1)}}
+    .like-btn.pop .heart{animation:pop .5s cubic-bezier(.22,1,.36,1)}
+    .count{font-size:12px;color:var(--ui-muted);z-index:2}
+    .count b{color:var(--ui-text)}
+    @media(prefers-reduced-motion:reduce){.like-btn.pop .heart{animation:none}}
+    /* See inside and Compare: words on a dark backing over the canvas (the script places See inside's round the heart) */
+    .ring,.cap,.twin{display:none}
+    .cap{position:absolute;z-index:3;width:max-content;max-width:var(--w,240px);padding:4px 9px;border-radius:6px;background:rgba(11,11,13,.9);
+      color:#f4f4f2;font:600 13px/17px var(--hb-font);pointer-events:none}
+    /* See inside: dashed rings round the heart at the pop's smallest and biggest sizes (the script sizes them from its keyframes) */
+    .ring{position:absolute;left:50%;top:50%;border:1.5px dashed rgba(244,244,242,.75);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}
+    .stage[data-hb-mode="inside"] .ring,.stage[data-hb-mode="inside"] .cap.in{display:block}
+    /* Compare: the scene twice, side by side at every width: on the left a copy that only changes color, on the right the heart itself */
+    .stage[data-hb-mode="compare"]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:center;justify-items:center;gap:20px 0}
+    .stage[data-hb-mode="compare"]::after{content:'';position:absolute;top:0;bottom:0;left:50%;border-left:1px solid rgba(244,244,242,.14)}
+    .stage[data-hb-mode="compare"] .twin{display:flex;grid-area:1/1/3/2;flex-direction:column;align-items:center;gap:20px}
+    .stage[data-hb-mode="compare"] .like-wrap{grid-area:1/2}
+    .stage[data-hb-mode="compare"]>.count{grid-area:2/2}
+    .stage[data-hb-mode="compare"] .cap.half{display:block;top:10px}
+    .twin .heart{margin:16px}.twin.on .heart{color:var(--like)}
+    .half.first{left:10px}.half.second{left:calc(50% + 10px)}
+    /* The still both views rest on, a quarter of a second into a like: the hearts filled, the real one held at that point of its pop */
+    .stage[data-hb-mode="inside"].posed .heart,.stage[data-hb-mode="compare"].posed .heart{color:var(--like)}
+    .stage[data-hb-mode="inside"].posed .like-btn path,.stage[data-hb-mode="compare"].posed .like-btn path{transform-box:view-box;
+      transform-origin:12px 12px;animation:pop .5s cubic-bezier(.22,1,.36,1) -.25s paused}
+    @media(max-width:600px){.cap{padding:3px 7px;font-size:12px;line-height:16px}}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="do" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../toggle-switch/" rel="prev" aria-label="Previous: Toggle / Switch Slide"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Toggle / Switch Slide</span></a><a href="../success-confetti/" rel="next" aria-label="Next: Success Confetti"><span><span class="hb-dir">Next: </span>Success Confetti</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">04.07 · Micro-Interactions</p>
+    <h1>Heart / Like Burst</h1>
+    <p class="hb-lede">The heart pops and fills as small hearts burst out. Best for like buttons.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Click it</h2><p>Click or tap the heart to like it and again to unlike it, or press Show me.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage hb-dots">
+      <canvas id="cv" aria-hidden="true"></canvas>
+      <div class="like-wrap">
+        <button class="like-btn" type="button" aria-pressed="false" aria-label="Like">
+          <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 21S3.25 15.4 3.25 9.6C3.25 6.9 5.2 5 7.7 5c1.8 0 3.3 1 4.3 2.7C13 6 14.5 5 16.3 5c2.5 0 4.45 1.9 4.45 4.6C20.75 15.4 12 21 12 21z"/></svg>
+        </button>
+        <span class="ring" aria-hidden="true"></span><span class="ring" aria-hidden="true"></span>
+      </div>
+      <div class="count">Likes <b id="count">128</b></div>
+      <p class="cap in up" aria-hidden="true" data-hb-caption>Each piece flies out, a little upward</p>
+      <p class="cap in end" aria-hidden="true" data-hb-caption>Gravity bends its path down as it fades</p>
+      <p class="cap in rings" aria-hidden="true" data-hb-caption>The heart squashes to the inner ring, swells to the outer, then settles</p>
+      <p class="cap in time" aria-hidden="true" data-hb-caption>All over in about three quarters of a second</p>
+      <p class="cap half first" aria-hidden="true" data-hb-caption>Color only</p>
+      <p class="cap half second" aria-hidden="true" data-hb-caption>Pops and bursts</p>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-demo" data-hb-demo><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>Show me</button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo="css" autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the lines are the paths the pieces fly, pulled down as they fade; the rings show how the heart squashes and swells. Click the heart, or press Show me.</p>
+      <p data-hb-for="compare" hidden>Shown just after a like: Color only fills the heart; Pops and bursts also pops it and sprays small hearts. Click the heart, or press Show me.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then try it again or press Show me.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="num-lbl">Number of hearts</p>
+        <div class="seg" id="num-seg" role="group" aria-labelledby="num-lbl">
+          <button type="button" data-n="10" aria-pressed="false">Few</button>
+          <button type="button" data-n="18" class="on" aria-pressed="true">Some</button>
+          <button type="button" data-n="32" aria-pressed="false">Many</button>
+        </div>
+        <p class="hb-hint">More pieces make a bigger celebration.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="far-lbl">How far they fly</p>
+        <div class="seg" id="far-seg" role="group" aria-labelledby="far-lbl">
+          <button type="button" data-px="60" aria-pressed="false">Short</button>
+          <button type="button" data-px="90" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-px="140" aria-pressed="false">Far</button>
+        </div>
+        <p class="hb-hint">How far the pieces travel before they fade.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a like button with a burst to [the heart or favorite button you want to reward]. When the visitor likes something, the heart quickly squashes, overshoots a little and settles as it fills with color, while a spray of tiny hearts and dots flies out from its center, arcs down and fades. Unliking simply removes the color, with no burst. Draw the burst on one layer over the button and stop drawing once the last piece has faded. Tell screen readers whether it is liked. If the visitor has reduced motion turned on, only fill the heart, with no pop or burst. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Like buttons</li><li>Favorites</li><li>Bookmarks</li><li>Reactions</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Delete buttons</li><li>Neutral toggles</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const stage=document.querySelector('.stage'),btn=document.querySelector('.like-btn'),heart=btn.querySelector('.heart'),
+        cv=document.getElementById('cv'),ctx=cv.getContext('2d'),countEl=document.getElementById('count'),
+        slowTog=document.getElementById('slow-tog'),reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const FRAME=1000/60;   // one frame of a 60 Hz screen, in ms: every step below is measured in these
+  let liked=false,count=128,particles=[],raf=null,last=null,dpr=1,pCount=18,spread=90,runTimers=[];
+  let mode='normal',posed=false,poseTimer=0,kept=null;   // See inside and Compare (see the end of the script)
+
+  // The canvas has one pixel per screen pixel (two at most per CSS pixel), so the hearts stay sharp on dense screens.
+  // Resizing wipes it, so a mode's still is drawn and its words are placed again.
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2);
+    cv.width=Math.round(stage.clientWidth*dpr);cv.height=Math.round(stage.clientHeight*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if(mode!=='normal'){place();draw();}
+  }
+  resize();new ResizeObserver(resize).observe(stage);
+
+  // A piece of a burst from x, y in a random direction (r gives the random numbers: Math.random for a real burst, a fixed series
+  // for the still), launched at the speed of How far they fly with a small upward lean; o keeps its start, for its path
+  function piece(i,x,y,r){
+    const a=r()*Math.PI*2, v=spread*(0.5+r()*0.5)/12, vx=Math.cos(a)*v, vy=Math.sin(a)*v-1;
+    return {x,y,vx,vy,life:1,size:4+r()*5,hue:['#ff5470','#ff9d5c','#ffd166','#ff85a1'][i%4],heart:r()>0.4,o:[x,y,vx,vy]};
+  }
+  // Where a burst starts: the heart's center, in the stage
+  function origin(){const b=btn.getBoundingClientRect(),s=stage.getBoundingClientRect();return [b.left+b.width/2-s.left,b.top+b.height/2-s.top]}
+  function spawn(){
+    if(dpr!==Math.min(window.devicePixelRatio||1,2))resize();
+    const [ox,oy]=origin();
+    for(let i=0;i<pCount;i++)particles.push(piece(i,ox,oy,Math.random));
+    if(!raf){last=null;raf=requestAnimationFrame(tick)}
+  }
+  // One step of a piece, h 60 Hz frames long: it moves, gravity pulls it down, drag slows it sideways, and it fades
+  function step(p,h,drag){p.x+=p.vx*h;p.y+=p.vy*h;p.vy+=0.12*h;p.vx*=drag;p.life-=0.022*h}
+  function tick(ts){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    particles=particles.filter(p=>p.life>0);
+    // Each step is scaled by the time since the last frame, in 60 Hz frames (1 at 60 Hz, 0.5 at 120 Hz, 2 at 30 Hz), so a burst lasts
+    // the same on every screen. A burst's first frame counts as one 60 Hz frame, and no gap counts as more than 50 ms.
+    const dt=last===null?FRAME:Math.min(ts-last,50);last=ts;
+    // Slow motion: every piece moves a third of its usual step. It is read every frame, so it applies from the next one.
+    // A step over 1.5 frames (a 30 Hz screen) is taken in two halves, which keeps the arc close to the one a 60 Hz screen draws.
+    const k=dt/FRAME*(slowTog.checked?1/3:1),parts=k>1.5?2:1,h=k/parts,drag=0.98**h;
+    ctx.save();
+    if(mode==='compare')half();                    // Compare draws the burst in its second half only
+    if(mode==='inside')particles.forEach(trail);   // See inside draws each piece's path under the pieces
+    for(const p of particles){
+      for(let i=0;i<parts;i++)step(p,h,drag);
+      dot(p);
+    }
+    ctx.restore();
+    raf=particles.length?requestAnimationFrame(tick):null;
+    if(!raf)settle(HOLD);
+  }
+  function dot(p){
+    ctx.globalAlpha=Math.max(p.life,0);ctx.fillStyle=p.hue;
+    if(p.heart){drawHeart(p.x,p.y,p.size);}
+    else{ctx.beginPath();ctx.arc(p.x,p.y,p.size*0.5,0,Math.PI*2);ctx.fill();}
+  }
+  function drawHeart(x,y,s){
+    ctx.save();ctx.translate(x,y);ctx.scale(s/24,s/24);ctx.beginPath();
+    ctx.moveTo(0,6);ctx.bezierCurveTo(-12,-6,-6,-14,0,-6);ctx.bezierCurveTo(6,-14,12,-6,0,6);
+    ctx.closePath();ctx.fill();ctx.restore();
+  }
+
+  // Liking fills the heart and, unless the visitor asks for reduced motion, pops it and bursts the pieces; unliking only takes the color away.
+  // The click and Show me both come through here.
+  // In See inside and Compare the still goes first, so the like or unlike plays from the real state, and the copy follows.
+  function setLiked(on){
+    if(on===liked)return;
+    lift();
+    liked=on;
+    btn.classList.toggle('on',liked);twin.classList.toggle('on',liked);
+    btn.setAttribute('aria-pressed',liked);
+    if(liked){
+      count++;
+      if(!reduce.matches){btn.classList.remove('pop');void btn.offsetWidth;btn.classList.add('pop');spawn();}
+    }else{count--;}
+    countEl.textContent=twinNum.textContent=count;
+    settle(HOLD);
+  }
+  btn.addEventListener('click',()=>setLiked(!liked));
+
+  // Show me: one run at a time. Every timer of the run goes through later(); stopRun() cancels the whole run.
+  // later(fn, move, hold) waits move*(slow?3:1) + hold ms: Slow motion triples the movement, never the hold.
+  function later(fn,move,hold){
+    const id=setTimeout(()=>{runTimers=runTimers.filter(t=>t!==id);fn()},move*(slowTog.checked?3:1)+(hold||0));
+    runTimers.push(id);
+  }
+  function running(){return runTimers.length>0}
+  function stopRun(){runTimers.forEach(clearTimeout);runTimers=[]}
+  // A run starts from the arrival state, put there without animating (see showState). A burst still in the air goes too.
+  function toRest(){
+    lift();
+    btn.classList.remove('pop');
+    liked=false;count=128;
+    particles=[];ctx.clearRect(0,0,cv.width,cv.height);
+    showState();
+  }
+  // Shows liked, the count and a mode's still at once on the heart, Compare's copy and both counts: the color transition is turned
+  // off, the state is set, a reflow makes it stick, and the transition comes back.
+  function showState(){
+    heart.style.transition=twinHeart.style.transition='none';
+    btn.classList.toggle('on',liked);twin.classList.toggle('on',liked);btn.setAttribute('aria-pressed',liked);
+    countEl.textContent=twinNum.textContent=count;stage.classList.toggle('posed',posed);
+    void btn.offsetWidth;
+    heart.style.transition=twinHeart.style.transition='';
+  }
+  // The heart is liked after 300ms of rest, and unliked once the 750ms burst and 950ms more of rest have passed.
+  document.getElementById('btn-demo').addEventListener('click',()=>{
+    stopRun();
+    toRest();
+    later(()=>setLiked(true),0,300);
+    later(()=>setLiked(false),750,1250);
+  });
+  // The visitor pressed, typed, scrolled or touched inside the stage: the run stops and the heart stays as it is.
+  document.addEventListener('hb:input',()=>{if(running()){stopRun();settle(HOLD)}});
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  // A setting shows at the next like, and at once in a mode's still and words
+  choices('num-seg',d=>{pCount=+d.n;redraw()});
+  choices('far-seg',d=>{spread=+d.px;redraw()});
+
+  // See inside and Compare. HOLD: how long the end of a like stays in view before the still comes back (ms). POSE: the still's moment,
+  // a quarter of a second into a like, in 60 Hz steps (as the heart's held pop in the style). SEED: the fixed series of random numbers
+  // the still's burst comes from, so every still is the same. REACH: how far the heart reaches from its center, as a share of its box.
+  const HOLD=700,POSE=15,SEED=347,REACH=.38;
+  const [capUp,capEnd,capRings,capTime]=stage.querySelectorAll('.cap.in');
+  // The rings, at the pop's smallest and biggest sizes (from its keyframes in the style above); STEPS: the 60 Hz steps a piece lasts
+  const sizes=[...[...document.styleSheets[0].cssRules].find(r=>r.name==='pop').cssRules].map(k=>parseFloat(k.style.transform.replace(/[^\d.]/g,'')));
+  const HIGH=Math.max(...sizes),STEPS=(()=>{const q={x:0,y:0,vx:0,vy:0,life:1};let n=0;while(q.life>0){step(q,1,1);n++}return n})();
+  stage.querySelectorAll('.ring').forEach((el,i)=>{el.style.width=el.style.height=2*REACH*heart.clientWidth*[Math.min(...sizes),HIGH][i]+'px'});
+  // Compare's first half: a copy of the heart and its count that only changes color, out of reach of the keyboard and screen readers
+  const twin=document.createElement('div'),twinHeart=heart.cloneNode(true),twinCount=countEl.parentElement.cloneNode(true),twinNum=twinCount.firstElementChild;
+  twin.className='twin';twin.inert=true;twin.setAttribute('aria-hidden','true');twinNum.removeAttribute('id');twin.append(twinHeart,twinCount);stage.append(twin);
+  // Under reduced motion both views are still pictures, and their notes say so (the page's own words otherwise)
+  const STILL={inside:'Inside, shown still: the lines are the paths the pieces would fly and the rings how the heart would pop. With reduced motion on, a like only fills the heart.',
+    compare:'Shown still, just after a like: Color only fills the heart; Pops and bursts also pops it and sprays small hearts. With reduced motion on, both only fill.'};
+  const noteTexts=[...document.querySelectorAll('[data-hb-for]')].map(n=>[n,n.textContent]);
+  function noteWords(){for(const [n,t] of noteTexts)n.textContent=reduce.matches?STILL[n.dataset.hbFor]:t}
+  noteWords();reduce.addEventListener('change',noteWords);
+
+  function fixed(){let s=SEED;return()=>{s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+  function still(){const r=fixed(),[x,y]=origin();return Array.from({length:pCount},(_,i)=>piece(i,x,y,r))}
+  function half(){const w=stage.clientWidth;ctx.beginPath();ctx.rect(w/2,0,w/2,stage.clientHeight);ctx.clip()}
+  // A piece's whole path: the same step run ahead in 60 Hz steps until it has faded, worked out once
+  function pathOf(p){
+    if(!p.path){const q={x:p.o[0],y:p.o[1],vx:p.o[2],vy:p.o[3],life:1};p.path=[p.o];while(q.life>0){step(q,1,.98);p.path.push([q.x,q.y])}}
+    return p.path;
+  }
+  // See inside: the path as a faint line out of the heart, with a small ring where the piece fades
+  function trail(p){
+    const pts=pathOf(p),[x,y]=pts[pts.length-1];
+    ctx.lineWidth=1.25;ctx.strokeStyle=p.hue;ctx.globalAlpha=.4;ctx.beginPath();for(const [px,py] of pts)ctx.lineTo(px,py);ctx.stroke();
+    if(cut(x,y,5))return;
+    ctx.globalAlpha=.85;ctx.beginPath();ctx.arc(x,y,3,0,Math.PI*2);ctx.stroke();
+  }
+  // The words on show (relative to the box), and whether one would cut a piece at x, y that reaches r from there
+  function words(){
+    const s=stage.getBoundingClientRect();
+    return [...stage.querySelectorAll('.cap')].filter(el=>el.offsetParent).map(el=>{const b=el.getBoundingClientRect();return {l:b.left-s.left,t:b.top-s.top,r:b.right-s.left,b:b.bottom-s.top}});
+  }
+  function cut(x,y,r){return words().some(k=>x+r>k.l&&x-r<k.r&&y+r>k.t&&y-r<k.b)}
+  // The canvas at rest in a mode: the still's burst POSE steps in, each piece at its strength then, over every path of it in See
+  // inside, in the second half only in Compare. A look only: liked, the count and a real burst's pieces are never touched.
+  function draw(){
+    ctx.clearRect(0,0,cv.width,cv.height);
+    if(!posed)return;
+    const plan=still();
+    ctx.save();
+    if(mode==='compare')half();else plan.forEach(trail);
+    for(const p of plan){for(let n=0;n<POSE;n++)step(p,1,.98);if(!cut(p.x,p.y,p.size))dot(p)}
+    ctx.restore();
+  }
+  // Puts the still on or takes it off at once (its class holds the heart filled and part-way into its pop)
+  function pose(on){posed=on;showState();draw()}
+  function lift(){clearTimeout(poseTimer);poseTimer=0;if(posed)pose(false)}
+  // The still comes back in See inside and Compare once nothing goes on (no piece in the air, no Show me step waiting): after a
+  // change it waits HOLD first, so the end of the like is seen; a mode press shows it at once.
+  function settle(wait){
+    clearTimeout(poseTimer);poseTimer=0;
+    if(mode!=='normal'&&!raf&&!running()){if(wait)poseTimer=setTimeout(()=>settle(0),wait);else pose(true)}
+  }
+  function redraw(){place();if(posed)draw()}
+  // See inside's words round the heart as it is now, 8px or more inside the box: the upward flight above it on the left, the rings'
+  // beside them, the time (three times as long in Slow motion) below it on the right, and gravity's under the end of the still's
+  // farthest path that ends low on the left inside the box (else in the lower left corner)
+  function place(){
+    const s=STEPS*FRAME*(slowTog.checked?3:1)/1000;
+    capTime.textContent='All over in about '+(s<.9?'three quarters of a second':s<1.5?'a second':s<2.5?'two seconds':'three seconds');
+    if(mode!=='inside')return;
+    const W=stage.clientWidth,H=stage.clientHeight,[x,y]=origin(),R=REACH*heart.clientWidth*HIGH,m=8,g=6;
+    const sb=stage.getBoundingClientRect(),cb=countEl.parentElement.getBoundingClientRect();
+    // what the words keep clear of, 6px apart: the outer ring, the like count, then each word placed
+    const used=[{l:x-R,t:y-R,r:x+R,b:y+R},{l:cb.left-sb.left,t:cb.top-sb.top,r:cb.right-sb.left,b:cb.bottom-sb.top}];
+    const clear=k=>used.every(u=>k.l-g>=u.r||k.r+g<=u.l||k.t-g>=u.b||k.b+g<=u.t);
+    // each word takes the first spot of its list that is clear (else the last), kept 8px inside the box
+    const put=(el,w,spots)=>{
+      el.style.setProperty('--w',Math.max(w,100)+'px');
+      const ew=el.offsetWidth,eh=el.offsetHeight;let k;
+      for(const [left,top] of spots){
+        const l=Math.max(m,Math.min(left(ew,eh),W-m-ew)),t=Math.max(m,Math.min(top(ew,eh),H-m-eh));
+        k={l,t,r:l+ew,b:t+eh};if(clear(k))break;
+      }
+      el.style.left=k.l+'px';el.style.top=k.t+'px';used.push(k);
+    };
+    put(capRings,Math.min(250,W-m-x-R-12),[[()=>x+R+12,(w,h)=>y-h/2]]);
+    put(capUp,Math.min(250,x-16-m),[[w=>x-16-w,()=>m]]);
+    put(capTime,Math.min(320,W-m-x-16),[[()=>x+16,(w,h)=>H-m-h]]);
+    const ends=still().map(p=>{const pts=pathOf(p);return pts[pts.length-1]}).filter(([ex,ey])=>ex<x-R&&ex>m+20&&ey>y+R&&ey<H-m-40).sort((a,b)=>a[0]-b[0]);
+    put(capEnd,Math.min(280,x-m),[...ends.map(([ex,ey])=>[w=>ex-w/2,()=>ey+10]),[()=>m,(w,h)=>H-m-h]]);
+  }
+  // The mode switch: the still at once when nothing goes on, the words placed. The shared script then presses Show me (not under
+  // reduced motion), which plays a like from the arrival state. So leaving Normal keeps its own state (liked, the count, copies of
+  // the pieces in the air), and Normal takes the still off and puts that state back as it was, a burst going on from where it was.
+  document.addEventListener('hb:mode',e=>{
+    const was=mode;mode=e.detail.mode;
+    if(mode!=='normal'){if(was==='normal')kept={liked,count,pieces:particles.map(p=>({...p}))};place();settle(0);return}
+    btn.classList.remove('pop');lift();
+    if(!kept)return;
+    stopRun();({liked,count}=kept);particles=kept.pieces;kept=null;showState();
+    if(particles.length&&!raf){last=null;raf=requestAnimationFrame(tick)}
+  });
+  slowTog.addEventListener('change',redraw);
+  document.fonts.ready.then(redraw);
+</script>
+</body>
+</html>

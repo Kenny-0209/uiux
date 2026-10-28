@@ -1,0 +1,24 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 05 Aqua-Fill — the word fills with liquid that rises and drains */
+.fx-liquid {
+  font: 600 32px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .06em;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--ink-3) 65%, transparent);
+  background: linear-gradient(0deg,
+      var(--ink-3) 0 46%,
+      color-mix(in srgb, var(--ink-3) 55%, transparent) 48%,
+      transparent 52% 100%
+    ) 0 0 / 100% 220%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: fx-liquid 3.4s ease-in-out infinite;
+}
+@keyframes fx-liquid {
+  0%, 100% { background-position: 0 -110%; }
+  50%      { background-position: 0 10%; }
+}

@@ -1,0 +1,28 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 52 Topographic — contour-map lines crawl through the text fill */
+.fx-topographic {
+  font: 600 28px/1.15 "JetBrains Mono", monospace;
+  letter-spacing: .1em;
+  color: transparent;
+  background:
+    repeating-radial-gradient(ellipse at 30% 55%,
+      var(--ink) 0 1px,
+      transparent 1px 7px
+    ),
+    repeating-radial-gradient(ellipse at 78% 35%,
+      var(--ink-3) 0 1px,
+      transparent 1px 8px
+    );
+  background-size: 130px 70px, 170px 80px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--ink-3) 25%, transparent));
+  animation: fx-topographic 5s linear infinite;
+}
+@keyframes fx-topographic {
+  to { background-position: 130px 0, -170px 0; }
+}

@@ -1,0 +1,394 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+}
+
+p {
+  line-height: 2;
+}
+
+/* ------------ 画面右下の雫 ------------ */
+.drop {
+  position: fixed;
+  bottom: 20px;
+  right: 0;
+  z-index: 10;
+  width: 100px;
+  height: 100px;
+  background: white;
+  clip-path: path("m58,70.879c0,16.083-12.984,29.121-29,29.121S0,86.962,0,70.879,29,0,29,0c0,0,29,54.797,29,70.879Z");
+
+  .drop_inner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: royalblue;
+    transform-origin: bottom; /* 下部を変形の基準にする */
+    animation: grow-progress linear;
+    animation-timeline: scroll();
+  }
+}
+
+/* 垂直方向にスケールを変えるキーフレーム */
+@keyframes grow-progress {
+  from {
+    scale: 1 0;
+  }
+  to {
+    scale: 1 1;
+  }
+}
+
+/* ------------ ヒーローエリア ------------ */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #d0e4f8;
+
+  .hero_title {
+    position: fixed;
+    top: 30%;
+    width: 100%;
+    font-size: 3rem;
+    text-align: center;
+    animation: scale-down linear both;
+    animation-timeline: view();
+    animation-range: contain 70% contain 100%;
+  }
+
+  .hero_layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-size: cover;
+
+    &.hero_layer__back {
+      bottom: 0;
+      height: 30vh;
+      background-image: url("../images/back.svg");
+      animation: parallax-image linear both;
+      animation-timeline: view();
+      animation-range: contain 0% exit 100%;
+
+      /* 画像が足りない分を書き足し */
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -20vh;
+        width: 100%;
+        height: 20vh;
+        background-color: #69eaca;
+      }
+    }
+
+    &.hero_layer__front {
+      bottom: -20vh;
+      height: 40vh;
+      background-image: url("../images/front.svg");
+      animation: parallax-image-front linear both;
+      animation-timeline: view();
+      animation-range: contain 0% exit 100%;
+
+      /* 画像が足りない分を書き足し */
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -10vh;
+        width: 100%;
+        height: 10vh;
+        background-color: #41cca4;
+      }
+    }
+  }
+}
+
+@keyframes scale-down {
+  to {
+    scale: 0.7;
+    opacity: 0;
+  }
+}
+
+@keyframes parallax-image {
+  from {
+    translate: 0 -13vh;
+  }
+}
+
+@keyframes parallax-image-front {
+  to {
+    translate: 0 -5vh;
+  }
+}
+
+/* ------------------------ */
+.wrapper {
+  background-color: #41cca4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: clip;
+}
+
+/* ------------ キラキラ：opacity 鳥：offset ------------ */
+.sectionBird {
+  position: relative;
+  padding: 300px 1vw;
+  background-color: #41cca4;
+
+  /* キラキラ */
+  &::before,
+  &::after {
+    position: absolute;
+    top: 5%;
+    width: 20vw;
+    height: 90%;
+    content: "";
+    background-image: url("../images/twinkle.svg");
+    background-size: contain;
+    mix-blend-mode: plus-lighter;
+    animation: fade-in linear both;
+    animation-timeline: view();
+    animation-range: cover 45% cover 60%;
+  }
+
+  &::before {
+    left: -18vw;
+  }
+
+  &::after {
+    right: -18vw;
+    scale: -1 -1;
+  }
+
+  p {
+    margin: 0 auto 100px;
+    max-width: 800px;
+  }
+
+  .bird {
+    position: absolute;
+    top: 20%;
+    left: -120px;
+
+    /* offsetプロパティの紹介記事： https://ics.media/entry/230327/ */
+    offset-path: path("m16.335.397C8.884,6.095-1.144,31.39.729,36.776c6.402,18.409,34.762,21.381,37.982,33.361,8.471,31.513-18.708,30.613-24.591,36.49-10.986,10.974-.465,49.54,16.065,68.698,30.176,34.972,17.15,70.578-23.667,93.591");
+    offset-rotate: 0deg;
+
+    animation: fly-bird linear both;
+    animation-timeline: view();
+    animation-range: cover 0% exit 250%;
+
+    &.bird__reverse {
+      top: unset;
+      left: unset;
+      right: -120px;
+      bottom: 40%;
+      offset-path: path("m16.335.397C8.884,6.095-1.144,31.39.729,36.776c6.402,18.409,34.762,21.381,37.982,33.361,8.471,31.513-18.708,30.613-24.591,36.49-12.555,12.542-2.606,67.337,25.866,72.92");
+      offset-rotate: 20deg;
+      scale: -1 1;
+    }
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fly-bird {
+  to {
+    offset-distance: 100%;
+  }
+}
+
+/* ------------ 宝石：sticky & translate & clip-path ------------ */
+.sectionPin {
+  width: 100%;
+  height: 200vh; /* スクロール長め */
+
+  .pin_text {
+    width: calc(50vw - 100px);
+  }
+
+  .pin_sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-x: clip;
+    background-image: linear-gradient(#83a2cb, #D4E7F4);
+    view-timeline: --sticky-timeline; /* 画像マスクアニメーション用のタイムラインを定義 */
+  }
+
+  .pin_wrapper {
+    display: flex;
+    gap: 100px;
+    flex-direction: row;
+    align-items: center;
+    width: 200vmax;
+    height: 100%;
+
+    animation: slide-image linear both;
+    animation-timeline: view();
+    animation-range: contain; /* = contain 0% contain 100% */
+  }
+
+  .image {
+    width: 300px;
+    height: 300px;
+    animation: reveal-gem linear both;
+    animation-timeline: --sticky-timeline; /* .pin_stickyに定義したタイムラインを指定 */
+    animation-range: contain 55% contain 70%; /* sticky中の「縦」のスクロール量で判定 */
+
+    &.image__2 {
+      animation-range: contain 65% contain 80%;
+    }
+
+    &.image__3 {
+      animation-range: contain 75% contain 90%;
+    }
+  }
+}
+
+@keyframes slide-image {
+  from {
+    translate: 50vw 0;
+  }
+  to {
+    translate: -550px 0;
+  }
+}
+
+/* 円→（角丸四角形を経由）→正方形 にマスクの形状を変化させるキーフレーム */
+@keyframes reveal-gem {
+  from {
+    clip-path: inset(30% round 20%);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+/* ------------ 雫のパララックス ------------ */
+.sectionDrop {
+  position: relative;
+  width: 100%;
+  padding: 300px 1vw;
+  background-color: #D4E7F4;
+
+  p {
+    margin: 0 auto 40px;
+    max-width: 800px;
+  }
+
+  .dropGem {
+    position: absolute;
+    width: 88px;
+    height: 124px;
+    background-image: url("../images/drop-blue-01.webp");
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: parallax-drop linear both;
+    animation-timeline: view();
+    animation-range: cover; /* = cover 0% cover 100% */
+
+    &.dropGem__blue2 {
+      background-image: url("../images/drop-blue-02.webp");
+    }
+
+    &.dropGem__blue3 {
+      background-image: url("../images/drop-blue-03.webp");
+    }
+
+    &.dropGem__medium {
+      scale: 0.8;
+      animation-range: entry -150% exit 250%; /* 開始終了位置をオーバーにして、動く量を少なく見せています。移動量を調整した別の@keyframesを作って使用する方法も○です */
+    }
+
+    &.dropGem__small {
+      scale: 0.6;
+      animation-range: entry -800% exit 900%;
+    }
+
+    &.dropGem__1 {
+      top: 20%;
+      left: 15%;
+    }
+
+    &.dropGem__2 {
+      bottom: 20%;
+      left: 10%;
+    }
+
+    &.dropGem__3 {
+      top: 15%;
+      right: 20%;
+    }
+
+    &.dropGem__4 {
+      top: 50%;
+      right: 15%;
+    }
+
+    &.dropGem__5 {
+      bottom: 15%;
+      right: 25%;
+    }
+  }
+}
+
+@keyframes parallax-drop {
+  from {
+    translate: 0 200px;
+  }
+  to {
+    translate: 0 -200px;
+  }
+}
+
+/* ------------ 空：sticky & clip-path ------------ */
+.sectionSky {
+  position: relative;
+  width: 100%;
+  height: 170vh;
+  background-color: #D4E7F4;
+
+  .sky_image {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    position: sticky;
+    top: 0;
+    animation: reveal-sky linear both;
+    animation-timeline: view();
+    animation-range: contain 0% contain 70%;
+    /* ↑ https://scroll-driven-animations.style/tools/view-timeline/ranges/#range-start-name=contain&range-start-percentage=0&range-end-name=contain&range-end-percentage=70&view-timeline-axis=block&view-timeline-inset=0&subject-size=taller&subject-animation=scale-up&interactivity=clicktodrag&show-areas=yes&show-fromto=yes&show-labels=yes */
+  }
+
+  .sky_text {
+    position: relative;
+    background-color: white;
+    line-height: 2;
+    max-width: 23rem;
+    padding: 1rem 2rem;
+    margin-left: 80px;
+  }
+}
+
+@keyframes reveal-sky {
+  from {
+    clip-path: ellipse(60px 80px);
+  }
+  to {
+    clip-path: ellipse(60% 130%);
+  }
+}

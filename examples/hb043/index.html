@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blur Transition — Animation Handbook</title>
+  <meta name="description" content="The old page blurs away and the new one comes into focus. Best for photo sites.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/blur-transition/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Blur Transition — Animation Handbook">
+  <meta property="og:description" content="The old page blurs away and the new one comes into focus. Best for photo sites.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/blur-transition/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blur Transition — Animation Handbook">
+  <meta name="twitter:description" content="The old page blurs away and the new one comes into focus. Best for photo sites.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Blur Transition", "name": "Blur Transition", "description": "The old page blurs away and the new one comes into focus. Best for photo sites.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/03-page-transitions/blur-transition/", "inLanguage": "en", "articleSection": "Page Transitions", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Page Transitions, Blur Transition"}</script>
+  <style>
+    :root{--bg:#0b0b0d;--ui-bg:#111114;--ui-border:rgba(255,255,255,.09);--ui-accent:#b98cff;--ui-text:#f4f4f2;--ui-muted:#8a8a92;--old:#b98cff;--new:#6fd0c0}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);color:var(--ui-text)}
+    .mini-nav{display:flex;gap:6px;padding:10px 12px;background:var(--ui-bg);border-bottom:1px solid var(--ui-border);flex-shrink:0}
+    .nav-btn{background:none;border:1px solid var(--ui-border);color:var(--ui-muted);font:inherit;font-size:13px;padding:0 12px;border-radius:4px;cursor:pointer;min-height:44px}
+    .nav-btn.active{border-color:var(--ui-accent);color:var(--ui-accent)}
+    @media(hover:hover){.nav-btn:hover{border-color:var(--ui-accent)}}
+    .page-area{flex:1;position:relative;overflow:hidden}
+    .page{position:absolute;inset:0;opacity:0;pointer-events:none}
+    .page.active{opacity:1;pointer-events:auto}
+    /* page content */
+    .pc{display:flex;flex-direction:column;justify-content:center;height:100%;padding:clamp(20px,4vw,40px);gap:12px}
+    .pe{font-size:10px;text-transform:uppercase;letter-spacing:3px;opacity:.6}
+    .ph{font-size:clamp(22px,3.5vw,36px);font-weight:bold;line-height:1.15}
+    .pp{font-size:12px;opacity:.6;line-height:1.65;max-width:320px}
+    .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:4px}
+    .gi{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:18px 12px;font-size:11px}
+    .pstat{display:flex;gap:20px;margin-top:4px}
+    .pstat b{display:block;font-size:clamp(18px,2.5vw,24px);color:var(--ui-accent)}
+    .pstat span{font-size:9px;opacity:.6;text-transform:uppercase;letter-spacing:1px}
+    /* Short windows leave the page area under 220px: tighter spacing keeps the tallest page inside it with room to spare */
+    @media(max-height:640px){.pc{gap:8px}.gi{padding:12px}}
+    /* The small site: its nav row over its page area. In Compare a copy of it, the plain-fade twin, sits beside it. */
+    .box{display:flex;flex-direction:column;flex:1;min-height:0;min-width:0}
+    .twin,.strip,.side{display:none}
+    .twin .nav-btn{display:inline-flex;align-items:center}
+    .cap{padding:2px 7px;border-radius:5px;background:#111114;color:#f4f4f2;font:600 12px/1.25 var(--hb-font);white-space:nowrap}
+    /* A posed page is half way through the blur; it needs its own !important rule because the reduced-motion rule below turns every blur off */
+    .stage[data-hb-mode="inside"].posed .page.active,.stage[data-hb-mode="compare"].posed #box .page.active{filter:blur(var(--pb))!important;opacity:var(--po)!important}
+    .stage[data-hb-mode="compare"].posed .twin .page.active{opacity:var(--pt)}
+    /* See inside: under the page, a strip with a lane for each page's blur (a ramp's height is the blur), the swap as a dashed line */
+    .stage[data-hb-mode="inside"] .strip{display:block}
+    .stage[data-hb-mode="inside"] .pc{gap:8px}.stage[data-hb-mode="inside"] .gi{padding:12px}
+    .strip{position:relative;flex:none;height:104px;overflow:hidden;background:#111114;border-top:1px solid var(--ui-border)}
+    .strip svg{position:absolute;inset:0;width:100%;height:100%}
+    .strip path{fill:none;stroke-width:2}
+    .strip stop{stop-color:var(--lane)}
+    #g-old{--lane:var(--old)}#g-new{--lane:var(--new)}
+    #base{stroke:#3a3a42;stroke-width:1}
+    #ramp-old{stroke:var(--old)}#ramp-new{stroke:var(--new)}
+    #fill-old{fill:url(#g-old);stroke:none}#fill-new{fill:url(#g-new);stroke:none}
+    #swap-line{stroke:#c9c9d1;stroke-width:1.5;stroke-dasharray:4 3}
+    .strip .cap{position:absolute;left:0;top:0}
+    .cap.c-old{border-left:3px solid var(--old)}.cap.c-new{border-left:3px solid var(--new)}.cap.c-swap{border-left:3px solid #c9c9d1}
+    .mark{position:absolute;left:0;top:0;width:2px;background:#f4f4f2}
+    .stage[data-hb-mode="compare"]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;background:#2a2a30}
+    .stage[data-hb-mode="compare"] .twin{display:flex}
+    .stage[data-hb-mode="compare"] .side{display:block}
+    .side{position:absolute;bottom:10px;z-index:11}
+    .side.first{left:10px}.side.second{left:calc(50% + 10px)}
+    /* The strip is lower on short wide windows, taller on tall ones and on phones, where the lane names take two lines */
+    @media(max-height:650px) and (min-width:601px){.strip{height:76px}}
+    @media(min-height:761px) and (min-width:601px){.strip{height:124px}}
+    @media(max-width:600px){
+      .strip{height:126px}
+      .cap.c-old,.cap.c-new{width:112px;white-space:normal;text-wrap:balance}
+      .stage[data-hb-mode="inside"] .pc{padding:14px 16px}
+      .stage[data-hb-mode="compare"] .mini-nav{gap:4px;padding:6px}
+      .stage[data-hb-mode="compare"] .nav-btn{padding:0 6px;font-size:12px;min-width:44px;justify-content:center}
+      .stage[data-hb-mode="compare"] .pc{padding:12px;gap:6px}
+      .stage[data-hb-mode="compare"] .ph{font-size:16px}
+    }
+    /* Phones and short windows leave the page area short: the page keeps only its eyebrow and heading in both modes. See inside also
+       loses the strip's height, so it does the same just above each strip step (680px tall, and 761 to 790), where the area is under the tallest page */
+    @media(max-width:600px),(max-height:650px){
+      .stage[data-hb-mode="compare"] .pp,.stage[data-hb-mode="compare"] .pgrid,.stage[data-hb-mode="compare"] .pstat{display:none}
+    }
+    @media(max-width:600px),(max-height:680px),(min-height:761px) and (max-height:790px){
+      .stage[data-hb-mode="inside"] .pp,.stage[data-hb-mode="inside"] .pgrid,.stage[data-hb-mode="inside"] .pstat{display:none}
+    }
+    /* From 360px down the halves stack; a stacked half is short, so its page text starts at the top, clear of its name */
+    @media(max-width:360px){
+      .stage[data-hb-mode="compare"]{grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr))}
+      .stage[data-hb-mode="compare"] .side.first{bottom:calc(50% + 10px)}
+      .stage[data-hb-mode="compare"] .side.second{left:10px}
+      .stage[data-hb-mode="compare"] .pc{justify-content:flex-start}
+    }
+    @media(prefers-reduced-motion:reduce){.page{transition:none!important;filter:none!important}}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="do" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../flash-transition/" rel="prev" aria-label="Previous: Flash / Light Leak Transition"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Flash / Light Leak Transition</span></a><a href="../elastic-transition/" rel="next" aria-label="Next: Elastic Transition"><span><span class="hb-dir">Next: </span>Elastic Transition</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">03.08 · Page Transitions</p>
+    <h1>Blur Transition</h1>
+    <p class="hb-lede">The old page blurs away and the new one comes into focus. Best for photo sites.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Click it</h2><p>Click Work or About at the top of the box, or press Show me.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage">
+      <div class="box" id="box">
+        <nav class="mini-nav" id="nav" aria-label="Demo pages"></nav>
+        <div class="page-area" id="page-area"></div>
+      </div>
+      <div class="strip" id="strip" aria-hidden="true">
+        <svg><defs><linearGradient id="g-old" gradientUnits="userSpaceOnUse"><stop offset="0"/><stop offset="1"/></linearGradient><linearGradient id="g-new" gradientUnits="userSpaceOnUse"><stop offset="0"/><stop offset="1"/></linearGradient></defs>
+          <path id="base"/><path id="fill-old"/><path id="ramp-old"/><path id="fill-new"/><path id="ramp-new"/><path id="swap-line"/></svg>
+        <span class="mark" id="mark"></span>
+        <span class="cap c-old" id="c-old" data-hb-caption></span><span class="cap c-new" id="c-new" data-hb-caption></span>
+        <span class="cap c-swap" id="c-swap" data-hb-caption>Pages swap here, both blurred</span><span class="cap c-len" id="c-len" data-hb-caption></span>
+      </div>
+      <p class="cap side first" aria-hidden="true" data-hb-caption>Plain fade</p>
+      <p class="cap side second" aria-hidden="true" data-hb-caption>With blur</p>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-demo" data-hb-demo><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>Show me</button>
+      <button class="hb-play" type="button" id="btn-reset" data-hb-reset><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>Reset</button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the strip shows each page's blur: the old page blurs out, the pages swap where both are blurred, then the new page sharpens. Click Work or About, or press Show me.</p>
+      <p data-hb-for="compare" hidden>Plain fade only fades between the pages; With blur blurs the old page out and brings the new one into focus, hiding the swap. Click Work or About, or press Show me.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then try it again or press Show me.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="blur-lbl">How blurry it gets</p>
+        <div class="seg" id="blur-seg" role="group" aria-labelledby="blur-lbl">
+          <button type="button" data-px="8" aria-pressed="false">Slight</button>
+          <button type="button" data-px="20" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-px="35" aria-pressed="false">Heavy</button>
+        </div>
+        <p class="hb-hint">Heavy blur is costly for the browser to draw.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-ms="650" aria-pressed="false">Slow</button>
+          <button type="button" data-ms="400" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-ms="250" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">How long each half, blurring and sharpening, takes.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Fades as it blurs</span><input class="hb-switch" type="checkbox" role="switch" id="fade-tog" checked autocomplete="off"></label>
+          <p class="hb-hint">Fading as well hides the moment the pages swap.</p>
+        </div>
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Overlaps the two halves</span><input class="hb-switch" type="checkbox" role="switch" id="overlap-tog" autocomplete="off"></label>
+          <p class="hb-hint">The new page sharpens while the old one still blurs.</p>
+        </div>
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="feel-lbl">Feel</p>
+          <div class="seg" id="feel-seg" role="group" aria-labelledby="feel-lbl">
+            <button type="button" data-ease="ease-out" aria-pressed="false">Smooth</button>
+            <button type="button" data-ease="ease-in-out" class="on" aria-pressed="true">Gentle</button>
+            <button type="button" data-ease="linear" aria-pressed="false">Even</button>
+          </div>
+          <p class="hb-hint">Gentle feels like a camera pulling focus.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a blur transition to [the pages or views you want to switch between]. When the page changes, blur the old page until it is out of focus, bring in the new page just as blurred, then sharpen it into focus, like a camera pulling focus from one subject to another. Fading while blurring hides the moment of the swap. Blur is costly for the browser to draw, so use it only on changes the visitor starts, never on anything that repeats by itself, and remove the blur completely when it ends. If the visitor has reduced motion turned on, switch pages without blurring. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Photo sites</li><li>Film and editorial</li><li>Portfolios</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Self-playing slideshows</li><li>Low-end phones</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const PAGES=[
+    {name:'Home',bg:'linear-gradient(135deg,#0d1a2e,#192640)',html:`<div class="pc"><div class="pe">Creative Studio</div><p class="ph">Design without compromise.</p><p class="pp">We craft digital products that earn attention and keep it.</p></div>`},
+    {name:'Work',bg:'linear-gradient(135deg,#0d1f15,#152e1e)',html:`<div class="pc"><div class="pe">Selected Work</div><p class="ph">The Portfolio</p><div class="pgrid">${['Atlas','Orbit','Prism','Lumen','Frame','Echo'].map(n=>`<div class="gi">${n}</div>`).join('')}</div></div>`},
+    {name:'About',bg:'linear-gradient(135deg,#1f0d26,#2e1540)',html:`<div class="pc"><div class="pe">Our Story</div><p class="ph">Built on conviction.</p><p class="pp">18 people who care unreasonably about craft. Independent since 2016.</p><div class="pstat"><div><b>140+</b><span>Projects</span></div><div><b>9</b><span>Years</span></div></div></div>`},
+  ];
+  const box=document.getElementById('box'),stage=box.parentElement,nav=document.getElementById('nav'),area=document.getElementById('page-area');
+  const fadeTog=document.getElementById('fade-tog'),overlapTog=document.getElementById('overlap-tog'),slowTog=document.getElementById('slow-tog');
+  const motionOk=!window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let current=0,animating=false,maxBlur=20,dur=400,ease='ease-in-out',afterMove=null,wayBack=0,home=-1,timers=[];
+  const pages=[],navBtns=[];
+
+  PAGES.forEach((p,i)=>{
+    const d=document.createElement('div');d.className='page';d.style.background=p.bg;d.innerHTML=p.html;area.appendChild(d);pages.push(d);
+    const b=document.createElement('button');b.type='button';b.className='nav-btn';b.textContent=p.name;
+    b.addEventListener('click',()=>navigate(i));nav.appendChild(b);navBtns.push(b);
+  });
+  // Compare's first half: a copy of the small site with no ids and no buttons, out of the Tab order and hidden from screen readers.
+  // It changes page with a plain fade the moment the real site's change starts, so one input drives both halves.
+  const twin=document.createElement('div');
+  twin.className='box twin';twin.inert=true;twin.setAttribute('aria-hidden','true');
+  twin.innerHTML=`<div class="mini-nav">${PAGES.map(p=>`<span class="nav-btn">${p.name}</span>`).join('')}</div>`+
+    `<div class="page-area">${PAGES.map(p=>`<div class="page" style="background:${p.bg}">${p.html}</div>`).join('')}</div>`;
+  box.before(twin);
+  const twinPages=[...twin.querySelectorAll('.page')],twinNav=[...twin.querySelectorAll('.nav-btn')];
+  function showTwin(n){
+    twinPages.forEach((el,i)=>{el.classList.toggle('active',i===n);el.getAnimations().forEach(a=>a.cancel())});
+    twinNav.forEach((b,i)=>b.classList.toggle('active',i===n));
+  }
+  // The old page fades out over one half and the new one fades in once the pages swap, with the page's own Feel
+  function plainFade(prev,next,ms,swapAfter){
+    const opts={duration:ms,easing:ease,fill:'both'};
+    twinNav.forEach((b,i)=>b.classList.toggle('active',i===next));
+    twinPages[prev].animate([{opacity:1},{opacity:0}],opts);
+    twinPages[next].animate([{opacity:0},{opacity:1}],{...opts,delay:swapAfter});
+  }
+
+  // Drops a timer's id once it fires, so `timers` only holds the ones still waiting.
+  function later(fn,wait){
+    const id=setTimeout(()=>{
+      const i=timers.indexOf(id);
+      if(i>-1)timers.splice(i,1);
+      fn();
+    },wait);
+    timers.push(id);
+    return id;
+  }
+  function cancel(id){
+    clearTimeout(id);
+    const i=timers.indexOf(id);
+    if(i>-1)timers.splice(i,1);
+  }
+
+  function updateNav(n){navBtns.forEach((b,i)=>{b.classList.toggle('active',i===n);b.setAttribute('aria-current',i===n?'page':'false')})}
+  // One page's resting look: its class alone shows or hides it, sharp, with nothing left over from a blur (its background
+  // stays). A page that is not shown is also out of the Tab order and the accessibility tree (inert). A blur or fade that is
+  // already heading for the same look keeps its own length when its inline transition goes, so it is cancelled too.
+  function rest(el,on){
+    el.classList.toggle('active',on);
+    el.inert=!on;
+    el.style.transition='';el.style.filter='';el.style.opacity='';
+    el.getAnimations().forEach(a=>a.cancel());
+  }
+  // The resting state for page n, at once
+  function showPage(n){
+    pages.forEach((el,i)=>rest(el,i===n));
+    updateNav(n);
+    showTwin(n);
+  }
+
+  // Ends a change: the demo is idle again, and a Show me run goes on to its next step
+  function finish(){
+    animating=false;
+    const then=afterMove;afterMove=null;
+    if(then)then();
+    pose();
+  }
+  // Stops everything at once and shows the resting state for `current`
+  function settle(){
+    timers.forEach(clearTimeout);timers=[];wayBack=0;afterMove=null;
+    animating=false;
+    showPage(current);
+    pose();
+  }
+
+  function navigate(next,then){
+    if(next===current||animating)return;
+    const prev=current;current=next;updateNav(next);
+    afterMove=then||null;
+    if(!motionOk){showPage(next);finish();return}
+    animating=true;
+    // The pose goes at once (its style is flushed, so the change starts from a sharp page) and the marker starts with the change
+    stage.classList.remove('posed');void area.offsetWidth;
+    const ms=dur*(slowTog.checked?3:1),swap=swapAt(ms,overlapTog.checked);
+    changeAt=performance.now();runTotal=swap+ms;
+    if(mode==='inside')rideMark();
+    plainFade(prev,next,ms,swap);
+    doTransition(prev,next,ms,ease,maxBlur);
+  }
+  // When the pages swap, in ms: after the old page's half, or half way through it with Overlaps on
+  const swapAt=(ms,overlap)=>overlap?Math.round(ms*0.5):ms;
+
+  // dur is one half's length in ms (three times as long in slow motion), ease its curve and maxBlur the blur in px, all read when
+  // the change starts, so a setting changed while it runs does not change its second half
+  function doTransition(prev,next,dur,ease,maxBlur){
+    const o=pages[prev],n=pages[next];
+    const withFade=fadeTog.checked,overlap=overlapTog.checked;
+    const t=`filter ${dur}ms ${ease}${withFade?`, opacity ${dur}ms ${ease}`:''}`;
+    o.style.transition=t;o.style.filter=`blur(${maxBlur}px)`;
+    if(withFade)o.style.opacity='0';
+
+    const swapAfter=swapAt(dur,overlap);
+    later(()=>{
+      o.classList.remove('active');o.inert=true;o.style.opacity='0';
+      n.style.transition='none';n.style.filter=`blur(${maxBlur}px)`;n.style.opacity='0';n.classList.add('active');n.inert=false;
+      void n.offsetWidth; // commit the blurred start
+      n.style.transition=t;n.style.filter='blur(0px)';n.style.opacity='1';
+      later(()=>{rest(o,false);rest(n,true);showTwin(next);finish()},dur+50);
+    },swapAfter);
+  }
+
+  // Show me: one visit to the next page, a hold of 1200ms, and the way back to where the run started
+  function showMe(){
+    const start=home<0?current:home;
+    home=start;current=start;settle();
+    navigate((start+1)%PAGES.length,()=>{wayBack=later(()=>{wayBack=0;home=-1;navigate(start)},1200)});
+  }
+  function reset(){current=0;home=-1;settle()}
+
+  document.getElementById('btn-demo').addEventListener('click',showMe);
+  document.getElementById('btn-reset').addEventListener('click',reset);
+  // The visitor took over: cancel what the run has not started yet. A change already under way finishes on its own.
+  document.addEventListener('hb:input',()=>{afterMove=null;cancel(wayBack);wayBack=0;home=-1;later(pose,300)});
+
+  // ── See inside and Compare ──
+  const $=id=>document.getElementById(id);
+  const strip=$('strip'),mark=$('mark'),CAP={old:$('c-old'),nw:$('c-new'),swap:$('c-swap'),len:$('c-len')};
+  const SPAN=1600,REST=.35; // the strip's time line stands for 1.6 seconds (three times that in slow motion); a pose is this far into the old page's half
+  const BEZ={'ease-out':[0,0,.58,1],'ease-in-out':[.42,0,.58,1],linear:[0,0,1,1]};
+  const LONG={250:'a quarter of a second',400:'a little under half a second',650:'two thirds of a second',750:'three quarters of a second',1200:'a little over a second',1950:'about two seconds'};
+  let mode='normal',G=null,changeAt=0,runTotal=0,markRaf=0;
+  if(!motionOk){ // both views are still pictures, and their notes say so
+    document.querySelector('[data-hb-for="inside"]').textContent='Shown still: the page part way to blurred, and the strip of each page\'s blur, with the swap where both are blurred.';
+    document.querySelector('[data-hb-for="compare"]').textContent='Shown still, part way through a change: Plain fade is part faded but sharp; With blur is part blurred.';
+  }
+  // How far along (0 to 1) the page's own Feel is when a share p of the time has passed
+  function curve(p){
+    const [x1,y1,x2,y2]=BEZ[ease],f=(s,a,b)=>3*(1-s)*(1-s)*s*a+3*(1-s)*s*s*b+s*s*s;
+    let lo=0,hi=1;
+    for(let i=0;i<20;i++){const m=(lo+hi)/2;if(f(m,x1,x2)<p)lo=m;else hi=m}
+    return f((lo+hi)/2,y1,y2);
+  }
+  // One change as doTransition runs it, in ms (with Overlaps on and Fades off the old page is hidden at the swap)
+  function plan(){
+    const d=dur*(slowTog.checked?3:1),overlap=overlapTog.checked,swap=swapAt(d,overlap);
+    return{d,swap,oldEnd:overlap&&!fadeTog.checked?swap:d};
+  }
+  // The strip: lane names at the left, then the time line with a ramp for each page's blur, the dashed swap line and the marker
+  function layout(){
+    const W=strip.clientWidth,H=strip.clientHeight;
+    if(mode!=='inside'||!W)return;
+    const p=plan(),span=SPAN*(slowTog.checked?3:1),fade=fadeTog.checked;
+    CAP.old.textContent=fade?'Old page blurs and fades out':'Old page blurs out';
+    CAP.nw.textContent=fade?'New page fades into focus':'New page sharpens';
+    CAP.len.textContent='Each half: '+LONG[p.d];
+    Object.values(CAP).forEach(c=>{c.style.left=c.style.top='0px';c.style.width=''});
+    const rowH=CAP.swap.offsetHeight,sw=CAP.swap.offsetWidth,lw=CAP.len.offsetWidth,gut=Math.max(CAP.old.offsetWidth,CAP.nw.offsetWidth);
+    // Where the strip is wide enough the swap and length labels share the top row, which leaves the lanes more room
+    const merged=sw+lw+22<=W,laneTop=4+rowH+4,Lh=Math.floor(((merged?H-4:H-4-rowH-4)-laneTop-6)/2),b1=laneTop+Lh,b2=b1+6+Lh;
+    const x0=gut+16,Wt=W-8-x0,px=t=>x0+t/span*Wt,hh=Math.max(4,(Lh-2)*maxBlur/35);
+    const P=(t,y)=>px(t).toFixed(1)+' '+y.toFixed(1),draw=(id,d)=>$(id).setAttribute('d',d);
+    const trace=(t0,t1,yb,val)=>{let d='';for(let i=0;i<=24;i++){const t=t0+(t1-t0)*i/24;d+=(i?'L':'M')+P(t,yb-hh*val(t))}return d};
+    const old=trace(0,p.oldEnd,b1,t=>curve(t/p.d)),nw=trace(p.swap,p.swap+p.d,b2,t=>1-curve((t-p.swap)/p.d));
+    draw('ramp-old',old);draw('fill-old',`${old}L${P(p.oldEnd,b1)}L${P(0,b1)}Z`);
+    draw('ramp-new',nw);draw('fill-new',`${nw}L${P(p.swap+p.d,b2)}L${P(p.swap,b2)}Z`);
+    draw('base',`M${x0} ${b1}H${W-8}M${x0} ${b2}H${W-8}`);draw('swap-line',`M${P(p.swap,laneTop-2)}V${b2}`);
+    // The fills fade along their lane when Fades as it blurs is on: the old page toward its end, the new one in from its start
+    [['g-old',0,p.oldEnd,[.7,.08]],['g-new',p.swap,p.swap+p.d,[.08,.7]]].forEach(([id,t0,t1,o])=>{
+      const g=$(id);g.setAttribute('x1',px(t0));g.setAttribute('x2',px(t1));
+      [...g.children].forEach((st,i)=>st.setAttribute('stop-opacity',fade?o[i]:.55));
+    });
+    // Lane names level with their lanes, the swap label above its line, the length label beside it or under the lanes
+    CAP.old.style.width=CAP.nw.style.width=gut+'px';CAP.old.style.left=CAP.nw.style.left='8px';
+    CAP.old.style.top=Math.max(0,b1-Lh/2-CAP.old.offsetHeight/2)+'px';CAP.nw.style.top=Math.max(0,b2-Lh/2-CAP.nw.offsetHeight/2)+'px';
+    const swapLeft=Math.max(8,Math.min(px(p.swap)-8,W-8-sw-(merged?lw+10:0)));
+    CAP.swap.style.left=swapLeft+'px';CAP.swap.style.top='4px';
+    CAP.len.style.left=(merged?swapLeft+sw+10:Math.max(8,Math.min(x0,W-lw-8)))+'px';CAP.len.style.top=(merged?4:H-4-rowH)+'px';
+    G={x0,Wt,span};mark.style.top=laneTop-2+'px';mark.style.height=b2-laneTop+4+'px';
+  }
+  // The marker at time t of a change on the strip's time line
+  function placeMark(t){mark.style.transform=`translateX(${(G.x0+Math.min(t,G.span)/G.span*G.Wt).toFixed(1)}px)`}
+  function rideMark(){
+    cancelAnimationFrame(markRaf);
+    const step=()=>{const t=performance.now()-changeAt;placeMark(t);markRaf=t<runTotal&&mode==='inside'&&animating?requestAnimationFrame(step):0};
+    if(G)step();
+  }
+  // At rest in See inside and Compare the page stands part way through the old page's blur, by progress (so Slow motion does not
+  // change it, and Gentle, Even and Smooth differ): the real page blurred, Compare's plain-fade copy only faded, the marker at the same moment. A change lifts the pose.
+  function pose(){
+    const on=mode!=='normal'&&(!motionOk||!animating&&!wayBack);
+    stage.classList.toggle('posed',on);
+    if(!on){if(mode==='inside'&&G&&wayBack&&!animating)placeMark(runTotal);return}
+    const v=curve(REST),set=(k,x)=>stage.style.setProperty(k,x);
+    set('--pb',(maxBlur*v).toFixed(1)+'px');set('--po',fadeTog.checked?1-v:1);set('--pt',1-v);
+    if(mode==='inside'&&G){cancelAnimationFrame(markRaf);markRaf=0;placeMark(REST*plan().d)}
+  }
+  function redraw(){layout();pose()}
+  // The mode switch: draws the mode at once. The shared script then presses Show me (not under reduced motion), which plays it.
+  document.addEventListener('hb:mode',e=>{mode=e.detail.mode;redraw();if(mode==='inside'&&animating)rideMark()});
+  addEventListener('resize',redraw);document.fonts.ready.then(redraw);
+  [fadeTog,overlapTog,slowTog].forEach(el=>el.addEventListener('change',redraw));
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+      redraw();
+    }));
+  }
+  choices('blur-seg',d=>{maxBlur=+d.px});
+  choices('speed-seg',d=>{dur=+d.ms});
+  choices('feel-seg',d=>{ease=d.ease});
+  showPage(0);
+</script>
+</body>
+</html>

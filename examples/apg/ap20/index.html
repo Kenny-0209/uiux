@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="css/grid-combo.css">
+<style>html{background:#fff;color:#17201b}body{font-family:Arial,sans-serif;margin:0;padding:24px;box-sizing:border-box}*,*:before,*:after{box-sizing:border-box}button,input,select{font:inherit}.menu-button-actions [role="separator"]{background-image:none;border-top:1px solid currentColor}</style>
+</head><body>
+
+        <div id="ex1">
+          <label for="ex1-input" id="ex1-label" class="combobox-label"> Fruits and vegetables </label>
+          <div class="combobox-wrapper">
+            <div id="ex1-combobox">
+              <input type="text" role="combobox" aria-haspopup="grid" aria-expanded="false" aria-autocomplete="list" aria-controls="ex1-grid" id="ex1-input">
+            </div>
+            <div aria-labelledby="ex1-label" role="grid" id="ex1-grid" class="grid hidden"></div>
+          </div>
+        </div>
+        
+<script src="utils.js"></script>
+<script src="js/grid-combo.js"></script>
+<script src="js/grid-combo-example.js"></script>
+</body></html>

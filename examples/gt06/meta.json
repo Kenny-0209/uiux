@@ -1,0 +1,20 @@
+{
+  "name": "GlitchFlicker",
+  "source": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/GlitchFlicker.glsl",
+  "params": {
+    "frameRate": 24,
+    "rgbOffset": 0.014,
+    "blockAmount": 0.72,
+    "ghostAmount": 0.62,
+    "redCyan": 0.58,
+    "scanline": 0.075
+  },
+  "types": {
+    "frameRate": "float",
+    "rgbOffset": "float",
+    "blockAmount": "float",
+    "ghostAmount": "float",
+    "redCyan": "float",
+    "scanline": "float"
+  }
+}

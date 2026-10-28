@@ -1,0 +1,15 @@
+{
+  "name": "PolkaDotsCurtain",
+  "source": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/PolkaDotsCurtain.glsl",
+  "params": {
+    "dots": 20,
+    "center": [
+      0,
+      0
+    ]
+  },
+  "types": {
+    "dots": "float",
+    "center": "vec2"
+  }
+}

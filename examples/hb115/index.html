@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPGPU Particle System — Animation Handbook</title>
+  <meta name="description" content="Tens of thousands of particles flow on the graphics chip. Best for hero effects.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/gpgpu-particle-system/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="GPGPU Particle System — Animation Handbook">
+  <meta property="og:description" content="Tens of thousands of particles flow on the graphics chip. Best for hero effects.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/gpgpu-particle-system/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GPGPU Particle System — Animation Handbook">
+  <meta name="twitter:description" content="Tens of thousands of particles flow on the graphics chip. Best for hero effects.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "GPGPU Particle System", "name": "GPGPU Particle System", "description": "Tens of thousands of particles flow on the graphics chip. Best for hero effects.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/gpgpu-particle-system/", "inLanguage": "en", "articleSection": "3D & Advanced", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, 3D & Advanced, GPGPU Particle System"}</script>
+  <style>
+    :root{--ui-accent:#3fd6c4}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;background:#060a10}
+    canvas{display:block;width:100%;height:100%}
+    .no-wgl2{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:clamp(16px,4vw,32px);background:#060a10;font-size:13px;line-height:1.7;text-align:center;color:rgba(255,255,255,.72);white-space:pre-wrap;overflow-y:auto}
+    /* See inside and Compare: a canvas for the arrows, ring and line, and words; the small square (128px, 96px on phones) is drawn by the chip */
+    .gp,.side{display:none}.marks{display:none;position:absolute;inset:0;pointer-events:none}
+    .cap{position:absolute;padding:4px 8px;border-radius:6px;background:rgba(6,10,16,.9);color:#f4f4f2;font:600 13px/17px var(--hb-font)}
+    .stage[data-hb-mode="inside"] .marks,.stage[data-hb-mode="inside"] .store,.stage[data-hb-mode="compare"] .side{display:block}.stage[data-hb-mode="inside"] .key{display:flex}
+    .store{top:12px;right:148px;max-width:min(290px,calc(100% - 172px));text-align:right}
+    .key{position:absolute;left:12px;bottom:12px;max-width:calc(100% - 24px);flex-direction:column;align-items:flex-start;gap:6px}
+    .key .cap{position:static}.key .ring{color:#ffd84d}
+    .side{top:12px;left:12px;white-space:nowrap}.side.second{left:calc(50% + 12px)}
+    .stage.gl-off .marks,.stage.gl-off .gp,.stage.gl-off .side{display:none!important}
+    @media (max-width:600px),(max-height:500px){.store{right:116px;max-width:calc(100% - 140px)}}
+    @media (max-width:360px){.cap{font-size:12px;line-height:16px;padding:3px 7px}}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="loop">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../ray-marching-sdf/" rel="prev" aria-label="Previous: Ray Marching / SDF Scene"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Ray Marching / SDF Scene</span></a><a href="../image-distortion-hover/" rel="next" aria-label="Next: Image Distortion on Hover"><span><span class="hb-dir">Next: </span>Image Distortion on Hover</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">06.13 · 3D &amp; Advanced</p>
+    <h1>GPGPU Particle System</h1>
+    <p class="hb-lede">Tens of thousands of particles flow on the graphics chip. Best for hero effects.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Watch it</h2><p>It moves by itself. Pause it to look closely, or turn on slow motion to see each part of the movement.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage">
+      <canvas id="cvs" role="img" aria-label="Tens of thousands of glowing points flowing across a dark background"></canvas>
+      <canvas class="marks" aria-hidden="true"></canvas>
+      <p class="cap gp store" aria-hidden="true" data-hb-caption>Every particle is one pixel of this square: red, how far across; green, how far up</p>
+      <div class="gp key" aria-hidden="true"><p class="cap ring" data-hb-caption>Ringed: one particle and its pixel</p><p class="cap rule" data-hb-caption>Arrows: which way the rule pushes, at each spot</p></div>
+      <p class="cap side first" aria-hidden="true" data-hb-caption>About 4,000</p>
+      <p class="cap side second" aria-hidden="true" data-hb-caption>65,000</p>
+      <div class="no-wgl2" id="no-wgl2"></div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-pause" data-hb-pause data-state="playing"><svg class="hb-ic hb-i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="hb-ic hb-i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9z"/></svg><span class="hb-pause-label">Pause</span></button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, every particle lives as one pixel of the small square, its place stored as a color. The graphics chip moves them all at once, each the way the arrows point.</p>
+      <p data-hb-for="compare" hidden>About 4,000 and 65,000 follow the same rule at the same speed; only the count differs. The graphics chip moves every particle at once, so even the bigger count stays smooth.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting and see the difference as it moves.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="move-lbl">Movement</p>
+        <div class="seg" id="move-seg" role="group" aria-labelledby="move-lbl">
+          <button type="button" data-behavior="0" class="on" aria-pressed="true">Flow</button>
+          <button type="button" data-behavior="1" aria-pressed="false">Swirl</button>
+          <button type="button" data-behavior="2" aria-pressed="false">Attract</button>
+          <button type="button" data-behavior="3" aria-pressed="false">Orbit</button>
+        </div>
+        <p class="hb-hint">The rule every particle follows.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="count-lbl">Number of particles</p>
+        <div class="seg" id="count-seg" role="group" aria-labelledby="count-lbl">
+          <button type="button" data-n="128" data-hb-phone aria-pressed="false">16,000</button>
+          <button type="button" data-n="256" class="on" aria-pressed="true">65,000</button>
+          <button type="button" data-n="320" aria-pressed="false">100,000</button>
+        </div>
+        <p class="hb-hint">Phones start with 16,000; more can be slow there.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-spd="0.35" aria-pressed="false">Slow</button>
+          <button type="button" data-spd="0.6" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-spd="1" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">How hard the rule pushes the particles.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="color-lbl">Color</p>
+          <div class="seg" id="color-seg" role="group" aria-labelledby="color-lbl">
+            <button type="button" data-mode="0" class="on" aria-pressed="true">One color</button>
+            <button type="button" data-mode="1" aria-pressed="false">By speed</button>
+            <button type="button" data-mode="2" aria-pressed="false">Shifting</button>
+          </div>
+          <p class="hb-hint">One color, by speed, or slowly shifting colors.</p>
+        </div>
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Trails</span><input class="hb-switch" type="checkbox" role="switch" id="trail-tog" autocomplete="off"></label>
+          <p class="hb-hint">Each particle leaves a fading streak.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a GPU particle system to [the section you want it in]. Keep every particle's position and speed in a floating-point texture, one pixel per particle, and move them all at once in a shader that reads one texture and writes the other, swapping them after each pass, one pass per 60th of a second so it runs at the same speed on every screen. Then draw each particle as a tiny point, following a flowing field, a swirl, a pull to the middle or an orbit. That keeps tens of thousands of particles smooth. Start with far fewer on phones, and show a clear message where WebGL 2 is missing. If the visitor has reduced motion turned on, show one still frame. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Hero effects</li><li>Data art</li><li>Launch pages</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Behind text</li><li>Low-power devices</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+// Physics shader (WebGL2 GLSL ES 3.00)
+const PHYSICS_VS=`#version 300 es
+in vec2 a;void main(){gl_Position=vec4(a,0.,1.);}`;
+
+const PHYSICS_FS=`#version 300 es
+precision highp float;
+uniform sampler2D uPos;uniform float uT,uSpd,uStep;uniform int uBehavior;
+out vec4 outCol;
+float hash(float n){return fract(sin(n)*43758.5);}
+void main(){
+  ivec2 co=ivec2(gl_FragCoord.xy);
+  vec4 p=texelFetch(uPos,co,0);
+  float x=p.x,y=p.y,vx=p.z,vy=p.w;
+  float age=fract(p.w*0.01+uT*0.001); // reuse w channel for age
+  float spd=uSpd*.0002;
+  // uStep is 1, or 1/3 in slow motion: every change of velocity and every move is scaled by it
+  if(uBehavior==0){// flow field
+    float angle=sin(x*2.+uT*.3)*cos(y*2.+uT*.2)+atan(y,x)*.5;
+    vx+=cos(angle)*spd*uStep;vy+=sin(angle)*spd*uStep;
+  }else if(uBehavior==1){// vortex
+    float len=length(vec2(x,y))+.01;
+    vx+=(-y/len)*spd*2.*uStep;vy+=(x/len)*spd*2.*uStep;
+    vx-=x*.0005*uStep;vy-=y*.0005*uStep;// inward pull
+  }else if(uBehavior==2){// attractor
+    vec2 to=-normalize(vec2(x,y));
+    float d=length(vec2(x,y));
+    vx+=to.x*spd*3./(d+.1)*uStep;vy+=to.y*spd*3./(d+.1)*uStep;
+  }else{// orbit with explosion
+    float ang=atan(y,x)+uT*.2;float r=length(vec2(x,y));
+    vx+=(cos(ang)*spd-.003*x)*uStep;vy+=(sin(ang)*spd-.003*y)*uStep;
+  }
+  vx*=pow(.985,uStep);vy*=pow(.985,uStep);// damping
+  x+=vx*uStep;y+=vy*uStep;
+  // The flow field is divergent, so anything that leaves clip space is respawned
+  // near the middle. Wrapping instead just stacks every particle on one edge.
+  if(abs(x)>1.||abs(y)>1.){
+    float n=float(co.x)*.0713+float(co.y)*.1319+uT*.977;
+    float a=hash(n)*6.2832,r=hash(n+3.71)*.9+.05;
+    x=cos(a)*r;y=sin(a)*r;vx=0.;vy=0.;
+  }
+  outCol=vec4(x,y,vx,vy);
+}`;
+
+// Render shader reads position texture in vertex stage
+const RENDER_VS=`#version 300 es
+precision highp float;
+in float aIdx;
+uniform sampler2D uPos;uniform vec2 uTexSz;
+uniform int uColorMode;uniform float uT;uniform float uPS;
+out vec4 vCol;
+void main(){
+  int idx=int(aIdx);
+  int tx=int(mod(aIdx,uTexSz.x));
+  int ty=idx/int(uTexSz.x);
+  vec4 p=texelFetch(uPos,ivec2(tx,ty),0);
+  gl_Position=vec4(p.xy,0.,1.);
+  gl_PointSize=uPS;// 1.5 CSS px, scaled by devicePixelRatio
+  float spd=length(p.zw)*200.;
+  if(uColorMode==0)vCol=vec4(.35,.65,1.,.6);
+  else if(uColorMode==1)vCol=vec4(spd*.8,spd*.4,1.-spd*.4,.7);
+  else{float age=fract(float(idx)*.00131+uT*.05);vCol=vec4(age,.5,1.-age,.6);}
+}`;
+const RENDER_FS=`#version 300 es
+precision mediump float;in vec4 vCol;out vec4 fragColor;
+void main(){fragColor=vCol;}`;
+// Trails: a translucent full-screen quad fades the previous frame instead of clearing it
+const FADE_FS=`#version 300 es
+precision mediump float;out vec4 fragColor;
+void main(){fragColor=vec4(.024,.039,.063,.12);}`;
+// See inside's small square: the position texture in a viewport (uBox), a texel per particle, across as red, up as green; uCopy copies
+const INSET_FS=`#version 300 es
+precision highp float;uniform sampler2D uPos;uniform vec4 uBox;uniform float uN;uniform bool uCopy;out vec4 o;
+void main(){vec4 p=texelFetch(uPos,ivec2(floor((gl_FragCoord.xy-uBox.xy)*uN/uBox.zw)),0);o=uCopy?p:vec4(p.x*.5+.5,p.y*.5+.5,.3,1.);}`;
+
+const stage=document.getElementById('stage'),cvs=document.getElementById('cvs'),noWgl2=document.getElementById('no-wgl2');
+const slowTog=document.getElementById('slow-tog');
+const NO_WGL2_MSG='This demo needs WebGL 2, which this browser does not offer. Try a recent Chrome, Firefox or Safari.';
+// Phones are screens up to 600px wide, or up to 500px tall when held sideways. They start with the 16k texture: 65k points
+// is too much fill for a phone, and the visitor can still pick more. 16k is the count marked data-hb-phone, which the home
+// page's Copy prompt reads on phones too.
+const PHONE=matchMedia('(max-width:600px),(max-height:500px)'),PHONE_N=+document.querySelector('#count-seg [data-hb-phone]').dataset.n;
+let W=0,H=0,DPR=1,gl,physicsProg,renderProg,fadeProg,qBuf,fbo0,fbo1,tex0,tex1,raf=null;
+let paused=false,last=null,simT=0,TEX_N=PHONE.matches?PHONE_N:256,BEHAVIOR=0,SPD=0.6,COLOR_MODE=0,TRAILS=false;
+let idxBuf=null,particleCount=0,PT=1.5,shaderErr='';
+// See inside and Compare: the mode, the square's program, the particle followed, Compare's small system, the marks, the names
+let mode='normal',insetProg=null,follow=null,small=null;
+const marksCvs=stage.querySelector('.marks'),mctx=marksCvs.getContext('2d'),one=new Float32Array(4);
+const LABELS={normal:cvs.getAttribute('aria-label'),inside:'Glowing points flowing, with arrows for the rule that pushes them and a small square where every point is stored as one pixel'};
+
+// The pressed count follows the start (this runs before the shared script reads the settings for "Your settings")
+document.querySelectorAll('#count-seg button').forEach(b=>{
+  const on=+b.dataset.n===TEX_N;
+  b.classList.toggle('on',on);b.setAttribute('aria-pressed',String(on));
+});
+names(); // Compare's half names and note for this start (on phones about 1,000 beside 16,000)
+
+function mk(t,s){const x=gl.createShader(t);gl.shaderSource(x,s);gl.compileShader(x);if(!gl.getShaderParameter(x,gl.COMPILE_STATUS)){shaderErr=gl.getShaderInfoLog(x)||'the shader did not compile';console.error(shaderErr);}return x;}
+function mkProg(vs,fs){const p=gl.createProgram();gl.attachShader(p,mk(gl.VERTEX_SHADER,vs));gl.attachShader(p,mk(gl.FRAGMENT_SHADER,fs));gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS)){shaderErr=gl.getProgramInfoLog(p)||'the shaders did not link';console.error(shaderErr);}return p;}
+
+// A float texture n pixels square (d: its first data, or null), and a framebuffer that draws into a texture
+function makeTex(n,d){
+  const t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);
+  gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA32F,n,n,0,gl.RGBA,gl.FLOAT,d);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+  return t;
+}
+function makeFbo(t){const f=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,f);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,t,0);return f;}
+function initTex(n){
+  const data=new Float32Array(n*n*4);
+  for(let i=0;i<n*n;i++){
+    const angle=Math.random()*Math.PI*2;const r=Math.random()*.9+.1;
+    data[i*4]=(Math.random()-.5)*2*r;data[i*4+1]=(Math.random()-.5)*2*r;
+    data[i*4+2]=Math.cos(angle)*.004;data[i*4+3]=Math.sin(angle)*.004;
+  }
+  if(tex0){gl.deleteTexture(tex0);gl.deleteTexture(tex1);gl.deleteFramebuffer(fbo0);gl.deleteFramebuffer(fbo1);}
+  tex0=makeTex(n,data);tex1=makeTex(n,null);
+  fbo0=makeFbo(tex0);fbo1=makeFbo(tex1);
+  gl.bindFramebuffer(gl.FRAMEBUFFER,null);
+  particleCount=n*n;
+  const idx=new Float32Array(particleCount);for(let i=0;i<particleCount;i++)idx[i]=i;
+  if(idxBuf)gl.deleteBuffer(idxBuf);
+  idxBuf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,idxBuf);
+  gl.bufferData(gl.ARRAY_BUFFER,idx,gl.STATIC_DRAW);
+}
+
+// The message covers the stage in every mode. A canvas that can never draw is also taken out of the page for screen readers.
+function fail(msg){gl=null;cvs.hidden=true;noWgl2.textContent=msg;noWgl2.style.display='flex';stage.classList.add('gl-off');}
+
+function init(){
+  // preserveDrawingBuffer keeps last frame for trails; alpha:false avoids premultiplied-alpha artifacts
+  gl=cvs.getContext('webgl2',{preserveDrawingBuffer:true,alpha:false});
+  // Rendering into RGBA32F framebuffers requires EXT_color_buffer_float in WebGL2
+  if(!gl||!gl.getExtension('EXT_color_buffer_float')){fail(NO_WGL2_MSG);return false;}
+  shaderErr='';
+  physicsProg=mkProg(PHYSICS_VS,PHYSICS_FS);
+  renderProg=mkProg(RENDER_VS,RENDER_FS);
+  fadeProg=mkProg(PHYSICS_VS,FADE_FS);
+  insetProg=mkProg(PHYSICS_VS,INSET_FS);
+  // A failed compile otherwise shows as a silent black canvas — say so instead
+  if(shaderErr){fail('Shader failed to build: '+shaderErr);return false;}
+  // Full-screen quad shared by the physics pass and the trail fade
+  qBuf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,qBuf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  initTex(TEX_N);
+  return true;
+}
+
+// Backing store follows devicePixelRatio (capped at 2) so points stay crisp, not upscaled. Setting the size clears the
+// canvas, so nothing is touched when the stage is the same size (a phone's address bar showing or hiding also fires resize).
+// Says whether the canvas changed.
+function resize(){
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  const w=Math.max(1,Math.round(stage.clientWidth*dpr)),h=Math.max(1,Math.round(stage.clientHeight*dpr));
+  if(w===W&&h===H&&dpr===DPR)return false;
+  W=cvs.width=w;H=cvs.height=h;DPR=dpr;PT=1.5*dpr;
+  return true;
+}
+
+// One step is 1/60 s: the rule moves the particles by uSpd x 0.0002 in that time, whatever the screen's refresh rate.
+const FRAME=1000/60;
+// Every physics pass is exactly one 60 Hz step (uStep 1, or 1/3 in Slow motion), never a longer or a shorter one: the Attract
+// rule pulls hard near the middle, and how tightly the particles settle there depends on the size of the step. The loop looks at
+// every frame the screen offers. "steps" is the time since the last drawn frame in steps of 1/60 s (a gap counts for at most 50
+// ms); "due" is the same, except that a value within 5% of a whole number counts as that number, so a screen a little off 60 Hz,
+// or a little unsteady, still runs exactly one pass a frame. "owed" carries the part of a step not run yet, and a frame runs one
+// pass for every whole step owed (1 ms of slack, at most 3 passes): one on a 60 Hz screen, two on a 30 Hz one. A frame with no
+// pass due changes nothing and draws nothing, and its time carries to the next frame; that keeps the drawing near 60 pictures a
+// second on faster screens. A drawn frame lays the Trails fade over the picture once for every pass, always at the same 12%:
+// the streaks last as long on every screen, the faint leftovers of a trail end up the same color (a smaller fade is rounded
+// differently by the 8-bit canvas), and Slow motion, which still runs 60 passes a second, does not slow them. The clock adds up
+// the passes, so a pause never makes the particles jump. A tab that comes back to the front starts again from its next frame,
+// so the time away adds no step.
+let owed=0;
+function render(ts){
+  raf=requestAnimationFrame(render);
+  if(last===null){last=ts;return;} // the first frame after a start only takes the time
+  const steps=Math.min(ts-last,50)/FRAME,whole=Math.max(1,Math.round(steps)),due=Math.abs(steps-whole)<.05?whole:steps;
+  const passes=Math.min(3,Math.floor(owed+due+1/FRAME));
+  if(!passes)return;
+  last=ts;owed+=due-passes;
+  const unit=slowTog.checked?1/3:1;
+  // In Compare every pass moves the small system too: the same clock, rule, Speed and step
+  for(let i=0;i<passes;i++){simT+=unit/60;physics(simT,unit);if(mode==='compare'&&small)physics(simT,unit,small);}
+  paint(simT,false,passes);
+}
+
+// ── Physics pass (render to texture). sys is Compare's small system ({n, tex, fbo}, swapped on its own); without it, the page's ──
+function physics(t,step,sys){
+  gl.useProgram(physicsProg);
+  gl.bindFramebuffer(gl.FRAMEBUFFER,sys?sys.fbo[1]:fbo1);
+  gl.viewport(0,0,sys?sys.n:TEX_N,sys?sys.n:TEX_N);
+  gl.disable(gl.BLEND);
+  gl.bindBuffer(gl.ARRAY_BUFFER,qBuf);
+  const pa=gl.getAttribLocation(physicsProg,'a');gl.enableVertexAttribArray(pa);gl.vertexAttribPointer(pa,2,gl.FLOAT,false,0,0);
+  gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,sys?sys.tex[0]:tex0);
+  gl.uniform1i(gl.getUniformLocation(physicsProg,'uPos'),0);
+  gl.uniform1f(gl.getUniformLocation(physicsProg,'uT'),t);
+  gl.uniform1f(gl.getUniformLocation(physicsProg,'uSpd'),SPD);
+  gl.uniform1f(gl.getUniformLocation(physicsProg,'uStep'),step===undefined?(slowTog.checked?1/3:1):step);
+  gl.uniform1i(gl.getUniformLocation(physicsProg,'uBehavior'),BEHAVIOR);
+  gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+
+  // Swap textures
+  if(sys){sys.tex.reverse();sys.fbo.reverse();}else{[tex0,tex1]=[tex1,tex0];[fbo0,fbo1]=[fbo1,fbo0];}
+}
+// 120 silent steps (two seconds of flow at the full step), so a picture shown still already shows the flow, not the starting cloud
+function settle(){for(let i=0;i<120;i++){simT+=1/60;physics(simT,1);}}
+
+// ── Render pass (draw points). A picture drawn on its own starts from a cleared canvas ("fresh"): with Trails on, a
+// normal frame only lays a thin fade over the last one, which would leave the old picture showing under a new setting.
+// fades is how many times that fade is laid over it: once for every physics pass of the frame. Compare draws its halves. ──
+function paint(t,fresh,fades=1){
+  if(mode==='compare'&&(!small||small.n!==(PHONE.matches?32:64)))makeSmall();
+  gl.bindFramebuffer(gl.FRAMEBUFFER,null);
+  gl.viewport(0,0,W,H);
+  if(TRAILS&&!fresh){// fade the previous frame instead of clearing it
+    gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+    gl.useProgram(fadeProg);gl.bindBuffer(gl.ARRAY_BUFFER,qBuf);
+    const fa=gl.getAttribLocation(fadeProg,'a');gl.enableVertexAttribArray(fa);gl.vertexAttribPointer(fa,2,gl.FLOAT,false,0,0);
+    for(let i=0;i<fades;i++)gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+  }else{gl.clearColor(0.024,0.039,0.063,1);gl.clear(gl.COLOR_BUFFER_BIT);}
+  if(mode==='compare')halves(t);else dots(tex0,particleCount,TEX_N,t);
+  if(mode==='inside')inside(t);
+}
+// n points, their places read from a position texture size pixels square
+function dots(tex,n,size,t){
+  gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE);
+  gl.useProgram(renderProg);
+  gl.bindBuffer(gl.ARRAY_BUFFER,idxBuf);
+  const ra=gl.getAttribLocation(renderProg,'aIdx');gl.enableVertexAttribArray(ra);gl.vertexAttribPointer(ra,1,gl.FLOAT,false,0,0);
+  gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,tex);
+  gl.uniform1i(gl.getUniformLocation(renderProg,'uPos'),0);
+  gl.uniform2f(gl.getUniformLocation(renderProg,'uTexSz'),size,size);
+  gl.uniform1i(gl.getUniformLocation(renderProg,'uColorMode'),COLOR_MODE);
+  gl.uniform1f(gl.getUniformLocation(renderProg,'uT'),t);
+  gl.uniform1f(gl.getUniformLocation(renderProg,'uPS'),PT);
+  gl.drawArrays(gl.POINTS,0,n);
+  gl.disable(gl.BLEND);
+}
+
+// ── See inside and Compare ──
+// The page's position texture drawn into a square of the target (x, y from the bottom left, as the graphics chip counts): as colors
+// for See inside's small square, or copied as it is for Compare's small system
+function square(x,y,s,copy){
+  gl.disable(gl.BLEND);gl.useProgram(insetProg);gl.bindBuffer(gl.ARRAY_BUFFER,qBuf);
+  const a=gl.getAttribLocation(insetProg,'a');gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a,2,gl.FLOAT,false,0,0);
+  gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,tex0);
+  gl.uniform1i(gl.getUniformLocation(insetProg,'uPos'),0);gl.uniform1i(gl.getUniformLocation(insetProg,'uCopy'),copy?1:0);
+  gl.uniform4f(gl.getUniformLocation(insetProg,'uBox'),x,y,s,s);gl.uniform1f(gl.getUniformLocation(insetProg,'uN'),TEX_N);
+  gl.viewport(x,y,s,s);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);gl.viewport(0,0,W,H);
+}
+// Compare's first half: a second, small particle system in the same context, 64 pixels square (32 on phones), copied on the way in
+// (and after a new count) from an even share of the page's own particles, so the halves show one flow, sparse and dense
+function makeSmall(){
+  const n=PHONE.matches?32:64;
+  if(small&&small.n!==n){small.tex.forEach(x=>gl.deleteTexture(x));small.fbo.forEach(x=>gl.deleteFramebuffer(x));small=null;}
+  if(!small){const tex=[makeTex(n,null),makeTex(n,null)];small={n,tex,fbo:tex.map(makeFbo)};}
+  gl.bindFramebuffer(gl.FRAMEBUFFER,small.fbo[0]);square(0,0,n,true);gl.bindFramebuffer(gl.FRAMEBUFFER,null);names();
+}
+// Compare: one canvas, two viewports, each scissored so no point spills over, and a thin divider between them
+function halves(t){
+  const half=Math.floor(W/2),gap=Math.max(1,Math.round(DPR));
+  gl.enable(gl.SCISSOR_TEST);gl.viewport(0,0,half-gap,H);gl.scissor(0,0,half-gap,H);dots(small.tex[0],small.n*small.n,small.n,t);
+  gl.viewport(half+gap,0,W-half-gap,H);gl.scissor(half+gap,0,W-half-gap,H);dots(tex0,particleCount,TEX_N,t);
+  gl.scissor(half-gap,0,2*gap,H);gl.clearColor(.17,.19,.24,1);gl.clear(gl.COLOR_BUFFER_BIT);gl.disable(gl.SCISSOR_TEST);gl.viewport(0,0,W,H);
+}
+// The small square's place in canvas pixels (from the bottom left), where the style's labels expect it
+function box(){const s=Math.round((PHONE.matches?96:128)*DPR),m=Math.round(12*DPR);return{x:W-m-s,y:H-m-s,s};}
+// See inside: the small square over the points (opaque, after the trail fade, so Trails cannot smear it), then the marks. The
+// particle followed is read back after the frame's last pass, and chosen again when it hides (half a second apart at most).
+function inside(t){
+  const b=box();square(b.x,b.y,b.s,false);
+  if(follow&&follow.s===b.s&&follow.n===TEX_N&&follow.w===W&&follow.h===H){
+    gl.bindFramebuffer(gl.FRAMEBUFFER,fbo0);gl.readPixels(follow.tx,follow.ty,1,1,gl.RGBA,gl.FLOAT,one);gl.bindFramebuffer(gl.FRAMEBUFFER,null);
+    follow.x=(one[0]+1)/2*W;follow.y=(1-one[1])/2*H;
+    if(!follow.open(follow.x,follow.y)&&simT-follow.at>.5)follow=null;
+  }else follow=null;
+  marks(t,b,follow||(follow=choose(b)));
+}
+// The rule's push for one step at a place (x, y from -1 to 1, up is +), from the physics shader's own formulas
+function push(x,y,t){
+  const spd=SPD*.0002;
+  if(BEHAVIOR===0){const a=Math.sin(x*2+t*.3)*Math.cos(y*2+t*.2)+Math.atan2(y,x)*.5;return[Math.cos(a)*spd,Math.sin(a)*spd];}
+  if(BEHAVIOR===1){const l=Math.hypot(x,y)+.01;return[-y/l*spd*2-x*.0005,x/l*spd*2-y*.0005];}
+  if(BEHAVIOR===2){const d=Math.hypot(x,y)||1e-6,f=spd*3/(d+.1)/d;return[-x*f,-y*f];}
+  const a=Math.atan2(y,x)+t*.2;return[Math.cos(a)*spd-.003*x,Math.sin(a)*spd-.003*y];
+}
+// The particle followed: of the pixels near the middle of the small square, the one whose line to its pixel crosses no label and
+// whose particle stays longest in the open part of the box (worked out ahead with the rule, 5 s at most), nearest the middle on
+// a tie: so the ring is seen, in a still too
+function choose(b){
+  const N=TEX_N,c=Math.floor(b.s/2),R=6,at=i=>Math.floor((i+.5)*N/b.s),t0=at(c-R),w=at(c+R)-t0+1,k=DPR,top=H-b.y-b.s;
+  const block=new Float32Array(w*w*4),st=cvs.getBoundingClientRect(),offs=[];let best=null,most=-1e9;
+  gl.bindFramebuffer(gl.FRAMEBUFFER,fbo0);gl.readPixels(t0,t0,w,w,gl.RGBA,gl.FLOAT,block);gl.bindFramebuffer(gl.FRAMEBUFFER,null);
+  const labels=[...stage.querySelectorAll('.store,.key')].map(el=>{const r=el.getBoundingClientRect();return[r.left-st.left,r.top-st.top,r.right-st.left,r.bottom-st.top].map(v=>v*k);});
+  const on=(rs,x,y,m)=>rs.some(r=>x>r[0]-m&&x<r[2]+m&&y>r[1]-m&&y<r[3]+m),all=labels.concat([[b.x,top,b.x+b.s,top+b.s]]);
+  const open=(x,y)=>x>20*k&&x<W-20*k&&y>20*k&&y<H-20*k&&!on(all,x,y,14*k);
+  for(let j=-R;j<=R;j++)for(let i=-R;i<=R;i++)offs.push([i,j]);offs.sort((p,q)=>p[0]*p[0]+p[1]*p[1]-q[0]*q[0]-q[1]*q[1]);
+  for(const[di,dj]of offs){
+    const i=c+di,j=c+dj,tx=at(i),ty=at(j),p=((ty-t0)*w+tx-t0)*4,ix=b.x+i+.5,iy=top+b.s-j-.5;
+    let x=block[p],y=block[p+1],vx=block[p+2],vy=block[p+3],tt=simT,n=0;const sx=(x+1)/2*W,sy=(1-y)/2*H;
+    for(let q=1;q<32;q++)if(on(labels,ix+(sx-ix)*q/32,iy+(sy-iy)*q/32,0))n=-200;
+    for(let s=0;s<300&&open((x+1)/2*W,(1-y)/2*H);s++,n++){const f=push(x,y,tt+=1/60);vx=(vx+f[0])*.985;vy=(vy+f[1])*.985;x+=vx;y+=vy;}
+    if(n>most){most=n;best={s:b.s,n:N,w:W,h:H,i,j,tx,ty,x:sx,y:sy,open,labels,at:simT};}
+  }
+  return best;
+}
+// See inside's marks on the 2D canvas over the picture, cleared every drawn frame so Trails never smear them: an arrow for the
+// rule's push at every spot of a 48px grid but under a label or the ring (or with its head under a label) (longer where it pushes harder), the square's frame, and
+// the particle followed (f): a ring around its point, an outline around its pixel in the square and a line joining them
+function marks(t,b,f){
+  if(marksCvs.width!==W||marksCvs.height!==H){marksCvs.width=W;marksCvs.height=H;}
+  const c=mctx,k=DPR,G=48*k,top=H-b.y-b.s,ix=b.x+f.i+.5,iy=top+b.s-f.j-.5;
+  const under=(x,y,m)=>{for(const r of f.labels)if(x>r[0]-m&&x<r[2]+m&&y>r[1]-m&&y<r[3]+m)return true;return false;};
+  c.clearRect(0,0,W,H);c.lineCap=c.lineJoin='round';c.beginPath();
+  for(let gy=G/2;gy<H;gy+=G)for(let gx=G/2;gx<W;gx+=G){
+    if(gx>b.x-G/2&&gy<top+b.s+G/2||Math.hypot(gx-f.x,gy-f.y)<16*k||under(gx,gy,0))continue;
+    const p=push(gx/W*2-1,1-gy/H*2,t),m=Math.hypot(p[0]*W,p[1]*H)||1,ux=p[0]*W/m,uy=-p[1]*H/m;
+    const len=Math.min(38,Math.max(8,17*Math.pow(Math.hypot(p[0],p[1])/1.2e-4,.7)))*k,hx=gx+ux*len/2,hy=gy+uy*len/2;
+    if(under(hx,hy,7*k))continue; // an arrow whose head would sit under a label is left out too: no head-less stubs
+    c.moveTo(gx-ux*len/2,gy-uy*len/2);c.lineTo(hx,hy);
+    c.moveTo(hx-(ux*.85-uy*.53)*6*k,hy-(uy*.85+ux*.53)*6*k);c.lineTo(hx,hy);c.lineTo(hx-(ux*.85+uy*.53)*6*k,hy-(uy*.85-ux*.53)*6*k);
+  }
+  const both=(dark,light,wide,thin)=>{c.strokeStyle=dark;c.lineWidth=wide*k;c.stroke();c.strokeStyle=light;c.lineWidth=thin*k;c.stroke();};
+  both('rgba(6,10,16,.8)','rgba(244,244,242,.95)',4,1.6);
+  c.beginPath();c.rect(b.x-k,top-k,b.s+2*k,b.s+2*k);both('rgba(6,10,16,.8)','rgba(244,244,242,.9)',3.5,1.5);
+  c.fillStyle=`rgb(${f.x/W*255|0},${(1-f.y/H)*255|0},77)`;c.fillRect(ix-6*k,iy-6*k,12*k,12*k); // its pixel's color, made bigger
+  const lx=f.x-ix,ly=f.y-iy,ll=Math.hypot(lx,ly)||1,ux=lx/ll,uy=ly/ll,d=6*k/Math.max(Math.abs(ux),Math.abs(uy)); // the line runs edge to edge
+  c.beginPath();if(ll>d+10*k){c.moveTo(ix+ux*d,iy+uy*d);c.lineTo(f.x-ux*10*k,f.y-uy*10*k);}c.moveTo(f.x+10*k,f.y);c.arc(f.x,f.y,10*k,0,Math.PI*2);c.rect(ix-6*k,iy-6*k,12*k,12*k);
+  both('rgba(6,10,16,.85)','#ffd84d',4.5,2);
+}
+// Compare's half names, its note and the canvas's name, from the counts as they are (the second from Number of particles)
+function names(){
+  const first='About '+((small?small.n:PHONE.matches?32:64)===64?'4,000':'1,000'),second=document.querySelector('#count-seg .on').textContent;
+  stage.querySelector('.side.first').textContent=first;stage.querySelector('.side.second').textContent=second;
+  document.querySelector('[data-hb-for="compare"]').textContent=`${first} and ${second} follow the same rule at the same speed; only the count differs. The graphics chip moves every particle at once, so even the bigger count stays smooth.`;
+  LABELS.compare=`The same flow twice: ${first.toLowerCase()} points beside ${second}`;
+  if(mode==='compare')cvs.setAttribute('aria-label',LABELS.compare);
+}
+
+// Play carries on from the clock and the particles where they stopped; it never stacks a second loop.
+function start(){if(raf!==null||!gl)return;last=null;owed=0;raf=requestAnimationFrame(render);}
+document.addEventListener('visibilitychange',()=>{last=null;owed=0;});
+// While paused a setting or a resize draws the picture again (no physics step), so the change shows without anything moving.
+function repaint(){if(paused&&gl)paint(simT,true);}
+
+// Registered at the top level, before the shared script (deferred) can run: under reduced motion it pauses the
+// loop on arrival, which this listener must catch. Pause cancels the pending frame and the picture stays.
+document.addEventListener('hb:pause',e=>{
+  paused=e.detail.paused;
+  if(paused){if(raf!==null){cancelAnimationFrame(raf);raf=null;}}
+  else start();
+});
+// The mode switch draws the mode at once from a fresh canvas, so with Trails on nothing of another mode lingers; the page's particles
+// and clock go on as they are in every mode. Compare copies its small system on the way in. The canvas's name says what it shows.
+document.addEventListener('hb:mode',e=>{
+  const was=mode;mode=e.detail.mode;
+  if(mode!==was)follow=null;
+  cvs.setAttribute('aria-label',LABELS[mode]);
+  if(gl){if(mode==='compare'&&was!=='compare')makeSmall();paint(simT,true);}
+});
+// A lost context takes the small system with it (paint makes it again); the message covers every mode meanwhile
+cvs.addEventListener('webglcontextlost',()=>{stage.classList.add('gl-off');small=follow=null;});cvs.addEventListener('webglcontextrestored',()=>stage.classList.remove('gl-off'));
+
+if(init()){
+  resize();
+  settle();paint(simT,true); // the first picture, so a loop that is paused on arrival never shows an empty stage
+  start();
+  window.addEventListener('resize',()=>{if(resize()&&gl)paint(simT,true);});
+  cvs.addEventListener('webglcontextlost',e=>{
+    e.preventDefault();
+    if(raf!==null){cancelAnimationFrame(raf);raf=null;}
+    gl=null;tex0=tex1=idxBuf=null;
+    noWgl2.textContent='WebGL context lost — waiting for the browser to restore it.';
+    noWgl2.style.display='flex';
+  });
+  cvs.addEventListener('webglcontextrestored',()=>{
+    if(!init())return;
+    noWgl2.style.display='none';
+    physics(simT);paint(simT,true);
+    if(!paused)start();
+  });
+}
+
+function choices(id,pick){
+  const buttons=document.querySelectorAll('#'+id+' button');
+  buttons.forEach(b=>b.addEventListener('click',()=>{
+    buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+    pick(b.dataset);
+  }));
+}
+choices('move-seg',d=>{BEHAVIOR=+d.behavior;});
+choices('count-seg',d=>{
+  const n=+d.n;
+  if(n===TEX_N)return; // choosing what is already chosen must not scatter the particles again
+  TEX_N=n;
+  if(gl){initTex(TEX_N);if(paused)settle();repaint();}
+});
+choices('speed-seg',d=>{SPD=+d.spd;});
+choices('color-seg',d=>{if(+d.mode===COLOR_MODE)return;COLOR_MODE=+d.mode;repaint();});
+document.getElementById('trail-tog').addEventListener('change',e=>{TRAILS=e.target.checked;repaint();});
+// See inside's arrows follow Movement and Speed at once, paused too; a new count renames Compare's second half and copies the first
+['move-seg','speed-seg'].forEach(id=>document.getElementById(id).addEventListener('click',()=>{if(mode==='inside'&&paused&&gl)paint(simT,true);}));
+document.getElementById('count-seg').addEventListener('click',()=>{names();if(mode==='compare'&&gl){makeSmall();repaint();}});
+</script>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snap Scrolling — Animation Handbook</title>
+  <meta name="description" content="The box settles on one whole section at a time. Best for slides and galleries.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/snap-scrolling/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Snap Scrolling — Animation Handbook">
+  <meta property="og:description" content="The box settles on one whole section at a time. Best for slides and galleries.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/snap-scrolling/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Snap Scrolling — Animation Handbook">
+  <meta name="twitter:description" content="The box settles on one whole section at a time. Best for slides and galleries.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Snap Scrolling", "name": "Snap Scrolling", "description": "The box settles on one whole section at a time. Best for slides and galleries.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/snap-scrolling/", "inLanguage": "en", "articleSection": "Scroll-Based", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Scroll-Based, Snap Scrolling"}</script>
+  <style>
+    :root{--ui-accent:#6ea8ff;--ui-muted:#8a8a92}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;overflow:hidden;background:#0b0b0d}
+    .scroller{height:100%;overflow-y:auto;scrollbar-width:none;position:relative;container-type:size;scroll-behavior:smooth}
+    .scroller::-webkit-scrollbar{display:none}
+    /* The Snapping setting changes data-snap. Never !important here: while Play scrolls the box the shared stylesheet turns snapping off */
+    .scroller[data-snap="mandatory"]{scroll-snap-type:y mandatory}
+    .scroller[data-snap="proximity"]{scroll-snap-type:y proximity}
+    .scroller[data-snap="off"]{scroll-snap-type:none}
+    .section{height:100cqh;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center}
+    .sec-num{font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+    .sec-title{font-size:clamp(20px,3vw,30px);font-weight:bold;margin-bottom:14px;line-height:1.2}
+    .sec-sub{font-size:14px;opacity:.65;max-width:360px;line-height:1.65}
+    .stats{display:flex;gap:24px;margin-top:20px}
+    .stat{text-align:center}
+    .stat-val{font-size:22px;font-weight:bold;color:var(--ui-accent)}
+    .stat-label{font-size:12px;color:var(--ui-muted);margin-top:3px}
+    .pull-quote{font-size:clamp(16px,2.5vw,22px);line-height:1.5;max-width:420px;margin-bottom:12px}
+    .quote-attr{font-size:11px;opacity:.5}
+    /* The dots sit inside the scroller, in a zero-height sticky row: they stay in place while the sections move, and a swipe, a wheel turn or a key press that starts on them scrolls the box */
+    .snap-rail{position:sticky;top:0;height:0;z-index:1}
+    .snap-dots{position:absolute;right:4px;top:50cqh;transform:translateY(-50%);display:flex;flex-direction:column}
+    .dot{width:44px;height:44px;padding:0;border:0;background:none;font:inherit;display:grid;place-items:center;cursor:pointer}
+    .dot::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--ui-muted);transition:background .2s,transform .2s}
+    .dot.active::before{background:var(--ui-accent);transform:scale(1.4)}
+    /* See inside and Compare. No mode changes a section's height or the box's height, so the stops stay where they are and the
+       browser has nothing to re-snap. Outside their modes the marks, the labels and the copy are not drawn. */
+    .tick,.say,.half,.copy{display:none}
+    .say,.half{position:absolute;left:10px;padding:4px 9px;border-radius:7px;background:rgba(11,11,13,.86);color:#f4f4f2;
+      font:600 13px/1.3 var(--hb-font);white-space:nowrap;pointer-events:none}
+    /* See inside: each section's top is a stop, drawn as a bright line on the seam (half on each side, so at rest the box shows
+       the stop it sits on at its top and the next one at its bottom; faint with Snapping off), and the sticky row marks the box's
+       top edge, which a stop lines up with. Always settles on the nearest stop, so a dashed line across each middle shows where
+       that flips; When close settles only within a third of the box of a stop (Chrome's reach, measured), so a band shades a
+       third of the box above and below each stop. Dashes and bands lie behind the words. */
+    .stage[data-hb-mode="inside"] .tick,.stage[data-hb-mode="inside"] .say{display:block}
+    .tick{position:absolute;left:0;top:0;width:44px;height:7px;border-radius:0 4px 4px 0;background:#f4f4f2}
+    .say-stop{top:14px}
+    .say-rule{top:calc(100cqh - 10px);translate:0 -100%;max-width:calc(100cqw - 66px);white-space:normal}
+    .stage[data-hb-mode="inside"] .section{position:relative;z-index:0;text-shadow:0 0 3px #0b0b0d,0 0 6px #0b0b0d}
+    .stage[data-hb-mode="inside"] .section::before{content:'';position:absolute;inset:0;border:solid var(--ui-accent);border-width:3px 0}
+    .stage[data-hb-mode="inside"] .section:last-child::before{border-bottom:0}
+    .stage[data-hb-mode="inside"] .scroller[data-snap="off"] .section::before{border-color:#6ea8ff59}
+    .stage[data-hb-mode="inside"] .scroller[data-snap="mandatory"] .section::after{content:'';position:absolute;inset:50% 0 auto;
+      z-index:-1;border-top:2px dashed var(--ui-accent)}
+    .stage[data-hb-mode="inside"] .scroller[data-snap="proximity"] .section::after{content:'';position:absolute;inset:0;z-index:-1;
+      background:linear-gradient(#6ea8ff3d 33.33%,transparent 0 66.67%,#6ea8ff3d 0)}
+    .stage[data-hb-mode="inside"] .scroller[data-snap="proximity"] .section:last-child::after{background:linear-gradient(#6ea8ff3d 33.33%,transparent 0)}
+    /* Compare: a copy that never snaps on the left, the page's own box on the right, side by side at every width, so only the
+       real box's width changes, never its height. In a half each section keeps its number and title. */
+    .stage[data-hb-mode="compare"]{display:flex;gap:3px}
+    .stage[data-hb-mode="compare"] .scroller{flex:1 1 0;min-width:0;overflow-x:hidden}
+    .stage[data-hb-mode="compare"] .copy,.stage[data-hb-mode="compare"] .half{display:block}
+    .half{top:10px}
+    .copy{scroll-behavior:auto}
+    .stage[data-hb-mode="compare"] .sec-sub,.stage[data-hb-mode="compare"] .stats,.stage[data-hb-mode="compare"] .quote-attr{display:none}
+    /* the words sit at the top of each section, under the half's name, so a box that rests between two sections shows the next
+       one's number and title partway down */
+    .stage[data-hb-mode="compare"] .section{justify-content:flex-start;padding:48px 52px 12px 12px}
+    .stage[data-hb-mode="compare"] .sec-title{font-size:clamp(16px,5.4cqw,26px);text-wrap:balance}
+    .stage[data-hb-mode="compare"] .pull-quote{font-size:clamp(13px,4.2cqw,20px);margin:0;text-wrap:balance}
+    /* Reduced motion: no smooth-scroll animation, no dot tweening */
+    @media(prefers-reduced-motion:reduce){.scroller{scroll-behavior:auto!important}.dot::before{transition:none!important}}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="scroll" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../pin-animation/" rel="prev" aria-label="Previous: Pin Animation"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Pin Animation</span></a><a href="../scrollytelling/" rel="next" aria-label="Next: Scrollytelling"><span><span class="hb-dir">Next: </span>Scrollytelling</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">01.10 · Scroll-Based</p>
+    <h1>Snap Scrolling</h1>
+    <p class="hb-lede">The box settles on one whole section at a time. Best for slides and galleries.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Scroll it</h2><p>Scroll inside the box and let go: it settles on the nearest section. Press Play and it glides through without snapping.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage">
+      <div class="scroller" id="scroller" data-hb-scroller data-snap="mandatory" tabindex="0" role="region" aria-label="Five sections that the box snaps to"><div class="snap-rail"><div class="snap-dots" id="snap-dots"></div><i class="tick"></i><p class="say say-stop" data-hb-caption>A stop lines up here</p><p class="say say-rule" data-hb-caption>Past a dashed line, it settles on the next</p><p class="half" data-hb-caption>Always snaps</p></div></div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-scroll" data-hb-autoscroll><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>Play</button>
+      <button class="hb-play" type="button" id="btn-top" data-hb-top><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Back to top</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, solid lines mark where the box can stop, each section's top, and past a dashed middle line it settles on the next one. Scroll the box a little and let go.</p>
+      <p data-hb-for="compare" hidden>No snapping rests wherever you let go; Always snaps settles on the nearest whole section. Scroll either box a little and let go.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then scroll again or press Play.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="snap-lbl">Snapping</p>
+        <div class="seg" id="snap-seg" role="group" aria-labelledby="snap-lbl">
+          <button type="button" data-snap="mandatory" class="on" aria-pressed="true">Always</button>
+          <button type="button" data-snap="proximity" aria-pressed="false">When close</button>
+          <button type="button" data-snap="off" aria-pressed="false">Off</button>
+        </div>
+        <p class="hb-hint">Scroll by hand to see it; Play glides without snapping.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add snap scrolling to [your page of full-height sections, slides or gallery]. Make each section exactly as tall as the scrolling area and mark its top as a snap point, so that, as the settings choose, the view settles on the nearest section instead of stopping between two. Use the browser's built-in scroll snapping rather than a script. Add small dots that show which section is in view and take the visitor to a section when pressed. Check scrolling with the arrow keys too, because strict snapping can feel stiff there. If the visitor has reduced motion turned on, let the view settle without a smooth glide. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Slides</li><li>Galleries</li><li>Onboarding</li><li>Full-screen sections</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Long articles</li><li>Uneven sections</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const SECTIONS=[
+    {num:'01',title:'Pages, not pixels',      bg:'linear-gradient(160deg,#050e08,#0c2820)',accent:'#3fb950',type:'hero',   sub:'Snap scrolling turns one long scroll into a few set stops. Each section is a place to land.'},
+    {num:'02',title:'Magnetic edges',         bg:'linear-gradient(160deg,#060a10,#0a1628)',accent:'#58a6ff',type:'default',sub:'Stop scrolling and the box pulls itself to the nearest section.'},
+    {num:'03',title:'A page at a time',       bg:'linear-gradient(160deg,#0a0610,#1a0c28)',accent:'#bf91f3',type:'stats',  sub:'Design in whole sections, not an endless strip. Each stop is a chapter.'},
+    {num:'04',title:'"The feeling of deliberate motion is hard to achieve with code alone."',bg:'linear-gradient(160deg,#100806,#281808)',accent:'#ffa657',type:'quote',sub:'— on scroll design'},
+    {num:'05',title:"That's the whole trick", bg:'linear-gradient(160deg,#060810,#0c1020)',accent:'#79c0ff',type:'default',sub:'The browser does the pulling. Nothing has to be timed or scripted.'},
+  ];
+  const scroller=document.getElementById('scroller'),snapDots=document.getElementById('snap-dots');
+  SECTIONS.forEach((s,i)=>{
+    const sec=document.createElement('div');sec.className='section';sec.style.background=s.bg;
+    let inner=`<div class="sec-num" style="color:${s.accent}">${s.num} / 05</div>`;
+    if(s.type==='quote'){
+      inner+=`<div class="pull-quote" style="color:${s.accent}">${s.title}</div><div class="quote-attr">${s.sub}</div>`;
+    } else {
+      inner+=`<div class="sec-title">${s.title}</div><div class="sec-sub">${s.sub}</div>`;
+      if(s.type==='stats') inner+=`<div class="stats"><div class="stat"><div class="stat-val" style="color:${s.accent}">5</div><div class="stat-label">Sections</div></div><div class="stat"><div class="stat-val" style="color:${s.accent}">5</div><div class="stat-label">Resting points</div></div><div class="stat"><div class="stat-val" style="color:${s.accent}">0</div><div class="stat-label">Stops in between</div></div></div>`;
+    }
+    sec.innerHTML=inner;scroller.appendChild(sec);
+    const dot=document.createElement('button');dot.type='button';dot.className='dot'+(i===0?' active':'');
+    dot.setAttribute('aria-label','Section '+(i+1));
+    if(i===0)dot.setAttribute('aria-current','true');
+    // no behavior: the box's own scroll-behavior decides, so this glides, or jumps under reduced motion
+    dot.addEventListener('click',()=>scroller.scrollTo({top:i*scroller.clientHeight}));
+    snapDots.appendChild(dot);
+  });
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  choices('snap-seg',d=>{scroller.dataset.snap=d.snap;describe();if(mode==='compare')pose()});
+  const dots=snapDots.querySelectorAll('.dot');
+  function showSection(){
+    const idx=Math.min(Math.round(scroller.scrollTop/scroller.clientHeight),4);
+    dots.forEach((d,i)=>{
+      d.classList.toggle('active',i===idx);
+      if(i===idx)d.setAttribute('aria-current','true');else d.removeAttribute('aria-current');
+    });
+  }
+  scroller.addEventListener('scroll',showSection,{passive:true});
+  addEventListener('resize',showSection,{passive:true});
+
+  // Compare's left box: a copy of the five sections in a box of its own that never snaps, named "No snapping". It must take a
+  // scroll by hand, so it is not inert; it has no ids, no dots and no tab stop, and screen readers skip it.
+  const copy=document.createElement('div');
+  copy.className='scroller copy';copy.tabIndex=-1;copy.setAttribute('aria-hidden','true');
+  copy.innerHTML='<div class="snap-rail"><p class="half" data-hb-caption>No snapping</p></div>';
+  scroller.querySelectorAll('.section').forEach(s=>copy.appendChild(s.cloneNode(true)));
+  scroller.before(copy);
+  const ruleSay=scroller.querySelector('.say-rule'),half=scroller.querySelector('.half');
+  const insideNote=document.querySelector('[data-hb-for="inside"]'),compareNote=document.querySelector('[data-hb-for="compare"]');
+  // The words for each Snapping choice: See inside's label, the right box's name and the two notes
+  const WORDS={
+    mandatory:{rule:'Past a dashed line, it settles on the next',half:'Always snaps',
+      inside:"Inside, solid lines mark where the box can stop, each section's top, and past a dashed middle line it settles on the next one. Scroll the box a little and let go.",
+      compare:'No snapping rests wherever you let go; Always snaps settles on the nearest whole section. Scroll either box a little and let go.'},
+    proximity:{rule:'It settles only inside a shaded band',half:'Snaps when close',
+      inside:"Inside, solid lines mark the stops, and the box settles on one only if its top is in that stop's shaded band when you let go. Scroll the box a little and let go.",
+      compare:'No snapping rests wherever you let go; Snaps when close settles on a section only when you stop near one. Scroll either box a little and let go.'},
+    off:{rule:'Snapping is off: it rests anywhere',half:'Snapping off',
+      inside:'Inside, faint lines mark where the box could stop, but with Snapping off it rests wherever you let go. Scroll the box a little and let go.',
+      compare:'Snapping is set to Off, so No snapping and Snapping off both rest wherever you let go. Pick another Snapping in Try it, then scroll either box a little and let go.'}
+  };
+  const NAMES={normal:'Five sections that the box snaps to',inside:'Five sections that the box snaps to, with lines where it can stop',
+    compare:'Five sections that the box snaps to, beside a copy that does not snap'};
+  let mode='normal',following=0;
+  // Play marks the box while it scrolls it (and the shared stylesheet turns snapping off for that while)
+  const playing=()=>'hbAutoscrolling' in scroller.dataset;
+  function describe(){
+    const w=WORDS[scroller.dataset.snap];
+    ruleSay.textContent=w.rule;half.textContent=w.half;insideNote.textContent=w.inside;compareNote.textContent=w.compare;
+  }
+  // The left box is placed at once, four tenths of a section short of the right box (past it at the top), so at rest it shows
+  // the same section's words partway down, under the end of the one before, while the right one shows that section whole;
+  // level with it when snapping is off or Play is running
+  function pose(){
+    const H=scroller.clientHeight,top=scroller.scrollTop;
+    const apart=scroller.dataset.snap!=='off'&&!playing();
+    copy.scrollTo({top:apart?(top>=.4*H?top-.4*H:top+.4*H):top,behavior:'instant'});
+  }
+  document.addEventListener('hb:mode',e=>{
+    mode=e.detail.mode;
+    scroller.setAttribute('aria-label',NAMES[mode]);
+    if(mode==='compare')pose();
+  });
+  // While Play runs (snapping is off in both boxes then) the left box follows the right one, in the same frame
+  scroller.addEventListener('scroll',()=>{
+    if(mode!=='compare'||following||!playing())return;
+    following=requestAnimationFrame(()=>{following=0;if(mode==='compare')copy.scrollTo({top:scroller.scrollTop,behavior:'instant'})});
+  },{passive:true});
+  document.getElementById('btn-top').addEventListener('click',()=>copy.scrollTo({top:0,behavior:'instant'}));
+  describe();
+</script>
+</body>
+</html>

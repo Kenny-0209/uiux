@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parallax Scrolling — Animation Handbook</title>
+  <meta name="description" content="Far layers move slower than near ones as you scroll. Best for hero scenes.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/parallax-scrolling/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Parallax Scrolling — Animation Handbook">
+  <meta property="og:description" content="Far layers move slower than near ones as you scroll. Best for hero scenes.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/parallax-scrolling/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Parallax Scrolling — Animation Handbook">
+  <meta name="twitter:description" content="Far layers move slower than near ones as you scroll. Best for hero scenes.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Parallax Scrolling", "name": "Parallax Scrolling", "description": "Far layers move slower than near ones as you scroll. Best for hero scenes.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/parallax-scrolling/", "inLanguage": "en", "articleSection": "Scroll-Based", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Scroll-Based, Parallax Scrolling"}</script>
+  <style>
+    :root{--ui-accent:#6ea8ff}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;overflow-y:auto;scrollbar-width:none;container-type:size;background:#0b0b0d}
+    .stage::-webkit-scrollbar{display:none}
+    .scene{height:300cqh}
+    /* The frame stays put while the box scrolls and holds the scene: one copy, or two side by side in Compare */
+    .frame{position:sticky;top:0;height:100cqh;display:grid;grid-template-columns:minmax(0,1fr);overflow:hidden}
+    /* matches the top stop of the sky gradient so layer travel never
+       exposes the page background above the backmost layer */
+    .layers{position:relative;overflow:hidden;background:#0a1628}
+    .layer{
+      position:absolute;top:0;left:0;width:100%;height:100%;
+      will-change:transform;
+    }
+    .layer svg{width:100%;height:100%}
+    .twin,.tag,.side,.start{display:none}
+    /* See inside: the four layers fanned out from the far sky at the top left to the near grass at the bottom right, each
+       outlined and labeled with how far it moves. Each step down is taller than a label, so no layer hides the label of the
+       one behind it, even on a phone, and the fan sits high enough that the near grass, which moves most, stays inside the
+       box to the end of the scroll. The labels are drawn at 34px and the outline at 4px, and they shrink with their layer to
+       about 13px and 1.5px; the layers lose will-change here, so the labels are drawn at their size and stay sharp.
+       Behind each layer a faint dashed outline marks where that layer stood with the box at the top: the script moves the
+       layer from there as the box scrolls, so the gap that opens shows how far it went (ruling 2). The outlines lie under
+       every card, not just their own, so on a short box none crosses the label of the layer behind as that layer moves. */
+    .stage[data-hb-mode="inside"] .layers{overflow:visible;background:none}
+    /* Each layer reads as a sheet: a faint fill behind its drawing */
+    .stage[data-hb-mode="inside"] .layer{outline:4px solid rgba(244,244,242,.6);outline-offset:-4px;scale:.375;
+      background:rgba(255,255,255,.08);will-change:auto}
+    .stage[data-hb-mode="inside"] .start{display:block;position:absolute;top:0;left:0;width:100%;height:100%;scale:.375;
+      outline:4px dashed rgba(244,244,242,.42);outline-offset:-4px;pointer-events:none;z-index:-1}
+    .stage[data-hb-mode="inside"] #l1,.stage[data-hb-mode="inside"] .s1{translate:-20% -29.6%}
+    .stage[data-hb-mode="inside"] #l2,.stage[data-hb-mode="inside"] .s2{translate:-6.67% -12.2%}
+    .stage[data-hb-mode="inside"] #l3,.stage[data-hb-mode="inside"] .s3{translate:6.67% 5.2%}
+    .stage[data-hb-mode="inside"] #l4,.stage[data-hb-mode="inside"] .s4{translate:20% 22.6%}
+    /* The drawings lighter than in the night scene, so they show against their sheets (the sky covers its sheet, so the sky
+       itself is lighter) */
+    .stage[data-hb-mode="inside"] #l1 stop:first-child{stop-color:#1d3a63}
+    .stage[data-hb-mode="inside"] #l1 stop:last-child{stop-color:#15243b}
+    .stage[data-hb-mode="inside"] #l2 polygon{fill:#1f4d6b}
+    .stage[data-hb-mode="inside"] #l3 polygon{fill:#183f57}
+    .stage[data-hb-mode="inside"] #l4 polygon{fill:#22492a}
+    .stage[data-hb-mode="inside"] #l4 ellipse{fill:#1b3d22}
+    .stage[data-hb-mode="inside"] .tag{display:flex}
+    .tag{position:absolute;top:4%;left:5%;flex-direction:column;gap:.15em;padding:.3em .5em;border-radius:.4em;white-space:nowrap;
+      background:rgba(11,11,13,.86);color:#f4f4f2;font-family:var(--hb-font);font-weight:600;font-size:34px;line-height:1.1}
+    .tag span{font-weight:400;color:#d6d6da}
+    .tag i{display:block;height:.3em;width:calc(var(--far,1) * 5em);border-radius:.15em;background:var(--ui-accent)}
+    /* Compare: the scene without parallax on the left and with it on the right, each named at its top */
+    .stage[data-hb-mode="compare"] .frame{grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}
+    .stage[data-hb-mode="compare"] .twin,.stage[data-hb-mode="compare"] .side{display:block}
+    .side{position:absolute;z-index:5;top:10px;left:10px;padding:5px 10px;border-radius:999px;background:rgba(11,11,13,.82);
+      color:#f4f4f2;font:600 13px/1.2 var(--hb-font)}
+    @media(prefers-reduced-motion:reduce){.layer{will-change:auto}}
+    /* Under reduced motion no layer moves, so each start outline would lie exactly on its card's edge: none is drawn */
+    @media(prefers-reduced-motion:reduce){.stage[data-hb-mode="inside"] .start{display:none}}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="scroll" data-hb-autoplay data-hb-motion-note="The layers stay still while the box scrolls">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../parallax-depth-of-field/" rel="prev" aria-label="Previous: Parallax Depth-of-Field"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Parallax Depth-of-Field</span></a><a href="../reverse-scrolling-columns/" rel="next" aria-label="Next: Reverse-Scrolling Columns"><span><span class="hb-dir">Next: </span>Reverse-Scrolling Columns</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">01.02 · Scroll-Based</p>
+    <h1>Parallax Scrolling</h1>
+    <p class="hb-lede">Far layers move slower than near ones as you scroll. Best for hero scenes.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Scroll it</h2><p>Scroll inside the box, or press Play and it scrolls for you.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage" tabindex="0" role="region" aria-label="A landscape in four layers that move at different speeds">
+      <div class="scene">
+        <div class="frame">
+          <div class="layers" id="main">
+            <p class="side" data-hb-caption>With parallax</p>
+
+            <!-- L1: Sky + stars -->
+            <span class="start s1" aria-hidden="true"></span>
+            <div class="layer" id="l1">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#0a1628"/>
+                    <stop offset="100%" stop-color="#060a10"/>
+                  </linearGradient>
+                </defs>
+                <rect width="800" height="600" fill="url(#sky)"/>
+                <circle cx="80"  cy="55"  r="1.2" fill="#fff" opacity=".5"/>
+                <circle cx="200" cy="28"  r="1"   fill="#fff" opacity=".4"/>
+                <circle cx="330" cy="78"  r=".9"  fill="#fff" opacity=".6"/>
+                <circle cx="470" cy="18"  r="1.3" fill="#fff" opacity=".3"/>
+                <circle cx="580" cy="52"  r="1"   fill="#fff" opacity=".5"/>
+                <circle cx="680" cy="33"  r="1.1" fill="#fff" opacity=".4"/>
+                <circle cx="755" cy="14"  r=".8"  fill="#fff" opacity=".6"/>
+                <circle cx="140" cy="108" r=".9"  fill="#fff" opacity=".3"/>
+                <circle cx="420" cy="96"  r="1"   fill="#fff" opacity=".4"/>
+                <circle cx="640" cy="116" r=".8"  fill="#fff" opacity=".3"/>
+              </svg>
+              <span class="tag" data-hb-caption><b>Sky</b><span></span><i></i></span>
+            </div>
+
+            <!-- L2: Distant ridge -->
+            <span class="start s2" aria-hidden="true"></span>
+            <div class="layer" id="l2">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <polygon fill="#0d2b3e"
+                  points="0,380 60,258 130,298 220,208 310,268 400,193
+                          490,243 580,213 660,253 740,223 800,236 800,600 0,600"/>
+              </svg>
+              <span class="tag" data-hb-caption><b>Hills</b><span></span><i></i></span>
+            </div>
+
+            <!-- L3: Pine treeline -->
+            <span class="start s3" aria-hidden="true"></span>
+            <div class="layer" id="l3">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <polygon fill="#0a1f2e"
+                  points="0,442 35,362 65,380 95,320 135,344 175,297 215,324
+                          265,287 305,310 360,274 400,297 450,262 490,284
+                          540,270 580,294 635,280 675,304 720,287 760,310
+                          800,294 800,600 0,600"/>
+              </svg>
+              <span class="tag" data-hb-caption><b>Trees</b><span></span><i></i></span>
+            </div>
+
+            <!-- L4: Foreground grass -->
+            <span class="start s4" aria-hidden="true"></span>
+            <div class="layer" id="l4">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <polygon fill="#050e08"
+                  points="0,497 80,452 160,472 240,450 320,467 400,454
+                          480,470 560,457 640,472 720,458 800,464 800,600 0,600"/>
+                <ellipse cx="100" cy="507" rx="60" ry="15" fill="#040c07"/>
+                <ellipse cx="280" cy="514" rx="70" ry="18" fill="#030b06"/>
+                <ellipse cx="500" cy="508" rx="65" ry="16" fill="#040c07"/>
+                <ellipse cx="700" cy="502" rx="55" ry="14" fill="#040c07"/>
+              </svg>
+              <span class="tag" data-hb-caption><b>Grass</b><span></span><i></i></span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-scroll" data-hb-autoscroll><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>Play</button>
+      <button class="hb-play" type="button" id="btn-top" data-hb-top><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Back to top</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the picture is four flat layers, each with a faint outline where it started: the far ones move least and the near grass most. Scroll the box or press Play to watch.</p>
+      <p data-hb-for="compare" hidden>Without parallax (left), every layer moves the same and the picture looks flat; With parallax (right), each moves its own amount and it looks deep. Scroll the box or press Play to watch.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then scroll again or press Play.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="depth-lbl">Depth</p>
+        <div class="seg" id="depth-seg" role="group" aria-labelledby="depth-lbl">
+          <button type="button" data-depth="flat" aria-pressed="false">Flat</button>
+          <button type="button" data-depth="shallow" aria-pressed="false">Shallow</button>
+          <button type="button" data-depth="normal" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-depth="deep" aria-pressed="false">Deep</button>
+        </div>
+        <p class="hb-hint">Deep spreads the layers' speeds; Flat moves them as one.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a parallax scene to [your hero section or illustration]. Split the scene into layers from far to near, such as sky, hills, trees and ground, and hold it in place while the visitor scrolls through a taller section. As they scroll, move each layer by its own amount, as the settings choose; usually the farthest layer barely moves and the nearest moves most, which makes the flat picture feel deep. Base the movement on how far through the section the visitor has scrolled, so it starts and stops at the same place every time. If the visitor has reduced motion turned on, keep every layer still. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Hero scenes</li><li>Landing pages</li><li>Story sections</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Text-heavy pages</li><li>Forms</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  // Speed multipliers of the sky, ridge, trees and grass under each Depth choice
+  const DEPTHS = {
+    flat:    [1, 1, 1, 1],
+    shallow: [0.5, 0.65, 0.8, 1],
+    normal:  [0.1, 0.3, 0.6, 1],
+    deep:    [0, 0.25, 0.7, 1.5],
+  };
+  const stage    = document.getElementById('stage');
+  const main     = document.getElementById('main');
+  // Compare's left side: a copy of the scene without parallax, named "Without parallax". The copy loses its ids (its sky
+  // gradient gets one of its own), its labels and its start outlines. It is inert and hidden from screen readers: the stage's
+  // name says what each half shows.
+  const twin = main.cloneNode(true);
+  twin.querySelectorAll('.tag, .start').forEach(t => t.remove());
+  twin.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+  twin.removeAttribute('id');
+  twin.classList.add('twin');
+  twin.inert = true;
+  twin.setAttribute('aria-hidden', 'true');
+  twin.querySelector('linearGradient').id = 'sky-twin';
+  twin.querySelector('rect[fill="url(#sky)"]').setAttribute('fill', 'url(#sky-twin)');
+  twin.querySelector('.side').textContent = 'Without parallax';
+  main.before(twin);
+  const copies   = twin.querySelectorAll('.layer');
+  const LAYERS   = DEPTHS.normal.map((s, i) => {
+    const el = document.getElementById('l' + (i + 1));
+    return { el, copy: copies[i], tag: el.querySelector('.tag'), speed: s };
+  });
+  const motionMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const LABELS = {
+    normal:  'A landscape in four layers that move at different speeds',
+    inside:  'The landscape pulled apart into its four layers, each labeled with how much it moves',
+    compare: 'Two copies of the landscape side by side, without parallax on the left and with parallax on the right',
+  };
+  const insideNote  = document.querySelector('[data-hb-for="inside"]');
+  const compareNote = document.querySelector('[data-hb-for="compare"]');
+  let mode    = 'normal';
+  let ticking = false;
+
+  function update() {
+    const st       = stage.scrollTop;
+    const max      = stage.scrollHeight - stage.clientHeight;
+    const progress = max > 0 ? st / max : 0;
+    // A layer at 100% travels a quarter of the box, so the grass just leaves it at the end of the scroll
+    const MAX_PARALLAX = stage.clientHeight / 4;
+    // Reduced motion: the layers never move with the scroll. Compare then shows both sides as they stand halfway down, so
+    // the difference still shows without any movement.
+    const still    = motionMQ.matches;
+    const p        = still ? (mode === 'compare' ? 0.5 : 0) : progress;
+    // See inside moves each layer half as far within its card, and the card is drawn at three eighths of its size, so on
+    // screen a layer moves about a fifth as far as in Normal: every move keeps its proportion, the near grass stays inside the
+    // box, and the start outlines show how far each layer has gone
+    const k        = mode === 'inside' ? 0.5 : 1;
+    LAYERS.forEach(L => {
+      L.el.style.transform   = `translate3d(0,${Math.round(p * MAX_PARALLAX * L.speed * k)}px,0)`;
+      L.copy.style.transform = `translate3d(0,${Math.round(p * MAX_PARALLAX)}px,0)`;
+    });
+    ticking = false;
+  }
+
+  // The notes under the box, with Depth set to Flat or not. Under reduced motion the picture stands still, so they say what
+  // the still picture shows instead of asking the visitor to watch.
+  const NOTES = {
+    moving: {
+      inside:  'Inside, the picture is four flat layers, each with a faint outline where it started: the far ones move least and the near grass most. Scroll the box or press Play to watch.',
+      compare: 'Without parallax (left), every layer moves the same and the picture looks flat; With parallax (right), each moves its own amount and it looks deep. Scroll the box or press Play to watch.',
+    },
+    movingFlat: {
+      inside:  'Inside, the picture is four flat layers; Depth is set to Flat, so they all move the same and the picture looks flat. Scroll the box or press Play to watch.',
+      compare: 'Depth is set to Flat, so Without parallax and With parallax move the same. Pick another Depth in Try it, then scroll the box or press Play to watch.',
+    },
+    still: {
+      inside:  'Inside, the picture is four flat layers, shown still. Each bar shows how far that layer would move: least for the far sky, most for the near grass.',
+      compare: 'Both sides are shown still, as they stand halfway down the box: Without parallax, every layer has moved the same; With parallax, each layer has moved its own amount.',
+    },
+    stillFlat: {
+      inside:  'Inside, the picture is four flat layers, shown still. Depth is set to Flat, so every bar is the same: the layers would all move together and the picture would look flat.',
+      compare: 'Both sides are shown still, halfway down the box; Depth is set to Flat, so Without parallax and With parallax match. Pick another Depth in Try it to see the difference.',
+    },
+  };
+
+  // Each label says how far its layer moves next to the others, in words and as a bar (a share of the longest one); the
+  // notes say what Flat does, and what the still picture shows under reduced motion.
+  function describe() {
+    const speeds = LAYERS.map(L => L.speed), most = Math.max(...speeds);
+    const flat   = speeds.every(s => s === speeds[0]);
+    LAYERS.forEach(L => {
+      const s = L.speed;
+      L.tag.querySelector('span').textContent = flat ? 'moves with the rest' : s === 0 ? 'stays still' : s === most ? 'moves most'
+        : s <= most * 0.2 ? 'barely moves' : s <= most * 0.5 ? 'moves a little' : 'moves more';
+      L.tag.style.setProperty('--far', most ? s / most : 1);
+    });
+    const notes = NOTES[(motionMQ.matches ? 'still' : 'moving') + (flat ? 'Flat' : '')];
+    insideNote.textContent  = notes.inside;
+    compareNote.textContent = notes.compare;
+  }
+
+  document.addEventListener('hb:mode', e => {
+    mode = e.detail.mode;
+    stage.setAttribute('aria-label', LABELS[mode]);
+    update();
+  });
+  stage.addEventListener('scroll', () => {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+  // Reduced motion turned on or off while the page is open: the picture and the notes follow
+  motionMQ.addEventListener('change', () => { describe(); update(); });
+
+  function choices(id, pick) {
+    const buttons = document.querySelectorAll('#' + id + ' button');
+    buttons.forEach(b => b.addEventListener('click', () => {
+      buttons.forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', String(x === b)); });
+      pick(b.dataset);
+    }));
+  }
+  choices('depth-seg', d => {
+    DEPTHS[d.depth].forEach((s, i) => { LAYERS[i].speed = s; });
+    describe();
+    update();
+  });
+
+  describe();
+  update();
+</script>
+</body>
+</html>

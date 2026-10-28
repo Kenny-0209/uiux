@@ -1,0 +1,20 @@
+<!-- Markup: <div class="fx-mirror">MIRROR</div> -->
+
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 24 Still-Water — the word floats over its own rippling reflection
+   (uses -webkit-box-reflect: Chromium & Safari; degrades gracefully) */
+.fx-mirror {
+  font: 600 32px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .1em;
+  color: var(--ink);
+  -webkit-box-reflect: below 2px linear-gradient(transparent 45%, rgba(255, 255, 255, .28));
+  animation: fx-mirror 3s ease-in-out infinite;
+}
+@keyframes fx-mirror {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}

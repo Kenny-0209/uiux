@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Progress Bar — Animation Handbook</title>
+  <meta name="description" content="A bar fills as you read down the page. Best for long articles.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/progress-bar/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Progress Bar — Animation Handbook">
+  <meta property="og:description" content="A bar fills as you read down the page. Best for long articles.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/progress-bar/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Progress Bar — Animation Handbook">
+  <meta name="twitter:description" content="A bar fills as you read down the page. Best for long articles.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Progress Bar", "name": "Progress Bar", "description": "A bar fills as you read down the page. Best for long articles.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/progress-bar/", "inLanguage": "en", "articleSection": "Scroll-Based", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Scroll-Based, Progress Bar"}</script>
+  <style>
+    :root{--ui-accent:#6ea8ff;--bar-color:#6ea8ff;--bar-thick:3px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    /* The stage holds the three indicators beside the scroller, so they stay in place while the article moves.
+       They ignore the pointer, so a wheel turn or a touch over them still scrolls the article. */
+    .stage{position:relative;overflow:hidden;background:#0b0b0d}
+    .scroller{height:100%;overflow-y:auto;scrollbar-width:none;position:relative}
+    .scroller::-webkit-scrollbar{display:none}
+    /* Top bar */
+    #top-bar{position:absolute;top:0;left:0;right:0;height:var(--bar-thick);background:var(--bar-color);transform-origin:left;transform:scaleX(0);z-index:10;display:none;pointer-events:none}
+    /* Side rail */
+    #side-rail{position:absolute;top:0;right:0;bottom:0;width:var(--bar-thick);z-index:10;display:none;overflow:hidden;pointer-events:none}
+    #side-fill{position:absolute;inset:0;background:var(--bar-color);transform-origin:top;transform:scaleY(0)}
+    /* Ring */
+    #circ{position:absolute;top:8px;right:8px;z-index:10;display:none;overflow:visible;pointer-events:none}
+    /* the ring sits on a solid disc, so its percentage stays readable while article text passes underneath */
+    .circ-bg,.circ-fg{stroke-width:var(--bar-thick)}
+    .circ-bg{fill:#0b0b0d;stroke:rgba(255,255,255,.09)}
+    .circ-fg{fill:none;stroke:var(--bar-color);stroke-linecap:round;stroke-dasharray:100.53;stroke-dashoffset:100.53;transform:rotate(-90deg);transform-origin:50% 50%}
+    .circ-text{font-size:9px;font-weight:600;fill:#f4f4f2;text-anchor:middle;dominant-baseline:central}
+    /* Article */
+    .article{padding:clamp(20px,4vw,40px);max-width:600px}
+    /* the right padding keeps the title's lines clear of the ring in the top-right corner (48px wide, 8px from the edge) */
+    .art-title{font-size:clamp(20px,3vw,28px);font-weight:700;line-height:1.2;margin-bottom:8px;padding-right:40px}
+    .art-byline{font-size:12px;color:#8a8a92;margin-bottom:28px;text-transform:uppercase;letter-spacing:1px}
+    .art-body{font-size:15px;line-height:1.8;color:#adadb2;margin-bottom:18px}
+    .art-pull{border-left:3px solid var(--bar-color);padding-left:16px;font-size:15px;line-height:1.6;margin:24px 0;color:#d6d6da}
+    .art-h2{font-size:clamp(16px,2vw,20px);font-weight:700;margin:28px 0 12px}
+    /* See inside and Compare draw in one layer of the stage, outside the scroller and above it, so nothing scrolls away; it ignores the pointer */
+    .fx,.fx-in,.fx-cmp{display:none;position:absolute;inset:0}
+    .fx{z-index:6;overflow:hidden;pointer-events:none}
+    .stage[data-hb-mode="inside"] .fx,.stage[data-hb-mode="compare"] .fx,.stage[data-hb-mode="inside"] .fx-in,.stage[data-hb-mode="compare"] .fx-cmp{display:block}
+    .cap{position:absolute;padding:2px 7px;border-radius:999px;white-space:nowrap;background:rgba(11,11,13,.95);color:#f4f4f2;
+      border:1px solid rgba(244,244,242,.3);font:600 13px/1.3 var(--hb-font)}
+    /* See inside: a map of the whole article (its blocks drawn from measured offsets) with a frame the height of the box sliding
+       down it, a faint dashed frame where it started (the slide is shrunk: ruling 2), and a bracket as long as the frame can
+       travel, filled in the indicator's color as far as it has gone. The map sits below the ring and left of the rail. */
+    .stage[data-hb-mode="inside"] .article{opacity:.4} /* only the text is dimmed, so the box's focus ring keeps full contrast */
+    .mwrap{position:absolute;right:16px;top:var(--mt,38px);bottom:14px;width:78px}
+    @media(min-width:601px){.mwrap{width:90px}}
+    .map{position:absolute;inset:0;background:rgba(11,11,13,.95);box-shadow:0 0 0 1px rgba(244,244,242,.25)}
+    .mb{position:absolute;left:5px;right:5px;margin-top:1px;background:#6f6f78}
+    .mb.hd{background:#f4f4f2;right:30%}
+    .mb.by{right:55%}
+    .mb.qt{background:var(--bar-color);right:25%}
+    .mframe,.mstart{position:absolute;left:0;right:0;top:0}
+    .mframe{border:3px solid #fff;background:rgba(255,255,255,.14);box-shadow:0 0 0 1px #0b0b0d}
+    .mstart{border:2px dashed rgba(244,244,242,.7)}
+    .mframe .cap{top:50%;left:50%;translate:-50% -50%;padding:1px 4px}
+    .brk{position:absolute;right:calc(100% + 8px);top:0;width:12px;border-left:2px solid rgba(244,244,242,.6)}
+    .brk::before,.brk::after{content:"";position:absolute;left:-2px;width:12px;height:2px;background:rgba(244,244,242,.6)}
+    .brk::after{bottom:0}
+    .brk i{position:absolute;left:3px;top:0;bottom:0;width:var(--bar-thick);background:var(--bar-color);transform-origin:top;transform:scaleY(0)}
+    .cap-map{right:0;bottom:calc(100% + 6px)}
+    .cap-sc,.cap-far{right:calc(100% + 28px)}
+    .cap-sc{top:0}
+    .cap-far{translate:0 -100%}
+    /* Compare: the article twice, stacked (side by side it would wrap taller and change the scroll). Both halves are copies
+       moved by how far the one real scroll has gone, from the title to the last line, so they always show the same lines;
+       the real scroller stays under them for input. The indicator moves into the lower half. */
+    .half{position:absolute;left:0;right:0;overflow:hidden;background:#0b0b0d}
+    .h1{top:0;height:calc(50% - 1px)}
+    .h2{bottom:0;height:calc(50% - 1px)}
+    .half .cap{top:4px;left:10px}
+    /* each half has a name band on top, and the article moves in the window under it, so the name never covers a line */
+    .win{position:absolute;left:0;right:0;top:28px;bottom:0;overflow:hidden;border-top:1px solid rgba(244,244,242,.14)}
+    .split{position:absolute;left:0;right:0;top:calc(50% - 1px);height:2px;background:#6b6b70}
+    .stage[data-hb-mode="compare"] #top-bar,.stage[data-hb-mode="compare"] #side-rail{top:calc(50% + 1px)}
+    .stage[data-hb-mode="compare"] #circ{top:calc(50% + 9px)}
+    .stage[data-hb-mode="compare"] .scroller:focus-visible+.fx::after{content:"";position:absolute;inset:0;outline:2px solid var(--ui-accent);outline-offset:-2px}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="scroll" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../counter-animation/" rel="prev" aria-label="Previous: Counter Animation"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Counter Animation</span></a><a href="../section-wipe/" rel="next" aria-label="Next: Section Wipe"><span><span class="hb-dir">Next: </span>Section Wipe</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">01.17 · Scroll-Based</p>
+    <h1>Progress Bar</h1>
+    <p class="hb-lede">A bar fills as you read down the page. Best for long articles.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Scroll it</h2><p>Scroll inside the box, or press Play and it scrolls for you.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage">
+      <div id="top-bar" aria-hidden="true"></div>
+      <div id="side-rail" aria-hidden="true"><div id="side-fill"></div></div>
+      <svg id="circ" width="48" height="48" viewBox="0 0 36 36" aria-hidden="true">
+        <circle class="circ-bg" cx="18" cy="18" r="16"/>
+        <circle class="circ-fg" id="circ-fg" cx="18" cy="18" r="16"/>
+        <text class="circ-text" id="circ-txt" x="18" y="18">0%</text>
+      </svg>
+      <div class="scroller" id="scroller" data-hb-scroller tabindex="0" role="region" aria-label="An article with a reading progress indicator">
+        <div class="article">
+          <h3 class="art-title">How a reading progress bar works</h3>
+          <p class="art-byline">Animation Handbook · Reference</p>
+          <p class="art-body">A progress bar tells readers how far through an article they are. It fills as they scroll down, and it is full when the last line comes into view.</p>
+          <p class="art-pull">“It answers one question: how much is left?”</p>
+          <p class="art-body">It compares how far the page has scrolled with how far it can scroll in total, so the bar reaches the end exactly when there is nothing left to read.</p>
+          <h4 class="art-h2">Where to put it</h4>
+          <p class="art-body">A bar across the top is the most noticeable choice. It sits in plain sight and tells readers this is a long piece. A thin rail down the side does the same job more quietly, which is why many magazines prefer it.</p>
+          <p class="art-body">A ring in the corner takes the least room. It fills around its edge like a clock face and can show the percentage in the middle.</p>
+          <h4 class="art-h2">How thick to make it</h4>
+          <p class="art-body">A hairline bar is almost invisible until you look for it; a thick one is hard to miss. News sites tend to keep it thin, while documentation often makes it bolder, because readers there want to keep track of their place.</p>
+          <h4 class="art-h2">Keeping it smooth</h4>
+          <p class="art-body">Whatever it looks like, the indicator should move with the scroll and never make the page stutter, especially on phones.</p>
+        </div>
+      </div>
+      <div class="fx" inert aria-hidden="true">
+        <div class="fx-in">
+          <div class="mwrap">
+            <div class="map"><i class="mstart"></i><i class="mframe"><span class="cap" data-hb-caption>In the box</span></i></div>
+            <div class="brk"><i></i></div>
+            <p class="cap cap-map" data-hb-caption>Whole article</p>
+            <p class="cap cap-sc" data-hb-caption>Scrolled</p>
+            <p class="cap cap-far" data-hb-caption>How far it can scroll</p>
+          </div>
+        </div>
+        <div class="fx-cmp">
+          <div class="half h1"><p class="cap" data-hb-caption>No indicator</p></div>
+          <div class="half h2"><p class="cap" data-hb-caption>With a bar</p></div>
+          <i class="split"></i>
+        </div>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-scroll" data-hb-autoscroll><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>Play</button>
+      <button class="hb-play" type="button" id="btn-top" data-hb-top><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Back to top</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the strip is the whole article and the frame is the box; the fill is the distance scrolled out of the distance it can scroll. Scroll the box or press Play to watch.</p>
+      <p data-hb-for="compare" hidden>No indicator gives no sign of how much is left; With a bar fills as the same text scrolls, full when the last line shows. Scroll the box or press Play to watch.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then scroll again or press Play.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="style-lbl">Indicator</p>
+        <div class="seg" id="style-seg" role="group" aria-labelledby="style-lbl">
+          <button type="button" data-s="top" class="on" aria-pressed="true">Top bar</button>
+          <button type="button" data-s="circ" aria-pressed="false">Ring</button>
+          <button type="button" data-s="rail" aria-pressed="false">Side rail</button>
+        </div>
+        <p class="hb-hint">The top bar is the loudest; the side rail the quietest.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="thick-lbl">Thickness</p>
+        <div class="seg" id="thick-seg" role="group" aria-labelledby="thick-lbl">
+          <button type="button" data-px="2" aria-pressed="false">Thin</button>
+          <button type="button" data-px="3" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-px="6" aria-pressed="false">Thick</button>
+        </div>
+        <p class="hb-hint">Thin is barely there; thick is hard to miss.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="color-lbl">Color</p>
+          <div class="swatches" id="color-sw" role="group" aria-labelledby="color-lbl">
+            <button type="button" class="on" aria-pressed="true" aria-label="Blue" data-c="#6ea8ff" style="background:#6ea8ff"></button>
+            <button type="button" aria-pressed="false" aria-label="Green" data-c="#56d364" style="background:#56d364"></button>
+            <button type="button" aria-pressed="false" aria-label="Orange" data-c="#ffa657" style="background:#ffa657"></button>
+            <button type="button" aria-pressed="false" aria-label="Purple" data-c="#d2a8ff" style="background:#d2a8ff"></button>
+          </div>
+          <p class="hb-hint">The color of the bar, the ring or the rail.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a reading progress indicator to [your article or long page]. Work out how far the reader has scrolled as a share of the total distance they can scroll, and show it as a bar that fills along the top, a ring that fills in a corner, or a thin rail down the side, so it is full exactly when the last line is in view. Keep the indicator outside the scrolling content so it stays in place, and grow it with a transform rather than by changing its width, so scrolling stays smooth. Hide the indicator from screen readers; it only repeats what scrolling shows. It follows the reader's own scrolling, so reduced motion needs no change. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Long articles</li><li>Documentation</li><li>Tutorials</li><li>Reports</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Short pages</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const scroller=document.getElementById('scroller'),topBar=document.getElementById('top-bar');
+  const rail=document.getElementById('side-rail'),sideFill=document.getElementById('side-fill');
+  const circ=document.getElementById('circ'),circFg=document.getElementById('circ-fg'),circTxt=document.getElementById('circ-txt');
+  const vars=document.documentElement.style;
+  const CIRC=100.53; // the ring's circumference, 2πr for r=16
+  let ticking=false,shown=-1;
+
+  function setStyle(s){
+    stage.style.setProperty('--mt',s==='circ'?'86px':'38px'); // See inside: the map sits below the ring
+    capName.textContent=NAMES[s];
+    compareNote.textContent=NOTE.replace(NAMES.top,NAMES[s]);
+    topBar.style.display=s==='top'?'block':'none';
+    circ.style.display=s==='circ'?'block':'none';
+    rail.style.display=s==='rail'?'block':'none';
+  }
+
+  function update(){
+    ticking=false;
+    const max=scroller.scrollHeight-scroller.clientHeight,st=scroller.scrollTop;
+    // within a pixel of the end counts as the end, so the fill is full exactly when the last line is in view
+    const p=max>0?(max-st<1?1:st/max):0;
+    if(p===shown)return;
+    shown=p;
+    topBar.style.transform=`scaleX(${p})`;
+    sideFill.style.transform=`scaleY(${p})`;
+    circFg.style.strokeDashoffset=CIRC-(p*CIRC);
+    circTxt.textContent=Math.round(p*100)+'%';
+    if(mode==='inside'){
+      // the frame slides down the map as far as the box has scrolled, and the bracket fills the same share
+      mframe.style.transform=`translateY(${Math.round(p*travel)}px)`;
+      brkFill.style.transform=`scaleY(${p})`;
+      capSc.hidden=p*travel<24; // "Scrolled" shows once the filled part is taller than its label
+    }else if(mode==='compare'){
+      // both copies show the article from its title (share 0) to its last line (share 1), so the halves always match
+      const off=-Math.round(p*Math.max(0,contentH-halfH));
+      copies.forEach(c=>{c.style.transform=`translate3d(0,${off}px,0)`});
+    }
+  }
+
+  // ── See inside and Compare ──
+  const stage=document.querySelector('.stage'),fx=stage.querySelector('.fx');
+  const mwrap=fx.querySelector('.mwrap'),map=fx.querySelector('.map'),mframe=fx.querySelector('.mframe'),mstart=fx.querySelector('.mstart');
+  const brk=fx.querySelector('.brk'),brkFill=brk.firstElementChild,capSc=fx.querySelector('.cap-sc'),capFar=fx.querySelector('.cap-far');
+  const halves=[...fx.querySelectorAll('.half')],capName=halves[1].querySelector('.cap');
+  const compareNote=document.querySelector('[data-hb-for="compare"]'),NOTE=compareNote.textContent;
+  const NAMES={top:'With a bar',circ:'With a ring',rail:'With a rail'};
+  const LABELS={
+    normal:'An article with a reading progress indicator',
+    inside:'The article with a map of the whole text, the part in the box framed, and how far it has scrolled out of how far it can',
+    compare:'The article twice, one above the other: with no indicator, and with the reading progress indicator'
+  };
+  // Compare's copies are made once: inert, hidden from screen readers and without ids (the article has none)
+  const article=scroller.querySelector('.article');
+  const wins=halves.map(h=>{const w=document.createElement('div'),c=document.createElement('div');w.className='win';c.append(article.cloneNode(true));w.append(c);h.append(w);return w});
+  const copies=wins.map(w=>w.firstChild);
+  // the map's blocks: one per part of the article
+  const blocks=[...article.children].map(el=>{
+    const b=document.createElement('i');
+    b.className='mb '+(el.matches('.art-title,.art-h2')?'hd':el.matches('.art-byline')?'by':el.matches('.art-pull')?'qt':'');
+    map.prepend(b);return [el,b];
+  });
+  let mode='normal',contentH=0,boxH=0,halfH=0,travel=0;
+
+  // Measured at load, on resize, when the font arrives and when the mode or the indicator changes: never once per scroll frame
+  function measure(){
+    shown=-1;
+    if(mode==='normal')return;
+    contentH=scroller.scrollHeight;boxH=scroller.clientHeight;
+    if(mode==='inside'){
+      const r=boxH/contentH,pct=(r*100)+'%';
+      travel=mwrap.clientHeight*(1-r);
+      mframe.style.height=mstart.style.height=pct;
+      brk.style.height=capFar.style.top=((1-r)*100)+'%';
+      blocks.forEach(([el,b])=>{b.style.top=(el.offsetTop/contentH*100)+'%';b.style.height=`calc(${el.offsetHeight/contentH*100}% - 1px)`});
+    }else halfH=wins[0].clientHeight;
+  }
+
+  document.addEventListener('hb:mode',e=>{
+    mode=e.detail.mode;
+    scroller.setAttribute('aria-label',LABELS[mode]);
+    measure();update();
+  });
+
+  scroller.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(update);ticking=true}},{passive:true});
+  // The range depends on the box and the text: measure again when the box changes size or the site font arrives.
+  addEventListener('resize',()=>{measure();update()});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{measure();update()});
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  choices('style-seg',d=>{setStyle(d.s);measure();update()});
+  choices('thick-seg',d=>vars.setProperty('--bar-thick',d.px+'px'));
+  choices('color-sw',d=>vars.setProperty('--bar-color',d.c));
+  setStyle('top');update();
+</script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sticky Section — Animation Handbook</title>
+  <meta name="description" content="A section holds still while its content changes. Best for feature tours.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/sticky-section/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Sticky Section — Animation Handbook">
+  <meta property="og:description" content="A section holds still while its content changes. Best for feature tours.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/sticky-section/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sticky Section — Animation Handbook">
+  <meta name="twitter:description" content="A section holds still while its content changes. Best for feature tours.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Sticky Section", "name": "Sticky Section", "description": "A section holds still while its content changes. Best for feature tours.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/sticky-section/", "inLanguage": "en", "articleSection": "Scroll-Based", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Scroll-Based, Sticky Section"}</script>
+  <style>
+    :root{--bg:#0b0b0d;--ui-bg:#111114;--ui-accent:#6ea8ff}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    /* 100cqh is one stage height: the stage is the size container, so the pinned frame is exactly one box tall at every size */
+    .stage{position:relative;overflow-y:auto;scrollbar-width:none;container-type:size;background:#0b0b0d}
+    .stage::-webkit-scrollbar{display:none}
+    /* Lead-in and lead-out */
+    .spacer{height:60cqh;display:flex;align-items:center;justify-content:center;padding:0 24px;font-size:13px;color:#8a8a92;letter-spacing:.1em;text-align:center}
+    /* Sticky section: four box heights of scrolling, three of them with the frame held still */
+    #sticky-wrap{height:400cqh;position:relative}
+    #sticky-inner{position:sticky;top:0;height:100cqh;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:0}
+    /* States */
+    .state{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,4vw,40px);opacity:0;pointer-events:none;transition:opacity .5s ease}
+    .state.visible{opacity:1;pointer-events:auto}
+    .state-eye{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+    .state-head{font-size:clamp(20px,2.6vw,28px);font-weight:700;line-height:1.2;margin-bottom:16px}
+    .state-body{font-size:15px;line-height:1.6;color:#adadb2;max-width:340px}
+    /* Visual column */
+    #vis-col{position:sticky;top:0;height:100cqh;background:var(--ui-bg);display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .illus{position:absolute;width:min(280px,80%);aspect-ratio:1;opacity:0;transition:opacity .6s ease;display:flex;align-items:center;justify-content:center}
+    .illus.visible{opacity:1}
+    /* Text column */
+    #text-col{position:relative;height:100cqh;background:var(--bg)}
+    @media(max-width:600px){#sticky-inner{grid-template-columns:1fr}#vis-col{display:none}}
+    /* A layer fixed to the box (sticky and no taller than a line, at the top of the scroll content) holds the labels the two
+       views draw. None of it, and none of the bars, badges or the Compare copy, is drawn in Normal. */
+    .fx{position:sticky;top:0;height:0;z-index:5;display:none;pointer-events:none}
+    .fx-box{position:absolute;left:0;top:0;width:100%;height:100cqh;overflow:hidden}
+    .fx-box>span,.bar,.badge,.cmp{display:none}
+    .bar{position:absolute;left:0;right:0;bottom:0;height:4px;overflow:hidden;background:rgba(255,255,255,.16)}
+    .bar i{display:block;height:100%;background:var(--c);transform:scaleX(0);transform-origin:left}
+    .cap{padding:3px 8px;border-radius:6px;background:#0b0b0d;border:1px solid rgba(255,255,255,.3);color:#f4f4f2;font:600 12px/1.25 var(--hb-font)}
+    .stage[data-hb-mode="inside"],.stage[data-hb-mode="compare"]{overflow-anchor:none}
+    .stage[data-hb-mode="inside"] .fx,.stage[data-hb-mode="compare"] .fx{display:block}
+    .stage[data-hb-mode="inside"] .state-body{display:none}
+    /* See inside: the four steps fanned out on a diagonal, step 1 top left to step 4 bottom right, the pictures the same way */
+    .stage[data-hb-mode="inside"]{--cw:58.6%;--cs:13.4%;--ps:min(27cqh,112px,12.5cqw - 6px)}
+    .stage[data-hb-mode="inside"] :is(.state,.illus){--T:14px;--B:8px;--ch:60px;--v:calc((100cqh - var(--T) - var(--B) - var(--ch))/3)}
+    .stage[data-hb-mode="inside"] :is(.state,.illus):nth-child(1){--i:0;--c:#79c0ff}
+    .stage[data-hb-mode="inside"] :is(.state,.illus):nth-child(2){--i:1;--c:#56d364}
+    .stage[data-hb-mode="inside"] :is(.state,.illus):nth-child(3){--i:2;--c:#ffa657}
+    .stage[data-hb-mode="inside"] :is(.state,.illus):nth-child(4){--i:3;--c:#d2a8ff}
+    .stage[data-hb-mode="inside"] .state{inset:auto;left:calc(6px + var(--i)*var(--cs));top:calc(var(--T) + var(--i)*var(--v));width:calc(var(--cw) - 8px);height:var(--ch);
+      justify-content:flex-start;padding:5px 10px 6px;background:#17171c;border:1px solid rgba(255,255,255,.22);border-radius:10px;opacity:.5}
+    .stage[data-hb-mode="inside"] .state.visible{opacity:1;z-index:2;outline:2px solid var(--c);outline-offset:0}
+    .stage[data-hb-mode="inside"] .state-eye{letter-spacing:1px;margin-bottom:2px;line-height:1.15}
+    .stage[data-hb-mode="inside"] .state-head{font-size:14px;line-height:1.15;margin-bottom:0}
+    .stage[data-hb-mode="inside"] .bar{display:block;border-radius:0 0 9px 9px}
+    .stage[data-hb-mode="inside"][data-held] .state.visible .badge{display:block;position:absolute;top:-12px;right:6px;z-index:3;padding:0 7px}
+    .stage[data-hb-mode="inside"] .fx-box>.lbl-frame{display:block;position:absolute;top:6px;right:8px;max-width:34%;text-align:right}
+    .stage[data-hb-mode="inside"][data-held] .fx-box>.lbl-wait{display:block;position:absolute;left:8px;bottom:8px;max-width:34%}
+    .stage[data-hb-mode="inside"] .illus{--ch:var(--ps);left:calc(12px + var(--i)*((100% - var(--ps) - 24px)/3));top:calc(var(--T) + var(--i)*var(--v));width:var(--ps);padding:6px;
+      background:#17171c;border:1px solid rgba(255,255,255,.22);border-radius:10px;opacity:.5}
+    .stage[data-hb-mode="inside"] .illus.visible{opacity:1;z-index:2;outline:2px solid var(--c)}
+    .stage[data-hb-mode="inside"] .illus svg{width:100%;height:100%}
+    @media(min-width:601px){.stage[data-hb-mode="inside"] .fx-box>.lbl-frame{right:calc(50% + 8px);max-width:18%}
+      .stage[data-hb-mode="inside"][data-held] .fx-box>.lbl-wait{max-width:18%}
+      }
+    @container (max-height:299px){.stage[data-hb-mode="inside"] :is(.state,.illus){--T:11px;--B:4px}.stage[data-hb-mode="inside"] .state{--ch:52px;padding:3px 10px 5px}
+      .stage[data-hb-mode="inside"] .state-eye{font-size:11px;margin-bottom:1px}.stage[data-hb-mode="inside"] .state-head{font-size:13px;line-height:1.1}}
+    @container (min-height:361px){.stage[data-hb-mode="inside"] .state{--ch:66px}.stage[data-hb-mode="inside"] .state-head{font-size:15px}}
+    /* Compare: the wrapper becomes two columns, the four steps as ordinary blocks (not held) on the left, the page's own held
+       frame, still sticky in its column, on the right. The wrapper keeps its height, so the scroll keeps its length. */
+    .cmp{background:#0b0b0d}
+    .blk{height:100cqh;display:grid;grid-template-columns:1fr 1fr}
+    .blk+.blk{border-top:1px solid rgba(255,255,255,.16)}
+    .blk-w{position:relative;padding:max(40px,13cqh) 14px 0;min-width:0}
+    .blk-p{background:var(--ui-bg);display:flex;justify-content:center;align-items:flex-start;padding-top:12cqh}
+    .blk-p svg{width:60%;height:auto}
+    .blk-n{position:absolute;left:14px;bottom:10px;font-size:44px;font-weight:700;line-height:1;color:var(--c);opacity:.3}
+    .stage[data-hb-mode="compare"] #sticky-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:100%}
+    .stage[data-hb-mode="compare"] #sticky-wrap::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,.45)}
+    .stage[data-hb-mode="compare"] .cmp{display:block}
+    .stage[data-hb-mode="compare"] #sticky-inner{align-self:start;min-width:0}
+    .stage[data-hb-mode="compare"] .state{justify-content:flex-start;padding:max(40px,13cqh) 14px 0}
+    .stage[data-hb-mode="compare"] .state-body{display:none}
+    .stage[data-hb-mode="compare"] .state-eye{letter-spacing:1px;margin-bottom:8px}
+    .stage[data-hb-mode="compare"] .state-head{font-size:clamp(15px,1.8vw,18px);line-height:1.2;margin-bottom:0}
+    .stage[data-hb-mode="compare"] .illus{top:12cqh;width:60%}
+    .stage[data-hb-mode="compare"] .illus svg{width:100%;height:100%}
+    .stage[data-hb-mode="compare"] .fx-box>.name{display:block;position:absolute;top:6px}
+    .stage[data-hb-mode="compare"] .fx-box>.n1{left:8px}
+    .stage[data-hb-mode="compare"] .fx-box>.n2{left:calc(50% + 8px)}
+    @media(max-width:600px){.blk{grid-template-columns:1fr}.blk-p{display:none}
+      .stage[data-hb-mode="compare"] .state,.blk-w{padding:max(40px,13cqh) 10px 0}.blk-n{left:10px}}
+    @media(prefers-reduced-motion:reduce){.state,.illus{transition:none!important}}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="scroll" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../horizontal-scroll/" rel="prev" aria-label="Previous: Horizontal Scroll"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Horizontal Scroll</span></a><a href="../counter-animation/" rel="next" aria-label="Next: Counter Animation"><span><span class="hb-dir">Next: </span>Counter Animation</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">01.15 · Scroll-Based</p>
+    <h1>Sticky Section</h1>
+    <p class="hb-lede">A section holds still while its content changes. Best for feature tours.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Scroll it</h2><p>Scroll inside the box, or press Play and it scrolls for you.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage" tabindex="0" role="region" aria-label="A section that holds still while its content changes">
+      <div class="fx" aria-hidden="true" inert>
+        <div class="fx-box">
+          <span class="cap lbl-frame" data-hb-caption>Moves with the page</span>
+          <span class="cap lbl-wait" data-hb-caption>The others wait, hidden</span>
+          <span class="cap name n1" data-hb-caption>Scrolls past</span>
+          <span class="cap name n2" data-hb-caption>Holds still</span>
+        </div>
+      </div>
+      <p class="spacer">Scroll down ↓</p>
+      <div id="sticky-wrap">
+        <div id="sticky-inner">
+          <div id="text-col">
+            <div class="state">
+              <p class="state-eye" style="color:#79c0ff">Step 01 · Hold</p>
+              <h3 class="state-head">The section stays put.</h3>
+              <p class="state-body">Once it reaches the top of the box, the whole section stops moving while you keep scrolling.</p>
+            </div>
+            <div class="state">
+              <p class="state-eye" style="color:#56d364">Step 02 · Change</p>
+              <h3 class="state-head">Scrolling changes what is inside.</h3>
+              <p class="state-body">Each stretch of scrolling swaps the words and the picture for the next step, instead of moving the page.</p>
+            </div>
+            <div class="state">
+              <p class="state-eye" style="color:#ffa657">Step 03 · Fade</p>
+              <h3 class="state-head">Each step fades into the next.</h3>
+              <p class="state-body">The change is a quick fade, so the section reads as one frame stepping forward.</p>
+            </div>
+            <div class="state">
+              <p class="state-eye" style="color:#d2a8ff">Step 04 · Release</p>
+              <h3 class="state-head">Then the page moves on.</h3>
+              <p class="state-body">After the last step, the section scrolls away and the page carries on as normal.</p>
+            </div>
+          </div>
+          <div id="vis-col">
+            <div class="illus">
+              <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="30" y="30" width="140" height="140" rx="12" fill="none" stroke="#79c0ff" stroke-width="2" opacity=".4"/>
+                <rect x="55" y="55" width="90" height="90" rx="8" fill="none" stroke="#79c0ff" stroke-width="2" opacity=".6"/>
+                <rect x="80" y="80" width="40" height="40" rx="4" fill="#79c0ff" opacity=".3"/>
+                <circle cx="100" cy="100" r="8" fill="#79c0ff"/>
+              </svg>
+            </div>
+            <div class="illus">
+              <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <line x1="100" y1="20" x2="100" y2="180" stroke="#56d364" stroke-width="2" opacity=".4"/>
+                <line x1="20" y1="100" x2="180" y2="100" stroke="#56d364" stroke-width="2" opacity=".4"/>
+                <circle cx="100" cy="40" r="12" fill="#56d364" opacity=".6"/>
+                <circle cx="160" cy="100" r="12" fill="#56d364" opacity=".5"/>
+                <circle cx="100" cy="160" r="12" fill="#56d364" opacity=".4"/>
+                <circle cx="40" cy="100" r="12" fill="#56d364" opacity=".3"/>
+                <circle cx="100" cy="100" r="6" fill="#56d364"/>
+              </svg>
+            </div>
+            <div class="illus">
+              <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <polygon points="100,20 180,170 20,170" fill="none" stroke="#ffa657" stroke-width="2" opacity=".5"/>
+                <polygon points="100,55 155,155 45,155" fill="none" stroke="#ffa657" stroke-width="2" opacity=".5"/>
+                <polygon points="100,90 130,140 70,140" fill="#ffa657" opacity=".2"/>
+                <circle cx="100" cy="110" r="6" fill="#ffa657"/>
+              </svg>
+            </div>
+            <div class="illus">
+              <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="100" cy="100" r="70" fill="none" stroke="#d2a8ff" stroke-width="2" opacity=".3"/>
+                <circle cx="100" cy="100" r="50" fill="none" stroke="#d2a8ff" stroke-width="2" opacity=".4"/>
+                <circle cx="100" cy="100" r="30" fill="none" stroke="#d2a8ff" stroke-width="2" opacity=".6"/>
+                <circle cx="100" cy="100" r="8" fill="#d2a8ff" opacity=".8"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="spacer">The page moves on ↓</p>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-scroll" data-hb-autoscroll><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>Play</button>
+      <button class="hb-play" type="button" id="btn-top" data-hb-top><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Back to top</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the four steps sit stacked in the frame, only the lit one showing; each bar fills during that step's share of the scroll. Scroll the box or press Play to watch.</p>
+      <p data-hb-for="compare" hidden>Scrolls past shows the four steps as ordinary blocks going by; Holds still keeps the frame at the top while the steps change in place. Scroll the box or press Play to watch.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a sticky section to [the steps or features you want to walk through]. Make the section several screens tall and pin its inner frame to the top of the screen while the visitor scrolls through it. Split that scroll distance into equal parts, one per step, and as each part is reached, fade the text and the picture over to the next step while the frame itself stays still. After the last step, let the section scroll away so the page carries on. Work out the step from the scroll position, so scrolling back up steps backwards. If the visitor has reduced motion turned on, switch the steps without fading.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own steps.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Feature tours</li><li>How-it-works steps</li><li>Product pages</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Long text</li><li>Short pages</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const stage=document.getElementById('stage'),wrap=document.getElementById('sticky-wrap');
+  const states=[...document.querySelectorAll('.state')],illus=[...document.querySelectorAll('.illus')];
+  let ticking=false,mode='normal',lastHeld=null;
+  const clamp=(v,a,b)=>Math.min(Math.max(v,a),b);
+  // The views' own parts are added after the two lists above are taken, so update() still lights only the real steps:
+  // a bar and a badge on each step, and Compare's left half, four ordinary blocks that are inert and have no ids
+  states.forEach(s=>s.insertAdjacentHTML('beforeend','<span class="bar" aria-hidden="true"><i></i></span><span class="cap badge" data-hb-caption aria-hidden="true">Showing now</span>'));
+  const bars=states.map(s=>s.querySelector('.bar i')),frameLbl=stage.querySelector('.lbl-frame');
+  const cmp=document.createElement('div');cmp.className='cmp';cmp.inert=true;cmp.setAttribute('aria-hidden','true');
+  states.forEach((s,i)=>{
+    const eye=s.querySelector('.state-eye');
+    cmp.insertAdjacentHTML('beforeend','<div class="blk"><div class="blk-w"><span class="blk-n">0'+(i+1)+'</span></div><div class="blk-p"></div></div>');
+    const b=cmp.lastElementChild;b.style.setProperty('--c',eye.style.color);
+    b.firstElementChild.prepend(eye.cloneNode(true),s.querySelector('.state-head').cloneNode(true));
+    b.lastElementChild.append(illus[i].firstElementChild.cloneNode(true));
+  });
+  wrap.prepend(cmp);
+  const LABELS={
+    normal:'A section that holds still while its content changes',
+    inside:'The section\'s four steps fanned out from where they sit stacked, the one showing lit, each with a bar for its share of the scroll',
+    compare:'The four steps twice: as ordinary blocks that scroll past, and in a frame that holds still while they change'
+  };
+
+  function update(){
+    const st=stage.scrollTop,stageH=stage.clientHeight;
+    const pinStart=wrap.offsetTop,pinH=wrap.offsetHeight;
+    const p=clamp((st-pinStart)/(pinH-stageH),0,1);
+    const si=Math.min(Math.floor(p*4),3);
+    states.forEach((s,i)=>s.classList.toggle('visible',i===si));
+    illus.forEach((il,i)=>il.classList.toggle('visible',i===si));
+    if(mode==='inside'){
+      // each bar fills during its own quarter of the held scroll; the frame is held from pinStart to the end of the wrapper
+      bars.forEach((b,i)=>{b.style.transform='scaleX('+clamp(p*4-i,0,1)+')'});
+      const held=st>=pinStart-1&&st<=pinStart+pinH-stageH+1;
+      stage.toggleAttribute('data-held',held);
+      if(held!==lastHeld){frameLbl.textContent=held?'Held at the top':'Moves with the page';lastHeld=held}
+    }
+    ticking=false;
+  }
+  function schedule(){if(!ticking){requestAnimationFrame(update);ticking=true}}
+
+  // Draws the mode at once, for where the box stands
+  document.addEventListener('hb:mode',e=>{
+    mode=e.detail.mode;lastHeld=null;
+    if(mode!=='inside')stage.removeAttribute('data-held');
+    stage.setAttribute('aria-label',LABELS[mode]);
+    update();
+  });
+  stage.addEventListener('scroll',schedule,{passive:true});
+  window.addEventListener('resize',schedule);
+  update();
+</script>
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hover State Animation — Animation Handbook</title>
+  <meta name="description" content="Six ways a card can react when you point at it. Best for buttons and cards.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/hover-state/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Hover State Animation — Animation Handbook">
+  <meta property="og:description" content="Six ways a card can react when you point at it. Best for buttons and cards.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/hover-state/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Hover State Animation — Animation Handbook">
+  <meta name="twitter:description" content="Six ways a card can react when you point at it. Best for buttons and cards.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Hover State Animation", "name": "Hover State Animation", "description": "Six ways a card can react when you point at it. Best for buttons and cards.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/hover-state/", "inLanguage": "en", "articleSection": "Micro-Interactions", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Micro-Interactions, Hover State Animation"}</script>
+  <style>
+    :root{--ui-accent:#ff9d5c;--ui-bg:#111114;--ui-border:rgba(255,255,255,.09);--dur:180ms;--ease:ease}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{display:flex;align-items:center;justify-content:center;padding:16px;background:#0b0b0d}
+    /* A window this short gives the stage 260 to 290px, less than the six cards need: the stage gives up some padding, the cards keep their size */
+    @media(min-width:601px) and (max-height:620px){.stage{padding:10px}}
+    .hgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%}
+    .hcard{background:var(--ui-bg);border:1px solid var(--ui-border);border-radius:8px;padding:14px 12px;cursor:pointer;min-height:72px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;-webkit-user-select:none;user-select:none}
+    .hcard-name{font-size:15px;font-weight:700}
+    /* Each change plays on hover (only where a pointer can hover), while pressed (the tap on touch screens), while the card has
+       keyboard focus (:focus-visible, outside the hover gate, so a Tab shows it on any device) and while Show me points at the card (.is-demo) */
+    /* 1. Color change */
+    .h-color{transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+    @media(hover:hover){.h-color:hover{background:#2a201a;border-color:var(--ui-accent)}}
+    .h-color:active,.h-color:focus-visible,.h-color.is-demo,
+    .stage[data-hb-mode="inside"] .twin.h-color{background:#2a201a;border-color:var(--ui-accent)}
+    /* 2. Grow */
+    .h-scale{transition:transform var(--dur) var(--ease)}
+    @media(hover:hover){.h-scale:hover{transform:scale(1.03)}}
+    .h-scale:active,.h-scale:focus-visible,.h-scale.is-demo,.stage[data-hb-mode="inside"] .twin.h-scale{transform:scale(1.03)}
+    /* 3. Lift: the card moves up and its shadow, a layer of its own, fades in */
+    .h-lift{overflow:visible;transition:transform var(--dur) var(--ease)}
+    .h-lift::after{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:0 8px 24px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity var(--dur) var(--ease)}
+    @media(hover:hover){.h-lift:hover{transform:translateY(-4px)}.h-lift:hover::after{opacity:1}}
+    .h-lift:active,.h-lift:focus-visible,.h-lift.is-demo,.stage[data-hb-mode="inside"] .twin.h-lift{transform:translateY(-4px)}
+    .h-lift:active::after,.h-lift:focus-visible::after,.h-lift.is-demo::after,.stage[data-hb-mode="inside"] .twin.h-lift::after{opacity:1}
+    /* 4. Underline: a line as wide as the link, scaled out from the left */
+    .h-underline .card-link{display:inline-block;align-self:flex-start;position:relative;color:var(--ui-accent);font-size:15px;font-weight:700}
+    .h-underline .card-link::after{content:'';position:absolute;bottom:-2px;left:0;width:100%;height:1px;background:var(--ui-accent);transform:scaleX(0);transform-origin:left;transition:transform var(--dur) var(--ease)}
+    @media(hover:hover){.h-underline:hover .card-link::after{transform:scaleX(1)}}
+    .h-underline:active .card-link::after,.h-underline:focus-visible .card-link::after,.h-underline.is-demo .card-link::after,
+    .stage[data-hb-mode="inside"] .twin.h-underline .card-link::after{transform:scaleX(1)}
+    /* 5. Arrow nudge */
+    .h-icon-row{display:flex;align-items:center;gap:8px}
+    .arrow{display:inline-block;transition:transform var(--dur) var(--ease);font-size:14px}
+    @media(hover:hover){.h-icon:hover .arrow{transform:translateX(6px)}}
+    .h-icon:active .arrow,.h-icon:focus-visible .arrow,.h-icon.is-demo .arrow,.stage[data-hb-mode="inside"] .twin.h-icon .arrow{transform:translateX(6px)}
+    /* 6. Sweep */
+    .h-sweep::before{content:'';position:absolute;inset:0;background:rgba(255,157,92,.13);transform:translateX(-100%);transition:transform var(--dur) var(--ease)}
+    @media(hover:hover){.h-sweep:hover::before{transform:translateX(0)}}
+    .h-sweep:active::before,.h-sweep:focus-visible::before,.h-sweep.is-demo::before,.stage[data-hb-mode="inside"] .twin.h-sweep::before{transform:translateX(0)}
+    /* See inside and Compare. The script gives every card a copy (a twin: inert, with an arrow beside it) and the markup holds the heads,
+       the caption and two pointers; none of it shows in Normal. See inside sets each twin in its card's pointed-at look (the rules
+       above name it) beside the real card, which still reacts. Compare puts the twins, at rest, in the left half: cards that never react. */
+    .twin-box,.pair-arrow,.heads,.vtag,.cursor{display:none}
+    .twin-box{position:relative;pointer-events:none}
+    .twin-box.moves::after{content:'';position:absolute;inset:0;border:1px dashed rgba(244,244,242,.45);border-radius:8px;pointer-events:none;display:none}
+    .vtag{position:relative;z-index:2;justify-self:start;align-self:center;padding:3px 7px;border:1px solid rgba(255,255,255,.14);border-radius:5px;background:rgba(11,11,13,.94);color:#f4f4f2;font:600 13px/1.25 var(--hb-font);white-space:nowrap}
+    .vtag.cap{grid-column:1/-1;max-width:100%;white-space:normal}
+    .pair-arrow{align-items:center;justify-content:center;color:#a8a8b2}
+    .pair-arrow svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .cursor{position:absolute;left:-1px;top:-1px;z-index:4;width:17px;height:25px;pointer-events:none;visibility:hidden}
+    .cursor path{fill:#f4f4f2;stroke:#0b0b0d;stroke-width:1.5;stroke-linejoin:round}
+    .cursor.ghost{opacity:.7}
+    .stage[data-hb-mode="inside"] .hgrid,.stage[data-hb-mode="compare"] .hgrid{position:relative;grid-auto-flow:row dense;gap:8px 0;grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr) 14px minmax(0,1fr) 20px minmax(0,1fr)}
+    .stage[data-hb-mode="compare"] .hgrid{grid-template-columns:minmax(0,1fr) 8px minmax(0,1fr) 28px minmax(0,1fr) 8px minmax(0,1fr)}
+    .stage[data-hb-mode="compare"] .hgrid::before{content:'';position:absolute;left:50%;top:0;bottom:0;border-left:1px dashed rgba(255,255,255,.16)}
+    .stage[data-hb-mode="inside"] .hcard,.stage[data-hb-mode="compare"] .hcard{min-height:56px;padding:8px 10px}
+    .stage[data-hb-mode="inside"] .twin-box,.stage[data-hb-mode="compare"] .twin-box{display:grid}
+    .stage[data-hb-mode="inside"] .pair-arrow,.stage[data-hb-mode="inside"] .hd-in,.stage[data-hb-mode="compare"] .hd-cmp,.stage[data-hb-mode="inside"] .cap,.stage[data-hb-mode="compare"] .cap{display:block}
+    .stage[data-hb-mode="inside"] .pair-arrow{display:flex}
+    .stage[data-hb-mode="compare"] .cursor{display:block}
+    .stage[data-hb-mode="inside"] .twin-box.moves::after{display:block}
+    .stage[data-hb-mode="inside"] .heads,.stage[data-hb-mode="compare"] .heads{display:grid;grid-column:1/-1;grid-row:1;grid-template-columns:inherit;column-gap:0}
+    .stage[data-hb-mode="inside"] .at-point{grid-column:3}
+    .stage[data-hb-mode="compare"] .never{grid-column:1/4}
+    .stage[data-hb-mode="compare"] .reacts{grid-column:5/-1}
+    .stage[data-hb-mode="compare"] .cap{grid-column:5/-1;justify-self:end}
+    .stage[data-hb-mode="compare"] .hgrid:not(.posed) .cap{visibility:hidden}
+    /* Each pair is the real card, an arrow and its twin: columns 1 to 3, then 5 to 7. In Compare the twins fill the left half, the real cards the right. */
+    .stage[data-hb-mode="inside"] .hgrid>:nth-child(6n+1 of .hcard,.pair-arrow,.twin-box){grid-column:1}
+    .stage[data-hb-mode="inside"] .hgrid>:nth-child(6n+2 of .hcard,.pair-arrow,.twin-box){grid-column:2}
+    .stage[data-hb-mode="inside"] .hgrid>:nth-child(6n+3 of .hcard,.pair-arrow,.twin-box){grid-column:3}
+    .stage[data-hb-mode="inside"] .hgrid>:nth-child(6n+4 of .hcard,.pair-arrow,.twin-box){grid-column:5}
+    .stage[data-hb-mode="inside"] .hgrid>:nth-child(6n+5 of .hcard,.pair-arrow,.twin-box){grid-column:6}
+    .stage[data-hb-mode="inside"] .hgrid>:nth-child(6n+6 of .hcard,.pair-arrow,.twin-box){grid-column:7}
+    .stage[data-hb-mode="compare"] .hgrid>:nth-child(6n+3 of .hcard,.pair-arrow,.twin-box){grid-column:1}
+    .stage[data-hb-mode="compare"] .hgrid>:nth-child(6n+6 of .hcard,.pair-arrow,.twin-box){grid-column:3}
+    .stage[data-hb-mode="compare"] .hgrid>:nth-child(6n+1 of .hcard,.pair-arrow,.twin-box){grid-column:5}
+    .stage[data-hb-mode="compare"] .hgrid>:nth-child(6n+4 of .hcard,.pair-arrow,.twin-box){grid-column:7}
+    /* A narrow box has room for three pairs only (Color change, Underline and Sweep, the clearest changes) in one column */
+    @media(max-width:760px){
+      .stage[data-hb-mode="inside"] .hgrid{grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr)}
+      .stage[data-hb-mode="compare"] .hgrid{grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr)}
+      .stage[data-hb-mode="inside"] .hgrid>:is(.h-scale,.h-lift,.h-icon,.skip),.stage[data-hb-mode="compare"] .hgrid>:is(.h-scale,.h-lift,.h-icon,.skip){display:none}
+      .stage[data-hb-mode="inside"] .hgrid>:nth-child(3n+1 of .hcard,.pair-arrow,.twin-box){grid-column:1}
+      .stage[data-hb-mode="inside"] .hgrid>:nth-child(3n+2 of .hcard,.pair-arrow,.twin-box){grid-column:2}
+      .stage[data-hb-mode="inside"] .hgrid>:nth-child(3n+3 of .hcard,.pair-arrow,.twin-box){grid-column:3}
+      .stage[data-hb-mode="compare"] .hgrid>:nth-child(3n+3 of .hcard,.pair-arrow,.twin-box){grid-column:1}
+      .stage[data-hb-mode="compare"] .hgrid>:nth-child(3n+1 of .hcard,.pair-arrow,.twin-box){grid-column:3}
+      .stage[data-hb-mode="compare"] .never{grid-column:1}
+      .stage[data-hb-mode="compare"] .reacts{grid-column:3}
+      .stage[data-hb-mode="compare"] .cap{grid-column:1/-1}
+    }
+    @media(max-width:760px){
+      .stage[data-hb-mode="inside"] .hcard,.stage[data-hb-mode="compare"] .hcard{min-height:52px;padding-block:6px}
+    }
+    @media(max-height:620px){
+      .stage[data-hb-mode="inside"] .hgrid,.stage[data-hb-mode="compare"] .hgrid{row-gap:6px}
+      .stage[data-hb-mode="inside"] .hcard,.stage[data-hb-mode="compare"] .hcard{min-height:48px;padding-block:4px}
+    }
+    @media(max-width:600px){.stage[data-hb-mode="inside"],.stage[data-hb-mode="compare"]{padding:12px 10px}}
+    /* The twins and the posed tint skip their transitions for the one style change that a mode or a setting makes */
+    .stage.snap .twin,.stage.snap .twin::before,.stage.snap .twin::after,.stage.snap .twin *,.stage.snap .twin *::before,.stage.snap .twin *::after,.stage.snap-pose .hgrid>.h-sweep::before{transition:none!important}
+    /* Compare at rest: the real Sweep card's tint caught a tenth of a second after the pointer arrived (--pose is set from the page's own curve) */
+    .stage[data-hb-mode="compare"] .hgrid.posed>.h-sweep::before{transform:translateX(var(--pose,-100%))}
+    /* Reduced motion: hover states still change, but without the tween */
+    @media(prefers-reduced-motion:reduce){.h-color,.h-scale,.h-lift,.h-lift::after,.arrow,.h-underline .card-link::after,.h-sweep::before{transition:none!important}}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="do" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../click-ripple/" rel="next" aria-label="Next: Click / Tap Ripple"><span><span class="hb-dir">Next: </span>Click / Tap Ripple</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">04.01 · Micro-Interactions</p>
+    <h1>Hover State Animation</h1>
+    <p class="hb-lede">Six ways a card can react when you point at it. Best for buttons and cards.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Hover it</h2><p>Point at a card (press and hold it on a phone, or Tab to it), or press Show me.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage hb-dots">
+      <div style="width:100%">
+        <div class="hgrid">
+          <div class="hcard h-color" tabindex="0" role="button"><div class="hcard-name">Color change</div></div>
+          <div class="hcard h-scale" tabindex="0" role="button"><div class="hcard-name">Grow</div></div>
+          <div class="hcard h-lift" tabindex="0" role="button"><div class="hcard-name">Lift</div></div>
+          <div class="hcard h-underline" tabindex="0" role="button"><span class="card-link">Underline</span></div>
+          <div class="hcard h-icon" tabindex="0" role="button"><div class="h-icon-row"><div class="hcard-name">Arrow nudge</div><span class="arrow" aria-hidden="true">→</span></div></div>
+          <div class="hcard h-sweep" tabindex="0" role="button"><div class="hcard-name">Sweep</div></div>
+          <div class="heads" aria-hidden="true">
+            <span class="vtag hd-in" data-hb-caption>At rest</span><span class="vtag hd-in at-point" data-hb-caption>When pointed at</span>
+            <span class="vtag hd-cmp never" data-hb-caption>Never reacts</span><span class="vtag hd-cmp reacts" data-hb-caption>Reacts</span>
+          </div>
+          <span class="vtag cap" data-hb-caption aria-hidden="true"></span>
+          <svg class="cursor ghost" viewBox="-1 -1 17 25" aria-hidden="true"><path d="M0 0V19L5 14.5L8.5 22L11.5 20.7L8 13.3H14.5Z"/></svg>
+          <svg class="cursor pointer" viewBox="-1 -1 17 25" aria-hidden="true"><path d="M0 0V19L5 14.5L8.5 22L11.5 20.7L8 13.3H14.5Z"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-demo" data-hb-demo><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>Show me</button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo="css" autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, each card sits beside a copy of its look when pointed at; pointing, pressing or Tab slides it from one look to the other. Point at a card, or press Show me.</p>
+      <p data-hb-for="compare" hidden>Never reacts: the cards ignore the pointer, shown as a ghost; Reacts: each card changes as the pointer reaches it. Point at a card, or press Show me.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then try it again or press Show me.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-ms="300" aria-pressed="false">Slow</button>
+          <button type="button" data-ms="180" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-ms="110" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">Quick feels responsive; slow can feel sticky.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="feel-lbl">Feel</p>
+        <div class="seg" id="feel-seg" role="group" aria-labelledby="feel-lbl">
+          <button type="button" data-ease="ease" class="on" aria-pressed="true">Smooth</button>
+          <button type="button" data-ease="cubic-bezier(.34,1.56,.64,1)" aria-pressed="false">Springy</button>
+          <button type="button" data-ease="ease-in-out" aria-pressed="false">Gentle</button>
+          <button type="button" data-ease="linear" aria-pressed="false">Even</button>
+        </div>
+        <p class="hb-hint">Springy goes a little too far, then settles.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add hover feedback to [the buttons, links or cards you want to react]. When the pointer moves over an item, change it in one clear way: shift its background color, grow it slightly, lift it with a deeper shadow, draw an underline out from the left, nudge its arrow forward, or sweep a tint across it. Use one style per kind of item and keep it the same across the page. Apply hover styles only on devices that can hover, and show the same change while an item is pressed on touch screens. If the visitor has reduced motion turned on, switch the look without animating it. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Buttons</li><li>Links</li><li>Cards</li><li>Menus</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Plain text</li><li>Non-clickable items</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const cards=[...document.querySelectorAll('.hcard')];
+  const stage=document.querySelector('.stage');
+  const slowTog=document.getElementById('slow-tog');
+  const vars=document.documentElement.style;
+  let dur=180,runTimers=[];
+
+  // Show me: one run at a time. Every timer of the run goes through later(); stopRun() cancels the whole run.
+  // later(fn, move, hold) waits move*(slow?3:1) + hold ms: Slow motion triples the movement, never the hold.
+  function later(fn,move,hold){
+    const id=setTimeout(()=>{runTimers=runTimers.filter(t=>t!==id);fn()},move*(slowTog.checked?3:1)+(hold||0));
+    runTimers.push(id);
+  }
+  function running(){return runTimers.length>0}
+  function stopRun(){runTimers.forEach(clearTimeout);runTimers=[];cards.forEach(c=>c.classList.remove('is-demo'))}
+  // Card i is pointed at for one change plus a 270ms hold; the next card starts 50ms after it lets go.
+  document.getElementById('btn-demo').addEventListener('click',()=>{
+    stopRun();
+    cards.forEach((c,i)=>{
+      later(()=>c.classList.add('is-demo'),i*dur,i*320);
+      later(()=>c.classList.remove('is-demo'),(i+1)*dur,i*320+270);
+    });
+  });
+  // The visitor pressed, typed, scrolled or touched inside the stage, moved a pointer over it or moved the keyboard focus onto a
+  // card (Tab, which also gives that card its change): the run stops.
+  document.addEventListener('hb:input',()=>{if(running())stopRun()});
+  stage.addEventListener('pointermove',e=>{if(e.isTrusted&&running())stopRun()});
+  stage.addEventListener('focusin',e=>{if(e.isTrusted&&running())stopRun()});
+  // A card stands for a button, and Space on a button does not scroll the page: on a card it does nothing, as a click does.
+  cards.forEach(c=>c.addEventListener('keydown',e=>{if(e.key===' ')e.preventDefault()}));
+
+  // ── See inside and Compare ──
+  // Made once: a twin of every card (inert, hidden from screen readers) and an arrow beside the real card. Normal shows none of it.
+  const grid=document.querySelector('.hgrid'),SWEEP=cards.findIndex(c=>c.matches('.h-sweep'));
+  const twins=cards.map(c=>{
+    const t=c.cloneNode(true),box=document.createElement('div'),ar=document.createElement('span');
+    t.removeAttribute('tabindex');t.removeAttribute('role');t.classList.add('twin');
+    box.className='twin-box';box.setAttribute('inert','');box.setAttribute('aria-hidden','true');box.append(t);
+    ar.className='pair-arrow';ar.setAttribute('aria-hidden','true');ar.innerHTML='<svg viewBox="0 0 16 16"><path d="M2 8h11M9 4l4 4-4 4"/></svg>';
+    if(c.matches('.h-scale,.h-lift'))box.classList.add('moves');
+    if(c.matches('.h-scale,.h-lift,.h-icon'))box.classList.add('skip'),ar.classList.add('skip');
+    c.after(ar,box);
+    return box;
+  });
+  const cap=grid.querySelector('.cap'),pointer=grid.querySelector('.pointer'),ghost=grid.querySelector('.ghost');
+  const insideNote=document.querySelector('[data-hb-for="inside"]'),NOTE=insideNote.textContent;
+  const NOTE_RM='Inside, each card sits beside a copy of its look when pointed at; with reduced motion on, pointing, pressing or Tab switches it to that look at once.';
+  const TIME={300:['about a third of a second','nearly a second'],180:['about a fifth of a second','about half a second'],110:['about a tenth of a second','about a third of a second']};
+  const FEEL={ease:'slowing into place','cubic-bezier(.34,1.56,.64,1)':'going a little too far, then settling','ease-in-out':'easing in and out',linear:'at one steady pace'};
+  const CURVES={ease:[.25,.1,.25,1],'ease-in-out':[.42,0,.58,1],linear:[0,0,1,1]};
+  const RM=matchMedia('(prefers-reduced-motion: reduce)');
+  let mode='normal',ease='ease',mouse=false,lx=0,ly=0,touch=null,lastDemo=-1;
+
+  // How far a card's change has come at progress x (0 to 1) on the Feel now chosen: the curve's bezier, solved for x by halving
+  function curve(x){
+    const [a,b,c,d]=CURVES[ease]||ease.match(/-?[\d.]+/g).map(Number);
+    const at=(t,p,q)=>3*(1-t)*(1-t)*t*p+3*(1-t)*t*t*q+t*t*t;
+    let lo=0,hi=1;
+    for(let i=0;i<24;i++){const m=(lo+hi)/2;if(at(m,a,c)<x)lo=m;else hi=m}
+    return at((lo+hi)/2,b,d);
+  }
+  function say(el,t){if(el.textContent!==t)el.textContent=t}
+  // The note and the caption for the settings now, and how far in the posed Sweep tint is: a tenth of a second at Speed and Feel
+  // (the progress is fixed, so Slow motion changes the words, not the picture), all of the way where there is no tween
+  function words(){
+    const rm=RM.matches,slow=slowTog.checked;
+    say(insideNote,rm?NOTE_RM:NOTE);
+    if(mode==='inside')say(cap,rm?'Each card switches to its second look at once':`Each card changes in ${TIME[dur][+slow]}, ${FEEL[ease]}`);
+    if(mode==='compare')say(cap,rm?'Switches at once':slow?'A third of a second in':'A tenth of a second in');
+    grid.style.setProperty('--pose',((rm?1:curve(Math.min(1,.1/(dur/1000))))-1)*100+'%');
+  }
+  // Compare: a pretend pointer parked over the real Sweep card, its tint caught part way in, and the ghost over the copy's Sweep. Any
+  // input lifts it: a mouse over the box, a finger down, a card with the keyboard focus, or Show me. Then the pointer and the ghost
+  // follow the card that is pointed at, pressed, focused or shown, at the same spot on the twin.
+  function aim(){
+    const demo=cards.findIndex(c=>c.classList.contains('is-demo')),focus=cards.findIndex(c=>c.matches(':focus-visible'));
+    if(demo>=0)lastDemo=demo;else if(!running())lastDemo=-1;
+    grid.classList.toggle('posed',mode==='compare'&&!mouse&&!touch&&!running()&&focus<0);
+    if(mode!=='compare')return;
+    let i=SWEEP,fx=.72,fy=.55,drawn=true;
+    const under=(x,y)=>{const el=document.elementFromPoint(x,y),c=el&&el.closest('.hcard'),r=c&&c.getBoundingClientRect();
+      i=cards.indexOf(c);drawn=false;if(r){fx=(x-r.left)/r.width;fy=(y-r.top)/r.height}};
+    if(running()){i=demo>=0?demo:lastDemo;fx=.78;fy=.5}
+    else if(touch)under(touch.x,touch.y);
+    else if(mouse)under(lx,ly);
+    else if(focus>=0){i=focus;fx=.78;fy=.5}
+    place(pointer,cards[i],fx,fy,drawn);place(ghost,twins[i],fx,fy,true);
+  }
+  // A pointer on a card, kept inside it (and nowhere at all while the card is out of the layout)
+  function place(el,card,fx,fy,on){
+    if(!on||!card||!card.offsetParent){el.style.visibility='hidden';return}
+    const w=card.offsetWidth,h=card.offsetHeight;
+    el.style.transform=`translate(${card.offsetLeft+Math.max(2,Math.min(fx*w,w-16))}px,${card.offsetTop+Math.max(2,Math.min(fy*h,h-25))}px)`;
+    el.style.visibility='visible';
+  }
+  // Draws what a mode or a setting changes at once: the twins, and the posed tint when the pose comes, goes or changes, skip their transitions
+  function atOnce(fn){
+    const had=grid.classList.contains('posed');
+    stage.classList.add('snap');
+    fn();
+    if(had||grid.classList.contains('posed'))stage.classList.add('snap-pose');
+    void stage.offsetWidth;
+    stage.classList.remove('snap','snap-pose');
+  }
+  function refresh(){atOnce(()=>{words();aim()})}
+  document.addEventListener('hb:mode',e=>{mode=e.detail.mode;refresh()});
+  addEventListener('resize',aim);
+  RM.addEventListener('change',refresh);
+  slowTog.addEventListener('change',refresh);
+  if(document.fonts)document.fonts.ready.then(aim);
+  document.getElementById('btn-demo').addEventListener('click',aim);
+  cards.forEach(c=>new MutationObserver(aim).observe(c,{attributes:true,attributeFilter:['class']}));
+  stage.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){mouse=true;lx=e.clientX;ly=e.clientY;aim()}});
+  stage.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){mouse=false;aim()}});
+  stage.addEventListener('pointermove',e=>{
+    if(e.pointerType==='mouse'){mouse=true;lx=e.clientX;ly=e.clientY}
+    else if(touch&&e.pointerId===touch.id){touch.x=e.clientX;touch.y=e.clientY}
+    else return;
+    if(mode==='compare')aim();
+  });
+  stage.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'){touch={id:e.pointerId,x:e.clientX,y:e.clientY};aim()}});
+  ['pointerup','pointercancel'].forEach(t=>stage.addEventListener(t,e=>{if(touch&&e.pointerId===touch.id){touch=null;aim()}}));
+  stage.addEventListener('focusin',aim);
+  stage.addEventListener('focusout',aim);
+  words();
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  choices('speed-seg',d=>{dur=+d.ms;vars.setProperty('--dur',dur+'ms');refresh()});
+  choices('feel-seg',d=>{ease=d.ease;vars.setProperty('--ease',d.ease);refresh()});
+</script>
+</body>
+</html>

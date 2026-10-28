@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Scroll-driven Animations: Scroll Shadows (CSS)</title>
+
+	<!-- Shared styles and scripts, applied to each page -->
+	<link rel="stylesheet" href="/shared/styles.css">
+	<script src="/shared/scripts.js"></script>
+
+	<!-- Page specific styles. The code for the scroll-driven animations is kept in a local style block for your reading convenience -->
+	<link rel="stylesheet" href="../shared/styles.css">
+	<style>
+		@supports (animation-timeline: scroll()) {
+
+			/* Scroll Indicators */
+			@keyframes reveal {
+				0% {
+					opacity: 0;
+				}
+
+				100% {
+					opacity: 1;
+				}
+			}
+
+			.container {
+				overflow-y: auto;
+				scroll-timeline: --scroll-timeline y;
+			}
+
+			.container::before,
+			.container::after {
+				animation-name: reveal;
+				animation-timeline: --scroll-timeline;
+				animation-fill-mode: both;
+			}
+
+			.container::before {
+				animation-range: 1em 2em;
+			}
+
+			.container::after {
+				animation-direction: reverse;
+				animation-range: calc(100% - 2em) calc(100% - 1em);
+			}
+
+			/* Only show Scroll Indicators when the scroller can actually scroll */
+			@keyframes detect-scroll {
+				from,
+				to {
+					--can-scroll: ;
+				}
+			}
+
+			.container {
+				animation: detect-scroll;
+				animation-timeline: --scroll-timeline;
+				animation-fill-mode: none;
+			}
+
+			.container::before,
+			.container::after {
+				--visibility-if-can-scroll: var(--can-scroll) visible;
+				--visibility-if-cant-scroll: hidden;
+				visibility: var(--visibility-if-can-scroll, var(--visibility-if-cant-scroll));
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<!-- metabox -->
+	<div id="metabox">
+		<button id="version-selector" disabled>🔀</button>
+		<a class="button" href="/" title="To index">🏠</a>
+		<button id="infobox-toggle" title="Show Information about this demo">ℹ️</button>
+		<dialog id="infobox">
+			<form method="dialog"><button id="infobox-close" tabindex="0" title="Close dialog">❌</button></form>
+			<h1>About this demo</h1>
+			<p>This demo features scrollers that show shadows to indicate that they are scrollable. The indicators are only shown when the scroller is actually scrollable.</p>
+
+			<h2>The Code / Explanation</h2>
+
+			<h3>Scroll Shadows</h3>
+
+			<p>The shadows are injected onto the <code>.container</code> using generated content. The shadow itself is created using a gradient.</p>
+
+			<pre><code>.container::before,
+.container::after {
+	content: '';
+	display: block;
+	position: sticky;
+	left: 0em;
+	right: 0em;
+	height: 0.75rem;
+}
+
+.container::before {
+	top: 0;
+	background: radial-gradient(farthest-side at 50% 0, rgb(0 0 0 / 0.25), rgb(0 0 0 / 0));
+}
+
+.container::after {
+	bottom: 0;
+	background: radial-gradient(farthest-side at 50% 100%, rgb(0 0 0 / 0.25), rgb(0 0 0 / 0));
+}</code></pre>
+
+			<p>The shadows their opacity is animated from 0 to 1 as you scroll the <code>.container</code></p>
+
+			<pre><code>@keyframes reveal {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+.container {
+	overflow-y: auto;
+	scroll-timeline: --scroll-timeline y;
+}
+
+.container::before,
+.container::after {
+	animation-name: reveal;
+	animation-timeline: --scroll-timeline;
+	animation-fill-mode: both;
+}</code></pre>
+
+			<p>The <code>animation-range</code> for the <code>::before</code> pseudo is set to the first <code>1em</code> scrolled in <code>.container</code>. For the <code>::after</code> pseudo it is set to the last <code>1em</code>.</p>
+
+			<pre><code>.container::before {
+	animation-range: 1em 2em;
+}
+
+.container::after {
+	animation-direction: reverse;
+	animation-range: calc(100% - 2em) calc(100% - 1em);
+}</code></pre>
+
+			<h3>Scroller Detection</h3>
+
+			<p>Because Scroll-Driven Animations are only active when there is scrollable overflow, it is possible to use them as a mechanism to detect if an element can scroll or not. Mix in a Space Toggle or a Style Query, and you’ve got all you need to selectively style an element based on it being scrollable or not.</p>
+
+			<p>This technique is described in detail in <a href="https://brm.us/css-can-scroll">https://brm.us/css-can-scroll</a>.</p>
+
+			<p>For this demo, this code is used to toggle the <code>visibility</code> of the shadows. It reuses the <code>--scroll-timeline</code> timeline from the <code>.container</code>:</p>
+
+			<pre><code>@keyframes detect-scroll {
+	from,
+	to {
+		--can-scroll: ;
+	}
+}
+
+.container {
+	animation: detect-scroll;
+	animation-timeline: --scroll-timeline;
+	animation-fill-mode: none;
+}
+
+.container::before,
+.container::after {
+	--visibility-if-can-scroll: var(--can-scroll) visible;
+	--visibility-if-cant-scroll: hidden;
+	visibility: var(--visibility-if-can-scroll, var(--visibility-if-cant-scroll));
+}</code></pre>
+
+		</dialog>
+	</div>
+
+	<div class="warning">
+		<p>⚠️ Your browser does not support Scroll-driven Animations. Please use Chrome 115 or newer.</p>
+	</div>
+
+	<main>
+		<div>
+			<p>Scrollable Container &darr;</p>
+			<div class="container">
+				<p>CSS, short for Cascading Style Sheets, is a programming language that is used to describe the presentation or visual layout of a document written in HTML. It acts as a styling tool and enables web developers to control the appearance of their websites or web pages by specifying how different elements should be displayed on the screen. CSS allows designers to define various aspects such as font styles, colors, spacing between elements, background images, and much more.</p>
+				<p>The term "cascading" in CSS refers to its ability to apply multiple stylesheets simultaneously and prioritize them based on their importance or specificity. This feature allows developers to create consistent designs across multiple web pages by defining common styles in an external stylesheet which can then be linked to all relevant HTML documents. Additionally, CSS makes it easy to update the design of an entire website by simply modifying one central stylesheet rather than having to manually edit each individual webpage.</p>
+				<p>CSS can be applied directly within an HTML document using inline stylesheets or internally through embedded stylesheets within the head section of a page. However, it is considered best practice and more efficient from both maintenance and performance perspectives to use external style sheets stored separately in .css files which are then referenced within HTML documents.</p>
+				<p>One important concept in CSS is selectors. Selectors allow you to target specific elements within your HTML markup so that you can apply different styles only where needed. Selectors can target tags (e.g., p, div), classes (e.g., .header), IDs (e.g., #main), attributes (e.g., [type="submit"]), pseudo-classes (e.g., :hover) and many other properties of DOM elements.</p>
+				<p>Overall, CSS plays a crucial role in modern web development as it provides great flexibility and control over how content looks on websites. By separating style from structure with this powerful language, developers are able to create visually appealing websites while maintaining clean code that adheres to best practices for web accessibility and user experience.</p>
+			</div>
+		</div>
+
+		<div>
+			<p>Non-scrollable Container &darr;</p>
+			<div class="container">
+				<p>CSS, short for Cascading Style Sheets. The content of this box is short as well.</p>
+			</div>
+		</div>
+	</main>
+
+</body>
+
+</html>

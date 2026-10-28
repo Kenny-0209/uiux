@@ -1,0 +1,703 @@
+[
+  {
+    "id": "mo01",
+    "name": "마그네틱 버튼",
+    "english": "Magnetic button",
+    "category": "모션과 인터랙션",
+    "description": "포인터 가까이에서 끌려오는 버튼입니다.",
+    "tags": [
+      "마그네틱",
+      "버튼",
+      "커서"
+    ],
+    "preview": "./examples/mo01/index.html",
+    "sourceCode": "./examples/mo01/source.html",
+    "codePath": "./examples/mo01/source.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/magnetic-button/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 미리보기에는 공통 자산 경로와 패널 크기만 조정",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "mo02",
+    "name": "커서 팔로워",
+    "english": "Cursor follower",
+    "category": "모션과 인터랙션",
+    "description": "포인터를 따라오는 커서를 직접 움직여 보세요.",
+    "tags": [
+      "커서",
+      "마우스",
+      "포인터"
+    ],
+    "preview": "./examples/mo02/index.html",
+    "sourceCode": "./examples/mo02/source.html",
+    "codePath": "./examples/mo02/source.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/cursor-follower/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 미리보기에는 공통 자산 경로와 패널 크기만 조정",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "mo03",
+    "name": "버튼 누름 반응",
+    "english": "Button press scale",
+    "category": "모션과 인터랙션",
+    "description": "클릭할 때 크기로 누름을 전달합니다.",
+    "tags": [
+      "버튼",
+      "클릭",
+      "피드백"
+    ],
+    "preview": "./examples/mo03/index.html",
+    "sourceCode": "./examples/mo03/source.html",
+    "codePath": "./examples/mo03/source.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/button-press-scale/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 미리보기에는 공통 자산 경로와 패널 크기만 조정",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "mo04",
+    "name": "토글 스위치",
+    "english": "Toggle switch",
+    "category": "UI 패턴",
+    "description": "스위치를 눌러 상태를 변경합니다.",
+    "tags": [
+      "토글",
+      "스위치",
+      "상태"
+    ],
+    "preview": "./examples/mo04/index.html",
+    "sourceCode": "./examples/mo04/source.html",
+    "codePath": "./examples/mo04/source.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/toggle-switch/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 미리보기에는 공통 자산 경로와 패널 크기만 조정",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "mo05",
+    "name": "토스트 알림",
+    "english": "Toast notification",
+    "category": "UI 패턴",
+    "description": "행동에 대한 짧은 알림을 표시합니다.",
+    "tags": [
+      "알림",
+      "토스트",
+      "피드백"
+    ],
+    "preview": "./examples/mo05/index.html",
+    "sourceCode": "./examples/mo05/source.html",
+    "codePath": "./examples/mo05/source.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/toast-notification/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 미리보기에는 공통 자산 경로와 패널 크기만 조정",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "mo06",
+    "name": "슬라이드 패널",
+    "english": "Drawer slide",
+    "category": "UI 패턴",
+    "description": "화면 가장자리에서 패널을 엽니다.",
+    "tags": [
+      "드로어",
+      "패널",
+      "슬라이드"
+    ],
+    "preview": "./examples/mo06/index.html",
+    "sourceCode": "./examples/mo06/source.html",
+    "codePath": "./examples/mo06/source.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/drawer-slide/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 미리보기에는 공통 자산 경로와 패널 크기만 조정",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "mo07",
+    "name": "드래그로 순서 바꾸기",
+    "english": "Drag to reorder",
+    "category": "UI 패턴",
+    "description": "항목을 끌어 목록 순서를 바꿉니다.",
+    "tags": [
+      "드래그",
+      "목록",
+      "정렬"
+    ],
+    "preview": "./examples/mo07/index.html",
+    "sourceCode": "./examples/mo07/source.html",
+    "codePath": "./examples/mo07/source.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/drag-to-reorder/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 미리보기에는 공통 자산 경로와 패널 크기만 조정",
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본 코드에 터치 조작이 구현되어 있습니다. 실제 휴대전화 검증은 별도로 필요합니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "mo08",
+    "name": "스켈레톤 로딩",
+    "english": "Skeleton loader",
+    "category": "UI 패턴",
+    "description": "콘텐츠를 기다리는 동안 화면의 자리와 로딩 상태를 보여줍니다.",
+    "tags": [
+      "스켈레톤",
+      "로딩",
+      "상태"
+    ],
+    "preview": "./examples/mo08/index.html",
+    "sourceCode": "./examples/mo08/source.html",
+    "codePath": "./examples/mo08/source.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/skeleton-loader/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 미리보기에는 공통 자산 경로와 패널 크기만 조정",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "mo09",
+    "name": "모달 펼치기",
+    "english": "Modal expand",
+    "category": "UI 패턴",
+    "description": "선택한 콘텐츠가 대화상자로 펼쳐집니다.",
+    "tags": [
+      "모달",
+      "확장",
+      "전환"
+    ],
+    "preview": "./examples/mo09/index.html",
+    "sourceCode": "./examples/mo09/source.html",
+    "codePath": "./examples/mo09/source.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/modal-expand/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 미리보기에는 공통 자산 경로와 패널 크기만 조정",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "mo10",
+    "name": "메뉴 아이콘 전환",
+    "english": "Hamburger menu toggle",
+    "category": "모션과 인터랙션",
+    "description": "메뉴와 닫기 아이콘 사이의 전환을 확인합니다.",
+    "tags": [
+      "메뉴",
+      "아이콘",
+      "전환"
+    ],
+    "preview": "./examples/mo10/index.html",
+    "sourceCode": "./examples/mo10/source.html",
+    "codePath": "./examples/mo10/source.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/hamburger-menu-toggle/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 미리보기에는 공통 자산 경로와 패널 크기만 조정",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "mo11",
+    "name": "클릭 리플",
+    "english": "Click ripple",
+    "category": "모션과 인터랙션",
+    "description": "누른 위치에서 퍼져나가는 피드백을 확인합니다.",
+    "tags": [
+      "리플",
+      "클릭",
+      "피드백"
+    ],
+    "preview": "./examples/mo11/index.html",
+    "sourceCode": "./examples/mo11/source.html",
+    "codePath": "./examples/mo11/source.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/click-ripple/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 미리보기에는 공통 자산 경로와 패널 크기만 조정",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "mo12",
+    "name": "아코디언 전환",
+    "english": "Accordion",
+    "category": "UI 패턴",
+    "description": "항목을 눌러 상세 내용을 펼치고 접습니다.",
+    "tags": [
+      "아코디언",
+      "펼치기",
+      "접기"
+    ],
+    "preview": "./examples/mo12/index.html",
+    "sourceCode": "./examples/mo12/source.html",
+    "codePath": "./examples/mo12/source.html",
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/04-micro-interactions/accordion/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 미리보기에는 공통 자산 경로와 패널 크기만 조정",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui01",
+    "name": "채팅 사이드바",
+    "english": "Chat sidebar",
+    "category": "화면 구성",
+    "description": "실제 채팅 화면에서 대화 목록과 본문을 함께 배치합니다.",
+    "tags": [
+      "사이드바",
+      "대화",
+      "레이아웃"
+    ],
+    "preview": "./examples/ui01/index.html",
+    "sourceCode": "./examples/ui01/index.html",
+    "codePath": "./examples/ui01/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/chat-layout/chat-sidebar/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui02",
+    "name": "분할 보기",
+    "english": "Split view",
+    "category": "화면 구성",
+    "description": "본문과 보조 콘텐츠를 나란히 표시합니다.",
+    "tags": [
+      "분할",
+      "작업영역",
+      "레이아웃"
+    ],
+    "preview": "./examples/ui02/index.html",
+    "sourceCode": "./examples/ui02/index.html",
+    "codePath": "./examples/ui02/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/chat-layout/split-view-chat/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui03",
+    "name": "대화 검색",
+    "english": "Conversation search",
+    "category": "UI 패턴",
+    "description": "검색 입력에 따라 대화 목록을 필터링합니다.",
+    "tags": [
+      "검색",
+      "필터",
+      "목록"
+    ],
+    "preview": "./examples/ui03/index.html",
+    "sourceCode": "./examples/ui03/index.html",
+    "codePath": "./examples/ui03/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/chat-layout/conversation-search/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui04",
+    "name": "공유 대화상자",
+    "english": "Share dialog",
+    "category": "UI 패턴",
+    "description": "공유 설정과 링크를 표시하는 대화상자입니다.",
+    "tags": [
+      "공유",
+      "모달",
+      "대화상자"
+    ],
+    "preview": "./examples/ui04/index.html",
+    "sourceCode": "./examples/ui04/index.html",
+    "codePath": "./examples/ui04/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/chat-layout/share-dialog/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui05",
+    "name": "플로팅 채팅 창",
+    "english": "Floating chat widget",
+    "category": "UI 패턴",
+    "description": "작은 버튼으로 채팅 창을 열고 닫습니다.",
+    "tags": [
+      "플로팅",
+      "채팅",
+      "패널"
+    ],
+    "preview": "./examples/ui05/index.html",
+    "sourceCode": "./examples/ui05/index.html",
+    "codePath": "./examples/ui05/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/chat-layout/floating-chat-widget/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui06",
+    "name": "추론 내용 펼치기",
+    "english": "Reasoning panel",
+    "category": "UI 패턴",
+    "description": "요약된 작업의 세부 내용을 펼쳐 봅니다.",
+    "tags": [
+      "단계적공개",
+      "아코디언",
+      "상세"
+    ],
+    "preview": "./examples/ui06/index.html",
+    "sourceCode": "./examples/ui06/index.html",
+    "codePath": "./examples/ui06/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/thinking/reasoning-panel/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui07",
+    "name": "스트리밍 텍스트",
+    "english": "Streaming text",
+    "category": "모션과 인터랙션",
+    "description": "텍스트가 점진적으로 표시되는 상태를 확인합니다.",
+    "tags": [
+      "텍스트",
+      "스트리밍",
+      "생성"
+    ],
+    "preview": "./examples/ui07/index.html",
+    "sourceCode": "./examples/ui07/index.html",
+    "codePath": "./examples/ui07/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/thinking/streaming-text/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui08",
+    "name": "작업 단계 표시",
+    "english": "Agent progress steps",
+    "category": "UI 패턴",
+    "description": "작업 진행 상황을 단계별로 보여줍니다.",
+    "tags": [
+      "진행",
+      "단계",
+      "상태"
+    ],
+    "preview": "./examples/ui08/index.html",
+    "sourceCode": "./examples/ui08/index.html",
+    "codePath": "./examples/ui08/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/thinking/agent-progress-steps/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui09",
+    "name": "메시지 동작",
+    "english": "Message actions",
+    "category": "UI 패턴",
+    "description": "메시지에 제공되는 복사 등 행동을 살펴봅니다.",
+    "tags": [
+      "메시지",
+      "버튼",
+      "행동"
+    ],
+    "preview": "./examples/ui09/index.html",
+    "sourceCode": "./examples/ui09/index.html",
+    "codePath": "./examples/ui09/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/messages/message-actions/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui10",
+    "name": "긴 메시지 접기",
+    "english": "Long message toggle",
+    "category": "UI 패턴",
+    "description": "긴 메시지를 필요한 순간에 펼칩니다.",
+    "tags": [
+      "더보기",
+      "접기",
+      "텍스트"
+    ],
+    "preview": "./examples/ui10/index.html",
+    "sourceCode": "./examples/ui10/index.html",
+    "codePath": "./examples/ui10/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/messages/long-message-toggle/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui11",
+    "name": "설정 스위치",
+    "english": "Feature toggles",
+    "category": "UI 패턴",
+    "description": "여러 기능의 사용 상태를 전환합니다.",
+    "tags": [
+      "설정",
+      "스위치",
+      "토글"
+    ],
+    "preview": "./examples/ui11/index.html",
+    "sourceCode": "./examples/ui11/index.html",
+    "codePath": "./examples/ui11/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/settings/feature-toggles/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui12",
+    "name": "별점 평가",
+    "english": "Star rating",
+    "category": "UI 패턴",
+    "description": "별점을 선택해 평가를 남깁니다.",
+    "tags": [
+      "평가",
+      "별점",
+      "입력"
+    ],
+    "preview": "./examples/ui12/index.html",
+    "sourceCode": "./examples/ui12/index.html",
+    "codePath": "./examples/ui12/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/feedback/star-rating/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui13",
+    "name": "모델 선택 입력창",
+    "english": "Prompt with model picker",
+    "category": "UI 패턴",
+    "description": "메시지를 입력하고 응답 방식을 선택합니다.",
+    "tags": [
+      "입력창",
+      "메뉴",
+      "선택"
+    ],
+    "preview": "./examples/ui13/index.html",
+    "sourceCode": "./examples/ui13/index.html",
+    "codePath": "./examples/ui13/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/prompt-input/model-picker-prompt/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui14",
+    "name": "피드백 토스트",
+    "english": "Feedback toast",
+    "category": "모션과 인터랙션",
+    "description": "평가 이후 등장하는 확인 메시지를 봅니다.",
+    "tags": [
+      "토스트",
+      "피드백",
+      "알림"
+    ],
+    "preview": "./examples/ui14/index.html",
+    "sourceCode": "./examples/ui14/index.html",
+    "codePath": "./examples/ui14/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/feedback/feedback-toast/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui15",
+    "name": "코드 복사 블록",
+    "english": "Code block copy",
+    "category": "UI 패턴",
+    "description": "코드 블록과 복사 동작을 확인합니다.",
+    "tags": [
+      "코드",
+      "복사",
+      "버튼"
+    ],
+    "preview": "./examples/ui15/index.html",
+    "sourceCode": "./examples/ui15/index.html",
+    "codePath": "./examples/ui15/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/messages/code-block-copy/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ui16",
+    "name": "값 조절 슬라이더",
+    "english": "Temperature slider",
+    "category": "UI 패턴",
+    "description": "슬라이더로 숫자를 조절합니다.",
+    "tags": [
+      "슬라이더",
+      "설정",
+      "입력"
+    ],
+    "preview": "./examples/ui16/index.html",
+    "sourceCode": "./examples/ui16/index.html",
+    "codePath": "./examples/ui16/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/settings/temperature-slider/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML 그대로",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  }
+]

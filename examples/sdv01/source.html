@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Scroll-driven Animations: Carousel with Indicators</title>
+
+	<!-- Shared styles and scripts, applied to each page -->
+	<link rel="stylesheet" href="/shared/styles.css">
+	<script src="/shared/scripts.js"></script>
+
+	<!-- Page specific styles. The code for the scroll-driven animations is kept in a local style block for your reading convenience -->
+	<link rel="stylesheet" href="../shared/styles.css">
+	<style>
+		@supports(animation-timeline: view()) {
+			@keyframes colorize-dot {
+				0%,
+				100% {
+					background: #ff00fa;
+				}
+			}
+
+			[data-component="carousel"] {
+				timeline-scope: --carousel;
+
+				.entries {
+					scroll-timeline: --carousel x;
+				}
+
+				.markers a {
+					animation: colorize-dot linear;
+					animation-timeline: --carousel;
+					animation-range: calc((var(--i) - 1) * 20%) calc(var(--i) * 20% + 1px);
+				}
+			}
+		}
+	</style>
+</head>
+<body>
+	<!-- metabox -->
+	<div id="metabox">
+		<button id="version-selector" popovertarget="version-selector-popover" data-activeversion="1/2" data-activelang="css">🔀</button>
+		<div id="version-selector-popover" popover anchor="version-selector">
+		  <h1>Version selector</h1>
+		  <p>This demo has several versions:</p>
+		  <ol>
+			<li data-lang="css" data-selected><a href="/demos/carousel-with-markers/css/">Using 1 shared <code>ScrollTimeline</code></a></li>
+			<li data-lang="css"><a href='/demos/carousel-with-markers/css/view-timeline'>Using a <code>ViewTimeline</code> per entry</a></li>
+		  </ol>
+		</div>
+		<a class="button" href="/" title="To index">🏠</a>
+		<button id="infobox-toggle" title="Show Information about this demo">ℹ️</button>
+		<dialog id="infobox">
+			<form method="dialog"><button id="infobox-close" tabindex="0" title="Close dialog">❌</button></form>
+			<h1>About this demo</h1>
+			<p>This demo sports a little carousel. As you scroll the carousel, the markers also indicate which element you are viewing.</p>
+
+			<h2>The Code / Explanation</h2>
+			<p>The carousel consists of two child elements: a <code>.scroller</code> with the content and a <code>.markers</code> element that holds all markers.</p>
+			<pre><code>&lt;div data-component=&quot;carousel&quot;&gt;
+&#x9;&lt;ul class=&quot;entries&quot; tabindex=&quot;0&quot;&gt;
+&#x9;&#x9;&lt;li&gt;&lt;a name=&quot;carousel_01&quot;&gt;&lt;img src=&quot;../shared/img/matroshka-01.svg&quot; alt=&quot;&quot; title=&quot;&quot; width=&quot;222&quot; height=&quot;184&quot; draggable=&quot;false&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&#x9;&#x9;…
+&#x9;&lt;/ul&gt;
+&#x9;&lt;ul class=&quot;markers&quot;&gt;
+&#x9;&#x9;&lt;li&gt;&lt;a href=&quot;#carousel_01&quot;&gt;&lt;span class=&quot;sr-only&quot;&gt;Photo 1&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+&#x9;&#x9;…ul&gt;
+&lt;/div&gt;</code></pre>
+			<p>The <code>.scroller</code> has its children laid out on a row, and has <code>overflow-x: scroll</code> applied on it. The <code>.markers</code> are position at the bottom of the carousel. Scroll snapping is used to make sure the carousel stops at a certain item instead of halfway.</p>
+			<p>The scroller is decorated with a <code>scroll-timeline</code>. The markers representing each item then use that value as their <code>animation-timeline</code>.</p>
+			<pre><code>[data-component=&quot;carousel&quot;] {
+	.entries {
+		scroll-timeline: --carousel x;
+	}
+
+	.markers a {
+		animation-timeline: --carousel;
+	}
+}</code></pre>
+			<p>Because timeline lookups only happen up the ancestor tree, the markers are not able to find the <code>--carousel</code> timeline – the <code>.entries</code> element is not part of their ancestor tree. To allow the markers to use that timeline, <code>timeline-scope</code> is used on the <code>[data-component=&quot;carousel&quot;]</code> itself to hoist up the declared <code>--carousel</code> timeline, giving it a wider reach.</p>
+				<pre><code>[data-component=&quot;carousel&quot;] {
+	timeline-scope: --carousel;
+}</code></pre>
+			<p>As there are 5 children, each child gets to run for <code>20%</code> of the entire scroll range. To achieve this, each marker’s <code>animation-range</code> is set to only its specific sub-part. This is done using a <code>--i</code> custom property that indicates the element its child index.</p>
+			<pre><code>.markers a {
+	animation-range: calc((var(--i) - 1) * 20%) calc(var(--i) * 20% + 1px);
+}</code></pre>
+		</dialog>
+	</div>
+
+	<!-- page content -->
+	<div class="warning">
+		<p>⚠️ Your browser does not support Scroll-driven Animations. Please use Chrome 115 or newer.</p>
+	</div>
+
+	<main>
+		<div data-component="carousel">
+			<ul class="entries" tabindex="0">
+				<li><a name="carousel_01"><img src="../shared/img/matroshka-01.svg" alt="" title="" width="222" height="184" draggable="false"></a></li>
+				<li><a name="carousel_02"><img src="../shared/img/matroshka-02.svg" alt="" title="" width="222" height="184" draggable="false"></a></li>
+				<li><a name="carousel_03"><img src="../shared/img/matroshka-03.svg" alt="" title="" width="222" height="184" draggable="false"></a></li>
+				<li><a name="carousel_04"><img src="../shared/img/matroshka-04.svg" alt="" title="" width="222" height="184" draggable="false"></a></li>
+				<li><a name="carousel_05"><img src="../shared/img/matroshka-05.svg" alt="" title="" width="222" height="184" draggable="false"></a></li>
+			</ul>
+			<ul class="markers">
+				<li><a href="#carousel_01"><span class="sr-only">Photo 1</span></a></li>
+				<li><a href="#carousel_02"><span class="sr-only">Photo 2</span></a></li>
+				<li><a href="#carousel_03"><span class="sr-only">Photo 3</span></a></li>
+				<li><a href="#carousel_04"><span class="sr-only">Photo 4</span></a></li>
+				<li><a href="#carousel_05"><span class="sr-only">Photo 5</span></a></li>
+			</ul>
+		</div>
+	</main>
+</body>
+</html>

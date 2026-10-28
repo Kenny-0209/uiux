@@ -1,0 +1,19 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 27 Cardio — a lub-dub heartbeat with a systolic glow */
+.fx-heartbeat {
+  font: 600 32px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .12em;
+  color: var(--ink-2);
+  animation: fx-heartbeat 1.4s ease-in-out infinite;
+}
+@keyframes fx-heartbeat {
+  0%, 100% { transform: scale(1); text-shadow: 0 0 0 transparent; }
+  14% { transform: scale(1.14); text-shadow: 0 0 18px color-mix(in srgb, var(--ink-2) 65%, transparent); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.18); text-shadow: 0 0 26px color-mix(in srgb, var(--ink-2) 80%, transparent); }
+  70% { transform: scale(1); text-shadow: 0 0 0 transparent; }
+}

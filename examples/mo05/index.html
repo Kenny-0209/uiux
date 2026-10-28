@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toast Notification — Animation Handbook</title>
+  <meta name="description" content="Short messages slide into a corner, then leave on their own. Best for updates.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/toast-notification/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Toast Notification — Animation Handbook">
+  <meta property="og:description" content="Short messages slide into a corner, then leave on their own. Best for updates.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/toast-notification/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Toast Notification — Animation Handbook">
+  <meta name="twitter:description" content="Short messages slide into a corner, then leave on their own. Best for updates.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Toast Notification", "name": "Toast Notification", "description": "Short messages slide into a corner, then leave on their own. Best for updates.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/toast-notification/", "inLanguage": "en", "articleSection": "Micro-Interactions", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Micro-Interactions, Toast Notification"}</script>
+  <style>
+    :root{--ui-accent:#ff9d5c;--ui-bg:#111114;--ui-border:rgba(255,255,255,.09);--ui-text:#f4f4f2;--ui-muted:#8a8a92;--ok:#5ad19a;--err:#f4515b;--info:#6ea8ff}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    /* A container, so the rules for a short or narrow stage below follow the stage's own size, whatever the window */
+    .stage{--hb-stage-h-phone:420px;position:relative;overflow:hidden;container-type:size;background:radial-gradient(120% 100% at 50% 0,#141418,#0b0b0d)}
+    /* The button that sends a toast: centred on the edge opposite the corner the toasts stack in */
+    .send{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:3;min-height:44px;padding:0 22px;border:0;border-radius:8px;background:var(--ui-accent);color:#1a0f08;font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;touch-action:manipulation}
+    .send.at-top{bottom:auto;top:16px}
+    /* The site focus ring is drawn inside the button, where it is as light as the fill, so it turns dark */
+    .hb-page .stage .send:focus-visible{outline-color:#0b0b0d}
+    /* Toast region: anchored to a corner of the stage; only the toasts take the pointer, so the empty box never covers the button */
+    .toaster{position:absolute;display:flex;flex-direction:column;gap:10px;width:min(300px,calc(100% - 24px));padding:12px;z-index:2;pointer-events:none}
+    .toaster.tl{top:0;left:0;align-items:flex-start}
+    .toaster.tr{top:0;right:0;align-items:flex-end}
+    .toaster.bl{bottom:0;left:0;flex-direction:column-reverse;align-items:flex-start}
+    .toaster.br{bottom:0;right:0;flex-direction:column-reverse;align-items:flex-end}
+    .toast{position:relative;width:100%;overflow:hidden;border:1px solid var(--ui-border);border-left:3px solid var(--tc,var(--info));border-radius:8px;background:var(--ui-bg);color:var(--ui-text);padding:12px 44px 12px 12px;display:flex;gap:10px;box-shadow:0 8px 24px rgba(0,0,0,.4);cursor:grab;touch-action:pan-y;-webkit-user-select:none;user-select:none;pointer-events:auto;transition:transform .34s cubic-bezier(.22,1,.36,1),opacity .34s;will-change:transform,opacity}
+    .toast.ok{--tc:var(--ok)} .toast.err{--tc:var(--err)} .toast.info{--tc:var(--info)}
+    .toast .ic{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--tc);color:#0b0b0d;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;line-height:1}
+    .toast .body{min-width:0}
+    .toast .ti{font-weight:700;font-size:12px;letter-spacing:-.01em}
+    .toast .ms{font-size:11px;color:var(--ui-muted);margin-top:2px;line-height:1.4}
+    .toast .x{position:absolute;top:50%;right:0;transform:translateY(-50%);width:44px;height:44px;border:0;background:transparent;color:var(--ui-muted);font-family:inherit;font-size:15px;cursor:pointer;border-radius:6px;line-height:1}
+    /* The bar empties over the toast's time on screen; when it ends, the toast leaves. Holding a finger on a toast, or the keyboard focus inside it, pauses the bar */
+    .toast .prog{position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--tc);transform-origin:left;transform:scaleX(1);animation:countdown var(--dur,4s) linear forwards}
+    .toast.paused .prog,.toast:focus-within .prog{animation-play-state:paused}
+    @keyframes countdown{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+    @media(hover:hover){.send:hover{filter:brightness(1.08)}.toast .x:hover{color:var(--ui-text);background:rgba(255,255,255,.06)}.toast:hover .prog{animation-play-state:paused}}
+    /* A stage under 300px tall (a window under about 630px tall) has no room for four toasts at full size, and one under 324px wide (a 320px phone) wraps the messages, so a fifth toast arriving while the oldest leaves would reach the button: padding and gaps shrink */
+    @container (max-height:300px) or (max-width:323px){.toaster{gap:6px;padding:8px}.toast{padding-top:8px;padding-bottom:8px}}
+    /* A short stage under 760px wide (a phone held sideways) would let a full stack reach the centred button: it steps to the side the stack is not on */
+    @container (max-width:759px) and (max-height:360px){.send,.send.at-top{top:50%;bottom:auto;left:16px;right:auto;transform:translateY(-50%)}.send.at-right{left:auto;right:16px}}
+    /* Reduced motion: toasts come and go without movement, and the bar is hidden but keeps counting down, so it still ends the toast and hover and focus still pause it */
+    @media(prefers-reduced-motion:reduce){.toast{transition:none!important}.toast .prog{visibility:hidden}}
+    /* See inside and Compare. The real button and toaster sit in a box (.half) that fills the stage, so Normal is as before; in Compare
+       that box is the second half and an inert copy is the first. Poses, the copy and the words show only in their modes. */
+    .half{position:absolute;inset:0}
+    .half.copy,.pose,.after,.cap,.live{display:none}
+    .copy .send{display:flex;align-items:center}
+    .copy .x{display:flex;align-items:center;justify-content:center}
+    .cap{position:absolute;left:0;top:0;z-index:6;padding:3px 8px;border-radius:6px;background:rgba(11,11,13,.92);color:#f4f4f2;font:600 13px/17px var(--hb-font);white-space:nowrap;pointer-events:none}
+    .stage[data-hb-mode="inside"] .cap.in,.stage[data-hb-mode="compare"] .cap.cmp,.stage[data-hb-mode="inside"] .live{display:block}
+    /* A pose: up to three toasts held in the corner while no real one is out (the page's own markup, no × button). The faded one leaves (top
+       corners) or arrives (bottom corners); the others are half way into their new places. */
+    .stage[data-hb-mode="inside"].posed .pose,.stage[data-hb-mode="compare"].posed .pose,.stage[data-hb-mode="compare"].posed .after{display:flex}
+    .pose .toast,.after .toast{transition:none;pointer-events:none}
+    .pose .prog,.after .prog{animation:none;transform:scaleX(var(--left));visibility:visible}
+    .pose .go{z-index:-1;opacity:.45}
+    .pose.bl .go,.pose.br .go{opacity:.6}
+    .pose .mv{translate:0 var(--off)}
+    .slot,.live.gap{position:absolute;border:1.5px dashed rgba(244,244,242,.6);border-radius:8px}
+    .arrow{position:absolute;width:2px;background:var(--ui-accent)}
+    .arrow::before{content:"";position:absolute;left:-5px;top:-3px;border:6px solid transparent;border-top:0;border-bottom:9px solid var(--ui-accent)}
+    .arrow.down{rotate:180deg}
+    .pose .arrow{right:20px;top:50%;height:var(--half);translate:0 -50%}
+    .pose .toast:not(.mv) .arrow,.stage[data-hb-mode="compare"] .pose .arrow{display:none}
+    /* In Compare the place the faded toast leaves (or comes to) is only a faint ghost */
+    .stage[data-hb-mode="compare"] .slot{border-color:rgba(244,244,242,.3)}
+    /* See inside: thicker bars, the timers that send each toast out */
+    .stage[data-hb-mode="inside"] .prog{height:4px}
+    /* Compare: the copy (left) and the real toaster (right), each a box whose short and narrow rules follow it; Send stays at its edge */
+    .stage[data-hb-mode="compare"] .half{container-type:size;overflow:hidden}
+    .stage[data-hb-mode="compare"] .half.copy{display:block;inset:0 calc(50% + 1px) 0 0}
+    .stage[data-hb-mode="compare"] .half.real{inset:0 0 0 calc(50% + 1px)}
+    .stage[data-hb-mode="compare"]::after{content:"";position:absolute;top:0;bottom:0;left:calc(50% - 1px);width:2px;background:#2a2a30}
+    .stage[data-hb-mode="compare"] .send{top:auto;bottom:16px;left:50%;right:auto;transform:translateX(-50%);white-space:nowrap}
+    .stage[data-hb-mode="compare"] .send.at-top{top:16px;bottom:auto}
+    /* A narrow or short half holds a full stack of compact toasts: the title only (the message is still announced) */
+    @container (max-width:323px) or (max-height:360px){
+      .stage[data-hb-mode="compare"] .toast{padding:7px 44px 7px 8px;gap:6px}
+      .stage[data-hb-mode="compare"] .toast .ic{width:18px;height:18px;font-size:11px}
+      .stage[data-hb-mode="compare"] .toast .ms{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+    }
+    @container (max-width:323px){.stage[data-hb-mode="compare"] .toaster{width:calc(100% - 8px)}.stage[data-hb-mode="compare"] .send{padding:0 12px}}
+    @container (max-width:160px){.stage[data-hb-mode="compare"] .toast .ic{display:none}}
+    /* A narrow stage: the words sit past the stack's free end, and may wrap */
+    @container (max-width:559px){.cap{font-size:12px;line-height:16px;white-space:normal;max-width:calc(100% - 24px)}.stage[data-hb-mode="inside"] .cap[data-k="limit"]{display:none}}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="do" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../star-rating/" rel="prev" aria-label="Previous: Star Rating"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Star Rating</span></a><a href="../segmented-control/" rel="next" aria-label="Next: Segmented Control"><span><span class="hb-dir">Next: </span>Segmented Control</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">04.27 · Micro-Interactions</p>
+    <h1>Toast Notification</h1>
+    <p class="hb-lede">Short messages slide into a corner, then leave on their own. Best for updates.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Click it</h2><p>Send a toast, then tap or swipe it away early, or press Show me.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage">
+      <div class="half real">
+        <button class="send" id="send" type="button">Send a toast</button>
+        <div class="toaster tr" id="toaster" role="status" aria-live="polite" aria-atomic="false"></div>
+      </div>
+      <p class="cap in" data-k="move" aria-hidden="true" data-hb-caption>Faded: its bar ran out, so it slides out</p>
+      <p class="cap in" data-k="glide" aria-hidden="true" data-hb-caption>Arrows: the others glide up into the gap</p>
+      <p class="cap in" data-k="bars" aria-hidden="true" data-hb-caption>Bars: each lasts about four seconds</p>
+      <p class="cap in" data-k="limit" aria-hidden="true" data-hb-caption>At most four at once: the oldest makes room</p>
+      <p class="cap cmp" data-k="a" aria-hidden="true" data-hb-caption>Jumps</p>
+      <p class="cap cmp" data-k="b" aria-hidden="true" data-hb-caption>Glides</p>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-demo" data-hb-demo><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.037 4.688a.495.495 0 0 1 .651-.651l16 6.5a.5.5 0 0 1-.063.947l-6.124 1.58a2 2 0 0 0-1.438 1.435l-1.579 6.126a.5.5 0 0 1-.947.063z"/></svg>Show me</button>
+      <button class="hb-play" type="button" id="btn-reset" data-hb-reset><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>Reset</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, each toast leaves when its bar runs out, and whenever the stack changes the others glide to their new places; pointing at one pauses its bar. Send a toast, or press Show me.</p>
+      <p data-hb-for="compare" hidden>Jumps: toasts pop in and vanish, and the stack jumps; Glides: they come and go smoothly, and the others glide to their new places. Send a toast, or press Show me.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then try it again or press Show me.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="corner-lbl">Corner</p>
+        <div class="seg" id="corner-seg" role="group" aria-labelledby="corner-lbl">
+          <button type="button" data-corner="tl" aria-pressed="false">Top left</button>
+          <button type="button" data-corner="tr" class="on" aria-pressed="true">Top right</button>
+          <button type="button" data-corner="bl" aria-pressed="false">Bottom left</button>
+          <button type="button" data-corner="br" aria-pressed="false">Bottom right</button>
+        </div>
+        <p class="hb-hint">Where toasts appear and stack.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="style-lbl">How it comes in</p>
+        <div class="seg" id="style-seg" role="group" aria-labelledby="style-lbl">
+          <button type="button" data-style="slide" class="on" aria-pressed="true">Slides</button>
+          <button type="button" data-style="fade" aria-pressed="false">Fades</button>
+          <button type="button" data-style="scale" aria-pressed="false">Grows</button>
+        </div>
+        <p class="hb-hint">How each toast arrives and leaves.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="time-lbl">Time on screen</p>
+        <div class="seg" id="time-seg" role="group" aria-labelledby="time-lbl">
+          <button type="button" data-sec="2.5" aria-pressed="false">Short</button>
+          <button type="button" data-sec="4" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-sec="6.5" aria-pressed="false">Long</button>
+        </div>
+        <p class="hb-hint">How long a toast stays before it leaves.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="limit-lbl">Most at once</p>
+          <div class="seg" id="limit-seg" role="group" aria-labelledby="limit-lbl">
+            <button type="button" data-n="2" aria-pressed="false">Two</button>
+            <button type="button" data-n="3" aria-pressed="false">Three</button>
+            <button type="button" data-n="4" class="on" aria-pressed="true">Four</button>
+          </div>
+          <p class="hb-hint">The oldest leaves when a new one needs room.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add toast notifications to [the actions in your app that should be confirmed quietly, such as saving]. Each toast comes into a corner of the screen with a short message and a thin bar that empties as it counts down, then leaves on its own. New toasts stack; when one leaves, the others glide over to close the gap, moved with transforms rather than by changing the layout. Pause the countdown while the pointer is over a toast, and let a tap, a sideways swipe or a close button dismiss it early. Announce each message to screen readers without moving focus. If the visitor has reduced motion turned on, show and hide toasts without movement. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Save confirmations</li><li>Upload updates</li><li>Sync notices</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Errors that need action</li><li>Long messages</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const toaster=document.getElementById('toaster'),send=document.getElementById('send');
+  const reduceMotion=matchMedia('(prefers-reduced-motion:reduce)');
+  const STILL_CMP='Shown still, a moment into a change: Jumps has already moved every toast; Glides is still moving them into place.',
+    OUT_CMP='Without motion both halves show the same toasts at once; turn reduced motion off to see Glides move them.';
+  let corner='tr',style='slide',dur=4,limit=4,toasts=[];
+  const TYPES=[['ok','Saved','Your changes were published.'],['ok','Uploaded','profile.png finished uploading.'],
+    ['err','Failed','Could not reach the server.'],['err','Rejected','Card was declined — try another.'],
+    ['info','Heads up','A new version is available.'],['info','Synced','3 items synced across devices.']];
+  // What Show me sends: a neutral example, so a run is always the same and screen readers hear an honest message
+  const DEMO=['ok','Example','A toast like this confirms an action.'];
+  const ICON={ok:'✓',err:'✕',info:'i'};
+  const signX=()=>corner.endsWith('r')?1:-1;
+  // Where a toast starts and ends: off to the side, a little smaller, or (fade) in place
+  const away=dir=>style==='scale'?'scale(.85)':style==='fade'?'none':`translateX(${(dir||signX())*112}%)`;
+  // FLIP: measure the other toasts before the layout changes and again after, then play the difference back as a glide. It uses the separate
+  // translate property, so it never replaces a slide-in or a swipe (transform), and composite:'add' lets it join a glide still under way.
+  const snap=()=>{const m=new Map();toasts.forEach(t=>m.set(t,t.getBoundingClientRect().top));return m};
+  function play(prev){
+    if(reduceMotion.matches)return;
+    toasts.forEach(t=>{
+      const o=prev.get(t);if(o==null)return;
+      const d=o-t.getBoundingClientRect().top;if(!d)return;
+      t.animate({translate:[`0 ${d}px`,'0 0']},{duration:340,easing:'cubic-bezier(.22,1,.36,1)',composite:'add'});
+      if(mode==='inside'){const x=toaster.offsetLeft+t.offsetLeft;mark('arrow'+(d<0?' down':''),{l:corner.endsWith('r')?x-12:x+t.offsetWidth+10,t:toaster.offsetTop+t.offsetTop+(t.offsetHeight-Math.abs(d))/2,w:2,h:Math.abs(d)},d)}
+    });
+  }
+  // The Send button, the visitor's taps and Show me all bring a toast in here; without a message it picks one at random.
+  function spawn(msg){
+    const [type,title,text]=msg||TYPES[Math.floor(Math.random()*TYPES.length)];
+    enforce(1); // room first: the oldest leave and the others close the gap before the new toast is placed
+    const el=document.createElement('div');
+    el.className='toast '+type;
+    el.style.setProperty('--dur',dur+'s');
+    el.innerHTML=`<span class="ic" aria-hidden="true">${ICON[type]}</span>`+
+      `<div class="body"><div class="ti">${title}</div><div class="ms">${text}</div></div>`+
+      `<button class="x" type="button" aria-label="Dismiss">&times;</button><span class="prog"></span>`;
+    // enter: start off to the side, then settle to rest next frame
+    el.style.opacity='0';el.style.transform=away();
+    const prev=snap();
+    corner.startsWith('t')?toaster.appendChild(el):toaster.insertBefore(el,toaster.firstChild);
+    toasts.push(el);wire(el);copyIn(el,type,title,text);
+    play(prev); // in the bottom corners the others rise to make room; in the top corners nothing moves
+    void el.offsetWidth;
+    if(reduceMotion.matches){el.style.opacity='1';el.style.transform='none'}
+    else requestAnimationFrame(()=>{if(el._gone)return;el.style.opacity='1';el.style.transform='none'});
+    draw();
+  }
+  // Toasts leave together. Each slides out from where it stands but stops taking room in the stack at once (taken out of the flow at its measured
+  // place, under the others), so the others, measured first, glide into the gap at once instead of waiting for the exit. The timer only removes the node.
+  function leave(going,dir){
+    going=going.filter(el=>el&&!el._gone);
+    if(!going.length)return;
+    going.forEach(el=>{el._gone=true;const i=toasts.indexOf(el);if(i>-1)toasts.splice(i,1);if(el._copy)el._copy.remove()});
+    if(reduceMotion.matches){going.forEach(el=>el.remove());draw();return}
+    const prev=snap(),top=corner.startsWith('t'),cs=getComputedStyle(toaster),gap=parseFloat(cs.rowGap)||0;
+    const stack=[...toaster.children].filter(t=>t.style.position!=='absolute');
+    // a leaving toast's place is its distance from the edge the stack is anchored to (top or bottom): padding, then the toasts before it and the gaps
+    const spots=going.map(el=>{let at=parseFloat(top?cs.paddingTop:cs.paddingBottom);for(const t of stack){if(t===el)break;at+=parseFloat(getComputedStyle(t).height)+gap}return [at,getComputedStyle(el).width]});
+    if(mode==='inside')going.forEach(el=>mark('gap',{l:toaster.offsetLeft+el.offsetLeft,t:toaster.offsetTop+el.offsetTop,w:el.offsetWidth,h:el.offsetHeight}));
+    going.forEach((el,i)=>{const [at,w]=spots[i];
+      Object.assign(el.style,{position:'absolute',zIndex:-1,left:cs.paddingLeft,width:w,top:top?at+'px':'auto',bottom:top?'auto':at+'px',pointerEvents:'none',
+        transition:'transform .3s cubic-bezier(.4,0,1,1),opacity .3s',opacity:'0',transform:away(dir)});
+      el._exit=setTimeout(()=>{el.remove();draw()},300);
+    });
+    play(prev);draw();
+  }
+  function dismiss(el,dir){leave([el],dir)}
+  // Past the limit, the oldest leave (extra: room for the toast that is about to arrive)
+  function enforce(extra=0){leave(toasts.slice(0,Math.max(0,toasts.length-limit+extra)))}
+  function wire(el){
+    el.querySelector('.prog').addEventListener('animationend',e=>{if(e.animationName==='countdown')dismiss(el)});
+    el.querySelector('.x').addEventListener('click',e=>{
+      e.stopPropagation();
+      if(el.contains(document.activeElement))send.focus({preventScroll:true}); // the toast is about to go: keep the keyboard's place
+      dismiss(el);
+    });
+    // swipe / tap dismiss
+    let x0=0,dx=0,drag=false;
+    el.addEventListener('pointerdown',e=>{
+      if(e.target.closest('.x')||el._gone)return;
+      drag=true;dx=0;x0=e.clientX;el.classList.add('paused');el.style.transition='none';el.setPointerCapture(e.pointerId);
+    });
+    el.addEventListener('pointermove',e=>{
+      if(!drag)return;
+      dx=e.clientX-x0;
+      el.style.transform=`translateX(${dx}px)`;
+      el.style.opacity=String(Math.max(.3,1-Math.abs(dx)/(el.offsetWidth*.8)));
+    });
+    function up(e){
+      if(!drag)return;drag=false;el.classList.remove('paused');
+      if(el._gone)return;
+      if(e.type!=='pointercancel'&&(Math.abs(dx)>el.offsetWidth*.35||Math.abs(dx)<6))dismiss(el,dx<0?-1:1);
+      else{el.style.transition='transform .3s cubic-bezier(.22,1,.36,1),opacity .3s';el.style.transform='none';el.style.opacity='1'}
+    }
+    el.addEventListener('pointerup',up);el.addEventListener('pointercancel',up);
+  }
+  send.addEventListener('click',()=>spawn()); // not addEventListener('click',spawn): that would pass the click as the message
+  // Show me starts with no toasts on the stage: every one, the ones still leaving included, is taken away at once (no exit).
+  function toRest(){
+    toaster.querySelectorAll('.toast').forEach(el=>{el._gone=true;clearTimeout(el._exit);el.remove()});
+    toasts=[];mirror.textContent='';
+  }
+  // Show me is one press of the stage's button. It leaves no timer behind (the toast it sends counts itself down and leaves
+  // like any other), so there is nothing for hb:input to stop and no run to cancel.
+  document.getElementById('btn-demo').addEventListener('click',()=>{toRest();spawn(DEMO)});
+  // Reset: every toast leaves the way it came, all at once.
+  document.getElementById('btn-reset').addEventListener('click',()=>leave(toasts));
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);draw();
+    }));
+  }
+  choices('corner-seg',d=>{
+    corner=d.corner;toaster.className='toaster '+corner;
+    send.classList.toggle('at-top',corner.startsWith('b'));send.classList.toggle('at-right',corner.endsWith('l'));
+  });
+  choices('style-seg',d=>{style=d.style});
+  choices('time-seg',d=>{dur=+d.sec});
+  choices('limit-seg',d=>{limit=+d.n;enforce()});
+
+  // See inside and Compare. Compare's first half is an inert copy of the toaster with a look-alike Send, made once: spawn() and
+  // leave() add and take away the same toasts in it at once, so its stack jumps. The poses are toasts held at one moment, shown
+  // while no real toast is out: See inside's (with its outline and arrows), which is also Compare's second half, and the copy's.
+  const half=send.parentElement,stage=half.parentElement,hoverMQ=matchMedia('(hover:hover)');
+  let mode='normal';
+  const make=(cls,html,parent)=>{const d=document.createElement('div');d.className=cls;d.innerHTML=html;parent.appendChild(d);return d};
+  const CARD='<div class="toast"><span class="ic"></span><div class="body"><div class="ti"></div><div class="ms"></div></div><span class="prog"></span>';
+  const copy=make('half copy','<span class="send">Send a toast</span>',stage),copySend=copy.firstChild,mirror=make('toaster','',copy);
+  const after=make('toaster after',(CARD+'</div>').repeat(3),copy),pose=make('toaster pose','<span class="slot"></span>'+(CARD+'<span class="arrow"></span></div>').repeat(3),half);
+  [copy,pose].forEach(el=>{el.inert=true;el.setAttribute('aria-hidden','true')});
+  const pt=[...pose.querySelectorAll('.toast')],at=[...after.querySelectorAll('.toast')],slot=pose.firstChild;
+  function copyIn(el,type,title,text){
+    const c=document.createElement('div');c.className='toast '+type;c.style.setProperty('--dur',dur+'s');
+    c.innerHTML=`<span class="ic">${ICON[type]}</span><div class="body"><div class="ti">${title}</div><div class="ms">${text}</div></div><span class="x">&times;</span><span class="prog"></span>`;
+    corner.startsWith('t')?mirror.appendChild(c):mirror.insertBefore(c,mirror.firstChild);el._copy=c;
+    // its bar stops whenever the real one does: a held finger (the paused class), the pointer over the toast or the focus in it
+    const hold=()=>c.classList.toggle('paused',el.classList.contains('paused')||el.matches(':focus-within')||hoverMQ.matches&&el.matches(':hover'));
+    ['pointerenter','pointerleave','pointerdown','pointerup','pointercancel','focusin','focusout'].forEach(t=>el.addEventListener(t,()=>setTimeout(hold)));
+  }
+  // See inside, while a change runs: a dashed outline where a toast left, and an arrow beside each toast that glides, as long as its glide
+  function mark(cls,b,d){
+    const m=document.createElement('span');m.className='live '+cls;half.appendChild(m);
+    Object.assign(m.style,{left:b.l+'px',top:b.t+'px',width:b.w+'px',height:b.h+'px'});
+    if(d)m.animate({translate:[`0 ${d}px`,'0 0']},{duration:340,easing:'cubic-bezier(.22,1,.36,1)'});
+    m.animate([{opacity:1},{opacity:1,offset:.6},{opacity:0}],{duration:900}).onfinish=()=>m.remove();
+  }
+  const POSE=[['ok','Saved','Your changes were published.'],['info','Synced','3 items synced across devices.'],['ok','Uploaded','profile.png finished uploading.']];
+  const SECS={2.5:'two and a half seconds',4:'about four seconds',6.5:'six and a half seconds'},NUM={2:'two',3:'three',4:'four'};
+  const cap=k=>stage.querySelector(`.cap[data-k="${k}"]`);
+  // A box in the stage's own frame (inside its border), as drawn
+  const rect=el=>{const s=stage.getBoundingClientRect(),r=el.getBoundingClientRect(),x=s.left+stage.clientLeft,y=s.top+stage.clientTop;return{l:r.left-x,t:r.top-y,r:r.right-x,b:r.bottom-y}};
+  function draw(){
+    const top=corner.startsWith('t');
+    mirror.className='toaster '+corner;after.className='toaster after '+corner;pose.className='toaster pose '+corner;copySend.className=send.className;
+    if(mode==='normal'){stage.classList.remove('posed');return}
+    const posed=!toaster.children.length;stage.classList.toggle('posed',posed);
+    // The pose. Top corners: the oldest's bar ran out, it leaves and the others glide up into its gap. Bottom corners, where the newest
+    // sits nearest the corner (and the oldest leaves from the far end, closing no gap): a new one comes in and the others rise to make
+    // room. Bars as if each toast came a second after the one before. Never more toasts than Most at once allows.
+    const order=top?[0,1,2]:[2,1,0],left=top?[0,1/dur,2/dur]:[1,(dur-1)/dur,(dur-2)/dur],n=Math.min(3,limit);
+    [pt,at].forEach(set=>set.forEach((t,i)=>{const m=POSE[order[i]];t.className='toast '+m[0]+(set===pt?(i?' mv':' go'):'');
+      t.querySelector('.ic').textContent=ICON[m[0]];t.querySelector('.ti').textContent=m[1];t.querySelector('.ms').textContent=m[2];t.style.setProperty('--left',left[i]);t.hidden=i>=n}));
+    if(top)at[0].hidden=true;
+    // the faded one a fifth of a toast out to the side (so its title shows in every corner), a little smaller, or in place
+    pt[0].style.transform=style==='scale'?`scale(${top?.92:.95})`:style==='fade'?'none':`translateX(${signX()*(signX()<0?4:20)}%)`;
+    cap('move').textContent=top?'Faded: its bar ran out, so it '+{slide:'slides out',fade:'fades out',scale:'shrinks away'}[style]:'Faded: a new one '+{slide:'slides',fade:'fades',scale:'grows'}[style]+' in at the corner';
+    cap('glide').textContent=top?'Arrows: the others glide up into the gap':'Arrows: the others rise to make room';
+    cap('bars').textContent='Bars: each lasts '+SECS[dur];
+    cap('limit').textContent=`At most ${NUM[limit]} at once: the oldest makes room`;
+    if(posed){const g=pt[0],h=(g.offsetHeight+(parseFloat(getComputedStyle(pose).rowGap)||0))*(top?.5:.3);
+      pose.style.setProperty('--half',h+'px');pose.style.setProperty('--off',(top?-h:h)+'px');
+      Object.assign(slot.style,{left:g.offsetLeft+'px',top:g.offsetTop+'px',width:g.offsetWidth+'px',height:g.offsetHeight+'px'})}
+    // Under reduced motion nothing glides: the note says the still while posed, and what a press leaves after it
+    if(reduceMotion.matches)document.querySelector('[data-hb-for="compare"]').textContent=posed?STILL_CMP:OUT_CMP;
+    if(mode==='compare')return names();
+    // The words: posed, on its parts; with real toasts out, the bars and the limit
+    cap('move').hidden=cap('glide').hidden=!posed;
+    // posed toasts as drawn; real ones where they stand (a new one may still be sliding in)
+    const lay=t=>{const l=toaster.offsetLeft+t.offsetLeft,y=toaster.offsetTop+t.offsetTop;return{l,t:y,r:l+t.offsetWidth,b:y+t.offsetHeight}};
+    const parts=posed?pt.slice(0,n).map(rect):toasts.map(lay);
+    cap('bars').hidden=cap('limit').hidden=!parts.length;
+    if(!parts.length)return;
+    const T=Math.min(...parts.map(p=>p.t)),B=Math.max(...parts.map(p=>p.b)),mid=p=>(p.t+p.b)/2;
+    place([...(posed?[['move',mid(parts[0])],['glide',mid(parts[1])],['bars',rect(pt[n-1].querySelector('.prog')).b]]:[['bars',parts[0].b]]),['limit',top?B+16:T-16]],parts,T,B);
+  }
+  // Each word beside the stack, on its open side, at the height of what it names (never on another word or on Send); on a narrow
+  // stage, in a block past the stack's free end
+  function place(items,parts,T,B){
+    const W=stage.clientWidth,H=stage.clientHeight,top=corner.startsWith('t'),right=corner.endsWith('r'),s=rect(send);
+    const L=Math.min(...parts.map(p=>p.l)),R=Math.max(...parts.map(p=>p.r));
+    const list=items.map(([k,y])=>({el:cap(k),y})).filter(c=>c.el.offsetWidth).map(c=>Object.assign(c,{w:c.el.offsetWidth,h:c.el.offsetHeight}));
+    // a block when the stage is narrow, or when any word would not fit beside the stack (stages a little over 560px wide)
+    const beside=c=>(right?L-12-c.w:W-R-12-c.w)>=6;
+    if(W<560||!list.every(beside)){let y=top?B+10:T-10-list.reduce((n,c)=>n+c.h+6,0);list.forEach(c=>{c.x=12;c.y=y;y+=c.h+6})}
+    else{
+      list.forEach(c=>{c.x=right?L-12-c.w:R+12;c.y-=c.h/2;if(c.x<s.r+6&&s.l-6<c.x+c.w&&c.y<s.b+6&&s.t-6<c.y+c.h)c.y=s.b+6+c.h<H?s.b+6:s.t-6-c.h});
+      list.sort((a,b)=>a.y-b.y).forEach((c,i)=>{if(i&&c.y<list[i-1].y+list[i-1].h+4)c.y=list[i-1].y+list[i-1].h+4;c.y=Math.max(6,Math.min(H-6-c.h,c.y))});
+    }
+    list.forEach(c=>{c.el.style.left=c.x+'px';c.el.style.top=c.y+'px'});
+  }
+  // Compare's half names: at the top of each half beside the stack where there is room, else by its Send button
+  function names(){
+    const H=stage.clientHeight,top=corner.startsWith('t'),right=corner.endsWith('r');
+    [[cap('a'),copy,mirror,copySend],[cap('b'),half,toaster,send]].forEach(([el,box,tb,sb])=>{
+      const h=rect(box),t=rect(tb),s=rect(sb),w=el.offsetWidth,ht=el.offsetHeight,room=h.r-h.l-(t.r-t.l)>=w+20;
+      el.style.left=(room?(right?h.l+10:h.r-10-w):(h.l+h.r-w)/2)+'px';
+      el.style.top=(room?(top?10:H-10-ht):(top?s.t-8-ht:s.b+8))+'px';
+    });
+  }
+  // The mode switch: draws the mode at once. The shared script then presses Show me (not under reduced motion), which plays it.
+  document.addEventListener('hb:mode',e=>{
+    mode=e.detail.mode;draw();
+    // the copy's bars were not drawn outside Compare: they take up the real bars' time
+    if(mode==='compare')toasts.forEach(el=>{const a=el.querySelector('.prog').getAnimations()[0],b=el._copy&&el._copy.querySelector('.prog').getAnimations()[0];if(a&&b)b.currentTime=a.currentTime});
+  });
+  addEventListener('resize',draw);
+  if(document.fonts)document.fonts.ready.then(draw);
+  // Under reduced motion both views are still pictures, and their notes say so
+  if(reduceMotion.matches){
+    document.querySelector('[data-hb-for="inside"]').textContent='Inside, shown still: each toast leaves when its bar runs out, and whenever the stack changes the others move to their new places; pointing at one pauses its bar.';
+    document.querySelector('[data-hb-for="compare"]').textContent=STILL_CMP;
+  }
+</script>
+</body>
+</html>

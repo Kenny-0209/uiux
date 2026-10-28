@@ -1,0 +1,18 @@
+{
+  "name": "DoomMelt",
+  "source": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/DoomMelt.glsl",
+  "params": {
+    "bars": 30,
+    "amplitude": 2,
+    "noise": 0.1,
+    "frequency": 0.5,
+    "dripScale": 0.5
+  },
+  "types": {
+    "bars": "int",
+    "amplitude": "float",
+    "noise": "float",
+    "frequency": "float",
+    "dripScale": "float"
+  }
+}

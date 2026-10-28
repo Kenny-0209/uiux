@@ -1,0 +1,33 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 64 Frostbite — ice creeps up the letters under a crystalline shimmer */
+.fx-frost {
+  font: 600 32px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .1em;
+  color: transparent;
+  background:
+    radial-gradient(circle at 22% 30%, #fff 0 1.6px, transparent 2.2px),
+    radial-gradient(circle at 68% 62%, #fff 0 1.3px, transparent 1.9px),
+    linear-gradient(0deg,
+      #fff 0%,
+      var(--ink-3) 34%,
+      color-mix(in srgb, var(--ink-3) 45%, var(--ink)) 60%,
+      var(--ink) 100%);
+  background-size: 90px 46px, 120px 58px, 100% 260%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: fx-frost 4s ease-in-out infinite alternate;
+}
+@keyframes fx-frost {
+  0% {
+    background-position: 0 0, 0 0, 0 0%;
+    filter: drop-shadow(0 0 2px color-mix(in srgb, var(--ink-3) 30%, transparent));
+  }
+  100% {
+    background-position: 18px 6px, -22px -8px, 0 100%;
+    filter: drop-shadow(0 0 12px color-mix(in srgb, var(--ink-3) 75%, transparent));
+  }
+}

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrollspy Navigation — Animation Handbook</title>
+  <meta name="description" content="A menu highlights the section you are reading. Best for long docs.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/scrollspy-nav/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Scrollspy Navigation — Animation Handbook">
+  <meta property="og:description" content="A menu highlights the section you are reading. Best for long docs.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/scrollspy-nav/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Scrollspy Navigation — Animation Handbook">
+  <meta name="twitter:description" content="A menu highlights the section you are reading. Best for long docs.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Scrollspy Navigation", "name": "Scrollspy Navigation", "description": "A menu highlights the section you are reading. Best for long docs.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/scrollspy-nav/", "inLanguage": "en", "articleSection": "Scroll-Based", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Scroll-Based, Scrollspy Navigation"}</script>
+  <style>
+    :root{--ui-accent:#6ea8ff;--ui-text:#f4f4f2;--ui-muted:#8a8a92;--ui-border:rgba(255,255,255,.09)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;overflow:hidden;background:#0b0b0d}
+    .doc{height:100%;overflow-y:auto;scrollbar-width:none;position:relative;container-type:size}
+    .doc::-webkit-scrollbar{display:none}
+    /* The menu sits inside the scroller, in a row that is zero tall and sticks to the top: it stays in place while the
+       sections move, and a wheel turn or a swipe that starts on it still scrolls the box */
+    .spy-rail{position:sticky;top:0;height:0;z-index:1}
+    .spy-nav{position:absolute;top:16px;left:16px;background:rgba(17,17,20,.85);backdrop-filter:blur(8px);border:1px solid var(--ui-border);border-radius:8px;padding:10px;display:flex;flex-direction:column}
+    .spy-ind{position:absolute;left:0;top:10px;width:3px;height:44px;background:var(--ui-accent);border-radius:2px;transition:transform .25s ease}
+    .spy-link{display:flex;align-items:center;min-height:44px;padding:0 14px;font:inherit;font-size:14px;font-weight:500;color:var(--ui-muted);background:none;border:0;cursor:pointer;text-align:left;transition:color .25s ease;white-space:nowrap}
+    .spy-link.on{color:var(--ui-accent)}
+    /* After a jump (Back to top, Play starting over) the marker and links change at once instead of traveling */
+    .spy-nav.jump .spy-ind,.spy-nav.jump .spy-link{transition:none}
+    @media(hover:hover){.spy-link:hover{color:var(--ui-text)}.spy-link.on:hover{color:var(--ui-accent)}}
+    .sec{min-height:500px;padding:36px 28px 36px 200px}
+    .sec h3{font-weight:800;font-size:clamp(16px,2.4vw,22px);margin-bottom:14px}
+    .sec p{font-size:14px;color:var(--ui-muted);line-height:1.8;max-width:520px;margin-bottom:12px}
+    .runout{height:40cqh}
+    /* Short laptop screens: 36px links so the whole menu fits the smallest stage. A phone turned sideways keeps 44px links and the menu scrolls. */
+    @media(min-width:601px) and (max-height:640px) and (pointer:fine){.spy-link{min-height:36px}}
+    @media(min-width:601px) and (max-height:640px) and (pointer:coarse){.spy-nav{max-height:calc(100cqh - 32px);overflow-y:auto;scrollbar-width:none}}
+    @media(max-width:600px){
+      .spy-nav{flex-direction:row;top:8px;left:8px;right:8px;overflow-x:auto;padding:6px;scrollbar-width:none}
+      .spy-ind{display:none}
+      .spy-link{padding:0 12px;border-radius:6px}
+      .spy-link.on{background:rgba(110,168,255,.14)}
+      .sec{padding:80px 20px 36px}
+    }
+    @media(prefers-reduced-motion:reduce){.spy-ind,.spy-link{transition:none!important}}
+
+    /* See inside and Compare draw their labels and lines in one layer of the stage, outside the scroller, that ignores the
+       pointer: the box still scrolls and the links still take presses, and nothing captioned scrolls away. */
+    .fx,.fx-in,.fx-cmp,.cm-copy,.cm-rail{display:none}
+    .fx{position:absolute;inset:0;z-index:3;pointer-events:none}
+    .stage[data-hb-mode="inside"] .fx,.stage[data-hb-mode="compare"] .fx,.stage[data-hb-mode="inside"] .fx-in,.stage[data-hb-mode="compare"] .fx-cmp{display:block}
+    .cap{position:absolute;padding:2px 8px;border-radius:999px;white-space:nowrap;background:rgba(11,11,13,.95);color:#f4f4f2;
+      border:1px solid rgba(244,244,242,.3);font:600 12.5px/1.3 var(--hb-font)}
+    .cap.wrap{white-space:normal;border-radius:10px}
+    @media(max-width:600px){.cap{padding:2px 6px}}
+    /* See inside: the reading line, every section's top edge as a thin rule, the current section outlined (the page's own
+       classes, written where setActive() writes) and, while a link press glides the box, the destination dashed */
+    .ln{position:absolute;right:0;height:0;border-top:2px dashed var(--ui-accent);filter:drop-shadow(0 0 1px #000)}
+    .c-line{right:8px}
+    .c-press{right:8px;bottom:8px}
+    .stage[data-hb-mode="inside"] .sec{position:relative}
+    .stage[data-hb-mode="inside"] .sec::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:rgba(244,244,242,.55)}
+    .stage[data-hb-mode="inside"] .sec.cur{box-shadow:inset 0 0 0 2px var(--ui-accent),inset 0 0 0 2000px rgba(255,255,255,.06)}
+    .stage[data-hb-mode="inside"] .sec.dest::after{content:"";position:absolute;inset:0;border:2px dashed var(--ui-accent)}
+    /* Compare: the sections twice, in two columns of the same scroll. The copy on the left has a menu that never lights;
+       the real sections and menu sit on the right. Every section keeps its Normal height (--h, measured), so the tops the
+       page compares with stay Normal's and the scroll is as long. */
+    .stage[data-hb-mode="compare"] .doc{overflow-anchor:none}
+    .stage[data-hb-mode="compare"] .cm-copy{display:block;position:absolute;left:0;top:0;width:50%}
+    .stage[data-hb-mode="compare"] .cm-rail{display:block}
+    .stage[data-hb-mode="compare"] #content{margin-left:50%}
+    .stage[data-hb-mode="compare"] .sec{height:var(--h);min-height:0;overflow:hidden;padding:40px 12px 12px 160px}
+    .stage[data-hb-mode="compare"] .sec h3{font-size:15px;margin-bottom:8px}
+    .stage[data-hb-mode="compare"] .sec p{font-size:12px;line-height:1.55;margin-bottom:8px}
+    .stage[data-hb-mode="compare"] .spy-nav{top:38px;left:calc(50% + 12px)}
+    .stage[data-hb-mode="compare"] .cm-rail .spy-nav{left:12px;background:rgba(17,17,20,.95);backdrop-filter:none}
+    @media(min-width:601px){.stage[data-hb-mode="compare"] .spy-link{padding:0 10px}}
+    /* The names take the top of both halves, so the menus start lower: on a short window the links are smaller, or the menu scrolls */
+    @media(min-width:601px) and (max-height:760px) and (pointer:fine){.stage[data-hb-mode="compare"] .spy-link{min-height:32px}}
+    @media(min-width:601px) and (max-height:760px) and (pointer:coarse){.stage[data-hb-mode="compare"] .spy-nav{max-height:calc(100cqh - 46px);overflow-y:auto;scrollbar-width:none}}
+    @media(max-width:600px){
+      .stage[data-hb-mode="compare"] .spy-nav{top:36px;left:calc(50% + 4px);right:4px}
+      .stage[data-hb-mode="compare"] .cm-rail .spy-nav{left:4px;right:calc(50% + 4px)}
+      .stage[data-hb-mode="compare"] .sec{padding:98px 8px 8px}
+      .stage[data-hb-mode="compare"] .sec h3{font-size:14px}
+    }
+    .cm-band{position:absolute;left:3px;right:3px;top:3px;height:29px;background:rgba(11,11,13,.95)}
+    .cm-div{position:absolute;left:50%;top:3px;bottom:3px;width:2px;margin-left:-1px;background:#f4f4f2}
+    .cm-n1{top:8px;left:10px}
+    .cm-n2{top:8px;left:calc(50% + 10px)}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="scroll" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../svg-line-draw/" rel="prev" aria-label="Previous: SVG Line Draw on Scroll"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>SVG Line Draw on Scroll</span></a><a href="../scroll-background-color/" rel="next" aria-label="Next: Scroll-Driven Background Color"><span><span class="hb-dir">Next: </span>Scroll-Driven Background Color</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">01.25 · Scroll-Based</p>
+    <h1>Scrollspy Navigation</h1>
+    <p class="hb-lede">A menu highlights the section you are reading. Best for long docs.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Scroll it</h2><p>Scroll inside the box or pick a section in the menu, or press Play and it scrolls for you.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage">
+      <div class="doc" id="doc" data-hb-scroller tabindex="0" role="region" aria-label="Documentation sections">
+        <div class="spy-rail"><nav class="spy-nav" id="spy-nav" aria-label="Section navigation"><div class="spy-ind" id="spy-ind" aria-hidden="true"></div></nav></div>
+        <div id="content"></div>
+        <div class="runout"></div>
+      </div>
+      <div class="fx" aria-hidden="true">
+        <div class="fx-in">
+          <i class="ln"></i>
+          <span class="cap c-line" data-hb-caption>Reading line</span>
+          <span class="cap c-lit" data-hb-caption>Lit: the last section top above the line</span>
+          <span class="cap c-press" data-hb-caption>A pressed link glides to its section</span>
+        </div>
+        <div class="fx-cmp">
+          <i class="cm-band"></i><i class="cm-div"></i>
+          <span class="cap cm-n1" data-hb-caption>Never lights</span>
+          <span class="cap cm-n2" data-hb-caption>Lights your section</span>
+        </div>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-scroll" data-hb-autoscroll><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>Play</button>
+      <button class="hb-play" type="button" id="btn-top" data-hb-top><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Back to top</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the dashed line is the reading line: the menu lights the last section whose top edge has passed above it. Scroll the box or press Play to watch.</p>
+      <p data-hb-for="compare" hidden>In Never lights the menu stays plain, so you cannot tell where you are; in Lights your section it marks the section you are reading. Scroll the box or press Play to watch.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then scroll again or press Play.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="act-lbl">Link changes at</p>
+        <div class="seg" id="act-seg" role="group" aria-labelledby="act-lbl">
+          <button type="button" data-act="0.2" aria-pressed="false">Near the top</button>
+          <button type="button" data-act="0.35" class="on" aria-pressed="true">A third down</button>
+          <button type="button" data-act="0.5" aria-pressed="false">Halfway</button>
+        </div>
+        <p class="hb-hint">How far up a heading must scroll before its link lights.</p>
+      </div>
+      <div class="hb-setting">
+        <label class="hb-switch-row"><span>Glides to the section</span><input class="hb-switch" type="checkbox" role="switch" id="smooth-tog" checked autocomplete="off"></label>
+        <p class="hb-hint">Off, a link jumps straight to its section.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a scrollspy menu to [your documentation or long page and its section headings]. Keep a menu of section links in place beside the content and highlight the link for the section being read, with a marker that slides to it: a section becomes current once its heading scrolls up past a chosen line, and the last link lights up at the very bottom. Clicking or tapping a link scrolls to its section and lights that link at once, without flickering through the links in between. On phones, turn the menu into a strip across the top. If the visitor has reduced motion turned on, jump to sections instead of gliding. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Documentation</li><li>Long articles</li><li>Settings pages</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Short pages</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const SECTIONS=[
+    {name:'Introduction',tint:'rgba(110,168,255,.05)'},
+    {name:'Installation',tint:'rgba(120,220,180,.05)'},
+    {name:'Configuration',tint:'rgba(240,200,120,.05)'},
+    {name:'API Reference',tint:'rgba(230,140,160,.05)'},
+    {name:'Examples',tint:'rgba(180,150,240,.05)'},
+    {name:'Changelog',tint:'rgba(140,210,230,.05)'},
+  ];
+  const BODY='Body copy stands in for real documentation here. The section needs enough height that scrolling through it feels like reading a page, not flicking past a card.';
+  const doc=document.getElementById('doc'),content=document.getElementById('content'),nav=document.getElementById('spy-nav'),ind=document.getElementById('spy-ind');
+  const smoothTog=document.getElementById('smooth-tog');
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+  let tops=[],maxScroll=0,active=-1,activation=.35,targetLock=-1,glideFrame=0,ticking=false,indH=-1,lastTop=0,pressing=false,missed=false;
+
+  const secEls=SECTIONS.map((s,i)=>{
+    const el=document.createElement('section');
+    el.className='sec';el.style.background=s.tint;
+    el.innerHTML=`<h3>${s.name}</h3><p>${BODY}</p><p>${BODY}</p><p>${BODY}</p>`;
+    content.appendChild(el);
+    const link=document.createElement('button');
+    link.className='spy-link';link.type='button';link.textContent=s.name;link.dataset.i=i;
+    nav.appendChild(link);
+    return el;
+  });
+  const links=[...nav.querySelectorAll('.spy-link')];
+
+  // Compare's left half: a copy of the sections and of the menu, made once, without ids, inert and hidden from screen readers.
+  // Its links are never lit and it has no marker.
+  const stage=document.querySelector('.stage'),rail=doc.querySelector('.spy-rail');
+  const cmCopy=document.createElement('div'),cmRail=rail.cloneNode(true);
+  cmCopy.className='cm-copy';secEls.forEach(el=>cmCopy.appendChild(el.cloneNode(true)));
+  cmRail.classList.add('cm-rail');
+  cmRail.querySelectorAll('[id]').forEach(el=>el.removeAttribute('id'));
+  cmRail.querySelector('.spy-ind').remove();cmRail.querySelector('nav').removeAttribute('aria-label');
+  [cmCopy,cmRail].forEach(el=>{el.inert=true;el.setAttribute('aria-hidden','true')});
+  rail.after(cmRail);doc.appendChild(cmCopy);
+
+  // The switch above the box: the page draws the mode at once
+  let mode='normal';
+  const LABELS={
+    normal:'Documentation sections',
+    inside:'Documentation sections with the reading line drawn and the current section outlined',
+    compare:'The documentation twice: with a menu that never lights, and with a menu that lights the section you are reading'
+  };
+  document.addEventListener('hb:mode',e=>{
+    mode=e.detail.mode;
+    doc.setAttribute('aria-label',LABELS[mode]||LABELS.normal);
+    refit();
+  });
+
+  // Cache tops in the scroller's content coordinates, measured against the scroller's own rect (the stage's border sits outside it).
+  // offsetTop would depend on what sits between a section and the scroller.
+  function measure(){
+    const sRect=doc.getBoundingClientRect();
+    tops=secEls.map(el=>el.getBoundingClientRect().top-sRect.top+doc.scrollTop);
+    maxScroll=doc.scrollHeight-doc.clientHeight;
+  }
+  function moveInd(i){
+    const l=links[i];
+    ind.style.transform=`translateY(${l.offsetTop-10}px)`; // 10 = indicator's own top offset
+    if(l.offsetHeight!==indH){indH=l.offsetHeight;ind.style.height=indH+'px'}
+  }
+  // When the menu itself scrolls (a strip on phones, a tall menu on a short sideways screen) show the active link by setting
+  // the menu's own scroll position; scrollIntoView() would scroll the page too.
+  function showInMenu(i){
+    if(pressing){missed=true;return}      // never move the links from under a finger
+    const l=links[i];
+    if(nav.scrollWidth>nav.clientWidth)nav.scrollLeft=l.offsetLeft-(nav.clientWidth-l.offsetWidth)/2;
+    if(nav.scrollHeight>nav.clientHeight)nav.scrollTop=l.offsetTop-(nav.clientHeight-l.offsetHeight)/2;
+  }
+  // See inside outlines the current section, or the destination (dashed) while a link press holds the menu
+  function paint(){
+    secEls.forEach((el,i)=>{el.classList.toggle('cur',i===active&&targetLock<0);el.classList.toggle('dest',i===targetLock)});
+  }
+  function setActive(i,instant){
+    if(i===active)return;                 // guard: write DOM only on change
+    if(instant)nav.classList.add('jump');
+    if(active>-1){links[active].classList.remove('on');links[active].removeAttribute('aria-current')}
+    links[i].classList.add('on');links[i].setAttribute('aria-current','true');active=i;paint();
+    moveInd(i);showInMenu(i);
+    if(instant){void nav.offsetWidth;nav.classList.remove('jump')}
+  }
+  function spy(){
+    const st=doc.scrollTop;
+    const jumped=Math.abs(st-lastTop)>doc.clientHeight*1.5; // Back to top, Play starting over: the menu resets at once
+    lastTop=st;
+    if(targetLock>-1)return;              // programmatic scroll in flight — no flicker
+    const line=st+doc.clientHeight*activation;
+    let i=0;
+    for(let k=0;k<tops.length;k++)if(tops[k]<=line)i=k;
+    if(st>=maxScroll-1)i=tops.length-1;   // force last section at the very bottom
+    setActive(i,jumped);
+  }
+  doc.addEventListener('scroll',()=>{
+    if(!ticking){ticking=true;requestAnimationFrame(()=>{ticking=false;spy()})}
+  },{passive:true});
+
+  // A link press glides the box to its section by setting scrollTop on every frame (not the browser's own smooth scroll),
+  // so Play, Back to top and the visitor can end the glide at once
+  function stopGlide(){cancelAnimationFrame(glideFrame);glideFrame=0;targetLock=-1;paint()}
+  function endGlide(){if(targetLock>-1){stopGlide();spy()}}   // the marker follows the scroll position again
+  function glideTo(i,to){
+    stopGlide();targetLock=i;paint();
+    const from=doc.scrollTop,dist=to-from,dur=Math.min(700,Math.max(250,Math.abs(dist)/2));
+    let t0=0,written=from;
+    function step(now){
+      if(Math.abs(doc.scrollTop-written)>1.5){endGlide();return}   // the visitor scrolled the box some other way: give way
+      if(!t0)t0=now;
+      const k=Math.min(1,(now-t0)/dur);
+      doc.scrollTo({top:from+dist*(k<.5?4*k*k*k:1-Math.pow(2-2*k,3)/2),behavior:'instant'});
+      written=doc.scrollTop;
+      if(k<1)glideFrame=requestAnimationFrame(step);
+      else{stopGlide();spy()}
+    }
+    glideFrame=requestAnimationFrame(step);
+  }
+  // The visitor taking over (wheel, touch, key), or Play or Back to top, ends a glide that is still under way. A press on a
+  // link does not: its click starts a new glide
+  ['wheel','touchstart','keydown'].forEach(type=>doc.addEventListener(type,e=>{
+    if(e.isTrusted&&(type==='wheel'||!e.target.closest('.spy-link')))endGlide();
+  },{passive:true}));
+  ['btn-scroll','btn-top'].forEach(id=>document.getElementById(id).addEventListener('click',endGlide));
+  nav.addEventListener('pointerdown',()=>{pressing=true;missed=false});
+  addEventListener('pointercancel',()=>{pressing=false});     // the browser took the touch to pan the menu: leave it where the visitor puts it
+  addEventListener('pointerup',()=>setTimeout(()=>{           // the click that follows a press lets go itself
+    if(pressing){pressing=false;if(missed)showInMenu(active)}
+  },400));
+
+  nav.addEventListener('click',e=>{
+    const link=e.target.closest('.spy-link');if(!link)return;
+    const i=+link.dataset.i;
+    const to=Math.min(Math.max(tops[i]-8,0),maxScroll);
+    pressing=false;setActive(i);
+    if(smoothTog.checked&&!reduced.matches&&Math.abs(to-doc.scrollTop)>1)glideTo(i,to);
+    else{stopGlide();doc.scrollTo({top:to,behavior:'instant'});spy()}
+  });
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  choices('act-seg',d=>{activation=+d.act;spy();drawFx()});
+  smoothTog.addEventListener('change',drawFx);
+  reduced.addEventListener('change',drawFx);
+
+  // Sizes change with the window and once the site font has loaded: measure again and forget the cached marker height
+  function remeasure(){
+    if(mode==='compare')fit();
+    measure();indH=-1;
+    if(active>-1){moveInd(active);showInMenu(active)}
+    spy();drawFx();
+  }
+
+  // Compare keeps every section at exactly its Normal height: measure them with Normal's rules, then put the mode back
+  function fit(){
+    const m=stage.getAttribute('data-hb-mode');
+    stage.setAttribute('data-hb-mode','normal');
+    const H=secEls.map(el=>el.getBoundingClientRect().height);
+    stage.setAttribute('data-hb-mode',m);
+    secEls.forEach((el,i)=>{el.style.setProperty('--h',H[i]+'px');cmCopy.children[i].style.setProperty('--h',H[i]+'px')});
+  }
+  // A new mode changes the menu's size: measure the tops again and put the marker where it belongs without sliding it
+  function refit(){
+    if(mode==='compare')fit();
+    measure();
+    nav.classList.add('jump');indH=-1;
+    if(active>-1){moveInd(active);showInMenu(active)}
+    void nav.offsetWidth;nav.classList.remove('jump');
+    paint();drawFx();
+  }
+
+  // See inside: the reading line sits where the page compares the headings with, at the setting's share of the box's height
+  // (on a phone no higher than just under the strip), and the labels sit around it in the layer outside the scroller
+  const $=q=>stage.querySelector(q);
+  const ln=$('.ln'),cLine=$('.c-line'),cLit=$('.c-lit'),cPress=$('.c-press');
+  function drawFx(){
+    if(mode!=='inside')return;
+    const H=doc.clientHeight,r=doc.getBoundingClientRect(),nr=nav.getBoundingClientRect();
+    const phone=matchMedia('(max-width:600px)').matches;
+    const navB=Math.min(nr.bottom-r.top,H),navR=nr.right-r.left;
+    const y=Math.max(H*activation,phone?navB+8:0);
+    ln.style.top=y+'px';ln.style.left=(phone?0:navR+10)+'px';
+    cPress.textContent=smoothTog.checked&&!reduced.matches?'A pressed link glides to its section':'A pressed link jumps to its section';
+    cLit.classList.remove('wrap');cLit.style.width='';
+    if(phone){
+      cLine.style.top=(y+4)+'px';
+      cLit.style.left='8px';
+      const top=navB+6;
+      cLit.style.top=(top+cLit.offsetHeight>y-6?y+8+cLine.offsetHeight:top)+'px';
+      return;
+    }
+    cLine.style.top=Math.max(y-cLine.offsetHeight-4,2)+'px';
+    cLit.classList.add('wrap');cLit.style.width=nr.width+'px';cLit.style.left=(nr.left-r.left)+'px';
+    if(navB+8+cLit.offsetHeight<=H-8)cLit.style.top=(navB+8)+'px';
+    else{
+      cLit.classList.remove('wrap');cLit.style.width='';
+      cLit.style.left=(navR+10)+'px';cLit.style.top=(y+8)+'px';
+    }
+  }
+  addEventListener('resize',remeasure);
+  measure();spy();
+  addEventListener('load',remeasure);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(remeasure);
+</script>
+</body>
+</html>

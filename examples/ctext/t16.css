@@ -1,0 +1,62 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 29 Sundial — a long cast shadow circles the letters like a passing sun */
+.fx-sundial {
+  font: 600 32px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .1em;
+  color: var(--ink);
+  animation: fx-sundial 5s linear infinite;
+}
+@keyframes fx-sundial {
+  0%, 100% {
+    text-shadow:
+      4px 0 var(--ink-2),
+      8px 0 color-mix(in srgb, var(--ink-2) 55%, transparent),
+      12px 0 color-mix(in srgb, var(--ink-2) 25%, transparent);
+  }
+  12.5% {
+    text-shadow:
+      2.8px 2.8px var(--ink-2),
+      5.6px 5.6px color-mix(in srgb, var(--ink-2) 55%, transparent),
+      8.4px 8.4px color-mix(in srgb, var(--ink-2) 25%, transparent);
+  }
+  25% {
+    text-shadow:
+      0 4px var(--ink-2),
+      0 8px color-mix(in srgb, var(--ink-2) 55%, transparent),
+      0 12px color-mix(in srgb, var(--ink-2) 25%, transparent);
+  }
+  37.5% {
+    text-shadow:
+      -2.8px 2.8px var(--ink-2),
+      -5.6px 5.6px color-mix(in srgb, var(--ink-2) 55%, transparent),
+      -8.4px 8.4px color-mix(in srgb, var(--ink-2) 25%, transparent);
+  }
+  50% {
+    text-shadow:
+      -4px 0 var(--ink-2),
+      -8px 0 color-mix(in srgb, var(--ink-2) 55%, transparent),
+      -12px 0 color-mix(in srgb, var(--ink-2) 25%, transparent);
+  }
+  62.5% {
+    text-shadow:
+      -2.8px -2.8px var(--ink-2),
+      -5.6px -5.6px color-mix(in srgb, var(--ink-2) 55%, transparent),
+      -8.4px -8.4px color-mix(in srgb, var(--ink-2) 25%, transparent);
+  }
+  75% {
+    text-shadow:
+      0 -4px var(--ink-2),
+      0 -8px color-mix(in srgb, var(--ink-2) 55%, transparent),
+      0 -12px color-mix(in srgb, var(--ink-2) 25%, transparent);
+  }
+  87.5% {
+    text-shadow:
+      2.8px -2.8px var(--ink-2),
+      5.6px -5.6px color-mix(in srgb, var(--ink-2) 55%, transparent),
+      8.4px -8.4px color-mix(in srgb, var(--ink-2) 25%, transparent);
+  }
+}

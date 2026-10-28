@@ -1,0 +1,385 @@
+[
+  {
+    "id": "tr01",
+    "name": "크로스페이드",
+    "english": "Crossfade",
+    "category": "화면 전환",
+    "description": "두 화면을 겹치면서 부드럽게 전환합니다.",
+    "tags": [
+      "크로스페이드",
+      "크로스 디졸브",
+      "전환"
+    ],
+    "preview": "./examples/tr01/index.html",
+    "codePath": "./examples/tr01/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 HTML",
+        "path": "./examples/tr01/source.html"
+      },
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/crossfade/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 패널의 공통 자산 경로와 배치만 조정",
+    "remote": false,
+    "requiresGPU": false
+  },
+  {
+    "id": "tr02",
+    "name": "디졸브",
+    "english": "Dissolve",
+    "category": "화면 전환",
+    "description": "장면의 점들이 흩어지며 다음 장면으로 전환됩니다.",
+    "tags": [
+      "디졸브",
+      "전환",
+      "픽셀"
+    ],
+    "preview": "./examples/tr02/index.html",
+    "codePath": "./examples/tr02/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 HTML",
+        "path": "./examples/tr02/source.html"
+      },
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/dissolve/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 패널의 공통 자산 경로와 배치만 조정",
+    "remote": false,
+    "requiresGPU": false
+  },
+  {
+    "id": "tr03",
+    "name": "슬라이드 전환",
+    "english": "Slide transition",
+    "category": "화면 전환",
+    "description": "방향에 따라 화면을 밀어내며 전환합니다.",
+    "tags": [
+      "슬라이드",
+      "화면전환",
+      "이동"
+    ],
+    "preview": "./examples/tr03/index.html",
+    "codePath": "./examples/tr03/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 HTML",
+        "path": "./examples/tr03/source.html"
+      },
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/slide-transition/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 패널의 공통 자산 경로와 배치만 조정",
+    "remote": false,
+    "requiresGPU": false
+  },
+  {
+    "id": "tr04",
+    "name": "줌 전환",
+    "english": "Zoom transition",
+    "category": "화면 전환",
+    "description": "화면이 확대되거나 축소되며 다음 장면으로 넘어갑니다.",
+    "tags": [
+      "줌",
+      "스케일",
+      "화면전환"
+    ],
+    "preview": "./examples/tr04/index.html",
+    "codePath": "./examples/tr04/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 HTML",
+        "path": "./examples/tr04/source.html"
+      },
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/zoom-transition/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 패널의 공통 자산 경로와 배치만 조정",
+    "remote": false,
+    "requiresGPU": false
+  },
+  {
+    "id": "tr05",
+    "name": "포털 줌",
+    "english": "Portal zoom",
+    "category": "화면 전환",
+    "description": "한 장면의 지점으로 확대하여 다음 장면을 드러냅니다.",
+    "tags": [
+      "포털",
+      "줌",
+      "전환"
+    ],
+    "preview": "./examples/tr05/index.html",
+    "codePath": "./examples/tr05/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 HTML",
+        "path": "./examples/tr05/source.html"
+      },
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/portal-zoom/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 패널의 공통 자산 경로와 배치만 조정",
+    "remote": false,
+    "requiresGPU": false
+  },
+  {
+    "id": "tr06",
+    "name": "오버레이 와이프",
+    "english": "Overlay wipe",
+    "category": "화면 전환",
+    "description": "화면을 덮는 레이어가 이동하며 다음 장면을 공개합니다.",
+    "tags": [
+      "와이프",
+      "마스크",
+      "전환"
+    ],
+    "preview": "./examples/tr06/index.html",
+    "codePath": "./examples/tr06/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 HTML",
+        "path": "./examples/tr06/source.html"
+      },
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/overlay-wipe/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 패널의 공통 자산 경로와 배치만 조정",
+    "remote": false,
+    "requiresGPU": false
+  },
+  {
+    "id": "tr07",
+    "name": "페이지 컬",
+    "english": "Page curl",
+    "category": "화면 전환",
+    "description": "종이의 한쪽을 넘기듯 새 페이지를 드러냅니다.",
+    "tags": [
+      "페이지",
+      "넘기기",
+      "전환"
+    ],
+    "preview": "./examples/tr07/index.html",
+    "codePath": "./examples/tr07/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 HTML",
+        "path": "./examples/tr07/source.html"
+      },
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/page-curl/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 패널의 공통 자산 경로와 배치만 조정",
+    "remote": false,
+    "requiresGPU": false
+  },
+  {
+    "id": "tr08",
+    "name": "픽셀화 전환",
+    "english": "Pixelate transition",
+    "category": "화면 전환",
+    "description": "이미지가 픽셀화되면서 다음 장면으로 바뀝니다.",
+    "tags": [
+      "픽셀",
+      "전환",
+      "모션"
+    ],
+    "preview": "./examples/tr08/index.html",
+    "codePath": "./examples/tr08/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 HTML",
+        "path": "./examples/tr08/source.html"
+      },
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/pixelate-transition/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 패널의 공통 자산 경로와 배치만 조정",
+    "remote": false,
+    "requiresGPU": false
+  },
+  {
+    "id": "tr09",
+    "name": "공유 요소 전환",
+    "english": "Shared element transition",
+    "category": "화면 전환",
+    "description": "한 화면의 요소가 다음 화면의 요소로 이어집니다.",
+    "tags": [
+      "공유 요소",
+      "상태",
+      "전환"
+    ],
+    "preview": "./examples/tr09/index.html",
+    "codePath": "./examples/tr09/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 HTML",
+        "path": "./examples/tr09/source.html"
+      },
+      {
+        "label": "공통 CSS",
+        "path": "./examples/asset/demo.css"
+      },
+      {
+        "label": "공통 JavaScript",
+        "path": "./examples/asset/demo.js"
+      }
+    ],
+    "sourceName": "Animation Handbook",
+    "sourceUrl": "https://github.com/matinmonshizadeh/animation-handbook/blob/7c22acb833d85bc478cab5fc990307a1a6b7a20a/animations/03-page-transitions/shared-element-transition/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-MOT.txt",
+    "adaptation": "원본 HTML을 보존하고 패널의 공통 자산 경로와 배치만 조정",
+    "remote": false,
+    "requiresGPU": false
+  },
+  {
+    "id": "cam01",
+    "name": "달리와 줌 비교",
+    "english": "Dolly vs. Zoom",
+    "category": "카메라",
+    "description": "슬라이더로 카메라 이동과 렌즈 화각 변경의 차이를 3D 장면에서 비교합니다.",
+    "tags": [
+      "달리",
+      "줌",
+      "원근",
+      "카메라"
+    ],
+    "preview": "https://yomotsu.github.io/camera-movement-comparison/dolly-zoom.html",
+    "sourceName": "Yomotsu",
+    "sourceUrl": "https://github.com/yomotsu/camera-movement-comparison/blob/d1496b924fe64a41483df658ff66073137fd294f/dolly-zoom.html",
+    "license": "원본 연결 · 사용 조건 확인",
+    "adaptation": "원본 웹페이지를 그대로 연결하며 원본 소스·3D 모델은 복제하지 않음. 온라인 로드에 yomotsu.github.io와 cdn.skypack.dev 필요",
+    "codeFiles": [],
+    "remote": true,
+    "requiresGPU": true,
+    "previewHeight": 360
+  },
+  {
+    "id": "cam02",
+    "name": "트럭과 팬 비교",
+    "english": "Truck vs. Pan",
+    "category": "카메라",
+    "description": "카메라 위치를 옆으로 이동하는 트럭과 제자리에서 회전하는 팬을 비교합니다.",
+    "tags": [
+      "트럭",
+      "팬",
+      "카메라",
+      "이동"
+    ],
+    "preview": "https://yomotsu.github.io/camera-movement-comparison/truck-pan.html",
+    "sourceName": "Yomotsu",
+    "sourceUrl": "https://github.com/yomotsu/camera-movement-comparison/blob/d1496b924fe64a41483df658ff66073137fd294f/truck-pan.html",
+    "license": "원본 연결 · 사용 조건 확인",
+    "adaptation": "원본 웹페이지를 그대로 연결하며 원본 소스·3D 모델은 복제하지 않음. 온라인 로드에 yomotsu.github.io와 cdn.skypack.dev 필요",
+    "codeFiles": [],
+    "remote": true,
+    "requiresGPU": true,
+    "previewHeight": 360
+  },
+  {
+    "id": "cam03",
+    "name": "달리 줌",
+    "english": "Dolly zoom",
+    "category": "카메라",
+    "description": "카메라가 이동하고 화각이 동시에 바뀌어 피사체 크기를 유지하는 실제 3D 장면입니다. 슬라이더 또는 Auto로 조절합니다.",
+    "tags": [
+      "달리 줌",
+      "Vertigo",
+      "원근",
+      "화각",
+      "카메라"
+    ],
+    "preview": "https://www.itamarweiss.com/dolly-zoom/",
+    "previewHeight": 400,
+    "sourceName": "Itamar Weiss",
+    "sourceUrl": "https://www.itamarweiss.com/blog/the-dolly-zoom/",
+    "sourceLabel": "원본 설명",
+    "license": "원본 연결 · 사용 조건 확인",
+    "adaptation": "저자가 글에서 직접 임베드한 원본 실행 페이지를 연결합니다. 3D 장면과 소스 파일은 로컬에 복제하지 않으며 온라인 itamarweiss.com 접근이 필요합니다.",
+    "codeFiles": [],
+    "remote": true,
+    "requiresGPU": true
+  }
+]

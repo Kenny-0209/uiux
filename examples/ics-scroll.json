@@ -1,0 +1,101 @@
+[
+  {
+    "id": "icscroll01",
+    "name": "스크롤 진행에 따른 애니메이션",
+    "english": "Scroll Progress Timeline",
+    "category": "스크롤",
+    "description": "페이지 스크롤 진행률을 CSS 타임라인에 연결한 원본 예시입니다. CSS scroll()/view() 지원 브라우저에서 확인하세요.",
+    "tags": [
+      "스크롤",
+      "CSS 타임라인",
+      "요소 진입"
+    ],
+    "preview": "./examples/icsdemo/index-scroll.html",
+    "codePath": "./examples/icsdemo/index-scroll.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/icsdemo/style/base.css"
+      },
+      {
+        "label": "효과 CSS",
+        "path": "./examples/icsdemo/style/style.css"
+      }
+    ],
+    "sourceName": "ICS Creative",
+    "sourceUrl": "https://github.com/ics-creative/230718_scroll_driven_animations/blob/01816292a1fd64b62dccea4976125dcd1bad3dc6/index-scroll.html",
+    "license": "MIT",
+    "licensePath": "./examples/icsdemo/LICENSE",
+    "adaptation": "원본 HTML·CSS와 작성자가 자유 사용을 허용한 이미지를 그대로 보존",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "CSS 스크롤 타임라인을 지원하는 브라우저가 필요하며 모바일 동작은 별도 검증하지 않았습니다."
+  },
+  {
+    "id": "icscroll02",
+    "name": "요소 진입에 따른 애니메이션",
+    "english": "View Progress Timeline",
+    "category": "스크롤",
+    "description": "요소가 화면에 들어오는 진행률에 따라 움직이는 원본 예시입니다. CSS scroll()/view() 지원 브라우저에서 확인하세요.",
+    "tags": [
+      "스크롤",
+      "CSS 타임라인",
+      "요소 진입"
+    ],
+    "preview": "./examples/icsdemo/index-view.html",
+    "codePath": "./examples/icsdemo/index-view.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/icsdemo/style/base.css"
+      },
+      {
+        "label": "효과 CSS",
+        "path": "./examples/icsdemo/style/style.css"
+      }
+    ],
+    "sourceName": "ICS Creative",
+    "sourceUrl": "https://github.com/ics-creative/230718_scroll_driven_animations/blob/01816292a1fd64b62dccea4976125dcd1bad3dc6/index-view.html",
+    "license": "MIT",
+    "licensePath": "./examples/icsdemo/LICENSE",
+    "adaptation": "원본 HTML·CSS와 작성자가 자유 사용을 허용한 이미지를 그대로 보존",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "CSS 스크롤 타임라인을 지원하는 브라우저가 필요하며 모바일 동작은 별도 검증하지 않았습니다."
+  },
+  {
+    "id": "icscroll03",
+    "name": "두 스크롤 타임라인 조합",
+    "english": "Combined Scroll and View Timelines",
+    "category": "스크롤",
+    "description": "스크롤 및 요소 진입 타임라인을 결합한 원본 예시입니다. CSS scroll()/view() 지원 브라우저에서 확인하세요.",
+    "tags": [
+      "스크롤",
+      "CSS 타임라인",
+      "요소 진입"
+    ],
+    "preview": "./examples/icsdemo/index.html",
+    "codePath": "./examples/icsdemo/index.html",
+    "codeFiles": [
+      {
+        "label": "공통 CSS",
+        "path": "./examples/icsdemo/style/base.css"
+      },
+      {
+        "label": "효과 CSS",
+        "path": "./examples/icsdemo/style/style.css"
+      }
+    ],
+    "sourceName": "ICS Creative",
+    "sourceUrl": "https://github.com/ics-creative/230718_scroll_driven_animations/blob/01816292a1fd64b62dccea4976125dcd1bad3dc6/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/icsdemo/LICENSE",
+    "adaptation": "원본 HTML·CSS와 작성자가 자유 사용을 허용한 이미지를 그대로 보존",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "CSS 스크롤 타임라인을 지원하는 브라우저가 필요하며 모바일 동작은 별도 검증하지 않았습니다."
+  }
+]

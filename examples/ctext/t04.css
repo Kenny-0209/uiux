@@ -1,0 +1,34 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 09 Bisect — the word is sliced horizontally; halves drift apart and re-align */
+.fx-sliced {
+  position: relative;
+  font: 600 32px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .06em;
+  color: transparent;
+}
+.fx-sliced::before, .fx-sliced::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: var(--ink);
+}
+.fx-sliced::before {
+  clip-path: inset(0 0 50% 0);
+  animation: fx-sliced-top 3s ease-in-out infinite;
+}
+.fx-sliced::after {
+  clip-path: inset(50% 0 0 0);
+  animation: fx-sliced-bot 3s ease-in-out infinite;
+}
+@keyframes fx-sliced-top {
+  0%, 22%, 78%, 100% { transform: translateX(0); }
+  38%, 62% { transform: translateX(8px); color: var(--ink-2); }
+}
+@keyframes fx-sliced-bot {
+  0%, 22%, 78%, 100% { transform: translateX(0); }
+  38%, 62% { transform: translateX(-8px); color: var(--ink-3); }
+}

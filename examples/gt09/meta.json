@@ -1,0 +1,21 @@
+{
+  "name": "LissajousTiles",
+  "source": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/LissajousTiles.glsl",
+  "params": {
+    "speed": 0.5,
+    "freq": [
+      2,
+      3
+    ],
+    "offset": 2,
+    "zoom": 0.8,
+    "fade": 3
+  },
+  "types": {
+    "speed": "float",
+    "freq": "vec2",
+    "offset": "float",
+    "zoom": "float",
+    "fade": "float"
+  }
+}

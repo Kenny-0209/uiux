@@ -1,0 +1,25 @@
+<!-- Markup: <div class="fx-pendulum" role="img" aria-label="SWING"><b aria-hidden="true" style="--i:0">S</b><b aria-hidden="true" style="--i:1">W</b><b aria-hidden="true" style="--i:2">I</b><b aria-hidden="true" style="--i:3">N</b><b aria-hidden="true" style="--i:4">G</b></div> -->
+
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 60 Pendulum — letters swing from an unseen pivot in staggered phase */
+.fx-pendulum {
+  font: 600 32px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .12em;
+  color: var(--ink);
+}
+.fx-pendulum b {
+  font-weight: inherit;
+  display: inline-block;
+  transform-origin: 50% -80%;
+  animation: fx-pendulum 1.8s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -.12s);
+}
+.fx-pendulum b:nth-child(even) { color: var(--ink-3); }
+@keyframes fx-pendulum {
+  0%, 100% { transform: rotate(10deg); }
+  50%      { transform: rotate(-10deg); }
+}

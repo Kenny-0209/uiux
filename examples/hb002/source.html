@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cover Card to Fixed Header — Animation Handbook</title>
+  <meta name="description" content="A tall cover shrinks into a slim header as you scroll. Best for articles.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/cover-card-to-fixed-header/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Cover Card to Fixed Header — Animation Handbook">
+  <meta property="og:description" content="A tall cover shrinks into a slim header as you scroll. Best for articles.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/cover-card-to-fixed-header/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cover Card to Fixed Header — Animation Handbook">
+  <meta name="twitter:description" content="A tall cover shrinks into a slim header as you scroll. Best for articles.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Cover Card to Fixed Header", "name": "Cover Card to Fixed Header", "description": "A tall cover shrinks into a slim header as you scroll. Best for articles.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/cover-card-to-fixed-header/", "inLanguage": "en", "articleSection": "Scroll-Based", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Scroll-Based, Cover Card to Fixed Header"}</script>
+  <style>
+    :root{--ui-accent:#6ea8ff;--ui-text:#f4f4f2;--ui-muted:#8a8a92;--cover-min:56px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{
+      position:relative;overflow-y:auto;scrollbar-width:none;container-type:size;background:#0b0b0d;
+      /* Scroll anchoring stays off: a cover that changed its real height would fight the scroll (see the README) */
+      overflow-anchor:none;
+    }
+    .stage::-webkit-scrollbar{display:none}
+    .scene{position:relative}
+
+    .cover{position:sticky;top:0;z-index:10;height:85cqh;overflow:hidden;background:#050e08;will-change:transform}
+    .cover-bg{position:absolute;inset:0;transform-origin:top;background:linear-gradient(150deg,#050e08,#0c2820,#060a10);will-change:opacity,filter}
+    .cover-inner{position:relative;z-index:1;display:flex;flex-direction:column;height:100%;padding:0 24px 20px}
+    .cover-spacer{flex:1}
+    .cover-meta{font-size:11px;color:#5fa577;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+    /* scaled rather than re-sized: font-size re-shapes the text every frame */
+    .cover-title{font-size:26px;font-weight:700;color:#d1f7d6;line-height:1.2;letter-spacing:-.5px;margin-bottom:8px;
+                 transform-origin:left top;will-change:transform}
+    /* the collapsed header's hairline, faded in — cheaper than writing box-shadow per frame */
+    .cover-rule{position:absolute;left:0;right:0;bottom:0;height:1px;background:#3fb950;opacity:0;pointer-events:none}
+    .cover-sub{font-size:14px;color:#5fa577;line-height:1.5;margin-bottom:14px}
+    .cover-author{display:flex;align-items:center;gap:8px}
+    .avatar{width:24px;height:24px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#3fb950,#56d364)}
+    .author-name{font-size:11px;color:#5fa577}
+    .header-chip{position:absolute;top:14px;right:16px;display:flex;align-items:center;gap:6px;opacity:0}
+    .avatar-sm{width:16px;height:16px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,#3fb950,#56d364)}
+    .chip-name{font-size:11px;color:#d1f7d6}
+
+    .article-body{padding:28px 24px;max-width:600px;will-change:transform}
+    .article-body h3{font-size:12px;color:var(--ui-accent);letter-spacing:1px;text-transform:uppercase;margin:28px 0 10px}
+    .article-body p{font-size:14px;color:var(--ui-muted);line-height:1.75;margin-bottom:14px}
+    .article-body blockquote{border-left:2px solid var(--ui-accent);padding:8px 16px;margin:18px 0;font-size:15px;color:var(--ui-text)}
+    /* fills the space the slim cover leaves after the article */
+    .end-cue{position:absolute;left:0;right:0;bottom:0;margin:0;display:flex;align-items:center;justify-content:center;
+             font-size:13px;color:#8a8a92;letter-spacing:.1em;text-align:center;padding:0 24px}
+
+    /* See inside and Compare. Normal never shows any of this: the layer, the copy, the bars and the names are display none. */
+    .hud,.twin,.strip,.hname{display:none}
+    .rows,.half{display:contents}
+    .hud{position:sticky;top:0;height:0;z-index:30;pointer-events:none}
+    .stage[data-hb-mode="inside"] .hud,.stage[data-hb-mode="compare"] .hud{display:block}
+    /* See inside: a strip across the bottom of the box, from just under the tall cover's author line down. Its width stands for the
+       start of the scroll, as far as the longest shrink; each row is a label and a bar for where along it one part changes, the
+       lit part of a bar is what the scroll has passed, and the line is where the box is. */
+    .stage[data-hb-mode="inside"] .strip{display:grid}
+    .strip{position:absolute;left:0;right:0;top:calc(85cqh - 16px);height:calc(15cqh + 16px);grid-template-rows:repeat(4,minmax(0,1fr));
+      padding:0 8px;background:rgba(5,8,10,.94);border-top:1px solid rgba(244,244,242,.28);font-size:clamp(12px,3.6cqh,14px);--lw:7.8em}
+    .srow{display:grid;grid-template-columns:var(--lw) minmax(0,1fr);gap:6px;align-items:center;min-height:0}
+    .slbl{font:500 1em/1 var(--hb-font);color:#f4f4f2;white-space:nowrap}
+    .strack{position:relative;height:100%}
+    .sbar{position:absolute;top:2px;bottom:2px;left:calc(var(--a,0) * 100%);width:calc((var(--b,1) - var(--a,0)) * 100%);
+      background:rgba(244,244,242,.22);border-radius:2px}
+    .sbar b{position:absolute;inset:0;background:var(--ui-accent);border-radius:2px;transform:scaleX(0);transform-origin:0 50%}
+    /* Snaps at halfway (and reduced motion): every part changes at one point, so each bar is a tick */
+    .strip.ticks .sbar{width:5px;margin-left:-2px}
+    .slane{position:absolute;top:2px;bottom:2px;left:calc(8px + var(--lw) + 6px);right:8px}
+    .sph{position:absolute;top:-1px;bottom:-1px;left:-1px;width:2px;border-radius:1px;background:#fff;will-change:transform}
+    /* Compare: the article twice in two columns of the same scroll. Left, the cover is an ordinary block that scrolls off with the
+       text; right, the page itself. The scene keeps the height Normal measures, so the scroll length never depends on the mode. */
+    .stage[data-hb-mode="compare"] .rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));height:var(--sh)}
+    .stage[data-hb-mode="compare"] .twin{display:block;overflow:clip;border-right:1px solid rgba(244,244,242,.3)}
+    .stage[data-hb-mode="compare"] .half{display:block;position:relative;overflow:clip}
+    .twin .cover{position:relative;top:auto;z-index:auto;will-change:auto}
+    .stage[data-hb-mode="compare"] .hname{display:block}
+    .hname{position:absolute;top:calc(100cqh - 30px);margin:0;padding:4px 9px;border-radius:999px;white-space:nowrap;
+      background:rgba(11,11,13,.9);border:1px solid rgba(244,244,242,.25);color:#f4f4f2;font:600 12px/1.2 var(--hb-font)}
+    .hn1{left:6px}.hn2{left:calc(50% + 6px)}
+    /* both halves are narrow, so the cover's text and the article are compacted the same way in each */
+    .stage[data-hb-mode="compare"] .cover-inner{padding:0 10px 12px}
+    .stage[data-hb-mode="compare"] .cover-meta{font-size:9px;margin-bottom:5px}
+    .stage[data-hb-mode="compare"] .cover-title{font-size:14px;letter-spacing:-.2px;margin-bottom:5px}
+    .stage[data-hb-mode="compare"] .cover-sub{font-size:11px;line-height:1.35;margin-bottom:8px}
+    .stage[data-hb-mode="compare"] .avatar{width:18px;height:18px}
+    .stage[data-hb-mode="compare"] .author-name{font-size:9px}
+    .stage[data-hb-mode="compare"] .header-chip{top:12px;right:8px}
+    .stage[data-hb-mode="compare"] .article-body{padding:12px 10px}
+    .stage[data-hb-mode="compare"] .article-body h3{font-size:10px;margin:14px 0 6px}
+    .stage[data-hb-mode="compare"] .article-body p{font-size:11px;line-height:1.55;margin-bottom:8px}
+    .stage[data-hb-mode="compare"] .article-body blockquote{font-size:12px;padding:5px 10px;margin:10px 0}
+    .stage[data-hb-mode="compare"] .end-cue{font-size:11px;padding:0 10px}
+    @media(max-width:600px){.stage[data-hb-mode="compare"] .chip-name{display:none}}
+
+    @media(max-width:600px){:root{--cover-min:64px}}
+    @media(prefers-reduced-motion:reduce){.cover,.cover-title,.cover-bg,.header-chip,.article-body{will-change:auto}}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="scroll" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../reverse-scrolling-columns/" rel="prev" aria-label="Previous: Reverse-Scrolling Columns"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Reverse-Scrolling Columns</span></a><a href="../fly-in-fly-out-contact-list/" rel="next" aria-label="Next: Fly-in Fly-out Contact List"><span><span class="hb-dir">Next: </span>Fly-in Fly-out Contact List</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">01.04 · Scroll-Based</p>
+    <h1>Cover Card to Fixed Header</h1>
+    <p class="hb-lede">A tall cover shrinks into a slim header as you scroll. Best for articles.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Scroll it</h2><p>Scroll inside the box, or press Play and it scrolls for you.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage" tabindex="0" role="region" aria-label="An article with a tall cover">
+      <div class="scene" id="scene">
+
+        <!-- Shown only in See inside (the bars) and Compare (the half names); one zero-height layer that stays at the top of the box -->
+        <div class="hud" aria-hidden="true">
+          <div class="strip" id="strip">
+            <div class="srow"><span class="slbl" data-hb-caption>Cover shrinks</span><span class="strack"><i class="sbar"><b></b></i></span></div>
+            <div class="srow"><span class="slbl" data-hb-caption>Subtitle fades</span><span class="strack"><i class="sbar"><b></b></i></span></div>
+            <div class="srow"><span class="slbl" data-hb-caption>Author fades</span><span class="strack"><i class="sbar"><b></b></i></span></div>
+            <div class="srow"><span class="slbl" data-hb-caption>Badge appears</span><span class="strack"><i class="sbar"><b></b></i></span></div>
+            <span class="slane"><u class="sph"></u></span>
+          </div>
+          <p class="hname hn1" data-hb-caption>Scrolls away</p>
+          <p class="hname hn2" data-hb-caption>Shrinks and stays</p>
+        </div>
+
+        <div class="rows" id="rows"><div class="half" id="half">
+        <div class="cover" id="cover">
+          <div class="cover-bg" id="cover-bg"></div>
+          <div class="cover-inner">
+            <div class="cover-spacer"></div>
+            <div class="cover-meta" id="cover-meta">Article · 8 min read</div>
+            <p class="cover-title" id="cover-title">The Architecture<br>of Scroll Motion</p>
+            <p class="cover-sub" id="cover-sub">Why a tall cover can fold into a slim bar as you read</p>
+            <div class="cover-author" id="cover-author">
+              <div class="avatar"></div>
+              <span class="author-name">Matin M. · May 2026</span>
+            </div>
+          </div>
+          <div class="cover-rule" id="cover-rule" aria-hidden="true"></div>
+          <div class="header-chip" id="header-chip" aria-hidden="true">
+            <div class="avatar-sm"></div>
+            <span class="chip-name">Matin M.</span>
+          </div>
+        </div>
+
+        <article class="article-body">
+          <h3>One number drives it all</h3>
+          <p>As you scroll, one number moves from 0 to 1. The cover's height, the size of the title, the fading background and the small author badge all follow that number, so every moment in between looks planned.</p>
+          <blockquote>A header should get out of the way without disappearing.</blockquote>
+          <h3>Everything moves together</h3>
+          <p>The title shrinks toward the top-left corner while the subtitle and the date fade out first, so the slim bar never looks crowded.</p>
+          <p>The author's name fades into the corner of the bar in the second half of the fold, when there is room for it.</p>
+          <h3>Room to read</h3>
+          <p>Once the cover has folded away, only a slim bar stays at the top, with the title and the author, and the rest of the box goes to the text.</p>
+          <p>Scroll back up and the cover opens again, step by step, in exactly the reverse order.</p>
+        </article>
+
+        <p class="end-cue">The end · scroll back up and the cover opens again</p>
+        </div></div>
+
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-scroll" data-hb-autoscroll><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>Play</button>
+      <button class="hb-play" type="button" id="btn-top" data-hb-top><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Back to top</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the bars show where along the scroll each part changes, and the line marks where you are: one scroll position sets them all. Scroll the box or press Play to watch.</p>
+      <p data-hb-for="compare" hidden>Scrolls away loses the title once the cover leaves; Shrinks and stays folds it into a slim header that keeps the title in view. Scroll the box or press Play to watch.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then scroll again or press Play.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="range-lbl">Shrink distance</p>
+        <div class="seg" id="range-seg" role="group" aria-labelledby="range-lbl">
+          <button type="button" data-range="200" aria-pressed="false">Short</button>
+          <button type="button" data-range="320" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-range="440" aria-pressed="false">Long</button>
+        </div>
+        <p class="hb-hint">How far you scroll before the cover is fully small.</p>
+      </div>
+      <div class="hb-setting">
+        <label class="hb-switch-row"><span>Snaps at halfway</span><input class="hb-switch" type="checkbox" role="switch" id="snap-tog" autocomplete="off"></label>
+        <p class="hb-hint">Jumps from tall to slim instead of shrinking smoothly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a collapsing cover to [your article or page header]. Start with a tall cover pinned to the top that holds the title, a subtitle, the date and the author. As the visitor scrolls, shrink it into a slim header: the title scales down into the corner, the subtitle and date fade out first, and a small author badge fades in near the end. Unless the settings make it snap, tie every change to one number that runs from 0 to 1 with the scroll, so every moment in between looks planned and scrolling back reverses it. Turn off scroll anchoring on the scrolling area. If the visitor has reduced motion turned on, switch between the tall and slim cover halfway, without animating. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Articles</li><li>Blog posts</li><li>Product pages</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Short pages</li><li>App screens</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const $ = id => document.getElementById(id);
+  const cover = $('cover'), coverBg = $('cover-bg'), coverMeta = $('cover-meta');
+  const coverTitle = $('cover-title'), coverSub = $('cover-sub'), coverAuthor = $('cover-author');
+  const headerChip = $('header-chip'), coverRule = $('cover-rule'), stage = $('stage');
+  const scene = $('scene'), snapTog = $('snap-tog');
+  const article = document.querySelector('.article-body'), endCue = document.querySelector('.end-cue');
+  const coverInner = document.querySelector('.cover-inner'), spacer = document.querySelector('.cover-spacer'); let CONTENT = 0;
+  const motionMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  // Compare's left half: copies of the cover and the article, made once, with no ids. The copy's cover is an ordinary block, so
+  // it scrolls away with the text. It is inert and hidden from screen readers: the box's name says what each half shows.
+  const twin = document.createElement('div');
+  twin.className = 'twin'; twin.inert = true; twin.setAttribute('aria-hidden', 'true');
+  const twinCover = cover.cloneNode(true), twinArticle = article.cloneNode(true);
+  twinCover.querySelectorAll('.header-chip,.cover-rule').forEach(n => n.remove());
+  [twinCover, twinArticle].forEach(n => { n.removeAttribute('id'); n.querySelectorAll('[id]').forEach(x => x.removeAttribute('id')); twin.append(n); });
+  $('rows').prepend(twin);
+  let mode = 'normal';
+
+  // The full cover is 85% of the box and the slim one comes from a CSS variable that the phone rule
+  // overrides — so both are re-read in measure(), not frozen at startup, or a rotation across the
+  // 600px breakpoint would leave the collapsed header at the desktop size.
+  let FULL = 0, MIN = 56, SH = 0;
+
+  // A wheel notch is ~100px — nearly a third of RANGE — and easeOutCubic turns that
+  // first notch into 68% of the collapse. Scroll therefore sets a *target* and the
+  // rendered progress eases toward it, so the header glides instead of snapping.
+  const EASE = 0.16, BLUR_STEP = 0.5, FRAME = 1000 / 60; // EASE: the share of the distance covered in 1/60 s
+
+  let RANGE = 320, raf = null, target = 0, current = 0, last = 0; // last: time of the previous frame, 0 after a restart
+
+  function lerp(a, b, t)    { return a + (b - a) * t; }
+  function clamp(v, lo, hi) { return Math.min(Math.max(v, lo), hi); }
+  function ease(t)          { return 1 - Math.pow(1 - t, 3); } // easeOutCubic
+
+  // Every write is guarded on its value actually changing, and quantized first, so a
+  // frame that changes nothing costs nothing — and the blur can reuse its raster.
+  const G = {};
+  const set = (k, v, fn) => { if (G[k] !== v) { G[k] = v; fn(v); } };
+  const q = (v, step) => Math.round(v / step) * step;
+
+  // Layout reads live here, not in the scroll handler. The scene is as tall as the full cover plus the
+  // article, and at least a box plus the longest shrink: the box always scrolls far enough to finish
+  // the shrink, and its scroll length does not change while the cover shrinks. What the slim cover
+  // frees after the article is filled by the closing line. The article's height depends on the font.
+  function measure() {
+    MIN  = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--cover-min')) || 56;
+    FULL = Math.round(stage.clientHeight * 0.85);
+    // Compare lays the article out in a narrow column: the scene's size is always read from the full-width layout, so the scroll
+    // length never depends on the mode
+    const m = stage.getAttribute('data-hb-mode');
+    if (m === 'compare') stage.removeAttribute('data-hb-mode');
+    const articleH = article.offsetHeight;
+    if (m === 'compare') stage.setAttribute('data-hb-mode', m);
+    SH = Math.max(FULL + articleH, stage.clientHeight + 440);
+    scene.style.minHeight = SH + 'px'; scene.style.setProperty('--sh', SH + 'px');
+    endCue.style.height = (FULL - MIN) + 'px';
+    cover.style.height = twinCover.style.height = FULL + 'px'; CONTENT = FULL - spacer.getBoundingClientRect().height;
+    delete G.h; // the cover's slide is written again with the new FULL and CONTENT
+  }
+
+  // Scroll progress -> collapse amount. Snapping at halfway and reduced motion snap by design.
+  const snaps = () => motionMQ.matches || snapTog.checked;
+  const curveOf = p => snaps() ? (p > 0.5 ? 1 : 0) : ease(p);
+
+  // In Compare the title ends larger: the halves are narrow
+  const endScale = () => mode === 'compare' ? .7 : 13 / 26;
+
+  // Takes the finished collapse value, so easing it bounds how far the header can
+  // travel in one frame — easing raw progress instead lets easeOutCubic (slope 3
+  // near zero) re-amplify a wheel notch back into a jump.
+  function render(e) {
+    // The cover keeps its full height and slides up by what it has shrunk; the article slides with it, so no frame lays the page out
+    set('h', q(lerp(FULL, MIN, e), 1), v => {
+      const d = FULL - v;
+      cover.style.transform = article.style.transform = `translateY(${-d}px)`;
+      headerChip.style.transform = `translateY(${d}px)`;
+      coverBg.style.transform = `translateY(${d}px) scaleY(${v / FULL})`;
+      coverInner.style.transform = `translateY(${Math.max(0, CONTENT - v)}px)`;
+    });
+    set('bgOp',  q(lerp(1, .12, e), .01),        v => coverBg.style.opacity = v);
+    set('blur',  q(lerp(0, 6, e), BLUR_STEP),    v => coverBg.style.filter = v > 0 ? `blur(${v}px)` : 'none');
+    set('scale', q(lerp(1, endScale(), e), .002),   v => coverTitle.style.transform = `scale(${v})`);
+    set('fade',  q(1 - clamp(e * 3, 0, 1), .01), v => { coverMeta.style.opacity = v; coverSub.style.opacity = v; });
+    set('auth',  q(1 - clamp(e * 2, 0, 1), .01), v => coverAuthor.style.opacity = v);
+    set('chip',  q(clamp((e - .5) * 2, 0, 1), .01), v => headerChip.style.opacity = v);
+    set('rule',  q(e, .01),                      v => coverRule.style.opacity = v);
+  }
+
+  // See inside: where along the scroll each part changes, as fractions of the longest shrink distance (easeOutCubic turned back
+  // into scroll, so the subtitle ends where the number reaches a third and the author where it reaches a half)
+  const SPAN = 440, strip = $('strip'), lane = strip.querySelector('.slane'), ph = strip.querySelector('.sph');
+  const bars = Array.from(strip.querySelectorAll('.sbar')), lits = bars.map(b => b.firstElementChild);
+  const unease = v => 1 - Math.pow(1 - v, 1 / 3);
+  let spans = [], laneW = 0;
+  function layoutStrip() {
+    const r = RANGE / SPAN, h = r / 2;
+    spans = snaps() ? [[h, h], [h, h], [h, h], [h, h]]
+      : [[0, r], [0, unease(1 / 3) * r], [0, unease(.5) * r], [unease(.5) * r, r]];
+    strip.classList.toggle('ticks', snaps());
+    bars.forEach((b, i) => { b.style.setProperty('--a', spans[i][0]); b.style.setProperty('--b', spans[i][1]); });
+    laneW = lane.clientWidth;
+  }
+  function drawStrip() {
+    if (mode !== 'inside') return;
+    const f = clamp(stage.scrollTop / SPAN, 0, 1);
+    ph.style.transform = `translateX(${f * laneW}px)`;
+    spans.forEach(([a, b], i) => { lits[i].style.transform = `scaleX(${b > a ? clamp((f - a) / (b - a), 0, 1) : (f > a ? 1 : 0)})`; });
+  }
+
+  // The notes: the markup holds the words for the default; Snaps at halfway and reduced motion get their own
+  const insideNote = document.querySelector('[data-hb-for="inside"]'), compareNote = document.querySelector('[data-hb-for="compare"]');
+  const NOTE = {
+    inside:      insideNote.textContent,
+    insideSnap:  'Inside, Snaps at halfway is on, so every part changes at one point, half the shrink distance in; the line marks where you are. Scroll the box or press Play to watch.',
+    insideStill: 'Shown without animation: every part switches at one point, half the shrink distance in, and the line marks where you are as you scroll.',
+    compare:     compareNote.textContent,
+    compareSnap: 'Scrolls away loses the title once the cover leaves; Shrinks and stays switches to a slim header halfway through the shrink distance. Scroll the box or press Play to watch.',
+  };
+  const LABELS = {
+    normal:  stage.getAttribute('aria-label'),
+    inside:  'An article whose tall cover shrinks into a header, with bars for where along the scroll each part changes',
+    compare: 'The article twice: a cover that scrolls away, and one that shrinks into a header that stays',
+  };
+  function describe() {
+    insideNote.textContent  = motionMQ.matches ? NOTE.insideStill : snapTog.checked ? NOTE.insideSnap : NOTE.inside;
+    compareNote.textContent = snaps() ? NOTE.compareSnap : NOTE.compare;
+  }
+
+  // The values render() keeps are cleared first, so the cover draws again with the mode's own sizes; the scroll position,
+  // Play and the focus are not touched
+  document.addEventListener('hb:mode', e => {
+    mode = e.detail.mode;
+    stage.setAttribute('aria-label', LABELS[mode]);
+    for (const k in G) delete G[k];
+    measure();
+    render(current);
+    describe(); layoutStrip(); drawStrip();
+    schedule();
+  });
+
+  function tick(now) {
+    const d = target - current;
+    if (Math.abs(d) < 0.0005) { current = target; render(current); raf = null; return; }
+    const dt = last ? Math.min(now - last, 50) : FRAME; last = now; // the first frame after a restart counts as 1/60 s
+    current += d * (1 - Math.pow(1 - EASE, dt / FRAME));            // the same pace on a 30, 60 or 120Hz screen
+    render(current);
+    raf = requestAnimationFrame(tick);
+  }
+  function schedule() {
+    if (snaps()) { current = target; render(current); return; }
+    if (raf === null) { last = 0; raf = requestAnimationFrame(tick); }
+  }
+
+  stage.addEventListener('scroll', () => {
+    target = curveOf(clamp(stage.scrollTop / RANGE, 0, 1));
+    schedule();
+    drawStrip();
+  }, { passive: true });
+  // Back to top, and Play starting again from the top, jump the box (the shared script moves it before the click reaches the document): the cover jumps with it
+  document.addEventListener('click', e => { if (e.target.closest('#btn-top,#btn-scroll')) { target = current = curveOf(clamp(stage.scrollTop / RANGE, 0, 1)); render(current); drawStrip(); } });
+
+  function choices(id, pick) {
+    const buttons = document.querySelectorAll('#' + id + ' button');
+    buttons.forEach(b => b.addEventListener('click', () => {
+      buttons.forEach(x => { x.classList.toggle('on', x === b); x.setAttribute('aria-pressed', String(x === b)); });
+      pick(b.dataset);
+    }));
+  }
+  choices('range-seg', d => {
+    RANGE = +d.range;
+    target = curveOf(clamp(stage.scrollTop / RANGE, 0, 1));
+    schedule();
+    layoutStrip(); drawStrip();
+  });
+
+  snapTog.addEventListener('change', () => {
+    for (const k in G) delete G[k];        // the curve changed, so every value is stale
+    target = curveOf(clamp(stage.scrollTop / RANGE, 0, 1));
+    schedule();
+    describe(); layoutStrip(); drawStrip();
+  });
+  // Reduced motion turned on or off while the page is open: the cover, the bars and the notes follow
+  motionMQ.addEventListener('change', () => {
+    for (const k in G) delete G[k];
+    target = curveOf(clamp(stage.scrollTop / RANGE, 0, 1));
+    schedule(); describe(); layoutStrip(); drawStrip();
+  });
+
+  let rt;
+  addEventListener('resize', () => {
+    clearTimeout(rt);
+    rt = setTimeout(() => { measure(); render(current); layoutStrip(); drawStrip(); }, 150);
+  });
+
+  measure();
+  target = current = curveOf(clamp(stage.scrollTop / RANGE, 0, 1));
+  render(current);
+  describe(); layoutStrip();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => { measure(); render(current); layoutStrip(); drawStrip(); });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,1202 @@
+[
+  {
+    "id": "magiccss01",
+    "name": "회전하며 사라지기",
+    "english": "magic",
+    "category": "등장과 퇴장",
+    "description": "회전하면서 작아지고 투명해져 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "magic",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m01.html",
+    "codePath": "./examples/magiccss/m01.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss02",
+    "name": "좌측에서 축소 등장",
+    "english": "swap",
+    "category": "등장과 퇴장",
+    "description": "작은 상태로 화면 옆에서 이동하며 커져 나타납니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "swap",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m02.html",
+    "codePath": "./examples/magiccss/m02.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss03",
+    "name": "회오리치며 등장",
+    "english": "twisterInDown",
+    "category": "등장과 퇴장",
+    "description": "요소가 회오리처럼 회전하며 나타납니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "twisterInDown",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m03.html",
+    "codePath": "./examples/magiccss/m03.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss04",
+    "name": "흐림이 사라지며 등장",
+    "english": "puffIn",
+    "category": "등장과 퇴장",
+    "description": "큰 흐린 상태에서 작아지고 선명해지며 나타납니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "puffIn",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m04.html",
+    "codePath": "./examples/magiccss/m04.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss05",
+    "name": "흐려지며 확대 퇴장",
+    "english": "puffOut",
+    "category": "등장과 퇴장",
+    "description": "요소가 확대되고 흐려지며 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "puffOut",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m05.html",
+    "codePath": "./examples/magiccss/m05.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss06",
+    "name": "회전하며 나타나기",
+    "english": "vanishIn",
+    "category": "등장과 퇴장",
+    "description": "투명하고 회전한 상태에서 원래 모습으로 나타납니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "vanishIn",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m06.html",
+    "codePath": "./examples/magiccss/m06.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss07",
+    "name": "회전하며 퇴장하기",
+    "english": "vanishOut",
+    "category": "등장과 퇴장",
+    "description": "요소가 회전하고 투명해지며 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "vanishOut",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m07.html",
+    "codePath": "./examples/magiccss/m07.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss08",
+    "name": "탄성을 거쳐 등장",
+    "english": "swashIn",
+    "category": "등장과 퇴장",
+    "description": "작은 상태에서 튕기듯 커졌다가 원래 크기에 도달합니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "swashIn",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m08.html",
+    "codePath": "./examples/magiccss/m08.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss09",
+    "name": "탄성을 거쳐 사라지기",
+    "english": "swashOut",
+    "category": "등장과 퇴장",
+    "description": "요소가 잠시 커졌다가 축소되며 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "swashOut",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m09.html",
+    "codePath": "./examples/magiccss/m09.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss10",
+    "name": "여러 축 회전으로 등장",
+    "english": "foolishIn",
+    "category": "등장과 퇴장",
+    "description": "회전과 크기 변화를 결합해 요소가 나타납니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "foolishIn",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m10.html",
+    "codePath": "./examples/magiccss/m10.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss11",
+    "name": "여러 축 회전으로 퇴장",
+    "english": "foolishOut",
+    "category": "등장과 퇴장",
+    "description": "회전과 크기 변화를 결합해 요소가 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "foolishOut",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m11.html",
+    "codePath": "./examples/magiccss/m11.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss12",
+    "name": "구멍으로 빨려 들어가기",
+    "english": "holeOut",
+    "category": "등장과 퇴장",
+    "description": "요소가 축소하고 회전하며 가운데로 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "holeOut",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m12.html",
+    "codePath": "./examples/magiccss/m12.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss13",
+    "name": "분산 회전 퇴장",
+    "english": "bombRightOut",
+    "category": "등장과 퇴장",
+    "description": "요소가 크게 회전하고 확대되며 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "bombRightOut",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m13.html",
+    "codePath": "./examples/magiccss/m13.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss14",
+    "name": "탄성 회전 등장",
+    "english": "boingInUp",
+    "category": "등장과 퇴장",
+    "description": "원근감을 가진 회전과 탄성 동작으로 등장합니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "boingInUp",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m14.html",
+    "codePath": "./examples/magiccss/m14.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss15",
+    "name": "탄성 회전 퇴장",
+    "english": "boingOutDown",
+    "category": "등장과 퇴장",
+    "description": "원근감을 가진 회전과 탄성 동작으로 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "boingOutDown",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m15.html",
+    "codePath": "./examples/magiccss/m15.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss16",
+    "name": "깊이에서 위로 등장",
+    "english": "spaceInUp",
+    "category": "등장과 퇴장",
+    "description": "원근감 있는 축소·이동을 거쳐 위쪽에서 나타납니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "spaceInUp",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m16.html",
+    "codePath": "./examples/magiccss/m16.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss17",
+    "name": "깊이로 아래 퇴장",
+    "english": "spaceOutDown",
+    "category": "등장과 퇴장",
+    "description": "원근감을 주며 요소가 아래쪽으로 이동해 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "spaceOutDown",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m17.html",
+    "codePath": "./examples/magiccss/m17.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss18",
+    "name": "상하 진동으로 등장",
+    "english": "tinUpIn",
+    "category": "등장과 퇴장",
+    "description": "요소가 이동과 진동을 반복하며 나타납니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "tinUpIn",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m18.html",
+    "codePath": "./examples/magiccss/m18.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss19",
+    "name": "상하 진동 후 퇴장",
+    "english": "tinDownOut",
+    "category": "등장과 퇴장",
+    "description": "요소가 튀듯 움직이다 화면 밖으로 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "tinDownOut",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m19.html",
+    "codePath": "./examples/magiccss/m19.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss20",
+    "name": "왼쪽 아래 경첩 열기",
+    "english": "openDownLeft",
+    "category": "등장과 퇴장",
+    "description": "요소의 한쪽 모서리를 축으로 삼아 펼칩니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "openDownLeft",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m20.html",
+    "codePath": "./examples/magiccss/m20.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss21",
+    "name": "왼쪽 아래 경첩 복귀",
+    "english": "openDownLeftReturn",
+    "category": "등장과 퇴장",
+    "description": "열린 상태에서 원래 위치로 돌아옵니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "openDownLeftReturn",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m21.html",
+    "codePath": "./examples/magiccss/m21.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss22",
+    "name": "경첩이 열리며 퇴장",
+    "english": "openDownLeftOut",
+    "category": "등장과 퇴장",
+    "description": "한쪽 모서리를 축으로 회전하며 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "openDownLeftOut",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m22.html",
+    "codePath": "./examples/magiccss/m22.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss23",
+    "name": "수직 원근 기울이기",
+    "english": "perspectiveDown",
+    "category": "등장과 퇴장",
+    "description": "수평 축을 기준으로 원근감을 주며 기울입니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "perspectiveDown",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m23.html",
+    "codePath": "./examples/magiccss/m23.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss24",
+    "name": "수직 원근 복귀",
+    "english": "perspectiveDownReturn",
+    "category": "등장과 퇴장",
+    "description": "기울어진 요소가 원래 위치로 돌아옵니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "perspectiveDownReturn",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m24.html",
+    "codePath": "./examples/magiccss/m24.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss25",
+    "name": "수평 원근 기울이기",
+    "english": "perspectiveLeft",
+    "category": "등장과 퇴장",
+    "description": "수직 축을 기준으로 원근감을 주며 기울입니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "perspectiveLeft",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m25.html",
+    "codePath": "./examples/magiccss/m25.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss26",
+    "name": "수평 원근 복귀",
+    "english": "perspectiveLeftReturn",
+    "category": "등장과 퇴장",
+    "description": "옆으로 기울어진 요소가 원래 위치로 돌아옵니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "perspectiveLeftReturn",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m26.html",
+    "codePath": "./examples/magiccss/m26.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss27",
+    "name": "아래로 밀어 퇴장",
+    "english": "slideDown",
+    "category": "등장과 퇴장",
+    "description": "요소가 아래 방향으로 이동합니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "slideDown",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m27.html",
+    "codePath": "./examples/magiccss/m27.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss28",
+    "name": "아래에서 밀어 등장",
+    "english": "slideDownReturn",
+    "category": "등장과 퇴장",
+    "description": "요소가 아래쪽에서 원래 위치로 돌아옵니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "slideDownReturn",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m28.html",
+    "codePath": "./examples/magiccss/m28.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss29",
+    "name": "수평축 회전 퇴장",
+    "english": "rotateDown",
+    "category": "등장과 퇴장",
+    "description": "수평축을 따라 입체적으로 회전하며 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "rotateDown",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m29.html",
+    "codePath": "./examples/magiccss/m29.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "magiccss30",
+    "name": "수직축 회전 퇴장",
+    "english": "rotateLeft",
+    "category": "등장과 퇴장",
+    "description": "수직축을 따라 입체적으로 회전하며 사라집니다.",
+    "tags": [
+      "등장",
+      "퇴장",
+      "Magic CSS",
+      "rotateLeft",
+      "모바일",
+      "데스크톱"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/magiccss/m30.html",
+    "codePath": "./examples/magiccss/m30.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/magiccss/magic.css"
+      }
+    ],
+    "sourceName": "Magic Animations CSS",
+    "sourceUrl": "https://www.minimamente.com/project/magic/",
+    "license": "MIT",
+    "licensePath": "./examples/magiccss/LICENSE.txt",
+    "adaptation": "원본 Magic CSS 클래스와 Ionicons 원본 로켓 아이콘을 사용하고 재생 버튼을 추가한 미리보기",
+    "requiresGPU": false,
+    "codeLabel": "별도 실행 패널 HTML",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  }
+]

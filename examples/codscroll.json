@@ -1,0 +1,598 @@
+[
+  {
+    "id": "cdscroll0101",
+    "name": "스크롤 글자 이동",
+    "english": "OnScrollLetterAnimations · Demo 1",
+    "category": "등장과 퇴장",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "타이포그래피",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/OnScrollLetterAnimations/index.html",
+    "codePath": "./examples/cdsrc01/src/index.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc01/src/css/base.css"
+      },
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdsrc01/src/js/index.js"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/OnScrollLetterAnimations/blob/b3c14371d62efae0f7711fc378b2ba8df21687d8/src/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc01/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0102",
+    "name": "스크롤 글자 이동과 크기",
+    "english": "OnScrollLetterAnimations · Demo 2",
+    "category": "등장과 퇴장",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "타이포그래피",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/OnScrollLetterAnimations/index2.html",
+    "codePath": "./examples/cdsrc01/src/index2.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc01/src/css/base.css"
+      },
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdsrc01/src/js/index2.js"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/OnScrollLetterAnimations/blob/b3c14371d62efae0f7711fc378b2ba8df21687d8/src/index2.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc01/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0103",
+    "name": "스크롤 글자 세로 크기 변화",
+    "english": "OnScrollLetterAnimations · Demo 3",
+    "category": "등장과 퇴장",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "타이포그래피",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/OnScrollLetterAnimations/index3.html",
+    "codePath": "./examples/cdsrc01/src/index3.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc01/src/css/base.css"
+      },
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdsrc01/src/js/index3.js"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/OnScrollLetterAnimations/blob/b3c14371d62efae0f7711fc378b2ba8df21687d8/src/index3.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc01/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0104",
+    "name": "스크롤 글자 이동 변형",
+    "english": "OnScrollLetterAnimations · Demo 4",
+    "category": "등장과 퇴장",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "타이포그래피",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/OnScrollLetterAnimations/index4.html",
+    "codePath": "./examples/cdsrc01/src/index4.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc01/src/css/base.css"
+      },
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdsrc01/src/js/index4.js"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/OnScrollLetterAnimations/blob/b3c14371d62efae0f7711fc378b2ba8df21687d8/src/index4.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc01/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0105",
+    "name": "스크롤 글자 확대와 이동",
+    "english": "OnScrollLetterAnimations · Demo 5",
+    "category": "등장과 퇴장",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "타이포그래피",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/OnScrollLetterAnimations/index5.html",
+    "codePath": "./examples/cdsrc01/src/index5.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc01/src/css/base.css"
+      },
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdsrc01/src/js/index5.js"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/OnScrollLetterAnimations/blob/b3c14371d62efae0f7711fc378b2ba8df21687d8/src/index5.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc01/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0201",
+    "name": "수평 스크롤 레이아웃 1",
+    "english": "HorizontalSmoothScrollLayout · Demo 1",
+    "category": "스크롤",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "레이아웃",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/HorizontalSmoothScrollLayout/index.html",
+    "codePath": "./examples/cdsrc02/src/index.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc02/src/css/base.css"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/HorizontalSmoothScrollLayout/blob/bc0bbec7cf1c92fe1bd5ba8d537150f53acfebac/src/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc02/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0202",
+    "name": "수평 스크롤 레이아웃 2",
+    "english": "HorizontalSmoothScrollLayout · Demo 2",
+    "category": "스크롤",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "레이아웃",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/HorizontalSmoothScrollLayout/index2.html",
+    "codePath": "./examples/cdsrc02/src/index2.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc02/src/css/base.css"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/HorizontalSmoothScrollLayout/blob/bc0bbec7cf1c92fe1bd5ba8d537150f53acfebac/src/index2.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc02/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0203",
+    "name": "수평 스크롤 레이아웃 3",
+    "english": "HorizontalSmoothScrollLayout · Demo 3",
+    "category": "스크롤",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "레이아웃",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/HorizontalSmoothScrollLayout/index3.html",
+    "codePath": "./examples/cdsrc02/src/index3.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc02/src/css/base.css"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/HorizontalSmoothScrollLayout/blob/bc0bbec7cf1c92fe1bd5ba8d537150f53acfebac/src/index3.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc02/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0204",
+    "name": "수평 스크롤 레이아웃 4",
+    "english": "HorizontalSmoothScrollLayout · Demo 4",
+    "category": "스크롤",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "레이아웃",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/HorizontalSmoothScrollLayout/index4.html",
+    "codePath": "./examples/cdsrc02/src/index4.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc02/src/css/base.css"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/HorizontalSmoothScrollLayout/blob/bc0bbec7cf1c92fe1bd5ba8d537150f53acfebac/src/index4.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc02/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0301",
+    "name": "엇갈린 열 스크롤",
+    "english": "ScrollPanels · Demo 1",
+    "category": "스크롤",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "레이아웃",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/ScrollPanels/index.html",
+    "codePath": "./examples/cdsrc03/src/index.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc03/src/css/base.css"
+      },
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdsrc03/src/js/index.js"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/ScrollPanels/blob/cb0e61a339e37178ec8a1e10c21f42c5e7e06988/src/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc03/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0302",
+    "name": "패널 확대와 분산",
+    "english": "ScrollPanels · Demo 2",
+    "category": "스크롤",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "레이아웃",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/ScrollPanels/index2.html",
+    "codePath": "./examples/cdsrc03/src/index2.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc03/src/css/base.css"
+      },
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdsrc03/src/js/index2.js"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/ScrollPanels/blob/cb0e61a339e37178ec8a1e10c21f42c5e7e06988/src/index2.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc03/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0303",
+    "name": "흑백에서 컬러로 바뀌는 스크롤",
+    "english": "ScrollPanels · Demo 3",
+    "category": "스크롤",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "레이아웃",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/ScrollPanels/index3.html",
+    "codePath": "./examples/cdsrc03/src/index3.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc03/src/css/base.css"
+      },
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdsrc03/src/js/index3.js"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/ScrollPanels/blob/cb0e61a339e37178ec8a1e10c21f42c5e7e06988/src/index3.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc03/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0304",
+    "name": "밝기와 불투명도 스크롤",
+    "english": "ScrollPanels · Demo 4",
+    "category": "스크롤",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "레이아웃",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/ScrollPanels/index4.html",
+    "codePath": "./examples/cdsrc03/src/index4.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc03/src/css/base.css"
+      },
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdsrc03/src/js/index4.js"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/ScrollPanels/blob/cb0e61a339e37178ec8a1e10c21f42c5e7e06988/src/index4.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc03/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0305",
+    "name": "원근과 블러 패널 스크롤",
+    "english": "ScrollPanels · Demo 5",
+    "category": "스크롤",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "레이아웃",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/ScrollPanels/index5.html",
+    "codePath": "./examples/cdsrc03/src/index5.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc03/src/css/base.css"
+      },
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdsrc03/src/js/index5.js"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/ScrollPanels/blob/cb0e61a339e37178ec8a1e10c21f42c5e7e06988/src/index5.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc03/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0401",
+    "name": "스크롤 타이포그래피 애니메이션",
+    "english": "OnScrollTypographyAnimations · Demo 1",
+    "category": "스크롤",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "레이아웃",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/OnScrollTypographyAnimations/index.html",
+    "codePath": "./examples/cdsrc04/src/index.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc04/src/css/base.css"
+      },
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdsrc04/src/js/index.js"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/OnScrollTypographyAnimations/blob/af28d61d1f8d3d117f5d1e9b09d5209e20a1a212/src/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc04/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0501",
+    "name": "스크롤에 따라 움직이는 SVG 경로",
+    "english": "OnScrollPathAnimations · Demo 1",
+    "category": "스크롤",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "레이아웃",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Tutorials/OnScrollPathAnimations/index.html",
+    "codePath": "./examples/cdsrc05/src/index.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc05/src/css/base.css"
+      },
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdsrc05/src/js/index.js"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/OnScrollPathAnimations/blob/c8df3150540e5c2b9180553e01216a203f71f1d0/src/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc05/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  },
+  {
+    "id": "cdscroll0601",
+    "name": "스크롤 후 그리드 보기 전환",
+    "english": "OnScrollViewSwitch · Demo 1",
+    "category": "스크롤",
+    "description": "원본 화면 안에서 스크롤해 해당 효과를 확인합니다. 라이브 원본과 저장소 버전은 다를 수 있습니다.",
+    "tags": [
+      "스크롤",
+      "레이아웃",
+      "Codrops"
+    ],
+    "preview": "https://tympanus.net/Development/OnScrollViewSwitch/index.html",
+    "codePath": "./examples/cdsrc06/src/index.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/cdsrc06/src/css/base.css"
+      },
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/cdsrc06/src/js/index.js"
+      }
+    ],
+    "sourceName": "Codrops",
+    "sourceUrl": "https://github.com/codrops/OnScrollViewSwitch/blob/dd8941a1ea08d5892010fcf9bc7470607b024fc6/src/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/cdsrc06/LICENSE",
+    "adaptation": "Codrops 원본 라이브 연결; 저장된 원본 소스와 배포본 버전 차이가 있을 수 있음",
+    "remote": true,
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 동작은 개별 검증하지 않았습니다."
+  }
+]

@@ -1,0 +1,590 @@
+[
+  {
+    "id": "glt01",
+    "name": "불길로 태우기",
+    "english": "BurnThrough",
+    "category": "화면 전환",
+    "description": "불에 탄 가장자리가 퍼지면서 다음 화면이 드러납니다.",
+    "tags": [
+      "화면 전환",
+      "BurnThrough",
+      "셰이더"
+    ],
+    "preview": "./examples/gt01/index.html",
+    "sourceName": "GL Transitions · liubailin2020@gmail.com",
+    "sourceUrl": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/BurnThrough.glsl",
+    "license": "MIT (원본 GLSL)",
+    "licensePath": "./examples/glstage/LICENSE.txt",
+    "codePath": "./examples/gt01/index.html",
+    "codeLabel": "별도 실행 어댑터 HTML",
+    "codeFiles": [
+      {
+        "label": "원본 GLSL",
+        "path": "./examples/gt01/shader.glsl"
+      },
+      {
+        "label": "실행 어댑터 JS",
+        "path": "./examples/glstage/adapter.js"
+      },
+      {
+        "label": "실행 어댑터 CSS",
+        "path": "./examples/glstage/stage.css"
+      }
+    ],
+    "adaptation": "MIT 원본 GLSL을 수정 없이 보존하고, 재생·진행 슬라이더 및 그라데이션 이미지는 별도 실행 어댑터로 구현했습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작과 WebGL 환경은 검증 전입니다.",
+    "remote": false,
+    "requiresGPU": true,
+    "network": false,
+    "displayOrigin": "원본 셰이더 · 별도 실행 패널"
+  },
+  {
+    "id": "glt02",
+    "name": "색상 채널 전환",
+    "english": "ColorPhase",
+    "category": "화면 전환",
+    "description": "색상 채널이 시간차를 두고 이전 장면에서 다음 장면으로 변합니다.",
+    "tags": [
+      "화면 전환",
+      "ColorPhase",
+      "셰이더"
+    ],
+    "preview": "./examples/gt02/index.html",
+    "sourceName": "GL Transitions · gre",
+    "sourceUrl": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/ColorPhase.glsl",
+    "license": "MIT (원본 GLSL)",
+    "licensePath": "./examples/glstage/LICENSE.txt",
+    "codePath": "./examples/gt02/index.html",
+    "codeLabel": "별도 실행 어댑터 HTML",
+    "codeFiles": [
+      {
+        "label": "원본 GLSL",
+        "path": "./examples/gt02/shader.glsl"
+      },
+      {
+        "label": "실행 어댑터 JS",
+        "path": "./examples/glstage/adapter.js"
+      },
+      {
+        "label": "실행 어댑터 CSS",
+        "path": "./examples/glstage/stage.css"
+      }
+    ],
+    "adaptation": "MIT 원본 GLSL을 수정 없이 보존하고, 재생·진행 슬라이더 및 그라데이션 이미지는 별도 실행 어댑터로 구현했습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작과 WebGL 환경은 검증 전입니다.",
+    "remote": false,
+    "requiresGPU": true,
+    "network": false,
+    "displayOrigin": "원본 셰이더 · 별도 실행 패널"
+  },
+  {
+    "id": "glt03",
+    "name": "교차선 드러내기",
+    "english": "Crosshatch",
+    "category": "화면 전환",
+    "description": "서로 교차하는 선 무늬가 화면을 드러냅니다.",
+    "tags": [
+      "화면 전환",
+      "Crosshatch",
+      "셰이더"
+    ],
+    "preview": "./examples/gt03/index.html",
+    "sourceName": "GL Transitions · pthrasher",
+    "sourceUrl": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/Crosshatch.glsl",
+    "license": "MIT (원본 GLSL)",
+    "licensePath": "./examples/glstage/LICENSE.txt",
+    "codePath": "./examples/gt03/index.html",
+    "codeLabel": "별도 실행 어댑터 HTML",
+    "codeFiles": [
+      {
+        "label": "원본 GLSL",
+        "path": "./examples/gt03/shader.glsl"
+      },
+      {
+        "label": "실행 어댑터 JS",
+        "path": "./examples/glstage/adapter.js"
+      },
+      {
+        "label": "실행 어댑터 CSS",
+        "path": "./examples/glstage/stage.css"
+      }
+    ],
+    "adaptation": "MIT 원본 GLSL을 수정 없이 보존하고, 재생·진행 슬라이더 및 그라데이션 이미지는 별도 실행 어댑터로 구현했습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작과 WebGL 환경은 검증 전입니다.",
+    "remote": false,
+    "requiresGPU": true,
+    "network": false,
+    "displayOrigin": "원본 셰이더 · 별도 실행 패널"
+  },
+  {
+    "id": "glt04",
+    "name": "화면 녹이기",
+    "english": "DoomMelt",
+    "category": "화면 전환",
+    "description": "화면이 길이가 서로 다른 세로 줄로 녹아내립니다.",
+    "tags": [
+      "화면 전환",
+      "DoomMelt",
+      "셰이더"
+    ],
+    "preview": "./examples/gt04/index.html",
+    "sourceName": "GL Transitions · Zeh Fernando",
+    "sourceUrl": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/DoomMelt.glsl",
+    "license": "MIT (원본 GLSL)",
+    "licensePath": "./examples/glstage/LICENSE.txt",
+    "codePath": "./examples/gt04/index.html",
+    "codeLabel": "별도 실행 어댑터 HTML",
+    "codeFiles": [
+      {
+        "label": "원본 GLSL",
+        "path": "./examples/gt04/shader.glsl"
+      },
+      {
+        "label": "실행 어댑터 JS",
+        "path": "./examples/glstage/adapter.js"
+      },
+      {
+        "label": "실행 어댑터 CSS",
+        "path": "./examples/glstage/stage.css"
+      }
+    ],
+    "adaptation": "MIT 원본 GLSL을 수정 없이 보존하고, 재생·진행 슬라이더 및 그라데이션 이미지는 별도 실행 어댑터로 구현했습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작과 WebGL 환경은 검증 전입니다.",
+    "remote": false,
+    "requiresGPU": true,
+    "network": false,
+    "displayOrigin": "원본 셰이더 · 별도 실행 패널"
+  },
+  {
+    "id": "glt05",
+    "name": "꿈결처럼 일렁이기",
+    "english": "Dreamy",
+    "category": "화면 전환",
+    "description": "화면이 파도처럼 일그러지며 다음 장면으로 바뀝니다.",
+    "tags": [
+      "화면 전환",
+      "Dreamy",
+      "셰이더"
+    ],
+    "preview": "./examples/gt05/index.html",
+    "sourceName": "GL Transitions · mikolalysenko",
+    "sourceUrl": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/Dreamy.glsl",
+    "license": "MIT (원본 GLSL)",
+    "licensePath": "./examples/glstage/LICENSE.txt",
+    "codePath": "./examples/gt05/index.html",
+    "codeLabel": "별도 실행 어댑터 HTML",
+    "codeFiles": [
+      {
+        "label": "원본 GLSL",
+        "path": "./examples/gt05/shader.glsl"
+      },
+      {
+        "label": "실행 어댑터 JS",
+        "path": "./examples/glstage/adapter.js"
+      },
+      {
+        "label": "실행 어댑터 CSS",
+        "path": "./examples/glstage/stage.css"
+      }
+    ],
+    "adaptation": "MIT 원본 GLSL을 수정 없이 보존하고, 재생·진행 슬라이더 및 그라데이션 이미지는 별도 실행 어댑터로 구현했습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작과 WebGL 환경은 검증 전입니다.",
+    "remote": false,
+    "requiresGPU": true,
+    "network": false,
+    "displayOrigin": "원본 셰이더 · 별도 실행 패널"
+  },
+  {
+    "id": "glt06",
+    "name": "글리치 깜빡임",
+    "english": "GlitchFlicker",
+    "category": "화면 전환",
+    "description": "색 분리와 화면 튐, 잔상이 섞이며 장면이 교차합니다.",
+    "tags": [
+      "화면 전환",
+      "GlitchFlicker",
+      "셰이더"
+    ],
+    "preview": "./examples/gt06/index.html",
+    "sourceName": "GL Transitions · bread",
+    "sourceUrl": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/GlitchFlicker.glsl",
+    "license": "MIT (원본 GLSL)",
+    "licensePath": "./examples/glstage/LICENSE.txt",
+    "codePath": "./examples/gt06/index.html",
+    "codeLabel": "별도 실행 어댑터 HTML",
+    "codeFiles": [
+      {
+        "label": "원본 GLSL",
+        "path": "./examples/gt06/shader.glsl"
+      },
+      {
+        "label": "실행 어댑터 JS",
+        "path": "./examples/glstage/adapter.js"
+      },
+      {
+        "label": "실행 어댑터 CSS",
+        "path": "./examples/glstage/stage.css"
+      }
+    ],
+    "adaptation": "MIT 원본 GLSL을 수정 없이 보존하고, 재생·진행 슬라이더 및 그라데이션 이미지는 별도 실행 어댑터로 구현했습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작과 WebGL 환경은 검증 전입니다.",
+    "remote": false,
+    "requiresGPU": true,
+    "network": false,
+    "displayOrigin": "원본 셰이더 · 별도 실행 패널"
+  },
+  {
+    "id": "glt07",
+    "name": "육각형 모자이크",
+    "english": "Hexagonalize",
+    "category": "화면 전환",
+    "description": "장면이 육각형으로 뭉개졌다가 다음 장면으로 선명해집니다.",
+    "tags": [
+      "화면 전환",
+      "Hexagonalize",
+      "셰이더"
+    ],
+    "preview": "./examples/gt07/index.html",
+    "sourceName": "GL Transitions · Fernando Kuteken",
+    "sourceUrl": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/Hexagonalize.glsl",
+    "license": "MIT (원본 GLSL)",
+    "licensePath": "./examples/glstage/LICENSE.txt",
+    "codePath": "./examples/gt07/index.html",
+    "codeLabel": "별도 실행 어댑터 HTML",
+    "codeFiles": [
+      {
+        "label": "원본 GLSL",
+        "path": "./examples/gt07/shader.glsl"
+      },
+      {
+        "label": "실행 어댑터 JS",
+        "path": "./examples/glstage/adapter.js"
+      },
+      {
+        "label": "실행 어댑터 CSS",
+        "path": "./examples/glstage/stage.css"
+      }
+    ],
+    "adaptation": "MIT 원본 GLSL을 수정 없이 보존하고, 재생·진행 슬라이더 및 그라데이션 이미지는 별도 실행 어댑터로 구현했습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작과 WebGL 환경은 검증 전입니다.",
+    "remote": false,
+    "requiresGPU": true,
+    "network": false,
+    "displayOrigin": "원본 셰이더 · 별도 실행 패널"
+  },
+  {
+    "id": "glt08",
+    "name": "만화경 전환",
+    "english": "Kaleidoscope",
+    "category": "화면 전환",
+    "description": "영상이 만화경처럼 회전하고 분할되며 전환됩니다.",
+    "tags": [
+      "화면 전환",
+      "Kaleidoscope",
+      "셰이더"
+    ],
+    "preview": "./examples/gt08/index.html",
+    "sourceName": "GL Transitions · nwoeanhinnogaehr",
+    "sourceUrl": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/Kaleidoscope.glsl",
+    "license": "MIT (원본 GLSL)",
+    "licensePath": "./examples/glstage/LICENSE.txt",
+    "codePath": "./examples/gt08/index.html",
+    "codeLabel": "별도 실행 어댑터 HTML",
+    "codeFiles": [
+      {
+        "label": "원본 GLSL",
+        "path": "./examples/gt08/shader.glsl"
+      },
+      {
+        "label": "실행 어댑터 JS",
+        "path": "./examples/glstage/adapter.js"
+      },
+      {
+        "label": "실행 어댑터 CSS",
+        "path": "./examples/glstage/stage.css"
+      }
+    ],
+    "adaptation": "MIT 원본 GLSL을 수정 없이 보존하고, 재생·진행 슬라이더 및 그라데이션 이미지는 별도 실행 어댑터로 구현했습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작과 WebGL 환경은 검증 전입니다.",
+    "remote": false,
+    "requiresGPU": true,
+    "network": false,
+    "displayOrigin": "원본 셰이더 · 별도 실행 패널"
+  },
+  {
+    "id": "glt09",
+    "name": "곡선 타일 전환",
+    "english": "LissajousTiles",
+    "category": "화면 전환",
+    "description": "반복 타일이 곡선 궤도로 움직이며 장면이 변합니다.",
+    "tags": [
+      "화면 전환",
+      "LissajousTiles",
+      "셰이더"
+    ],
+    "preview": "./examples/gt09/index.html",
+    "sourceName": "GL Transitions · Boundless <info@boundless-beta.com>",
+    "sourceUrl": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/LissajousTiles.glsl",
+    "license": "MIT (원본 GLSL)",
+    "licensePath": "./examples/glstage/LICENSE.txt",
+    "codePath": "./examples/gt09/index.html",
+    "codeLabel": "별도 실행 어댑터 HTML",
+    "codeFiles": [
+      {
+        "label": "원본 GLSL",
+        "path": "./examples/gt09/shader.glsl"
+      },
+      {
+        "label": "실행 어댑터 JS",
+        "path": "./examples/glstage/adapter.js"
+      },
+      {
+        "label": "실행 어댑터 CSS",
+        "path": "./examples/glstage/stage.css"
+      }
+    ],
+    "adaptation": "MIT 원본 GLSL을 수정 없이 보존하고, 재생·진행 슬라이더 및 그라데이션 이미지는 별도 실행 어댑터로 구현했습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작과 WebGL 환경은 검증 전입니다.",
+    "remote": false,
+    "requiresGPU": true,
+    "network": false,
+    "displayOrigin": "원본 셰이더 · 별도 실행 패널"
+  },
+  {
+    "id": "glt10",
+    "name": "물방울 커튼",
+    "english": "PolkaDotsCurtain",
+    "category": "화면 전환",
+    "description": "여러 원이 커지며 장면을 덮고 다음 장면을 드러냅니다.",
+    "tags": [
+      "화면 전환",
+      "PolkaDotsCurtain",
+      "셰이더"
+    ],
+    "preview": "./examples/gt10/index.html",
+    "sourceName": "GL Transitions · bobylito",
+    "sourceUrl": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/PolkaDotsCurtain.glsl",
+    "license": "MIT (원본 GLSL)",
+    "licensePath": "./examples/glstage/LICENSE.txt",
+    "codePath": "./examples/gt10/index.html",
+    "codeLabel": "별도 실행 어댑터 HTML",
+    "codeFiles": [
+      {
+        "label": "원본 GLSL",
+        "path": "./examples/gt10/shader.glsl"
+      },
+      {
+        "label": "실행 어댑터 JS",
+        "path": "./examples/glstage/adapter.js"
+      },
+      {
+        "label": "실행 어댑터 CSS",
+        "path": "./examples/glstage/stage.css"
+      }
+    ],
+    "adaptation": "MIT 원본 GLSL을 수정 없이 보존하고, 재생·진행 슬라이더 및 그라데이션 이미지는 별도 실행 어댑터로 구현했습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작과 WebGL 환경은 검증 전입니다.",
+    "remote": false,
+    "requiresGPU": true,
+    "network": false,
+    "displayOrigin": "원본 셰이더 · 별도 실행 패널"
+  },
+  {
+    "id": "glt11",
+    "name": "물결 전환",
+    "english": "Ripple",
+    "category": "화면 전환",
+    "description": "중앙에서 퍼지는 물결로 장면이 뒤틀리며 바뀝니다.",
+    "tags": [
+      "화면 전환",
+      "Ripple",
+      "셰이더"
+    ],
+    "preview": "./examples/gt11/index.html",
+    "sourceName": "GL Transitions · gre",
+    "sourceUrl": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/Ripple.glsl",
+    "license": "MIT (원본 GLSL)",
+    "licensePath": "./examples/glstage/LICENSE.txt",
+    "codePath": "./examples/gt11/index.html",
+    "codeLabel": "별도 실행 어댑터 HTML",
+    "codeFiles": [
+      {
+        "label": "원본 GLSL",
+        "path": "./examples/gt11/shader.glsl"
+      },
+      {
+        "label": "실행 어댑터 JS",
+        "path": "./examples/glstage/adapter.js"
+      },
+      {
+        "label": "실행 어댑터 CSS",
+        "path": "./examples/glstage/stage.css"
+      }
+    ],
+    "adaptation": "MIT 원본 GLSL을 수정 없이 보존하고, 재생·진행 슬라이더 및 그라데이션 이미지는 별도 실행 어댑터로 구현했습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작과 WebGL 환경은 검증 전입니다.",
+    "remote": false,
+    "requiresGPU": true,
+    "network": false,
+    "displayOrigin": "원본 셰이더 · 별도 실행 패널"
+  },
+  {
+    "id": "glt12",
+    "name": "화면 파편 전환",
+    "english": "Shatter",
+    "category": "화면 전환",
+    "description": "이전 장면이 여러 파편으로 나뉘어 흩어집니다.",
+    "tags": [
+      "화면 전환",
+      "Shatter",
+      "셰이더"
+    ],
+    "preview": "./examples/gt12/index.html",
+    "sourceName": "GL Transitions · lbl",
+    "sourceUrl": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/Shatter.glsl",
+    "license": "MIT (원본 GLSL)",
+    "licensePath": "./examples/glstage/LICENSE.txt",
+    "codePath": "./examples/gt12/index.html",
+    "codeLabel": "별도 실행 어댑터 HTML",
+    "codeFiles": [
+      {
+        "label": "원본 GLSL",
+        "path": "./examples/gt12/shader.glsl"
+      },
+      {
+        "label": "실행 어댑터 JS",
+        "path": "./examples/glstage/adapter.js"
+      },
+      {
+        "label": "실행 어댑터 CSS",
+        "path": "./examples/glstage/stage.css"
+      }
+    ],
+    "adaptation": "MIT 원본 GLSL을 수정 없이 보존하고, 재생·진행 슬라이더 및 그라데이션 이미지는 별도 실행 어댑터로 구현했습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작과 WebGL 환경은 검증 전입니다.",
+    "remote": false,
+    "requiresGPU": true,
+    "network": false,
+    "displayOrigin": "원본 셰이더 · 별도 실행 패널"
+  },
+  {
+    "id": "glt13",
+    "name": "TV 잡음 와이프",
+    "english": "StaticWipe",
+    "category": "화면 전환",
+    "description": "텔레비전 잡음 띠가 화면을 가로지르며 장면을 바꿉니다.",
+    "tags": [
+      "화면 전환",
+      "StaticWipe",
+      "셰이더"
+    ],
+    "preview": "./examples/gt13/index.html",
+    "sourceName": "GL Transitions · Ben Lucas",
+    "sourceUrl": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/StaticWipe.glsl",
+    "license": "MIT (원본 GLSL)",
+    "licensePath": "./examples/glstage/LICENSE.txt",
+    "codePath": "./examples/gt13/index.html",
+    "codeLabel": "별도 실행 어댑터 HTML",
+    "codeFiles": [
+      {
+        "label": "원본 GLSL",
+        "path": "./examples/gt13/shader.glsl"
+      },
+      {
+        "label": "실행 어댑터 JS",
+        "path": "./examples/glstage/adapter.js"
+      },
+      {
+        "label": "실행 어댑터 CSS",
+        "path": "./examples/glstage/stage.css"
+      }
+    ],
+    "adaptation": "MIT 원본 GLSL을 수정 없이 보존하고, 재생·진행 슬라이더 및 그라데이션 이미지는 별도 실행 어댑터로 구현했습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작과 WebGL 환경은 검증 전입니다.",
+    "remote": false,
+    "requiresGPU": true,
+    "network": false,
+    "displayOrigin": "원본 셰이더 · 별도 실행 패널"
+  },
+  {
+    "id": "glt14",
+    "name": "가로 블라인드",
+    "english": "WindowBlinds",
+    "category": "화면 전환",
+    "description": "가로 블라인드 무늬와 페이드가 겹쳐 전환됩니다.",
+    "tags": [
+      "화면 전환",
+      "WindowBlinds",
+      "셰이더"
+    ],
+    "preview": "./examples/gt14/index.html",
+    "sourceName": "GL Transitions · Fabien Benetou",
+    "sourceUrl": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/WindowBlinds.glsl",
+    "license": "MIT (원본 GLSL)",
+    "licensePath": "./examples/glstage/LICENSE.txt",
+    "codePath": "./examples/gt14/index.html",
+    "codeLabel": "별도 실행 어댑터 HTML",
+    "codeFiles": [
+      {
+        "label": "원본 GLSL",
+        "path": "./examples/gt14/shader.glsl"
+      },
+      {
+        "label": "실행 어댑터 JS",
+        "path": "./examples/glstage/adapter.js"
+      },
+      {
+        "label": "실행 어댑터 CSS",
+        "path": "./examples/glstage/stage.css"
+      }
+    ],
+    "adaptation": "MIT 원본 GLSL을 수정 없이 보존하고, 재생·진행 슬라이더 및 그라데이션 이미지는 별도 실행 어댑터로 구현했습니다.",
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 조작과 WebGL 환경은 검증 전입니다.",
+    "remote": false,
+    "requiresGPU": true,
+    "network": false,
+    "displayOrigin": "원본 셰이더 · 별도 실행 패널"
+  }
+]

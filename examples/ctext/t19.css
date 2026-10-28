@@ -1,0 +1,32 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 32 Gold-Foil — embossed metallic letters with a diagonal specular sweep */
+.fx-foil {
+  font: 600 36px/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .08em;
+  color: transparent;
+  background:
+    linear-gradient(108deg,
+      #7a4a08 0%,
+      #f2c15d 18%,
+      #fff4b8 24%,
+      #b87014 36%,
+      #f6d66d 51%,
+      #8e560b 68%,
+      #fff0a2 76%,
+      #c98218 100%
+    ) 0 0 / 230% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow:
+    0 1px 0 rgba(255, 244, 184, .45),
+    0 9px 20px rgba(0, 0, 0, .36);
+  animation: fx-foil 3.1s ease-in-out infinite;
+}
+@keyframes fx-foil {
+  0%, 100% { background-position: 115% 0; filter: saturate(1.05); }
+  45%      { background-position: -35% 0; filter: saturate(1.35) brightness(1.12); }
+}

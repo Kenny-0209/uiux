@@ -1,0 +1,48 @@
+<!-- Markup: <div class="fx-barcode">BARCODE</div> -->
+
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 63 Barcode — striped code bars fill the word while a red beam scans it */
+.fx-barcode {
+  position: relative;
+  font: 600 32px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .14em;
+  color: transparent;
+  background: repeating-linear-gradient(90deg,
+      var(--ink) 0 2px, transparent 2px 4px,
+      var(--ink) 4px 5px, transparent 5px 8px,
+      var(--ink) 8px 11px, transparent 11px 13px);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.fx-barcode::before {
+  content: "9 780316 668111";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+  font-size: .3em;
+  letter-spacing: .34em;
+  white-space: nowrap;
+}
+.fx-barcode::after {
+  content: "";
+  position: absolute;
+  top: -12%;
+  bottom: -12%;
+  left: -2%;
+  width: 2px;
+  background: var(--ink-2);
+  box-shadow:
+    0 0 12px var(--ink-2),
+    0 0 26px color-mix(in srgb, var(--ink-2) 60%, transparent);
+  animation: fx-barcode 1.9s ease-in-out infinite alternate;
+}
+@keyframes fx-barcode {
+  0%   { left: -2%; }
+  100% { left: 101%; }
+}

@@ -1,0 +1,24 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 14 Deep-Type — extruded 3D block letters rocking on their axis */
+.fx-extrude {
+  font: 600 34px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .08em;
+  color: var(--ink);
+  text-shadow:
+    1px 1px 0 color-mix(in srgb, var(--ink-2) 80%, #000),
+    2px 2px 0 color-mix(in srgb, var(--ink-2) 70%, #000),
+    3px 3px 0 color-mix(in srgb, var(--ink-2) 60%, #000),
+    4px 4px 0 color-mix(in srgb, var(--ink-2) 50%, #000),
+    5px 5px 0 color-mix(in srgb, var(--ink-2) 40%, #000),
+    6px 6px 0 color-mix(in srgb, var(--ink-2) 30%, #000),
+    7px 7px 12px rgba(0, 0, 0, .5);
+  animation: fx-extrude 3s ease-in-out infinite;
+}
+@keyframes fx-extrude {
+  0%, 100% { transform: rotate(-3.5deg) translateY(2px); }
+  50%      { transform: rotate(3.5deg)  translateY(-4px); }
+}

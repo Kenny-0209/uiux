@@ -1,0 +1,24 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 61 Smoke-Signal — letters curl upward and dissipate like smoke, then re-form */
+.fx-smoke {
+  font: 600 32px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .14em;
+  color: var(--ink);
+}
+.fx-smoke b {
+  font-weight: inherit;
+  display: inline-block;
+  animation: fx-smoke 3.4s ease-in-out infinite;
+  animation-delay: calc(var(--i) * .16s);
+}
+@keyframes fx-smoke {
+  0%, 42%   { transform: none; opacity: 1; filter: blur(0); color: var(--ink); }
+  62%       { color: var(--ink-3); }
+  78%       { transform: translate(6px, -22px) rotate(14deg) scale(1.45); opacity: 0; filter: blur(7px); }
+  79%       { transform: translateY(10px) scale(.8); opacity: 0; filter: blur(4px); }
+  92%, 100% { transform: none; opacity: 1; filter: blur(0); }
+}

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pinned scenes — sticky scrollytelling in three steps — scroll-story-lab</title>
+  <meta name="description" content="A 300vh section pins its stage with position: sticky while getBoundingClientRect converts scroll into 0-to-1 progress driving a three-step story.">
+  <style>
+    :root {
+      --bg: #0A0D14;
+      --surface: #0F1626;
+      --border: #1E293B;
+      --accent: #2563EB;
+      --accent-bright: #38BDF8;
+      --title: #F1F5F9;
+      --body: #94A3B8;
+      --muted: #64748B;
+      --sans: -apple-system, 'Segoe UI', Inter, Roboto, sans-serif;
+      --mono: 'Cascadia Code', Consolas, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--body);
+      font-family: var(--sans);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent-bright);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .site-header { border-bottom: 1px solid var(--border); padding: 20px 0; }
+    .header-inner {
+      display: flex; flex-wrap: wrap; gap: 10px 28px;
+      align-items: baseline; justify-content: space-between;
+    }
+    .brand { font-family: var(--mono); font-size: 1.05rem; color: var(--accent-bright); text-decoration: none; }
+    .brand:hover { color: var(--title); }
+    .tagline { margin: 4px 0 0; font-size: .85rem; color: var(--muted); }
+    .site-nav { display: flex; gap: 20px; }
+    .site-nav a {
+      color: var(--body); text-decoration: none; font-size: .9rem;
+      border-bottom: 1px solid transparent; transition: color .2s, border-color .2s;
+    }
+    .site-nav a:hover { color: var(--title); border-bottom-color: var(--accent); }
+
+    h1 { color: var(--title); font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.15; letter-spacing: -.02em; margin: 0 0 18px; }
+    h2 { color: var(--title); font-size: 1.35rem; margin: 0 0 12px; }
+    .kicker {
+      font-family: var(--mono); font-size: .75rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--accent-bright); margin: 0 0 12px;
+    }
+    .prose { padding: 72px 0 0; max-width: 62ch; }
+    .intro { padding: 72px 0 8px; }
+    .intro p { max-width: 62ch; }
+    .hint { font-size: .85rem; color: var(--muted); font-style: italic; }
+
+    code {
+      font-family: var(--mono); font-size: .88em; color: var(--accent-bright);
+      background: rgba(37, 99, 235, .12); padding: .1em .35em; border-radius: 4px;
+    }
+    pre {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 18px 20px; overflow-x: auto; margin: 20px 0 0;
+    }
+    pre code { background: none; padding: 0; color: #CBD5E1; font-size: .8rem; line-height: 1.65; }
+
+    /* ==============================================================
+       THE PINNED SCENE
+
+       Geometry, in one breath:
+       - .scene is 300vh tall. That height is pure runway — nothing is
+         painted in most of it.
+       - .stage (the only child) is height: 100vh and position: sticky;
+         top: 0. It glues itself to the viewport while its tall parent
+         scrolls past, then releases at the end. No JS is involved in
+         the pinning — sticky handles enter, hold and exit natively.
+       - JS measures how far the runway has scrolled and normalises it
+         to progress 0..1:  progress = -rect.top / (rect.height - 100vh)
+         With 300vh of runway that leaves 200vh of "held" scroll, split
+         into three steps of ~66vh each: enough travel that each step
+         can be read, not so much that the scene overstays.
+       ============================================================== */
+    .scene { height: 300vh; position: relative; }
+    .stage {
+      position: sticky; top: 0; height: 100vh; overflow: hidden;
+      display: flex; flex-direction: column;
+      border-block: 1px solid var(--border);
+      background:
+        radial-gradient(60% 50% at 70% 30%, rgba(37, 99, 235, .07), transparent 70%),
+        var(--bg);
+    }
+
+    /* Scene-local progress bar, fed by a CSS custom property that the
+       JS updates once per frame: CSS owns the drawing, JS owns the math. */
+    .scene-bar { height: 3px; background: var(--border); }
+    .scene-bar span {
+      display: block; height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+      transform-origin: left center;
+      transform: scaleX(var(--progress, 0));  /* scaleX: no layout, no paint */
+    }
+
+    .stage-inner {
+      flex: 1; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: 32px; align-items: center;
+      width: 100%; max-width: 1080px; margin: 0 auto; padding: 24px;
+    }
+
+    /* --- left rail: the three step captions ----------------------- */
+    .steps { display: grid; gap: 18px; }
+    .step { opacity: .38; transition: opacity .4s ease; }
+    .step.is-active { opacity: 1; }
+    .step .num { font-family: var(--mono); font-size: .75rem; color: var(--accent-bright); letter-spacing: .12em; }
+    .step h3 { color: var(--title); margin: 2px 0 6px; font-size: 1.1rem; }
+    .step p { margin: 0; font-size: .88rem; max-width: 46ch; }
+
+    .scene-meta {
+      margin-top: 18px; font-family: var(--mono); font-size: .72rem; color: var(--muted);
+    }
+
+    /* --- right rail: the crossfading figure ------------------------
+       Three pre-built states that crossfade (opacity + a whisper of
+       scale). Crossfading finished states keeps every transition on
+       compositor-friendly properties — no width/height tweening. */
+    .figure-stack { position: relative; height: min(46vh, 380px); }
+    .fig {
+      position: absolute; inset: 0; display: grid; place-items: center;
+      opacity: 0; transform: scale(.94);
+      transition: opacity .45s ease, transform .45s cubic-bezier(.22, 1, .36, 1);
+    }
+    .fig.is-active { opacity: 1; transform: none; }
+
+    /* Step 1 figure: a lone signal — dot inside a soft ring */
+    .fig-dot {
+      width: 88px; height: 88px; border-radius: 50%;
+      border: 1px solid rgba(56, 189, 248, .4);
+      display: grid; place-items: center;
+    }
+    .fig-dot::after {
+      content: ""; width: 22px; height: 22px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-bright));
+    }
+
+    /* Step 2 figure: the skeleton — structure without content */
+    .fig-card {
+      width: min(320px, 80%); border: 1px solid var(--border); border-radius: 14px;
+      background: var(--surface); padding: 20px;
+    }
+    .skel-row { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; }
+    .skel-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--border); flex: none; }
+    .skel-line { height: 10px; border-radius: 5px; background: var(--border); }
+    .skel-line.w60 { width: 60%; }
+    .skel-line.w80 { width: 80%; }
+    .skel-line.w40 { width: 40%; }
+    .skel-stack { display: grid; gap: 10px; }
+
+    /* Step 3 figure: the settled card — content and one accent action */
+    .fig-final .skel-avatar { background: linear-gradient(135deg, var(--accent), var(--accent-bright)); }
+    .fig-final .skel-name { color: var(--title); font-size: .95rem; font-weight: 600; }
+    .fig-final .skel-sub { color: var(--muted); font-size: .78rem; }
+    .fig-final p { margin: 0 0 16px; font-size: .85rem; color: var(--body); }
+    .fig-final .cta {
+      display: inline-block; font-size: .82rem; color: #fff; text-decoration: none;
+      background: var(--accent); border-radius: 8px; padding: 8px 16px;
+    }
+
+    /* Reduced motion: the pin itself is layout, not motion, so it stays.
+       The crossfade drops its scale component and steps swap by opacity
+       only — the story remains fully legible. */
+    @media (prefers-reduced-motion: reduce) {
+      .fig { transform: none; transition: opacity .3s linear; }
+      .step { transition: none; }
+    }
+
+    @media (max-width: 720px) {
+      .stage-inner { grid-template-columns: 1fr; gap: 12px; align-content: center; }
+      .figure-stack { height: 34vh; order: -1; }
+      .step p { font-size: .8rem; }
+      .step h3 { font-size: .95rem; }
+      .steps { gap: 10px; }
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      margin-top: 120px; padding: 26px 0 42px;
+      font-size: .85rem; color: var(--muted);
+    }
+    .site-footer a { color: var(--body); }
+    .site-footer a:hover { color: var(--accent-bright); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <a class="brand" href="index.html">scroll-story-lab</a>
+        <p class="tagline">Scroll-driven animation patterns in vanilla JS and modern CSS</p>
+      </div>
+      <nav class="site-nav" aria-label="Site">
+        <a href="index.html">All demos</a>
+        <a href="https://github.com/AleBrito124356/scroll-story-lab">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="container">
+      <section class="intro">
+        <p class="kicker">Pattern 03 — position: sticky + progress math</p>
+        <h1>The pinned scene</h1>
+        <p>
+          Scrollytelling's signature move: the page appears to stop while the story keeps
+          going. Newsrooms built a decade of visual journalism on it — datelines that hold
+          while maps march, charts that assemble line by line as the copy explains them.
+          The trick is a contract between two pieces: <code>position: sticky</code> pins a
+          full-viewport stage inside a much taller section, and a few lines of JavaScript
+          convert "how far through that tall section are we?" into a number between 0 and 1.
+        </p>
+        <p>
+          Everything downstream is just interpretation of that number. Three steps? Divide
+          by a third. A progress bar? Scale it. The scene below runs on exactly this:
+        </p>
+        <pre><code>const rect = scene.getBoundingClientRect();
+// runway = section height minus the 100vh that stays pinned
+const runway = rect.height - window.innerHeight;
+const progress = Math.min(1, Math.max(0, -rect.top / runway));
+const step = Math.min(2, Math.floor(progress * 3)); // 0, 1, 2</code></pre>
+        <p class="hint" style="margin-top:14px">Scroll on — the next section pins itself for three beats.</p>
+      </section>
+    </div>
+
+    <!-- =============================================================
+         THE SCENE — 300vh runway, 100vh sticky stage, 3 steps
+         ============================================================= -->
+    <section class="scene" id="scene" aria-label="Pinned story: how an interface element earns its place, in three steps">
+      <div class="stage">
+
+        <div class="scene-bar" aria-hidden="true"><span></span></div>
+
+        <div class="stage-inner">
+
+          <div class="steps">
+            <div class="step is-active" data-step="0">
+              <span class="num">STEP 01</span>
+              <h3>Arrive</h3>
+              <p>
+                A component begins as a signal: something exists here. One dot, one ring
+                of attention. Motion's first job is simply to say "look — but gently".
+              </p>
+            </div>
+            <div class="step" data-step="1">
+              <span class="num">STEP 02</span>
+              <h3>Take shape</h3>
+              <p>
+                Structure precedes content. The skeleton state promises layout before the
+                data lands, so nothing jumps when it does — continuity is the whole game.
+              </p>
+            </div>
+            <div class="step" data-step="2">
+              <span class="num">STEP 03</span>
+              <h3>Settle</h3>
+              <p>
+                Content arrives, motion retires. A finished interface should look like it
+                was always going to end up exactly here — the animation becomes memory.
+              </p>
+            </div>
+            <p class="scene-meta">scene progress: <span id="scene-pct">0%</span> &middot; step <span id="scene-step">1</span> / 3</p>
+          </div>
+
+          <div class="figure-stack" aria-hidden="true">
+            <!-- Three finished states that crossfade; nothing is resized live -->
+            <div class="fig is-active" data-step="0">
+              <div class="fig-dot"></div>
+            </div>
+            <div class="fig" data-step="1">
+              <div class="fig-card">
+                <div class="skel-row">
+                  <div class="skel-avatar"></div>
+                  <div class="skel-stack" style="flex:1">
+                    <div class="skel-line w60"></div>
+                    <div class="skel-line w40"></div>
+                  </div>
+                </div>
+                <div class="skel-stack">
+                  <div class="skel-line w80"></div>
+                  <div class="skel-line w60"></div>
+                </div>
+              </div>
+            </div>
+            <div class="fig fig-final" data-step="2">
+              <div class="fig-card">
+                <div class="skel-row">
+                  <div class="skel-avatar"></div>
+                  <div>
+                    <div class="skel-name">Motion Notes</div>
+                    <div class="skel-sub">weekly &middot; 4 min read</div>
+                  </div>
+                </div>
+                <p>Interfaces feel finished when nothing moves without a reason.</p>
+                <span class="cta">Keep reading</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="prose">
+        <h2>Why 300vh, and other tuning notes</h2>
+        <p>
+          The runway height is the scene's pacing control. 100vh of extra height per step
+          is a comfortable reading tempo on desktop and mobile alike; drop to 60&ndash;70vh per
+          step for punchier product pages, stretch past 120vh only when a step contains
+          something genuinely worth lingering on. Resist the 1000vh epic — readers can
+          feel a hijacked scrollbar, and trust, once scrolled away, does not come back.
+        </p>
+        <p>
+          Note what the JavaScript here does <em>not</em> do: it never pins, unpins, or
+          measures on every pixel in a layout-triggering way. Sticky positioning is native
+          and free; the script reads one rectangle per frame (batched through
+          requestAnimationFrame, passive listener) and writes one custom property plus a
+          step index. When steps change, CSS transitions do the visible work — and under
+          <code>prefers-reduced-motion</code> those transitions collapse to plain
+          crossfades while the pinning, which is layout rather than motion, stays.
+        </p>
+        <p>
+          One accessibility habit worth keeping: the step captions are real text in the
+          document, in reading order, visible at reduced opacity rather than hidden. A
+          screen reader — or a browser with JavaScript off — encounters a sensible,
+          complete article: three numbered paragraphs and a figure. The scene is
+          presentation, not payload.
+        </p>
+      </section>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      MIT &copy; 2026 Alejandro Brito &middot;
+      <a href="index.html">All demos</a> &middot;
+      <a href="https://github.com/AleBrito124356/scroll-story-lab">GitHub</a>
+    </div>
+  </footer>
+
+  <script>
+    /* ------------------------------------------------------------------
+       Pinned-scene driver.
+
+       progress = -rect.top / (sceneHeight - viewportHeight)
+
+       While the stage is pinned, the scene's rect.top runs from 0 down
+       to -(sceneHeight - viewportHeight); negating and dividing gives a
+       clean 0..1. Clamping covers the moments before the pin engages and
+       after it releases, so mid-page reloads land in a correct state.
+
+       Writes per frame: one CSS custom property (--progress) and, only
+       when it CHANGES, a step class swap + two text nodes. The class
+       toggles are guarded so 59 of 60 frames write almost nothing.
+       ------------------------------------------------------------------ */
+    (function () {
+      const scene   = document.getElementById('scene');
+      const bar     = scene.querySelector('.scene-bar span');
+      const steps   = Array.from(scene.querySelectorAll('.step'));
+      const figs    = Array.from(scene.querySelectorAll('.fig'));
+      const pctEl   = document.getElementById('scene-pct');
+      const stepEl  = document.getElementById('scene-step');
+      const STEP_COUNT = 3;
+
+      let scheduled = false;
+      let currentStep = 0;
+
+      function update() {
+        scheduled = false;
+
+        const rect = scene.getBoundingClientRect();
+        const runway = rect.height - window.innerHeight;
+        const progress = Math.min(1, Math.max(0, -rect.top / runway));
+
+        // CSS draws the bar from this single number (scaleX — cheap).
+        scene.style.setProperty('--progress', progress.toFixed(4));
+        pctEl.textContent = Math.round(progress * 100) + '%';
+
+        // floor(progress * 3) maps [0, 1/3) -> 0, [1/3, 2/3) -> 1, rest -> 2.
+        // min() guards the exact progress === 1 endpoint (3 would be out of range).
+        const step = Math.min(STEP_COUNT - 1, Math.floor(progress * STEP_COUNT));
+        if (step !== currentStep) {
+          currentStep = step;
+          steps.forEach((el, i) => el.classList.toggle('is-active', i === step));
+          figs.forEach((el, i) => el.classList.toggle('is-active', i === step));
+          stepEl.textContent = step + 1;
+        }
+
+        // The bar isn't inside --progress's inheritance path pre-paint on
+        // some engines when set on .scene; keep it explicit and cheap:
+        bar.style.transform = 'scaleX(' + progress.toFixed(4) + ')';
+      }
+
+      function schedule() {
+        if (scheduled) return;
+        scheduled = true;
+        requestAnimationFrame(update);
+      }
+
+      window.addEventListener('scroll', schedule, { passive: true });
+      window.addEventListener('resize', schedule, { passive: true });
+      update(); // correct state on load, wherever the page restores to
+    })();
+  </script>
+
+</body>
+</html>

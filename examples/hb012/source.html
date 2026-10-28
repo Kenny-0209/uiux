@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll-Driven Background Color — Animation Handbook</title>
+  <meta name="description" content="The background color changes as you scroll through sections. Best for stories.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/scroll-background-color/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Scroll-Driven Background Color — Animation Handbook">
+  <meta property="og:description" content="The background color changes as you scroll through sections. Best for stories.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/scroll-background-color/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Scroll-Driven Background Color — Animation Handbook">
+  <meta name="twitter:description" content="The background color changes as you scroll through sections. Best for stories.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Scroll-Driven Background Color", "name": "Scroll-Driven Background Color", "description": "The background color changes as you scroll through sections. Best for stories.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/scroll-background-color/", "inLanguage": "en", "articleSection": "Scroll-Based", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Scroll-Based, Scroll-Driven Background Color"}</script>
+  <style>
+    :root{--ui-accent:#6ea8ff}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;overflow-y:auto;scrollbar-width:none;container-type:size;background:#0d1124}
+    .stage::-webkit-scrollbar{display:none}
+    .stage section{min-height:90cqh;display:flex;flex-direction:column;justify-content:center;padding:clamp(20px,4vw,48px)}
+    .num{font-size:13px;font-weight:600;letter-spacing:2px}
+    .stage h3{font-weight:800;font-size:clamp(24px,4.5vw,44px);letter-spacing:-.02em;margin:10px 0 14px}
+    /* pretty keeps a chapter's last line from being a single word; a browser without it wraps as usual */
+    .stage p{font-size:14px;line-height:1.7;max-width:44ch;text-wrap:pretty}
+    /* White text on the dark colors, black on the light ones: the script sets .light once the background is light enough */
+    .num,.stage h3,.stage p{color:#fff}
+    .stage.light .num,.stage.light h3,.stage.light p{color:#000}
+
+    /* See inside and Compare draw in one zero-tall layer that sticks to the top of the box, so the chapters keep their heights.
+       It ignores the pointer, so a wheel turn or a touch over it still scrolls the box. */
+    .fx,.fx-in,.fx-cmp,.cm-copy{display:none}
+    .fx{position:sticky;top:0;height:0;z-index:6;pointer-events:none}
+    .fx-box{position:absolute;left:0;top:0;width:100%;height:100cqh;overflow:hidden}
+    .fx-in,.fx-cmp{position:absolute;inset:0}
+    .stage[data-hb-mode="inside"] .fx,.stage[data-hb-mode="compare"] .fx,.stage[data-hb-mode="inside"] .fx-in,.stage[data-hb-mode="compare"] .fx-cmp{display:block}
+    .cap{position:absolute;padding:2px 6px;border-radius:999px;white-space:nowrap;background:rgba(11,11,13,.95);color:#f4f4f2;
+      border:1px solid rgba(244,244,242,.3);font:600 12.5px/1.3 var(--hb-font)}
+    .band,.sw,.mk{position:absolute}
+    .band{left:0;right:0;border-radius:4px;box-shadow:0 0 0 1px #fff,0 0 0 2px #000}
+    .mk{width:8px;margin-left:-4px;border:2px solid #fff;border-radius:4px;box-shadow:0 0 0 1px #000;left:0}
+    /* See inside: only the chapters' text is dimmed (the box's own focus ring keeps full contrast), and the strip stands for the whole scroll */
+    .stage[data-hb-mode="inside"]>section{opacity:.35}
+    .in-pan{position:absolute;left:0;right:0;bottom:0;height:98px;background:rgba(11,11,13,.92)}
+    .fx-in.flip .in-pan{height:134px}
+    .in-trk{position:absolute;left:26px;right:26px;bottom:40px;height:24px}
+    .in-trk .band{top:3px;bottom:3px}
+    .sw{top:0;width:24px;height:24px;margin-left:-12px;border:2px solid #fff;border-radius:5px;box-shadow:0 0 0 1px #000}
+    .in-trk .mk{top:-6px;height:36px}
+    .in-brks{position:absolute;left:26px;right:26px;bottom:68px;height:0}
+    .brk{position:absolute;bottom:0;height:8px;border:2px solid #fff;border-bottom:0;box-shadow:0 0 0 1px #000}
+    .in-me{bottom:10px;left:0}
+    .in-b{left:0;bottom:80px}
+    .in-a1{left:8px;bottom:72px}
+    .in-a2{right:8px;bottom:72px}
+    .fx-in.flip .in-a1,.fx-in.flip .in-a2{bottom:108px}
+    .fx-in:not(.flip) .in-b,.fx-in:not(.flip) .in-brks{display:none}
+    /* Compare: the chapters twice, in two columns of the same scroll. The copy on the left keeps one color; the real chapters sit on the right.
+       Every chapter keeps its Normal height (--h, measured), and the words are set smaller to fit the narrower halves. */
+    .stage[data-hb-mode="compare"] .cm-copy{display:block;position:absolute;left:0;top:0;width:50%;z-index:1}
+    .stage[data-hb-mode="compare"]>section{margin-left:50%}
+    .stage[data-hb-mode="compare"] section{height:var(--h);min-height:0;padding:clamp(10px,2.4cqw,28px)}
+    .stage[data-hb-mode="compare"] .num{font-size:11px;letter-spacing:1px}
+    .stage[data-hb-mode="compare"] h3{font-size:clamp(15px,3cqw,28px);margin:6px 0 8px}
+    .stage[data-hb-mode="compare"] p{font-size:12px;line-height:1.45;max-width:none}
+    .stage[data-hb-mode="compare"] .cm-copy .num,.stage[data-hb-mode="compare"] .cm-copy h3,.stage[data-hb-mode="compare"] .cm-copy p{color:#fff}
+    .cm-div{position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:#f4f4f2}
+    /* a dark band on top (the half's name) and one below (its strip): the chapters scroll under them, so nothing they say is half hidden by a label */
+    .cm-top,.cm-bot{position:absolute;left:0;right:0;background:rgba(11,11,13,.94)}
+    .cm-top{top:0;height:32px}
+    .cm-bot{bottom:0;height:42px}
+    .cm-n1{top:4px;left:5px}
+    .cm-n2{top:4px;left:calc(50% + 5px)}
+    .cm-t{position:absolute;bottom:14px;height:14px}
+    .cm-t1{left:8px;right:calc(50% + 8px)}
+    .cm-t2{left:calc(50% + 8px);right:8px}
+    .cm-t .band{top:0;bottom:0}
+    .cm-t .mk{top:-5px;height:24px}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="scroll" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../scrollspy-nav/" rel="prev" aria-label="Previous: Scrollspy Navigation"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Scrollspy Navigation</span></a><a href="../hide-on-scroll-header/" rel="next" aria-label="Next: Hide-on-Scroll Header"><span><span class="hb-dir">Next: </span>Hide-on-Scroll Header</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">01.26 · Scroll-Based</p>
+    <h1>Scroll-Driven Background Color</h1>
+    <p class="hb-lede">The background color changes as you scroll through sections. Best for stories.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Scroll it</h2><p>Scroll inside the box, or press Play and it scrolls for you.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage" tabindex="0" role="region" aria-label="Sections whose background color blends as you scroll"></div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-scroll" data-hb-autoscroll><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>Play</button>
+      <button class="hb-play" type="button" id="btn-top" data-hb-top><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Back to top</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the strip is the whole scroll: each chapter's color, how they meet and, on light colors, where the text turns dark. The marker shows your place; scroll the box or press Play.</p>
+      <p data-hb-for="compare" hidden>One color keeps the background the same throughout; Changes by chapter moves from each chapter's color to the next as you scroll. Scroll the box or press Play to watch.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then scroll again or press Play.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="pal-lbl">Colors</p>
+        <div class="seg" id="pal-seg" role="group" aria-labelledby="pal-lbl">
+          <button type="button" data-pal="dusk" class="on" aria-pressed="true">Dusk</button>
+          <button type="button" data-pal="daylight" aria-pressed="false">Daylight</button>
+          <button type="button" data-pal="forest" aria-pressed="false">Forest</button>
+        </div>
+        <p class="hb-hint">On Daylight and Forest the text turns dark on light colors.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="blend-lbl">Blend</p>
+        <div class="seg" id="blend-seg" role="group" aria-labelledby="blend-lbl">
+          <button type="button" data-blend="1" class="on" aria-pressed="true">Gradual</button>
+          <button type="button" data-blend="0.3" aria-pressed="false">Quick</button>
+          <button type="button" data-blend="cut" aria-pressed="false">Hard cut</button>
+        </div>
+        <p class="hb-hint">Hard cut shows the change with no blending at all.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a scroll-driven background color to [the sections of your page]. Give each section a color, and as the visitor scrolls, change the page background from one section's color to the next in step with their position, blending between them unless the settings ask for a hard cut, so the color follows the scroll both ways. Blend in a perceptual color space so the colors in between stay clean. Check the text against the background at every point, and switch the text to dark when the background turns light. A change of color is not movement, so keep it when the visitor has reduced motion turned on. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Stories</li><li>Portfolios</li><li>Case studies</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Text-heavy pages</li><li>Forms</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const stage=document.getElementById('stage');
+  const clamp=(v,a,b)=>Math.min(Math.max(v,a),b);
+
+  // The switch above the box: the page draws the mode at once (lastBg='' forces a full redraw)
+  let mode='normal';
+  const LABELS={
+    normal:'Sections whose background color blends as you scroll',
+    inside:'Sections whose background changes as you scroll, with a strip of every chapter\'s color, how they meet and, on light colors, where the text turns dark',
+    compare:'The sections twice: on one color, and changing color from chapter to chapter'
+  };
+  document.addEventListener('hb:mode',e=>{
+    mode=e.detail.mode;
+    stage.setAttribute('aria-label',LABELS[mode]||LABELS.normal);
+    lastBg='';remeasure();
+  });
+
+  const THEMES={
+    dusk:    [[13,17,36],[28,36,84],[70,44,120],[122,52,98],[88,40,34]],
+    daylight:[[18,26,48],[86,138,198],[235,228,214],[248,214,160],[40,52,72]],
+    forest:  [[10,26,20],[22,60,44],[46,108,78],[104,150,116],[16,42,50]]
+  };
+  const CHAPTERS=[
+    ['Departure','The first section owns the darkest color.','Scroll down and the ground shifts under the text.'],
+    ['Ascent','Halfway between two sections, the background','is an even mix of both colors.'],
+    ['Meridian','When the background turns light,','the text turns dark so it stays readable.'],
+    ['Descent','Each section has a color of its own,','and the change happens as you move between them.'],
+    ['Arrival','The last color stays','as you reach the end.']
+  ];
+  const chapter=(c,i)=>
+    `<section><div class="num">CHAPTER ${String(i+1).padStart(2,'0')}</div><h3>${c[0]}</h3><p>${c[1]} ${c[2]}</p></section>`;
+  // The layer for See inside and Compare, and the left column's copy of the chapters (made once, no ids, inert), come before the real chapters
+  stage.innerHTML=`<div class="fx" aria-hidden="true"><div class="fx-box">
+      <div class="fx-in">
+        <i class="in-pan"></i>
+        <div class="in-brks"></div>
+        <div class="in-trk"><div class="band"></div><i class="sw" style="left:0"></i><i class="sw" style="left:25%"></i><i class="sw" style="left:50%"></i><i class="sw" style="left:75%"></i><i class="sw" style="left:100%"></i><i class="mk"></i></div>
+        <span class="cap in-a1" data-hb-caption>Chapter colors</span><span class="cap in-a2" data-hb-caption></span>
+        <span class="cap in-b" data-hb-caption>Dark text from here</span><span class="cap in-me" data-hb-caption>You are here</span>
+      </div>
+      <div class="fx-cmp">
+        <i class="cm-top"></i><i class="cm-bot"></i><i class="cm-div"></i>
+        <span class="cap cm-n1" data-hb-caption>One color</span><span class="cap cm-n2" data-hb-caption>Changes by chapter</span>
+        <div class="cm-t cm-t1"><div class="band"></div><i class="mk"></i></div>
+        <div class="cm-t cm-t2"><div class="band"></div><i class="mk"></i></div>
+      </div>
+    </div></div>
+    <div class="cm-copy" aria-hidden="true" inert>${CHAPTERS.map(chapter).join('')}</div>`+CHAPTERS.map(chapter).join('');
+  const secs=[...stage.querySelectorAll(':scope>section')],copy=stage.querySelector('.cm-copy'),copySecs=[...copy.children];
+  const $=q=>stage.querySelector(q);
+  const swatches=[...stage.querySelectorAll('.sw')],inBand=$('.in-trk .band'),inBrks=$('.in-brks'),inLay=$('.fx-in');
+  const inMk=$('.in-trk .mk'),inMe=$('.in-me'),inB=$('.in-b'),inA2=$('.in-a2');
+  const cmBand1=$('.cm-t1 .band'),cmBand2=$('.cm-t2 .band'),cmMk1=$('.cm-t1 .mk'),cmMk2=$('.cm-t2 .mk');
+
+  let PAL=THEMES.dusk,WIN=1,SNAP=false;
+  let maxScroll=1,lastBg='',isLight=false,ticking=false;
+
+  // Layout reads live here only — never in the scroll handler.
+  function measure(){maxScroll=Math.max(1,stage.scrollHeight-stage.clientHeight)}
+
+  // Relative luminance of the blended color: white and black text read equally well at 0.18, so the text flips there
+  const lin=c=>(c/=255)<=0.03928?c/12.92:((c+0.055)/1.055)**2.4;
+
+  // The blended color at a share p of the whole scroll: one place for the page, the See inside strip and Compare's strips
+  const shape=t=>{
+    if(SNAP)return t<.5?0:1;
+    t=clamp((t-(1-WIN)/2)/WIN,0,1); // remap into the blend window around the boundary
+    return t*t*(3-2*t);             // smoothstep
+  };
+  function mixAt(i,t){
+    const a=PAL[i],b=PAL[i+1];
+    return [0,1,2].map(k=>Math.round(a[k]+(b[k]-a[k])*t));
+  }
+  function colorAt(p){
+    const seg=p*(PAL.length-1),i=Math.min(Math.floor(seg),PAL.length-2);
+    return mixAt(i,shape(seg-i));
+  }
+  const isLightRGB=c=>0.2126*lin(c[0])+0.7152*lin(c[1])+0.0722*lin(c[2])>0.18;
+  const rgb=c=>`rgb(${c[0]},${c[1]},${c[2]})`;
+
+  function update(){
+    const p=clamp(stage.scrollTop/maxScroll,0,1);
+    const c=colorAt(p),css=rgb(c);
+    if(css!==lastBg){                  // guard: skip identical writes
+      lastBg=css;
+      stage.style.background=css;
+      const light=isLightRGB(c);
+      if(light!==isLight){isLight=light;stage.classList.toggle('light',light)}
+      inMk.style.background=cmMk2.style.background=css;
+    }
+    place(p);                          // the markers follow the scroll even while the color holds
+  }
+
+  // See inside and Compare: each strip stands for the whole scroll, left to right, and is drawn from the page's own palette, blend and flip point
+  let TW=0,CW=0,BW=0,meW=0;
+  function measureFx(){
+    BW=stage.clientWidth;TW=Math.max(1,BW-52);CW=Math.max(1,BW/2-16);meW=inMe.offsetWidth;
+  }
+  function place(p){
+    if(mode==='inside'){
+      inMk.style.transform=`translateX(${p*TW}px)`;
+      inMe.style.transform=`translateX(${clamp(26+p*TW-meW/2,6,BW-6-meW)}px)`;
+    }else if(mode==='compare'){
+      cmMk1.style.transform=cmMk2.style.transform=`translateX(${p*CW}px)`;
+    }
+  }
+  function gradient(){
+    const n=PAL.length,stops=[],at=(i,t,c)=>stops.push(`${rgb(c)} ${((i+t)/(n-1)*100).toFixed(2)}%`);
+    for(let i=0;i<n-1;i++){
+      if(SNAP){at(i,0,PAL[i]);at(i,.5,PAL[i]);at(i,.5,PAL[i+1]);at(i,1,PAL[i+1]);continue}
+      const lo=(1-WIN)/2,hi=(1+WIN)/2,ts=[0,lo];
+      for(let k=1;k<10;k++)ts.push(lo+(hi-lo)*k/10);
+      ts.push(hi,1);
+      ts.forEach(t=>at(i,t,mixAt(i,shape(t))));
+    }
+    return `linear-gradient(90deg,${stops.join(',')})`;
+  }
+  function drawFx(){
+    if(mode==='normal')return;
+    measureFx();
+    const grad=gradient();
+    inBand.style.background=cmBand2.style.background=grad;
+    cmBand1.style.background=copy.style.background=rgb(PAL[0]);
+    swatches.forEach((el,i)=>{el.style.background=rgb(PAL[i])});
+    inA2.textContent=SNAP?'Switches at the boundary':'Blends between them';
+    // where the text turns dark: the stretches of the scroll whose blended color is light enough
+    const runs=[];let from=-1;
+    for(let k=0;k<=400;k++){
+      const on=isLightRGB(colorAt(k/400));
+      if(on&&from<0)from=k;
+      if((!on||k===400)&&from>=0){runs.push([from/400,(on?k:k-1)/400]);from=-1}
+    }
+    inLay.classList.toggle('flip',runs.length>0);
+    inBrks.innerHTML=runs.map(r=>`<i class="brk" style="left:${r[0]*TW}px;width:${Math.max(4,(r[1]-r[0])*TW)}px"></i>`).join('');
+    if(runs.length){
+      const w=inB.offsetWidth;
+      inB.style.left=clamp(26+runs[0][0]*TW,6,BW-6-w)+'px';
+    }
+    meW=inMe.offsetWidth;
+    place(clamp(stage.scrollTop/maxScroll,0,1));
+  }
+
+  stage.addEventListener('scroll',()=>{
+    if(ticking)return;                 // rAF-coalesced: one update per frame
+    ticking=true;
+    requestAnimationFrame(()=>{ticking=false;update()});
+  },{passive:true});
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+      lastBg='';drawFx();update();     // a new palette or blend is drawn at once, where the box is
+    }));
+  }
+  choices('pal-seg',d=>{PAL=THEMES[d.pal]});
+  choices('blend-seg',d=>{SNAP=d.blend==='cut';if(!SNAP)WIN=+d.blend});
+
+  // Compare keeps every chapter at exactly its Normal height: measure them with Normal's rules, then put the mode back
+  function fit(){
+    const m=stage.getAttribute('data-hb-mode');
+    stage.setAttribute('data-hb-mode','normal');
+    const H=secs.map(el=>el.getBoundingClientRect().height);
+    if(m)stage.setAttribute('data-hb-mode',m);else stage.removeAttribute('data-hb-mode');
+    secs.forEach((el,i)=>{el.style.setProperty('--h',H[i]+'px');copySecs[i].style.setProperty('--h',H[i]+'px')});
+    copy.style.height=H.reduce((x,y)=>x+y,0)+'px';
+  }
+  // The box changes size with the window, and the site font can change the height of a section: measure again and draw at once
+  function remeasure(){fit();measure();drawFx();update()}
+  window.addEventListener('resize',remeasure);
+  remeasure();
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(remeasure);
+</script>
+</body>
+</html>

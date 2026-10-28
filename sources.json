@@ -1,0 +1,467 @@
+[
+  {
+    "section": "설계 원리·패턴",
+    "name": "NN/g — 이론·사용자 조사",
+    "url": "https://www.nngroup.com/articles/?asset=articles"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "NN/g 이용조건",
+    "url": "https://www.nngroup.com/contents/terms-and-conditions/"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "KRDS — 한국어 원칙·패턴",
+    "url": "https://www.krds.go.kr/"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "KRDS 공식 저작권",
+    "url": "https://www.krds.go.kr/html/eng/utility/utility_05.html"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "KRDS 코드",
+    "url": "https://github.com/KRDS-uiux/krds-uiux"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "Dashboard Design Patterns — 화면 공간·상호작용",
+    "url": "https://dashboarddesignpatterns.github.io/patterns.html"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "Baymard — 커머스 사용성",
+    "url": "https://baymard.com/"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "Laws of UX — 심리 원칙",
+    "url": "https://lawsofux.com/info/"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "GOV.UK — 과업별 패턴",
+    "url": "https://design-system.service.gov.uk/patterns/"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "GOV.UK 디자인 시스템 소스",
+    "url": "https://github.com/alphagov/govuk-design-system"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "USWDS — 토큰·패턴",
+    "url": "https://designsystem.digital.gov/"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "USWDS 코드",
+    "url": "https://github.com/uswds/uswds"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "USWDS 문서",
+    "url": "https://github.com/uswds/uswds-site"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "WAI-ARIA APG",
+    "url": "https://www.w3.org/WAI/ARIA/apg/about/introduction/"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "WAI-ARIA APG 소스",
+    "url": "https://github.com/w3c/aria-practices"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "WAI 이용 조건",
+    "url": "https://www.w3.org/WAI/about/using-wai-material/"
+  },
+  {
+    "section": "설계 원리·패턴",
+    "name": "Growth.Design",
+    "url": "https://growth.design/case-studies"
+  },
+  {
+    "section": "데스크톱·모바일 공식 디자인",
+    "name": "Windows",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/design/guidelines-overview"
+  },
+  {
+    "section": "데스크톱·모바일 공식 디자인",
+    "name": "Fluent UI 코드",
+    "url": "https://github.com/microsoft/fluentui"
+  },
+  {
+    "section": "데스크톱·모바일 공식 디자인",
+    "name": "macOS",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/designing-for-macos/"
+  },
+  {
+    "section": "데스크톱·모바일 공식 디자인",
+    "name": "Apple HIG",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/"
+  },
+  {
+    "section": "데스크톱·모바일 공식 디자인",
+    "name": "Android 적응형",
+    "url": "https://developer.android.com/design/ui/mobile/guides/layout-and-content/adapt-layout"
+  },
+  {
+    "section": "데스크톱·모바일 공식 디자인",
+    "name": "Material",
+    "url": "https://m3.material.io/"
+  },
+  {
+    "section": "데스크톱·모바일 공식 디자인",
+    "name": "Material Web",
+    "url": "https://github.com/material-components/material-web"
+  },
+  {
+    "section": "데스크톱·모바일 공식 디자인",
+    "name": "IBM Carbon",
+    "url": "https://github.com/carbon-design-system/carbon"
+  },
+  {
+    "section": "데스크톱·모바일 공식 디자인",
+    "name": "Carbon 문서",
+    "url": "https://github.com/carbon-design-system/carbon-website"
+  },
+  {
+    "section": "데스크톱·모바일 공식 디자인",
+    "name": "토스 모바일",
+    "url": "https://tossmini-docs.toss.im/tds-mobile/"
+  },
+  {
+    "section": "실제 화면·동작 갤러리",
+    "name": "Mobbin MCP",
+    "url": "https://mobbin.com/mcp"
+  },
+  {
+    "section": "실제 화면·동작 갤러리",
+    "name": "Gummble",
+    "url": "https://gummble.com/"
+  },
+  {
+    "section": "실제 화면·동작 갤러리",
+    "name": "Refero",
+    "url": "https://refero.design/"
+  },
+  {
+    "section": "실제 화면·동작 갤러리",
+    "name": "SaaSFrame",
+    "url": "https://www.saasframe.io/"
+  },
+  {
+    "section": "실제 화면·동작 갤러리",
+    "name": "Nicelydone",
+    "url": "https://nicelydone.club/"
+  },
+  {
+    "section": "실제 화면·동작 갤러리",
+    "name": "Page Flows",
+    "url": "https://pageflows.com/"
+  },
+  {
+    "section": "실제 화면·동작 갤러리",
+    "name": "UI Sources",
+    "url": "https://www.uisources.com/"
+  },
+  {
+    "section": "실제 화면·동작 갤러리",
+    "name": "60fps",
+    "url": "https://60fps.design/"
+  },
+  {
+    "section": "실제 화면·동작 갤러리",
+    "name": "Landbook",
+    "url": "https://land-book.com/"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "Motion Examples",
+    "url": "https://motion.dev/examples"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "Motion 코드 라이선스",
+    "url": "https://github.com/motiondivision/motion/blob/main/packages/motion/LICENSE.md"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "Motion Primitives",
+    "url": "https://github.com/ibelick/motion-primitives"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "Motion Primitives 라이선스",
+    "url": "https://github.com/ibelick/motion-primitives/blob/main/LICENCE.md"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "React Bits",
+    "url": "https://reactbits.dev/"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "React Bits 라이선스: MIT + Commons Clause, 컴포넌트 재배포 제한",
+    "url": "https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "Sora UI",
+    "url": "https://github.com/SoraLabsOSS/ui"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "shadcn/ui",
+    "url": "https://github.com/shadcn-ui/ui"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "shadcn registry 목록",
+    "url": "https://ui.shadcn.com/r/registries.json"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "Magic UI",
+    "url": "https://github.com/magicuidesign/magicui"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "Uiverse",
+    "url": "https://uiverse.io/"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "Aceternity",
+    "url": "https://ui.aceternity.com/"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "LottieFiles 수집·재배포 제한",
+    "url": "https://help.lottiefiles.com/animation-licensing-basics-"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "Learn UI",
+    "url": "https://learn-ui.com/"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "GSAP 라이선스",
+    "url": "https://gsap.com/community/standard-license/"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "Motion & Easing Playground",
+    "url": "https://fun.alevasquez.dev/motion-playground"
+  },
+  {
+    "section": "인터랙션·모션·컴포넌트",
+    "name": "easings.net 저장소 GPL-3.0",
+    "url": "https://github.com/ai/easings.net"
+  },
+  {
+    "section": "카메라·전환·3D",
+    "name": "Cinematic Camera Lab",
+    "url": "https://www.ehyong.com/ai-lab/cinematic-camera/"
+  },
+  {
+    "section": "카메라·전환·3D",
+    "name": "CamLab",
+    "url": "https://camlab.evoa.one/en/"
+  },
+  {
+    "section": "카메라·전환·3D",
+    "name": "IMG.LY Transitions",
+    "url": "https://img.ly/demos/transitions/web/"
+  },
+  {
+    "section": "카메라·전환·3D",
+    "name": "Chrome View Transitions",
+    "url": "https://view-transitions.chrome.dev/"
+  },
+  {
+    "section": "카메라·전환·3D",
+    "name": "three.js 예제",
+    "url": "https://threejs.org/examples/"
+  },
+  {
+    "section": "카메라·전환·3D",
+    "name": "three.js 저장소",
+    "url": "https://github.com/mrdoob/three.js"
+  },
+  {
+    "section": "카메라·전환·3D",
+    "name": "xeokit",
+    "url": "https://xeokit.io/examples/bimviewer.html"
+  },
+  {
+    "section": "카메라·전환·3D",
+    "name": "D3 갤러리",
+    "url": "https://observablehq.com/%40d3/-/collection/gallery"
+  },
+  {
+    "section": "데이터셋",
+    "name": "RICO — Android 화면, 계층, 영상. 일부 대용량 214GB; 권리 확인",
+    "url": "https://dev.interactionmining.org/archive/rico"
+  },
+  {
+    "section": "데이터셋",
+    "name": "MobileViews — Android 화면과 계층",
+    "url": "https://huggingface.co/datasets/mllmTeam/MobileViews"
+  },
+  {
+    "section": "데이터셋",
+    "name": "Screen Annotation — RICO 요소 주석",
+    "url": "https://github.com/google-research-datasets/screen_annotation"
+  },
+  {
+    "section": "데이터셋",
+    "name": "Enrico — RICO 기반 주석",
+    "url": "https://github.com/luileito/enrico"
+  },
+  {
+    "section": "데이터셋",
+    "name": "VINS — 모바일·와이어프레임 요소",
+    "url": "https://github.com/sbunian/VINS"
+  },
+  {
+    "section": "데이터셋",
+    "name": "ScreenParse — 웹 UI 화면 주석",
+    "url": "https://huggingface.co/datasets/docling-project/screenparse"
+  },
+  {
+    "section": "데이터셋",
+    "name": "WebUI 연구",
+    "url": "https://arxiv.org/abs/2301.13280"
+  },
+  {
+    "section": "데이터셋",
+    "name": "GUI Datasets Hub",
+    "url": "https://yinkyin.github.io/GUI-Datasets/"
+  },
+  {
+    "section": "원천 발견용 목록",
+    "name": "디자인 시스템",
+    "url": "https://designsystems.surf/design-systems"
+  },
+  {
+    "section": "원천 발견용 목록",
+    "name": "동작 가능한 기업 컴포넌트 목록",
+    "url": "https://github.com/6igtree/awesome-design-system-components"
+  },
+  {
+    "section": "원천 발견용 목록",
+    "name": "디자인 시스템 목록",
+    "url": "https://github.com/alexpate/awesome-design-systems"
+  },
+  {
+    "section": "원천 발견용 목록",
+    "name": "모션 도구 목록",
+    "url": "https://github.com/wjlgatech/animate-anything"
+  },
+  {
+    "section": "영상 · 설계 원리",
+    "name": "독립D — 앱 디자인 UX/UI 원칙 TOP 10",
+    "url": "https://www.youtube.com/watch?v=dHsNQPmgVpw"
+  },
+  {
+    "section": "영상 · UI 용어",
+    "name": "코드깎는노인 — 바이브코더가 알아야 할 UI 용어 24가지",
+    "url": "https://www.youtube.com/watch?v=mlhKEy-2bgI"
+  },
+  {
+    "section": "영상 · 화면 구성",
+    "name": "MJ-DESIGN — 디자인 초보를 위한 레이아웃 개념",
+    "url": "https://www.youtube.com/watch?v=F9wmzr0coQ8"
+  },
+  {
+    "section": "영상 · UXUI 강좌",
+    "name": "디자인베이스 — UXUI 디자인 강의 (52편)",
+    "url": "https://www.youtube.com/playlist?list=PLkbzizJk4Ae815Tj0A8eZMtJSttcNa-Od"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "앱인토스 — UI·UX 가이드",
+    "url": "https://developers-apps-in-toss.toss.im/design/consumer-ux-guide"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "앱인토스 — TDS 컴포넌트 안내",
+    "url": "https://developers-apps-in-toss.toss.im/design/components"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "앱인토스 — TDS Mobile UI Kit 라이선스",
+    "url": "https://developers-apps-in-toss.toss.im/design/prepare/figma-ui-license"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "토스 TDS Mobile — 전체 문서 색인",
+    "url": "https://tossmini-docs.toss.im/tds-mobile/llms.txt"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "토스 TDS — React Native 문서",
+    "url": "https://tossmini-docs.toss.im/tds-react-native/"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "토스 — 앱인토스 공식 예제 코드",
+    "url": "https://github.com/toss/apps-in-toss-examples"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "토스 TDS — Button",
+    "url": "https://tossmini-docs.toss.im/tds-mobile/components/button/"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "토스 TDS — Badge",
+    "url": "https://tossmini-docs.toss.im/tds-mobile/components/badge/"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "토스 TDS — Border",
+    "url": "https://tossmini-docs.toss.im/tds-mobile/components/border/"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "토스 TDS — BottomCTA",
+    "url": "https://tossmini-docs.toss.im/tds-mobile/components/BottomCTA/check-first/"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "토스 TDS — Asset",
+    "url": "https://tossmini-docs.toss.im/tds-mobile/components/Asset/check-first/"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "토스 TDS — ListRow",
+    "url": "https://tossmini-docs.toss.im/tds-mobile/components/ListRow/list-row-overview/"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "토스 TDS — ListHeader",
+    "url": "https://tossmini-docs.toss.im/tds-mobile/components/list-header/"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "토스 TDS — Paragraph",
+    "url": "https://tossmini-docs.toss.im/tds-mobile/components/paragraph/"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "토스 TDS — Tab",
+    "url": "https://tossmini-docs.toss.im/tds-mobile/components/tab/"
+  },
+  {
+    "section": "모바일 · 토스 공식 가이드",
+    "name": "토스 TDS — Top",
+    "url": "https://tossmini-docs.toss.im/tds-mobile/components/top/"
+  }
+]

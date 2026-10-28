@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zoom Into Image — Animation Handbook</title>
+  <meta name="description" content="A small window opens up to fill the box as you scroll. Best for hero images.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/zoom-into-image/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Zoom Into Image — Animation Handbook">
+  <meta property="og:description" content="A small window opens up to fill the box as you scroll. Best for hero images.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/zoom-into-image/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Zoom Into Image — Animation Handbook">
+  <meta name="twitter:description" content="A small window opens up to fill the box as you scroll. Best for hero images.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Zoom Into Image", "name": "Zoom Into Image", "description": "A small window opens up to fill the box as you scroll. Best for hero images.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/zoom-into-image/", "inLanguage": "en", "articleSection": "Scroll-Based", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Scroll-Based, Zoom Into Image"}</script>
+  <style>
+    :root{--ui-accent:#6ea8ff;--br-start:16;--start:30}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;overflow-y:auto;scrollbar-width:none;container-type:size;background:#0b0b0d}
+    .stage::-webkit-scrollbar{display:none}
+    .spacer{height:60cqh;display:flex;align-items:center;justify-content:center;padding:0 24px;font-size:13px;letter-spacing:.1em;color:#8a8a92;text-align:center}
+    #zoom-section{height:250cqh;position:relative}
+    #zoom-sticky{position:sticky;top:0;height:100cqh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    /* The outline where the window began: the Shows the starting frame switch fades it, and it gives way to the caption */
+    #frame{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;opacity:1;transition:opacity .4s}
+    .frame-border{position:absolute;border:1px solid rgba(255,255,255,.15);border-radius:calc(var(--br-start) * 1px + 2px);pointer-events:none}
+    /* The landscape image (clip-path drives the reveal) */
+    #zoom-img{width:100%;height:100%;clip-path:inset(30% round 16px);will-change:clip-path}
+    #zoom-img svg{width:100%;height:100%}
+    /* Caption overlay */
+    #caption{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:40px;opacity:0;pointer-events:none;background:linear-gradient(transparent 60%,rgba(0,0,0,.6))}
+    #caption .cap-title{font-size:clamp(18px,3vw,28px);font-weight:700;letter-spacing:3px;text-transform:uppercase;text-align:center}
+    #caption .cap-sub{font-size:11px;opacity:.6;margin-top:6px;letter-spacing:2px;text-transform:uppercase}
+    @media(prefers-reduced-motion:reduce){#zoom-img{clip-path:inset(0% round 0px)!important}#caption{opacity:1!important}.frame-border{opacity:0!important}}
+    /* See inside: the whole picture is already there, shown faint behind the page's own clip, so the bright part is the window
+       that uncovers it. Compare: an ordinary picture that scrolls past on the left, the page itself on the right. Both copies
+       use the original's gradients and have no ids; the marks lie in a layer that holds still at the top of the box and
+       adds nothing to the scroll. */
+    .full,.faint,.names,.names>*{display:none}
+    .full svg,.faint svg{display:block;width:100%;height:100%}
+    .faint{position:absolute;inset:0;opacity:.3;z-index:-1}
+    .full{position:absolute;left:0;top:75cqh;width:50%;height:100cqh}
+    .names{position:sticky;top:0;height:0;z-index:6;pointer-events:none}
+    .names>*{position:absolute}
+    .tg{padding:4px 9px;border-radius:12px;background:rgba(11,11,13,.88);color:#f4f4f2;font:600 13px/1.25 var(--hb-font);white-space:pre-line}
+    .tg-start{display:none;position:absolute;right:-1px;bottom:100%;margin-bottom:4px;white-space:nowrap}
+    .arr{left:0;top:0;width:0;height:2px;background:#f4f4f2;transform-origin:0 50%}
+    .arr::after{content:"";position:absolute;right:-1px;top:-4px;border:5px solid transparent;border-left:9px solid #f4f4f2;border-right:0}
+    .tg-all{top:8px;left:10px}
+    .tg-win{top:0;left:0;white-space:nowrap}
+    .tg-a{top:10px;left:10px;white-space:nowrap}
+    .tg-b{top:10px;left:calc(50% + 10px);white-space:nowrap}
+    .tg-gone{top:50cqh;left:25%;transform:translate(-50%,-50%);white-space:nowrap}
+    .split{top:0;left:50%;width:2px;margin-left:-1px;height:100cqh;background:rgba(244,244,242,.4)}
+    .stage[data-hb-mode="inside"] .names,.stage[data-hb-mode="compare"] .names{display:block}
+    .stage[data-hb-mode="inside"] .faint,.stage[data-hb-mode="inside"] .tg-all,.stage[data-hb-mode="inside"] .tg-win,.stage[data-hb-mode="inside"] .tg-start{display:block}
+    .stage[data-hb-mode="inside"]:not([data-held]) .tg-all,.stage[data-hb-mode="inside"]:not([data-held]) .tg-win,.stage[data-hb-mode="inside"]:not([data-held]) .tg-start,.stage[data-hb-mode="inside"]:not([data-held]) .arr{visibility:hidden}
+    .stage[data-hb-mode="inside"] #zoom-img svg{filter:brightness(1.5)}
+    .stage[data-hb-mode="inside"] .frame-border{border-style:dashed;border-color:rgba(244,244,242,.6)}
+    .stage[data-hb-mode="compare"] .full,.stage[data-hb-mode="compare"] .tg-a,.stage[data-hb-mode="compare"] .tg-b,.stage[data-hb-mode="compare"] .split{display:block}
+    .stage[data-hb-mode="compare"][data-gone] .tg-gone{display:block}
+    .stage[data-hb-mode="compare"] .spacer{padding:0 8px 0 calc(50% + 8px)}
+    .stage[data-hb-mode="compare"] #zoom-sticky{justify-content:flex-end}
+    .stage[data-hb-mode="compare"] #zoom-img{width:50%}
+    .stage[data-hb-mode="compare"] #frame,.stage[data-hb-mode="compare"] #caption{left:50%}
+    .stage[data-hb-mode="compare"] .frame-border{border-color:rgba(244,244,242,.5)}
+    .stage[data-hb-mode="compare"] #caption{padding:0 10px 26px}
+    .stage[data-hb-mode="compare"] #caption .cap-title{font-size:clamp(13px,2.2vw,22px);letter-spacing:1px}
+    /* Reduced motion: the page shows the whole picture whatever the scroll, so each mode poses its own still, over the page's
+       rules: See inside the window at its start with an arrow for how far it would open, Compare the window half open */
+    @media(prefers-reduced-motion:reduce){
+      .stage[data-hb-mode="inside"] #zoom-img{clip-path:inset(calc(var(--start) * 1%) round calc(var(--br-start) * 1px))!important}
+      .stage[data-hb-mode="compare"] #zoom-img{clip-path:inset(calc(var(--start) * .5%) round calc(var(--br-start) * .5px))!important}
+      .stage[data-hb-mode="inside"] #caption,.stage[data-hb-mode="compare"] #caption{opacity:0!important}
+      .stage[data-hb-mode="inside"] .frame-border,.stage[data-hb-mode="compare"] .frame-border{opacity:1!important}
+      .stage[data-hb-mode="inside"] .names .arr{display:block}
+      .stage[data-hb-mode="inside"] .tg-start{display:none}
+      /* The posed view is held for the whole scroll, so it shows wherever the box sits: the frame's section spans the box's
+         whole height (its margins cancel the spacers, so the scroll length is the same) and the spacers' words are hidden */
+      .stage[data-hb-mode="inside"] #zoom-section,.stage[data-hb-mode="compare"] #zoom-section{height:370cqh;margin:-60cqh 0}
+      .stage[data-hb-mode="inside"] .spacer,.stage[data-hb-mode="compare"] .spacer{color:transparent}
+      .stage[data-hb-mode="compare"] .full{display:none}
+      .stage[data-hb-mode="compare"] .faint{display:block;inset:0 50% 0 0;opacity:1;z-index:0}
+    }
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="scroll" data-hb-autoplay data-hb-motion-note="The picture shows whole, with its caption, without zooming in">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../section-wipe/" rel="prev" aria-label="Previous: Section Wipe"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Section Wipe</span></a><a href="../scroll-image-sequence/" rel="next" aria-label="Next: Scroll Image Sequence"><span><span class="hb-dir">Next: </span>Scroll Image Sequence</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">01.19 · Scroll-Based</p>
+    <h1>Zoom Into Image</h1>
+    <p class="hb-lede">A small window opens up to fill the box as you scroll. Best for hero images.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Scroll it</h2><p>Scroll inside the box, or press Play and it scrolls for you.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage" tabindex="0" role="region" aria-label="A picture that opens up as you scroll">
+      <div class="names" aria-hidden="true">
+        <i class="split"></i>
+        <p class="tg tg-a" data-hb-caption>Full picture</p>
+        <p class="tg tg-b" data-hb-caption>Window opens</p>
+        <p class="tg tg-gone" data-hb-caption>Scrolled past ↑</p>
+        <p class="tg tg-all" data-hb-caption>The whole picture,
+already there</p>
+        <p class="tg tg-win" data-hb-caption>Window: about half the box</p>
+        <i class="arr"></i>
+      </div>
+      <div class="spacer">Scroll down ↓</div>
+      <div id="zoom-section">
+        <div id="zoom-sticky">
+          <div id="zoom-img">
+            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="A lake under a full moon, between dark mountains">
+              <defs>
+                <linearGradient id="sky-grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#060a18"/>
+                  <stop offset="45%" stop-color="#0d1f3c"/>
+                  <stop offset="100%" stop-color="#1a3050"/>
+                </linearGradient>
+                <linearGradient id="water-grad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#0e2040"/>
+                  <stop offset="100%" stop-color="#06111e"/>
+                </linearGradient>
+                <radialGradient id="moon-glow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#e8dca0" stop-opacity="0.4"/>
+                  <stop offset="100%" stop-color="transparent"/>
+                </radialGradient>
+              </defs>
+              <!-- The moon, the mountains and the lake sit in the band y 192-408, the part of the drawing a wide box keeps -->
+              <!-- Sky -->
+              <rect width="800" height="345" fill="url(#sky-grad)"/>
+              <!-- Moon glow -->
+              <circle cx="600" cy="218" r="70" fill="url(#moon-glow)"/>
+              <!-- Moon -->
+              <circle cx="600" cy="218" r="24" fill="#e8dca0" opacity=".92"/>
+              <!-- Stars -->
+              <circle cx="80" cy="40" r="1.2" fill="white" opacity=".9"/>
+              <circle cx="220" cy="70" r="1" fill="white" opacity=".7"/>
+              <circle cx="340" cy="25" r="1.5" fill="white" opacity=".8"/>
+              <circle cx="460" cy="55" r="1" fill="white" opacity=".6"/>
+              <circle cx="150" cy="120" r="1" fill="white" opacity=".5"/>
+              <circle cx="700" cy="40" r="1.2" fill="white" opacity=".8"/>
+              <circle cx="90" cy="205" r="1.2" fill="white" opacity=".8"/>
+              <circle cx="250" cy="226" r="1" fill="white" opacity=".6"/>
+              <circle cx="380" cy="199" r="1.4" fill="white" opacity=".8"/>
+              <circle cx="470" cy="232" r="1" fill="white" opacity=".5"/>
+              <circle cx="740" cy="236" r="1" fill="white" opacity=".6"/>
+              <!-- Distant mountains -->
+              <polygon points="0,345 150,265 280,300 420,245 560,285 680,250 800,280 800,345" fill="#0a1a30" opacity=".9"/>
+              <!-- Near mountains -->
+              <polygon points="0,345 80,300 180,315 300,285 420,305 520,280 640,295 750,275 800,290 800,345" fill="#060e1c"/>
+              <!-- Reflection base -->
+              <rect y="345" width="800" height="255" fill="url(#water-grad)"/>
+              <!-- Water shimmer lines -->
+              <line x1="0" y1="365" x2="800" y2="365" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+              <line x1="0" y1="385" x2="800" y2="385" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+              <line x1="0" y1="410" x2="800" y2="410" stroke="rgba(255,255,255,.03)" stroke-width="1"/>
+              <!-- Moon reflection -->
+              <ellipse cx="600" cy="372" rx="18" ry="8" fill="#e8dca0" opacity=".25"/>
+              <ellipse cx="600" cy="395" rx="12" ry="4" fill="#e8dca0" opacity=".12"/>
+            </svg>
+          </div>
+          <div id="frame"><div class="frame-border" style="inset:28%"><p class="tg tg-start" data-hb-caption>Where it started</p></div></div>
+          <div id="caption"><p class="cap-title">Through the Portal</p><p class="cap-sub">Keep scrolling</p></div>
+        </div>
+      </div>
+      <div class="spacer">The page moves on ↓</div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-scroll" data-hb-autoscroll><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>Play</button>
+      <button class="hb-play" type="button" id="btn-top" data-hb-top><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Back to top</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the faint picture is the whole image, already there, and the bright part is the window that uncovers it as you scroll; nothing grows. Scroll the box or press Play to watch.</p>
+      <p data-hb-for="compare" hidden>Full picture is an ordinary image that scrolls past; Window opens stays in place while its window widens to fill the box. Scroll the box or press Play to watch.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then scroll again or press Play.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="start-lbl">Starting window</p>
+        <div class="seg" id="start-seg" role="group" aria-labelledby="start-lbl">
+          <button type="button" data-start="40" aria-pressed="false">Small</button>
+          <button type="button" data-start="30" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-start="20" aria-pressed="false">Large</button>
+        </div>
+        <p class="hb-hint">How much of the picture shows before you scroll.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="corners-lbl">Corners</p>
+        <div class="seg" id="corners-seg" role="group" aria-labelledby="corners-lbl">
+          <button type="button" data-radius="0" aria-pressed="false">Square</button>
+          <button type="button" data-radius="16" class="on" aria-pressed="true">Rounded</button>
+          <button type="button" data-radius="32" aria-pressed="false">Very rounded</button>
+        </div>
+        <p class="hb-hint">The window's corners straighten as it opens.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Shows the starting frame</span><input class="hb-switch" type="checkbox" role="switch" id="frame-tog" checked autocomplete="off"></label>
+          <p class="hb-hint">A faint outline marks where the window began.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a zoom-into-image effect to [your featured picture]. Pin the picture in place while the visitor scrolls through a section a couple of screens tall, and show only a small window of it at first. As they scroll, open that window outward in step with the scroll until the picture fills the whole frame, then fade in a caption. Uncover the picture by clipping it rather than scaling it up, so it stays sharp, and let scrolling back up close the window again. If the visitor has reduced motion turned on, show the full picture and the caption from the start. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Hero images</li><li>Gallery intros</li><li>Section breaks</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Small images</li><li>Text-heavy pages</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const stage=document.getElementById('stage'),zoomSec=document.getElementById('zoom-section');
+  const zoomImg=document.getElementById('zoom-img'),caption=document.getElementById('caption');
+  const frameEl=document.getElementById('frame'),frameBorder=frameEl.querySelector('.frame-border');
+  const frameTog=document.getElementById('frame-tog'),zoomSticky=document.getElementById('zoom-sticky');
+  const motionMQ=window.matchMedia('(prefers-reduced-motion:reduce)');
+  let startPct=30,brStart=16,ticking=false,mode='normal';
+  const clamp=(v,a,b)=>Math.min(Math.max(v,a),b),lerp=(a,b,t)=>a+(b-a)*t;
+
+  // Two copies of the picture, made once. They have no ids of their own: their fills use the original's gradients.
+  // They are inert and hidden from screen readers, and drawn only in See inside (faint, under the page's own clip) and
+  // in Compare (the ordinary picture on the left).
+  const copyOf=cls=>{const d=document.createElement('div'),svg=zoomImg.querySelector('svg').cloneNode(true);
+    svg.removeAttribute('role');svg.removeAttribute('aria-label');svg.querySelector('defs').remove();
+    d.className=cls;d.inert=true;d.setAttribute('aria-hidden','true');d.append(svg);return d};
+  zoomSticky.prepend(copyOf('faint'));
+  zoomSec.prepend(copyOf('full'));
+  const tgGone=stage.querySelector('.tg-gone'),tgAll=stage.querySelector('.tg-all'),tgWin=stage.querySelector('.tg-win'),arrow=stage.querySelector('.arr');
+  const LABELS={
+    normal:'A picture that opens up as you scroll',
+    inside:'The whole picture shown faintly, with the bright window that uncovers it',
+    compare:'The picture twice: an ordinary picture scrolling past, and a window that opens to fill the box',
+  };
+  const NOTES={
+    moving:{
+      inside:'Inside, the faint picture is the whole image, already there, and the bright part is the window that uncovers it as you scroll; nothing grows. Scroll the box or press Play to watch.',
+      compare:'Full picture is an ordinary image that scrolls past; Window opens stays in place while its window widens to fill the box. Scroll the box or press Play to watch.',
+    },
+    still:{
+      inside:'Shown still: the bright part is the window you would see at first, and the arrow shows how far it would open as you scroll; the rest of the picture is already there.',
+      compare:'Shown still, half open: Full picture is an ordinary image; Window opens has uncovered only part of the picture, as it would halfway down the box.',
+    },
+  };
+  const insideNote=document.querySelector('[data-hb-for="inside"]'),compareNote=document.querySelector('[data-hb-for="compare"]');
+  const put=(el,text)=>{if(el.textContent!==text)el.textContent=text};
+  // The words for how wide the window is, as a share of the box
+  const widthWords=w=>w<.3?'a fifth of the box':w<.5?'two fifths of the box':w<.7?'about half the box':w<.97?'most of the box':'the whole box';
+
+  function update(){
+    ticking=false;
+    const st=stage.scrollTop,H=stage.clientHeight,W=stage.clientWidth;
+    const pinStart=zoomSec.offsetTop,budget=zoomSec.offsetHeight-H;
+    const raw=(st-pinStart)/budget,p=clamp(raw,0,1);
+    const still=motionMQ.matches;
+    // reduced motion: the CSS rule above shows the full picture and the caption and hides the outline, whatever the scroll position
+    const cap=!still&&p>0.88?(p-0.88)/0.12:0;
+    if(!still){
+      const inset=lerp(startPct,0,p);
+      const radius=lerp(brStart,0,p);
+      zoomImg.style.clipPath=`inset(${inset.toFixed(2)}% round ${radius.toFixed(1)}px)`;
+      caption.style.opacity=cap.toFixed(3);
+      frameBorder.style.opacity=(1-cap).toFixed(3);   // the starting-frame outline fades out as the caption fades in
+    }
+    if(mode==='compare'){
+      // Compare: the ordinary picture scrolls by, so where less than a quarter of it is in its half a caption says where it is
+      const vT=st-pinStart,top=H*.75,seen=Math.max(0,Math.min(vT+H,top+H)-Math.max(vT,top))/H;
+      if(!still&&seen<.25){stage.setAttribute('data-gone','');put(tgGone,vT>top?'Scrolled past ↑':'Coming up ↓')}
+      else stage.removeAttribute('data-gone');
+    }
+    if(mode!=='inside')return;
+    // See inside: the marks belong to the held picture, so they show only while it is held. The window label rides the
+    // window's lower edge, below the outline, and stays above the caption; the same share draws it as draws the window.
+    stage.toggleAttribute('data-held',still||(raw>=-.001&&raw<=1.001));
+    tgAll.style.opacity=still?1:(1-cap).toFixed(3);   // it fades with the outline once the window has opened
+    const inset=still?startPct:lerp(startPct,0,p);
+    put(tgWin,still?'Window at the start':'Window: '+widthWords(1-inset/50));
+    tgWin.style.transform=`translate(${(W-tgWin.offsetWidth)/2}px,${Math.min(H*(1-inset/100)+H*.02+5,H-30).toFixed(1)}px)`;
+    if(still){   // an arrow from the window's top right corner to the box's, as long as the window would open
+      const ax=W*(1-startPct/100),ay=H*startPct/100,dx=W-12-ax,dy=12-ay;
+      arrow.style.cssText=`left:${ax.toFixed(1)}px;top:${ay.toFixed(1)}px;width:${Math.hypot(dx,dy).toFixed(1)}px;transform:rotate(${Math.atan2(dy,dx).toFixed(4)}rad)`;
+    }
+  }
+
+  // The notes and the first label say what the picture shows: moving, or posed still under reduced motion
+  function describe(){
+    const n=NOTES[motionMQ.matches?'still':'moving'];
+    insideNote.textContent=n.inside;compareNote.textContent=n.compare;
+    put(tgAll,motionMQ.matches?'Rest of the picture,\nuncovered as you scroll':'The whole picture,\nalready there');
+  }
+
+  document.addEventListener('hb:mode',e=>{
+    mode=e.detail.mode;
+    stage.setAttribute('aria-label',LABELS[mode]);
+    stage.removeAttribute('data-held');stage.removeAttribute('data-gone');
+    describe();update();
+  });
+  stage.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(update);ticking=true}},{passive:true});
+  window.addEventListener('resize',update);   // the box changes height under the same scroll position
+  motionMQ.addEventListener('change',()=>{describe();update()});
+  document.getElementById('btn-top').addEventListener('click',()=>{update();requestAnimationFrame(update)});
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  choices('start-seg',d=>{startPct=+d.start;stage.style.setProperty('--start',startPct);frameBorder.style.inset=(startPct-2)+'%';update()});
+  choices('corners-seg',d=>{brStart=+d.radius;stage.style.setProperty('--br-start',brStart);update()});
+  frameTog.addEventListener('change',()=>{frameEl.style.opacity=frameTog.checked?'1':'0'});
+  describe();
+  update();
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+[
+  {
+    "id": "scroll-dv01",
+    "name": "캐러셀 위치 표시와 스크롤",
+    "english": "Carousel with markers",
+    "category": "스크롤",
+    "description": "가로 스크롤하는 카드의 현재 위치가 표시기에 반영되는 원본 예시입니다. 원본 배포와 보존 소스가 다를 수 있으며 CSS 타임라인 지원이 필요합니다.",
+    "tags": [
+      "스크롤",
+      "CSS 타임라인",
+      "진행 상태"
+    ],
+    "preview": "https://scroll-driven-animations.style/demos/carousel-with-markers/css/",
+    "codePath": "./examples/sdv01/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/sdv01/style.css"
+      }
+    ],
+    "sourceName": "Scroll-driven Animations",
+    "sourceUrl": "https://scroll-driven-animations.style/demos/carousel-with-markers/css/",
+    "license": "Apache-2.0",
+    "licensePath": "./examples/sdv01/LICENSE.txt",
+    "adaptation": "공식 원본 라이브 iframe 및 조사 시점의 HTML/CSS 보존",
+    "remote": true,
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 기기와 전체 동작은 별도 확인하지 않았습니다."
+  },
+  {
+    "id": "scroll-dv02",
+    "name": "캐러셀 안 이미지 패럴랙스",
+    "english": "Window carousel",
+    "category": "스크롤",
+    "description": "가로 스크롤할 때 이미지가 프레임 안에서 다른 속도로 움직이는 원본 예시입니다. 원본 배포와 보존 소스가 다를 수 있으며 CSS 타임라인 지원이 필요합니다.",
+    "tags": [
+      "스크롤",
+      "CSS 타임라인",
+      "진행 상태"
+    ],
+    "preview": "https://scroll-driven-animations.style/demos/parallax-carousel/css/",
+    "codePath": "./examples/sdv02/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/sdv02/style.css"
+      },
+      {
+        "label": "원본 JavaScript",
+        "path": "./examples/sdv02/script.js"
+      }
+    ],
+    "sourceName": "Scroll-driven Animations",
+    "sourceUrl": "https://scroll-driven-animations.style/demos/parallax-carousel/css/",
+    "license": "Apache-2.0",
+    "licensePath": "./examples/sdv02/LICENSE.txt",
+    "adaptation": "공식 원본 라이브 iframe 및 조사 시점의 HTML/CSS 보존",
+    "remote": true,
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 기기와 전체 동작은 별도 확인하지 않았습니다."
+  },
+  {
+    "id": "scroll-dv03",
+    "name": "스크롤 가능 영역의 그림자 표시",
+    "english": "Scroll shadows",
+    "category": "스크롤",
+    "description": "내부 목록을 스크롤할 수 있는 방향을 그림자로 표시하는 원본 예시입니다. 원본 배포와 보존 소스가 다를 수 있으며 CSS 타임라인 지원이 필요합니다.",
+    "tags": [
+      "스크롤",
+      "CSS 타임라인",
+      "진행 상태"
+    ],
+    "preview": "https://scroll-driven-animations.style/demos/scroll-shadows/css/",
+    "codePath": "./examples/sdv03/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/sdv03/style.css"
+      }
+    ],
+    "sourceName": "Scroll-driven Animations",
+    "sourceUrl": "https://scroll-driven-animations.style/demos/scroll-shadows/css/",
+    "license": "Apache-2.0",
+    "licensePath": "./examples/sdv03/LICENSE.txt",
+    "adaptation": "공식 원본 라이브 iframe 및 조사 시점의 HTML/CSS 보존",
+    "remote": true,
+    "networkRequired": true,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 기기와 전체 동작은 별도 확인하지 않았습니다."
+  }
+]

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Fill on Scroll — Animation Handbook</title>
+  <meta name="description" content="Words light up one by one as you scroll. Best for key statements.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/text-fill-on-scroll/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Text Fill on Scroll — Animation Handbook">
+  <meta property="og:description" content="Words light up one by one as you scroll. Best for key statements.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/text-fill-on-scroll/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Text Fill on Scroll — Animation Handbook">
+  <meta name="twitter:description" content="Words light up one by one as you scroll. Best for key statements.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Text Fill on Scroll", "name": "Text Fill on Scroll", "description": "Words light up one by one as you scroll. Best for key statements.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/text-fill-on-scroll/", "inLanguage": "en", "articleSection": "Scroll-Based", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Scroll-Based, Text Fill on Scroll"}</script>
+  <style>
+    :root{--ui-accent:#6ea8ff;--dim:#7c7c84}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;overflow-y:auto;scrollbar-width:none;container-type:size;background:#0b0b0d}
+    .stage::-webkit-scrollbar{display:none}
+    /* .track supplies the scroll budget; .pinned holds the paragraph still while scroll sweeps the fill through it */
+    .track{height:350cqh}
+    .pinned{position:sticky;top:0;height:100cqh;display:flex;align-items:center;padding:clamp(18px,4vw,44px)}
+    .fill-text{font-weight:700;font-size:clamp(17px,2.4vw,24px);line-height:1.5;letter-spacing:-.01em;max-width:24em}
+    .fill-text .w{color:var(--dim);transition:color .18s linear}
+    .fill-text .w.on{color:#f4f4f2}
+    .fill-text .w.cursor{color:var(--fill-accent,var(--ui-accent))}
+    /* a big jump (Back to top, Play starting over) changes at once, so the old state does not linger */
+    .fill-text.jump .w{transition:none}
+    @media(prefers-reduced-motion:reduce){.fill-text .w{transition:none}}
+    .bar,.copy,.hname{display:none}
+    /* See inside: every word is a faint box (white once lit, the highlight color for the next one), and under the paragraph a
+       bar stands for the whole scroll. Its first part is cut into one slice per word, the rest is the stretch where every
+       word is lit and the text holds, and a marker rides the bar with the scroll. The paragraph is set smaller so the bar and
+       its labels fit under it; the pinned frame never leaves the box, so nothing captioned can leave it either. */
+    .stage[data-hb-mode="inside"] .pinned{flex-direction:column;align-items:stretch;justify-content:center;padding:clamp(12px,3cqw,28px)}
+    .stage[data-hb-mode="inside"] .fill-text{font-size:clamp(12px,min(4.6cqh,3.6cqw),20px);line-height:1.6;max-width:44em}
+    .stage[data-hb-mode="inside"] .fill-text .w{border-radius:3px;box-shadow:inset 0 0 0 1px rgba(124,124,132,.55)}
+    .stage[data-hb-mode="inside"] .fill-text .w.on{box-shadow:inset 0 0 0 1px rgba(244,244,242,.85)}
+    .stage[data-hb-mode="inside"] .fill-text .w.cursor{box-shadow:inset 0 0 0 1px var(--fill-accent,var(--ui-accent))}
+    .stage[data-hb-mode="inside"] .bar{display:block;flex:none;margin-top:clamp(10px,3cqh,18px)}
+    .bar-top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:8px}
+    .bar-cap{padding:3px 7px;border-radius:5px;background:rgba(11,11,13,.86);color:#f4f4f2;font:600 12px/1.25 var(--hb-font);white-space:nowrap}
+    .rail{position:relative;display:flex;height:14px}
+    .slices{display:grid;gap:1px;flex:0 0 calc(var(--at,.9) * 100%)}
+    .slices i{display:block;background:rgba(124,124,132,.4)}
+    .slices i.on{background:#f4f4f2}
+    .slices i.cursor{background:var(--fill-accent,var(--ui-accent))}
+    .hold{flex:1 1 0;margin-left:2px;background:repeating-linear-gradient(135deg,rgba(124,124,132,.5) 0 2px,rgba(124,124,132,.12) 2px 5px)}
+    .hold.on{background:repeating-linear-gradient(135deg,rgba(244,244,242,.9) 0 2px,rgba(244,244,242,.4) 2px 5px)}
+    .mk{position:absolute;left:0;top:-5px;width:2px;height:24px;margin-left:-1px;background:var(--fill-accent,var(--ui-accent))}
+    .mk.plain{background:#f4f4f2}
+    .bar-under{position:relative;height:22px;margin-top:9px}
+    .bar-under .bar-cap{position:absolute;left:0;top:0}
+    .stage[data-hb-mode="inside"] .bar.none .bc2,.stage[data-hb-mode="inside"] .bar.none .hold{display:none}
+    @container (max-width:519px){
+      .stage[data-hb-mode="inside"] .bar-top{flex-direction:column-reverse;align-items:stretch;gap:8px}
+      .stage[data-hb-mode="inside"] .bc1{align-self:flex-start}
+      .stage[data-hb-mode="inside"] .bc2{align-self:flex-end}
+    }
+    /* Compare: an inert copy with every word lit beside the page's own paragraph, side by side at every width, each named */
+    .stage[data-hb-mode="compare"] .pinned{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:20px;align-items:start;
+      align-content:center;padding:46px 12px 12px}
+    .stage[data-hb-mode="compare"] .pinned::after{content:"";position:absolute;top:0;bottom:0;left:50%;width:2px;margin-left:-1px;
+      background:rgba(244,244,242,.3)}
+    .stage[data-hb-mode="compare"] .copy{display:block}
+    .stage[data-hb-mode="compare"] .fill-text{font-size:clamp(12px,min(3.4cqw,5.6cqh),20px);line-height:1.4;max-width:none}
+    .stage[data-hb-mode="compare"] .hname{display:block;position:absolute;z-index:2;top:10px;padding:5px 10px;border-radius:999px;
+      background:rgba(11,11,13,.86);color:#f4f4f2;font:600 13px/1.2 var(--hb-font);white-space:nowrap}
+    .stage[data-hb-mode="compare"] .hn1{left:10px}
+    .stage[data-hb-mode="compare"] .hn2{left:calc(50% + 12px)}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="scroll" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../smooth-scroll/" rel="prev" aria-label="Previous: Smooth (Inertia) Scroll"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Smooth (Inertia) Scroll</span></a><a href="../scroll-velocity-skew/" rel="next" aria-label="Next: Scroll Velocity Skew"><span><span class="hb-dir">Next: </span>Scroll Velocity Skew</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">01.22 · Scroll-Based</p>
+    <h1>Text Fill on Scroll</h1>
+    <p class="hb-lede">Words light up one by one as you scroll. Best for key statements.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Scroll it</h2><p>Scroll inside the box, or press Play and it scrolls for you.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage" tabindex="0" role="region" aria-label="A paragraph that fills word by word as you scroll">
+      <div class="track">
+        <div class="pinned">
+          <p class="fill-text" id="fill-text"></p>
+          <p class="hname hn1" data-hb-caption aria-hidden="true">All lit</p>
+          <p class="hname hn2" data-hb-caption aria-hidden="true">Word by word</p>
+          <div class="bar" id="bar" aria-hidden="true">
+            <div class="bar-top">
+              <p class="bar-cap bc1" data-hb-caption>One slice of the scroll per word</p>
+              <p class="bar-cap bc2" data-hb-caption>Then all lit, held a moment</p>
+            </div>
+            <div class="rail">
+              <div class="slices" id="slices"></div>
+              <div class="hold" id="hold"></div>
+              <span class="mk" id="mk"></span>
+            </div>
+            <div class="bar-under"><p class="bar-cap bc3" id="bc3" data-hb-caption>You are here</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-scroll" data-hb-autoscroll><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>Play</button>
+      <button class="hb-play" type="button" id="btn-top" data-hb-top><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Back to top</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, each word is a piece, and the bar below is the scroll: each word owns a slice and lights once you pass it. Scroll the box or press Play to watch.</p>
+      <p data-hb-for="compare" hidden>All lit shows the whole paragraph at once; Word by word lights it as you scroll, so it is read at your pace. Scroll the box or press Play to watch.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then scroll again or press Play.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <label class="hb-switch-row"><span>Highlights the current word</span><input class="hb-switch" type="checkbox" role="switch" id="cursor-tog" checked autocomplete="off"></label>
+        <p class="hb-hint">The next word to fill shows in color, like a cursor.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="finish-lbl">Fill finishes</p>
+        <div class="seg" id="finish-seg" role="group" aria-labelledby="finish-lbl">
+          <button type="button" data-at="0.7" aria-pressed="false">Early</button>
+          <button type="button" data-at="0.9" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-at="1" aria-pressed="false">At the end</button>
+        </div>
+        <p class="hb-hint">Early leaves the whole text lit for a while.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting" id="color-setting">
+          <p class="hb-setting-name" id="color-lbl">Highlight color</p>
+          <div class="swatches" id="color-sw" role="group" aria-labelledby="color-lbl">
+            <button type="button" class="on" aria-pressed="true" aria-label="Blue" data-c="#6ea8ff" style="background:#6ea8ff"></button>
+            <button type="button" aria-pressed="false" aria-label="Green" data-c="#5fd88a" style="background:#5fd88a"></button>
+            <button type="button" aria-pressed="false" aria-label="Orange" data-c="#ff9d5c" style="background:#ff9d5c"></button>
+          </div>
+          <p class="hb-hint">The color of the word being filled.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a scroll-driven text fill to [the statement or paragraph you want read]. Pin the paragraph in place while the visitor scrolls through a section a few screens tall. Split it into words, show every word in a dim but readable gray, and light the words up one by one in step with the scroll, so how far the reader has scrolled decides how much is lit and scrolling back up un-lights them. When the settings include it, show the next word to fill in a highlight color, like a reading cursor. Keep it real text for screen readers. If the visitor has reduced motion turned on, change each word's color without fading. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Key statements</li><li>Manifestos</li><li>Landing page intros</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Body text</li><li>Long articles</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const stage=document.getElementById('stage'),textEl=document.getElementById('fill-text');
+  const cursorTog=document.getElementById('cursor-tog'),colorSetting=document.getElementById('color-setting');
+  const clamp=(v,a,b)=>Math.min(Math.max(v,a),b);
+  const pinned=stage.querySelector('.pinned'),bar=document.getElementById('bar'),slicesEl=document.getElementById('slices');
+  const hold=document.getElementById('hold'),mk=document.getElementById('mk'),bc3=document.getElementById('bc3');
+  const LABELS={
+    normal:'A paragraph that fills word by word as you scroll',
+    inside:'The paragraph split into words, with a bar of the scroll in which each word owns a slice',
+    compare:'The paragraph twice: all lit at once, and lighting word by word as you scroll'
+  };
+  let mode='normal';
+
+  const COPY="Scroll is not a play button. It is a position. Every word here watches how far you have read. "+
+    "Words behind that point light up; words ahead wait in the dark. Stop anywhere and the sentence holds still. "+
+    "Scroll back up and it un-reads itself, word by word.";
+
+  // one span per word, built once
+  const words=COPY.split(' ').map(w=>{
+    const s=document.createElement('span');s.className='w';s.textContent=w+' ';
+    textEl.appendChild(s);return s;
+  });
+  const N=words.length;
+
+  // Compare's first half: a copy of the paragraph with every word lit and no cursor. It is not in `words`, it is inert and
+  // hidden from screen readers, and it is not drawn outside Compare.
+  const copy=textEl.cloneNode(true);
+  copy.removeAttribute('id');copy.classList.add('copy');copy.inert=true;copy.setAttribute('aria-hidden','true');
+  copy.querySelectorAll('.w').forEach(w=>w.classList.add('on'));
+  textEl.before(copy);
+
+  // See inside's bar: one slice per word, so the last slice lights exactly when the last word does
+  slicesEl.style.gridTemplateColumns='repeat('+N+',minmax(0,1fr))';
+  const slices=words.map(()=>slicesEl.appendChild(document.createElement('i')));
+
+  let completeAt=.9,maxScroll=1,ticking=false;
+  let lastFilled=-1,lastCursor=-1,curP=0,barW=0,capW=0;
+
+  // Layout reads live here only, never in the scroll handler. One pixel less than the box scrolls: both sizes are
+  // rounded, so the true end can fall a fraction short of the measured one, and the last word must still light.
+  function measure(){
+    maxScroll=Math.max(1,stage.scrollHeight-stage.clientHeight-1);
+    if(mode==='inside'){barW=slicesEl.parentNode.offsetWidth;capW=bc3.offsetWidth}
+  }
+
+  // The marker rides the bar at the scroll share; "You are here" follows it and stays inside the bar
+  function drawBar(){
+    mk.style.transform='translate3d('+(curP*barW).toFixed(1)+'px,0,0)';
+    bc3.style.transform='translate3d('+clamp(curP*barW-capW/2,0,Math.max(0,barW-capW)).toFixed(1)+'px,0,0)';
+    mk.classList.toggle('plain',!cursorTog.checked);
+  }
+  // the bar's slices end where the fill finishes; with At the end there is no held stretch
+  function setBar(){bar.style.setProperty('--at',completeAt);bar.classList.toggle('none',completeAt>=1)}
+
+  function render(){
+    ticking=false;
+    const p=clamp(stage.scrollTop/maxScroll,0,1);
+    const e=clamp(p/completeAt,0,1);
+    const filled=Math.floor(e*N+1e-6);
+    curP=p;
+    let jump=false;
+
+    // Only touch words whose state actually changed, never rewrite all spans.
+    if(filled!==lastFilled){
+      const prev=lastFilled<0?0:lastFilled;
+      const lo=Math.min(filled,prev),hi=Math.max(filled,prev);
+      jump=hi-lo>N/4; // a jump changes at once: no fade for the lit words or for the cursor word
+      if(jump)textEl.classList.add('jump');
+      for(let i=lo;i<hi;i++){words[i].classList.toggle('on',i<filled);slices[i].classList.toggle('on',i<filled)}
+      hold.classList.toggle('on',filled>=N);
+      lastFilled=filled;
+    }
+    const cursor=(cursorTog.checked&&filled<N&&e>0)?filled:-1;
+    if(cursor!==lastCursor){
+      if(lastCursor>=0){words[lastCursor].classList.remove('cursor');slices[lastCursor].classList.remove('cursor')}
+      if(cursor>=0){words[cursor].classList.add('cursor');slices[cursor].classList.add('cursor')}
+      lastCursor=cursor;
+    }
+    if(jump){void textEl.offsetWidth;textEl.classList.remove('jump')}
+    if(mode==='inside')drawBar();
+  }
+
+  // A mode press: the stage already carries the mode, so measure the bar and draw the current scroll at once
+  document.addEventListener('hb:mode',e=>{
+    mode=e.detail.mode;
+    stage.setAttribute('aria-label',LABELS[mode]);
+    measure();render();
+  });
+
+  stage.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(render);ticking=true}},{passive:true});
+  // the box changes height under the same scroll position, so measure again and draw at once
+  window.addEventListener('resize',()=>{measure();render()});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{measure();render()});
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  choices('finish-seg',d=>{completeAt=+d.at;setBar();render()});
+  choices('color-sw',d=>pinned.style.setProperty('--fill-accent',d.c));
+  // With the highlight off there is no color to choose, so that setting (and More options, which holds only it) is hidden.
+  const moreOptions=document.querySelector('.hb-options'); cursorTog.addEventListener('change',()=>{colorSetting.hidden=moreOptions.hidden=!cursorTog.checked;render()});
+
+  setBar();measure();render();
+</script>
+</body>
+</html>

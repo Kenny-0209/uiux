@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starfield / Space Particles — Animation Handbook</title>
+  <meta name="description" content="Stars stream toward you out of the dark. Best for space themes.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/07-ambient-background/starfield/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Starfield / Space Particles — Animation Handbook">
+  <meta property="og:description" content="Stars stream toward you out of the dark. Best for space themes.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/07-ambient-background/starfield/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Starfield / Space Particles — Animation Handbook">
+  <meta name="twitter:description" content="Stars stream toward you out of the dark. Best for space themes.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Starfield / Space Particles", "name": "Starfield / Space Particles", "description": "Stars stream toward you out of the dark. Best for space themes.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/07-ambient-background/starfield/", "inLanguage": "en", "articleSection": "Ambient & Background", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Ambient & Background, Starfield / Space Particles"}</script>
+  <style>
+    :root{--ui-accent:#ffce5a}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;overflow:hidden;background:#000}
+    canvas{display:block;width:100%;height:100%}
+    .fg-card{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);width:clamp(180px,55%,280px);background:rgba(0,0,0,.65);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:16px 18px;z-index:10;text-align:center}
+    .fg-eyebrow{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:6px}
+    .fg-title{font-size:clamp(13px,1.8vw,17px);font-weight:700;color:#fff;margin-bottom:6px}
+    .fg-body{font-size:13px;color:rgba(255,255,255,.72);line-height:1.6}
+    /* On phones and short screens the stage is small, so the card shrinks to leave the stars in view */
+    @media(max-width:600px),(max-height:760px){
+      .fg-card{padding:12px 14px}
+      .fg-eyebrow{margin-bottom:4px}
+      .fg-title{margin-bottom:0}
+      .fg-body{display:none}
+    }
+    /* See inside and Compare: a second canvas over the stars for the routes and arrows, plain words over the picture, a divider between the halves */
+    .marks,.legend,.lbl,.vs{display:none}
+    .marks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+    .legend{position:absolute;inset:10px;flex-direction:column;justify-content:space-between;pointer-events:none}
+    .lg-top{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+    .lg-low{display:flex;flex-wrap:wrap;gap:6px;justify-content:space-between;align-items:flex-end}
+    .lbl{max-width:100%;padding:4px 9px;border-radius:999px;background:rgba(5,6,10,.9);color:#f4f4f2;font:600 13px/1.2 var(--hb-font)}
+    .far::before,.near::before{content:"";display:inline-block;border-radius:50%;margin-right:7px;vertical-align:middle;background:#fff}
+    .far::before{width:4px;height:4px;opacity:.45}
+    .near::before{width:10px;height:10px}
+    .vs{position:absolute;top:0;bottom:0;left:50%;border-left:2px solid #2a2b33;transform:translateX(-1px)}
+    .lc{position:absolute;top:10px;white-space:nowrap}
+    .lc.first{left:10px}
+    .lc.second{left:calc(50% + 10px)}
+    .stage[data-hb-mode="inside"] .marks{display:block}
+    .stage[data-hb-mode="inside"] .legend{display:flex}
+    .stage[data-hb-mode="inside"][data-dir="radial"] .li-o,.stage[data-hb-mode="inside"][data-dir="drift"] .li-d{display:block}
+    .stage[data-hb-mode="inside"][data-dir="drift"] .lg-low{padding-bottom:12px}
+    .stage[data-hb-mode="compare"] .vs,.stage[data-hb-mode="compare"] .lc{display:block}
+    .stage[data-hb-mode="inside"] .fg-card,.stage[data-hb-mode="compare"] .fg-card{display:none}
+    @media(max-width:360px){.lbl{font-size:12px;padding:3px 7px}}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="loop">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../light-leak/" rel="prev" aria-label="Previous: Light Leak"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Light Leak</span></a><a href="../breathing-glow/" rel="next" aria-label="Next: Breathing / Pulsing Glow"><span><span class="hb-dir">Next: </span>Breathing / Pulsing Glow</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">07.07 · Ambient &amp; Background</p>
+    <h1>Starfield / Space Particles</h1>
+    <p class="hb-lede">Stars stream toward you out of the dark. Best for space themes.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Watch it</h2><p>It moves by itself. Pause it to look closely, or turn on slow motion to see each part of the movement.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" data-dir="radial">
+      <canvas id="cvs" aria-hidden="true"></canvas>
+      <canvas class="marks" id="marks" aria-hidden="true"></canvas>
+      <div class="legend" aria-hidden="true">
+        <div class="lg-top">
+          <p class="lbl li-o" aria-hidden="true" data-hb-caption>Every star flies straight out from the middle</p>
+          <p class="lbl li-d far" aria-hidden="true" data-hb-caption>Far: small, dim, slow</p>
+          <p class="lbl li-d near" aria-hidden="true" data-hb-caption>Near: big, bright, fast</p>
+        </div>
+        <div class="lg-low">
+          <p class="lbl li-o" aria-hidden="true" data-hb-caption>Out of the box, it starts again in the middle</p>
+          <p class="lbl li-o" aria-hidden="true" data-hb-caption>Farther out: bigger, brighter, faster</p>
+          <p class="lbl li-d" aria-hidden="true" data-hb-caption>Out at the left, back in at the right</p>
+        </div>
+      </div>
+      <i class="vs"></i>
+      <p class="lbl lc first" aria-hidden="true" data-hb-caption>Without depth</p>
+      <p class="lbl lc second" aria-hidden="true" data-hb-caption>With depth</p>
+      <div class="fg-card">
+        <div class="fg-eyebrow">Starfield</div>
+        <div class="fg-title">Infinite depth from a single point</div>
+        <div class="fg-body">Small, slow stars in the middle grow and speed up toward the edge.</div>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-pause" data-hb-pause data-state="playing"><svg class="hb-ic hb-i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="hb-ic hb-i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9z"/></svg><span class="hb-pause-label">Pause</span></button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, each line is a star's straight route out from the middle, and its arrow its speed: near the middle stars are small, dim and slow, near the edge big, bright and fast.</p>
+      <p data-hb-for="compare" hidden>Without depth gives every star the same size, brightness and speed, so the field looks flat. With depth makes them grow, brighten and speed up toward you, so it looks deep.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting and see the difference as it moves.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="dir-lbl">Direction</p>
+        <div class="seg" id="dir-seg" role="group" aria-labelledby="dir-lbl">
+          <button type="button" data-mode="radial" class="on" aria-pressed="true">Outward</button>
+          <button type="button" data-mode="drift" aria-pressed="false">Sideways</button>
+        </div>
+        <p class="hb-hint">Outward flies through space; sideways looks out a window.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-spd="0.25" aria-pressed="false">Slow</button>
+          <button type="button" data-spd="0.4" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-spd="0.65" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">Keep it slow for a calm background.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="count-lbl">Number of stars</p>
+        <div class="seg" id="count-seg" role="group" aria-labelledby="count-lbl">
+          <button type="button" data-n="150" aria-pressed="false">Few</button>
+          <button type="button" data-n="300" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-n="600" aria-pressed="false">Many</button>
+        </div>
+        <p class="hb-hint">More stars feel deeper; phones show at most 300.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="col-lbl">Star color</p>
+          <div class="seg" id="col-seg" role="group" aria-labelledby="col-lbl">
+            <button type="button" data-col="white" class="on" aria-pressed="true">White</button>
+            <button type="button" data-col="warm" aria-pressed="false">Warm white</button>
+            <button type="button" data-col="color" aria-pressed="false">Many colors</button>
+          </div>
+          <p class="hb-hint">The color of the stars.</p>
+        </div>
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Twinkling</span><input class="hb-switch" type="checkbox" role="switch" id="twinkle-tog" checked autocomplete="off"></label>
+          <p class="hb-hint">Each star gently brightens and dims.</p>
+        </div>
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Nebula haze</span><input class="hb-switch" type="checkbox" role="switch" id="nebula-tog" autocomplete="off"></label>
+          <p class="hb-hint">A faint purple and blue haze behind the stars.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a starfield background to [the dark section you want it behind]. Draw many small stars on a canvas and move them out from the center, or sideways past the viewer, so it feels like flying through space. Tie each star's size, brightness and speed to its distance from the center: small, dim and slow near the middle, bigger, brighter and faster toward the edge, which is what creates the depth. A slow speed keeps it calm. Draw fewer stars on phones. If the visitor has reduced motion turned on, show the stars still. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Space and science themes</li><li>Hero sections</li><li>Screensavers and kiosks</li><li>Launch pages</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Light pages</li><li>Long reading pages</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const cvs=document.getElementById('cvs'),ctx=cvs.getContext('2d');
+  const stage=document.querySelector('.stage');
+  const slowTog=document.getElementById('slow-tog');
+  const PHONE_STARS=300; // phones and short screens draw at most this many stars
+  const phone=matchMedia('(max-width:600px),(max-height:500px)');
+  const FRAME=1000/60; // one step is what a 60 Hz frame adds, so a faster screen or a slow frame does not change the speed
+  let W=0,H=0,raf=null,lastT=null,fa=0,paused=false; // fa: the part of a cover not yet applied
+  let MODE='radial',COUNT=300,SPD=0.4,TWINKLE=true,NEBULA=false,COL='white';
+  let stars=[];
+  // See inside and Compare. WHOLE is the part of the canvas Normal's stars live in; Compare gives each half a part of its own, below
+  // the half's name (TOP). marks is See inside's canvas over the stars, keep holds Normal's picture while Compare shows.
+  const WHOLE={x0:0,y0:0,w:0,h:0},TOP=40;
+  const marks=document.getElementById('marks'),mctx=marks.getContext('2d');
+  const keep=document.createElement('canvas'),kctx=keep.getContext('2d');
+  const MARK=getComputedStyle(document.documentElement).getPropertyValue('--ui-accent').trim()||'#ffce5a';
+  let look='normal',kept=false,halves=[],followed=[],shown=[],tick=0,lbls=[],taken=[]; // lbls, taken: boxes as left, top, right, bottom in one list
+  const notes=[...document.querySelectorAll('[data-hb-for]')];
+  const NOTES={radial:notes.map(p=>p.textContent),drift:[
+    "Inside, each arrow is a star's speed: far stars are small, dim and slow, near ones big, bright and fast, and each leaves at the left and comes back at the right.",
+    "Without depth gives every star the same size, brightness and speed, so the field looks flat. With depth makes near stars bigger, brighter and faster than far ones, so it looks deep."]};
+
+  class Star{
+    // box: the part of the canvas the star lives in; flat: Compare's "Without depth", every star in the middle of each range
+    constructor(init,box=WHOLE,flat=false){
+      const {x0,y0,w,h}=this.box=box;this.flat=flat;
+      if(MODE==='radial'){
+        this.angle=Math.random()*Math.PI*2;
+        this.dist=init?Math.random()*Math.max(w,h)*.5:0;
+        this.maxDist=Math.max(w,h)*.55;
+        this.size=flat?1.25:Math.random()*1.5+.5;
+        this.speed=flat?this.pace:(Math.random()*.6+.2)*SPD;
+      }else{
+        this.x=x0+Math.random()*w;this.y=y0+Math.random()*h;
+        this.depth=flat?.6:Math.random()*.8+.2;
+        this.size=(flat?1.25:Math.random()*1.5+.5)*this.depth;
+      }
+      this.twinklePhase=Math.random()*Math.PI*2;
+      this.hue=Math.random()*60;
+    }
+    // Where the star is in its range, 0 to 1: Outward its share of the way to maxDist, Sideways its depth
+    get ratio(){return MODE==='radial'?(this.flat?.5:this.dist/this.maxDist):this.depth;}
+    // How far it moves in one 60 Hz step (See inside draws its arrow this long) and how big it is drawn
+    get pace(){return MODE==='radial'?(this.ratio*.5+.2)*SPD*1.5:this.depth*SPD*2;}
+    get r(){return this.size*(1+this.ratio*1.5);}
+    // k is how many 60 Hz frames this step stands for (1 at 60 Hz, 2 at 30 Hz), or a third of that in slow motion: the outward
+    // step, the sideways step and the twinkle all grow and shrink with it
+    update(k){
+      if(MODE==='radial'){
+        this.dist+=this.speed*k;
+        this.speed=this.pace;
+        if(this.dist>this.maxDist){this.dist=0;this.speed=this.flat?this.pace:(Math.random()*.6+.2)*SPD;this.angle=Math.random()*Math.PI*2;}
+      }else{
+        this.x-=this.pace*k;if(this.x<this.box.x0-2){this.x=this.box.x0+this.box.w+2;}
+      }
+      this.twinklePhase+=.05*k;
+    }
+    draw(){
+      const ratio=this.ratio,b=this.box;
+      let col='rgba(255,255,255,';
+      if(COL==='warm')col=`rgba(255,240,200,`;
+      if(COL==='color')col=`hsla(${this.hue},80%,90%,`;
+      const twinkle=TWINKLE?(.7+Math.sin(this.twinklePhase)*.3):1;
+      const op=(ratio*.7+.3)*twinkle;
+      ctx.fillStyle=col+op+')';
+      ctx.beginPath();
+      if(MODE==='radial'){
+        ctx.arc(b.x0+b.w/2+Math.cos(this.angle)*this.dist,b.y0+b.h/2+Math.sin(this.angle)*this.dist,this.r,0,Math.PI*2);
+      }else{
+        ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+      }
+      ctx.fill();
+    }
+  }
+
+  const count=()=>phone.matches?Math.min(COUNT,PHONE_STARS):COUNT;
+  // Compare deals each half its own stars (half the count each) and leaves Normal's stars as they are
+  function initStars(){
+    const n=count();
+    if(look==='compare'){
+      halves=[0,1].map(i=>{const box={x0:i*W/2,y0:TOP,w:W/2,h:H-TOP};return{box,stars:Array.from({length:n/2},()=>new Star(true,box,i===0))};});
+    }else{stars=Array.from({length:n},()=>new Star(true));pick();}
+  }
+
+  function drawNebula(b){
+    const {x0,y0,w,h}=b;
+    const g=ctx.createRadialGradient(x0+w*.3,y0+h*.4,0,x0+w*.3,y0+h*.4,w*.5);
+    g.addColorStop(0,'rgba(50,20,100,.15)');g.addColorStop(1,'transparent');
+    ctx.fillStyle=g;ctx.fillRect(x0,y0,w,h);
+    const g2=ctx.createRadialGradient(x0+w*.7,y0+h*.6,0,x0+w*.7,y0+h*.6,w*.4);
+    g2.addColorStop(0,'rgba(20,50,80,.1)');g2.addColorStop(1,'transparent');
+    ctx.fillStyle=g2;ctx.fillRect(x0,y0,w,h);
+  }
+
+  function run(list,move,k){for(const s of list){if(move)s.update(k);s.draw();}}
+  // One picture. paint(true,n,nf) is a loop frame for n 60 Hz frames: nf covers (the haze drawn again after each), then the stars move by n
+  // (a third of it in slow motion; the covers do not slow) and are drawn. paint(false) redraws the picture where it stands, opaque:
+  // for the first frame, a resize and a setting changed while paused. Compare covers the whole canvas, so both halves keep the same
+  // trails, and draws each half's haze and stars inside that half. See inside draws its marks last.
+  function paint(move,n,nf){
+    for(let i=0,c=move?nf:1;i<c;i++){
+      ctx.fillStyle=move?'rgba(0,0,0,.85)':'#000';ctx.fillRect(0,0,W,H);
+      if(NEBULA){if(look==='compare')for(const h of halves)drawNebula(h.box);else drawNebula(WHOLE);}
+    }
+    const k=move?n*(slowTog.checked?1/3:1):0;
+    if(look==='compare')for(const h of halves){
+      ctx.save();ctx.beginPath();ctx.rect(h.box.x0,h.box.y0,h.box.w,h.box.h);ctx.clip();
+      run(h.stars,move,k);ctx.restore();
+    }else run(stars,move,k);
+    if(look==='inside')drawMarks();
+  }
+  // While paused, a setting that changes the picture draws it again so the change shows
+  function still(){if(paused)paint(false);}
+
+  // See inside: about a dozen followed stars (eight on phones), one in each slice of the circle around the middle, or of the box's
+  // width Sideways. They are picked whenever the stars are dealt and when See inside opens, and a few times a second a star whose
+  // ring and arrow no longer fit (it left the box, or nears an edge or a caption) gives way to another star of its slice.
+  const px=s=>MODE==='radial'?W/2+Math.cos(s.angle)*s.dist:s.x,py=s=>MODE==='radial'?H/2+Math.sin(s.angle)*s.dist:s.y;
+  const mk={}; // the ring and arrow of the star span() last measured: its place and heading, the ring's size, the arrow's tip and head, the box round them
+  // ahead: extra arrow length to allow for, so a star picked now still fits a moment on
+  function span(s,ahead){
+    const out=MODE==='radial',a=out?s.angle:Math.PI,x=px(s),y=py(s),r=s.r+5,len=s.pace*60*(out?1.8:1);
+    const dx=Math.cos(a),dy=Math.sin(a),fx=x+dx*(r+len+ahead),fy=y+dy*(r+len+ahead);
+    mk.x=x;mk.y=y;mk.a=a;mk.rad=r;mk.ex=x+dx*(r+len);mk.ey=y+dy*(r+len);mk.hd=Math.min(6,len*.6);
+    mk.l=Math.min(x-r,fx-3);mk.t=Math.min(y-r,fy-3);mk.r=Math.max(x+r,fx+3);mk.b=Math.max(y+r,fy+3);
+  }
+  // Does the star's ring and arrow sit inside the box, clear of the captions (and, Outward, of the cross)?
+  function fits(s,ahead){
+    span(s,ahead);
+    return (MODE!=='radial'||s.dist>=14)&&mk.l>=4&&mk.t>=4&&mk.r<=W-4&&mk.b<=H-(MODE==='radial'?4:20)&&!meets(mk.l,mk.t,mk.r,mk.b,lbls,4);
+  }
+  // which slice a star is in: 0 up to 1, round the middle or across the box
+  const slice=s=>MODE==='radial'?s.angle/(Math.PI*2):(s.x/W-.2)/.75;
+  const find=i=>stars.find(s=>Math.floor(slice(s)*followed.length)===i&&fits(s,24))||null;
+  function refill(){
+    for(let i=0;i<followed.length;i++)if(!followed[i]||!fits(followed[i],0)){const s=find(i);if(s)followed[i]=s;}
+  }
+  function pick(){followed=Array(phone.matches?8:12).fill(null);refill();}
+  // The captions' boxes in the stage, so no ring or arrow is drawn under one
+  function measure(){
+    const o=stage.getBoundingClientRect(),ox=o.left+stage.clientLeft,oy=o.top+stage.clientTop;
+    lbls.length=0;
+    stage.querySelectorAll('[data-hb-caption]').forEach(p=>{const b=p.getBoundingClientRect();if(b.width)lbls.push(b.left-ox,b.top-oy,b.right-ox,b.bottom-oy);});
+  }
+  // Does the box l, t, r, b meet a box of the list, with pad to spare?
+  function meets(l,t,r,b,list,pad){
+    for(let i=0;i<list.length;i+=4)if(l<list[i+2]+pad&&r>list[i]-pad&&t<list[i+3]+pad&&b>list[i+1]-pad)return true;
+    return false;
+  }
+  // Outward: a cross at the middle and a thin line from it through each shown star to the edge. Then, for both directions, a ring
+  // round each star and an arrow from it as long as the star's speed now (the page's own pace, Sideways pointing left). A star whose
+  // ring and arrow would meet another mark is left bare for now.
+  function drawMarks(){
+    mctx.clearRect(0,0,W,H);
+    if(++tick%20===0)refill();
+    const out=MODE==='radial',cx=W/2,cy=H/2;
+    taken.length=0;shown.length=0;
+    if(out)taken.push(cx-9,cy-9,cx+9,cy+9);
+    for(const s of followed)if(s&&fits(s,0)&&!meets(mk.l,mk.t,mk.r,mk.b,taken,3)){shown.push(s);taken.push(mk.l,mk.t,mk.r,mk.b);}
+    mctx.lineCap='round';mctx.lineWidth=1;mctx.strokeStyle='rgba(255,255,255,.3)';mctx.beginPath();
+    if(out){
+      for(const s of shown){
+        const dx=Math.cos(s.angle),dy=Math.sin(s.angle),t=Math.min(cx/Math.abs(dx||1e-9),cy/Math.abs(dy||1e-9));
+        mctx.moveTo(cx,cy);mctx.lineTo(cx+dx*t,cy+dy*t);
+      }
+    }else{ // the way round: out at the left, back in at the right
+      mctx.moveTo(W-14,H-8);mctx.lineTo(14,H-8);mctx.moveTo(22,H-12);mctx.lineTo(14,H-8);mctx.lineTo(22,H-4);
+    }
+    mctx.stroke();
+    mctx.strokeStyle=MARK;mctx.lineWidth=1.5;mctx.beginPath();
+    if(out){mctx.moveTo(cx-6,cy);mctx.lineTo(cx+6,cy);mctx.moveTo(cx,cy-6);mctx.lineTo(cx,cy+6);}
+    for(const s of shown){
+      span(s,0);
+      const {x,y,a,rad,ex,ey,hd}=mk;
+      mctx.moveTo(x+rad,y);mctx.arc(x,y,rad,0,Math.PI*2);
+      mctx.moveTo(x+Math.cos(a)*rad,y+Math.sin(a)*rad);mctx.lineTo(ex,ey);
+      mctx.moveTo(ex-Math.cos(a-.5)*hd,ey-Math.sin(a-.5)*hd);mctx.lineTo(ex,ey);mctx.lineTo(ex-Math.cos(a+.5)*hd,ey-Math.sin(a+.5)*hd);
+    }
+    mctx.stroke();
+  }
+
+  // loop() keeps one frame requested in raf. A drawn frame stands for the time since the last drawn one (n, at most 50 ms) and covers once
+  // per whole 60th, fa carrying the rest; with no cover due nothing is drawn and the time carries on, which also caps drawing near 60 a second.
+  function loop(ts){
+    raf=requestAnimationFrame(loop);
+    if(lastT===null){lastT=ts;return;}
+    const n=Math.min(ts-lastT,50)/FRAME,w=Math.max(1,Math.round(n));
+    const f=fa+(Math.abs(n-w)<.05?w:n),nf=Math.round(f+.05); // within 5% of a whole number counts as it; the .05 keeps a half-way tie off the edge
+    if(!nf)return;
+    fa=f-nf;lastT=ts;
+    paint(true,n,nf);
+  }
+  function start(){if(raf)return;lastT=null;fa=0;raf=requestAnimationFrame(loop);}
+
+  // Registered at the top level, before the shared script (deferred) can run: under reduced motion it pauses the
+  // loop on arrival, which this listener must catch. The stars on screen stay as they are while paused.
+  document.addEventListener('hb:pause',e=>{
+    paused=e.detail.paused;
+    if(paused){cancelAnimationFrame(raf);raf=null;}
+    else start();
+  });
+  // A tab that comes back after being hidden has no earlier frame to measure from, so its first frame adds no step
+  document.addEventListener('visibilitychange',()=>{lastT=null;fa=0;});
+  // The mode switch draws the mode at once, playing or paused. Compare keeps Normal's picture and stars (they are not stepped while
+  // it shows) and puts them back on leaving, or deals and draws Normal again if a setting or the size changed meanwhile.
+  document.addEventListener('hb:mode',e=>{
+    const was=look;look=e.detail.mode;
+    if(look==='compare'&&was!=='compare'){
+      keep.width=cvs.width;keep.height=cvs.height;kctx.drawImage(cvs,0,0);kept=true;
+      initStars();paint(false);
+    }else if(was==='compare'&&look!=='compare'){
+      if(kept){ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.drawImage(keep,0,0);ctx.restore();}
+      else{initStars();paint(false);}
+      kept=false;
+    }
+    measure();
+    if(look==='inside'&&was!=='inside')pick();
+    if(look==='inside')drawMarks();else mctx.clearRect(0,0,W,H);
+  });
+
+  // Setting the canvas size wipes it, so a real change of the stage's size builds the stars and draws them at once,
+  // playing or paused. A resize that leaves the stage as it was (a phone's address bar sliding in or out) does nothing.
+  function resize(){
+    const w=stage.clientWidth,h=stage.clientHeight;
+    if(w===W&&h===H)return;
+    W=w;H=h;WHOLE.w=W;WHOLE.h=H;kept=false;
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    cvs.width=marks.width=W*dpr;cvs.height=marks.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);mctx.setTransform(dpr,0,0,dpr,0,0);
+    measure();initStars();paint(false);
+  }
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      if(b.classList.contains('on'))return; // pressing the choice already made does nothing
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  // A setting that changes the stars or their picture: a kept Normal picture is out of date (Speed leaves it good)
+  function changed(){kept=false;still();}
+  choices('dir-seg',d=>{
+    MODE=d.mode;stage.dataset.dir=MODE;
+    notes.forEach((p,i)=>{const t=NOTES[MODE][i];if(p.textContent!==t)p.textContent=t;});
+    measure();initStars();changed();
+  });
+  choices('speed-seg',d=>{SPD=+d.spd;if(look==='inside'&&paused)drawMarks();});
+  choices('count-seg',d=>{COUNT=+d.n;initStars();changed();});
+  choices('col-seg',d=>{COL=d.col;changed();});
+  document.getElementById('twinkle-tog').addEventListener('change',e=>{TWINKLE=e.target.checked;changed();});
+  document.getElementById('nebula-tog').addEventListener('change',e=>{NEBULA=e.target.checked;changed();});
+
+  resize();
+  window.addEventListener('resize',resize);
+  if(document.fonts)document.fonts.ready.then(()=>{measure();if(look==='inside')drawMarks();});
+  // A window that crosses the phone size changes how many stars it draws, even when the stage keeps its size
+  function onPhone(){if(count()!==(look==='compare'?halves[0].stars.length*2:stars.length)){kept=false;initStars();paint(false);}}
+  if(phone.addEventListener)phone.addEventListener('change',onPhone);
+  else if(phone.addListener)phone.addListener(onPhone);
+  start();
+</script>
+</body>
+</html>

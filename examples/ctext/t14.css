@@ -1,0 +1,23 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 26 Meltdown — letters sag, stretch and drip before snapping back */
+.fx-melt {
+  font: 600 34px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .1em;
+  color: var(--ink-2);
+}
+.fx-melt b {
+  font-weight: inherit;
+  display: inline-block;
+  transform-origin: top center;
+  animation: fx-melt 2.8s ease-in infinite;
+  animation-delay: calc(var(--i) * .22s);
+}
+@keyframes fx-melt {
+  0%, 45%  { transform: scaleY(1) translateY(0); filter: blur(0); }
+  70%      { transform: scaleY(1.55) translateY(7px) scaleX(.92); filter: blur(1.5px); }
+  85%, 100% { transform: scaleY(1) translateY(0); filter: blur(0); }
+}

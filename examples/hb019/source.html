@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Section Wipe — Animation Handbook</title>
+  <meta name="description" content="Each section slides up over the one before. Best for full-screen stories.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/section-wipe/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Section Wipe — Animation Handbook">
+  <meta property="og:description" content="Each section slides up over the one before. Best for full-screen stories.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/section-wipe/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Section Wipe — Animation Handbook">
+  <meta name="twitter:description" content="Each section slides up over the one before. Best for full-screen stories.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Section Wipe", "name": "Section Wipe", "description": "Each section slides up over the one before. Best for full-screen stories.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/section-wipe/", "inLanguage": "en", "articleSection": "Scroll-Based", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Scroll-Based, Section Wipe"}</script>
+  <style>
+    :root{--ui-accent:#6ea8ff}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    /* The stage scrolls and is the size container: 100cqh is one stage height, so a section is exactly one box tall at every size */
+    .stage{position:relative;overflow-y:auto;scrollbar-width:none;container-type:size;background:#0b0b0d}
+    .stage::-webkit-scrollbar{display:none}
+    /* Each section is sticky + one stage tall + ascending z-index */
+    .section{position:sticky;top:0;height:100cqh;overflow:hidden}
+    .sec-content{width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,4vw,48px);transform-origin:center center;will-change:transform}
+    .sec-num{font-size:clamp(56px,6.4vw,88px);font-weight:700;opacity:.1;line-height:1;margin-bottom:12px}
+    .sec-title{font-size:clamp(22px,2.6vw,34px);font-weight:700;margin-bottom:16px;line-height:1.2}
+    .sec-body{font-size:clamp(14px,1.2vw,16px);line-height:1.7;color:#d6d6da;max-width:480px}
+    /* Spacer after all sections: the last section stays on screen while it is scrolled */
+    .end-spacer{height:80cqh}
+    /* See inside and Compare: the copies and labels are drawn only in their mode */
+    .hud,.cmp,.fr,.cap,.hnm,.hdiv{display:none}
+    .hud{position:sticky;top:0;height:0;z-index:10;pointer-events:none}
+    .hud-in{position:absolute;top:0;left:0;width:100cqw;height:100cqh}
+    .fr .section,.cmp .section{position:relative;top:auto;z-index:auto}
+    .fr .sec-content,.cmp .sec-content{will-change:auto}
+    .cap,.hnm{position:absolute;padding:5px 9px;border-radius:8px;background:rgba(11,11,13,.88);color:#f4f4f2;font:600 13px/1.25 var(--hb-font)}
+    /* See inside: the stack pulled apart. Four frames, each the box at two fifths of its size, step down a diagonal from section
+       01 at the back (top left) to section 04 in front (bottom right). Each holds an inert copy of its section, placed where
+       the real one is now (the script sets it) and cut off by the frame; the frame's edge stays when the content shrinks, so
+       the dark rim that opens is the shrink. The real sections are hidden here but keep their place in the scroll. */
+    .stage[data-hb-mode="inside"] > .section{visibility:hidden}
+    .stage[data-hb-mode="inside"] .hud,.stage[data-hb-mode="compare"] .hud{display:block}
+    .stage[data-hb-mode="inside"] .fr{display:block;position:absolute;width:38%;height:38%;left:calc(3% + 19% * var(--i));
+      top:calc(3% + 19% * var(--i));overflow:hidden;background:#050506;outline:2px solid rgba(244,244,242,.7)}
+    .fr .section{position:absolute;top:0;left:0;width:100cqw;height:100cqh;transform-origin:0 0}
+    .fr .sec-num{opacity:1}
+    .stage[data-hb-mode="inside"] .cap{display:block;max-width:36%}
+    .cap-a{top:3%;right:3%;text-align:right}
+    .cap-b{bottom:3%;left:3%}
+    /* Compare: the sections as an ordinary page on the left (a column over the first half of the scroll), the real ones on
+       the right. They are narrowed with a width and a margin, never put into a row, so they keep sticking. */
+    .stage[data-hb-mode="compare"] .cmp{display:block;position:absolute;left:0;top:0;width:50%;height:400cqh}
+    .stage[data-hb-mode="compare"] > .section{width:50%;margin-left:50%}
+    .stage[data-hb-mode="compare"] .sec-content{position:relative;padding:clamp(12px,5cqw,28px)}
+    .stage[data-hb-mode="compare"] .sec-num{position:absolute;top:clamp(8px,2.4cqw,16px);left:clamp(8px,3cqw,18px);margin:0;opacity:1;font-size:clamp(24px,5cqw,46px)}
+    .stage[data-hb-mode="compare"] .sec-title{font-size:clamp(14px,2.4cqw,22px);margin-bottom:8px}
+    @container (max-width:560px){.stage[data-hb-mode="compare"] .sec-body{display:none}}
+    .stage[data-hb-mode="compare"] .hdiv{display:block;position:absolute;left:50%;top:0;width:2px;height:100%;margin-left:-1px;background:rgba(244,244,242,.55)}
+    .stage[data-hb-mode="compare"] .hnm{display:block;top:6px;white-space:nowrap;padding:5px 8px}
+    .hnm-a{right:calc(50% + 6px)}
+    .hnm-b{right:6px}
+    @media(prefers-reduced-motion:reduce){.sec-content{will-change:auto}}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="scroll" data-hb-autoplay data-hb-motion-note="The sections stack without shrinking">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../progress-bar/" rel="prev" aria-label="Previous: Progress Bar"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Progress Bar</span></a><a href="../zoom-into-image/" rel="next" aria-label="Next: Zoom Into Image"><span><span class="hb-dir">Next: </span>Zoom Into Image</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">01.18 · Scroll-Based</p>
+    <h1>Section Wipe</h1>
+    <p class="hb-lede">Each section slides up over the one before. Best for full-screen stories.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Scroll it</h2><p>Scroll inside the box, or press Play and it scrolls for you.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage" tabindex="0" role="region" aria-label="Sections that slide up over each other">
+      <div class="section" style="z-index:1">
+        <div class="sec-content" style="background:linear-gradient(135deg,#0d2b3e,#1a3a5c)">
+          <div class="sec-num" aria-hidden="true">01</div>
+          <h3 class="sec-title" style="color:#79c0ff">Each section stays put</h3>
+          <p class="sec-body">Every section sticks to the top of the box, and the next one slides up over it, like a card landing on a pile.</p>
+        </div>
+      </div>
+      <div class="section" style="z-index:2">
+        <div class="sec-content" style="background:linear-gradient(135deg,#2d1b3d,#3d2a5c)">
+          <div class="sec-num" aria-hidden="true">02</div>
+          <h3 class="sec-title" style="color:#d2a8ff">The one below sinks back</h3>
+          <p class="sec-body">As a section is covered it shrinks a little, so it seems to slip behind the one arriving.</p>
+        </div>
+      </div>
+      <div class="section" style="z-index:3">
+        <div class="sec-content" style="background:linear-gradient(135deg,#1e3a1e,#2d5c2d)">
+          <div class="sec-num" aria-hidden="true">03</div>
+          <h3 class="sec-title" style="color:#5fdc6d">It follows your scroll</h3>
+          <p class="sec-body">Stop halfway and the wipe stops halfway. Scroll back up and the section slides away again.</p>
+        </div>
+      </div>
+      <div class="section" style="z-index:4">
+        <div class="sec-content" style="background:linear-gradient(135deg,#3d2000,#5c3400)">
+          <div class="sec-num" aria-hidden="true">04</div>
+          <h3 class="sec-title" style="color:#ffa657">The last one stays on top</h3>
+          <p class="sec-body">Nothing covers the final section, so it never shrinks.</p>
+        </div>
+      </div>
+      <div class="end-spacer"></div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-scroll" data-hb-autoscroll><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>Play</button>
+      <button class="hb-play" type="button" id="btn-top" data-hb-top><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Back to top</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, each small frame is the box with one section: it rises into its frame, sticks there, and the next lands on top while it shrinks. Scroll the box or press Play to watch.</p>
+      <p data-hb-for="compare" hidden>In Scrolls away the sections follow each other off the top; in Slides over each one stays put while the next slides up over it. Scroll the box or press Play to watch.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then scroll again or press Play.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="shrink-lbl">Shrink</p>
+        <div class="seg" id="shrink-seg" role="group" aria-labelledby="shrink-lbl">
+          <button type="button" data-floor="1" aria-pressed="false">None</button>
+          <button type="button" data-floor="0.96" class="on" aria-pressed="true">A little</button>
+          <button type="button" data-floor="0.88" aria-pressed="false">A lot</button>
+        </div>
+        <p class="hb-hint">How far the section underneath sinks back.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting" id="speed-setting">
+          <p class="hb-setting-name" id="speed-lbl">Shrink speed</p>
+          <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+            <button type="button" data-range="0.3" aria-pressed="false">Quick</button>
+            <button type="button" data-range="0.6" aria-pressed="false">Medium</button>
+            <button type="button" data-range="1" class="on" aria-pressed="true">Gradual</button>
+          </div>
+          <p class="hb-hint">Quick finishes shrinking early in the wipe.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a section wipe to [the full-screen sections of your page]. Make each section exactly one screen tall, stick each one to the top as the visitor scrolls, and stack them so every section sits above the one before; the next section then slides up and covers the current one instead of pushing it away. While a section is being covered, shrink its content in step with the scroll so it seems to sink behind the one arriving, unless the settings turn the shrink off. Nothing ever covers the last section. If the visitor has reduced motion turned on, keep the wipe but skip the shrink. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Full-screen stories</li><li>Landing pages</li><li>Case studies</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Long text</li><li>Documentation</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const stage=document.getElementById('stage');
+  const speedSetting=document.getElementById('speed-setting'),moreOptions=document.querySelector('.hb-options');
+  const sections=[...document.querySelectorAll('.section')];
+  const contents=sections.map(s=>s.querySelector('.sec-content'));
+
+  // Inert copies of the sections, made once and without ids: four in the frames of See inside, four in Compare's plain column
+  const copyOf=sec=>{const c=sec.cloneNode(true);c.removeAttribute('style');return c};
+  const hud=document.createElement('div');
+  hud.className='hud';
+  hud.innerHTML='<div class="hud-in"><div class="frames" aria-hidden="true" inert></div>'+
+    '<p class="cap cap-a" data-hb-caption>Each new section lands on top</p><p class="cap cap-b" data-hb-caption></p>'+
+    '<div class="hdiv"></div><p class="hnm hnm-a" data-hb-caption>Scrolls away</p><p class="hnm hnm-b" data-hb-caption>Slides over</p></div>';
+  const cmp=document.createElement('div');
+  cmp.className='cmp';
+  cmp.setAttribute('aria-hidden','true');
+  cmp.inert=true;
+  sections.forEach((sec,i)=>{
+    const fr=document.createElement('div');
+    fr.className='fr';
+    fr.style.setProperty('--i',i);
+    fr.append(copyOf(sec));
+    hud.querySelector('.frames').append(fr);
+    cmp.append(copyOf(sec));
+  });
+  stage.prepend(cmp);
+  stage.prepend(hud);
+  const fSecs=[...hud.querySelectorAll('.fr .section')],fCons=fSecs.map(f=>f.querySelector('.sec-content'));
+  const capB=hud.querySelector('.cap-b');
+  const KF=0.38; // a frame is this share of the box
+  const insideNote=document.querySelector('[data-hb-for="inside"]'),compareNote=document.querySelector('[data-hb-for="compare"]');
+  const NOTE={inside:insideNote.textContent,compare:compareNote.textContent}; // the markup's words are the default state
+  const NAME={
+    normal:stage.getAttribute('aria-label'),
+    inside:'The four sections pulled apart into small frames, each rising into place and stacking over the last',
+    compare:'The sections twice: scrolling away as an ordinary page, and sliding up over each other'
+  };
+  let scaleFloor=0.96,wipeRange=1.0,ticking=false;
+  const clamp=(v,a,b)=>Math.min(Math.max(v,a),b),lerp=(a,b,t)=>a+(b-a)*t;
+  const reduceMQ=window.matchMedia('(prefers-reduced-motion:reduce)');
+  let motionOk=!reduceMQ.matches;
+
+  function update(){
+    ticking=false;
+    // the stage's own box, inside its border: a section is that tall and sticks to its top edge
+    const box=stage.getBoundingClientRect();
+    const sr={top:box.top+stage.clientTop,height:box.height-2*stage.clientTop};
+    // Reduced motion: no shrink (the wipe itself is sticky placement and still happens), but See inside is still placed
+    if(motionOk)sections.forEach((s,i)=>{
+      if(i===sections.length-1)return;
+      const nextR=sections[i+1].getBoundingClientRect();
+      const coverage=sr.height-(nextR.top-sr.top);
+      const t=clamp(coverage/(sr.height*wipeRange),0,1);
+      contents[i].style.transform=`scale(${lerp(1,scaleFloor,t).toFixed(4)})`;
+    });
+    place(sr.top);
+  }
+
+  // See inside: each frame's copy sits where its real section is now, and takes the real content's shrink as it is set above
+  function place(top){
+    if(stage.getAttribute('data-hb-mode')!=='inside')return;
+    sections.forEach((s,i)=>{
+      fSecs[i].style.transform=`scale(${KF}) translateY(${(s.getBoundingClientRect().top-top).toFixed(1)}px)`;
+      fCons[i].style.transform=contents[i].style.transform;
+    });
+  }
+
+  stage.addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(update);ticking=true}},{passive:true});
+  addEventListener('resize',update);
+  // Switching reduced motion on must not leave the sections frozen at a half-shrunk size; switching it off shrinks them again.
+  reduceMQ.addEventListener('change',e=>{
+    motionOk=!e.matches;
+    if(!motionOk)contents.forEach(c=>c.style.removeProperty('transform'));
+    describe();
+    update();
+  });
+
+  // The second label and the notes follow Shrink, Shrink speed and reduced motion
+  function describe(){
+    const none=scaleFloor===1;
+    const until={1:'fully covered',0.6:'over half covered',0.3:'a third covered'}[wipeRange];
+    capB.textContent=!motionOk?'Covered: keeps its size here':none?'Covered: keeps its size':`Covered: shrinks ${scaleFloor===0.96?'a little':'a lot'}, until ${until}`;
+    insideNote.textContent=!motionOk?'Inside, each small frame is the box with one section: it rises into its frame, sticks there, and the next lands on top, without shrinking. Scroll the box or press Play to watch.'
+      :none?'Inside, each small frame is the box with one section: it rises in, sticks, and the next lands on top; Shrink is None, so nothing shrinks. Scroll the box or press Play to watch.':NOTE.inside;
+    compareNote.textContent=!motionOk?'In Scrolls away the sections follow each other off the top; in Slides over each stays put, without shrinking, while the next slides over it. Scroll the box or press Play to watch.':NOTE.compare;
+  }
+
+  document.addEventListener('hb:mode',e=>{
+    stage.setAttribute('aria-label',NAME[e.detail.mode]);
+    update();
+  });
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  // With no shrink there is no speed to choose, so that setting (and More options, which holds only it) is hidden.
+  choices('shrink-seg',d=>{scaleFloor=+d.floor;speedSetting.hidden=moreOptions.hidden=scaleFloor===1;describe();update()});
+  choices('speed-seg',d=>{wipeRange=+d.range;describe();update()});
+  describe();
+  update();
+</script>
+</body>
+</html>

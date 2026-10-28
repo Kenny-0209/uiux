@@ -1,0 +1,25 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 48 Microchip — circuit-board traces scroll beneath monospaced letter masks */
+.fx-microchip {
+  font: 600 28px/1.15 "JetBrains Mono", monospace;
+  letter-spacing: .1em;
+  color: transparent;
+  padding: .35em .45em;
+  background:
+    linear-gradient(90deg, transparent 0 44%, var(--ink-3) 44% 47%, transparent 47% 100%),
+    linear-gradient(0deg, transparent 0 46%, var(--ink-2) 46% 49%, transparent 49% 100%),
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--ink-3) 35%, transparent) 0 1px, transparent 1px 14px),
+    linear-gradient(100deg, var(--ink), var(--ink-3));
+  background-size: 42px 42px, 42px 42px, 14px 100%, 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  border: 1px solid color-mix(in srgb, var(--ink-3) 24%, transparent);
+  animation: fx-microchip 3.8s linear infinite;
+}
+@keyframes fx-microchip {
+  to { background-position: 42px 0, 0 42px, 14px 0, -120% 0; }
+}

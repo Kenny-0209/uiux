@@ -1,0 +1,43 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 42 Glass-Type — translucent frosted letters with an offset refraction layer */
+.fx-glass {
+  position: relative;
+  font: 600 34px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .12em;
+  color: color-mix(in srgb, var(--ink) 58%, transparent);
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--ink) 52%, transparent);
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, .4),
+    0 12px 24px rgba(0, 0, 0, .3);
+  animation: fx-glass 3.4s ease-in-out infinite;
+}
+.fx-glass::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: var(--ink-3);
+  opacity: .34;
+  filter: blur(3px);
+  transform: translate(4px, 5px);
+}
+.fx-glass::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  background: linear-gradient(115deg, transparent 22%, #fff 44%, transparent 62%) 110% 0 / 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: .55;
+  animation: fx-glass-sheen 2.7s ease-in-out infinite;
+}
+@keyframes fx-glass {
+  50% { transform: translateY(-3px); }
+}
+@keyframes fx-glass-sheen {
+  to { background-position: -110% 0; }
+}

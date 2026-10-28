@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breathing / Pulsing Glow — Animation Handbook</title>
+  <meta name="description" content="A soft glow slowly grows and shrinks, like calm breathing. Best for idle states.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/07-ambient-background/breathing-glow/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Breathing / Pulsing Glow — Animation Handbook">
+  <meta property="og:description" content="A soft glow slowly grows and shrinks, like calm breathing. Best for idle states.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/07-ambient-background/breathing-glow/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Breathing / Pulsing Glow — Animation Handbook">
+  <meta name="twitter:description" content="A soft glow slowly grows and shrinks, like calm breathing. Best for idle states.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Breathing / Pulsing Glow", "name": "Breathing / Pulsing Glow", "description": "A soft glow slowly grows and shrinks, like calm breathing. Best for idle states.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/07-ambient-background/breathing-glow/", "inLanguage": "en", "articleSection": "Ambient & Background", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Ambient & Background, Breathing / Pulsing Glow"}</script>
+  <style>
+    :root{--ui-accent:#ffce5a;--glow-dur:5s;--glow-color:#58a6ff;--glow-min:.6;--glow-max:1.5;--glow-size:260px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;overflow:hidden;background:#020408;display:flex;align-items:center;justify-content:center}
+    /* Glow layers: the second glow leaves the row, so it sits on the stage's centre, behind the first */
+    .glow-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+    .glow{
+      position:relative;z-index:1;
+      width:var(--glow-size);height:var(--glow-size);border-radius:50%;
+      background:radial-gradient(circle,var(--glow-color) 0%,transparent 70%);
+      opacity:.6;filter:blur(40px);
+      animation:breathe var(--glow-dur) ease-in-out infinite
+    }
+    .glow2{
+      position:absolute;
+      width:calc(var(--glow-size)*1.5);height:calc(var(--glow-size)*1.5);border-radius:50%;
+      background:radial-gradient(circle,var(--glow-color) 0%,transparent 60%);
+      opacity:.3;filter:blur(60px);
+      animation:breathe calc(var(--glow-dur)*1.3) ease-in-out infinite reverse;
+      display:none
+    }
+    @keyframes breathe{
+      0%,100%{transform:scale(var(--glow-min));opacity:.6}
+      50%{transform:scale(var(--glow-max));opacity:.9}
+    }
+    /* Center element */
+    .center-el{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:16px;animation:el-breathe var(--glow-dur) ease-in-out infinite}
+    .center-icon{width:72px;height:72px;border-radius:50%;background:rgba(88,166,255,.15);border:1px solid rgba(88,166,255,.3);display:flex;align-items:center;justify-content:center;font-size:28px}
+    /* The dark patch keeps the white title readable over the brightest part of the glow */
+    .center-title{font-size:clamp(20px,3vw,28px);font-weight:700;color:#fff;text-align:center;padding:0 6px;border-radius:10px;background:rgba(2,4,8,.4);box-shadow:0 0 14px 8px rgba(2,4,8,.4)}
+    @keyframes el-breathe{
+      0%,100%{transform:scale(1);opacity:.9}
+      50%{transform:scale(1.02);opacity:1}
+    }
+    /* See inside and Compare: everything they add stays hidden until its mode is pressed. Labels sit on their own dark backing. */
+    .ins,.panel,.cap,.half-a,.ghost{display:none}
+    .cap{position:absolute;z-index:3;margin:0;padding:3px 7px;border-radius:5px;background:rgba(2,4,8,.92);color:#f4f4f2;font:600 13px/1.25 var(--hb-font)}
+    .c-min{white-space:nowrap}
+    .c-max,.c-icon{max-width:min(230px,60%);text-wrap:balance}
+    @media(max-width:340px){.cap{font-size:12px}}
+    .ins{position:absolute;inset:0;pointer-events:none}
+    .ring{position:absolute;inset:0;margin:auto;border-radius:50%;width:var(--d);height:var(--d)}
+    .ring-min,.ring-max{z-index:1;border:2px dashed rgba(244,244,242,.7)}
+    .ring-min{--d:calc(var(--glow-size)*var(--glow-min))}
+    .ring-max{--d:calc(var(--glow-size)*var(--glow-max))}
+    /* The riding rings are crisp, never inside the blurred glow; they breathe with the glow's own keyframes and length */
+    .ring-ride,.ring-ride2{--d:var(--glow-size);z-index:2;border:2.5px solid #fff;animation:breathe var(--glow-dur) ease-in-out infinite}
+    .ring-ride2{--d:calc(var(--glow-size)*1.5);display:none;border:2px solid rgba(255,255,255,.5);animation-duration:calc(var(--glow-dur)*1.3);animation-direction:reverse}
+    .panel{position:absolute;z-index:4;right:10px;bottom:10px;width:clamp(150px,calc(50% - 74px),210px);padding:8px;border-radius:8px;border:1px solid rgba(244,244,242,.18);background:rgba(2,4,8,.92)}
+    .panel .cap{position:static;display:block;padding:5px 0 0;background:none}
+    /* The graph: across is one breath, up is the glow's size; the dot rides it with the glow's own length and easing */
+    .gwrap{position:relative;container-type:size;aspect-ratio:100/24}
+    .gwrap svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+    .gwrap path{fill:none;vector-effect:non-scaling-stroke}
+    .gaxis{stroke:rgba(244,244,242,.3);stroke-width:1}
+    .gcurve{stroke:var(--ui-accent);stroke-width:2.5;stroke-linecap:round}
+    .gx,.gy{position:absolute;left:0;top:0}
+    .gx{animation:gx var(--glow-dur) linear infinite}
+    .gy{animation:gy var(--glow-dur) ease-in-out infinite}
+    .gdot{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:50%;background:#fff}
+    @keyframes gx{to{transform:translateX(100cqw)}}
+    @keyframes gy{0%,100%{transform:translateY(95cqh)}50%{transform:translateY(5cqh)}}
+    .stage[data-hb-mode="inside"] :is(.ins,.panel,.c-min,.c-max,.c-icon){display:block}
+    .stage[data-hb-mode="inside"].noel .c-icon{display:none}
+    .stage[data-hb-mode="inside"].two .ring-ride2{display:block}
+    .stage[data-hb-mode="inside"] .center-el{z-index:3}
+    @media(max-width:600px){.panel{left:10px;width:auto}.gwrap{aspect-ratio:auto;height:30px}}
+    /* Compare: a row for the names, then the two scenes side by side at half size, each clipped to its own half. On the left a copy
+       with its own fast, wide breath and no blur (a softer gradient instead, so a blur is never doubled); on the right the real scene. */
+    .hn{position:static;grid-row:1;flex-direction:column;margin:8px 8px 0;padding:6px 10px 8px;border:1px solid rgba(244,244,242,.14);border-radius:8px}
+    .hn b{font-size:14px}
+    .hn span{margin-bottom:6px;font-weight:500;color:#cfd4dc;text-wrap:balance}
+    .hn i{margin-top:auto;height:6px;border-radius:3px;background:var(--ui-accent);width:calc(var(--bar,1)*100%)}
+    .half-a{--glow-dur:1.5s;--glow-min:.45;--glow-max:1.8;position:absolute;grid-area:2/1/3/2;inset:0;overflow:hidden;align-items:center;justify-content:center}
+    /* Without the blur: a wider element whose gradient fades out softly, the shape the blur makes (the blur grows and shrinks with the glow) */
+    .half-a :is(.glow,.glow2){filter:none;--k:1.15;--w:calc(var(--glow-size)*1.2);width:var(--w);height:var(--w);
+      background:radial-gradient(circle,color-mix(in srgb,var(--glow-color) calc(var(--k)*50%),transparent),
+        color-mix(in srgb,var(--glow-color) calc(var(--k)*43%),transparent) 18%,color-mix(in srgb,var(--glow-color) calc(var(--k)*26%),transparent) 36%,
+        color-mix(in srgb,var(--glow-color) calc(var(--k)*10%),transparent) 52%,transparent 70%)}
+    .half-a .glow2{--k:1;--w:calc(var(--glow-size)*1.75)}
+    .ghost{--d:calc(var(--glow-size)*var(--glow-min)*var(--cs,.5));position:absolute;z-index:1;inset:0;margin:auto;width:var(--d);height:var(--d);border:2px dashed rgba(244,244,242,.6);border-radius:50%}
+    .stage[data-hb-mode="compare"]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto minmax(0,1fr);align-items:stretch;justify-content:stretch;--cs:.6}
+    .stage[data-hb-mode="compare"]::after{content:"";position:absolute;top:0;bottom:0;left:50%;z-index:3;border-left:1px solid rgba(244,244,242,.16)}
+    .stage[data-hb-mode="compare"] :is(.hn,.half-a,.ghost){display:flex}
+    .stage[data-hb-mode="compare"] :is(.glow,.glow2,.center-el){scale:var(--cs)}
+    .stage[data-hb-mode="compare"] :is(.glow-wrap,.ghost){grid-area:2/2/3/3}
+    .stage[data-hb-mode="compare"] .glow-wrap{overflow:hidden}
+    .stage[data-hb-mode="compare"] .center-el{grid-area:2/2/3/3;place-self:center}
+    @media(max-width:600px),(max-height:500px){.stage[data-hb-mode="compare"]{--cs:.5}}
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="loop">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../starfield/" rel="prev" aria-label="Previous: Starfield / Space Particles"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Starfield / Space Particles</span></a><a href="../ambient-ripple/" rel="next" aria-label="Next: Ambient Ripple Effect"><span><span class="hb-dir">Next: </span>Ambient Ripple Effect</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">07.08 · Ambient &amp; Background</p>
+    <h1>Breathing / Pulsing Glow</h1>
+    <p class="hb-lede">A soft glow slowly grows and shrinks, like calm breathing. Best for idle states.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Watch it</h2><p>It moves by itself. Pause it to look closely, or turn on slow motion to see each part of the movement.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage">
+      <div class="glow-wrap" aria-hidden="true">
+        <div class="glow"></div>
+        <div class="glow2" id="glow2"></div>
+      </div>
+      <div class="center-el" id="center-el">
+        <div class="center-icon" aria-hidden="true">✦</div>
+        <div class="center-title">Rest state</div>
+      </div>
+      <p class="cap c-min" data-hb-caption aria-hidden="true">Shrinks to here</p>
+      <p class="cap c-max" data-hb-caption aria-hidden="true">Grows to here, two and a half times as wide</p>
+      <p class="cap c-icon" data-hb-caption aria-hidden="true">The icon swells a tiny bit too</p>
+      <div class="panel" aria-hidden="true" inert>
+        <div class="gwrap">
+          <svg viewBox="0 0 100 40" preserveAspectRatio="none"><path class="gaxis" d="M0 39H100"/><path class="gcurve" d="M0 38C21 38 29 2 50 2S79 38 100 38"/></svg>
+          <i class="gx"><i class="gy"><i class="gdot"></i></i></i>
+        </div>
+        <p class="cap c-graph" data-hb-caption>One breath: <span id="secs-say">5 seconds</span>, easing at both ends</p>
+      </div>
+      <div class="ins" aria-hidden="true"><i class="ring ring-min"></i><i class="ring ring-max"></i><i class="ring ring-ride"></i><i class="ring ring-ride2"></i></div>
+      <p class="cap hn hn-a" data-hb-caption aria-hidden="true"><b>Alarming</b><span>a breath every second and a half</span><i></i></p>
+      <p class="cap hn hn-b" data-hb-caption aria-hidden="true"><b>Calm</b><span>a breath every 5 seconds</span><i></i></p>
+      <div class="half-a" aria-hidden="true" inert></div>
+      <i class="ghost" aria-hidden="true"></i>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-pause" data-hb-pause="css" data-state="playing"><svg class="hb-ic hb-i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="hb-ic hb-i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9z"/></svg><span class="hb-pause-label">Pause</span></button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo="css" autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the glow breathes between the two dashed rings: it grows and brightens, then shrinks and dims. The graph shows one breath, easing gently at both ends.</p>
+      <p data-hb-for="compare" hidden>Alarming swings from tiny to huge in quick breaths, which feels like a warning. Calm, as you set it, breathes more slowly, which feels relaxed.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting and see the difference as it moves.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-secs="8" aria-pressed="false">Slow</button>
+          <button type="button" data-secs="5" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-secs="3" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">Four to six seconds feels like a calm breath.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="grow-lbl">How much it grows</p>
+        <div class="seg" id="grow-seg" role="group" aria-labelledby="grow-lbl">
+          <button type="button" data-min="0.8" data-max="1.2" aria-pressed="false">A little</button>
+          <button type="button" data-min="0.6" data-max="1.5" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-min="0.45" data-max="1.8" aria-pressed="false">A lot</button>
+        </div>
+        <p class="hb-hint">Big swings look alarming rather than calm.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="color-lbl">Glow color</p>
+        <div class="swatches" id="color-sw" role="group" aria-labelledby="color-lbl">
+          <button type="button" aria-pressed="false" aria-label="Pink" data-c="#ff6f8b" style="background:#ff6f8b"></button>
+          <button type="button" class="on" aria-pressed="true" aria-label="Blue" data-c="#58a6ff" style="background:#58a6ff"></button>
+          <button type="button" aria-pressed="false" aria-label="Purple" data-c="#d2a8ff" style="background:#d2a8ff"></button>
+          <button type="button" aria-pressed="false" aria-label="Green" data-c="#56d364" style="background:#56d364"></button>
+          <button type="button" aria-pressed="false" aria-label="Orange" data-c="#ffa657" style="background:#ffa657"></button>
+        </div>
+        <p class="hb-hint">The color of the glow.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="size-lbl">Glow size</p>
+          <div class="seg" id="size-seg" role="group" aria-labelledby="size-lbl">
+            <button type="button" data-px="180" aria-pressed="false">Small</button>
+            <button type="button" data-px="260" class="on" aria-pressed="true">Medium</button>
+            <button type="button" data-px="340" aria-pressed="false">Large</button>
+          </div>
+          <p class="hb-hint">How big the glow is before it grows.</p>
+        </div>
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Second glow</span><input class="hb-switch" type="checkbox" role="switch" id="double-tog" autocomplete="off"></label>
+          <p class="hb-hint">A larger, fainter glow breathes out of step.</p>
+        </div>
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Icon and title breathe too</span><input class="hb-switch" type="checkbox" role="switch" id="el-tog" checked autocomplete="off"></label>
+          <p class="hb-hint">The icon and its title swell very slightly each breath.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a breathing glow behind [the icon or element that should look alive but at rest]. Place a soft, round, blurred glow of color behind it, and make it slowly grow and brighten, then shrink and dim, over and over, easing gently at both ends like a calm breath. Four to six seconds a breath feels relaxed; much faster feels anxious. When the settings include it, let the element itself swell very slightly with the glow. If the visitor has reduced motion turned on, keep the glow still. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Idle states</li><li>Voice assistants</li><li>Meditation apps</li><li>Media players</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Alerts</li><li>Busy screens</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const stage=document.querySelector('.stage');
+  const glow=document.querySelector('.glow'),glow2=document.getElementById('glow2'),centre=document.getElementById('center-el');
+  const vars=document.documentElement.style;
+  let secs=5;
+
+  // See inside and Compare. The parts they add are in the markup, hidden; the first half of Compare is a copy of the scene (no ids,
+  // out of reach of the keyboard and screen readers) with its own fast, wide breath. Sizes and numbers come from the page's own variables.
+  const wrap=glow.parentElement,root=getComputedStyle(document.documentElement),$=s=>stage.querySelector(s);
+  const half=$('.half-a'),panel=$('.panel'),ride=$('.ring-ride'),ride2=$('.ring-ride2'),ringMin=$('.ring-min'),ringMax=$('.ring-max');
+  const capMin=$('.c-min'),capMax=$('.c-max'),capIcon=$('.c-icon'),secsSay=document.getElementById('secs-say');
+  const names=['.hn-a','.hn-b'].map($),lines=names.map(n=>n.querySelector('span'));
+  const slowTog=document.getElementById('slow-tog'),reduceMQ=matchMedia('(prefers-reduced-motion: reduce)');
+  const copyWrap=wrap.cloneNode(true),copyEl=centre.cloneNode(true),copyGlow2=copyWrap.querySelector('.glow2');
+  [copyWrap,copyEl].forEach(c=>{c.removeAttribute('id');c.querySelectorAll('[id]').forEach(n=>n.removeAttribute('id'))});
+  half.append(copyWrap,copyEl,$('.ghost').cloneNode());
+  // A note is rewritten only when its words change, as its box reads changes out loud. Under reduced motion the loop starts paused, so
+  // both views are stills and say so: See inside while it is paused, Compare while its pose (the top of a breath) is what shows.
+  const notes=[...document.querySelectorAll('[data-hb-for]')],moving=notes.map(n=>n.textContent),still=[
+    'Inside, shown still: the glow breathes between the two dashed rings, and the graph shows one breath, easing gently at both ends.',
+    'Shown still at the top of a breath, each with a dashed ring where it was smallest; the bars show how fast each breathes, Alarming always faster than Calm.'];
+  // At A lot, Calm swings as wide as Alarming (the page's own hint calls big swings alarming), so Compare's note says so
+  const wideWords=['Alarming swings from tiny to huge in quick breaths, which feels like a warning. Calm, set to grow a lot, swings just as wide; only its slower pace keeps it calmer.',
+    'Shown still at the top of a breath, each with a dashed ring where it was smallest; set to grow a lot, Calm swings as wide, and the bars show Alarming breathes faster.'];
+  let mode='normal',paused=reduceMQ.matches,posed=false;
+  const saved=new Map();
+  function describe(){
+    const shown=reduceMQ.matches&&paused;
+    const big=parseFloat(root.getPropertyValue('--glow-min'))<.5;
+    notes.forEach((n,i)=>{const s=shown&&(i===0||posed),words=i===1&&big?wideWords[s?1:0]:s?still[i]:moving[i];if(n.textContent!==words)n.textContent=words});
+  }
+  describe();
+  document.addEventListener('hb:pause',e=>{paused=e.detail.paused;if(!paused){posed=false;saved.clear()}describe()});
+
+  // A loop that is paused when a mode is pressed is shown at a telling moment: See inside a quarter of the way through a breath (the
+  // glow between its two dashed rings), Compare at the top of it. Normal's own times are kept and put back with Normal; Play lifts the pose.
+  const mine=a=>{const t=a.effect&&a.effect.target;return t&&(wrap.contains(t)||centre.contains(t))};
+  const length=a=>a.effect.getComputedTiming().duration;
+  function pose(m){
+    const g=glow.getAnimations()[0],first=!posed;
+    stage.getAnimations({subtree:true}).filter(mine).forEach(a=>{
+      // a part that began during the pose was at its start (the icon: with the glow) in Normal
+      if(!saved.has(a))saved.set(a,first?a.currentTime:a.effect.target===centre?saved.get(g)||0:0);
+      a.currentTime=length(a)*(m==='inside'?.25:.5);
+    });
+    if(m==='compare')half.getAnimations({subtree:true}).forEach(a=>{a.currentTime=length(a)/2});
+    posed=true;
+  }
+  function unpose(restore){
+    if(restore)saved.forEach((t,a)=>{if(a.playState!=='idle')a.currentTime=t});
+    saved.clear();posed=false;
+  }
+  // The riding rings and the graph's dot start when See inside is shown, so they are set to the glow's own time, again once they run
+  function follow(a,b){
+    if(!(a&&b))return;
+    const set=()=>{if(a.currentTime!=null&&b.playState!=='idle'){b.currentTime=a.currentTime;b.playbackRate=a.playbackRate}};
+    set();b.ready.then(set,()=>{});
+  }
+  function syncInside(){
+    const g=glow.getAnimations()[0];
+    follow(g,ride.getAnimations()[0]);follow(glow2.getAnimations()[0],ride2.getAnimations()[0]);
+    panel.querySelectorAll('.gx,.gy').forEach(d=>follow(g,d.getAnimations()[0]));
+  }
+  const times=r=>{const n=Math.round(r*2)/2;return['','one','two','three','four','five'][Math.floor(n)]+(n%1?' and a half':'')};
+  const write=(el,words)=>{if(el.textContent!==words)el.textContent=words};
+  // The words and bars that follow Speed, Slow motion and How much it grows
+  function say(){
+    const k=slowTog.checked?3:1,calm=secs*k,min=parseFloat(root.getPropertyValue('--glow-min')),max=parseFloat(root.getPropertyValue('--glow-max'));
+    write(secsSay,calm+' seconds');
+    write(capMax,'Grows to here, '+times(max/min)+' times as wide');
+    write(lines[0],'a breath every '+(k>1?'4 and a half seconds':'second and a half'));
+    write(lines[1],'a breath every '+calm+' seconds');
+    names[0].style.setProperty('--bar',1/k);names[1].style.setProperty('--bar',1.5/calm);
+  }
+  // See inside's labels, from measured sizes: each next to the ring it names (never across it), clear of the icon and title, the graph and
+  // each other, inside the box; the icon's label sits beside the icon. The spot is searched on a grid of 6px.
+  // a label's box is as wide as its widest line (balanced lines would leave the box as wide as the room, and the words away from the ring)
+  function tight(el){
+    el.style.width='';el.style.left=el.style.top='0px';
+    const r=document.createRange();r.selectNodeContents(el);el.style.width=Math.ceil(r.getBoundingClientRect().width)+15+'px';
+  }
+  function place(){
+    if(mode!=='inside')return;
+    const W=stage.clientWidth,H=stage.clientHeight,cx=W/2,cy=H/2,gap=6,radii=[ringMin,ringMax].map(r=>r.offsetWidth/2);
+    const rect=(el,p)=>({x:el.offsetLeft-p,y:el.offsetTop-p,w:el.offsetWidth+2*p,h:el.offsetHeight+2*p});
+    const taken=[rect(centre,8),rect(panel,6)],icon=centre.firstElementChild;
+    const hit=(x,y,w,h,t)=>x<t.x+t.w&&t.x<x+w&&y<t.y+t.h&&t.y<y+h;
+    const at=(el,x,y)=>{el.style.left=x+'px';el.style.top=y+'px'};
+    if(!stage.classList.contains('noel')){
+      const x=centre.offsetLeft+icon.offsetLeft+icon.offsetWidth+10;
+      capIcon.style.maxWidth=Math.max(70,W-x-10)+'px';tight(capIcon);
+      const y=centre.offsetTop+icon.offsetTop+icon.offsetHeight/2-capIcon.offsetHeight/2;
+      at(capIcon,x,y);taken.push({x:x-5,y:y-5,w:capIcon.offsetWidth+10,h:capIcon.offsetHeight+10});
+    }
+    const labels=[[capMin,radii[0]],[capMax,radii[1]]];
+    labels.forEach(([el])=>tight(el));
+    // the best free spot for one label, given what is already taken: null when there is none
+    function find(el,r,used){
+      const w=el.offsetWidth,h=el.offsetHeight;let best=null;
+      for(let y=8;y<=H-8-h;y+=6)for(let x=8;x<=W-8-w;x+=6){
+        if(used.some(t=>hit(x,y,w,h,t)))continue;
+        const near=Math.hypot(Math.max(x-cx,cx-x-w,0),Math.max(y-cy,cy-y-h,0)),far=Math.hypot(Math.max(cx-x,x+w-cx),Math.max(cy-y,y+h-cy));
+        const off=far<=r-gap?r-far:near>=r+gap?near-r:1e3;
+        const score=off+radii.filter(q=>q!==r&&near-gap<q&&q<far+gap).length*40+Math.abs(y+h/2-cy)*.05;
+        if(!best||score<best.score)best={x,y,score};
+      }
+      return best;
+    }
+    // both orders are tried, since the first label takes room the second may need; the cheaper way where both fit is kept
+    const tries=[labels,[...labels].reverse()].map(order=>{
+      const used=taken.slice(),out=[];
+      for(const [el,r] of order){
+        const b=find(el,r,used);
+        if(!b)return null;
+        used.push({x:b.x-5,y:b.y-5,w:el.offsetWidth+10,h:el.offsetHeight+10});out.push([el,b]);
+      }
+      return{out,score:out.reduce((s,[,b])=>s+b.score,0)};
+    }).filter(Boolean).sort((a,b)=>a.score-b.score);
+    (tries.length?tries[0].out:[[capMin,{x:8,y:8}],[capMax,{x:8,y:8+capMin.offsetHeight+6}]]).forEach(([el,b])=>at(el,b.x,b.y));
+  }
+  // Draws the current mode for the current settings, state and size; safe to run again at any time
+  function view(){
+    say();
+    if(posed&&mode!=='normal')pose(mode);
+    if(mode==='inside')syncInside();
+    place();
+    describe();
+  }
+  document.addEventListener('hb:mode',e=>{
+    mode=e.detail.mode;
+    if(mode==='normal')unpose(true);
+    else if(paused)pose(mode);
+    view();
+  });
+  reduceMQ.addEventListener('change',describe);
+  slowTog.addEventListener('change',view);
+  new ResizeObserver(view).observe(stage);
+  if(document.fonts)document.fonts.ready.then(view);
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+      view();
+    }));
+  }
+  // A new --glow-dur keeps the time already played, so every layer would jump to another point of its breath.
+  // Scaling each animation's time by the same factor as its length keeps the glow where it is, moving or paused.
+  // Compare's fast copy keeps its own length, so it is left out.
+  choices('speed-seg',d=>{
+    const next=+d.secs;
+    stage.getAnimations({subtree:true}).forEach(a=>{
+      if(a.currentTime==null||half.contains(a.effect.target))return;
+      a.currentTime=a.currentTime*next/secs;
+      if(saved.has(a))saved.set(a,saved.get(a)*next/secs);
+    });
+    secs=next;
+    vars.setProperty('--glow-dur',next+'s');
+  });
+  choices('grow-seg',d=>{vars.setProperty('--glow-min',d.min);vars.setProperty('--glow-max',d.max)});
+  choices('color-sw',d=>{vars.setProperty('--glow-color',d.c)});
+  choices('size-seg',d=>{vars.setProperty('--glow-size',d.px+'px')});
+  document.getElementById('double-tog').addEventListener('change',e=>{
+    glow2.style.display=copyGlow2.style.display=e.target.checked?'block':'none';
+    stage.classList.toggle('two',e.target.checked);
+    view();
+  });
+  document.getElementById('el-tog').addEventListener('change',e=>{
+    centre.style.animation=copyEl.style.animation=e.target.checked?'':'none';
+    stage.classList.toggle('noel',!e.target.checked);
+    // a group that starts breathing again joins the glow at the same point of its breath
+    [[glow,centre],[copyWrap.firstElementChild,copyEl]].forEach(([g,c])=>{
+      const ga=g.getAnimations()[0],ca=c.getAnimations()[0];
+      if(ga&&ca&&ga.currentTime!=null)ca.currentTime=ga.currentTime;
+    });
+    view();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter Animation — Animation Handbook</title>
+  <meta name="description" content="Numbers count up when they scroll into view. Best for stats.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/counter-animation/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Counter Animation — Animation Handbook">
+  <meta property="og:description" content="Numbers count up when they scroll into view. Best for stats.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/counter-animation/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Counter Animation — Animation Handbook">
+  <meta name="twitter:description" content="Numbers count up when they scroll into view. Best for stats.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Counter Animation", "name": "Counter Animation", "description": "Numbers count up when they scroll into view. Best for stats.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/01-scroll-based/counter-animation/", "inLanguage": "en", "articleSection": "Scroll-Based", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Scroll-Based, Counter Animation"}</script>
+  <style>
+    :root{--ui-bg:#111114;--ui-border:rgba(255,255,255,.09);--ui-accent:#6ea8ff}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    /* 100cqh is one stage height: the stage is the size container, so the lead-in and the minimum height below follow the box */
+    .stage{position:relative;overflow-y:auto;scrollbar-width:none;container-type:size;background:#0b0b0d}
+    .stage::-webkit-scrollbar{display:none}
+    .spacer{height:100cqh;display:flex;align-items:center;justify-content:center;padding:0 24px;font-size:13px;color:#8a8a92;letter-spacing:.1em;text-align:center}
+    /* At least 80cqh tall, so every "Starts counting" line is reached; the tiles stay packed at the top of that space */
+    #stats{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,2vw,16px);padding:clamp(16px,3vw,32px);min-height:80cqh;align-content:start}
+    .tile{container-type:inline-size;background:var(--ui-bg);border:1px solid var(--ui-border);border-radius:12px;padding:clamp(18px,3vw,28px);display:flex;flex-direction:column;gap:8px}
+    .tile-icon{font-size:22px;opacity:.6}
+    /* Tabular figures keep the digits the same width while they change; 26cqw keeps the widest number inside its tile on the narrowest phones */
+    .tile-num{font-size:min(clamp(28px,4.5vw,44px),26cqw);font-weight:700;font-variant-numeric:tabular-nums;line-height:1;white-space:nowrap;color:var(--ui-accent)}
+    .tile-label{font-size:12px;color:#8a8a92;text-transform:uppercase;letter-spacing:1.5px}
+    .ov,.cp,.pose,.shade,.sweep,.keys,.ov .nm-l,.mid{display:none}
+    /* both views' marks live in a zero-height sticky layer, so no mode adds scroll length */
+    .stage[data-hb-mode="inside"] .ov,.stage[data-hb-mode="compare"] .ov{display:block;position:sticky;top:0;height:0;z-index:6;pointer-events:none}
+    .stage[data-hb-mode="inside"] .spacer,.stage[data-hb-mode="compare"] .spacer{color:transparent}
+    .ov *{position:absolute}
+    .ov .line{left:0;right:0;top:calc(var(--thr,60) * 1cqh);height:0;border-top:2px dashed #ffd479}
+    .key{display:flex;align-items:center;gap:6px;position:static;padding:4px 8px;border-radius:6px;background:rgba(11,11,13,.9);color:#f4f4f2;
+      font:600 13px/1.25 var(--hb-font);white-space:nowrap}
+    .keys{position:absolute;top:8px;left:8px;flex-direction:column;align-items:flex-start;gap:6px;max-width:calc(100% - 16px)}
+    .key *{position:static;font-weight:inherit}
+    .key .sw{display:block;flex:none;width:16px;height:0;border-top:2px dashed #ffd479}
+    .key .sw.sh{height:10px;border:0;border-radius:2px;background:rgba(110,168,255,.7)}
+    /* See inside: the tiles' top edge is a bright line; each tile is a graph of its count with a sweeping line and dot; the icon keeps its place, hidden */
+    .stage[data-hb-mode="inside"] .ov .line{display:block}
+    .stage[data-hb-mode="inside"] .k-in{display:flex}
+    .stage[data-hb-mode="inside"] #stats,.stage[data-hb-mode="compare"] #stats{position:relative}
+    .stage[data-hb-mode="inside"] #stats::before,.stage[data-hb-mode="compare"] #stats::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:#f4f4f2;z-index:3}
+    .stage[data-hb-mode="compare"] #stats::before{left:50%}
+    .stage[data-hb-mode="inside"] .tile{position:relative;overflow:hidden;isolation:isolate}
+    .stage[data-hb-mode="inside"] .tile-icon{visibility:hidden}
+    .stage[data-hb-mode="inside"] .tile-label{color:#d0d0d6}
+    .stage[data-hb-mode="inside"] .shade{display:block;position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+    .shade .fill{fill:rgba(110,168,255,.26)}
+    .shade .edge{fill:none;stroke:rgba(150,195,255,.9);stroke-width:1.5;vector-effect:non-scaling-stroke}
+    .shade .tot{stroke:rgba(244,244,242,.45);stroke-width:1;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}
+    .stage[data-hb-mode="inside"] .sweep{display:block;position:absolute;top:0;bottom:0;right:calc(100% - 2px);width:calc(100% - 2px);
+      border-right:2px solid rgba(244,244,242,.75);pointer-events:none;z-index:1}
+    .dotcol{position:absolute;top:0;bottom:0;right:0;width:0}
+    .dotcol::after{content:"";position:absolute;top:0;right:-5px;width:9px;height:9px;margin-top:-4px;border-radius:50%;background:#f4f4f2}
+    /* Compare: a copy at its totals, then the page's tiles (posed over their real numbers while none counts); the grid keeps its Normal height */
+    .stage[data-hb-mode="compare"]{overflow-anchor:none}
+    .stage[data-hb-mode="compare"] .ov .line{display:block;left:50%}
+    .stage[data-hb-mode="compare"] .mid{display:block;left:50%;top:0;height:100cqh;border-left:1px solid rgba(244,244,242,.4)}
+    .stage[data-hb-mode="compare"] .ov .nm-l{display:flex;position:absolute;top:8px;left:8px}
+    .stage[data-hb-mode="compare"] .k-r{display:flex;left:calc(50% + 8px);max-width:calc(50% - 16px)}
+    .stage[data-hb-mode="compare"]:not(.posed) .k-r .key:last-child{visibility:hidden}
+    .stage[data-hb-mode="compare"] #stats{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));
+      height:var(--gh,auto);min-height:0;align-content:stretch;padding-top:52px}
+    .stage[data-hb-mode="compare"] .tile{display:grid;grid-template-columns:minmax(0,1fr);align-content:center;gap:4px;
+      padding:clamp(8px,1.6vw,14px);min-height:0;overflow:hidden}
+    .stage[data-hb-mode="compare"] .cp{display:grid}
+    .stage[data-hb-mode="compare"] .tile-icon{display:none}
+    .stage[data-hb-mode="compare"] .tile-label{letter-spacing:.6px}
+    .stage[data-hb-mode="compare"] .tile-num{grid-area:1/1}
+    .stage[data-hb-mode="compare"].posed .pose{display:block}
+    .stage[data-hb-mode="compare"].posed .tile:not(.cp) .tile-num:not(.pose){color:transparent}
+    @media(min-width:601px){
+      .stage[data-hb-mode="compare"] .k-r{flex-direction:row;flex-wrap:wrap}
+      .stage[data-hb-mode="compare"] .tile:is(:nth-child(4n+3),:nth-child(4n)){grid-row:2}
+    }
+    @media(max-width:600px){
+      .key{font-size:12px;padding:3px 6px}
+      .keys{gap:6px}
+      /* a half is one column of four tiles */
+      .stage[data-hb-mode="compare"] #stats{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(4,minmax(0,1fr));grid-auto-flow:column;gap:6px;padding-top:44px}
+      .stage[data-hb-mode="compare"] .tile{gap:2px;padding:5px 8px}
+      .stage[data-hb-mode="compare"] .tile-num{font-size:min(24px,26cqw)}
+    }
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="scroll" data-hb-autoplay>
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../sticky-section/" rel="prev" aria-label="Previous: Sticky Section"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Sticky Section</span></a><a href="../progress-bar/" rel="next" aria-label="Next: Progress Bar"><span><span class="hb-dir">Next: </span>Progress Bar</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">01.16 · Scroll-Based</p>
+    <h1>Counter Animation</h1>
+    <p class="hb-lede">Numbers count up when they scroll into view. Best for stats.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Scroll it</h2><p>Scroll inside the box, or press Play and it scrolls for you.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage" tabindex="0" role="region" aria-label="Numbers that count up as they scroll into view">
+      <div class="ov" aria-hidden="true">
+        <i class="line"></i><i class="mid"></i>
+        <div class="keys k-in">
+          <p class="key" data-hb-caption><i class="sw"></i>Dashed line: counting starts here</p>
+          <p class="key" data-hb-caption><i class="sw sh"></i><span>Shade: each count, <b class="spd">about two seconds</b></span></p>
+        </div>
+        <p class="key nm-l" data-hb-caption>Already there</p>
+        <div class="keys k-r">
+          <p class="key" data-hb-caption>Counts up</p>
+          <p class="key" data-hb-caption>Half a second in</p>
+        </div>
+      </div>
+      <p class="spacer">Scroll down ↓</p>
+      <div id="stats">
+        <div class="tile"><div class="tile-icon" aria-hidden="true">◉</div><div class="tile-num" id="cn0" role="img" aria-label="12,847">0</div><div class="tile-label">active users</div></div>
+        <div class="tile"><div class="tile-icon" aria-hidden="true">◈</div><div class="tile-num" id="cn1" role="img" aria-label="98.4%">0.0%</div><div class="tile-label">uptime</div></div>
+        <div class="tile"><div class="tile-icon" aria-hidden="true">◆</div><div class="tile-num" id="cn2" role="img" aria-label="$2.4M">$0</div><div class="tile-label">revenue</div></div>
+        <div class="tile"><div class="tile-icon" aria-hidden="true">◇</div><div class="tile-num" id="cn3" role="img" aria-label="8 yrs">0 yrs</div><div class="tile-label">experience</div></div>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-scroll" data-hb-autoscroll><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>Play</button>
+      <button class="hb-play" type="button" id="btn-top" data-hb-top><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>Back to top</button>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the dashed line is where counting starts; each tile's shade shows its count climbing over time, and a line sweeps across as the number counts. Scroll the box or press Play to watch.</p>
+      <p data-hb-for="compare" hidden>Already there shows the totals from the start; Counts up climbs from zero once the tiles reach the dashed line, and rests half a second in. Scroll the box or press Play to watch.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting, then scroll again or press Play.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="start-lbl">Starts counting</p>
+        <div class="seg" id="start-seg" role="group" aria-labelledby="start-lbl">
+          <button type="button" data-thr="90" aria-pressed="false">Early</button>
+          <button type="button" data-thr="60" class="on" aria-pressed="true">Middle</button>
+          <button type="button" data-thr="30" aria-pressed="false">Late</button>
+        </div>
+        <p class="hb-hint">How far the numbers scroll into the box before counting.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-ms="2900" aria-pressed="false">Slow</button>
+          <button type="button" data-ms="1800" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-ms="1100" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">How long the numbers take to reach their totals.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="feel-lbl">Feel</p>
+        <div class="seg" id="feel-seg" role="group" aria-labelledby="feel-lbl">
+          <button type="button" data-ease="outCubic" class="on" aria-pressed="true">Smooth</button>
+          <button type="button" data-ease="outExpo" aria-pressed="false">Slow finish</button>
+          <button type="button" data-ease="outBack" aria-pressed="false">Springy</button>
+          <button type="button" data-ease="linear" aria-pressed="false">Even</button>
+        </div>
+        <p class="hb-hint">Springy goes a little past each total, then settles.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>One after another</span><input class="hb-switch" type="checkbox" role="switch" id="stagger-tog" checked autocomplete="off"></label>
+          <p class="hb-hint">Each number starts a moment after the one before.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a count-up animation to [the numbers in your stats section]. When the numbers scroll far enough into view, count each one up from zero to its total, and format it on every step so commas, currency signs and units show the whole way through, not just at the end. Count again if the numbers leave the view and come back. When the settings include it, start each number a moment after the one before for a cascade. Screen readers should hear each final number once, never the steps in between. If the visitor has reduced motion turned on, show the final numbers straight away. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Stats</li><li>Annual reports</li><li>Landing pages</li><li>Dashboards</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Prices</li><li>Data tables</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const stage=document.getElementById('stage'),stats=document.getElementById('stats');
+  const staggerTog=document.getElementById('stagger-tog');
+  const reduce=window.matchMedia('(prefers-reduced-motion:reduce)');
+  const TARGETS=[12847,98.4,2400000,8];
+  const FORMATS=[
+    v=>Math.round(v).toLocaleString('en-US'),
+    v=>v.toFixed(1)+'%',
+    v=>{if(v>=1e6)return'$'+(v/1e6).toFixed(1)+'M';if(v>=1e4)return'$'+Math.floor(v/1e3)+'K';return'$'+Math.floor(v).toLocaleString('en-US')},
+    v=>Math.floor(v)+' yrs'
+  ];
+  const EASE={
+    linear:t=>t,
+    outCubic:t=>1-(1-t)**3,
+    outExpo:t=>t===1?1:1-Math.pow(2,-10*t),
+    outBack:t=>{const c=1.70158,c3=c+1;return 1+c3*Math.pow(t-1,3)+c*Math.pow(t-1,2)}
+  };
+  let threshold=60,duration=1800,easing='outCubic',observer,running=false,runId=0,mode='normal';
+  // Where each number is in its count: null before it starts, then 0 to 1 (1 once counted). Both views read it.
+  const prog=TARGETS.map(()=>null);
+
+  const cnEls=TARGETS.map((_,i)=>document.getElementById('cn'+i));
+  // Compare's left half: a copy of the tiles at their totals, made once, without ids or names, inert and hidden from screen readers
+  const copies=[...stats.children].map((tile,i)=>{
+    const c=tile.cloneNode(true);
+    c.classList.add('cp');c.inert=true;c.setAttribute('aria-hidden','true');
+    c.querySelectorAll('[id]').forEach(n=>{n.removeAttribute('id');n.removeAttribute('role');n.removeAttribute('aria-label')});
+    c.querySelector('.tile-num').textContent=FORMATS[i](TARGETS[i]);
+    return c;
+  });
+  // The marks inside each real tile: its graph, its sweep and Compare's posed number
+  const marks=[...stats.children].map(tile=>{
+    tile.insertAdjacentHTML('beforeend','<svg class="shade" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg><span class="sweep" aria-hidden="true"><span class="dotcol"></span></span><span class="tile-num pose" aria-hidden="true"></span>');
+    return {shade:tile.querySelector('.shade'),sweep:tile.querySelector('.sweep'),dot:tile.querySelector('.dotcol'),pose:tile.querySelector('.pose')};
+  });
+  stats.prepend(...copies);
+
+  // The graph: zero at the bottom (94%), the total at 30%, so Springy's overshoot stays inside the tile
+  const BASE=94,TOP=30,POSE_MS=500,FRAME_GAP=200;
+  const gapNow=()=>staggerTog.checked?FRAME_GAP:0;
+  const heightOf=(t)=>BASE-(EASE[easing]||EASE.outCubic)(t)*(BASE-TOP);
+  function drawShades(){
+    const gap=gapNow(),span=duration+3*gap;
+    marks.forEach((m,i)=>{
+      const x0=i*gap/span*100,pts=[];
+      for(let k=0;k<=36;k++)pts.push(((i*gap+duration*k/36)/span*100).toFixed(2)+','+heightOf(k/36).toFixed(2));
+      const curve=`0,${BASE} ${x0.toFixed(2)},${BASE} ${pts.join(' ')} 100,${TOP}`;
+      m.shade.innerHTML=`<polygon class="fill" points="${curve} 100,${BASE}"/><polyline class="edge" points="${curve}"/><line class="tot" x1="0" x2="100" y1="${TOP}" y2="${TOP}"/>`;
+      place(i);
+    });
+  }
+  // A sweep stands where its number stands: across with the time since the number began, up with its share of the total
+  function place(i){
+    const gap=gapNow(),span=duration+3*gap,t=prog[i]===null?0:prog[i];
+    marks[i].sweep.style.transform=`translateX(${((i*gap+duration*t)/span*100).toFixed(2)}%)`;
+    marks[i].dot.style.transform=`translateY(${heightOf(t).toFixed(2)}%)`;
+  }
+  const placeAll=()=>{if(mode==='inside')marks.forEach((_,i)=>place(i))};
+
+  // Compare's posed moment: each number as it is half a second after the first one starts, the cascade applied
+  let poseOn=false,poseTimer=0;
+  function drawPose(){
+    const gap=gapNow();
+    marks.forEach((m,i)=>{
+      const t=Math.max(0,Math.min((POSE_MS-i*gap)/duration,1));
+      m.pose.textContent=FORMATS[i](TARGETS[i]*(EASE[easing]||EASE.outCubic)(t));
+    });
+  }
+  const counting=()=>prog.some(p=>p!==null&&p<1);
+  function setPose(on){if(on!==poseOn){poseOn=on;stage.classList.toggle('posed',on)}}
+  // Lifted while a number counts; back a third of a second after the last count (at once on entering Compare or under reduced motion)
+  function syncPose(delay){
+    if(mode!=='compare')return;
+    if(counting()){clearTimeout(poseTimer);poseTimer=0;setPose(false);return}
+    if(poseOn||poseTimer)return;
+    if(delay&&!reduce.matches)poseTimer=setTimeout(()=>{poseTimer=0;setPose(true)},330);else setPose(true);
+  }
+
+  // A count in progress stops and every number shows zero again
+  function resetCounters(){
+    runId++;running=false;prog.fill(null);
+    cnEls.forEach((el,i)=>{el.textContent=FORMATS[i](0)});
+    placeAll();syncPose(330);
+  }
+
+  // Speed, feel and the cascade are read when a count starts, so a change shows from the next count. A number starts once the
+  // one before it has (plus the cascade gap) and once half of it is inside the box, so it is always seen counting: the lower
+  // row of numbers can still be below the box when the tiles pass the line.
+  function animateCounters(motionOk){
+    if(running)return;running=true;const id=++runId;
+    const start=performance.now(),ms=duration,ef=EASE[easing]||EASE.outCubic;
+    const gap=staggerTog.checked&&motionOk?200:0;
+    const begun=[];
+    prog.fill(null);
+    if(motionOk){prog[0]=0;cnEls.forEach((el,i)=>{el.textContent=FORMATS[i](0)});syncPose()}
+    function frame(now){
+      if(id!==runId)return;
+      const boxBottom=stage.getBoundingClientRect().bottom;
+      const middles=cnEls.map(el=>{const r=el.getBoundingClientRect();return r.top+r.height/2});
+      let anyActive=false;
+      TARGETS.forEach((target,i)=>{
+        if(begun[i]===undefined){
+          const turn=i?begun[i-1]+gap:start; // NaN while the number before has not started
+          if(!(now>=turn)||(motionOk&&middles[i]>=boxBottom)){anyActive=true;return;}
+          begun[i]=now;
+        }
+        const t=motionOk?Math.min((now-begun[i])/ms,1):1;
+        cnEls[i].textContent=FORMATS[i](target*ef(t));
+        prog[i]=t;
+        if(mode==='inside')place(i);
+        if(t<1)anyActive=true;
+      });
+      syncPose(330);
+      if(anyActive)requestAnimationFrame(frame);else running=false;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  function buildObserver(){
+    if(observer)observer.disconnect();
+    const margin=-(100-threshold);
+    observer=new IntersectionObserver(entries=>{
+      if(entries[entries.length-1].isIntersecting&&!running)animateCounters(!reduce.matches);
+    },{root:stage,rootMargin:`0px 0px ${margin}% 0px`,threshold:0});
+    observer.observe(stats);
+  }
+
+  // Once the tiles are out of the box (their top less than 8px inside it, when no number shows yet), the numbers go back to
+  // zero. After Back to top, or Play at the end, they scroll in at zero again instead of showing the old totals first. The
+  // margin stays well under the smallest "Starts counting" line (a tenth of the box, about 25px at 258px), so the counting
+  // observer has always let go before this one resets, and a count can start again on the way down.
+  new IntersectionObserver(entries=>{
+    if(!entries[entries.length-1].isIntersecting)resetCounters();
+  },{root:stage,rootMargin:'0px 0px -8px 0px',threshold:0}).observe(stats);
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  choices('start-seg',d=>{threshold=+d.thr;buildObserver();drawViews()});
+  choices('speed-seg',d=>{duration=+d.ms;drawViews()});
+  choices('feel-seg',d=>{easing=d.ease;drawViews()});
+  staggerTog.addEventListener('change',drawViews);
+  buildObserver();
+
+  // Compare keeps the grid's Normal height: measured in Normal, or with the mode off for a moment when resized in Compare
+  function pinHeight(){
+    let h;
+    if(mode==='compare'){
+      const top=stage.scrollTop;
+      stage.setAttribute('data-hb-mode','normal');h=stats.offsetHeight;stage.setAttribute('data-hb-mode','compare');
+      stage.scrollTop=top;
+    }else h=stats.offsetHeight;
+    stats.style.setProperty('--gh',h+'px');
+  }
+  let pinning=0;
+  const queuePin=()=>{if(!pinning)pinning=requestAnimationFrame(()=>{pinning=0;pinHeight()})};
+  new ResizeObserver(queuePin).observe(stage);
+  if(document.fonts)document.fonts.ready.then(queuePin);
+
+  const SECONDS=['one','two','three'];
+  const LABELS={
+    normal:'Numbers that count up as they scroll into view',
+    inside:'The stat tiles with the line where counting starts and each count\'s climb drawn in its tile',
+    compare:'The stat tiles twice: already at their totals, and counting up from zero, held half a second in'
+  };
+  const NOTES={
+    inside:'Shown without counting: the numbers appear at their totals once the tiles reach the dashed line; each tile\'s shade shows how its count would climb over time.',
+    compare:'Shown still, half a second in: Already there shows the totals; in Counts up each number is only part of the way, as it would be while counting.'
+  };
+  const notes=[...document.querySelectorAll('.hb-mode-notes [data-hb-for]')].map(n=>({n,words:n.textContent}));
+  function setNotes(){notes.forEach(o=>{o.n.textContent=reduce.matches?NOTES[o.n.dataset.hbFor]:o.words})}
+  // Everything the views draw follows the settings at once; the live count reads them when the next count starts
+  function drawViews(){
+    stage.style.setProperty('--thr',threshold);
+    stage.querySelector('.spd').textContent='about '+SECONDS[Math.max(0,Math.min(2,Math.round(duration/1000)-1))]+(duration<1500?' second':' seconds');
+    drawShades();drawPose();
+  }
+  document.addEventListener('hb:mode',e=>{
+    mode=e.detail.mode;
+    stage.setAttribute('aria-label',LABELS[mode]);
+    clearTimeout(poseTimer);poseTimer=0;
+    if(mode!=='compare')setPose(false);
+    drawViews();syncPose();
+  });
+  reduce.addEventListener('change',()=>{setNotes();syncPose()});
+  setNotes();drawViews();pinHeight();
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+@layer demo {
+	@layer baselayout {
+		* {
+			box-sizing: border-box;
+		}
+
+		html {
+			color: #444;
+			background: #cfcfcf;
+		}
+
+		body {
+			font-size: 16px;
+			font-family: -system-ui, sans-serif;
+			line-height: 1.5;
+			margin: 0;
+			padding: 2em;
+			-webkit-font-smoothing: antialiased;
+
+			display: grid;
+			place-content: safe center;
+			height: 100%;
+			gap: 2rem;
+		}
+
+		html,
+		body {
+			height: 100%;
+		}
+
+		main {
+			display: flex;
+			gap: 2rem;
+			margin: 0 auto;
+			text-align: center;
+		}
+	}
+
+	@layer ui {
+		.container {
+			height: 250px;
+			width: 250px;
+			overflow-y: auto;
+			padding: 0 1em;
+			position: relative;
+			background: #fff;
+			margin: auto;
+			border-radius: 0.3em;
+			box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+		}
+
+		.container::before,
+		.container::after {
+			content: '';
+			display: block;
+			position: sticky;
+			left: 0em;
+			right: 0em;
+			height: 0.75rem;
+
+			visibility: hidden;
+		}
+
+		.container::before {
+			top: 0;
+			background: radial-gradient(farthest-side at 50% 0, rgb(0 0 0 / 0.25), rgb(0 0 0 / 0));
+		}
+
+		.container::after {
+			bottom: 0;
+			background: radial-gradient(farthest-side at 50% 100%, rgb(0 0 0 / 0.25), rgb(0 0 0 / 0));
+			animation-direction: reverse;
+			animation-range: calc(100% - 40px) calc(100% - 20px);
+		}
+
+		.container > *:first-child {
+			margin-top: 0;
+		}
+		.container > *:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSS scroll timelines — scroll() and view(), zero JavaScript — scroll-story-lab</title>
+  <meta name="description" content="Scroll-driven animations in pure CSS: a reading progress bar with scroll(), entry effects with view(), @supports fallbacks and a support table.">
+  <style>
+    :root {
+      --bg: #0A0D14;
+      --surface: #0F1626;
+      --border: #1E293B;
+      --accent: #2563EB;
+      --accent-bright: #38BDF8;
+      --title: #F1F5F9;
+      --body: #94A3B8;
+      --muted: #64748B;
+      --sans: -apple-system, 'Segoe UI', Inter, Roboto, sans-serif;
+      --mono: 'Cascadia Code', Consolas, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--body);
+      font-family: var(--sans);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    a { color: var(--accent-bright); }
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent-bright);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .site-header { border-bottom: 1px solid var(--border); padding: 20px 0; }
+    .header-inner {
+      display: flex; flex-wrap: wrap; gap: 10px 28px;
+      align-items: baseline; justify-content: space-between;
+    }
+    .brand { font-family: var(--mono); font-size: 1.05rem; color: var(--accent-bright); text-decoration: none; }
+    .brand:hover { color: var(--title); }
+    .tagline { margin: 4px 0 0; font-size: .85rem; color: var(--muted); }
+    .site-nav { display: flex; gap: 20px; }
+    .site-nav a {
+      color: var(--body); text-decoration: none; font-size: .9rem;
+      border-bottom: 1px solid transparent; transition: color .2s, border-color .2s;
+    }
+    .site-nav a:hover { color: var(--title); border-bottom-color: var(--accent); }
+
+    h1 { color: var(--title); font-size: clamp(1.8rem, 5vw, 2.6rem); line-height: 1.15; letter-spacing: -.02em; margin: 0 0 18px; }
+    h2 { color: var(--title); font-size: 1.35rem; margin: 0 0 12px; }
+    .kicker {
+      font-family: var(--mono); font-size: .75rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--accent-bright); margin: 0 0 12px;
+    }
+    .intro { padding: 72px 0 8px; }
+    .intro p, .prose p { max-width: 62ch; }
+    .prose { padding: 72px 0 0; }
+    .demo { padding: 88px 0 0; }
+    .demo-label {
+      font-family: var(--mono); font-size: .75rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted); margin: 0 0 10px;
+    }
+    .demo-label b { color: var(--accent-bright); font-weight: 600; }
+    .hint { font-size: .85rem; color: var(--muted); font-style: italic; }
+
+    code {
+      font-family: var(--mono); font-size: .88em; color: var(--accent-bright);
+      background: rgba(37, 99, 235, .12); padding: .1em .35em; border-radius: 4px;
+    }
+    pre {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 18px 20px; overflow-x: auto; margin: 20px 0 0;
+    }
+    pre code { background: none; padding: 0; color: #CBD5E1; font-size: .8rem; line-height: 1.65; }
+
+    /* ==============================================================
+       DEMO 01 — reading progress bar, no JavaScript
+
+       animation-timeline: scroll(root) re-times a plain keyframe
+       animation so that 0% = page top and 100% = page bottom. The
+       browser drives it off the main thread: no listeners, no rAF,
+       nothing for the main thread to drop under load.
+       ============================================================== */
+    .reading-bar {
+      position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 50;
+    }
+    .reading-bar span {
+      display: block; height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+      transform-origin: left center;
+    }
+
+    @supports (animation-timeline: scroll()) {
+      .reading-bar span {
+        /* `linear` matters: the easing now maps scroll % to keyframe %,
+           and a progress meter should not ease. `both` pins the ends. */
+        animation: grow-x linear both;
+        /* scroll(root) = the document scroller, block axis by default */
+        animation-timeline: scroll(root);
+      }
+    }
+
+    @keyframes grow-x {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    /* Honest fallback: browsers without scroll timelines get NO stuck
+       half-drawn bar — the element hides and a notice appears instead. */
+    .no-support-note { display: none; }
+    @supports not (animation-timeline: scroll()) {
+      .reading-bar { display: none; }
+      .no-support-note {
+        display: block;
+        border: 1px solid var(--border); border-left: 3px solid var(--accent);
+        border-radius: 10px; background: var(--surface);
+        padding: 16px 20px; margin: 24px 0 0; font-size: .9rem;
+      }
+    }
+
+    /* ==============================================================
+       DEMO 02 — a figure that scales into view
+
+       view() creates a timeline from THIS element's journey across the
+       viewport. animation-range trims it: here the animation starts as
+       the element's top enters (entry 0%) and finishes when the element
+       has covered 45% of the viewport crossing — so it completes while
+       you are still looking at it, not behind your back.
+       ============================================================== */
+    .zoom-fig { margin: 20px 0 0; }
+    .zoom-fig svg { display: block; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--border); }
+
+    @supports (animation-timeline: view()) {
+      .zoom-fig {
+        animation: enter-zoom linear both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 45%;
+      }
+    }
+
+    @keyframes enter-zoom {
+      from { transform: scale(.86); opacity: .35; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    /* ==============================================================
+       DEMO 03 — text sliding in from the wings
+
+       Same view() timeline, shorter range (the element's own entry),
+       opposite X offsets. Without support these paragraphs are simply
+       static text — the from-state lives ONLY inside the keyframes, so
+       nothing is ever hidden from an unsupporting browser.
+       ============================================================== */
+    .slide-pair { display: grid; gap: 16px; }
+    .slide-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+      padding: 22px 24px;
+    }
+    .slide-card h3 { color: var(--title); margin: 0 0 6px; font-size: 1.02rem; }
+    .slide-card p { margin: 0; font-size: .9rem; }
+
+    @supports (animation-timeline: view()) {
+      .slide-l { animation: from-left  linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
+      .slide-r { animation: from-right linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
+    }
+
+    @keyframes from-left {
+      from { transform: translateX(-48px); opacity: 0; }
+      to   { transform: none; opacity: 1; }
+    }
+    @keyframes from-right {
+      from { transform: translateX(48px); opacity: 0; }
+      to   { transform: none; opacity: 1; }
+    }
+
+    /* Fade-only variant used under prefers-reduced-motion */
+    @keyframes fade-only {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* --------------------------------------------------------------
+       Reduced motion, with nuance:
+       - The reading bar STAYS. It is a position indicator that moves
+         only, and exactly, as the reader scrolls — information, not
+         animation. (WCAG's motion criteria target decorative movement.)
+       - The zoom and slides are decoration, so they swap their
+         keyframes for a pure crossfade: same reveal, zero travel.
+       -------------------------------------------------------------- */
+    @media (prefers-reduced-motion: reduce) {
+      .zoom-fig, .slide-l, .slide-r { animation-name: fade-only; }
+    }
+
+    /* Support table */
+    .support-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: .9rem; }
+    .support-table caption { text-align: left; font-size: .8rem; color: var(--muted); margin-bottom: 10px; }
+    .support-table th, .support-table td {
+      text-align: left; padding: 10px 14px; border: 1px solid var(--border);
+    }
+    .support-table th { color: var(--title); font-weight: 600; background: var(--surface); }
+    .support-table td b { color: var(--accent-bright); font-weight: 600; }
+    .table-wrap { overflow-x: auto; }
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      margin-top: 120px; padding: 26px 0 42px;
+      font-size: .85rem; color: var(--muted);
+    }
+    .site-footer a { color: var(--body); }
+    .site-footer a:hover { color: var(--accent-bright); }
+  </style>
+</head>
+<body>
+
+  <!-- Demo 01: page-wide reading progress, drawn by CSS alone -->
+  <div class="reading-bar" aria-hidden="true"><span></span></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <div>
+        <a class="brand" href="index.html">scroll-story-lab</a>
+        <p class="tagline">Scroll-driven animation patterns in vanilla JS and modern CSS</p>
+      </div>
+      <nav class="site-nav" aria-label="Site">
+        <a href="index.html">All demos</a>
+        <a href="https://github.com/AleBrito124356/scroll-story-lab">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="intro">
+      <p class="kicker">Pattern 04 — animation-timeline, zero JavaScript</p>
+      <h1>Scroll timelines in pure CSS</h1>
+      <p>
+        Every other page in this repo pays a JavaScript tax: listeners, observers,
+        requestAnimationFrame bookkeeping. This page pays nothing.
+        <code>animation-timeline</code> re-times ordinary CSS keyframe animations against
+        scroll position instead of the clock — <code>scroll()</code> binds to a scroll
+        container's progress, <code>view()</code> to an element's own journey across the
+        viewport. The browser runs both off the main thread, which means these effects
+        keep their frame rate even while your app is busy doing worse things.
+      </p>
+      <p>
+        There is <strong>no script tag in this file</strong>. View source and check.
+      </p>
+      <div class="no-support-note" role="note">
+        Heads up: this browser does not support CSS scroll-driven animations yet, so the
+        page is showing its fallback state — all content visible, no scroll effects, and
+        the reading bar hidden rather than frozen. That degradation is itself the pattern:
+        wrap the enhancement in <code>@supports</code>, keep the base state complete.
+      </div>
+    </section>
+
+    <section class="prose">
+      <h2>Demo 01 is already running</h2>
+      <p>
+        The blue bar pinned to the top of this page is a scroll-driven animation: a
+        one-keyframe <code>scaleX</code> re-timed against the document scroller. The
+        entire implementation:
+      </p>
+      <pre><code>.reading-bar span {
+  transform-origin: left center;
+  animation: grow-x linear both;      /* linear: meters must not ease */
+  animation-timeline: scroll(root);   /* 0% = page top, 100% = bottom */
+}
+@keyframes grow-x {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}</code></pre>
+      <p style="margin-top:14px">
+        Compare that with the JavaScript version on the
+        <a href="progress.html">progress page</a> — ten lines there, zero here, identical
+        pixels. The JS version's advantage is reach: it works in every browser that runs
+        script. Pick per audience; ship the @supports fallback either way.
+      </p>
+    </section>
+
+    <!-- =============================================================
+         DEMO 02 — figure scaling into view
+         ============================================================= -->
+    <section class="demo" aria-label="Demo 2: figure that scales as it enters the viewport">
+      <p class="demo-label"><b>Demo 02</b> — view(): scale on entry</p>
+      <p style="max-width:62ch">
+        This figure starts at 86% scale and low opacity, reaching full size by the time it
+        has crossed 45% of the viewport. The timeline is the element's own visibility —
+        no coordinates, no math, one <code>animation-range</code> declaration:
+      </p>
+      <figure class="zoom-fig">
+        <!-- Inline SVG, no external image: a quiet horizon study in the
+             repo's blues. Decorative, so aria-hidden on the graphic and
+             a figcaption carrying the meaning. -->
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#0F1626"/>
+              <stop offset="1" stop-color="#0A0D14"/>
+            </linearGradient>
+            <linearGradient id="sun" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#2563EB"/>
+              <stop offset="1" stop-color="#38BDF8"/>
+            </linearGradient>
+          </defs>
+          <rect width="800" height="420" fill="url(#sky)"/>
+          <circle cx="560" cy="180" r="86" fill="url(#sun)" opacity="0.9"/>
+          <circle cx="560" cy="180" r="130" fill="none" stroke="#38BDF8" stroke-opacity="0.18"/>
+          <circle cx="560" cy="180" r="176" fill="none" stroke="#38BDF8" stroke-opacity="0.08"/>
+          <g stroke="#1E293B" stroke-width="2">
+            <line x1="40"  y1="300" x2="760" y2="300"/>
+            <line x1="80"  y1="330" x2="720" y2="330" stroke-opacity="0.7"/>
+            <line x1="120" y1="360" x2="680" y2="360" stroke-opacity="0.4"/>
+          </g>
+          <g fill="#38BDF8">
+            <circle cx="180" cy="120" r="3" opacity="0.7"/>
+            <circle cx="260" cy="70"  r="2" opacity="0.5"/>
+            <circle cx="120" cy="200" r="2" opacity="0.4"/>
+            <circle cx="700" cy="60"  r="2" opacity="0.5"/>
+          </g>
+        </svg>
+        <figcaption class="hint" style="margin-top:10px">
+          animation-range: entry 0% cover 45% — done while you are still looking at it.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- =============================================================
+         DEMO 03 — text sliding in
+         ============================================================= -->
+    <section class="demo" aria-label="Demo 3: text cards sliding in from left and right">
+      <p class="demo-label"><b>Demo 03</b> — view(): slide on entry</p>
+      <div class="slide-pair">
+        <div class="slide-card slide-l">
+          <h3>From the left</h3>
+          <p>
+            The range here is <code>entry 0% entry 100%</code> — the card finishes its
+            slide the instant its bottom edge clears the viewport's bottom. Entry ranges
+            keep effects tied to arrival, which is where the eye expects them.
+          </p>
+        </div>
+        <div class="slide-card slide-r">
+          <h3>From the right</h3>
+          <p>
+            Scrub it: scroll back up. Scroll-driven animations run backwards for free —
+            position in, position out — something the class-toggling observer pattern has
+            to fake with re-arming logic.
+          </p>
+        </div>
+        <div class="slide-card slide-l">
+          <h3>Reduced motion, handled in one line</h3>
+          <p>
+            Under prefers-reduced-motion these cards swap their keyframes for a pure
+            crossfade via <code>animation-name: fade-only</code>. The reading bar stays:
+            it is an indicator that moves only as far as you scroll it, not decoration.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================
+         Support + fallback pattern
+         ============================================================= -->
+    <section class="prose">
+      <h2>Browser support</h2>
+      <div class="table-wrap">
+        <table class="support-table">
+          <caption>CSS scroll-driven animations (animation-timeline: scroll() / view()), as of early 2026. Verify current data on caniuse.com before shipping.</caption>
+          <thead>
+            <tr><th scope="col">Browser</th><th scope="col">Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Chrome / Edge 115+</td><td><b>Supported</b></td></tr>
+            <tr><td>Opera 101+</td><td><b>Supported</b></td></tr>
+            <tr><td>Safari 26+</td><td><b>Supported</b> (earlier Safari: no)</td></tr>
+            <tr><td>Firefox</td><td>In development — behind the <code>layout.css.scroll-driven-animations.enabled</code> flag</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:18px">
+        The deployment rule that makes partial support a non-issue: author the page so it
+        is <em>complete without the animation</em>, then add motion inside
+        <code>@supports (animation-timeline: scroll())</code>. Never put an element's
+        visible state behind a feature the browser might not have — the from-state belongs
+        in the keyframes, not in the base rule. Browsers that understand the timeline get
+        the choreography; everyone else gets a finished, static page and no way to tell
+        anything is missing.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      MIT &copy; 2026 Alejandro Brito &middot;
+      <a href="index.html">All demos</a> &middot;
+      <a href="https://github.com/AleBrito124356/scroll-story-lab">GitHub</a>
+    </div>
+  </footer>
+
+</body>
+</html>

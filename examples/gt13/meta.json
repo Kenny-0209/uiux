@@ -1,0 +1,12 @@
+{
+  "name": "StaticWipe",
+  "source": "https://github.com/gl-transitions/gl-transitions/blob/0efa1651dfdbc0cdbd57f4cda55f12d8b3dbc0c5/transitions/StaticWipe.glsl",
+  "params": {
+    "u_transitionUpToDown": true,
+    "u_max_static_span": 0.5
+  },
+  "types": {
+    "u_transitionUpToDown": "bool",
+    "u_max_static_span": "float"
+  }
+}

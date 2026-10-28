@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Scroll Progress Timelineのデモ</title>
+  <link rel="stylesheet" href="./style/base.css" />
+  <style>
+    body {
+      height: 200vh; /* スクロールが発生するよう適当な高さを確保 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .skeleton {
+      height: 85%;
+      width: 70vw;
+      background-image: repeating-linear-gradient(#eff3f6, #eff3f6 20px, #e1e9ef 20px, #e1e9ef 40px);
+    }
+
+    /* 垂直方向にスケールを変えるキーフレーム */
+    @keyframes grow-progress {
+      from {
+        scale: 1 0;
+      }
+      to {
+        scale: 1 1;
+      }
+    }
+
+    .animationElement {
+      /* スタイリング */
+      position: fixed;
+      top: 50%;
+      left: 30%;
+      width: 100px;
+      height: 100px;
+      background: royalblue;
+      transform-origin: bottom; /* 下部を変形の基準にしておく */
+
+      /* スクロールアニメーションの設定 */
+      animation: grow-progress linear; /* アニメーションを指定。イージングはlinear */
+      animation-timeline: scroll();
+    }
+
+    /* ------------ アレンジバージョン ------------ */
+    .drop {
+      position: fixed;
+      top: 50%;
+      right: 30%;
+      width: 100px;
+      height: 100px;
+      background: white;
+
+      /* 💧雫型のマスク */
+      clip-path: path("m58,70.879c0,16.083-12.984,29.121-29,29.121S0,86.962,0,70.879,29,0,29,0c0,0,29,54.797,29,70.879Z");
+
+      .drop_inner {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background: royalblue;
+        transform-origin: bottom; /* 下部を変形の基準にする */
+        animation: grow-progress linear;
+        animation-timeline: scroll();
+      }
+    }
+  </style>
+</head>
+<body>
+<p class="announceText">↓スクロールしてください</p>
+<div class="skeleton"></div>
+
+<div class="animationElement"></div>
+
+<div class="drop"><span class="drop_inner"></span></div>
+
+<nav class="navigation">
+  <ul>
+    <li class="navigation_currentPage"><span>■</span>Scroll Progress Timelineのデモ</li>
+    <li><span>■</span><a href="./index-view.html">View Progress Timelineのデモ</a></li>
+    <li><span>■</span><a href="./index-trigger.html">Scroll-triggered Animationsの基本デモ</a></li>
+    <li><span>■</span><a href="./index-timeline-trigger.html">Scroll-triggered Animationsを応用した文字表示デモ</a></li>
+    <li><span>■</span><a href="./index.html">2種類のタイムラインを応用した作例ページへ</a></li>
+  </ul>
+</nav>
+</body>
+</html>

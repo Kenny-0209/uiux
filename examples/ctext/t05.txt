@@ -1,0 +1,41 @@
+<!-- Markup: <div class="fx-scanner">SCANNER</div> -->
+
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 11 Redactor — a scanning bar sweeps the word, lighting letters as it passes */
+.fx-scanner {
+  position: relative;
+  font: 600 28px/1.2 "JetBrains Mono", monospace;
+  letter-spacing: .08em;
+  background: linear-gradient(90deg,
+      color-mix(in srgb, var(--ink) 25%, transparent) 0 40%,
+      var(--ink) 50%,
+      color-mix(in srgb, var(--ink) 25%, transparent) 60% 100%
+    ) 0 0 / 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fx-scan-glow 2.6s ease-in-out infinite alternate;
+}
+.fx-scanner::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  left: 0;
+  width: 3px;
+  background: var(--ink-2);
+  box-shadow: 0 0 14px var(--ink-2);
+  animation: fx-scan-bar 2.6s ease-in-out infinite alternate;
+}
+@keyframes fx-scan-glow {
+  0%   { background-position: 100% 0; }
+  100% { background-position: 0% 0; }
+}
+@keyframes fx-scan-bar {
+  0%   { left: 0; transform: translateX(0); }
+  100% { left: 100%; transform: translateX(-100%); }
+}

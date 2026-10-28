@@ -1,0 +1,470 @@
+[
+  {
+    "id": "vn-01",
+    "name": "새 떼 배경",
+    "english": "Vanta birds",
+    "category": "배경과 분위기",
+    "description": "포인터와 터치에 반응하며 새 형태가 군집 이동합니다.",
+    "tags": [
+      "Vanta",
+      "birds",
+      "인터랙티브 배경"
+    ],
+    "preview": "./examples/vanta/birds.html",
+    "codePath": "./examples/vanta/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 효과 JavaScript",
+        "path": "./examples/vanta/birds.js"
+      },
+      {
+        "label": "패널 실행 HTML",
+        "path": "./examples/vanta/birds.html"
+      }
+    ],
+    "sourceName": "Vanta.js",
+    "sourceUrl": "https://github.com/tengbao/vanta/blob/f8b351906688b56f0fc744e53bde81fc3c56f150/src/vanta.birds.js",
+    "license": "MIT (Vanta 코드)",
+    "licensePath": "./examples/vanta/LICENSE.md",
+    "adaptation": "Vanta의 실제 효과 코드를 보존하고 공식 사용법에 따른 실행 패널만 추가했습니다. Three.js 및 p5.js는 각 라이선스를 따르는 CDN 의존성입니다.",
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본은 마우스·터치 입력을 지원하며 실제 기기별 동작은 확인이 필요합니다."
+  },
+  {
+    "id": "vn-02",
+    "name": "안개 색 흐름",
+    "english": "Vanta fog",
+    "category": "배경과 분위기",
+    "description": "부드러운 안개 색상이 움직이는 배경입니다.",
+    "tags": [
+      "Vanta",
+      "fog",
+      "인터랙티브 배경"
+    ],
+    "preview": "./examples/vanta/fog.html",
+    "codePath": "./examples/vanta/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 효과 JavaScript",
+        "path": "./examples/vanta/fog.js"
+      },
+      {
+        "label": "패널 실행 HTML",
+        "path": "./examples/vanta/fog.html"
+      }
+    ],
+    "sourceName": "Vanta.js",
+    "sourceUrl": "https://github.com/tengbao/vanta/blob/f8b351906688b56f0fc744e53bde81fc3c56f150/src/vanta.fog.js",
+    "license": "MIT (Vanta 코드)",
+    "licensePath": "./examples/vanta/LICENSE.md",
+    "adaptation": "Vanta의 실제 효과 코드를 보존하고 공식 사용법에 따른 실행 패널만 추가했습니다. Three.js 및 p5.js는 각 라이선스를 따르는 CDN 의존성입니다.",
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본은 마우스·터치 입력을 지원하며 실제 기기별 동작은 확인이 필요합니다."
+  },
+  {
+    "id": "vn-03",
+    "name": "3D 물결 배경",
+    "english": "Vanta waves",
+    "category": "배경과 분위기",
+    "description": "시점에 반응하는 입체 물결을 보여줍니다.",
+    "tags": [
+      "Vanta",
+      "waves",
+      "인터랙티브 배경"
+    ],
+    "preview": "./examples/vanta/waves.html",
+    "codePath": "./examples/vanta/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 효과 JavaScript",
+        "path": "./examples/vanta/waves.js"
+      },
+      {
+        "label": "패널 실행 HTML",
+        "path": "./examples/vanta/waves.html"
+      }
+    ],
+    "sourceName": "Vanta.js",
+    "sourceUrl": "https://github.com/tengbao/vanta/blob/f8b351906688b56f0fc744e53bde81fc3c56f150/src/vanta.waves.js",
+    "license": "MIT (Vanta 코드)",
+    "licensePath": "./examples/vanta/LICENSE.md",
+    "adaptation": "Vanta의 실제 효과 코드를 보존하고 공식 사용법에 따른 실행 패널만 추가했습니다. Three.js 및 p5.js는 각 라이선스를 따르는 CDN 의존성입니다.",
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본은 마우스·터치 입력을 지원하며 실제 기기별 동작은 확인이 필요합니다."
+  },
+  {
+    "id": "vn-04",
+    "name": "구름과 하늘",
+    "english": "Vanta clouds",
+    "category": "배경과 분위기",
+    "description": "구름이 흐르는 하늘 배경입니다.",
+    "tags": [
+      "Vanta",
+      "clouds",
+      "인터랙티브 배경"
+    ],
+    "preview": "./examples/vanta/clouds.html",
+    "codePath": "./examples/vanta/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 효과 JavaScript",
+        "path": "./examples/vanta/clouds.js"
+      },
+      {
+        "label": "패널 실행 HTML",
+        "path": "./examples/vanta/clouds.html"
+      }
+    ],
+    "sourceName": "Vanta.js",
+    "sourceUrl": "https://github.com/tengbao/vanta/blob/f8b351906688b56f0fc744e53bde81fc3c56f150/src/vanta.clouds.js",
+    "license": "MIT (Vanta 코드)",
+    "licensePath": "./examples/vanta/LICENSE.md",
+    "adaptation": "Vanta의 실제 효과 코드를 보존하고 공식 사용법에 따른 실행 패널만 추가했습니다. Three.js 및 p5.js는 각 라이선스를 따르는 CDN 의존성입니다.",
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본은 마우스·터치 입력을 지원하며 실제 기기별 동작은 확인이 필요합니다."
+  },
+  {
+    "id": "vn-05",
+    "name": "입체 구름 흐름",
+    "english": "Vanta clouds2",
+    "category": "배경과 분위기",
+    "description": "시점에 반응하는 구름 장면을 살펴봅니다.",
+    "tags": [
+      "Vanta",
+      "clouds2",
+      "인터랙티브 배경"
+    ],
+    "preview": "./examples/vanta/clouds2.html",
+    "codePath": "./examples/vanta/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 효과 JavaScript",
+        "path": "./examples/vanta/clouds2.js"
+      },
+      {
+        "label": "패널 실행 HTML",
+        "path": "./examples/vanta/clouds2.html"
+      }
+    ],
+    "sourceName": "Vanta.js",
+    "sourceUrl": "https://github.com/tengbao/vanta/blob/f8b351906688b56f0fc744e53bde81fc3c56f150/src/vanta.clouds2.js",
+    "license": "MIT (Vanta 코드)",
+    "licensePath": "./examples/vanta/LICENSE.md",
+    "adaptation": "Vanta의 실제 효과 코드를 보존하고 공식 사용법에 따른 실행 패널만 추가했습니다. Three.js 및 p5.js는 각 라이선스를 따르는 CDN 의존성입니다.",
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본은 마우스·터치 입력을 지원하며 실제 기기별 동작은 확인이 필요합니다."
+  },
+  {
+    "id": "vn-06",
+    "name": "움직이는 지구 그물",
+    "english": "Vanta globe",
+    "category": "배경과 분위기",
+    "description": "포인터에 반응하는 구형 연결망입니다.",
+    "tags": [
+      "Vanta",
+      "globe",
+      "인터랙티브 배경"
+    ],
+    "preview": "./examples/vanta/globe.html",
+    "codePath": "./examples/vanta/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 효과 JavaScript",
+        "path": "./examples/vanta/globe.js"
+      },
+      {
+        "label": "패널 실행 HTML",
+        "path": "./examples/vanta/globe.html"
+      }
+    ],
+    "sourceName": "Vanta.js",
+    "sourceUrl": "https://github.com/tengbao/vanta/blob/f8b351906688b56f0fc744e53bde81fc3c56f150/src/vanta.globe.js",
+    "license": "MIT (Vanta 코드)",
+    "licensePath": "./examples/vanta/LICENSE.md",
+    "adaptation": "Vanta의 실제 효과 코드를 보존하고 공식 사용법에 따른 실행 패널만 추가했습니다. Three.js 및 p5.js는 각 라이선스를 따르는 CDN 의존성입니다.",
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본은 마우스·터치 입력을 지원하며 실제 기기별 동작은 확인이 필요합니다."
+  },
+  {
+    "id": "vn-07",
+    "name": "연결망 배경",
+    "english": "Vanta net",
+    "category": "배경과 분위기",
+    "description": "움직이는 점과 선의 연결망입니다.",
+    "tags": [
+      "Vanta",
+      "net",
+      "인터랙티브 배경"
+    ],
+    "preview": "./examples/vanta/net.html",
+    "codePath": "./examples/vanta/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 효과 JavaScript",
+        "path": "./examples/vanta/net.js"
+      },
+      {
+        "label": "패널 실행 HTML",
+        "path": "./examples/vanta/net.html"
+      }
+    ],
+    "sourceName": "Vanta.js",
+    "sourceUrl": "https://github.com/tengbao/vanta/blob/f8b351906688b56f0fc744e53bde81fc3c56f150/src/vanta.net.js",
+    "license": "MIT (Vanta 코드)",
+    "licensePath": "./examples/vanta/LICENSE.md",
+    "adaptation": "Vanta의 실제 효과 코드를 보존하고 공식 사용법에 따른 실행 패널만 추가했습니다. Three.js 및 p5.js는 각 라이선스를 따르는 CDN 의존성입니다.",
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본은 마우스·터치 입력을 지원하며 실제 기기별 동작은 확인이 필요합니다."
+  },
+  {
+    "id": "vn-08",
+    "name": "공간 점 배열",
+    "english": "Vanta dots",
+    "category": "배경과 분위기",
+    "description": "움직이는 점 배열이 포인터에 반응합니다.",
+    "tags": [
+      "Vanta",
+      "dots",
+      "인터랙티브 배경"
+    ],
+    "preview": "./examples/vanta/dots.html",
+    "codePath": "./examples/vanta/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 효과 JavaScript",
+        "path": "./examples/vanta/dots.js"
+      },
+      {
+        "label": "패널 실행 HTML",
+        "path": "./examples/vanta/dots.html"
+      }
+    ],
+    "sourceName": "Vanta.js",
+    "sourceUrl": "https://github.com/tengbao/vanta/blob/f8b351906688b56f0fc744e53bde81fc3c56f150/src/vanta.dots.js",
+    "license": "MIT (Vanta 코드)",
+    "licensePath": "./examples/vanta/LICENSE.md",
+    "adaptation": "Vanta의 실제 효과 코드를 보존하고 공식 사용법에 따른 실행 패널만 추가했습니다. Three.js 및 p5.js는 각 라이선스를 따르는 CDN 의존성입니다.",
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본은 마우스·터치 입력을 지원하며 실제 기기별 동작은 확인이 필요합니다."
+  },
+  {
+    "id": "vn-09",
+    "name": "회전하는 고리",
+    "english": "Vanta rings",
+    "category": "배경과 분위기",
+    "description": "고리 패턴이 이동과 시점에 따라 움직입니다.",
+    "tags": [
+      "Vanta",
+      "rings",
+      "인터랙티브 배경"
+    ],
+    "preview": "./examples/vanta/rings.html",
+    "codePath": "./examples/vanta/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 효과 JavaScript",
+        "path": "./examples/vanta/rings.js"
+      },
+      {
+        "label": "패널 실행 HTML",
+        "path": "./examples/vanta/rings.html"
+      }
+    ],
+    "sourceName": "Vanta.js",
+    "sourceUrl": "https://github.com/tengbao/vanta/blob/f8b351906688b56f0fc744e53bde81fc3c56f150/src/vanta.rings.js",
+    "license": "MIT (Vanta 코드)",
+    "licensePath": "./examples/vanta/LICENSE.md",
+    "adaptation": "Vanta의 실제 효과 코드를 보존하고 공식 사용법에 따른 실행 패널만 추가했습니다. Three.js 및 p5.js는 각 라이선스를 따르는 CDN 의존성입니다.",
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본은 마우스·터치 입력을 지원하며 실제 기기별 동작은 확인이 필요합니다."
+  },
+  {
+    "id": "vn-10",
+    "name": "빛나는 고리 배경",
+    "english": "Vanta halo",
+    "category": "배경과 분위기",
+    "description": "빛을 띤 고리와 주변 흐름이 움직입니다.",
+    "tags": [
+      "Vanta",
+      "halo",
+      "인터랙티브 배경"
+    ],
+    "preview": "./examples/vanta/halo.html",
+    "codePath": "./examples/vanta/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 효과 JavaScript",
+        "path": "./examples/vanta/halo.js"
+      },
+      {
+        "label": "패널 실행 HTML",
+        "path": "./examples/vanta/halo.html"
+      }
+    ],
+    "sourceName": "Vanta.js",
+    "sourceUrl": "https://github.com/tengbao/vanta/blob/f8b351906688b56f0fc744e53bde81fc3c56f150/src/vanta.halo.js",
+    "license": "MIT (Vanta 코드)",
+    "licensePath": "./examples/vanta/LICENSE.md",
+    "adaptation": "Vanta의 실제 효과 코드를 보존하고 공식 사용법에 따른 실행 패널만 추가했습니다. Three.js 및 p5.js는 각 라이선스를 따르는 CDN 의존성입니다.",
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본은 마우스·터치 입력을 지원하며 실제 기기별 동작은 확인이 필요합니다."
+  },
+  {
+    "id": "vn-11",
+    "name": "세포 패턴 배경",
+    "english": "Vanta cells",
+    "category": "배경과 분위기",
+    "description": "세포 모양의 유기적인 패턴이 움직입니다.",
+    "tags": [
+      "Vanta",
+      "cells",
+      "인터랙티브 배경"
+    ],
+    "preview": "./examples/vanta/cells.html",
+    "codePath": "./examples/vanta/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 효과 JavaScript",
+        "path": "./examples/vanta/cells.js"
+      },
+      {
+        "label": "패널 실행 HTML",
+        "path": "./examples/vanta/cells.html"
+      }
+    ],
+    "sourceName": "Vanta.js",
+    "sourceUrl": "https://github.com/tengbao/vanta/blob/f8b351906688b56f0fc744e53bde81fc3c56f150/src/vanta.cells.js",
+    "license": "MIT (Vanta 코드)",
+    "licensePath": "./examples/vanta/LICENSE.md",
+    "adaptation": "Vanta의 실제 효과 코드를 보존하고 공식 사용법에 따른 실행 패널만 추가했습니다. Three.js 및 p5.js는 각 라이선스를 따르는 CDN 의존성입니다.",
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본은 마우스·터치 입력을 지원하며 실제 기기별 동작은 확인이 필요합니다."
+  },
+  {
+    "id": "vn-12",
+    "name": "줄기와 가지 선",
+    "english": "Vanta trunk",
+    "category": "배경과 분위기",
+    "description": "선으로 된 가지가 포인터의 영향을 받습니다.",
+    "tags": [
+      "Vanta",
+      "trunk",
+      "인터랙티브 배경"
+    ],
+    "preview": "./examples/vanta/trunk.html",
+    "codePath": "./examples/vanta/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 효과 JavaScript",
+        "path": "./examples/vanta/trunk.js"
+      },
+      {
+        "label": "패널 실행 HTML",
+        "path": "./examples/vanta/trunk.html"
+      }
+    ],
+    "sourceName": "Vanta.js",
+    "sourceUrl": "https://github.com/tengbao/vanta/blob/f8b351906688b56f0fc744e53bde81fc3c56f150/src/vanta.trunk.js",
+    "license": "MIT (Vanta 코드)",
+    "licensePath": "./examples/vanta/LICENSE.md",
+    "adaptation": "Vanta의 실제 효과 코드를 보존하고 공식 사용법에 따른 실행 패널만 추가했습니다. Three.js 및 p5.js는 각 라이선스를 따르는 CDN 의존성입니다.",
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본은 마우스·터치 입력을 지원하며 실제 기기별 동작은 확인이 필요합니다."
+  },
+  {
+    "id": "vn-13",
+    "name": "지형 등고선",
+    "english": "Vanta topology",
+    "category": "배경과 분위기",
+    "description": "물결치는 등고선 패턴이 포인터에 반응합니다.",
+    "tags": [
+      "Vanta",
+      "topology",
+      "인터랙티브 배경"
+    ],
+    "preview": "./examples/vanta/topology.html",
+    "codePath": "./examples/vanta/source.html",
+    "codeFiles": [
+      {
+        "label": "원본 효과 JavaScript",
+        "path": "./examples/vanta/topology.js"
+      },
+      {
+        "label": "패널 실행 HTML",
+        "path": "./examples/vanta/topology.html"
+      }
+    ],
+    "sourceName": "Vanta.js",
+    "sourceUrl": "https://github.com/tengbao/vanta/blob/f8b351906688b56f0fc744e53bde81fc3c56f150/src/vanta.topology.js",
+    "license": "MIT (Vanta 코드)",
+    "licensePath": "./examples/vanta/LICENSE.md",
+    "adaptation": "Vanta의 실제 효과 코드를 보존하고 공식 사용법에 따른 실행 패널만 추가했습니다. Three.js 및 p5.js는 각 라이선스를 따르는 CDN 의존성입니다.",
+    "networkRequired": true,
+    "requiresGPU": true,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "원본은 마우스·터치 입력을 지원하며 실제 기기별 동작은 확인이 필요합니다."
+  }
+]

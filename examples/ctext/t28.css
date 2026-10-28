@@ -1,0 +1,36 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 57 Glyph-Rain — characters fall in staggered vertical trails and re-form */
+.fx-glyphrain {
+  font: 600 28px/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .08em;
+  color: var(--ink);
+  display: inline-flex;
+}
+.fx-glyphrain b {
+  font-weight: inherit;
+  display: inline-block;
+  text-shadow:
+    0 -12px 0 color-mix(in srgb, var(--ink-3) 45%, transparent),
+    0 -24px 0 color-mix(in srgb, var(--ink-2) 28%, transparent);
+  animation: fx-glyphrain 2.4s cubic-bezier(.25, .8, .25, 1) infinite;
+  animation-delay: calc(var(--i) * .12s);
+}
+.fx-glyphrain b:nth-child(2n) { color: var(--ink-3); }
+@keyframes fx-glyphrain {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  38% {
+    transform: translateY(22px);
+    opacity: .22;
+  }
+  64% {
+    transform: translateY(-10px);
+    opacity: .75;
+  }
+}

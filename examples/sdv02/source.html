@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Scroll-driven Animations: Parallax Carousel</title>
+
+	<!-- Polyfill -->
+	<script src="/shared/third_party/polyfill/scroll-timeline.js"></script>
+
+
+	<!-- Shared styles and scripts, applied to each page -->
+	<link rel="stylesheet" href="/shared/styles.css">
+	<script src="/shared/scripts.js"></script>
+
+	<!-- Page specific styles. The code for the scroll-driven animations is kept in a local style block for your reading convenience -->
+	<link rel="stylesheet" href="../shared/styles.css">
+	<style>
+		/* Don’t squeeze the images */
+		.slide > img {
+			object-fit: cover;
+			object-position: 100% 0;
+		}
+
+		/* Scroll-Timeline Supported, Yay! */
+		@supports (animation-timeline: view()) {
+			@keyframes adjust-image {
+				0% {
+					object-position: 100% 0;
+				}
+				100% {
+					object-position: 0 0;
+				}
+			}
+
+			.slide > img {
+				animation: adjust-image linear both;
+				animation-timeline: view(x);
+			}
+		}
+	</style>
+
+	<!-- Page specific scripts -->
+	<script src="../shared/scripts.js" type="module"></script>
+</head>
+
+<body>
+	<!-- metabox -->
+	<div id="metabox">
+		<button id="version-selector" disabled>🔀</button>
+		<a class="button" href="/" title="To index">🏠</a>
+		<button id="infobox-toggle" title="Show Information about this demo">ℹ️</button>
+		<dialog id="infobox">
+			<form method="dialog"><button id="infobox-close" tabindex="0" title="Close dialog">❌</button></form>
+			<h1>About this demo</h1>
+			<p>In this demo, the images in the carousel slide across as they enter/exit the scrollport, creating a parallax/window effect.</p>
+			<p>The images are sourced from <a href="https://picsum.photos" target="_top">https://picsum.photos</a>.</p>
+
+			<h2>The Code / Explanation</h2>
+
+			<h3>Base layout</h3>
+
+			<p>The images are all square and are laid out into a wrapper that’s a bit more narrow. To prevent then from getting squeezed and to position them, the <code>object-*</code> properties are used.</p>
+
+			<pre><code>.slide > img {
+	object-fit: cover;
+	object-position: 100% 0;
+}</code></pre>
+
+			<p>With this code, the image gets clipped a bit, with only the the right part entirely in view.</p>
+
+			<p>The animation adjusts the object position so that the other side of the image becomes visible. This animation is linked to a View Timeline that tracks the image on the <code>x</code> axis.</p>
+
+			<pre><code>@keyframes adjust-image {
+	0% {
+		object-position: 100% 0;
+	}
+	100% {
+		object-position: 0 0;
+	}
+}
+
+.slide > img {
+	animation: adjust-image linear both;
+	animation-timeline: view(x);
+}</code></pre>
+
+		</dialog>
+	</div>
+
+	<ul class="slides" id="slides">
+		<li class="slide">
+			<img src="../shared/img/10.jpg" alt="Image #10" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/10/700/600/"><span>IMG </span>1</a>
+		</li>
+		<li class="slide">
+			<img src="../shared/img/11.jpg" alt="Image #11" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/11/700/600/"><span>IMG </span>2</a>
+		</li>
+		<li class="slide">
+			<img src="../shared/img/12.jpg" alt="Image #12" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/12/700/600/"><span>IMG </span>3</a>
+		</li>
+		<li class="slide">
+			<img src="../shared/img/13.jpg" alt="Image #13" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/13/700/600/"><span>IMG </span>4</a>
+		</li>
+		<li class="slide">
+			<img src="../shared/img/14.jpg" alt="Image #14" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/14/700/600/"><span>IMG </span>5</a>
+		</li>
+		<li class="slide">
+			<img src="../shared/img/15.jpg" alt="Image #15" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/15/700/600/"><span>IMG </span>6</a>
+		</li>
+		<li class="slide">
+			<img src="../shared/img/16.jpg" alt="Image #16" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/16/700/600/"><span>IMG </span>7</a>
+		</li>
+		<li class="slide">
+			<img src="../shared/img/17.jpg" alt="Image #17" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/17/700/600/"><span>IMG </span>8</a>
+		</li>
+		<li class="slide">
+			<img src="../shared/img/18.jpg" alt="Image #18" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/18/700/600/"><span>IMG </span>9</a>
+		</li>
+		<li class="slide">
+			<img src="../shared/img/19.jpg" alt="Image #19" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/19/700/600/"><span>IMG </span>10</a>
+		</li>
+		<li class="slide">
+			<img src="../shared/img/20.jpg" alt="Image #20" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/20/700/600/"><span>IMG </span>11</a>
+		</li>
+		<li class="slide">
+			<img src="../shared/img/21.jpg" alt="Image #21" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/21/700/600/"><span>IMG </span>12</a>
+		</li>
+		<li class="slide">
+			<img src="../shared/img/22.jpg" alt="Image #22" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/22/700/600/"><span>IMG </span>13</a>
+		</li>
+		<li class="slide">
+			<img src="../shared/img/23.jpg" alt="Image #23" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/23/700/600/"><span>IMG </span>14</a>
+		</li>
+		<li class="slide">
+			<img src="../shared/img/24.jpg" alt="Image #24" draggable="false" />
+			<a target="_blank" href="https://picsum.photos/id/24/700/600/"><span>IMG </span>15</a>
+		</li>
+	</ul>
+
+	<div class="warning">
+		<p>⚠️ Your browser does not support Scroll-Linked Animations. To cater for this, a <a href="https://github.com/flackr/scroll-timeline">polyfill</a> has been loaded.</p>
+	</div>
+</body>
+
+</html>

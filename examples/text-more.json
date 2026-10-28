@@ -1,0 +1,1674 @@
+[
+  {
+    "id": "ctextt01",
+    "name": "물결 채우기 텍스트",
+    "english": "Liquid Fill Text Animation",
+    "category": "타이포그래피",
+    "description": "글자 내부의 물결이 이동하며 액체가 채워지는 모습을 보여줍니다.",
+    "tags": [
+      "물결 채우기 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Liquid Fill Text Animation",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t01.html",
+    "codePath": "./examples/ctext/t01.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t01.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t01.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/liquid-fill-text-animation/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt02",
+    "name": "금속 표면 텍스트",
+    "english": "Chrome Metallic Text Effect",
+    "category": "타이포그래피",
+    "description": "명암이 움직이는 금속성 그라데이션을 글자에 적용합니다.",
+    "tags": [
+      "금속 표면 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Chrome Metallic Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t02.html",
+    "codePath": "./examples/ctext/t02.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t02.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t02.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/chrome-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt03",
+    "name": "글자별 초점 이동",
+    "english": "Text Blur Focus Effect",
+    "category": "타이포그래피",
+    "description": "글자마다 흐림과 선명함이 시간 차를 두고 바뀝니다.",
+    "tags": [
+      "글자별 초점 이동",
+      "텍스트",
+      "타이포그래피",
+      "Text Blur Focus Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t03.html",
+    "codePath": "./examples/ctext/t03.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t03.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t03.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/blur-focus-text-animation/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt04",
+    "name": "잘린 텍스트 레이어",
+    "english": "Sliced Text Effect",
+    "category": "타이포그래피",
+    "description": "복제한 글자를 잘라 서로 다른 위치로 이동합니다.",
+    "tags": [
+      "잘린 텍스트 레이어",
+      "텍스트",
+      "타이포그래피",
+      "Sliced Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t04.html",
+    "codePath": "./examples/ctext/t04.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t04.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t04.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/sliced-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt05",
+    "name": "스캐너 강조",
+    "english": "Scanning Highlight Text Effect",
+    "category": "타이포그래피",
+    "description": "글자 위로 가느다란 강조 영역이 이동합니다.",
+    "tags": [
+      "스캐너 강조",
+      "텍스트",
+      "타이포그래피",
+      "Scanning Highlight Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t05.html",
+    "codePath": "./examples/ctext/t05.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t05.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t05.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/scanning-highlight-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt06",
+    "name": "텍스트 메아리",
+    "english": "Echo Text Effect",
+    "category": "타이포그래피",
+    "description": "복제된 글자 레이어가 시간차를 두고 겹칩니다.",
+    "tags": [
+      "텍스트 메아리",
+      "텍스트",
+      "타이포그래피",
+      "Echo Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t06.html",
+    "codePath": "./examples/ctext/t06.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t06.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t06.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/echo-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt07",
+    "name": "입체로 돌출된 글자",
+    "english": "3D Extruded Text Effect",
+    "category": "타이포그래피",
+    "description": "다중 그림자로 글자에 입체적인 깊이를 만듭니다.",
+    "tags": [
+      "입체로 돌출된 글자",
+      "텍스트",
+      "타이포그래피",
+      "3D Extruded Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t07.html",
+    "codePath": "./examples/ctext/t07.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t07.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t07.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/3d-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt08",
+    "name": "입체 색 분리 텍스트",
+    "english": "Anaglyph 3D Text Effect",
+    "category": "타이포그래피",
+    "description": "서로 어긋난 색 레이어로 입체적인 색 분리 효과를 만듭니다.",
+    "tags": [
+      "입체 색 분리 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Anaglyph 3D Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t08.html",
+    "codePath": "./examples/ctext/t08.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t08.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t08.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/anaglyph-3d-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt09",
+    "name": "만화풍 팝 텍스트",
+    "english": "Pop Art Comic Text Effect",
+    "category": "타이포그래피",
+    "description": "글자마다 크기와 회전이 달라지는 만화풍 효과를 확인합니다.",
+    "tags": [
+      "만화풍 팝 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Pop Art Comic Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t09.html",
+    "codePath": "./examples/ctext/t09.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t09.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t09.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/pop-art-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt10",
+    "name": "텍스트 스포트라이트",
+    "english": "Spotlight Text Effect",
+    "category": "타이포그래피",
+    "description": "글자 안의 밝은 영역이 이동하며 조명 효과를 만듭니다.",
+    "tags": [
+      "텍스트 스포트라이트",
+      "텍스트",
+      "타이포그래피",
+      "Spotlight Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t10.html",
+    "codePath": "./examples/ctext/t10.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t10.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t10.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/spotlight-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt11",
+    "name": "탄성 텍스트",
+    "english": "Rubber Band Text Animation",
+    "category": "타이포그래피",
+    "description": "글자를 늘렸다가 복원하는 탄성 움직임입니다.",
+    "tags": [
+      "탄성 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Rubber Band Text Animation",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t11.html",
+    "codePath": "./examples/ctext/t11.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t11.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t11.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/rubber-band-text-animation/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt12",
+    "name": "텍스트 반사",
+    "english": "Water Reflection Text Effect",
+    "category": "타이포그래피",
+    "description": "글자 아래에 반사된 모습을 겹쳐 보여줍니다.",
+    "tags": [
+      "텍스트 반사",
+      "텍스트",
+      "타이포그래피",
+      "Water Reflection Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t12.html",
+    "codePath": "./examples/ctext/t12.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t12.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t12.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/text-reflection-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt13",
+    "name": "서로 다른 글자 조합",
+    "english": "Ransom Note Text Effect",
+    "category": "타이포그래피",
+    "description": "글자별 크기와 배경이 다른 종이 조각처럼 조합됩니다.",
+    "tags": [
+      "서로 다른 글자 조합",
+      "텍스트",
+      "타이포그래피",
+      "Ransom Note Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t13.html",
+    "codePath": "./examples/ctext/t13.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t13.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t13.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/ransom-note-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt14",
+    "name": "녹아내리는 글자",
+    "english": "Melting Text Effect",
+    "category": "타이포그래피",
+    "description": "글자별 변형을 시간차로 적용해 녹는 느낌을 만듭니다.",
+    "tags": [
+      "녹아내리는 글자",
+      "텍스트",
+      "타이포그래피",
+      "Melting Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t14.html",
+    "codePath": "./examples/ctext/t14.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t14.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t14.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/melting-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt15",
+    "name": "박동 텍스트",
+    "english": "Heartbeat Pulse Text Animation",
+    "category": "타이포그래피",
+    "description": "글자가 리듬에 맞춰 확대와 축소를 반복합니다.",
+    "tags": [
+      "박동 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Heartbeat Pulse Text Animation",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t15.html",
+    "codePath": "./examples/ctext/t15.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t15.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t15.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/heartbeat-text-animation/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt16",
+    "name": "긴 그림자 텍스트",
+    "english": "Animated Long Shadow Text",
+    "category": "타이포그래피",
+    "description": "긴 그림자의 위치가 변하며 빛의 방향을 표현합니다.",
+    "tags": [
+      "긴 그림자 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Animated Long Shadow Text",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t16.html",
+    "codePath": "./examples/ctext/t16.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t16.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t16.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/long-shadow-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt17",
+    "name": "반전 텍스트",
+    "english": "Inverted Negative Text Effect",
+    "category": "타이포그래피",
+    "description": "명암이 반전되는 글자와 배경의 대비를 보여줍니다.",
+    "tags": [
+      "반전 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Inverted Negative Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t17.html",
+    "codePath": "./examples/ctext/t17.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t17.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t17.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/inverted-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt18",
+    "name": "홀로그램 글자",
+    "english": "Hologram Text Effect",
+    "category": "타이포그래피",
+    "description": "복제 글자와 선, 색상을 겹쳐 홀로그램 표현을 만듭니다.",
+    "tags": [
+      "홀로그램 글자",
+      "텍스트",
+      "타이포그래피",
+      "Hologram Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t18.html",
+    "codePath": "./examples/ctext/t18.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t18.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t18.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/hologram-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt19",
+    "name": "금박 텍스트",
+    "english": "Gold Foil Text Effect",
+    "category": "타이포그래피",
+    "description": "움직이는 빛과 금속색으로 금박 표면을 표현합니다.",
+    "tags": [
+      "금박 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Gold Foil Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t19.html",
+    "codePath": "./examples/ctext/t19.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t19.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t19.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/gold-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt20",
+    "name": "픽셀 오프셋 글자",
+    "english": "Pixel Sort Text Effect",
+    "category": "타이포그래피",
+    "description": "단계적으로 어긋나는 복제 글자로 픽셀 느낌을 만듭니다.",
+    "tags": [
+      "픽셀 오프셋 글자",
+      "텍스트",
+      "타이포그래피",
+      "Pixel Sort Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t20.html",
+    "codePath": "./examples/ctext/t20.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t20.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t20.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/pixel-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt21",
+    "name": "청사진 텍스트",
+    "english": "Blueprint Grid Text Effect",
+    "category": "타이포그래피",
+    "description": "격자와 선을 활용해 도면 같은 글자 표현을 보여줍니다.",
+    "tags": [
+      "청사진 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Blueprint Grid Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t21.html",
+    "codePath": "./examples/ctext/t21.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t21.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t21.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/blueprint-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt22",
+    "name": "유리 질감 글자",
+    "english": "Frosted Glass Text Effect",
+    "category": "타이포그래피",
+    "description": "반투명하고 윤곽이 겹친 유리 재질을 표현합니다.",
+    "tags": [
+      "유리 질감 글자",
+      "텍스트",
+      "타이포그래피",
+      "Frosted Glass Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t22.html",
+    "codePath": "./examples/ctext/t22.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t22.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t22.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/glass-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt23",
+    "name": "원형 궤도 글자",
+    "english": "Orbiting Letters Animation",
+    "category": "타이포그래피",
+    "description": "글자별로 움직임을 나누어 궤도를 도는 느낌을 보여줍니다.",
+    "tags": [
+      "원형 궤도 글자",
+      "텍스트",
+      "타이포그래피",
+      "Orbiting Letters Animation",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t23.html",
+    "codePath": "./examples/ctext/t23.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t23.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t23.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/orbiting-letters-animation/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt24",
+    "name": "프리즘 분할 글자",
+    "english": "Prism Refraction Text Effect",
+    "category": "타이포그래피",
+    "description": "겹친 색상과 잘린 글자로 프리즘 같은 분할을 만듭니다.",
+    "tags": [
+      "프리즘 분할 글자",
+      "텍스트",
+      "타이포그래피",
+      "Prism Refraction Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t24.html",
+    "codePath": "./examples/ctext/t24.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t24.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t24.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/prism-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt25",
+    "name": "회로 패턴 텍스트",
+    "english": "Circuit Board Text Effect",
+    "category": "타이포그래피",
+    "description": "글자 안쪽에 회로 같은 선과 패턴을 보여줍니다.",
+    "tags": [
+      "회로 패턴 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Circuit Board Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t25.html",
+    "codePath": "./examples/ctext/t25.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t25.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t25.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/circuit-board-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt26",
+    "name": "열지도 색상 텍스트",
+    "english": "Thermal Heatmap Text Effect",
+    "category": "타이포그래피",
+    "description": "글자 색에 열지도 같은 다색 그라데이션을 적용합니다.",
+    "tags": [
+      "열지도 색상 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Thermal Heatmap Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t26.html",
+    "codePath": "./examples/ctext/t26.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t26.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t26.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/thermal-heatmap-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt27",
+    "name": "등고선 텍스트",
+    "english": "Topographic Contour Text Effect",
+    "category": "타이포그래피",
+    "description": "글자 안에 반복되는 곡선으로 등고선 무늬를 표현합니다.",
+    "tags": [
+      "등고선 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Topographic Contour Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t27.html",
+    "codePath": "./examples/ctext/t27.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t27.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t27.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/topographic-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt28",
+    "name": "문자 비처럼 떨어지기",
+    "english": "Falling Letters Animation",
+    "category": "타이포그래피",
+    "description": "글자 단위 움직임으로 문자가 내려오는 효과를 만듭니다.",
+    "tags": [
+      "문자 비처럼 떨어지기",
+      "텍스트",
+      "타이포그래피",
+      "Falling Letters Animation",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t28.html",
+    "codePath": "./examples/ctext/t28.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t28.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t28.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/falling-letters-animation/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt29",
+    "name": "진자처럼 흔들리는 글자",
+    "english": "Swinging Pendulum Text Animation",
+    "category": "타이포그래피",
+    "description": "각 글자가 회전축을 중심으로 시간차를 두고 흔들립니다.",
+    "tags": [
+      "진자처럼 흔들리는 글자",
+      "텍스트",
+      "타이포그래피",
+      "Swinging Pendulum Text Animation",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t29.html",
+    "codePath": "./examples/ctext/t29.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t29.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t29.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/swinging-text-animation/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt30",
+    "name": "연기처럼 번지는 글자",
+    "english": "Smoke Text Animation",
+    "category": "타이포그래피",
+    "description": "글자가 흐려지고 이동하며 연기처럼 흩어집니다.",
+    "tags": [
+      "연기처럼 번지는 글자",
+      "텍스트",
+      "타이포그래피",
+      "Smoke Text Animation",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t30.html",
+    "codePath": "./examples/ctext/t30.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t30.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t30.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/smoke-text-animation/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt31",
+    "name": "바코드 텍스트",
+    "english": "Barcode Scanner Text Effect",
+    "category": "타이포그래피",
+    "description": "반복된 세로선과 글자를 결합해 바코드 형식을 만듭니다.",
+    "tags": [
+      "바코드 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Barcode Scanner Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t31.html",
+    "codePath": "./examples/ctext/t31.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t31.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t31.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/barcode-scanner-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt32",
+    "name": "서리 텍스트",
+    "english": "Frozen Ice Text Effect",
+    "category": "타이포그래피",
+    "description": "차가운 색상과 밝은 윤곽으로 얼음 질감을 표현합니다.",
+    "tags": [
+      "서리 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Frozen Ice Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t32.html",
+    "codePath": "./examples/ctext/t32.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t32.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t32.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/frozen-ice-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt33",
+    "name": "모아레 텍스트",
+    "english": "Moiré Pattern Text Effect",
+    "category": "타이포그래피",
+    "description": "반복 무늬를 겹쳐 간섭무늬를 표현합니다.",
+    "tags": [
+      "모아레 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Moiré Pattern Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t33.html",
+    "codePath": "./examples/ctext/t33.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t33.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t33.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/moire-pattern-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt34",
+    "name": "도장 찍기 텍스트",
+    "english": "Rubber Stamp Text Effect",
+    "category": "타이포그래피",
+    "description": "도장을 찍는 듯한 등장 동작과 질감을 보여줍니다.",
+    "tags": [
+      "도장 찍기 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "Rubber Stamp Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t34.html",
+    "codePath": "./examples/ctext/t34.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t34.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t34.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/rubber-stamp-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt35",
+    "name": "LED 전광판 텍스트",
+    "english": "LED Sign Text Effect",
+    "category": "타이포그래피",
+    "description": "빛나는 점과 색상으로 전광판 같은 글자를 만듭니다.",
+    "tags": [
+      "LED 전광판 텍스트",
+      "텍스트",
+      "타이포그래피",
+      "LED Sign Text Effect",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t35.html",
+    "codePath": "./examples/ctext/t35.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t35.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t35.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/led-sign-text-effect/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt36",
+    "name": "종이처럼 접히는 글자",
+    "english": "Origami Fold Text Animation",
+    "category": "타이포그래피",
+    "description": "글자별로 회전과 원근을 주어 종이가 접히는 느낌을 만듭니다.",
+    "tags": [
+      "종이처럼 접히는 글자",
+      "텍스트",
+      "타이포그래피",
+      "Origami Fold Text Animation",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t36.html",
+    "codePath": "./examples/ctext/t36.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t36.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t36.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/origami-fold-text-animation/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt37",
+    "name": "도미노처럼 넘어지는 글자",
+    "english": "Domino Falling Letters Animation",
+    "category": "타이포그래피",
+    "description": "각 글자가 연속된 시간차로 기울어집니다.",
+    "tags": [
+      "도미노처럼 넘어지는 글자",
+      "텍스트",
+      "타이포그래피",
+      "Domino Falling Letters Animation",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t37.html",
+    "codePath": "./examples/ctext/t37.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t37.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t37.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/domino-letters-animation/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  },
+  {
+    "id": "ctextt38",
+    "name": "이퀄라이저 글자",
+    "english": "Audio Equalizer Text Animation",
+    "category": "타이포그래피",
+    "description": "글자마다 높이가 변해 오디오 이퀄라이저처럼 움직입니다.",
+    "tags": [
+      "이퀄라이저 글자",
+      "텍스트",
+      "타이포그래피",
+      "Audio Equalizer Text Animation",
+      "데스크톱",
+      "모바일"
+    ],
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "input": [
+      "마우스",
+      "터치",
+      "키보드"
+    ],
+    "preview": "./examples/ctext/t38.html",
+    "codePath": "./examples/ctext/t38.txt",
+    "codeFiles": [
+      {
+        "label": "원본 CSS",
+        "path": "./examples/ctext/t38.css"
+      },
+      {
+        "label": "패널 HTML",
+        "path": "./examples/ctext/t38.html"
+      }
+    ],
+    "sourceName": "Colorion Text Effects",
+    "sourceUrl": "https://text-effects.colorion.co/effects/equalizer-text-animation/",
+    "license": "MIT · 원문 확인",
+    "licensePath": "./examples/ctext/LICENSE.txt",
+    "adaptation": "원본 마크업과 CSS를 유지하고 패널에 재생·정지 및 색상 조절을 추가",
+    "requiresGPU": false,
+    "codeLabel": "원본 마크업 · CSS",
+    "displayOrigin": "원본 CSS · 별도 재생 패널"
+  }
+]

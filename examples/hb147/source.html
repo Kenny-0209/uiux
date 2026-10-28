@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesh Gradient Animation — Animation Handbook</title>
+  <meta name="description" content="Blurred blobs of color drift and melt together. Best for landing pages.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/07-ambient-background/mesh-gradient/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Mesh Gradient Animation — Animation Handbook">
+  <meta property="og:description" content="Blurred blobs of color drift and melt together. Best for landing pages.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/07-ambient-background/mesh-gradient/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mesh Gradient Animation — Animation Handbook">
+  <meta name="twitter:description" content="Blurred blobs of color drift and melt together. Best for landing pages.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Mesh Gradient Animation", "name": "Mesh Gradient Animation", "description": "Blurred blobs of color drift and melt together. Best for landing pages.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/07-ambient-background/mesh-gradient/", "inLanguage": "en", "articleSection": "Ambient & Background", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Ambient & Background, Mesh Gradient Animation"}</script>
+  <style>
+    :root{--ui-accent:#ffce5a;--blob-blur:80px;--dur:40s;--blend:normal}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;overflow:hidden;background:#04060c}
+    .mesh-wrap{position:absolute;inset:0;overflow:hidden}
+    .blob{position:absolute;border-radius:50%;filter:blur(var(--blob-blur));opacity:.75;mix-blend-mode:var(--blend)}
+    .b1{width:60%;height:60%;background:#1a3060;top:-10%;left:-10%;animation:b1 var(--dur) ease-in-out infinite alternate}
+    .b2{width:55%;height:55%;background:#2e0a50;top:20%;right:-15%;animation:b2 calc(var(--dur)*1.1) ease-in-out infinite alternate}
+    .b3{width:50%;height:50%;background:#0a2e1a;bottom:-15%;left:15%;animation:b3 calc(var(--dur)*.9) ease-in-out infinite alternate}
+    .b4{width:45%;height:45%;background:#2e1a05;top:40%;left:30%;animation:b4 calc(var(--dur)*1.2) ease-in-out infinite alternate}
+    .b5{width:40%;height:40%;background:#1a0a2e;bottom:10%;right:5%;animation:b5 calc(var(--dur)*.8) ease-in-out infinite alternate;display:none}
+    @keyframes b1{0%{transform:translate(0,0) scale(1)}100%{transform:translate(20%,15%) scale(1.2)}}
+    @keyframes b2{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-15%,20%) scale(0.85)}}
+    @keyframes b3{0%{transform:translate(0,0) scale(1)}100%{transform:translate(15%,-20%) scale(1.15)}}
+    @keyframes b4{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-20%,-15%) scale(0.9)}}
+    @keyframes b5{0%{transform:translate(0,0) scale(1)}100%{transform:translate(10%,25%) scale(1.1)}}
+    .fg-card{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);width:clamp(200px,60%,320px);background:rgba(6,10,16,.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:20px 22px;z-index:10}
+    .fg-eyebrow{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--ui-accent);margin-bottom:8px}
+    .fg-title{font-size:clamp(15px,2vw,20px);font-weight:700;color:#fff;margin-bottom:8px;line-height:1.2}
+    .fg-body{font-size:13px;color:rgba(255,255,255,.72);line-height:1.6}
+    /* Heavy blur is the costly part on phones, and their stage is less than half as wide, so half the blur looks the same */
+    @media(max-width:600px){.blob{filter:blur(calc(var(--blob-blur) * .5))}}
+    /* On phones and short screens the stage is small, so the card shrinks to leave the blobs in view */
+    @media(max-width:600px),(max-height:760px){
+      .fg-card{padding:12px 14px}
+      .fg-eyebrow{margin-bottom:4px}
+      .fg-title{margin-bottom:0}
+      .fg-body{display:none}
+    }
+    /* See inside and Compare: the script makes the rings, the dashed outlines and the blur-free copy once, from the real blobs */
+    .vin,.mesh-copy,.half{display:none}
+    .lbl{position:absolute;padding:3px 8px;border-radius:5px;background:rgba(4,6,12,.92);color:#f4f4f2;font:600 13px/1.2 var(--hb-font);white-space:nowrap}
+    .stage[data-hb-mode="inside"] .fg-card,.stage[data-hb-mode="compare"] .fg-card{display:none}
+    .stage[data-hb-mode="inside"] .vin{display:block}
+    /* In See inside the legend takes a strip at the top, as Compare's names do, and the wash and its marks fit below it */
+    .vin{position:absolute;inset:0}
+    .vscene{position:absolute;left:0;right:0;bottom:0;top:var(--vkey,0px);overflow:hidden}
+    .stage[data-hb-mode="inside"] .mesh-wrap{top:var(--vkey,0px)}
+    /* A ring takes a blob's size, place and path but none of its blur, fill or blend; the dashed outline stands where the path turns back */
+    .ring,.out{position:absolute;border-radius:50%;border:2px solid #fff;background:none;filter:none;opacity:1;mix-blend-mode:normal}
+    .out{border:2px dashed rgba(255,255,255,.6);animation:none}
+    .arrows{position:absolute;inset:0;width:100%;height:100%;fill:var(--ui-accent);stroke:var(--ui-accent);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+    .key{position:absolute;left:0;right:0;top:0;display:flex;flex-wrap:wrap;gap:6px;padding:8px 10px}
+    .key .lbl{position:static;border:1px solid rgba(255,255,255,.18)}
+    .vcap b{color:var(--ui-accent)}
+    /* Compare: the blur-free copy on the left, the real wash confined to the right, both below a strip for their names */
+    .mesh-copy{position:absolute;left:0;right:50%;top:34px;bottom:0;overflow:hidden}
+    .stage[data-hb-mode="compare"] .mesh-copy,.stage[data-hb-mode="compare"] .half{display:block}
+    .stage[data-hb-mode="compare"] .mesh-wrap{left:50%;top:34px}
+    .stage[data-hb-mode="compare"]::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;background:rgba(255,255,255,.3);z-index:2}
+    .stage[data-hb-mode="compare"] .mesh-copy .blob{filter:none}
+    /* The real half is half as wide, so it takes half the blur to look as it does in Normal */
+    .stage[data-hb-mode="compare"] .mesh-wrap .blob{filter:blur(calc(var(--blob-blur) * .5))}
+    @media(max-width:600px){.stage[data-hb-mode="compare"] .mesh-wrap .blob{filter:blur(calc(var(--blob-blur) * .25))}}
+    .half{top:6px}
+    .half.first{left:10px}
+    .half.second{left:calc(50% + 10px)}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="loop">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../animated-gradient-background/" rel="prev" aria-label="Previous: Animated Gradient Background"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Animated Gradient Background</span></a><a href="../aurora/" rel="next" aria-label="Next: Aurora / Northern Lights"><span><span class="hb-dir">Next: </span>Aurora / Northern Lights</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">07.02 · Ambient &amp; Background</p>
+    <h1>Mesh Gradient Animation</h1>
+    <p class="hb-lede">Blurred blobs of color drift and melt together. Best for landing pages.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Watch it</h2><p>It moves by itself. Pause it to look closely, or turn on slow motion to see each part of the movement.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage" id="stage">
+      <div class="mesh-wrap" aria-hidden="true">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="blob b3"></div>
+        <div class="blob b4"></div>
+        <div class="blob b5"></div>
+      </div>
+      <div class="vin" id="vin" aria-hidden="true" inert>
+        <div class="key" id="key">
+          <span class="lbl vcap" data-hb-caption><b>White ring</b>: one blob, unblurred</span>
+          <span class="lbl vcap" data-hb-caption><b>Gold arrow</b>: drifts to the dashed outline</span>
+          <span class="lbl vcap" id="pace" data-hb-caption></span>
+        </div>
+        <div class="vscene" id="vscene"><svg class="arrows" id="arrows"></svg></div>
+      </div>
+      <div class="mesh-copy" id="copy" aria-hidden="true" inert></div>
+      <p class="lbl half first" aria-hidden="true" data-hb-caption>No blur</p>
+      <p class="lbl half second" aria-hidden="true" data-hb-caption>Blurred</p>
+      <div class="fg-card">
+        <div class="fg-eyebrow">Mesh gradient</div>
+        <div class="fg-title">Organic color without sharp edges</div>
+        <div class="fg-body">Heavy blur melts round blobs into soft washes of color, the look Stripe made popular.</div>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-pause" data-hb-pause="css" data-state="playing"><svg class="hb-ic hb-i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="hb-ic hb-i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9z"/></svg><span class="hb-pause-label">Pause</span></button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo="css" autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, each soft patch is a plain round shape of color, outlined here, blurred until its edges melt. Each drifts to its dashed outline and back, at its own pace.</p>
+      <p data-hb-for="compare" hidden>No blur shows the same circles with hard edges, a spotty pattern. Blurred, as you set it, softens them into a wash of color; a light blur leaves the circles easy to see.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting and see the difference as it moves.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="blur-lbl">Blur</p>
+        <div class="seg" id="blur-seg" role="group" aria-labelledby="blur-lbl">
+          <button type="button" data-px="50" aria-pressed="false">Light</button>
+          <button type="button" data-px="80" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-px="130" aria-pressed="false">Heavy</button>
+        </div>
+        <p class="hb-hint">Heavy blur hides the circles; light blur shows them.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-secs="64" aria-pressed="false">Slow</button>
+          <button type="button" data-secs="40" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-secs="24" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">Longer cycles feel calmer.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="pal-lbl">Colors</p>
+        <div class="seg" id="pal-seg" role="group" aria-labelledby="pal-lbl">
+          <button type="button" data-pal="cool" class="on" aria-pressed="true">Cool</button>
+          <button type="button" data-pal="warm" aria-pressed="false">Warm</button>
+          <button type="button" data-pal="sunset" aria-pressed="false">Sunset</button>
+          <button type="button" data-pal="synthwave" aria-pressed="false">Synthwave</button>
+          <button type="button" data-pal="earth" aria-pressed="false">Earth</button>
+        </div>
+        <p class="hb-hint">The colors of the blobs.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="count-lbl">Number of blobs</p>
+          <div class="seg" id="count-seg" role="group" aria-labelledby="count-lbl">
+            <button type="button" data-n="3" aria-pressed="false">3</button>
+            <button type="button" data-n="4" class="on" aria-pressed="true">4</button>
+            <button type="button" data-n="5" aria-pressed="false">5</button>
+          </div>
+          <p class="hb-hint">More blobs make a richer mix of color.</p>
+        </div>
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="blend-lbl">Blend</p>
+          <div class="seg" id="blend-seg" role="group" aria-labelledby="blend-lbl">
+            <button type="button" data-blend="normal" class="on" aria-pressed="true">Plain</button>
+            <button type="button" data-blend="screen" aria-pressed="false">Lighter</button>
+            <button type="button" data-blend="overlay" aria-pressed="false">Deeper</button>
+          </div>
+          <p class="hb-hint">Lighter brightens where blobs overlap; deeper darkens it.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a mesh gradient background to [the section you want behind your content]. Place a few large circles of color behind the content and blur them, so their edges soften and the colors run into one another. Let each circle drift and grow or shrink slowly on its own path, so the colors keep blending in new ways, and clip them to the section so they never spill out. Blur is costly on phones, so blur less on small screens. If the visitor has reduced motion turned on, keep the circles still. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Hero sections</li><li>Landing pages</li><li>App splash screens</li><li>Dark dashboards</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Small elements</li><li>Long reading pages</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const PALETTES={
+    cool:['#1a3060','#2e0a50','#0a2e1a','#2e1a05','#1a0a2e'],
+    warm:['#3a1010','#3a2a10','#3a1025','#2a1035','#3a2015'],
+    sunset:['#3a1510','#2a1040','#1a0540','#3a0520','#3a2510'],
+    synthwave:['#0a0a3a','#3a0050','#003a3a','#1a003a','#3a0030'],
+    earth:['#1a1505','#0a1a0a','#1a0a05','#0a1015','#151a15']
+  };
+  const stage=document.getElementById('stage');
+  const vars=document.documentElement.style;
+  const blobs=[...document.querySelectorAll('.blob')];
+  let secs=40;
+
+  function setPalette(name){
+    const cols=PALETTES[name];
+    blobs.forEach((b,i)=>{b.style.background=cols[i%cols.length]});
+  }
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+      draw();
+    }));
+  }
+  choices('blur-seg',d=>{vars.setProperty('--blob-blur',d.px+'px')});
+  // A new --dur keeps the time already played, so every blob would jump to another point of its path.
+  // Scaling each blob's time by the same factor as its cycle keeps it where it is, moving or paused.
+  choices('speed-seg',d=>{
+    const next=+d.secs;
+    stage.getAnimations({subtree:true}).forEach(a=>{if(a.currentTime!=null)a.currentTime=a.currentTime*next/secs});
+    secs=next;
+    vars.setProperty('--dur',next+'s');
+  });
+  choices('pal-seg',d=>setPalette(d.pal));
+  choices('count-seg',d=>{
+    const n=+d.n;
+    blobs.forEach((b,i)=>{b.style.display=i<n?'block':'none'});
+  });
+  choices('blend-seg',d=>{vars.setProperty('--blend',d.blend)});
+
+  // See inside: a ring and a dashed outline for every blob, and the blur-free copy for Compare, are made once. Each takes the
+  // blob's size, place and keyframes from the page's own styles, so no number is written a second time.
+  const vscene=document.getElementById('vscene'),arrows=document.getElementById('arrows'),copy=document.getElementById('copy'),key=document.getElementById('key');
+  const paceCap=document.getElementById('pace'),slowTog=document.getElementById('slow-tog');
+  const reduceMQ=matchMedia('(prefers-reduced-motion: reduce)');
+  const END={};
+  for(const r of document.querySelector('style').sheet.cssRules)if(r.type===CSSRule.KEYFRAMES_RULE)END[r.name]=r.findRule('100%').style.transform;
+  const rings=[],outs=[],copies=[];
+  blobs.forEach((b,i)=>{
+    const n='b'+(i+1);
+    [['out',outs,vscene],['ring',rings,vscene],['blob',copies,copy]].forEach(([cls,list,box])=>{
+      const e=document.createElement('div');e.className=cls+' '+n;
+      box.insertBefore(e,box===vscene?arrows:null);list.push(e);
+    });
+    outs[i].style.transform=END[n];
+  });
+
+  const modeOf=()=>stage.dataset.hbMode||'normal';
+  // The views show what the real blobs show: their colors, whether they are shown, and where they are on their path. A view's
+  // animation starts when the view is shown, so it is set to the real one's time then, and again once it runs.
+  function syncViews(){
+    blobs.forEach((b,i)=>{
+      [rings[i],outs[i],copies[i]].forEach(e=>{e.style.display=b.style.display});
+      copies[i].style.background=b.style.background;
+      const a=b.getAnimations()[0];
+      [rings[i],copies[i]].forEach(e=>{
+        const v=e.getAnimations()[0];
+        const set=()=>{if(a.currentTime!=null&&v.playState!=='idle'){v.currentTime=a.currentTime;v.playbackRate=a.playbackRate}};
+        if(a&&v){set();v.ready.then(set,()=>{})}
+      });
+    });
+  }
+  // Each gold arrow runs from where a blob starts to the center of its dashed outline, where it turns back
+  function drawArrows(){
+    const W=vscene.clientWidth,H=vscene.clientHeight;
+    arrows.setAttribute('viewBox','0 0 '+W+' '+H);
+    arrows.innerHTML=outs.filter(o=>o.offsetParent).map(o=>{
+      const m=new DOMMatrix(getComputedStyle(o).transform);
+      const x0=o.offsetLeft+o.offsetWidth/2,y0=o.offsetTop+o.offsetHeight/2,x1=x0+m.e,y1=y0+m.f;
+      const L=Math.hypot(x1-x0,y1-y0),ux=(x1-x0)/L,uy=(y1-y0)/L,hx=x1-ux*10,hy=y1-uy*10;
+      return `<circle cx="${x0}" cy="${y0}" r="4"/><path d="M${x0} ${y0}L${hx} ${hy}"/><path d="M${x1} ${y1}L${hx-uy*5} ${hy+ux*5}L${hx+uy*5} ${hy-ux*5}Z"/>`;
+    }).join('');
+  }
+  // The pace is read from the shown blobs' own cycle times, three times longer in Slow motion
+  function drawPace(){
+    const t=blobs.filter(b=>b.offsetParent).map(b=>parseFloat(getComputedStyle(b).animationDuration)*(slowTog.checked?3:1));
+    const words='Own pace: '+Math.round(Math.min(...t))+' to '+Math.round(Math.max(...t))+' seconds each way';
+    if(paceCap.textContent!==words)paceCap.textContent=words;
+  }
+  function draw(){
+    if(modeOf()==='normal')return;
+    syncViews();
+    if(modeOf()==='inside'){drawPace();stage.style.setProperty('--vkey',key.offsetHeight+'px');drawArrows()}
+  }
+  document.addEventListener('hb:mode',draw);
+  new ResizeObserver(draw).observe(stage);
+  slowTog.addEventListener('change',draw);
+  drawPace();
+
+  // Under reduced motion the loop starts paused, so See inside is a still and its note says so; once Play moves it on, the
+  // markup's own words come back. A note is rewritten only when its words change, as its box reads changes out loud.
+  const note=document.querySelector('[data-hb-for="inside"]'),moving=note.textContent;
+  const still='Inside, shown still: each soft patch is a plain round shape of color, outlined here, blurred until its edges melt; the arrow shows where it would drift.';
+  let paused=reduceMQ.matches;
+  function describe(){const words=reduceMQ.matches&&paused?still:moving;if(note.textContent!==words)note.textContent=words}
+  describe();
+  document.addEventListener('hb:pause',e=>{paused=e.detail.paused;describe()});
+  reduceMQ.addEventListener('change',describe);
+</script>
+</body>
+</html>

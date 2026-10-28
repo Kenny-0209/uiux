@@ -1,0 +1,59 @@
+body {
+  font-family: sans-serif;
+}
+
+/* デバイスのアニメーション機能をオフにしている場合は、アニメーションを再生しません */
+/*
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+  }
+}
+*/
+
+.announceText {
+  color: #222;
+  font-size: 1.5rem;
+}
+
+/* ナビゲーションのスタイル */
+.navigation {
+  margin: 50px;
+
+  ul {
+    list-style: none;
+    color: #aac;
+  }
+
+  li {
+    margin-bottom: 12px;
+  }
+
+  a {
+    color: royalblue;
+    text-underline-offset: 4px;
+
+    &:visited {
+      color: #7050ff;
+    }
+  }
+
+  span {
+    display: inline-block;
+    margin-right: 16px;
+  }
+
+  .navigation_currentPage {
+    color: #222;
+  }
+}
+
+.mobileAlert {
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+    color: #ff2255;
+    margin-bottom: 32px;
+  }
+}

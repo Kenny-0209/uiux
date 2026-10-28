@@ -1,0 +1,2212 @@
+[
+  {
+    "id": "ai001",
+    "name": "에이전트 활동 타임라인",
+    "english": "Agent Activity Timeline",
+    "category": "UI 패턴",
+    "description": "에이전트의 사고, 도구 호출, 결과와 메시지를 시간순으로 살펴보고 유형별로 필터링합니다.",
+    "tags": [
+      "Agent Activity Timeline",
+      "agent timeline",
+      "agents",
+      "에이전트",
+      "타임라인"
+    ],
+    "preview": "./examples/ai001/index.html",
+    "codePath": "./examples/ai001/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/agents/agent-timeline/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai002",
+    "name": "작업 승인 요청",
+    "english": "Action Approval Request",
+    "category": "UI 패턴",
+    "description": "에이전트가 수행할 작업을 보여주고 허용 또는 거부를 기다립니다.",
+    "tags": [
+      "Action Approval Request",
+      "approval request",
+      "agents",
+      "승인"
+    ],
+    "preview": "./examples/ai002/index.html",
+    "codePath": "./examples/ai002/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/agents/approval-request/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai003",
+    "name": "앱 연결 목록",
+    "english": "App Connectors List",
+    "category": "UI 패턴",
+    "description": "AI가 연결할 수 있는 앱과 접근 범위를 보여주고 연결하거나 해제합니다.",
+    "tags": [
+      "App Connectors List",
+      "connectors list",
+      "agents",
+      "목록"
+    ],
+    "preview": "./examples/ai003/index.html",
+    "codePath": "./examples/ai003/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/agents/connectors-list/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai004",
+    "name": "파일 변경 미리보기",
+    "english": "File Change Preview",
+    "category": "UI 패턴",
+    "description": "추가·삭제된 파일 내용을 색으로 구분하고 변경 수락과 거부를 제공합니다.",
+    "tags": [
+      "File Change Preview",
+      "file diff",
+      "agents",
+      "파일"
+    ],
+    "preview": "./examples/ai004/index.html",
+    "codePath": "./examples/ai004/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/agents/file-diff/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai005",
+    "name": "AI 기억 관리",
+    "english": "AI Memory Manager",
+    "category": "UI 패턴",
+    "description": "저장된 기억을 추가·수정·삭제하거나 기억 기능을 끕니다.",
+    "tags": [
+      "AI Memory Manager",
+      "memory panel",
+      "agents"
+    ],
+    "preview": "./examples/ai005/index.html",
+    "codePath": "./examples/ai005/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/agents/memory-panel/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai006",
+    "name": "에이전트 실행 로그",
+    "english": "Agent Run Log",
+    "category": "UI 패턴",
+    "description": "에이전트의 활동을 실시간 로그로 표시하고 일시정지·복사를 제공합니다.",
+    "tags": [
+      "Agent Run Log",
+      "run log console",
+      "agents",
+      "에이전트"
+    ],
+    "preview": "./examples/ai006/index.html",
+    "codePath": "./examples/ai006/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/agents/run-log-console/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai007",
+    "name": "병렬 에이전트 상태",
+    "english": "Parallel Agents Status",
+    "category": "UI 패턴",
+    "description": "여러 에이전트의 작업, 진행률과 상태를 보고 개별 중지합니다.",
+    "tags": [
+      "Parallel Agents Status",
+      "subagent grid",
+      "agents",
+      "상태"
+    ],
+    "preview": "./examples/ai007/index.html",
+    "codePath": "./examples/ai007/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/agents/subagent-grid/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai008",
+    "name": "편집 가능한 작업 계획",
+    "english": "Editable Task Plan",
+    "category": "UI 패턴",
+    "description": "실행 전 작업 단계를 수정·삭제·재정렬하고 승인합니다.",
+    "tags": [
+      "Editable Task Plan",
+      "task plan",
+      "agents",
+      "작업",
+      "계획"
+    ],
+    "preview": "./examples/ai008/index.html",
+    "codePath": "./examples/ai008/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/agents/task-plan/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai009",
+    "name": "도구 호출 카드",
+    "english": "Tool Call Card",
+    "category": "UI 패턴",
+    "description": "AI가 사용한 도구의 상태와 시간을 보여주고 입력·결과를 펼쳐봅니다.",
+    "tags": [
+      "Tool Call Card",
+      "tool call card",
+      "agents",
+      "카드"
+    ],
+    "preview": "./examples/ai009/index.html",
+    "codePath": "./examples/ai009/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/agents/tool-call-card/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "탭 가능한 HTML details 요소로 작동합니다. 390px 화면에서 펼침을 확인했으며 실물 휴대전화는 미검증입니다.",
+    "platformEvidence": "원본 details/summary 구조와 390px 브라우저 화면의 펼침 및 가로 넘침 없음을 확인했습니다."
+  },
+  {
+    "id": "ai010",
+    "name": "웹 검색 결과 카드",
+    "english": "Web Results Card",
+    "category": "UI 패턴",
+    "description": "AI가 읽은 웹 페이지의 제목과 발췌를 보여주고 답변에 사용된 출처를 표시합니다.",
+    "tags": [
+      "Web Results Card",
+      "web results card",
+      "agents",
+      "카드"
+    ],
+    "preview": "./examples/ai010/index.html",
+    "codePath": "./examples/ai010/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/agents/web-results-card/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai011",
+    "name": "채팅 목록 메뉴",
+    "english": "Chat List Item Menu",
+    "category": "UI 패턴",
+    "description": "대화 이름을 바꾸고 고정하거나 삭제 후 실행 취소합니다.",
+    "tags": [
+      "Chat List Item Menu",
+      "chat item menu",
+      "chat-layout",
+      "채팅",
+      "목록",
+      "메뉴"
+    ],
+    "preview": "./examples/ai011/index.html",
+    "codePath": "./examples/ai011/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/chat-layout/chat-item-menu/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai012",
+    "name": "빈 채팅 환영 화면",
+    "english": "Empty Chat Welcome Screen",
+    "category": "UI 패턴",
+    "description": "첫 대화에서 인사, 예시 질문, 기능과 한계를 안내합니다.",
+    "tags": [
+      "Empty Chat Welcome Screen",
+      "empty chat state",
+      "chat-layout",
+      "채팅"
+    ],
+    "preview": "./examples/ai012/index.html",
+    "codePath": "./examples/ai012/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/chat-layout/empty-chat-state/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai013",
+    "name": "전체 채팅 창",
+    "english": "Full Chat Window",
+    "category": "UI 패턴",
+    "description": "헤더, 스크롤되는 대화와 입력창을 갖춘 스트리밍 채팅 화면입니다.",
+    "tags": [
+      "Full Chat Window",
+      "full chat window",
+      "chat-layout",
+      "채팅"
+    ],
+    "preview": "./examples/ai013/index.html",
+    "codePath": "./examples/ai013/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/chat-layout/full-chat-window/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai014",
+    "name": "모바일 채팅 화면",
+    "english": "Mobile Chat Screen",
+    "category": "UI 패턴",
+    "description": "작은 화면에 맞춘 메시지와 첨부 버튼, 입력창을 제공합니다.",
+    "tags": [
+      "Mobile Chat Screen",
+      "mobile chat",
+      "chat-layout",
+      "모바일",
+      "채팅"
+    ],
+    "preview": "./examples/ai014/index.html",
+    "codePath": "./examples/ai014/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/chat-layout/mobile-chat/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai015",
+    "name": "고정 채팅·폴더 사이드바",
+    "english": "Sidebar with Pinned Chats and Folders",
+    "category": "UI 패턴",
+    "description": "고정한 채팅과 접고 펼치는 폴더를 사이드바에 표시합니다.",
+    "tags": [
+      "Sidebar with Pinned Chats and Folders",
+      "sidebar folders",
+      "chat-layout",
+      "사이드바"
+    ],
+    "preview": "./examples/ai015/index.html",
+    "codePath": "./examples/ai015/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/chat-layout/sidebar-folders/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai016",
+    "name": "두 답변 비교",
+    "english": "Compare Two Answers",
+    "category": "UI 패턴",
+    "description": "두 답변을 나란히 놓고 어느 쪽이 좋은지 평가합니다.",
+    "tags": [
+      "Compare Two Answers",
+      "compare answers",
+      "feedback",
+      "비교"
+    ],
+    "preview": "./examples/ai016/index.html",
+    "codePath": "./examples/ai016/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/feedback/compare-answers/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai017",
+    "name": "신뢰도 배지",
+    "english": "Confidence Badge",
+    "category": "UI 패턴",
+    "description": "답변의 추정 신뢰도와 간단한 설명 및 출처 확인 안내를 보여줍니다.",
+    "tags": [
+      "Confidence Badge",
+      "confidence badge",
+      "feedback",
+      "배지"
+    ],
+    "preview": "./examples/ai017/index.html",
+    "codePath": "./examples/ai017/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/feedback/confidence-badge/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai018",
+    "name": "도움 여부 평가",
+    "english": "Was This Helpful Bar",
+    "category": "UI 패턴",
+    "description": "답변 아래에서 도움이 되었는지 예·아니요로 응답합니다.",
+    "tags": [
+      "Was This Helpful Bar",
+      "helpful bar",
+      "feedback",
+      "바"
+    ],
+    "preview": "./examples/ai018/index.html",
+    "codePath": "./examples/ai018/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/feedback/helpful-bar/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai019",
+    "name": "문제 신고 대화상자",
+    "english": "Report a Problem Dialog",
+    "category": "UI 패턴",
+    "description": "답변의 문제 유형과 상세 내용을 입력해 신고합니다.",
+    "tags": [
+      "Report a Problem Dialog",
+      "report dialog",
+      "feedback",
+      "신고"
+    ],
+    "preview": "./examples/ai019/index.html",
+    "codePath": "./examples/ai019/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/feedback/report-dialog/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai020",
+    "name": "답변 다시쓰기 메뉴",
+    "english": "Rewrite Options Menu",
+    "category": "UI 패턴",
+    "description": "답변을 더 짧게, 길게, 쉽게 또는 격식 있게 다시 씁니다.",
+    "tags": [
+      "Rewrite Options Menu",
+      "rewrite options",
+      "feedback",
+      "메뉴"
+    ],
+    "preview": "./examples/ai020/index.html",
+    "codePath": "./examples/ai020/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/feedback/rewrite-options/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai021",
+    "name": "만족도 척도",
+    "english": "Satisfaction Scale",
+    "category": "UI 패턴",
+    "description": "다섯 가지 얼굴 표정으로 대화 만족도를 선택합니다.",
+    "tags": [
+      "Satisfaction Scale",
+      "satisfaction scale",
+      "feedback",
+      "크기"
+    ],
+    "preview": "./examples/ai021/index.html",
+    "codePath": "./examples/ai021/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/feedback/satisfaction-scale/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai022",
+    "name": "싫어요 이유 선택",
+    "english": "Thumbs Down with Reasons",
+    "category": "UI 패턴",
+    "description": "부정 평가 후 빠른 이유 선택과 선택적 의견 입력을 제공합니다.",
+    "tags": [
+      "Thumbs Down with Reasons",
+      "thumbs down reasons",
+      "feedback"
+    ],
+    "preview": "./examples/ai022/index.html",
+    "codePath": "./examples/ai022/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/feedback/thumbs-down-reasons/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai023",
+    "name": "좋아요·싫어요",
+    "english": "Thumbs Up and Down",
+    "category": "UI 패턴",
+    "description": "답변을 평가하고 다시 눌러 평가를 취소합니다.",
+    "tags": [
+      "Thumbs Up and Down",
+      "thumbs feedback",
+      "feedback"
+    ],
+    "preview": "./examples/ai023/index.html",
+    "codePath": "./examples/ai023/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/feedback/thumbs-feedback/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai024",
+    "name": "답변 버전 전환",
+    "english": "Answer Versions",
+    "category": "UI 패턴",
+    "description": "재생성한 여러 답변을 화살표로 오가며 비교합니다.",
+    "tags": [
+      "Answer Versions",
+      "answer versions",
+      "messages",
+      "답변"
+    ],
+    "preview": "./examples/ai024/index.html",
+    "codePath": "./examples/ai024/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/messages/answer-versions/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai025",
+    "name": "채팅 말풍선",
+    "english": "Chat Bubbles",
+    "category": "UI 패턴",
+    "description": "사용자와 AI의 메시지를 아바타·시간과 함께 표시합니다.",
+    "tags": [
+      "Chat Bubbles",
+      "chat bubbles",
+      "messages",
+      "채팅"
+    ],
+    "preview": "./examples/themeui/index.html?demo=ai025",
+    "codePath": "./examples/ai025/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/messages/chat-bubbles/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 theme 설정을 선택하는 패널을 별도 구현. 원본 화면은 정적입니다.",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "정적 원본 화면에 밝은·어두운 테마 선택을 추가했습니다.",
+    "codeFiles": [
+      {
+        "label": "테마 비교 패널",
+        "path": "./examples/themeui/index.html"
+      }
+    ]
+  },
+  {
+    "id": "ai026",
+    "name": "사용자 메시지 수정",
+    "english": "Editable User Message",
+    "category": "UI 패턴",
+    "description": "질문을 입력창으로 바꿔 수정하고 저장하거나 취소합니다.",
+    "tags": [
+      "Editable User Message",
+      "edit message",
+      "messages",
+      "메시지"
+    ],
+    "preview": "./examples/ai026/index.html",
+    "codePath": "./examples/ai026/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/messages/edit-message/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai027",
+    "name": "오류 메시지와 재시도",
+    "english": "Error Message with Retry",
+    "category": "UI 패턴",
+    "description": "답변 실패를 알리고 진행 상태와 함께 다시 시도합니다.",
+    "tags": [
+      "Error Message with Retry",
+      "error retry",
+      "messages",
+      "오류",
+      "메시지"
+    ],
+    "preview": "./examples/ai027/index.html",
+    "codePath": "./examples/ai027/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/messages/error-retry/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai028",
+    "name": "첨부 파일 메시지",
+    "english": "Message with Attached Files",
+    "category": "UI 패턴",
+    "description": "사용자 메시지에 파일 이름, 유형과 크기를 함께 표시합니다.",
+    "tags": [
+      "Message with Attached Files",
+      "file message",
+      "messages",
+      "메시지"
+    ],
+    "preview": "./examples/themeui/index.html?demo=ai028",
+    "codePath": "./examples/ai028/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/messages/file-message/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 theme 설정을 선택하는 패널을 별도 구현. 원본 화면은 정적입니다.",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "정적 원본 화면에 밝은·어두운 테마 선택을 추가했습니다.",
+    "codeFiles": [
+      {
+        "label": "테마 비교 패널",
+        "path": "./examples/themeui/index.html"
+      }
+    ]
+  },
+  {
+    "id": "ai029",
+    "name": "서식이 적용된 답변",
+    "english": "Formatted Answer",
+    "category": "UI 패턴",
+    "description": "제목, 목록, 코드, 인용과 표가 포함된 답변을 보여줍니다.",
+    "tags": [
+      "Formatted Answer",
+      "formatted answer",
+      "messages",
+      "답변"
+    ],
+    "preview": "./examples/themeui/index.html?demo=ai029",
+    "codePath": "./examples/ai029/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/messages/formatted-answer/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 theme 설정을 선택하는 패널을 별도 구현. 원본 화면은 정적입니다.",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "정적 원본 화면에 밝은·어두운 테마 선택을 추가했습니다.",
+    "codeFiles": [
+      {
+        "label": "테마 비교 패널",
+        "path": "./examples/themeui/index.html"
+      }
+    ]
+  },
+  {
+    "id": "ai030",
+    "name": "본문 내 출처 표시",
+    "english": "Inline Citations",
+    "category": "UI 패턴",
+    "description": "본문의 번호에 마우스를 올리거나 포커스해 출처를 확인합니다.",
+    "tags": [
+      "Inline Citations",
+      "inline citations",
+      "messages",
+      "출처"
+    ],
+    "preview": "./examples/ai030/index.html",
+    "codePath": "./examples/ai030/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/messages/inline-citations/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai031",
+    "name": "자동 확장 입력창",
+    "english": "Auto-Growing Prompt",
+    "category": "UI 패턴",
+    "description": "입력에 따라 커지고 최대 높이 이후 스크롤하며 글자 수를 표시합니다.",
+    "tags": [
+      "Auto-Growing Prompt",
+      "auto grow prompt",
+      "prompt-input",
+      "프롬프트"
+    ],
+    "preview": "./examples/ai031/index.html",
+    "codePath": "./examples/ai031/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/prompt-input/auto-grow-prompt/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai032",
+    "name": "기본 입력창",
+    "english": "Basic Prompt Box",
+    "category": "UI 패턴",
+    "description": "Enter로 전송하고 Shift+Enter로 줄을 바꾸는 입력창입니다.",
+    "tags": [
+      "Basic Prompt Box",
+      "basic prompt box",
+      "prompt-input",
+      "프롬프트"
+    ],
+    "preview": "./examples/ai032/index.html",
+    "codePath": "./examples/ai032/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/prompt-input/basic-prompt-box/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai033",
+    "name": "이전 프롬프트 불러오기",
+    "english": "Prompt with History",
+    "category": "UI 패턴",
+    "description": "빈 입력창에서 위쪽 화살표로 이전 질문을 불러옵니다.",
+    "tags": [
+      "Prompt with History",
+      "prompt history",
+      "prompt-input",
+      "프롬프트",
+      "기록"
+    ],
+    "preview": "./examples/ai033/index.html",
+    "codePath": "./examples/ai033/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/prompt-input/prompt-history/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai034",
+    "name": "프롬프트 추천",
+    "english": "Prompt Suggestions",
+    "category": "UI 패턴",
+    "description": "추천 질문을 누르면 입력창에 채워져 수정할 수 있습니다.",
+    "tags": [
+      "Prompt Suggestions",
+      "prompt suggestions",
+      "prompt-input",
+      "프롬프트"
+    ],
+    "preview": "./examples/ai034/index.html",
+    "codePath": "./examples/ai034/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/prompt-input/prompt-suggestions/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai035",
+    "name": "토큰 수 표시 입력창",
+    "english": "Prompt with Token Counter",
+    "category": "UI 패턴",
+    "description": "입력 중 토큰 수를 추정하고 한도에 따라 막대 색상을 바꿉니다.",
+    "tags": [
+      "Prompt with Token Counter",
+      "prompt token counter",
+      "prompt-input",
+      "프롬프트",
+      "토큰",
+      "카운터"
+    ],
+    "preview": "./examples/ai035/index.html",
+    "codePath": "./examples/ai035/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/prompt-input/prompt-token-counter/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai036",
+    "name": "파일 첨부 입력창",
+    "english": "Prompt with File Attachments",
+    "category": "UI 패턴",
+    "description": "버튼이나 드래그로 파일을 첨부하고 크기와 삭제 버튼을 표시합니다.",
+    "tags": [
+      "Prompt with File Attachments",
+      "prompt with attachments",
+      "prompt-input",
+      "프롬프트",
+      "파일"
+    ],
+    "preview": "./examples/ai036/index.html",
+    "codePath": "./examples/ai036/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/prompt-input/prompt-with-attachments/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai037",
+    "name": "전송 단축키 설정 입력창",
+    "english": "Prompt with Send Shortcut Setting",
+    "category": "UI 패턴",
+    "description": "Enter의 전송 또는 줄바꿈 동작을 선택하고 단축키를 안내합니다.",
+    "tags": [
+      "Prompt with Send Shortcut Setting",
+      "send shortcut prompt",
+      "prompt-input",
+      "프롬프트"
+    ],
+    "preview": "./examples/ai037/index.html",
+    "codePath": "./examples/ai037/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/prompt-input/send-shortcut-prompt/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai038",
+    "name": "슬래시 명령 입력창",
+    "english": "Prompt with Slash Commands",
+    "category": "UI 패턴",
+    "description": "슬래시로 명령 메뉴를 열고 키보드로 선택합니다.",
+    "tags": [
+      "Prompt with Slash Commands",
+      "slash commands prompt",
+      "prompt-input",
+      "프롬프트"
+    ],
+    "preview": "./examples/ai038/index.html",
+    "codePath": "./examples/ai038/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/prompt-input/slash-commands-prompt/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai039",
+    "name": "음성 입력 프롬프트",
+    "english": "Prompt with Voice Input",
+    "category": "UI 패턴",
+    "description": "브라우저가 지원하면 음성을 문자로 바꾸고 녹음 시간과 상태를 표시합니다.",
+    "tags": [
+      "Prompt with Voice Input",
+      "voice input prompt",
+      "prompt-input",
+      "프롬프트",
+      "음성",
+      "입력"
+    ],
+    "preview": "./examples/ai039/index.html",
+    "codePath": "./examples/ai039/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/prompt-input/voice-input-prompt/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai040",
+    "name": "고급 매개변수 패널",
+    "english": "Advanced Parameters Panel",
+    "category": "UI 패턴",
+    "description": "최대 답변 길이, top-p와 중지 단어를 설정하고 초기화합니다.",
+    "tags": [
+      "Advanced Parameters Panel",
+      "advanced parameters",
+      "settings",
+      "패널"
+    ],
+    "preview": "./examples/ai040/index.html",
+    "codePath": "./examples/ai040/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/settings/advanced-parameters/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai041",
+    "name": "답변 언어 선택",
+    "english": "Reply Language Picker",
+    "category": "UI 패턴",
+    "description": "검색 가능한 목록에서 답변 언어를 선택합니다.",
+    "tags": [
+      "Reply Language Picker",
+      "language picker",
+      "settings"
+    ],
+    "preview": "./examples/ai041/index.html",
+    "codePath": "./examples/ai041/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/settings/language-picker/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai042",
+    "name": "모델 선택 카드",
+    "english": "Model Selection Cards",
+    "category": "UI 패턴",
+    "description": "속도와 품질을 비교하며 키보드로 모델을 선택합니다.",
+    "tags": [
+      "Model Selection Cards",
+      "model cards",
+      "settings",
+      "모델",
+      "카드"
+    ],
+    "preview": "./examples/ai042/index.html",
+    "codePath": "./examples/ai042/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/settings/model-cards/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai043",
+    "name": "어시스턴트 역할 카드",
+    "english": "Assistant Persona Cards",
+    "category": "UI 패턴",
+    "description": "튜터, 편집자 등 역할을 고르면 인사말이 바뀝니다.",
+    "tags": [
+      "Assistant Persona Cards",
+      "persona cards",
+      "settings",
+      "카드"
+    ],
+    "preview": "./examples/ai043/index.html",
+    "codePath": "./examples/ai043/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/settings/persona-cards/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai044",
+    "name": "개인정보 설정",
+    "english": "Privacy Controls",
+    "category": "UI 패턴",
+    "description": "대화 저장, 모델 개선, 자동 삭제와 데이터 내보내기를 설정합니다.",
+    "tags": [
+      "Privacy Controls",
+      "privacy controls",
+      "settings"
+    ],
+    "preview": "./examples/ai044/index.html",
+    "codePath": "./examples/ai044/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/settings/privacy-controls/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai045",
+    "name": "답변 길이 설정",
+    "english": "Answer Length Control",
+    "category": "UI 패턴",
+    "description": "짧게·보통·길게 중 선택하고 예상 길이를 미리 봅니다.",
+    "tags": [
+      "Answer Length Control",
+      "response length",
+      "settings",
+      "답변"
+    ],
+    "preview": "./examples/ai045/index.html",
+    "codePath": "./examples/ai045/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/settings/response-length/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai046",
+    "name": "시스템 프롬프트 편집기",
+    "english": "System Prompt Editor",
+    "category": "UI 패턴",
+    "description": "모든 대화에 적용할 지침을 편집하고 변경 사항을 저장합니다.",
+    "tags": [
+      "System Prompt Editor",
+      "system prompt editor",
+      "settings",
+      "프롬프트"
+    ],
+    "preview": "./examples/ai046/index.html",
+    "codePath": "./examples/ai046/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/settings/system-prompt-editor/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai047",
+    "name": "말투 선택",
+    "english": "Tone Selector",
+    "category": "UI 패턴",
+    "description": "친근함, 전문성 등 말투를 고르고 예시 답변을 확인합니다.",
+    "tags": [
+      "Tone Selector",
+      "tone selector",
+      "settings"
+    ],
+    "preview": "./examples/ai047/index.html",
+    "codePath": "./examples/ai047/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/settings/tone-selector/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai048",
+    "name": "AI 상태 구체",
+    "english": "AI Orb",
+    "category": "UI 패턴",
+    "description": "빛나는 구체가 대기·듣기·생각 중 상태를 표시합니다.",
+    "tags": [
+      "AI Orb",
+      "ai orb",
+      "thinking"
+    ],
+    "preview": "./examples/ai048/index.html",
+    "codePath": "./examples/ai048/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/thinking/ai-orb/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai049",
+    "name": "스켈레톤 메시지",
+    "english": "Skeleton Message",
+    "category": "UI 패턴",
+    "description": "답변 로딩 중 자리표시자를 보여 화면이 흔들리지 않게 합니다.",
+    "tags": [
+      "Skeleton Message",
+      "skeleton message",
+      "thinking",
+      "스켈레톤",
+      "메시지"
+    ],
+    "preview": "./examples/ai049/index.html",
+    "codePath": "./examples/ai049/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/thinking/skeleton-message/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai050",
+    "name": "상태 텍스트 스피너",
+    "english": "Spinner with Status Text",
+    "category": "UI 패턴",
+    "description": "진행 단계에 따라 바뀌는 문구와 스피너를 표시합니다.",
+    "tags": [
+      "Spinner with Status Text",
+      "status spinner",
+      "thinking",
+      "스피너",
+      "상태",
+      "텍스트"
+    ],
+    "preview": "./examples/ai050/index.html",
+    "codePath": "./examples/ai050/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/thinking/status-spinner/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai051",
+    "name": "생성 중지 버튼",
+    "english": "Stop Generating Button",
+    "category": "UI 패턴",
+    "description": "답변 생성을 중단하고 기존 내용을 유지하며 계속 또는 재시도를 제공합니다.",
+    "tags": [
+      "Stop Generating Button",
+      "stop generating",
+      "thinking",
+      "버튼"
+    ],
+    "preview": "./examples/ai051/index.html",
+    "codePath": "./examples/ai051/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/thinking/stop-generating/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai052",
+    "name": "생각 중 시머",
+    "english": "Thinking Shimmer",
+    "category": "UI 패턴",
+    "description": "생각 중 문구 위로 빛이 흐르고 완료 후 소요 시간을 표시합니다.",
+    "tags": [
+      "Thinking Shimmer",
+      "thinking shimmer",
+      "thinking"
+    ],
+    "preview": "./examples/ai052/index.html",
+    "codePath": "./examples/ai052/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/thinking/thinking-shimmer/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai053",
+    "name": "웹 검색 상태 표시",
+    "english": "Web Search Indicator",
+    "category": "UI 패턴",
+    "description": "검색 중 출처를 차례로 표시하고 찾은 개수를 알려줍니다.",
+    "tags": [
+      "Web Search Indicator",
+      "tool call indicator",
+      "thinking",
+      "검색"
+    ],
+    "preview": "./examples/ai053/index.html",
+    "codePath": "./examples/ai053/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/thinking/tool-call-indicator/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai054",
+    "name": "입력 중 점 표시",
+    "english": "Typing Dots",
+    "category": "UI 패턴",
+    "description": "답변 말풍선 안에서 세 점이 움직이며 작성 중임을 나타냅니다.",
+    "tags": [
+      "Typing Dots",
+      "typing dots",
+      "thinking",
+      "타이핑"
+    ],
+    "preview": "./examples/ai054/index.html",
+    "codePath": "./examples/ai054/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/thinking/typing-dots/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai055",
+    "name": "AI 안내 배너",
+    "english": "AI Disclaimer Banner",
+    "category": "UI 패턴",
+    "description": "AI가 실수할 수 있음을 알리고 안내를 닫을 수 있습니다.",
+    "tags": [
+      "AI Disclaimer Banner",
+      "ai disclaimer banner",
+      "trust"
+    ],
+    "preview": "./examples/ai055/index.html",
+    "codePath": "./examples/ai055/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/trust/ai-disclaimer-banner/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai056",
+    "name": "AI 생성 표시",
+    "english": "AI-Generated Label",
+    "category": "UI 패턴",
+    "description": "AI가 만든 텍스트나 이미지를 표시하고 생성 방식 안내를 제공합니다.",
+    "tags": [
+      "AI-Generated Label",
+      "ai generated label",
+      "trust"
+    ],
+    "preview": "./examples/ai056/index.html",
+    "codePath": "./examples/ai056/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/trust/ai-generated-label/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai057",
+    "name": "민감한 콘텐츠 안내",
+    "english": "Sensitive Content Notice",
+    "category": "UI 패턴",
+    "description": "민감한 답변을 안내 뒤에 숨기고 보기 선택과 도움 링크를 제공합니다.",
+    "tags": [
+      "Sensitive Content Notice",
+      "content warning",
+      "trust"
+    ],
+    "preview": "./examples/ai057/index.html",
+    "codePath": "./examples/ai057/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/trust/content-warning/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai058",
+    "name": "AI 오류 상태",
+    "english": "AI Error States",
+    "category": "UI 패턴",
+    "description": "연결 문제, 서비스 혼잡, 긴 메시지 등에 맞는 해결 방법을 안내합니다.",
+    "tags": [
+      "AI Error States",
+      "error states",
+      "trust",
+      "오류"
+    ],
+    "preview": "./examples/ai058/index.html",
+    "codePath": "./examples/ai058/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/trust/error-states/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai059",
+    "name": "사실 확인 패널",
+    "english": "Fact Check Panel",
+    "category": "UI 패턴",
+    "description": "주장별 출처 확인 결과와 근거를 펼쳐 볼 수 있습니다.",
+    "tags": [
+      "Fact Check Panel",
+      "fact check panel",
+      "trust",
+      "패널"
+    ],
+    "preview": "./examples/ai059/index.html",
+    "codePath": "./examples/ai059/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/trust/fact-check-panel/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "탭 가능한 HTML details 요소로 작동합니다. 390px 화면에서 펼침을 확인했으며 실물 휴대전화는 미검증입니다.",
+    "platformEvidence": "원본 details/summary 구조와 390px 브라우저 화면의 펼침 및 가로 넘침 없음을 확인했습니다."
+  },
+  {
+    "id": "ai060",
+    "name": "첫 사용 동의",
+    "english": "First Run Consent",
+    "category": "UI 패턴",
+    "description": "데이터 사용 방식을 설명하고 약관 동의와 선택적 학습 동의를 구분합니다.",
+    "tags": [
+      "First Run Consent",
+      "first run consent",
+      "trust"
+    ],
+    "preview": "./examples/ai060/index.html",
+    "codePath": "./examples/ai060/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/trust/first-run-consent/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai061",
+    "name": "키보드 단축키 패널",
+    "english": "Keyboard Shortcuts Panel",
+    "category": "UI 패턴",
+    "description": "작업별 단축키를 검색하고 확인합니다.",
+    "tags": [
+      "Keyboard Shortcuts Panel",
+      "keyboard shortcuts",
+      "trust",
+      "패널"
+    ],
+    "preview": "./examples/ai061/index.html",
+    "codePath": "./examples/ai061/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/trust/keyboard-shortcuts/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai062",
+    "name": "온보딩 투어",
+    "english": "Onboarding Tour",
+    "category": "UI 패턴",
+    "description": "화면 요소를 단계별로 안내하며 이전·건너뛰기를 지원합니다.",
+    "tags": [
+      "Onboarding Tour",
+      "onboarding tour",
+      "trust"
+    ],
+    "preview": "./examples/ai062/index.html",
+    "codePath": "./examples/ai062/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/trust/onboarding-tour/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai063",
+    "name": "프롬프트 작성 팁",
+    "english": "Prompt Tips Card",
+    "category": "UI 패턴",
+    "description": "좋은 질문과 부족한 질문을 나란히 보여주고 넘겨봅니다.",
+    "tags": [
+      "Prompt Tips Card",
+      "prompt tips",
+      "trust",
+      "프롬프트",
+      "카드"
+    ],
+    "preview": "./examples/ai063/index.html",
+    "codePath": "./examples/ai063/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/trust/prompt-tips/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai064",
+    "name": "새로운 기능 안내",
+    "english": "What's New Dialog",
+    "category": "UI 패턴",
+    "description": "새 기능을 여러 장의 슬라이드로 소개하고 의견을 받습니다.",
+    "tags": [
+      "What's New Dialog",
+      "whats new dialog",
+      "trust"
+    ],
+    "preview": "./examples/ai064/index.html",
+    "codePath": "./examples/ai064/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/trust/whats-new-dialog/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai065",
+    "name": "컨텍스트 사용량 막대",
+    "english": "Context Window Bar",
+    "category": "UI 패턴",
+    "description": "지침, 파일, 대화 기록과 답변에 남은 공간을 표시합니다.",
+    "tags": [
+      "Context Window Bar",
+      "context window bar",
+      "usage",
+      "바"
+    ],
+    "preview": "./examples/ai065/index.html",
+    "codePath": "./examples/ai065/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/usage/context-window-bar/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai066",
+    "name": "남은 크레딧 카드",
+    "english": "Credits Remaining Card",
+    "category": "UI 패턴",
+    "description": "이번 달 잔여 크레딧과 갱신 시점, 추가 구매 버튼을 표시합니다.",
+    "tags": [
+      "Credits Remaining Card",
+      "credits card",
+      "usage",
+      "카드"
+    ],
+    "preview": "./examples/ai066/index.html",
+    "codePath": "./examples/ai066/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/usage/credits-card/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai067",
+    "name": "오늘 남은 메시지",
+    "english": "Messages Left Today",
+    "category": "UI 패턴",
+    "description": "남은 메시지 수와 갱신 시간을 원형 표시로 보여줍니다.",
+    "tags": [
+      "Messages Left Today",
+      "daily limit ring",
+      "usage"
+    ],
+    "preview": "./examples/ai067/index.html",
+    "codePath": "./examples/ai067/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/usage/daily-limit-ring/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai068",
+    "name": "메시지별 비용",
+    "english": "Cost per Message",
+    "category": "UI 패턴",
+    "description": "답변 아래 입출력 토큰과 비용을 표시하고 상세 내역을 엽니다.",
+    "tags": [
+      "Cost per Message",
+      "message cost",
+      "usage",
+      "메시지"
+    ],
+    "preview": "./examples/ai068/index.html",
+    "codePath": "./examples/ai068/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/usage/message-cost/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱",
+      "모바일"
+    ],
+    "platformNote": "탭 가능한 HTML details 요소로 작동합니다. 390px 화면에서 펼침을 확인했으며 실물 휴대전화는 미검증입니다.",
+    "platformEvidence": "원본 details/summary 구조와 390px 브라우저 화면의 펼침 및 가로 넘침 없음을 확인했습니다."
+  },
+  {
+    "id": "ai069",
+    "name": "모델 가격 계산기",
+    "english": "Model Price Calculator",
+    "category": "UI 패턴",
+    "description": "모델과 예상 토큰을 입력해 월별 비용을 추정합니다.",
+    "tags": [
+      "Model Price Calculator",
+      "price calculator",
+      "usage",
+      "모델"
+    ],
+    "preview": "./examples/ai069/index.html",
+    "codePath": "./examples/ai069/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/usage/price-calculator/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai070",
+    "name": "사용 한도 배너",
+    "english": "Rate Limit Banner",
+    "category": "UI 패턴",
+    "description": "메시지 한도 도달을 알리고 재사용까지 남은 시간을 표시합니다.",
+    "tags": [
+      "Rate Limit Banner",
+      "rate limit banner",
+      "usage"
+    ],
+    "preview": "./examples/ai070/index.html",
+    "codePath": "./examples/ai070/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/usage/rate-limit-banner/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai071",
+    "name": "지출 알림 설정",
+    "english": "Spending Alerts",
+    "category": "UI 패턴",
+    "description": "월 예산과 알림 기준을 설정하고 현재 지출과 예상치를 봅니다.",
+    "tags": [
+      "Spending Alerts",
+      "spend alerts",
+      "usage"
+    ],
+    "preview": "./examples/ai071/index.html",
+    "codePath": "./examples/ai071/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/usage/spend-alerts/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai072",
+    "name": "토큰 원형 측정기",
+    "english": "Token Ring Meter",
+    "category": "UI 패턴",
+    "description": "사용한 토큰 비율과 정확한 수치를 보여주고 한도에 따라 색을 바꿉니다.",
+    "tags": [
+      "Token Ring Meter",
+      "token ring",
+      "usage",
+      "토큰"
+    ],
+    "preview": "./examples/ai072/index.html",
+    "codePath": "./examples/ai072/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/usage/token-ring/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai073",
+    "name": "요금제 업그레이드 배너",
+    "english": "Upgrade Plan Banner",
+    "category": "UI 패턴",
+    "description": "무료 한도에 가까워지면 무료·유료 한도를 비교합니다.",
+    "tags": [
+      "Upgrade Plan Banner",
+      "upgrade banner",
+      "usage",
+      "계획"
+    ],
+    "preview": "./examples/ai073/index.html",
+    "codePath": "./examples/ai073/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/usage/upgrade-banner/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai074",
+    "name": "일별 사용량 차트",
+    "english": "Daily Usage Chart",
+    "category": "UI 패턴",
+    "description": "2주간 일별 토큰 사용량을 막대로 표시하고 수치를 확인합니다.",
+    "tags": [
+      "Daily Usage Chart",
+      "usage chart",
+      "usage"
+    ],
+    "preview": "./examples/ai074/index.html",
+    "codePath": "./examples/ai074/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/usage/usage-chart/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai075",
+    "name": "음성 답변 플레이어",
+    "english": "Audio Answer Player",
+    "category": "UI 패턴",
+    "description": "음성 답변의 재생, 이동, 속도와 현재 읽는 텍스트를 제공합니다.",
+    "tags": [
+      "Audio Answer Player",
+      "audio answer player",
+      "voice-media",
+      "오디오",
+      "답변"
+    ],
+    "preview": "./examples/ai075/index.html",
+    "codePath": "./examples/ai075/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/voice-media/audio-answer-player/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai076",
+    "name": "카메라 촬영",
+    "english": "Camera Photo Capture",
+    "category": "UI 패턴",
+    "description": "카메라 미리보기에서 사진을 촬영하거나 다시 찍습니다.",
+    "tags": [
+      "Camera Photo Capture",
+      "camera capture",
+      "voice-media",
+      "카메라"
+    ],
+    "preview": "./examples/ai076/index.html",
+    "codePath": "./examples/ai076/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/voice-media/camera-capture/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai077",
+    "name": "전체 화면 파일 드롭 영역",
+    "english": "Page Drop Zone with Upload Progress",
+    "category": "UI 패턴",
+    "description": "파일을 페이지에 드래그해 업로드하고 각각의 진행률을 봅니다.",
+    "tags": [
+      "Page Drop Zone with Upload Progress",
+      "drop overlay upload",
+      "voice-media",
+      "페이지",
+      "업로드",
+      "진행"
+    ],
+    "preview": "./examples/ai077/index.html",
+    "codePath": "./examples/ai077/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/voice-media/drop-overlay-upload/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai078",
+    "name": "이미지 생성 진행률",
+    "english": "Image Generation Progress",
+    "category": "UI 패턴",
+    "description": "흐릿한 이미지가 점차 선명해지며 완료 후 다운로드를 제공합니다.",
+    "tags": [
+      "Image Generation Progress",
+      "image generation progress",
+      "voice-media",
+      "이미지",
+      "진행"
+    ],
+    "preview": "./examples/ai078/index.html",
+    "codePath": "./examples/ai078/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/voice-media/image-generation-progress/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai079",
+    "name": "이미지 프롬프트 구성기",
+    "english": "Image Prompt Builder",
+    "category": "UI 패턴",
+    "description": "이미지 설명과 스타일, 비율, 수량을 선택하며 결과 프롬프트를 확인합니다.",
+    "tags": [
+      "Image Prompt Builder",
+      "image prompt editor",
+      "voice-media",
+      "이미지",
+      "프롬프트"
+    ],
+    "preview": "./examples/ai079/index.html",
+    "codePath": "./examples/ai079/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/voice-media/image-prompt-editor/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai080",
+    "name": "이미지 업로드 미리보기",
+    "english": "Image Upload with Preview",
+    "category": "UI 패턴",
+    "description": "이미지를 첨부해 썸네일을 보고 파일 형식과 크기 오류를 확인합니다.",
+    "tags": [
+      "Image Upload with Preview",
+      "image upload preview",
+      "voice-media",
+      "이미지",
+      "업로드"
+    ],
+    "preview": "./examples/ai080/index.html",
+    "codePath": "./examples/ai080/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/voice-media/image-upload-preview/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai081",
+    "name": "실시간 음성 기록",
+    "english": "Live Transcript",
+    "category": "UI 패턴",
+    "description": "발화자의 말과 시간 정보를 자막으로 표시하고 전체 기록을 복사합니다.",
+    "tags": [
+      "Live Transcript",
+      "live transcript",
+      "voice-media"
+    ],
+    "preview": "./examples/ai081/index.html",
+    "codePath": "./examples/ai081/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/voice-media/live-transcript/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai082",
+    "name": "음성 대화 화면",
+    "english": "Voice Mode Screen",
+    "category": "UI 패턴",
+    "description": "말하기에 반응하는 구체와 자막, 음소거·종료 버튼을 제공합니다.",
+    "tags": [
+      "Voice Mode Screen",
+      "voice mode",
+      "voice-media",
+      "음성"
+    ],
+    "preview": "./examples/ai082/index.html",
+    "codePath": "./examples/ai082/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/voice-media/voice-mode/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai083",
+    "name": "파형 음성 녹음기",
+    "english": "Voice Recorder with Waveform",
+    "category": "UI 패턴",
+    "description": "마이크 입력을 파형으로 표시하며 음성 메시지를 녹음합니다.",
+    "tags": [
+      "Voice Recorder with Waveform",
+      "voice recorder",
+      "voice-media",
+      "음성"
+    ],
+    "preview": "./examples/ai083/index.html",
+    "codePath": "./examples/ai083/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/voice-media/voice-recorder/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "ai084",
+    "name": "음성 및 발화 설정",
+    "english": "Voice and Speech Settings",
+    "category": "UI 패턴",
+    "description": "읽기 음성, 속도와 높이를 선택해 미리 듣습니다.",
+    "tags": [
+      "Voice and Speech Settings",
+      "voice settings",
+      "voice-media",
+      "음성",
+      "설정"
+    ],
+    "preview": "./examples/ai084/index.html",
+    "codePath": "./examples/ai084/index.html",
+    "sourceName": "100 Free AI UI Components",
+    "sourceUrl": "https://github.com/mmrahmanbappi/100-free-ai-ui-components/blob/9e0b9e70b44db0cb933faefc18fe46746e32105e/voice-media/voice-settings/component.html",
+    "license": "MIT",
+    "licensePath": "./examples/LIC-UI.txt",
+    "adaptation": "원본 HTML을 그대로 사용",
+    "requiresGPU": false,
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  }
+]

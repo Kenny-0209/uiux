@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notification Badge Pulse — Animation Handbook</title>
+  <meta name="description" content="A badge on an icon pulses to catch the eye. Best for unread messages.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/badge-pulse/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Notification Badge Pulse — Animation Handbook">
+  <meta property="og:description" content="A badge on an icon pulses to catch the eye. Best for unread messages.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/badge-pulse/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Notification Badge Pulse — Animation Handbook">
+  <meta name="twitter:description" content="A badge on an icon pulses to catch the eye. Best for unread messages.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Notification Badge Pulse", "name": "Notification Badge Pulse", "description": "A badge on an icon pulses to catch the eye. Best for unread messages.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/04-micro-interactions/badge-pulse/", "inLanguage": "en", "articleSection": "Micro-Interactions", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, Micro-Interactions, Notification Badge Pulse"}</script>
+  <style>
+    :root{--ui-accent:#ff9d5c;--bg:#0b0b0d;--ui-bg:#111114;--ui-border:rgba(255,255,255,.09);--ui-muted:#8a8a92;--pulse-dur:1500ms;--pulse-scale:1.3;--badge-color:#f85149}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;display:flex;align-items:center;justify-content:center;padding:16px;background:#0b0b0d}
+    .icon-row{display:flex;gap:clamp(16px,6vw,40px);align-items:flex-end}
+    /* Icon base */
+    .icon-wrap{display:flex;flex-direction:column;align-items:center;gap:12px;position:relative}
+    .icon-btn,.z-tile{width:64px;height:64px;background:var(--ui-bg);border:1px solid var(--ui-border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:28px;position:relative;cursor:pointer;transition:border-color .15s}
+    .icon-round{border-radius:50%}
+    @media(hover:hover){.icon-btn:hover{border-color:var(--ui-accent)}}
+    .icon-label{font-size:11px;color:var(--ui-muted);text-align:center}
+    /* Badge: the number is dark because white on these colors is below 4.5:1. The badge is a stacking context of its own, so the halo
+       below (z-index -1) is drawn over its color but under the number, and the number keeps its contrast through every pulse. */
+    .badge{position:absolute;top:-8px;right:-8px;min-width:22px;height:22px;border-radius:11px;background:var(--badge-color);color:#0b0b0d;font-size:11px;font-weight:bold;display:flex;align-items:center;justify-content:center;padding:0 5px;border:2px solid var(--bg);isolation:isolate}
+    /* Dot badge */
+    .dot-badge{position:absolute;top:-4px;right:-4px;width:14px;height:14px;border-radius:50%;background:var(--badge-color);border:2px solid var(--bg)}
+    /* Pulse scale only */
+    .pulse-scale .badge,.pulse-scale .dot-badge{animation:badge-scale var(--pulse-dur) ease-in-out infinite}
+    @keyframes badge-scale{0%,100%{transform:scale(1)}50%{transform:scale(var(--pulse-scale))}}
+    /* Halo */
+    .pulse-halo .badge::after,.pulse-halo .dot-badge::after{content:'';position:absolute;inset:-4px;border-radius:50%;background:var(--badge-color);opacity:.4;animation:halo-grow var(--pulse-dur) ease-out infinite}
+    @keyframes halo-grow{0%{transform:scale(1);opacity:.5}100%{transform:scale(2.2);opacity:0}}
+    /* Both */
+    .pulse-both .badge,.pulse-both .dot-badge{animation:badge-scale var(--pulse-dur) ease-in-out infinite}
+    .pulse-both .badge::after,.pulse-both .dot-badge::after{content:'';position:absolute;inset:-4px;border-radius:50%;background:var(--badge-color);opacity:.4;animation:halo-grow var(--pulse-dur) ease-out infinite}
+    .badge::after{z-index:-1}
+    /* The halo grows to 2.2 times the badge and would catch clicks around the icon's corner, even when it has faded out */
+    .badge::after,.dot-badge::after{pointer-events:none}
+    /* Stops after three pulses: the last pulse ends on its last keyframes (badge at scale 1, halo invisible) and stays there */
+    .fade-mode .badge,.fade-mode .dot-badge,.fade-mode .badge::after,.fade-mode .dot-badge::after{animation-iteration-count:3!important;animation-fill-mode:forwards!important}
+    /* Status dot (online) */
+    .status-dot{position:absolute;bottom:-2px;right:-2px;width:16px;height:16px;border-radius:50%;background:#56d364;border:2px solid var(--bg);animation:badge-scale var(--pulse-dur) ease-in-out infinite}
+    /* See inside and Compare. Their parts stay in the stage, unseen and out of the way, outside their modes, so their pulses run
+       beside the real ones and Pause, Slow motion and the Speed change reach them. */
+    .zoom,.cmp-left,.cap-n{position:absolute;left:0;top:0;visibility:hidden;pointer-events:none}
+    .cap{display:flex;align-items:center;gap:7px;padding:3px 8px;border:1px solid rgba(255,255,255,.14);border-radius:6px;background:rgba(8,8,10,.92);color:#f4f4f2;font:600 13px/1.25 var(--hb-font);text-align:center}
+    .cap[hidden]{display:none}
+    .cap-grow::before,.cap-ring::before{content:"";flex:none;width:12px;height:12px;border-radius:50%;border:2px dashed var(--ui-accent)}
+    .cap-ring::before{border-color:#f4f4f2}
+    /* See inside: the bell zoomed in, every size of the tile and the badge multiplied by --z (laid out big, not scaled up, so the
+       number and the outlines stay sharp). The outlines come from the badge: its rest size, its biggest and where the halo ends. */
+    .zdraw{position:relative;flex:none;--z:2;width:calc(94px*var(--z));height:calc(94px*var(--z))}
+    .zdraw .z-tile{position:absolute;left:0;bottom:0;width:calc(64px*var(--z));height:calc(64px*var(--z));border-radius:calc(12px*var(--z));border-width:calc(1px*var(--z));font-size:calc(28px*var(--z))}
+    .zdraw .badge,.stage[data-hb-mode="compare"] .badge{top:calc(-8px*var(--z));right:calc(-8px*var(--z));min-width:calc(22px*var(--z));height:calc(22px*var(--z));border-radius:calc(11px*var(--z));font-size:calc(11px*var(--z));padding:0 calc(5px*var(--z));border-width:calc(2px*var(--z))}
+    .zdraw .badge::after,.stage[data-hb-mode="compare"] .badge::after,.stage[data-hb-mode="compare"] .dot-badge::after{inset:calc(-4px*var(--z))}
+    .zmark{position:absolute;top:calc(-8px*var(--z));right:calc(-8px*var(--z));width:calc(22px*var(--z));height:calc(22px*var(--z))}
+    .zmark i{position:absolute;left:50%;top:50%;border:2px dashed #f4f4f2;border-radius:50%;transform:translate(-50%,-50%)}
+    .zr{width:100%;height:100%}
+    .zmark .zb{width:calc(100%*var(--pulse-scale));height:calc(100%*var(--pulse-scale));border-color:var(--ui-accent)}
+    .zh{width:calc((100% + 8px*var(--z))*2.2);height:calc((100% + 8px*var(--z))*2.2);opacity:.7}
+    .pulse-halo .zb,.pulse-scale .zh{display:none}
+    .stage[data-hb-mode="inside"]{gap:clamp(24px,5vw,64px)}
+    .stage[data-hb-mode="inside"] .zoom{position:static;visibility:visible;display:flex;align-items:center;gap:clamp(20px,3vw,40px)}
+    .stage[data-hb-mode="inside"] .zcaps{display:flex;flex-direction:column;align-items:flex-start;gap:10px;max-width:300px}
+    /* Under 1000px the real bell stands alone on the left, the zoomed one beside it, a caption above and two below. The inbox and
+       the profile step aside, out of the flow but still drawn, because they pulse. */
+    @media(max-width:999px){
+      .stage[data-hb-mode="inside"]{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto auto;gap:8px clamp(22px,7vw,40px);padding:12px;justify-items:center}
+      .stage[data-hb-mode="inside"] .zoom,.stage[data-hb-mode="inside"] .zcaps{display:contents}
+      .stage[data-hb-mode="inside"] .icon-wrap:nth-child(n+2){position:absolute;left:0;top:0;visibility:hidden}
+      .stage[data-hb-mode="inside"] .icon-row{grid-area:2/1}
+      .stage[data-hb-mode="inside"] .zdraw{grid-area:2/2}
+      .stage[data-hb-mode="inside"] .cap-grow{grid-area:1/1/2/3}
+      .stage[data-hb-mode="inside"] .cap-ring{grid-area:3/1/4/3}
+      .stage[data-hb-mode="inside"] .cap-speed{grid-area:4/1/5/3}
+    }
+    /* Compare: the same two icons twice, side by side. Left, a copy that pulses forever (half a pulse ahead, so a still catches it
+       part way through); right, the real ones, held to three pulses without restarting them. While paused the right ones rest. */
+    .stage[data-hb-mode="compare"]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,1fr);padding:0;--ct:64px;--z:1}
+    .stage[data-hb-mode="compare"] .cmp-left{position:static;visibility:visible;grid-area:1/1;border-right:1px solid rgba(255,255,255,.16)}
+    .stage[data-hb-mode="compare"] .icon-row{grid-area:1/2}
+    .stage[data-hb-mode="compare"] .cmp-left,.stage[data-hb-mode="compare"] .icon-row{display:flex;align-items:center;justify-content:center;gap:clamp(12px,4vw,40px);padding:46px 4px 0;min-width:0;overflow:hidden}
+    .stage[data-hb-mode="compare"] .icon-wrap:nth-child(3){position:absolute;left:0;top:0;visibility:hidden}
+    /* On wider boxes both halves are drawn 1.5 times bigger (sizes multiplied, as in See inside), so the pulse reads from a distance */
+    .stage[data-hb-mode="compare"] .icon-btn,.stage[data-hb-mode="compare"] .cmp-left .z-tile{width:calc(var(--ct)*var(--z));height:calc(var(--ct)*var(--z));border-radius:calc(12px*var(--z));font-size:calc(28px*var(--z))}
+    .stage[data-hb-mode="compare"] .dot-badge{top:calc(-4px*var(--z));right:calc(-4px*var(--z));width:calc(14px*var(--z));height:calc(14px*var(--z));border-width:calc(2px*var(--z))}
+    @media(min-width:700px){.stage[data-hb-mode="compare"]{--z:1.5}}
+    .stage[data-hb-mode="compare"] .cap-n{visibility:visible}
+    .cap-n{top:10px;white-space:nowrap;transform:translateX(-50%)}
+    .cap-na{left:25%}
+    .cap-nb{left:75%}
+    @media(max-width:350px){.stage[data-hb-mode="compare"]{--ct:54px}.cap{font-size:12px}}
+    .stage[data-hb-mode="compare"] .cmp-left .badge,.stage[data-hb-mode="compare"] .cmp-left .dot-badge{animation-delay:calc(var(--pulse-dur)*-.5)}
+    .stage[data-hb-mode="compare"] .cmp-left .badge::after,.stage[data-hb-mode="compare"] .cmp-left .dot-badge::after{animation-delay:calc(var(--pulse-dur)*-.25)}
+    .stage[data-hb-mode="compare"] .icon-row .badge,.stage[data-hb-mode="compare"] .icon-row .dot-badge,.stage[data-hb-mode="compare"] .icon-row .badge::after,.stage[data-hb-mode="compare"] .icon-row .dot-badge::after{animation-iteration-count:3;animation-fill-mode:forwards}
+    .stage[data-hb-mode="compare"].hb-paused .icon-row .badge,.stage[data-hb-mode="compare"].hb-paused .icon-row .dot-badge,.stage[data-hb-mode="compare"].hb-paused .icon-row .badge::after,.stage[data-hb-mode="compare"].hb-paused .icon-row .dot-badge::after{animation-delay:calc(var(--pulse-dur)*-3)}
+  </style>
+  <link rel="stylesheet" href="../../../assets/css/demo-page.css?v=10">
+  <script src="../../../assets/js/demo-page.js?v=10" defer></script>
+</head>
+<body class="hb" data-hb-kind="loop">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../form-field-morph/" rel="prev" aria-label="Previous: Form Field Morph"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>Form Field Morph</span></a><a href="../tooltip-reveal/" rel="next" aria-label="Next: Tooltip Reveal"><span><span class="hb-dir">Next: </span>Tooltip Reveal</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">04.15 · Micro-Interactions</p>
+    <h1>Notification Badge Pulse</h1>
+    <p class="hb-lede">A badge on an icon pulses to catch the eye. Best for unread messages.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Watch it</h2><p>It moves by itself. Pause it, or click an icon to clear its badge; Reset brings the badges back.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage hb-dots">
+      <div class="icon-row" id="icon-row">
+        <div class="icon-wrap">
+          <div class="icon-btn pulse-scale" id="ic0" aria-label="Notifications, 3 new" role="button" tabindex="0">
+            🔔
+            <div class="badge" id="badge0">3</div>
+          </div>
+          <div class="icon-label">Number</div>
+        </div>
+        <div class="icon-wrap">
+          <div class="icon-btn pulse-scale" id="ic1" aria-label="Inbox, new messages" role="button" tabindex="0">
+            📥
+            <div class="dot-badge" id="badge1"></div>
+          </div>
+          <div class="icon-label">Dot</div>
+        </div>
+        <div class="icon-wrap">
+          <div class="icon-btn icon-round" id="ic2" aria-label="Profile, online" role="button" tabindex="0">
+            🧑
+            <div class="status-dot" id="badge2"></div>
+          </div>
+          <div class="icon-label">Online</div>
+        </div>
+      </div>
+      <div class="zoom" aria-hidden="true" inert>
+        <div class="zdraw"></div>
+        <div class="zcaps">
+          <p class="cap cap-grow" data-hb-caption></p>
+          <p class="cap cap-ring" data-hb-caption hidden>A soft ring spreads to this circle as it fades</p>
+          <p class="cap cap-speed" data-hb-caption></p>
+        </div>
+      </div>
+      <div class="cmp-left" aria-hidden="true" inert></div>
+      <p class="cap cap-n cap-na" data-hb-caption aria-hidden="true">Pulses forever</p>
+      <p class="cap cap-n cap-nb" data-hb-caption aria-hidden="true">Stops after three</p>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-pause" data-hb-pause="css" data-state="playing"><svg class="hb-ic hb-i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="hb-ic hb-i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9z"/></svg><span class="hb-pause-label">Pause</span></button>
+      <button class="hb-play" type="button" id="btn-reset" data-hb-reset><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>Reset</button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo="css" autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the bell's badge is shown bigger: with Grow it swells from the inner outline to the outer one and back; with Ring a soft halo spreads to the dashed circle.</p>
+      <p data-hb-for="compare" hidden>Pulses forever: the badges never stop, even after you have seen them; Stops after three: they pulse three times, then rest. Press Reset to watch the three pulses again.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting and see the difference as it moves.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="style-lbl">Pulse style</p>
+        <div class="seg" id="style-seg" role="group" aria-labelledby="style-lbl">
+          <button type="button" data-style="pulse-scale" class="on" aria-pressed="true">Grow</button>
+          <button type="button" data-style="pulse-halo" aria-pressed="false">Ring</button>
+          <button type="button" data-style="pulse-both" aria-pressed="false">Both</button>
+        </div>
+        <p class="hb-hint">Grow stays contained; Ring spreads a soft halo.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="speed-lbl">Speed</p>
+        <div class="seg" id="speed-seg" role="group" aria-labelledby="speed-lbl">
+          <button type="button" data-ms="2400" aria-pressed="false">Slow</button>
+          <button type="button" data-ms="1500" class="on" aria-pressed="true">Normal</button>
+          <button type="button" data-ms="900" aria-pressed="false">Fast</button>
+        </div>
+        <p class="hb-hint">Fast feels urgent; slow is easy to miss.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="grow-lbl">How much it grows</p>
+        <div class="seg" id="grow-seg" role="group" aria-labelledby="grow-lbl">
+          <button type="button" data-scale="1.15" aria-pressed="false">Slightly</button>
+          <button type="button" data-scale="1.3" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-scale="1.5" aria-pressed="false">A lot</button>
+        </div>
+        <p class="hb-hint">Much bigger than a third starts to feel alarming.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Stops after three pulses</span><input class="hb-switch" type="checkbox" role="switch" id="fade-tog" autocomplete="off"></label>
+          <p class="hb-hint">Pulses three times to be noticed, then rests.</p>
+        </div>
+        <div class="hb-setting">
+          <p class="hb-setting-name" id="color-lbl">Badge color</p>
+          <div class="swatches" id="color-sw" role="group" aria-labelledby="color-lbl">
+            <button type="button" class="on" aria-pressed="true" aria-label="Red" data-c="#f85149" style="background:#f85149"></button>
+            <button type="button" aria-pressed="false" aria-label="Pink" data-c="#ff6f8b" style="background:#ff6f8b"></button>
+            <button type="button" aria-pressed="false" aria-label="Blue" data-c="#58a6ff" style="background:#58a6ff"></button>
+            <button type="button" aria-pressed="false" aria-label="Purple" data-c="#d2a8ff" style="background:#d2a8ff"></button>
+            <button type="button" aria-pressed="false" aria-label="Orange" data-c="#ffa657" style="background:#ffa657"></button>
+          </div>
+          <p class="hb-hint">Red reads as new and urgent.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a pulsing notification badge to [the icon that has something new, such as a bell or an inbox]. Place a small colored dot or number on the icon's corner and let it pulse, growing and settling back or sending a soft ring outward, so it catches the eye without demanding attention. Give the badge a thin border in the background color so it seems to float above the icon. Remove the badge once the visitor has opened what it points to, and when the settings ask for it, stop the pulse after three beats. If the visitor has reduced motion turned on, keep the badge still. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Notification bells</li><li>Inboxes</li><li>Chat icons</li><li>Online status</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Items already seen</li><li>Many icons at once</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const stage=document.querySelector('.stage');
+  const vars=document.documentElement.style;
+  const icons=[...document.querySelectorAll('.icon-btn')];
+  // While its badge shows, an icon's label says what the badge says ("Notifications, 3 new"); the part before the comma names the icon alone
+  const fullLabel=new Map(icons.map(ic=>[ic,ic.getAttribute('aria-label')]));
+  let currentStyle='pulse-scale',pulseMs=1500,growK=1.3;
+  const reduceMQ=matchMedia('(prefers-reduced-motion: reduce)'),phoneMQ=matchMedia('(max-width:600px),(max-height:500px)');
+  const $=s=>stage.querySelector(s),slowTog=document.getElementById('slow-tog'),fadeTog=document.getElementById('fade-tog');
+
+  // See inside and Compare: copies made once, here, after `icons` was taken, as inert tiles of another class (z-tile) with no
+  // ids, role, name or tab stop. Compare's left half copies the bell and the inbox; See inside draws the bell again, zoomed.
+  const left=$('.cmp-left');
+  const lefts=icons.slice(0,2).map(ic=>{
+    const wrap=ic.parentNode.cloneNode(true),tile=wrap.querySelector('.icon-btn');
+    wrap.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
+    tile.classList.replace('icon-btn','z-tile');
+    ['role','tabindex','aria-label'].forEach(a=>tile.removeAttribute(a));
+    left.appendChild(wrap);
+    return tile;
+  });
+  const zt=document.createElement('div');
+  zt.className='z-tile '+currentStyle;
+  zt.innerHTML='🔔<div class="badge">'+icons[0].querySelector('.badge').textContent+'</div><div class="zmark"><i class="zr"></i><i class="zb"></i><i class="zh"></i></div>';
+  $('.zdraw').appendChild(zt);
+  const pulsers=[...icons.slice(0,2),zt,...lefts];
+
+  // Under reduced motion the loop starts paused, so both views are still pictures and their notes say so, but only while the
+  // still is the posed one: once Play has moved it on, the notes say the markup's own words, until a pause, a mode press or a
+  // restart poses it again. The shared script sends hb:pause on every press of Pause or Play, and once at boot under reduced
+  // motion. A note is rewritten only when its words change, as its box reads changes out loud.
+  const notes=[...document.querySelectorAll('[data-hb-for]')],moving=notes.map(n=>n.textContent),still=[
+    "Inside, the bell's badge is shown bigger and still, part way through a pulse: with Grow at its biggest, inside the outer outline; with Ring its halo part way out.",
+    'Shown still: Pulses forever is caught mid-pulse, as it would be all the time; Stops after three has pulsed three times and now rests.'];
+  let paused=reduceMQ.matches,posedIn=false,posedCmp=false;
+  function describe(){
+    const shown=[posedIn,posedCmp].map(p=>reduceMQ.matches&&paused&&p);
+    notes.forEach((n,i)=>{const words=shown[i]?still[i]:moving[i];if(n.textContent!==words)n.textContent=words});
+  }
+  describe();
+  // Paused, a view rests on a telling moment, as a mode press, a restart or a Pause deals it. Compare's left copies go back to
+  // time zero, which their negative delay makes half a pulse in (a quarter for the halo), and its right half rests by its own
+  // rule. The zoomed bell goes half a pulse in (a quarter for the halo) on a mode press or a restart, not on a press of Pause, so
+  // Pause still freezes it where it is; Play puts it in step with the real bell again.
+  function pose(fromPause){
+    const m=stage.dataset.hbMode;
+    if(paused&&m==='compare'){
+      left.getAnimations({subtree:true}).forEach(a=>{a.currentTime=0});
+      posedCmp=true;
+    }
+    if(paused&&m==='inside'&&!fromPause){
+      zt.getAnimations({subtree:true}).forEach(a=>{a.currentTime=(a.animationName==='badge-scale'?.5:.25)*a.effect.getComputedTiming().duration});
+      posedIn=true;
+    }
+    describe();
+  }
+  function inStep(){
+    const real=icons[0].getAnimations({subtree:true});
+    zt.getAnimations({subtree:true}).forEach(z=>{
+      const r=real.find(a=>a.animationName===z.animationName&&a.effect.pseudoElement===z.effect.pseudoElement);
+      if(r)z.currentTime=r.currentTime;
+    });
+  }
+  document.addEventListener('hb:pause',e=>{
+    paused=e.detail.paused;
+    if(paused)pose(true);
+    else{posedIn=posedCmp=false;inStep()}
+    describe();
+  });
+  reduceMQ.addEventListener('change',describe);
+
+  // The captions of See inside say what the zoomed badge shows now, from the page's own settings
+  const capGrow=$('.cap-grow'),capRing=$('.cap-ring'),capSpeed=$('.cap-speed');
+  const growWords={1.15:'a little bigger',1.3:'about a third bigger',1.5:'half again as big'};
+  const everyWords={2400:['every two and a half seconds','about every seven seconds'],1500:['every second and a half','every four and a half seconds'],900:['about every second','about every three seconds']};
+  function words(){
+    capGrow.textContent='Grows '+growWords[growK]+', then back';
+    capSpeed.textContent=fadeTog.checked?'Three pulses, then it rests':'One pulse '+everyWords[pulseMs][+slowTog.checked];
+    capGrow.hidden=currentStyle==='pulse-halo';
+    capRing.hidden=currentStyle==='pulse-scale';
+    fit();
+  }
+  // The zoom is the biggest picture (2.5 times, 2 on phones) in which the zoomed bell and every caption sit inside the box and
+  // clear of each other and of the real bell; it is measured again on a mode, a setting, a resize and when the font arrives.
+  function fit(){
+    if(stage.dataset.hbMode!=='inside')return;
+    const draw=$('.zdraw'),box=stage.getBoundingClientRect();
+    const L=box.left+stage.clientLeft,T=box.top+stage.clientTop,R=L+stage.clientWidth,B=T+stage.clientHeight;
+    const parts=[...stage.querySelectorAll('.zdraw,.zcaps .cap,#icon-row')].filter(e=>e.getClientRects().length);
+    const clear=()=>{
+      const rs=parts.map(e=>e.getBoundingClientRect());
+      return rs.every((r,i)=>r.left>=L-.5&&r.right<=R+.5&&r.top>=T-.5&&r.bottom<=B+.5&&
+        rs.every((q,j)=>j<=i||r.right<=q.left||q.right<=r.left||r.bottom<=q.top||q.bottom<=r.top));
+    };
+    for(let z=phoneMQ.matches?2:2.5;z>=1.2;z=+(z-.1).toFixed(2)){
+      draw.style.setProperty('--z',z);
+      if(clear())return;
+    }
+  }
+  // Back from Compare while it moves, the real bell and inbox that rested there start their next pulse from rest, not mid-pulse
+  let lastMode='normal';
+  document.addEventListener('hb:mode',()=>{
+    const m=stage.dataset.hbMode;
+    if(lastMode==='compare'&&m!=='compare'&&!paused&&!fadeTog.checked)icons.slice(0,2).forEach(ic=>ic.getAnimations({subtree:true}).forEach(a=>{const d=a.effect.getComputedTiming().duration;if(a.currentTime>=3*d)a.currentTime=Math.ceil(a.currentTime/d)*d}));
+    lastMode=m;if(!paused)inStep();pose();words();
+  });
+  slowTog.addEventListener('change',words);
+  let resizeTimer;
+  addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(fit,100)});
+  if(document.fonts)document.fonts.ready.then(fit);
+
+  // Taking the pulse class off, reading the layout and putting it back starts the pulses again from their first frame (on a
+  // paused stage they wait there until Play): the bell's and the inbox's, and the copies that follow them. The online dot has
+  // no pulse class and keeps going. The halves of Compare restart together, so the three pulses show beside the endless ones.
+  function applyStyle(){
+    pulsers.forEach(t=>t.classList.remove('pulse-scale','pulse-halo','pulse-both'));
+    void stage.offsetWidth;
+    pulsers.forEach(t=>t.classList.add(currentStyle));
+    pose();
+  }
+
+  // Clicking an icon, or pressing Enter or Space on it, clears its badge and its label stops announcing it; Reset brings both back at once.
+  // Compare's left copy of the icon clears its badge too, and so does See inside's zoomed bell (its outlines stay, marking the place).
+  icons.forEach((ic,i)=>{
+    const dismiss=()=>{
+      const b=ic.querySelector('.badge,.dot-badge');
+      if(!b)return;
+      b.style.display='none';
+      if(lefts[i])lefts[i].querySelector('.badge,.dot-badge').style.display='none';
+      if(i===0)zt.querySelector('.badge').style.display='none';
+      ic.setAttribute('aria-label',fullLabel.get(ic).split(',')[0]);
+    };
+    ic.addEventListener('click',dismiss);
+    ic.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();dismiss()}});
+  });
+  document.getElementById('btn-reset').addEventListener('click',()=>{
+    document.querySelectorAll('.badge,.dot-badge').forEach(b=>{b.style.display=''});
+    icons.forEach(ic=>ic.setAttribute('aria-label',fullLabel.get(ic)));
+    applyStyle();
+  });
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  // Pressing the style that is already chosen changes nothing; it must not restart the pulses
+  choices('style-seg',d=>{if(d.style===currentStyle)return;currentStyle=d.style;applyStyle();words()});
+  // A new --pulse-dur keeps the time already played, so every pulse would jump to another point of its cycle. Scaling each
+  // animation's time by the same factor as its length keeps the pulses where they are: moving, paused or finished (the fill mode of
+  // "Stops after three pulses" keeps a finished pulse in the list). The times are read first, the new length goes in and is flushed,
+  // and then every pulse is moved.
+  choices('speed-seg',d=>{
+    const next=+d.ms;
+    if(next===pulseMs)return;
+    const pulses=stage.getAnimations({subtree:true}).filter(a=>a.animationName).map(a=>[a,a.currentTime]);
+    vars.setProperty('--pulse-dur',next+'ms');
+    void stage.offsetWidth;
+    pulses.forEach(([a,t])=>{if(t!=null)a.currentTime=t*next/pulseMs});
+    pulseMs=next;
+    words();
+  });
+  choices('grow-seg',d=>{vars.setProperty('--pulse-scale',d.scale);growK=+d.scale;words()});
+  choices('color-sw',d=>{vars.setProperty('--badge-color',d.c)});
+  fadeTog.addEventListener('change',e=>{
+    [...icons,zt].forEach(t=>t.classList.toggle('fade-mode',e.target.checked));
+    applyStyle();
+    words();
+  });
+  words();
+</script>
+</body>
+</html>

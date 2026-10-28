@@ -1,0 +1,856 @@
+[
+  {
+    "id": "hierarchy",
+    "name": "시각적 위계",
+    "english": "Visual hierarchy",
+    "tags": [
+      "우선순위",
+      "정보",
+      "크기",
+      "대비"
+    ],
+    "category": "설계이론",
+    "description": "정보의 중요성과 사용자의 목적을 바탕으로 무엇을 먼저 인식할지 구성합니다.",
+    "when": "한 화면의 핵심 정보와 보조 정보가 섞여 있을 때",
+    "caution": "중앙 위치나 면적만으로 중요성이 결정되는 것은 아닙니다.",
+    "sourceName": "USWDS 설계 원칙",
+    "sourceUrl": "https://designsystem.digital.gov/design-principles/",
+    "platform": "웹·모바일",
+    "kind": "문서",
+    "lab": "layout",
+    "related": [
+      "density",
+      "disclosure"
+    ]
+  },
+  {
+    "id": "density",
+    "name": "정보 밀도",
+    "english": "Information density",
+    "tags": [
+      "텍스트",
+      "정보량",
+      "가독성",
+      "목록"
+    ],
+    "category": "설계이론",
+    "description": "같은 공간에 담기는 정보량과 사용자가 이해하는 부담을 함께 살핍니다.",
+    "when": "목록·표·패널에 많은 정보를 표시해야 할 때",
+    "caution": "요약이나 숨김이 비교에 필요한 핵심 정보를 없애지 않도록 검토합니다.",
+    "sourceName": "Dashboard Design Patterns",
+    "sourceUrl": "https://dashboarddesignpatterns.github.io/patterns.html",
+    "platform": "웹·데스크톱",
+    "kind": "문서",
+    "lab": "layout",
+    "related": [
+      "hierarchy",
+      "disclosure",
+      "table"
+    ]
+  },
+  {
+    "id": "disclosure",
+    "name": "단계적 공개",
+    "english": "Progressive disclosure",
+    "tags": [
+      "상세",
+      "정보량",
+      "접기",
+      "우선순위"
+    ],
+    "category": "설계이론",
+    "description": "핵심 정보를 먼저 보여주고 세부 내용은 필요한 순간에 제공하는 방법입니다.",
+    "when": "모든 설명을 동시에 보여주면 화면이 혼잡해질 때",
+    "caution": "자주 함께 비교할 정보를 여러 곳에 숨기면 탐색 비용이 늘 수 있습니다.",
+    "sourceName": "Dashboard Design Patterns",
+    "sourceUrl": "https://dashboarddesignpatterns.github.io/patterns.html",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "layout",
+    "related": [
+      "accordion",
+      "drawer",
+      "density"
+    ]
+  },
+  {
+    "id": "grouping",
+    "name": "관련 정보 묶기",
+    "english": "Grouping",
+    "tags": [
+      "분류",
+      "근접",
+      "관련성",
+      "시각적위계"
+    ],
+    "category": "설계이론",
+    "description": "관계가 있는 제목과 내용, 조작을 함께 묶어 화면 구조를 이해하게 합니다.",
+    "when": "기능이 다른 목록과 정보가 나란히 있을 때",
+    "caution": "가까이 배치한다는 이유만으로 서로 관련 없는 정보를 한 그룹에 넣지 않습니다.",
+    "sourceName": "USWDS 설계 원칙",
+    "sourceUrl": "https://designsystem.digital.gov/design-principles/",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "layout",
+    "related": [
+      "hierarchy",
+      "density",
+      "sidebar"
+    ]
+  },
+  {
+    "id": "userflow",
+    "name": "사용자 여정과 흐름",
+    "english": "User journey and user flow",
+    "tags": [
+      "여정",
+      "과업",
+      "화면연결",
+      "순서"
+    ],
+    "category": "설계이론",
+    "description": "사용자의 목표와 단계별 작업을 구분해 화면 간 흐름을 설계합니다.",
+    "when": "여러 화면을 거쳐 과업을 완료하는 서비스를 만들 때",
+    "caution": "서비스 전반의 여정과 한 과업의 세부 흐름은 범위가 다릅니다.",
+    "sourceName": "NN/g 사용자 여정과 흐름",
+    "sourceUrl": "https://www.nngroup.com/articles/user-journeys-vs-user-flows/",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": null,
+    "related": [
+      "step",
+      "sidebar"
+    ]
+  },
+  {
+    "id": "accessibility",
+    "name": "접근 가능한 인터페이스",
+    "english": "Accessible interface",
+    "tags": [
+      "접근성",
+      "키보드",
+      "스크린리더",
+      "대비"
+    ],
+    "category": "설계이론",
+    "description": "다양한 감각과 입력 방식에서 정보를 이해하고 기능을 조작하도록 설계합니다.",
+    "when": "모든 화면과 상호작용을 검토할 때",
+    "caution": "색상이나 움직임만으로 상태를 알리지 않도록 대안을 함께 제공합니다.",
+    "sourceName": "W3C WAI",
+    "sourceUrl": "https://www.w3.org/WAI/fundamentals/accessibility-principles/",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": null,
+    "related": [
+      "modal",
+      "accordion",
+      "reduced-motion"
+    ]
+  },
+  {
+    "id": "workspace",
+    "name": "작업 공간의 화면 배분",
+    "english": "Workspace layout",
+    "tags": [
+      "3D",
+      "작업영역",
+      "사이드바",
+      "공간"
+    ],
+    "category": "화면구성",
+    "description": "주 작업 영역과 보조 패널의 역할을 구분하고 동시에 차지하는 공간을 평가합니다.",
+    "when": "3D 뷰어와 좌우 목록, 하단 상세 영역이 한 화면에 있을 때",
+    "caution": "패널 폭만 줄이면 텍스트 가독성이 떨어질 수 있으므로 함께 확인합니다.",
+    "sourceName": "Dashboard Design Patterns",
+    "sourceUrl": "https://dashboarddesignpatterns.github.io/patterns.html",
+    "platform": "데스크톱",
+    "kind": "문서",
+    "lab": "layout",
+    "related": [
+      "sidebar",
+      "drawer",
+      "density"
+    ]
+  },
+  {
+    "id": "responsive",
+    "name": "반응형 화면 구성",
+    "english": "Responsive layout",
+    "tags": [
+      "반응형",
+      "모바일",
+      "데스크톱",
+      "재배치"
+    ],
+    "category": "화면구성",
+    "description": "사용 가능한 공간에 맞춰 영역과 탐색 구조를 재배치합니다.",
+    "when": "데스크톱과 휴대전화에서 같은 작업을 제공할 때",
+    "caution": "작은 화면에서 숨기는 정보가 작업 완료에 필요한지 먼저 확인합니다.",
+    "sourceName": "Android 적응형 레이아웃",
+    "sourceUrl": "https://developer.android.com/design/ui/mobile/guides/layout-and-content/adapt-layout",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "layout",
+    "related": [
+      "workspace",
+      "drawer",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "sidebar",
+    "name": "사이드 내비게이션",
+    "english": "Side navigation",
+    "tags": [
+      "사이드바",
+      "목록",
+      "탐색",
+      "계층"
+    ],
+    "category": "화면구성",
+    "description": "연관된 화면이나 단계를 한 영역에서 탐색하도록 하는 구성입니다.",
+    "when": "항목 간 이동과 현재 위치를 지속적으로 확인해야 할 때",
+    "caution": "작업과 결과 목록이 비슷하게 보이지 않도록 제목과 역할을 구분합니다.",
+    "sourceName": "USWDS Side navigation",
+    "sourceUrl": "https://designsystem.digital.gov/components/side-navigation/",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "layout",
+    "related": [
+      "workspace",
+      "grouping",
+      "step"
+    ]
+  },
+  {
+    "id": "split",
+    "name": "목록과 상세",
+    "english": "List detail view",
+    "tags": [
+      "목록",
+      "상세",
+      "패널",
+      "선택"
+    ],
+    "category": "화면구성",
+    "description": "목록에서 선택한 항목의 상세 정보를 가까운 영역에 표시합니다.",
+    "when": "항목을 번갈아 확인하면서 목록의 맥락을 유지하고 싶을 때",
+    "caution": "작은 화면에서는 분할 화면보다 단계적 이동이 적절할 수 있습니다.",
+    "sourceName": "Android 적응형 레이아웃",
+    "sourceUrl": "https://developer.android.com/design/ui/mobile/guides/layout-and-content/adapt-layout",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "layout",
+    "related": [
+      "drawer",
+      "responsive",
+      "sidebar"
+    ]
+  },
+  {
+    "id": "grid",
+    "name": "반응형 그리드",
+    "english": "Responsive grid",
+    "tags": [
+      "그리드",
+      "열",
+      "화면폭",
+      "레이아웃"
+    ],
+    "category": "화면구성",
+    "description": "가용 너비에 따라 영역의 열과 간격을 조절하는 배치 방식입니다.",
+    "when": "카드나 대시보드 모듈을 다양한 화면 크기에 배치할 때",
+    "caution": "비율을 고정하기보다 콘텐츠의 실제 최소 너비를 고려합니다.",
+    "sourceName": "USWDS Grid",
+    "sourceUrl": "https://designsystem.digital.gov/components/grid/",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "layout",
+    "related": [
+      "responsive",
+      "density"
+    ]
+  },
+  {
+    "id": "accordion",
+    "name": "아코디언",
+    "english": "Accordion",
+    "tags": [
+      "접기",
+      "펼치기",
+      "상세",
+      "공간"
+    ],
+    "category": "UI패턴",
+    "description": "제목을 선택하면 관련 내용을 펼치거나 접는 구성입니다.",
+    "when": "여러 설명 중 일부만 확인하면 되는 경우",
+    "caution": "중요한 내용을 숨기지 말고 키보드 조작과 확장 상태를 제공해야 합니다.",
+    "sourceName": "USWDS Accordion",
+    "sourceUrl": "https://designsystem.digital.gov/components/accordion/",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "controls",
+    "related": [
+      "disclosure",
+      "drawer",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "modal",
+    "name": "모달 대화상자",
+    "english": "Modal dialog",
+    "tags": [
+      "모달",
+      "대화상자",
+      "집중",
+      "닫기"
+    ],
+    "category": "UI패턴",
+    "description": "현재 화면 위에서 한정된 작업이나 확인을 수행하게 합니다.",
+    "when": "짧은 확인이나 중요한 결정을 명확히 요청할 때",
+    "caution": "상세 정보가 많으면 답답해질 수 있고, 포커스와 닫기 동작도 필요합니다.",
+    "sourceName": "USWDS Modal",
+    "sourceUrl": "https://designsystem.digital.gov/components/modal/",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "controls",
+    "related": [
+      "drawer",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "drawer",
+    "name": "슬라이드 패널",
+    "english": "Drawer / side panel",
+    "tags": [
+      "패널",
+      "사이드바",
+      "상세",
+      "슬라이드"
+    ],
+    "category": "UI패턴",
+    "description": "기존 화면을 유지하면서 화면 가장자리에서 보조 콘텐츠를 엽니다.",
+    "when": "목록을 보면서 선택한 항목의 상세를 확인할 때",
+    "caution": "패널과 기존 작업 영역이 동시에 필요한지, 모바일 공간이 충분한지 확인합니다.",
+    "sourceName": "Apple HIG Layout",
+    "sourceUrl": "https://developer.apple.com/design/human-interface-guidelines/layout",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "layout",
+    "related": [
+      "split",
+      "modal",
+      "crossfade"
+    ]
+  },
+  {
+    "id": "step",
+    "name": "단계 표시기",
+    "english": "Step indicator",
+    "tags": [
+      "진행",
+      "단계",
+      "흐름",
+      "상태"
+    ],
+    "category": "UI패턴",
+    "description": "여러 단계로 이뤄진 과정에서 현재 위치와 진행 상황을 전달합니다.",
+    "when": "사용자가 순서에 따라 입력하거나 결과를 확인할 때",
+    "caution": "진행 표시와 이동 가능한 내비게이션을 혼동하지 않도록 합니다.",
+    "sourceName": "USWDS Step indicator",
+    "sourceUrl": "https://designsystem.digital.gov/components/step-indicator/",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "controls",
+    "related": [
+      "userflow",
+      "sidebar"
+    ]
+  },
+  {
+    "id": "table",
+    "name": "데이터 표",
+    "english": "Data table",
+    "tags": [
+      "표",
+      "비교",
+      "밀도",
+      "정렬"
+    ],
+    "category": "UI패턴",
+    "description": "행과 열을 통해 관련된 값을 비교하고 정렬합니다.",
+    "when": "여러 결과와 조건을 한 번에 비교해야 할 때",
+    "caution": "작은 화면에서 머리글과 값의 관계가 유지되는지 확인합니다.",
+    "sourceName": "USWDS Table",
+    "sourceUrl": "https://designsystem.digital.gov/components/table/",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "controls",
+    "related": [
+      "density",
+      "responsive"
+    ]
+  },
+  {
+    "id": "search",
+    "name": "검색",
+    "english": "Search",
+    "tags": [
+      "검색",
+      "입력",
+      "결과",
+      "탐색"
+    ],
+    "category": "UI패턴",
+    "description": "사용자가 이름이나 키워드로 원하는 정보를 찾는 기능입니다.",
+    "when": "자료가 많아 목록을 훑는 데 시간이 걸릴 때",
+    "caution": "검색 결과가 없거나 입력이 모호할 때의 안내도 설계합니다.",
+    "sourceName": "USWDS Search",
+    "sourceUrl": "https://designsystem.digital.gov/components/search/",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "controls",
+    "related": [
+      "sidebar",
+      "userflow"
+    ]
+  },
+  {
+    "id": "summary",
+    "name": "요약 상자",
+    "english": "Summary box",
+    "tags": [
+      "요약",
+      "핵심",
+      "정보",
+      "강조"
+    ],
+    "category": "UI패턴",
+    "description": "페이지에서 중요한 정보나 다음 행동을 짧게 모아 전달합니다.",
+    "when": "자세한 내용을 보기 전에 핵심 결론이 필요한 경우",
+    "caution": "요약이 상세 근거나 중요한 예외를 대체하지 않도록 합니다.",
+    "sourceName": "USWDS Summary box",
+    "sourceUrl": "https://designsystem.digital.gov/components/summary-box/",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "controls",
+    "related": [
+      "hierarchy",
+      "density"
+    ]
+  },
+  {
+    "id": "magnetic",
+    "name": "마그네틱 버튼",
+    "english": "Magnetic button",
+    "tags": [
+      "버튼",
+      "커서",
+      "마우스",
+      "호버"
+    ],
+    "category": "모션",
+    "description": "커서가 가까워지면 버튼이 이동해 반응하는 인터랙션입니다.",
+    "when": "마우스 환경에서 특정 행동에 시각적 반응을 더할 때",
+    "caution": "터치에서는 호버가 없으며 움직임이 클릭을 방해하지 않아야 합니다.",
+    "sourceName": "Motion Examples",
+    "sourceUrl": "https://motion.dev/examples",
+    "platform": "데스크톱",
+    "kind": "데모",
+    "lab": "magnetic",
+    "related": [
+      "spring",
+      "cursor",
+      "reduced-motion"
+    ]
+  },
+  {
+    "id": "cursor",
+    "name": "커스텀 커서",
+    "english": "Custom cursor",
+    "tags": [
+      "커서",
+      "마우스",
+      "추적",
+      "포인터"
+    ],
+    "category": "모션",
+    "description": "포인터 주변에 별도의 표시나 따라오는 움직임을 추가합니다.",
+    "when": "마우스 이동과 요소의 관계를 보여주고 싶을 때",
+    "caution": "실제 포인터 위치와 조작 대상이 혼동되지 않게 하고 터치 대안을 고려합니다.",
+    "sourceName": "Motion Examples",
+    "sourceUrl": "https://motion.dev/examples",
+    "platform": "데스크톱",
+    "kind": "데모",
+    "lab": "cursor",
+    "related": [
+      "magnetic",
+      "reduced-motion"
+    ]
+  },
+  {
+    "id": "spring",
+    "name": "스프링 모션",
+    "english": "Spring motion",
+    "tags": [
+      "스프링",
+      "탄성",
+      "감쇠",
+      "속도"
+    ],
+    "category": "모션",
+    "description": "힘과 감쇠에 따라 물체가 목표 위치에 가까워지는 움직임입니다.",
+    "when": "패널이나 버튼에 탄성과 관성의 느낌을 조절할 때",
+    "caution": "과한 진동은 정보를 방해할 수 있으며 설정별 움직임을 시험해야 합니다.",
+    "sourceName": "Motion & Easing Playground",
+    "sourceUrl": "https://fun.alevasquez.dev/motion-playground",
+    "platform": "데스크톱·모바일",
+    "kind": "데모",
+    "lab": "spring",
+    "related": [
+      "easing",
+      "magnetic",
+      "reduced-motion"
+    ]
+  },
+  {
+    "id": "easing",
+    "name": "이징 곡선",
+    "english": "Easing curve",
+    "tags": [
+      "이징",
+      "속도",
+      "베지어",
+      "시간"
+    ],
+    "category": "모션",
+    "description": "시간 흐름에 따라 애니메이션의 진행 속도를 조절합니다.",
+    "when": "같은 거리의 이동을 부드럽거나 빠르게 느끼게 하고 싶을 때",
+    "caution": "스프링 물리와 단일 베지어 곡선은 동일한 모델이 아닙니다.",
+    "sourceName": "MDN Easing functions",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/easing-function",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "spring",
+    "related": [
+      "spring",
+      "crossfade"
+    ]
+  },
+  {
+    "id": "crossfade",
+    "name": "크로스 디졸브",
+    "english": "Cross dissolve / crossfade",
+    "tags": [
+      "전환",
+      "디졸브",
+      "페이드",
+      "영상"
+    ],
+    "category": "모션",
+    "description": "한 장면이 사라지는 동안 다른 장면이 나타나 두 화면을 부드럽게 연결합니다.",
+    "when": "두 이미지나 장면을 겹치며 전환하고 싶을 때",
+    "caution": "완전히 별개의 동작은 시각적으로 지나치게 이어 보일 수 있습니다.",
+    "sourceName": "IMG.LY Transitions",
+    "sourceUrl": "https://img.ly/demos/transitions/web/",
+    "platform": "데스크톱",
+    "kind": "데모",
+    "lab": "crossfade",
+    "related": [
+      "easing",
+      "reduced-motion"
+    ]
+  },
+  {
+    "id": "reduced-motion",
+    "name": "움직임 줄이기",
+    "english": "Reduced motion",
+    "tags": [
+      "접근성",
+      "모션감소",
+      "설정",
+      "대안"
+    ],
+    "category": "모션",
+    "description": "사용자의 모션 감소 설정을 고려해 움직임의 크기와 방식을 조정합니다.",
+    "when": "큰 화면 전환이나 반복적인 애니메이션을 제공할 때",
+    "caution": "애니메이션을 끈 뒤에도 중요한 상태와 피드백은 전달되어야 합니다.",
+    "sourceName": "Apple Motion",
+    "sourceUrl": "https://developer.apple.com/design/human-interface-guidelines/motion",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": null,
+    "related": [
+      "spring",
+      "magnetic",
+      "accessibility"
+    ]
+  },
+  {
+    "id": "dolly-zoom",
+    "name": "달리 줌",
+    "english": "Dolly zoom",
+    "tags": [
+      "달리줌",
+      "카메라",
+      "시야각",
+      "원근"
+    ],
+    "category": "카메라",
+    "description": "카메라 이동과 반대 방향의 화각 변화를 결합해 대상을 비슷한 크기로 유지하면서 배경 원근을 바꿉니다.",
+    "when": "카메라 이동과 줌의 차이를 공간적으로 설명할 때",
+    "caution": "일반적인 화면 확대와 다른 원근 효과이며 피사체 크기는 경로에 따라 달라질 수 있습니다.",
+    "sourceName": "Cinematic Camera Lab",
+    "sourceUrl": "https://www.ehyong.com/ai-lab/cinematic-camera/",
+    "platform": "데스크톱·모바일",
+    "kind": "데모",
+    "lab": "camera",
+    "related": [
+      "dolly",
+      "zoom"
+    ]
+  },
+  {
+    "id": "dolly",
+    "name": "달리",
+    "english": "Dolly",
+    "tags": [
+      "카메라",
+      "이동",
+      "거리",
+      "3D"
+    ],
+    "category": "카메라",
+    "description": "카메라 자체가 장면 안에서 대상 쪽이나 반대 방향으로 이동합니다.",
+    "when": "공간 안의 거리와 원근 변화를 표현할 때",
+    "caution": "렌즈 화각만 변화하는 줌과 구분합니다.",
+    "sourceName": "CamLab",
+    "sourceUrl": "https://camlab.evoa.one/en/",
+    "platform": "데스크톱·모바일",
+    "kind": "데모",
+    "lab": "camera",
+    "related": [
+      "zoom",
+      "dolly-zoom"
+    ]
+  },
+  {
+    "id": "zoom",
+    "name": "줌",
+    "english": "Zoom",
+    "tags": [
+      "줌",
+      "화각",
+      "렌즈",
+      "카메라"
+    ],
+    "category": "카메라",
+    "description": "시야각을 변경해 장면의 구도를 넓히거나 좁힙니다.",
+    "when": "카메라 위치를 유지하면서 보이는 범위를 바꾸고 싶을 때",
+    "caution": "카메라 이동과 다르며 디지털 확대 효과와 표현 방식이 다를 수 있습니다.",
+    "sourceName": "MDN 가상 카메라",
+    "sourceUrl": "https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API/Cameras",
+    "platform": "데스크톱·모바일",
+    "kind": "문서",
+    "lab": "camera",
+    "related": [
+      "dolly",
+      "dolly-zoom"
+    ]
+  },
+  {
+    "id": "pan-tilt",
+    "name": "팬과 틸트",
+    "english": "Pan and tilt",
+    "tags": [
+      "카메라",
+      "회전",
+      "방향",
+      "시점"
+    ],
+    "category": "카메라",
+    "description": "카메라 위치를 유지하면서 수평 또는 수직으로 방향을 바꾸는 동작입니다.",
+    "when": "넓은 장면의 시선을 한 방향에서 다른 방향으로 이동할 때",
+    "caution": "카메라가 실제로 이동하는 동작과 구분합니다.",
+    "sourceName": "CamLab",
+    "sourceUrl": "https://camlab.evoa.one/en/",
+    "platform": "데스크톱·모바일",
+    "kind": "데모",
+    "lab": "camera",
+    "related": [
+      "dolly",
+      "zoom"
+    ]
+  },
+  {
+    "id": "orbit",
+    "name": "3D 오빗 조작",
+    "english": "Orbit controls",
+    "tags": [
+      "3D",
+      "회전",
+      "뷰어",
+      "카메라"
+    ],
+    "category": "3D",
+    "description": "대상을 중심으로 카메라를 회전하며 3D 장면을 관찰합니다.",
+    "when": "모델을 여러 방향에서 검사하고 싶을 때",
+    "caution": "키보드·터치와 마우스의 조작 차이를 고려하고 시점 복구 수단을 제공합니다.",
+    "sourceName": "three.js Controls",
+    "sourceUrl": "https://threejs.org/examples/?q=controls",
+    "platform": "데스크톱·모바일",
+    "kind": "데모",
+    "lab": null,
+    "related": [
+      "viewer",
+      "dolly"
+    ]
+  },
+  {
+    "id": "viewer",
+    "name": "BIM 모델 뷰어",
+    "english": "BIM model viewer",
+    "tags": [
+      "BIM",
+      "3D",
+      "객체",
+      "속성"
+    ],
+    "category": "3D",
+    "description": "3D 모델을 관찰하면서 객체와 속성, 표시 상태를 확인하는 작업 화면입니다.",
+    "when": "건물이나 설비의 모델과 정보를 함께 살펴볼 때",
+    "caution": "성능과 정보 가독성, 시야 확보를 모델의 크기와 기기에 맞춰 검토합니다.",
+    "sourceName": "xeokit BIMViewer Examples",
+    "sourceUrl": "https://xeokit.io/examples/bimviewer.html",
+    "platform": "데스크톱",
+    "kind": "데모",
+    "lab": "layout",
+    "related": [
+      "workspace",
+      "orbit",
+      "sidebar"
+    ]
+  },
+  {
+    "id": "mobbin",
+    "name": "실제 앱 화면과 흐름",
+    "english": "Mobbin product screens",
+    "tags": [
+      "실제사례",
+      "모바일",
+      "웹",
+      "흐름"
+    ],
+    "category": "실제사례",
+    "description": "모바일과 웹 서비스의 화면과 사용자 흐름을 관찰하는 외부 사례 자료입니다.",
+    "when": "실제 제품에서 유사한 작업이 어떻게 구성됐는지 찾을 때",
+    "caution": "원본 앱의 조작이 아닌 캡처 중심이며 접근·복제 조건을 확인해야 합니다.",
+    "sourceName": "Mobbin",
+    "sourceUrl": "https://mobbin.com/",
+    "platform": "데스크톱·모바일",
+    "kind": "캡처",
+    "lab": null,
+    "related": [
+      "saasframe",
+      "fps60"
+    ]
+  },
+  {
+    "id": "saasframe",
+    "name": "실제 SaaS 화면",
+    "english": "SaaSFrame patterns",
+    "tags": [
+      "데스크톱",
+      "실제사례",
+      "대시보드",
+      "웹앱"
+    ],
+    "category": "실제사례",
+    "description": "실제 웹 서비스의 대시보드와 SaaS UI 구성을 살펴보는 자료입니다.",
+    "when": "복잡한 데스크톱 작업 화면과 사이드바를 조사할 때",
+    "caution": "보기 좋은 사례가 해당 과업의 사용성을 보장하지는 않습니다.",
+    "sourceName": "SaaSFrame",
+    "sourceUrl": "https://www.saasframe.io/",
+    "platform": "데스크톱",
+    "kind": "캡처",
+    "lab": null,
+    "related": [
+      "workspace",
+      "mobbin"
+    ]
+  },
+  {
+    "id": "fps60",
+    "name": "실제 앱 UI 모션",
+    "english": "60fps UI motion",
+    "tags": [
+      "실제사례",
+      "영상",
+      "모션",
+      "모바일"
+    ],
+    "category": "실제사례",
+    "description": "실제 서비스의 화면 전환과 제스처 반응을 녹화 사례로 살펴봅니다.",
+    "when": "실제 제품에서 움직임이 어떤 맥락으로 쓰이는지 확인할 때",
+    "caution": "녹화 영상은 원래 앱을 직접 조작하는 데모가 아니며 재게시 조건을 확인해야 합니다.",
+    "sourceName": "60fps",
+    "sourceUrl": "https://60fps.design/",
+    "platform": "데스크톱·모바일",
+    "kind": "영상",
+    "lab": null,
+    "related": [
+      "mobbin",
+      "spring"
+    ]
+  },
+  {
+    "id": "desktop-guidance",
+    "name": "데스크톱 앱 설계",
+    "english": "Desktop application design",
+    "tags": [
+      "데스크톱",
+      "창",
+      "키보드",
+      "내비게이션"
+    ],
+    "category": "화면구성",
+    "description": "넓은 화면, 창 크기 변화, 포인터와 키보드를 고려해 작업 공간을 구성합니다.",
+    "when": "다수의 도구와 보조 정보를 함께 제공하는 데스크톱 앱을 설계할 때",
+    "caution": "모바일에서의 스와이프·터치 제약과 동일하게 취급하지 않습니다.",
+    "sourceName": "Microsoft Windows design",
+    "sourceUrl": "https://learn.microsoft.com/en-us/windows/apps/design/guidelines-overview",
+    "platform": "데스크톱",
+    "kind": "문서",
+    "lab": "layout",
+    "related": [
+      "responsive",
+      "workspace"
+    ]
+  },
+  {
+    "id": "mobile-adaptive",
+    "name": "모바일 적응형 설계",
+    "english": "Mobile adaptive layout",
+    "tags": [
+      "모바일",
+      "태블릿",
+      "터치",
+      "반응형"
+    ],
+    "category": "화면구성",
+    "description": "기기 크기와 사용 가능한 창 너비에 맞춰 콘텐츠와 탐색 방식을 조정합니다.",
+    "when": "휴대전화부터 태블릿까지 같은 작업을 제공할 때",
+    "caution": "데스크톱을 단순 축소하면 글자와 터치 영역이 작아질 수 있습니다.",
+    "sourceName": "Android 적응형 레이아웃",
+    "sourceUrl": "https://developer.android.com/design/ui/mobile/guides/layout-and-content/adapt-layout",
+    "platform": "모바일",
+    "kind": "문서",
+    "lab": "layout",
+    "related": [
+      "responsive",
+      "split"
+    ]
+  }
+]

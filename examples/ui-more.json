@@ -1,0 +1,78 @@
+[
+  {
+    "id": "lay01",
+    "name": "접을 수 있는 사이드바",
+    "english": "Simple Sidebar",
+    "category": "화면 구성",
+    "description": "사이드바를 열고 닫고 상단 메뉴를 조작하는 실제 반응형 템플릿입니다.",
+    "tags": [
+      "사이드바",
+      "패널",
+      "반응형"
+    ],
+    "preview": "./examples/lay01/index.html",
+    "codePath": "./examples/lay01/source.html",
+    "sourceName": "Start Bootstrap",
+    "sourceUrl": "https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/72f0de1eda0350496100c8a077795fe93752d419/dist/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/lay01/LICENCE.txt",
+    "adaptation": "원본 HTML과 JS는 별도 보관하고 패널용 파일은 의존성 주소와 템플릿별 로컬 상태 키만 변경했습니다.",
+    "codeFiles": [
+      {
+        "label": "원본 HTML",
+        "path": "./examples/lay01/source.html"
+      },
+      {
+        "label": "CSS",
+        "path": "./examples/lay01/style.css"
+      },
+      {
+        "label": "JavaScript",
+        "path": "./examples/lay01/source.js"
+      }
+    ],
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  },
+  {
+    "id": "lay02",
+    "name": "대시보드와 접는 내비게이션",
+    "english": "SB Admin dashboard",
+    "category": "화면 구성",
+    "description": "상단 메뉴와 사이드바, 그래프와 표를 포함한 실제 관리자 템플릿입니다.",
+    "tags": [
+      "사이드바",
+      "반응형",
+      "대시보드"
+    ],
+    "preview": "./examples/lay02/index.html",
+    "codePath": "./examples/lay02/source.html",
+    "sourceName": "Start Bootstrap",
+    "sourceUrl": "https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/adde34b9616b9840c4da756323131f59ac445090/dist/index.html",
+    "license": "MIT",
+    "licensePath": "./examples/lay02/LICENCE.txt",
+    "adaptation": "원본 HTML과 JS는 별도 보관했습니다. 패널용 파일은 의존성 주소, 상태 키, 아이콘 스크립트의 실행 시점만 변경했습니다.",
+    "codeFiles": [
+      {
+        "label": "원본 HTML",
+        "path": "./examples/lay02/source.html"
+      },
+      {
+        "label": "CSS",
+        "path": "./examples/lay02/style.css"
+      },
+      {
+        "label": "JavaScript",
+        "path": "./examples/lay02/source.js"
+      }
+    ],
+    "platforms": [
+      "데스크톱"
+    ],
+    "platformNote": "모바일 전체 조작 여부는 확인되지 않았습니다.",
+    "platformEvidence": "원본 HTML의 버튼·포인터 또는 터치 이벤트를 확인했으며 실제 기기별 완전 동작은 별도 검증이 필요합니다."
+  }
+]

@@ -1,0 +1,11 @@
+.demo-top{min-height:32px;height:auto;gap:8px;padding:4px 8px 4px 11px}
+.demo-actions{display:flex;align-items:center;justify-content:flex-end;gap:9px;min-width:0}
+.demo-actions>span{font-size:9px;color:#a1b7a8;font-weight:500}
+.demo-actions button{border:1px solid #40594c;background:#1a2920;color:#e5f0e7;border-radius:3px;padding:5px 8px;font-size:10px;font-weight:700;white-space:nowrap}
+.demo-actions button:hover{border-color:#75b6f6;background:#24412f}
+/* The expanded example remains in the page flow and retains its original iframe. */
+.work-card.is-expanded{grid-column:1/-1;scroll-margin-top:14px;border-color:#597d68}
+.work-card.is-expanded .demo-content iframe,.work-card.is-expanded .gpu-placeholder{height:var(--expanded-preview-height,540px)!important}
+@media(min-width:701px){.work-grid>.work-card.is-expanded:only-child{display:block}}
+@media(max-width:700px){.work-card.is-expanded{scroll-margin-top:54px}}
+@media(max-width:400px){.demo-actions{gap:5px}.demo-actions>span{font-size:8px}.demo-actions button{padding:5px 6px;font-size:9px}}

@@ -1,0 +1,22 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 65 Moiré — two line screens drift against each other, weaving interference bands */
+.fx-moire {
+  font: 600 34px/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .08em;
+  color: transparent;
+  background:
+    repeating-linear-gradient(87deg, var(--ink-2) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, var(--ink-3) 0 1px, transparent 1px 4px),
+    linear-gradient(color-mix(in srgb, var(--ink) 30%, transparent), color-mix(in srgb, var(--ink) 30%, transparent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: fx-moire 6s linear infinite alternate;
+}
+@keyframes fx-moire {
+  0%   { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 48px 0, -48px 0, 0 0; }
+}

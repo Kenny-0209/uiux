@@ -1,0 +1,36 @@
+/* Colour tokens — override to re-skin the effect:
+   --ink    main text colour (defaults to currentColor)
+   --ink-2  primary accent   --ink-3  secondary accent */
+:root { --ink: currentColor; --ink-2: #FF4FD8; --ink-3: #4FF8FF; }
+
+/* 25 Ransom-Note — mismatched cut-out letters shifting on the page */
+.fx-ransom {
+  font: 600 24px/1 "JetBrains Mono", monospace;
+  letter-spacing: 0;
+  display: inline-flex;
+  gap: 4px;
+  color: var(--ink);
+}
+.fx-ransom b {
+  font-weight: inherit;
+  display: grid;
+  place-items: center;
+  padding: .28em .3em;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--ink) 14%, transparent);
+  animation: fx-ransom 2.8s ease-in-out infinite alternate;
+  animation-delay: calc(var(--i) * -.5s);
+}
+.fx-ransom b:nth-child(odd) {
+  background: var(--ink-2);
+  color: #14020f;
+}
+.fx-ransom b:nth-child(3n) {
+  background: transparent;
+  outline: 1.5px dashed color-mix(in srgb, var(--ink) 55%, transparent);
+  color: var(--ink-3);
+}
+@keyframes fx-ransom {
+  0%   { transform: rotate(-6deg) translateY(1.5px); }
+  100% { transform: rotate(6deg)  translateY(-1.5px); }
+}

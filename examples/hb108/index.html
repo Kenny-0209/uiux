@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chromatic Aberration — Animation Handbook</title>
+  <meta name="description" content="A word splits into red, green and blue fringes. Best for bold titles.">
+  <link rel="canonical" href="https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/chromatic-aberration/">
+  <link rel="icon" type="image/png" sizes="96x96" href="../../../favicon.png">
+  <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../../apple-touch-icon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Animation Handbook">
+  <meta property="og:title" content="Chromatic Aberration — Animation Handbook">
+  <meta property="og:description" content="A word splits into red, green and blue fringes. Best for bold titles.">
+  <meta property="og:url" content="https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/chromatic-aberration/">
+  <meta property="og:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Chromatic Aberration — Animation Handbook">
+  <meta name="twitter:description" content="A word splits into red, green and blue fringes. Best for bold titles.">
+  <meta name="twitter:image" content="https://matinmonshizadeh.github.io/animation-handbook/og-image.png">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "TechArticle", "headline": "Chromatic Aberration", "name": "Chromatic Aberration", "description": "A word splits into red, green and blue fringes. Best for bold titles.", "url": "https://matinmonshizadeh.github.io/animation-handbook/animations/06-3d-advanced/chromatic-aberration/", "inLanguage": "en", "articleSection": "3D & Advanced", "isPartOf": {"@type": "WebSite", "name": "Animation Handbook", "url": "https://matinmonshizadeh.github.io/animation-handbook/"}, "author": {"@type": "Person", "name": "matinmonshizadeh"}, "keywords": "web animation, CSS animation, 3D & Advanced, Chromatic Aberration"}</script>
+  <style>
+    :root{--ui-accent:#3fd6c4;--ca-amt:4px;--ca-angle:30deg;--ca-blur:0px}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    .stage{position:relative;display:flex;align-items:center;justify-content:center;padding:24px clamp(16px,4vw,40px);background:#04060c}
+    /* The wrapper takes its size from the see-through base copy; the three colored copies sit on top of it */
+    .ca-wrap{position:relative;display:inline-block;max-width:100%;text-align:center;overflow-wrap:anywhere;-webkit-user-select:none;user-select:none}
+    .ca-layer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;mix-blend-mode:screen;pointer-events:none}
+    .ca-layer.base{position:relative;mix-blend-mode:normal}
+    .ca-text{font-size:clamp(52px,9vw,100px);font-weight:800;line-height:1;letter-spacing:-0.02em;-webkit-user-select:none;user-select:none}
+    .ca-r .ca-text{color:#ff2020;filter:blur(var(--ca-blur))}
+    .ca-g .ca-text{color:#20ff20}
+    .ca-b .ca-text{color:#2060ff;filter:blur(var(--ca-blur))}
+    /* The base copy is invisible: it only gives the wrapper its size */
+    .ca-layer.base .ca-text{color:transparent;-webkit-text-stroke:0}
+    /* Movement: the red and blue copies breathe (Pulse) or jump near the end of each 4s cycle (Glitch) */
+    .ca-wrap.pulse .ca-r{animation:ca-pulse-r 2s ease-in-out infinite}
+    .ca-wrap.pulse .ca-b{animation:ca-pulse-b 2s ease-in-out infinite}
+    .ca-wrap.glitch .ca-r{animation:ca-glitch-r 4s step-end infinite}
+    .ca-wrap.glitch .ca-b{animation:ca-glitch-b 4s step-end infinite}
+    @keyframes ca-pulse-r{0%,100%{transform:var(--r-t)}50%{transform:translate(calc(cos(var(--ca-angle))*var(--ca-amt)*1.8),calc(sin(var(--ca-angle))*var(--ca-amt)*1.8))}}
+    @keyframes ca-pulse-b{0%,100%{transform:var(--b-t)}50%{transform:translate(calc(cos(var(--ca-angle))*var(--ca-amt)*-1.8),calc(sin(var(--ca-angle))*var(--ca-amt)*-1.8))}}
+    @keyframes ca-glitch-r{
+      0%,80%,100%{transform:var(--r-t)}
+      82%{transform:translate(calc(var(--ca-amt)*3),calc(var(--ca-amt)*-1))}
+      84%{transform:var(--r-t)}
+      86%{transform:translate(calc(var(--ca-amt)*-2),calc(var(--ca-amt)))}
+      88%{transform:var(--r-t)}
+    }
+    @keyframes ca-glitch-b{
+      0%,80%,100%{transform:var(--b-t)}
+      82%{transform:translate(calc(var(--ca-amt)*-3),calc(var(--ca-amt)))}
+      84%{transform:var(--b-t)}
+      86%{transform:translate(calc(var(--ca-amt)*2),calc(var(--ca-amt)*-1))}
+      88%{transform:var(--b-t)}
+    }
+    /* See inside and Compare. Their parts are built by the script and not shown in Normal, so Normal is as it was. In a mode the
+       stage becomes a grid; a hidden copy of the word at Normal's own size stays in the flow, so the box is as tall as Normal's. */
+    .ca-real{display:contents}
+    .ca-ruler,.ca-minis,.ca-first,.ca-cap{display:none}
+    .ca-cap{position:relative;z-index:2;margin:0;padding:3px 8px;border-radius:6px;background:rgba(4,6,12,.92);color:#f4f4f2;font:600 13px/1.25 var(--hb-font);text-align:center}
+    .ca-short{display:none}
+    /* A copy of the word, on its own or stacked plainly: its layers do not add light and take their shifts from the root variables */
+    .ca-copy .ca-layer{mix-blend-mode:normal}
+    .ca-copy .ca-r{transform:var(--r-t)}
+    .ca-copy .ca-b{transform:var(--b-t)}
+    .ca-mini .ca-layer.base .ca-text{-webkit-text-stroke:1px rgba(205,210,222,.55)}
+    .stage[data-hb-mode="inside"],.stage[data-hb-mode="compare"]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,1fr);column-gap:clamp(12px,3vw,28px);justify-content:normal;align-items:stretch}
+    .stage[data-hb-mode="inside"] .ca-ruler,.stage[data-hb-mode="compare"] .ca-ruler{display:flex;align-items:center;justify-content:center;grid-area:1/1/-1/-1;visibility:hidden;pointer-events:none}
+    .stage[data-hb-mode="inside"] .ca-real,.stage[data-hb-mode="compare"] .ca-real,.stage[data-hb-mode="compare"] .ca-first{display:flex;flex-direction:column;align-items:center;min-width:0;min-height:0;overflow:hidden;contain:size}
+    /* See inside: the three copies apart at two fifths of the word's size, each over a faint outline of the word unshifted, and the real word */
+    .stage[data-hb-mode="inside"] .ca-minis{display:grid;grid-area:1/1;grid-template-columns:fit-content(55%) auto;justify-content:center;align-content:center;align-items:center;gap:16px 24px;min-width:0;min-height:0;overflow:hidden;contain:size}
+    .stage[data-hb-mode="inside"] .ca-mini{display:contents}
+    .stage[data-hb-mode="inside"] .ca-minis .ca-cap{display:block;text-align:left;white-space:nowrap}
+    .stage[data-hb-mode="inside"] .ca-minis .ca-text{font-size:calc(var(--ca-fs)*.4)}
+    .stage[data-hb-mode="inside"] .ca-real{grid-area:1/2;justify-content:center;gap:12px}
+    .stage[data-hb-mode="inside"] .ca-real .ca-text{font-size:var(--ca-fs)}
+    .stage[data-hb-mode="inside"] .ca-sum{display:block}
+    /* Compare: the same word twice, stacked plainly (the blue copy hides the others) and as set (the light adds up) */
+    .stage[data-hb-mode="compare"] .ca-first{grid-area:1/1}
+    .stage[data-hb-mode="compare"] .ca-real{grid-area:1/2}
+    .stage[data-hb-mode="compare"] .ca-real .ca-text,.stage[data-hb-mode="compare"] .ca-first .ca-text{font-size:var(--ca-fs)}
+    .stage[data-hb-mode="compare"] .ca-real .ca-wrap,.stage[data-hb-mode="compare"] .ca-first .ca-wrap{margin:auto}
+    .stage[data-hb-mode="compare"] .ca-name{display:block}
+    .stage[data-hb-mode="compare"]::after{content:"";position:absolute;left:50%;top:24px;bottom:24px;width:1px;background:rgba(255,255,255,.14)}
+    /* Where the three copies and their names do not fit beside the word, they sit in a row above it, named by color only */
+    @media(max-width:900px){
+      .ca-long{display:none}
+      .ca-short{display:inline}
+      .stage[data-hb-mode="inside"]{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,2fr) minmax(0,3fr);row-gap:0}
+      .stage[data-hb-mode="inside"] .ca-minis{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 8px}
+      .stage[data-hb-mode="inside"] .ca-mini{display:flex;flex-direction:column;align-items:center;gap:14px;min-width:0}
+      .stage[data-hb-mode="inside"] .ca-minis .ca-text{font-size:calc(var(--ca-fs)*.4)}
+      .stage[data-hb-mode="inside"] .ca-real{grid-area:2/1;padding-top:10px}
+    }
+    @media(max-width:600px){
+      .stage[data-hb-mode="compare"]{grid-template-columns:minmax(0,1fr);grid-template-rows:repeat(2,minmax(0,1fr));row-gap:0}
+      .stage[data-hb-mode="compare"] .ca-real{grid-area:2/1}
+      .stage[data-hb-mode="compare"]::after{left:16px;right:16px;top:50%;bottom:auto;width:auto;height:1px}
+    }
+  </style>
+  <link rel="stylesheet" href="../asset/demo.css">
+  <script src="../asset/demo.js" defer></script>
+<style>html,body{width:100%;height:100%}body.hb{overflow:hidden;--hb-font:system-ui,-apple-system,Segoe UI,sans-serif}.hb-foot,.hb-bar,.hb-head,.hb-page>.hb-step:not(.hb-watch),.hb-page>footer,.hb-page>.hb-about,.hb-page>.hb-related,.hb-page>.hb-prompt,.hb-page>.hb-star-row{display:none!important}.hb-page{height:100%;max-width:none;padding:8px!important;margin:0;display:block}.hb-page .hb-watch{height:100%;display:flex!important;flex-direction:column;gap:5px}.hb-page .hb-watch>.hb-step-head,.hb-page .hb-watch>.hb-mode-notes{display:none!important}.hb-page .stage,.hb-page .stage.hb-grow{flex:1!important;width:100%;min-height:100px!important;height:auto!important}.hb-page .seg.hb-modes{flex:none;gap:4px}.hb-page .seg.hb-modes button{min-height:29px!important;font-size:11px!important;padding:4px 8px!important}.hb-player{flex:none;display:flex!important;flex-wrap:wrap;gap:6px}.hb-player .hb-play,.hb-player .hb-toggle{min-height:28px!important;font-size:11px!important;padding:4px 8px!important}.hb-player-note{display:none!important}</style>
+</head>
+<body class="hb" data-hb-kind="loop">
+<nav class="hb-bar" aria-label="Animation Handbook">
+  <a class="hb-home" href="../../../"><svg class="hb-mark" viewBox="0 0 32 32" aria-hidden="true"><g class="g"><circle cx="11.16" cy="20.84" r="6.1"/><circle cx="15.12" cy="16.88" r="6.1"/><circle cx="18.51" cy="13.49" r="6.1"/></g><circle class="b" cx="21.2" cy="10.8" r="6.6"/></svg><span>Animation Handbook</span></a>
+  <span class="hb-pager"><a href="../svg-path-animation/" rel="prev" aria-label="Previous: SVG Path Animation"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span><span class="hb-dir">Previous: </span>SVG Path Animation</span></a><a href="../2-5d-pseudo-3d/" rel="next" aria-label="Next: 2.5D / Pseudo-3D"><span><span class="hb-dir">Next: </span>2.5D / Pseudo-3D</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a></span>
+  <a class="hb-star" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener" aria-label="Star on GitHub"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg><span>Star on GitHub</span></a>
+</nav>
+<main class="hb-page">
+  <header class="hb-head">
+    <p class="hb-cat">06.10 · 3D &amp; Advanced</p>
+    <h1>Chromatic Aberration</h1>
+    <p class="hb-lede">A word splits into red, green and blue fringes. Best for bold titles.</p>
+  </header>
+
+  <section class="hb-step hb-watch" aria-labelledby="hb-watch-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">1</span>
+      <div><h2 id="hb-watch-title">Watch it</h2><p>It moves by itself. Pause it to look closely, or turn on slow motion to see each part of the movement.</p></div>
+    </div>
+    <div class="seg hb-modes" role="group" aria-label="What the box shows" data-hb-modes>
+      <button type="button" data-hb-mode="normal" class="on" aria-pressed="true">Normal</button>
+      <button type="button" data-hb-mode="inside" aria-pressed="false">See inside</button>
+      <button type="button" data-hb-mode="compare" aria-pressed="false">Compare</button>
+    </div>
+    <div class="stage hb-dots hb-grow">
+      <div class="ca-real">
+        <div class="ca-wrap pulse" id="ca-wrap">
+          <div class="ca-layer base"><div class="ca-text" id="ca-base-text">PRISM</div></div>
+          <div class="ca-layer ca-r" id="ca-r" aria-hidden="true"><div class="ca-text" id="ca-r-text">PRISM</div></div>
+          <div class="ca-layer ca-g" id="ca-g" aria-hidden="true"><div class="ca-text" id="ca-g-text">PRISM</div></div>
+          <div class="ca-layer ca-b" id="ca-b" aria-hidden="true"><div class="ca-text" id="ca-b-text">PRISM</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="hb-player">
+      <button class="hb-play" type="button" id="btn-pause" data-hb-pause="css" data-state="playing"><svg class="hb-ic hb-i-pause" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><svg class="hb-ic hb-i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3l14 9-14 9z"/></svg><span class="hb-pause-label">Pause</span></button>
+      <label class="hb-toggle"><input class="hb-switch" type="checkbox" role="switch" id="slow-tog" data-hb-slowmo="css" autocomplete="off"><span>Slow motion</span></label>
+    </div>
+    <div class="hb-mode-notes" aria-live="polite">
+      <p data-hb-for="inside" hidden>Inside, the word is three copies, shown apart: red shifted one way, blue the other, green in place. Their light adds up, so where all three meet it is white.</p>
+      <p data-hb-for="compare" hidden>Copies cover just stacks the three copies, so the blue one on top hides the rest. Copies add up adds their light: white where they meet, color at the edges.</p>
+    </div>
+  </section>
+
+  <section class="hb-step hb-try" aria-labelledby="hb-try-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">2</span>
+      <div><h2 id="hb-try-title">Try it</h2><p>Change a setting and see the difference as it moves.</p></div>
+    </div>
+    <div class="hb-settings">
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="move-lbl">Movement</p>
+        <div class="seg" id="move-seg" role="group" aria-labelledby="move-lbl">
+          <button type="button" data-move="pulse" class="on" aria-pressed="true">Pulse</button>
+          <button type="button" data-move="glitch" aria-pressed="false">Glitch</button>
+          <button type="button" data-move="none" aria-pressed="false">None</button>
+        </div>
+        <p class="hb-hint">Pulse breathes in and out; Glitch jumps now and then.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="amt-lbl">Color split</p>
+        <div class="seg" id="amt-seg" role="group" aria-labelledby="amt-lbl">
+          <button type="button" data-amt="2" aria-pressed="false">Small</button>
+          <button type="button" data-amt="4" class="on" aria-pressed="true">Medium</button>
+          <button type="button" data-amt="8" aria-pressed="false">Large</button>
+        </div>
+        <p class="hb-hint">How far the red and blue copies sit from the word.</p>
+      </div>
+      <div class="hb-setting">
+        <p class="hb-setting-name" id="angle-lbl">Direction</p>
+        <div class="seg" id="angle-seg" role="group" aria-labelledby="angle-lbl">
+          <button type="button" data-angle="0" aria-pressed="false">Sideways</button>
+          <button type="button" data-angle="30" class="on" aria-pressed="true">Slanted</button>
+          <button type="button" data-angle="90" aria-pressed="false">Up and down</button>
+        </div>
+        <p class="hb-hint">Which way the red and blue copies move apart.</p>
+      </div>
+    </div>
+    <details class="hb-options">
+      <summary><span class="hb-more-label">More options</span><span class="hb-less">Fewer options</span><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="hb-settings">
+        <div class="hb-setting">
+          <label class="hb-switch-row"><span>Soft color edges</span><input class="hb-switch" type="checkbox" role="switch" id="blur-tog" autocomplete="off"></label>
+          <p class="hb-hint">Blurs the colored copies, like a real lens.</p>
+        </div>
+        <div class="hb-setting">
+          <label class="hb-setting-name" for="text-inp">Your text</label>
+          <input class="hb-text" type="text" id="text-inp" value="PRISM" autocomplete="off">
+          <p class="hb-hint">Short words work best.</p>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <section class="hb-step hb-prompt-step" aria-labelledby="hb-prompt-title">
+    <div class="hb-step-head">
+      <span class="hb-num" aria-hidden="true">3</span>
+      <div><h2 id="hb-prompt-title">Copy the prompt</h2><p>Paste it into an AI assistant such as ChatGPT, Claude or Cursor to build this in your own project.</p></div>
+    </div>
+    <div class="hb-card">
+      <p class="hb-prompt">Add a chromatic aberration effect to [your headline or short word]. Stack three copies of the text in pure red, green and blue, blend them so that where they overlap they add up to white, and shift the red and blue copies in opposite directions so colored fringes appear at the letters' edges, like a cheap camera lens. The split can breathe in and out, or jump now and then like a glitch. It only works on a dark background. Screen readers should read the text once, not three times. If the visitor has reduced motion turned on, keep the copies still. Match the settings listed below.</p>
+      <div class="hb-chips-box" hidden>
+        <p class="hb-chips-title">Your settings</p>
+        <ul class="hb-chips"></ul>
+      </div>
+      <div class="hb-copy-row">
+        <button class="hb-copy" type="button"><svg class="hb-ic hb-i-copy" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg><svg class="hb-ic hb-i-done" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="hb-copy-label" aria-live="polite">Copy prompt</span></button>
+        <p class="hb-hint">Replace the words in brackets with your own element. Your settings are added at the end.</p>
+      </div>
+    </div>
+    <div class="hb-star-row"><p>Free and open source. If this helped, a star on GitHub helps other people find it.</p><a class="hb-star-btn" href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener"><svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Star on GitHub</a></div>
+  </section>
+
+  <section class="hb-about" aria-labelledby="hb-what-title">
+    <div class="hb-what">
+      <h2 id="hb-what-title">What it is</h2>
+      <div class="hb-what-text"><p>The full explanation is in <a href="README.md">README.md</a>.</p></div>
+    </div>
+    <div class="hb-fit">
+      <h2>Good for</h2>
+      <ul class="hb-tags hb-good"><li>Bold titles</li><li>Music and games</li><li>Error pages</li></ul>
+      <h3>Avoid on</h3>
+      <ul class="hb-tags hb-avoid"><li>Body text</li><li>Light backgrounds</li></ul>
+    </div>
+  </section>
+
+  <section class="hb-related" aria-labelledby="hb-related-title" hidden>
+    <h2 id="hb-related-title">Similar animations</h2>
+    <div class="hb-rel-list"></div>
+  </section>
+</main>
+<footer class="hb-foot"><span>Animation Handbook</span><a href="https://github.com/matinmonshizadeh/animation-handbook" target="_blank" rel="noopener">Source on GitHub</a><a href="#top">Back to top ↑</a></footer>
+<script>
+  const wrap=document.getElementById('ca-wrap');
+  const rLayer=document.getElementById('ca-r'),bLayer=document.getElementById('ca-b');
+  const vars=document.documentElement.style;
+  const txtIn=document.getElementById('text-inp');
+  let amt=4,angle=30;
+
+  // The resting offset of the red and blue copies, from the split and the direction. The keyframes start
+  // and end at it (--r-t, --b-t) and read the amount and angle for their own moves.
+  function applyOffset(){
+    const rad=angle*Math.PI/180;
+    const dx=(Math.cos(rad)*amt).toFixed(1);
+    const dy=(Math.sin(rad)*amt).toFixed(1);
+    rLayer.style.transform=`translate(${dx}px,${dy}px)`;
+    bLayer.style.transform=`translate(${-dx}px,${-dy}px)`;
+    vars.setProperty('--r-t',`translate(${dx}px,${dy}px)`);
+    vars.setProperty('--b-t',`translate(${-dx}px,${-dy}px)`);
+    vars.setProperty('--ca-amt',amt+'px');
+    vars.setProperty('--ca-angle',angle+'deg');
+  }
+  // Every copy of the word is found by class, so Your text reaches the views too
+  function setText(t){
+    document.querySelectorAll('.ca-text').forEach(n=>{n.textContent=t});
+    fit();
+  }
+  // Movement is one class on the wrap of the real word and of each copy
+  function setMove(m){
+    wraps.forEach(w=>{w.classList.remove('pulse','glitch');if(m!=='none')w.classList.add(m)});
+  }
+
+  function choices(id,pick){
+    const buttons=document.querySelectorAll('#'+id+' button');
+    buttons.forEach(b=>b.addEventListener('click',()=>{
+      buttons.forEach(x=>{x.classList.toggle('on',x===b);x.setAttribute('aria-pressed',String(x===b))});
+      pick(b.dataset);
+    }));
+  }
+  choices('move-seg',d=>{
+    setMove(d.move);
+    applyOffset();
+  });
+  choices('amt-seg',d=>{amt=+d.amt;applyOffset()});
+  choices('angle-seg',d=>{angle=+d.angle;applyOffset()});
+  document.getElementById('blur-tog').addEventListener('change',e=>{vars.setProperty('--ca-blur',e.target.checked?'2px':'0px')});
+  // Blank text (nothing, or only spaces) falls back to the default word; anything else stays as typed
+  txtIn.addEventListener('input',()=>{const v=txtIn.value;setText(v.trim()?v:'PRISM')});
+
+  applyOffset();
+
+  // See inside and Compare. Their parts are built once here from the real word: no ids, out of reach of readers and clicks.
+  const stage=document.querySelector('.stage'),realBox=wrap.parentNode;
+  const wraps=[wrap];
+  let mode='normal';
+  function make(tag,cls,parent,text){
+    const n=document.createElement(tag);n.className=cls;
+    if(text)n.textContent=text;
+    if(parent)parent.appendChild(n);
+    return n;
+  }
+  function hide(n){n.setAttribute('aria-hidden','true');n.inert=true;return n}
+  function caption(cls,parent,long,short){
+    const p=make('p','ca-cap '+cls,parent);
+    p.setAttribute('data-hb-caption','');p.setAttribute('aria-hidden','true');
+    if(short){make('span','ca-long',p,long);make('span','ca-short',p,short)}else p.textContent=long;
+    return p;
+  }
+  // A copy of the word; keep is 'r', 'g' or 'b' for one colored layer on its own, nothing for all three
+  function copyWord(keep){
+    const w=wrap.cloneNode(true);
+    w.classList.add('ca-copy');
+    [w,...w.querySelectorAll('[id]')].forEach(n=>n.removeAttribute('id'));
+    w.querySelectorAll('.ca-layer').forEach(l=>{
+      l.removeAttribute('style');
+      if(keep&&!l.classList.contains('base')&&!l.classList.contains('ca-'+keep))l.remove();
+    });
+    wraps.push(w);
+    return w;
+  }
+  // A hidden copy of the word at Normal's own size stays in the flow in a mode, so the box is as tall as in Normal for any text
+  const ruler=hide(make('div','ca-ruler',stage));
+  const rulerBase=make('div','ca-layer base',make('div','ca-wrap',ruler));
+  const rulerText=make('div','ca-text',rulerBase,document.getElementById('ca-base-text').textContent);
+  const minis=hide(make('div','ca-minis',stage));
+  [['r','Red copy, shifted one way','Red'],['g','Green copy, in place','Green'],['b','Blue copy, shifted the other way','Blue']].forEach(([k,long,short])=>{
+    const row=make('div','ca-mini',minis);
+    row.appendChild(copyWord(k));
+    caption('',row,long,short);
+  });
+  const first=hide(make('div','ca-first',stage));
+  caption('ca-name',first,'Copies cover');
+  first.appendChild(copyWord());
+  realBox.insertBefore(caption('ca-name',null,'Copies add up'),realBox.firstChild);
+  caption('ca-sum',realBox,'Added together: white where all three meet, color at the edges');
+
+  // A copy starts from zero when it is first shown, so it takes the time and speed of the real red or blue layer
+  function syncCopies(){
+    [[rLayer,'.ca-r'],[bLayer,'.ca-b']].forEach(([src,sel])=>{
+      const a=src.getAnimations()[0];
+      if(!a||a.currentTime==null)return;
+      wraps.forEach(w=>{
+        if(w===wrap)return;
+        w.querySelectorAll(sel).forEach(l=>{
+          const c=l.getAnimations()[0];
+          if(!c)return;
+          const copy=()=>{c.currentTime=a.currentTime;c.playbackRate=a.playbackRate};
+          copy();
+          c.ready.then(copy,()=>{}); // a copy just shown starts a frame later, so it is set again as it starts
+        });
+      });
+    });
+  }
+  // One font size for the mode, from the word's size in Normal, made smaller until each view fits the room Normal's box gives it
+  function fits(box){
+    const b=box.getBoundingClientRect();
+    return [...box.querySelectorAll('.ca-layer.base,.ca-cap')].every(n=>{
+      if(!n.getClientRects().length)return true;
+      const r=n.getBoundingClientRect();
+      return r.top>=b.top-1&&r.bottom<=b.bottom+1;
+    });
+  }
+  function fit(){
+    if(mode==='normal')return;
+    const boxes=mode==='inside'?[minis,realBox]:[first,realBox];
+    let s=parseFloat(getComputedStyle(rulerText).fontSize)*(mode==="compare"?.85:1);
+    for(let i=0;i<30;i++){
+      stage.style.setProperty('--ca-fs',s.toFixed(1)+'px');
+      if(s<6||boxes.every(fits))break;
+      s*=.92;
+    }
+  }
+  document.addEventListener('hb:mode',e=>{mode=e.detail.mode;syncCopies();fit()});
+  addEventListener('resize',fit);
+  if(document.fonts)document.fonts.ready.then(fit);
+</script>
+</body>
+</html>
