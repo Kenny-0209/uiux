@@ -46,3 +46,5 @@
 - `recheck33.jpg`: Onyido, Obumselu, Egwuatu & Okoye (2023), Figure 10, [원문](https://doi.org/10.3389/fchem.2023.1176746), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). 논문이 제공한 중간 해상도 이미지를 그대로 사용.
 
 - `recheck35.png`: Vermeeren 등 (2020), Figure 8, [원문 PDF 10쪽](https://d-nb.info/1259149188/34#page=10), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). PDF에서 그림 부분을 잘라 추출.
+
+- `recheck58.webp`: Sun, Fan, Kou, Wang, Yue & Zhang (2025), Figure 5, [원문](https://doi.org/10.3389/fpubh.2025.1622988), [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). 원본 이미지 그대로 사용.
