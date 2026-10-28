@@ -1,20 +1,11 @@
 <!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="화면 설계와 인터랙션을 탐색하고 직접 실험하는 UI·UX 연구 도구">
-  <title>모음 — UI·UX 인터랙션 아카이브</title>
-  <link rel="stylesheet" href="./style.css">
-  <link rel="stylesheet" href="./theme.css">
-  <link rel="stylesheet" href="./inline.css">
-  <link rel="stylesheet" href="./encyclopedia.css">
-  <link rel="stylesheet" href="./motion-demos.css">
-  <link rel="stylesheet" href="./fresh.css">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>메뉴 이동 — 모음</title>
+ <script>
+  // Preserve old bookmarks while moving each view to its single destination.
+  const routes={sources:'./sources.html',about:'./about.html',catalog:'./theory.html',labs:'./index.html#main'};
+  location.replace(routes[location.hash.slice(1)]||'./index.html#main');
+ </script>
 </head>
-<body>
-  <a class="skip-link" href="#main">본문으로 바로가기</a>
-  <div id="app"></div>
-  <script type="module" src="./app.js?v=layouts-20261028"></script>
-</body>
+<body><p>메뉴가 이동했습니다. <a href="./index.html#main">예시 둘러보기</a> · <a href="./theory.html">설계 지식</a> · <a href="./course.html">강좌 아카이브</a> · <a href="./sources.html">참고 원천</a> · <a href="./about.html">이용 안내</a></p></body>
 </html>

@@ -29,3 +29,5 @@ Movin 예시의 HTML, CSS와 JavaScript는 MIT-0 원본 파일을 보존하며, 
 `theory.html`, `theory.css`, `theory.js`, `theory.json`은 조사한 UI·UX 지식을 읽고 검색하기 위한 문서입니다. 개념별 정의·적용·주의점과 출처, 중복 관계, 기존 지식 목록 및 확인한 공개 강좌의 대응을 제공합니다. 분류는 이 프로젝트의 편집 체계이며, 확인할 수 없는 강좌 내용은 구분해 표시합니다. 데이터는 `python tools/build_theory.py`로 다시 생성합니다.
 
 설계 지식 문서는 수집한 실제 원본 예시를 관련 개념 옆에 직접 표시합니다. 예시와 개념의 연결은 이해를 돕기 위한 편집자의 해석입니다. 페이지 가까이 있는 예시만 로드하고 멀어지면 해제합니다. `theory-examples.json`은 `python tools/build_theory_examples.py`로 생성합니다.
+
+상단 메뉴는 예시 둘러보기·설계 지식·강좌 아카이브·참고 원천·이용 안내의 다섯 항목으로 통일합니다. `sources.html`과 `about.html`은 각각 원문 목록과 사용 안내이며, 기존 `previous.html#sources` 및 `#about` 주소는 새 페이지로 이동합니다. `tools/sync_nav.py`는 모든 상단 메뉴의 링크와 현재 페이지 표시를 일관되게 갱신합니다.
