@@ -3,9 +3,13 @@
 .demo-actions>span{font-size:9px;color:#a1b7a8;font-weight:500}
 .demo-actions button{border:1px solid #40594c;background:#1a2920;color:#e5f0e7;border-radius:3px;padding:5px 8px;font-size:10px;font-weight:700;white-space:nowrap}
 .demo-actions button:hover{border-color:#75b6f6;background:#24412f}
-/* The expanded example remains in the page flow and retains its original iframe. */
-.work-card.is-expanded{grid-column:1/-1;scroll-margin-top:14px;border-color:#597d68}
-.work-card.is-expanded .demo-content iframe,.work-card.is-expanded .gpu-placeholder{height:var(--expanded-preview-height,540px)!important}
-@media(min-width:701px){.work-grid>.work-card.is-expanded:only-child{display:block}}
-@media(max-width:700px){.work-card.is-expanded{scroll-margin-top:54px}}
+/* Give ordinary previews more room without changing their source code. */
+.work-card .demo-content iframe,.work-card .demo-content .gpu-placeholder,.work-card .demo-content .preview-placeholder{min-height:340px}
+@media(max-width:700px){.work-card .demo-content iframe,.work-card .demo-content .gpu-placeholder,.work-card .demo-content .preview-placeholder{min-height:320px}}
+/* Expand the existing card over the viewport, leaving the category rail visible. */
+.work-grid>.work-card.is-expanded{position:fixed;z-index:30;inset:0 0 0 var(--expanded-left,0px);width:auto;height:100dvh;max-height:100dvh;display:flex;flex-direction:column;border-color:#597d68;box-shadow:0 0 32px #000a}
+.work-card.is-expanded .demo-wrap{flex:1 1 0;min-height:0;overflow:hidden}
+.work-card.is-expanded .demo-content{flex:1 1 0;min-height:0;overflow:hidden}
+.work-card.is-expanded .demo-content iframe,.work-card.is-expanded .demo-content .gpu-placeholder,.work-card.is-expanded .demo-content .preview-placeholder{height:100%!important;min-height:0;flex:1 1 0}
+.work-card.is-expanded .work-content{flex:0 1 auto;min-height:0;max-height:25vh;overflow:auto}
 @media(max-width:400px){.demo-actions{gap:5px}.demo-actions>span{font-size:8px}.demo-actions button{padding:5px 6px;font-size:9px}}

@@ -19,8 +19,11 @@ const mobileSubfilters=document.createElement('div');mobileSubfilters.id='subfil
 const activeTag=document.createElement('div');activeTag.id='active-tag';activeTag.className='active-tag';activeTag.setAttribute('aria-live','polite');$('#platform-filters').closest('.platform-bar').after(activeTag);
 const norm = x => String(x || '').normalize('NFKC').toLocaleLowerCase().trim();
 function updateExpandButton(wrap,active){const btn=wrap?.querySelector('[data-expand]');if(!btn)return;btn.textContent=active?'↙  축소':'↗  크게 보기';btn.setAttribute('aria-expanded',String(active));btn.setAttribute('aria-label',`${btn.dataset.title} ${active?'축소':'크게 보기'}`);}
-function clearExpanded({focus=true}={}){if(!expanded)return;const wrap=expanded;expanded=null;const card=wrap.closest('.work-card');card?.classList.remove('is-expanded');card?.style.removeProperty('--expanded-preview-height');updateExpandButton(wrap,false);if(focus&&wrap.isConnected)wrap.querySelector('[data-expand]')?.focus({preventScroll:true});}
-function toggleExpanded(wrap){if(expanded===wrap){clearExpanded();return}if(expanded)clearExpanded({focus:false});const card=wrap.closest('.work-card');if(!card)return;const preview=wrap.querySelector('iframe, .gpu-placeholder, .preview-placeholder');const height=preview?.getBoundingClientRect().height||270;card.style.setProperty('--expanded-preview-height',`${Math.round(height*2)}px`);expanded=wrap;card.classList.add('is-expanded');updateExpandButton(wrap,true);card.scrollIntoView({block:'start',behavior:'smooth'});}
+let expandedSpacer=null,expandedPreviewHeight='',previousBodyOverflow='';
+function clearExpanded({focus=true}={}){if(!expanded)return;const wrap=expanded;expanded=null;const card=wrap.closest('.work-card');card?.classList.remove('is-expanded');card?.style.removeProperty('--expanded-left');const preview=wrap.querySelector('iframe, .gpu-placeholder, .preview-placeholder');if(preview)preview.style.height=expandedPreviewHeight;expandedSpacer?.remove();expandedSpacer=null;document.body.style.overflow=previousBodyOverflow;updateExpandButton(wrap,false);if(focus&&wrap.isConnected)wrap.querySelector('[data-expand]')?.focus({preventScroll:true});}
+function positionExpanded(){const card=expanded?.closest('.work-card');if(!card)return;const rail=$('.rail');const railVisible=rail&&getComputedStyle(rail).display!=='none';card.style.setProperty('--expanded-left',`${railVisible?Math.max(0,Math.round(rail.getBoundingClientRect().right)):0}px`);}
+function toggleExpanded(wrap){if(expanded===wrap){clearExpanded();return}if(expanded)clearExpanded({focus:false});const card=wrap.closest('.work-card');if(!card)return;const preview=wrap.querySelector('iframe, .gpu-placeholder, .preview-placeholder');expandedPreviewHeight=preview?.style.height||'';expandedSpacer=document.createElement('div');expandedSpacer.setAttribute('aria-hidden','true');expandedSpacer.style.height=`${card.getBoundingClientRect().height}px`;card.before(expandedSpacer);previousBodyOverflow=document.body.style.overflow;document.body.style.overflow='hidden';expanded=wrap;positionExpanded();card.classList.add('is-expanded');updateExpandButton(wrap,true);}
+window.addEventListener('resize',positionExpanded);
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&expanded&&!$('#code-dialog').open){event.preventDefault();clearExpanded();}});
 function needsGPU(e){return Boolean(e.requiresGPU || e.category==='3D');}
 function frame(e, eager=true){
@@ -274,6 +277,7 @@ function setupPlayer(frame){
  if(doc&&!observedPlayerDocs.has(doc)){
   observedPlayerDocs.add(doc);
   doc.addEventListener('uiux-demo-state',()=>{if(frame.isConnected&&frame.contentDocument===doc)updateLoadedFrame(frame)});
+  doc.addEventListener('keydown',event=>{if(event.key==='Escape'&&expanded===frame.closest('.demo-wrap')&&!$('#code-dialog').open){event.preventDefault();clearExpanded();}});
  }
  const speed=doc?.querySelector('input[type="checkbox"][data-hb-slowmo]');
  p.hidden=setupNativePlayer(frame,doc);
