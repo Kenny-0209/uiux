@@ -1,0 +1,44 @@
+.card-tilt {
+  --card-tilt-x: 0deg;
+  --card-tilt-y: 0deg;
+  perspective: 600px;
+}
+.card-tilt__card {
+  width: 160px;
+  overflow: hidden;
+  border: 1px solid light-dark(rgba(55, 58, 64, 0.1), rgba(241, 242, 243, 0.1));
+  border-radius: 12px;
+  background: light-dark(rgba(55, 58, 64, 0.06), rgba(241, 242, 243, 0.06));
+  box-shadow: 0 2px 8px light-dark(rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.2));
+  cursor: pointer;
+  transform: rotateX(var(--card-tilt-x)) rotateY(var(--card-tilt-y));
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 400ms ease, box-shadow 400ms ease;
+}
+/* While hovered the tilt follows the cursor directly; on leave it eases back. */
+.card-tilt__card:hover {
+  box-shadow: 0 16px 32px light-dark(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.4));
+  transform: rotateX(var(--card-tilt-x)) rotateY(var(--card-tilt-y)) scale(1.04);
+  transition: box-shadow 200ms ease;
+}
+.card-tilt__media {
+  height: 64px;
+  background: linear-gradient(135deg, light-dark(#5f626a, #a7abb2), light-dark(#6d7179, #7d8087));
+}
+.card-tilt__body { padding: 10px 12px 12px; }
+.card-tilt__title {
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: light-dark(#373a40, #f1f2f3);
+}
+.card-tilt__text {
+  font-size: 11px;
+  line-height: 1.4;
+  color: light-dark(rgba(55, 58, 64, 0.73), rgba(241, 242, 243, 0.62));
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-tilt__card,
+  .card-tilt__card:hover { transform: none; }
+}

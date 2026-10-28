@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sorting List checkbox</title><link rel="stylesheet" href="checkbox-sort-list.css">
+<style>html{color-scheme:light}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:#f5f5f6;color:#222;font:15px system-ui,sans-serif;overflow:auto}</style>
+</head><body><div class="cb-sort-list">
+  <div class="cb-sort-list__head">
+    <span class="cb-sort-list__heading">Today</span>
+    <span class="cb-sort-list__count" aria-live="polite">0 of 4 done</span>
+  </div>
+  <div class="cb-sort-list__bar" aria-hidden="true"><span class="cb-sort-list__fill"></span></div>
+  <ul class="cb-sort-list__items">
+    <li class="cb-sort-list__item">
+      <label class="cb-sort-list__row">
+        <input class="cb-sort-list__input" type="checkbox">
+        <span class="cb-sort-list__box" aria-hidden="true"><svg viewBox="0 0 20 20"><path pathLength="100" d="M5 10.5l3.5 3.5 6.5-8" /></svg></span>
+        <span class="cb-sort-list__text">Reply to Sam</span>
+      </label>
+    </li>
+    <li class="cb-sort-list__item">
+      <label class="cb-sort-list__row">
+        <input class="cb-sort-list__input" type="checkbox">
+        <span class="cb-sort-list__box" aria-hidden="true"><svg viewBox="0 0 20 20"><path pathLength="100" d="M5 10.5l3.5 3.5 6.5-8" /></svg></span>
+        <span class="cb-sort-list__text">Book the venue</span>
+      </label>
+    </li>
+    <li class="cb-sort-list__item">
+      <label class="cb-sort-list__row">
+        <input class="cb-sort-list__input" type="checkbox">
+        <span class="cb-sort-list__box" aria-hidden="true"><svg viewBox="0 0 20 20"><path pathLength="100" d="M5 10.5l3.5 3.5 6.5-8" /></svg></span>
+        <span class="cb-sort-list__text">Ship the update</span>
+      </label>
+    </li>
+    <li class="cb-sort-list__item">
+      <label class="cb-sort-list__row">
+        <input class="cb-sort-list__input" type="checkbox">
+        <span class="cb-sort-list__box" aria-hidden="true"><svg viewBox="0 0 20 20"><path pathLength="100" d="M5 10.5l3.5 3.5 6.5-8" /></svg></span>
+        <span class="cb-sort-list__text">Water the plants</span>
+      </label>
+    </li>
+  </ul>
+</div>
+<script src="checkbox-sort-list.js"></script></body></html>

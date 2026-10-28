@@ -1,0 +1,42 @@
+.card-spotlight {
+  --card-spotlight-x: 80px;
+  --card-spotlight-y: 60px;
+  position: relative;
+  width: 160px;
+  overflow: hidden;
+  border: 1px solid light-dark(rgba(55, 58, 64, 0.1), rgba(241, 242, 243, 0.1));
+  border-radius: 12px;
+  background: light-dark(rgba(55, 58, 64, 0.04), rgba(241, 242, 243, 0.04));
+  cursor: pointer;
+  transition: border-color 300ms ease;
+}
+.card-spotlight:hover { border-color: light-dark(rgba(55, 58, 64, 0.22), rgba(241, 242, 243, 0.22)); }
+.card-spotlight__media {
+  height: 64px;
+  background: linear-gradient(135deg, light-dark(#ebedf0, #232529), light-dark(#dbdde1, #2e3035));
+}
+.card-spotlight__body { padding: 10px 12px 12px; }
+.card-spotlight__title {
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: light-dark(#373a40, #f1f2f3);
+}
+.card-spotlight__text {
+  font-size: 11px;
+  line-height: 1.4;
+  color: light-dark(rgba(55, 58, 64, 0.73), rgba(241, 242, 243, 0.62));
+}
+/* The light: a soft radial gradient centred on the cursor, faded in on hover. */
+.card-spotlight__light {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(140px circle at var(--card-spotlight-x) var(--card-spotlight-y), light-dark(rgba(55, 58, 64, 0.16), rgba(241, 242, 243, 0.16)), transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms ease;
+}
+.card-spotlight:hover .card-spotlight__light { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .card-spotlight__light { transition: none; }
+}

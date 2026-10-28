@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Circle checkbox</title><link rel="stylesheet" href="checkbox-circle.css">
+<style>html{color-scheme:light}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:#f5f5f6;color:#222;font:15px system-ui,sans-serif;overflow:auto}</style>
+</head><body><label class="cb-circle">
+  <input class="cb-circle__input" type="checkbox" aria-label="Remember me">
+  <span class="cb-circle__box" aria-hidden="true">
+    <svg class="cb-circle__ring" width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <circle cx="14" cy="14" r="11" stroke="light-dark(rgba(55, 58, 64, 0.15), rgba(241, 242, 243, 0.15))" stroke-width="2" />
+      <circle class="cb-circle__arc" cx="14" cy="14" r="11" stroke="light-dark(#5f626a, #a7abb2)" stroke-width="2" stroke-linecap="round" transform="rotate(-90 14 14)" />
+    </svg>
+    <svg class="cb-circle__check" width="12" height="9" viewBox="0 0 12 9" fill="none">
+      <path d="M1 4.5L4.5 8L11 1" stroke="light-dark(#5f626a, #a7abb2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </span>
+</label>
+</body></html>

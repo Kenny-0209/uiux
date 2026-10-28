@@ -1,0 +1,44 @@
+.btn-charge {
+  position: relative;
+  min-width: 12rem;
+  padding: 0.75rem 2.25rem;
+  overflow: hidden;
+  border: 2px solid light-dark(rgba(55, 58, 64, 0.15), rgba(241, 242, 243, 0.15));
+  border-radius: 6px;
+  background: light-dark(#f3f4f7, #1a1c1f);
+  color: light-dark(#373a40, #f1f2f3);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 200ms, color 150ms, box-shadow 200ms;
+}
+.btn-charge:focus-visible {
+  outline: 2px solid light-dark(#5f626a, #a7abb2);
+  outline-offset: 2px;
+}
+.btn-charge__fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  background: linear-gradient(90deg, light-dark(#5f626a, #a7abb2), light-dark(#50535b, #c6c8cd));
+  pointer-events: none;
+}
+.btn-charge__label {
+  position: relative;
+  z-index: 1;
+}
+.btn-charge[data-phase="charging"] { border-color: light-dark(#50535b, #c6c8cd); }
+.btn-charge[data-phase="fired"] {
+  border-color: light-dark(#50535b, #c6c8cd);
+  color: light-dark(#f3f4f7, #1a1c1f);
+  box-shadow: 0 0 24px light-dark(rgba(80, 83, 91, 0.7), rgba(198, 200, 205, 0.7)), 0 0 48px light-dark(rgba(80, 83, 91, 0.3), rgba(198, 200, 205, 0.3));
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-charge { transition: none; }
+}

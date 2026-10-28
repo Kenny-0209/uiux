@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hold to Confirm button</title><link rel="stylesheet" href="button-hold-confirm.css">
+<style>html{color-scheme:light}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:#f5f5f6;color:#222;font:15px system-ui,sans-serif;overflow:auto}</style>
+</head><body><button class="btn-hold-confirm" type="button">
+  <svg class="btn-hold-confirm__ring" width="52" height="52" aria-hidden="true">
+    <circle cx="26" cy="26" r="22" stroke="light-dark(#ebedf0, #232529)" stroke-width="4" fill="none" />
+    <circle class="btn-hold-confirm__arc" cx="26" cy="26" r="22" stroke-width="4" fill="none" stroke-linecap="round" />
+    <text class="btn-hold-confirm__pct" x="26" y="31" text-anchor="middle" font-size="14" font-weight="bold">0%</text>
+  </svg>
+  <span class="btn-hold-confirm__label">HOLD TO CONFIRM</span>
+</button>
+<script src="button-hold-confirm.js"></script></body></html>

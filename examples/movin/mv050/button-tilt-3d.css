@@ -1,0 +1,40 @@
+.btn-tilt-3d {
+  position: relative;
+  padding: 12px 32px;
+  overflow: hidden;
+  border: none;
+  border-radius: 12px;
+  background: light-dark(#cbced3, #393c41);
+  box-shadow: 0 4px 12px light-dark(rgba(109, 113, 121, 0.25), rgba(125, 128, 135, 0.25));
+  color: light-dark(#373a40, #f1f2f3);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: box-shadow 300ms;
+}
+.btn-tilt-3d:focus-visible {
+  outline: 2px solid light-dark(#5f626a, #a7abb2);
+  outline-offset: 2px;
+}
+.btn-tilt-3d:hover { box-shadow: 0 20px 40px light-dark(rgba(109, 113, 121, 0.45), rgba(125, 128, 135, 0.45)), 0 8px 16px light-dark(rgba(0, 0, 0, 0.09), rgba(0, 0, 0, 0.3)); }
+/* A soft highlight that slides opposite to the tilt (position written by the script). */
+.btn-tilt-3d__sheen {
+  position: absolute;
+  top: var(--btn-tilt-3d-sy, 50%);
+  left: var(--btn-tilt-3d-sx, 50%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: light-dark(rgba(55, 58, 64, 0.18), rgba(241, 242, 243, 0.18));
+  filter: blur(24px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 200ms;
+}
+.btn-tilt-3d:hover .btn-tilt-3d__sheen { opacity: 1; }
+.btn-tilt-3d__label { position: relative; }
+@media (prefers-reduced-motion: reduce) {
+  .btn-tilt-3d { transform: none !important; }
+}

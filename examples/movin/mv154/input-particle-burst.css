@@ -1,0 +1,43 @@
+.field-particle-burst {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+
+.field-particle-burst__input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid light-dark(rgba(55, 58, 64, 0.15), rgba(241, 242, 243, 0.15));
+  border-radius: 8px;
+  outline: none;
+  background: light-dark(rgba(55, 58, 64, 0.06), rgba(241, 242, 243, 0.06));
+  color: light-dark(#373a40, #f1f2f3);
+  font: inherit;
+  font-size: 15px;
+}
+.field-particle-burst__input::placeholder { color: light-dark(rgba(55, 58, 64, 0.73), rgba(241, 242, 243, 0.62)); }
+
+/* Every focus fires eight sparks out from the field's corners. */
+.field-particle-burst__particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: light-dark(#5f626a, #a7abb2);
+  opacity: 0;
+  pointer-events: none;
+}
+.field-particle-burst:focus-within .field-particle-burst__particle {
+  animation-name: field-particle-burst;
+  animation-duration: 500ms;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+}
+@keyframes field-particle-burst {
+  0% { opacity: 1; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--field-particle-burst-x), var(--field-particle-burst-y)) scale(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .field-particle-burst__particle { display: none; }
+}

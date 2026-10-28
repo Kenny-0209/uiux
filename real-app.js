@@ -306,8 +306,8 @@ document.addEventListener('click',async event=>{
 });
 $('#search').addEventListener('input',e=>{query=e.target.value;renderFilters();render()});
 document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'&&!$('#code-dialog').open){event.preventDefault();$('#search').focus();}});
-const manifests=['manifest.json','camera-manifest.json','spatial-manifest.json','ui-more.json','hand-all.json','ai-all.json','apg-more.json','bootstrap.json','templates.json','camera-more.json','3d-more.json','motion-more.json','text-more.json','scroll-more.json','vanta-more.json','env-more.json','entry-more.json','animate-more.json','course-labs.json','codscroll.json','ics-scroll.json','scroll-drive.json','transition-manifest.json'];
-const taxonomyRequest=fetch('./taxonomy.json?v=20261028-3').then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}).catch(error=>({error}));
+const manifests=['manifest.json','camera-manifest.json','spatial-manifest.json','ui-more.json','hand-all.json','ai-all.json','apg-more.json','bootstrap.json','templates.json','camera-more.json','3d-more.json','motion-more.json','text-more.json','scroll-more.json','vanta-more.json','env-more.json','entry-more.json','animate-more.json','course-labs.json','codscroll.json','ics-scroll.json','scroll-drive.json','transition-manifest.json','movin.json'];
+const taxonomyRequest=fetch('./taxonomy.json?v=20261028-4').then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}).catch(error=>({error}));
 const batches=await Promise.all(manifests.map(async name=>{try{const res=await fetch(`./examples/${name}`);if(!res.ok)throw new Error(`HTTP ${res.status}`);const data=await res.json();if(!Array.isArray(data))throw new Error('잘못된 목록 형식');return {name,data};}catch(error){return {name,error};}}));
 const taxonomy=await taxonomyRequest;
 const failed=batches.filter(x=>x.error);const seen=new Set();examples=[...batches.flatMap(x=>x.data||[]),...motion].filter(e=>{if(!e||!e.id||seen.has(e.id))return false;seen.add(e.id);return true});

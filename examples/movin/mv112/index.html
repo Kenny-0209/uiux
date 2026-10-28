@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Select All checkbox</title><link rel="stylesheet" href="checkbox-select-all.css">
+<style>html{color-scheme:light}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:#f5f5f6;color:#222;font:15px system-ui,sans-serif;overflow:auto}</style>
+</head><body><div class="cb-select-all" role="group" aria-label="Files to back up">
+  <label class="cb-select-all__row cb-select-all__row--parent">
+    <input class="cb-select-all__input cb-select-all__input--parent" type="checkbox">
+    <span class="cb-select-all__box" aria-hidden="true">
+      <svg viewBox="0 0 20 20"><path class="cb-select-all__dash" d="M5.5 10h9" /><path class="cb-select-all__tick" pathLength="100" d="M5 10.5l3.5 3.5 6.5-8" /></svg>
+    </span>
+    <span class="cb-select-all__text">Back up everything</span>
+  </label>
+  <div class="cb-select-all__branch">
+    <label class="cb-select-all__row">
+      <input class="cb-select-all__input" type="checkbox">
+      <span class="cb-select-all__box" aria-hidden="true">
+        <svg viewBox="0 0 20 20"><path class="cb-select-all__tick" pathLength="100" d="M5 10.5l3.5 3.5 6.5-8" /></svg>
+      </span>
+      <span class="cb-select-all__text">Photos</span>
+    </label>
+    <label class="cb-select-all__row">
+      <input class="cb-select-all__input" type="checkbox">
+      <span class="cb-select-all__box" aria-hidden="true">
+        <svg viewBox="0 0 20 20"><path class="cb-select-all__tick" pathLength="100" d="M5 10.5l3.5 3.5 6.5-8" /></svg>
+      </span>
+      <span class="cb-select-all__text">Videos</span>
+    </label>
+    <label class="cb-select-all__row">
+      <input class="cb-select-all__input" type="checkbox">
+      <span class="cb-select-all__box" aria-hidden="true">
+        <svg viewBox="0 0 20 20"><path class="cb-select-all__tick" pathLength="100" d="M5 10.5l3.5 3.5 6.5-8" /></svg>
+      </span>
+      <span class="cb-select-all__text">Documents</span>
+    </label>
+  </div>
+</div>
+<script src="checkbox-select-all.js"></script></body></html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elastic radio button</title><link rel="stylesheet" href="radio-elastic.css">
+<style>html{color-scheme:light}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:#f5f5f6;color:#222;font:15px system-ui,sans-serif;overflow:auto}</style>
+</head><body><div class="radio-elastic" role="radiogroup" aria-label="Behaviour">
+  <span class="radio-elastic__pill" aria-hidden="true"></span>
+  <label class="radio-elastic__option">
+    <input class="radio-elastic__input" type="radio" name="radio-elastic" value="Stretch" checked>
+    <span class="radio-elastic__ring"><span class="radio-elastic__dot"></span></span>
+    <span class="radio-elastic__label">Stretch</span>
+  </label>
+  <label class="radio-elastic__option">
+    <input class="radio-elastic__input" type="radio" name="radio-elastic" value="Snap">
+    <span class="radio-elastic__ring"><span class="radio-elastic__dot"></span></span>
+    <span class="radio-elastic__label">Snap</span>
+  </label>
+  <label class="radio-elastic__option">
+    <input class="radio-elastic__input" type="radio" name="radio-elastic" value="Recoil">
+    <span class="radio-elastic__ring"><span class="radio-elastic__dot"></span></span>
+    <span class="radio-elastic__label">Recoil</span>
+  </label>
+</div>
+<script src="radio-elastic.js"></script></body></html>

@@ -1,0 +1,98 @@
+.btn-loupe {
+  --btn-loupe-x: 0px;
+  --btn-loupe-y: 0px;
+  position: relative;
+  display: inline-block;
+  width: 224px;
+  height: 64px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 14px;
+  background: light-dark(#42454c, #e5e6e9);
+  color: light-dark(#fbfcfd, #121417);
+  font: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-loupe:focus-visible {
+  outline: 2px solid light-dark(#42454c, #e5e6e9);
+  outline-offset: 4px;
+}
+
+.btn-loupe__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.btn-loupe__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.btn-loupe__fine {
+  color: light-dark(#cbced3, #393c41);
+  font-size: 5px;
+  letter-spacing: 0.02em;
+}
+
+/* The glass: centred on the cursor, holding a 2.5x copy of the content
+   shifted so the point under the cursor sits in its middle. */
+.btn-loupe__lens {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 76px;
+  height: 76px;
+  margin: -38px 0 0 -38px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: light-dark(#373a40, #f1f2f3);
+  box-shadow: inset 0 0 0 1.5px light-dark(rgba(251, 252, 253, 0.55), rgba(18, 20, 23, 0.55)), 0 8px 18px light-dark(rgba(251, 252, 253, 0.35), rgba(18, 20, 23, 0.35));
+  pointer-events: none;
+  translate: var(--btn-loupe-x) var(--btn-loupe-y);
+  scale: 0;
+  transition: scale 0.35s cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+
+.btn-loupe__lens::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 26%, light-dark(rgba(55, 58, 64, 0.7), rgba(241, 242, 243, 0.7)), transparent 38%);
+  box-shadow: inset 0 -6px 12px light-dark(rgba(251, 252, 253, 0.12), rgba(18, 20, 23, 0.12));
+}
+
+.btn-loupe__zoom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--btn-loupe-w, 224px);
+  height: var(--btn-loupe-h, 64px);
+  transform-origin: 0 0;
+  transform: translate(calc(38px - 2.5 * var(--btn-loupe-x)), calc(38px - 2.5 * var(--btn-loupe-y))) scale(2.5);
+}
+
+.btn-loupe--live:hover .btn-loupe__lens {
+  scale: 1;
+}
+
+@media (hover: hover) {
+  .btn-loupe--live:hover {
+    cursor: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-loupe__lens {
+    transition: none;
+  }
+}

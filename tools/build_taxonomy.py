@@ -55,13 +55,13 @@ common=[
  ('카드',r'카드|\bcard\b|\bcards\b'),
  ('캐러셀',r'캐러셀|carousel|슬라이드쇼|slideshow'),
  ('대화·채팅',r'채팅|대화(?!상자)|메시지|chat|message|conversation|bubble|말풍선'),
- ('평가·반응',r'평가|별점|좋아요|싫어요|rating|review|thumbs|\blike\b'),
+ ('평가·반응',r'평가|별점|좋아요|싫어요|rating|\breview\b|thumbs|\blike\b'),
  ('비교',r'비교|compare|comparison|before.after|전후'),
  ('표·데이터',r'표 |데이터|\btable\b|\bgrid\b|차트|\bchart\b|대시보드|dashboard'),
  ('스크롤',r'스크롤|\bscroll\b|scrolling|scroll-'),
  ('패럴랙스',r'패럴랙스|parallax'),
  ('고정',r'\bsticky\b|\bpinned?\b|\bfixed\b|고정'),
- ('화면 전환',r'화면 전환|페이지 전환|\btransition\b|전환 효과'),
+ ('화면 전환',r'화면 전환|페이지 전환|화면 전환 효과|\b(?:page|screen|view) transitions?\b'),
  ('페이드',r'페이드|fade|dissolve|디졸브'),
  ('슬라이드',r'슬라이드|\bslide\b|sliding'),
  ('줌·확대',r'줌|확대|축소|zoom|\bscale\b|scaling'),
@@ -75,7 +75,7 @@ common=[
  ('오디오·비디오',r'오디오|비디오|음악|\baudio\b|\bvideo\b|\bmusic\b'),
  ('카메라',r'카메라|camera|\bdolly\b|달리|시점|화각'),
  ('3D',r'\b3d\b|3차원|입체|\bwebgl\b|\bgltf\b|\bthree\.js\b'),
- ('조명',r'조명|\blight\b|lighting|spotlight|햇빛|sunlight'),
+ ('조명',r'조명|lighting|\blight source\b|spotlight|햇빛|sunlight'),
  ('재질',r'재질|\bmaterial\b|reflection|반사|transmission'),
  ('입자',r'입자|particles?|point cloud|포인트 클라우드'),
  ('애니메이션',r'애니메이션|animation|\banimated\b|\banimate\b'),
@@ -83,6 +83,33 @@ common=[
  ('복사·공유',r'복사|공유|copy|clipboard|\bshare\b|sharing'),
  ('파일',r'파일|file|upload|download|업로드|다운로드'),
  ('상태',r'\bstate\b|\bstates\b|상태|\bstatus\b'),
+ ('체크박스',r'체크박스|checkbox'),
+ ('라디오',r'라디오|\bradio\b'),
+ ('포커스',r'포커스|\bfocus\b'),
+ ('터치',r'터치|\btouch\b|스와이프|\bswipe\b'),
+ ('키보드',r'키보드|\bkeyboard\b'),
+ ('반응형',r'반응형|\bresponsive\b'),
+ ('시각적 강조',r'강조|highlight|\bemphasis\b'),
+ ('색상 변화',r'색상 변화|색이 바뀌|colou?r chang'),
+ ('그림자',r'그림자|\bshadow\b'),
+ ('블러',r'블러|흐림|흐려|\bblur\b'),
+ ('테두리',r'테두리|\bborder\b'),
+ ('피드',r'피드(?!백)|\bfeed\b'),
+ ('타임라인',r'타임라인|\btimeline\b'),
+ ('단계',r'단계|\bsteps?\b|stepper'),
+ ('유효성 검사',r'유효성|\bvalidation\b|\bvalidate\b'),
+ ('자동 완성',r'자동 완성|자동완성|autocomplete'),
+ ('알림 배지',r'알림 배지|\bbadge\b|배지'),
+ ('아이콘',r'아이콘|\bicons?\b'),
+ ('전환',r'전환|\btransition\b'),
+ ('키프레임',r'키프레임|\bkeyframes?\b'),
+ ('SVG',r'\bsvg\b'),
+ ('무한 반복',r'무한 반복|\binfinite\b|\bloop(?:ing)?\b'),
+ ('회전 운동',r'회전 운동|\bspin(?:ning)?\b|\brotate(?:s|d|ion)?\b'),
+ ('타이핑',r'타이핑|\btyping\b|typewriter'),
+ ('글로우',r'글로우|\bglow(?:ing)?\b'),
+ ('물결',r'물결|\bripple\b|\bwaves?\b'),
+ ('입력 상태',r'입력 상태|\bfocus(?:ed)?\b|\bdisabled\b|비활성'),
 ]
 
 by_category={
@@ -123,7 +150,7 @@ by_category={
   ('화면 원리·가독성',r'명도|대비|contrast|아이콘|\bicon\b|선 굵기|stroke|글자 크기|line spacing|줄 간격|pixel density|화면 밀도|\bdp\b|text shrinking|wrapping|텍스트 처리'),
  ],
  '모션과 인터랙션':[
-  ('버튼·클릭',r'버튼|\bbutton\b|\bclick\b|클릭|\bpress\b|누르기|ripple|리플|확인'),
+  ('버튼·클릭',r'버튼|\bbutton\b|\bclick\b|클릭|\bpress\b|\bhold\b|누르기|눌러|ripple|리플'),
   ('마우스·호버',r'마우스|커서|포인터|cursor|pointer|mouse|hover|호버|magnetic|마그네틱'),
   ('드래그·제스처',r'드래그|drag|gesture|제스처|swipe|스와이프|touch|터치|당겨서'),
   ('로딩·진행',r'로딩|loading|spinner|스피너|skeleton|스켈레톤|shimmer|시머|progress|진행'),
@@ -228,12 +255,13 @@ facet_rules={cat:patterns(rules) for cat,rules in by_category.items()}
 data={};unclassified=collections.defaultdict(list)
 for id,e in examples.items():
     existing=[str(t).strip() for t in (e.get('tags') or []) if str(t).strip()]
-    # Existing curated item names, synonyms and source file names are evidence;
-    # exclude source names/long descriptions, which describe incidental UI.
-    parts=[e.get('name',''),e.get('english',''),*existing,e.get('sourceUrl','').rsplit('/',1)[-1]]
-    evidence=' '.join(str(x) for x in parts)
+    # Descriptions are original or curated explanations of each example, so
+    # they can reveal functions and motion omitted from a short title.
+    core=[e.get('name',''),e.get('english',''),*existing,e.get('sourceUrl','').rsplit('/',1)[-1]]
+    facet_evidence=' '.join(str(x) for x in core)
+    evidence=' '.join([facet_evidence,str(e.get('description','')),str(e.get('taxonomyText',''))])
     category=e.get('category','')
-    facets=[label for label,regex in facet_rules.get(category,[]) if regex.search(evidence)]
+    facets=[label for label,regex in facet_rules.get(category,[]) if regex.search(facet_evidence)]
     if not facets:
         facets=['세부 분류 검토']
         unclassified[category].append(f"{id}: {e.get('name')} / {e.get('english','')}")
@@ -251,12 +279,17 @@ for id,e in examples.items():
     related={}
     if category=='모션과 인터랙션':
         relevant={'버튼·행동','토글·선택','패널·사이드바','마우스·커서','입력·폼','검색·필터','목록·카드','내비게이션·탭','모달·오버레이','알림·피드백','로딩·진행','대화·메시지','비교·평가','파일·도구','접근성·키보드','아코디언·단계적 공개'}
-        ui_facets=[label for label,regex in facet_rules['UI 패턴'] if label in relevant and regex.search(evidence)]
+        ui_facets=[label for label,regex in facet_rules['UI 패턴'] if label in relevant and regex.search(facet_evidence)]
         if ui_facets:related['UI 패턴']=ui_facets
+    if category=='UI 패턴' and e.get('sourceName')=='Movin':
+        # This collection consists of animated interface components. Relate
+        # only matching interaction facets, based on source type and wording.
+        motion_facets=[label for label,regex in facet_rules['모션과 인터랙션'] if regex.search(facet_evidence)]
+        if motion_facets:related['모션과 인터랙션']=motion_facets
     data[id]={'subcategories':facets,'tags':all_tags,'related':related,'needsReview':facets==['세부 분류 검토']}
 
 out=root/'taxonomy.json'
-out.write_text(json.dumps({'version':1,'method':'기존 항목명·영문명·기존 태그·원본 파일명을 기준으로 생성한 다중 분류. 의미가 확인되지 않는 항목은 검토 대상으로 둡니다.','items':data},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+out.write_text(json.dumps({'version':2,'method':'항목명·영문명·예시 설명·기존 태그·원본 파일명을 기준으로 생성한 다중 분류. 자동 분류는 원문과 대조가 필요하며 의미가 불명확한 항목은 검토 대상으로 둡니다.','items':data},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 print('entries',len(data),'without_tags',sum(not v['tags'] for v in data.values()),'unclassified',sum(map(len,unclassified.values())))
 for cat,items in unclassified.items():
  print('\n'+cat, len(items))

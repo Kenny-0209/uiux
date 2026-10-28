@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code Slots input</title><link rel="stylesheet" href="input-code-slots.css">
+<style>html{color-scheme:light}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:#f5f5f6;color:#222;font:15px system-ui,sans-serif;overflow:auto}</style>
+</head><body><label class="field-code-slots">
+  <span class="field-code-slots__label">Verification code</span>
+  <span class="field-code-slots__wrap">
+    <input class="field-code-slots__input" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" spellcheck="false">
+    <span class="field-code-slots__cells" aria-hidden="true">
+      <span class="field-code-slots__cell"></span>
+      <span class="field-code-slots__cell"></span>
+      <span class="field-code-slots__cell"></span>
+      <span class="field-code-slots__cell"></span>
+      <span class="field-code-slots__cell"></span>
+      <span class="field-code-slots__cell"></span>
+    </span>
+    <span class="field-code-slots__tick" aria-hidden="true">
+      <svg viewBox="0 0 20 20"><path pathLength="100" d="M5 10.5l3.5 3.5 6.5-8" /></svg>
+    </span>
+  </span>
+  <span class="field-code-slots__status" aria-live="polite"></span>
+</label>
+<script src="input-code-slots.js"></script></body></html>

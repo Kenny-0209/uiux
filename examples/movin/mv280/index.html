@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rotary toggle</title><link rel="stylesheet" href="toggle-rotary.css">
+<style>html{color-scheme:light}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:#f5f5f6;color:#222;font:15px system-ui,sans-serif;overflow:auto}</style>
+</head><body><label class="toggle-rotary">
+  <input class="toggle-rotary__input" type="checkbox" role="switch">
+  <span class="toggle-rotary__dial" aria-hidden="true">
+    <svg class="toggle-rotary__arc" viewBox="0 0 84 84" fill="none">
+      <circle class="toggle-rotary__track" cx="42" cy="42" r="37" />
+      <circle class="toggle-rotary__fill" cx="42" cy="42" r="37" />
+    </svg>
+    <span class="toggle-rotary__mark toggle-rotary__mark--off">OFF</span>
+    <span class="toggle-rotary__mark toggle-rotary__mark--on">ON</span>
+    <span class="toggle-rotary__knob"></span>
+  </span>
+  <span class="toggle-rotary__label">Heat</span>
+</label>
+</body></html>

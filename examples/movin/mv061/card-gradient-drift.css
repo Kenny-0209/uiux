@@ -1,0 +1,33 @@
+.card-gradient-drift {
+  width: 160px;
+  overflow: hidden;
+  border: 1px solid light-dark(rgba(55, 58, 64, 0.1), rgba(241, 242, 243, 0.1));
+  border-radius: 12px;
+  background: light-dark(rgba(55, 58, 64, 0.06), rgba(241, 242, 243, 0.06));
+  cursor: pointer;
+}
+.card-gradient-drift__media {
+  height: 64px;
+  background: linear-gradient(270deg, light-dark(#6d7179, #7d8087), light-dark(#5f626a, #a7abb2), light-dark(#5f626a, #a7abb2), light-dark(#5f626a, #a7abb2), light-dark(#6d7179, #7d8087), light-dark(#6d7179, #7d8087));
+  background-size: 500% 500%;
+  animation: card-gradient-drift 8s ease infinite;
+}
+.card-gradient-drift__body { padding: 10px 12px 12px; }
+.card-gradient-drift__title {
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: light-dark(#373a40, #f1f2f3);
+}
+.card-gradient-drift__text {
+  font-size: 11px;
+  line-height: 1.4;
+  color: light-dark(rgba(55, 58, 64, 0.73), rgba(241, 242, 243, 0.62));
+}
+@keyframes card-gradient-drift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-gradient-drift__media { animation: none; background-position: 0% 50%; }
+}

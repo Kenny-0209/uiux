@@ -1,0 +1,95 @@
+.card-peel {
+  position: relative;
+  width: 176px;
+  height: 124px;
+  touch-action: none;
+}
+
+.card-peel__under,
+.card-peel__sticker {
+  position: absolute;
+  inset: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2px;
+  padding: 14px;
+  border-radius: 14px;
+}
+
+.card-peel__under {
+  border: 1px dashed light-dark(#cbced3, #393c41);
+  background: light-dark(#f3f4f7, #1a1c1f);
+}
+
+.card-peel__under .card-peel__title {
+  color: light-dark(#42454c, #e5e6e9);
+}
+
+.card-peel__under .card-peel__text {
+  color: light-dark(#5f626a, #a7abb2);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  letter-spacing: 0.04em;
+}
+
+.card-peel__sticker {
+  background: linear-gradient(150deg, light-dark(#fbfcfd, #f1f2f3), light-dark(#ebedf0, #c6c8cd));
+  box-shadow: 0 8px 22px light-dark(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.35));
+  clip-path: var(--card-peel-clip, none);
+}
+
+.card-peel__sticker .card-peel__title {
+  color: light-dark(#373a40, #121417);
+}
+
+.card-peel__sticker .card-peel__text {
+  color: light-dark(#5f626a, #393c41);
+}
+
+.card-peel__title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.card-peel__text {
+  font-size: 12px;
+}
+
+/* The underside of the peeled part: the sticker region past the fold line,
+   mirrored across it. Drawn on an oversized box so it can hang off the card. */
+.card-peel__flap-shadow {
+  position: absolute;
+  inset: -200px;
+  pointer-events: none;
+  filter: drop-shadow(-2px 4px 5px light-dark(rgba(0, 0, 0, 0.16), rgba(0, 0, 0, 0.4)));
+}
+
+.card-peel__flap {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(var(--card-peel-angle, 135deg), light-dark(#dbdde1, #a7abb2), light-dark(#f3f4f7, #e5e6e9) 45%, light-dark(#fbfcfd, #f1f2f3));
+  clip-path: var(--card-peel-flap, polygon(0 0, 0 0, 0 0));
+}
+
+.card-peel__corner {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: 0 0 14px 0;
+  background: none;
+  cursor: grab;
+}
+
+.card-peel__corner:active {
+  cursor: grabbing;
+}
+
+.card-peel__corner:focus-visible {
+  outline: 2px solid light-dark(#42454c, #e5e6e9);
+  outline-offset: -4px;
+}

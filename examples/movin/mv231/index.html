@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matrix radio button</title><link rel="stylesheet" href="radio-matrix.css">
+<style>html{color-scheme:light}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:#f5f5f6;color:#222;font:15px system-ui,sans-serif;overflow:auto}</style>
+</head><body><div class="radio-matrix" role="radiogroup" aria-label="Command">
+  <label class="radio-matrix__option">
+    <input class="radio-matrix__input" type="radio" name="radio-matrix" value="INIT" checked>
+    <span class="radio-matrix__cursor"></span>
+    <span class="radio-matrix__label">INIT</span>
+  </label>
+  <label class="radio-matrix__option">
+    <input class="radio-matrix__input" type="radio" name="radio-matrix" value="EXEC">
+    <span class="radio-matrix__cursor"></span>
+    <span class="radio-matrix__label">EXEC</span>
+  </label>
+  <label class="radio-matrix__option">
+    <input class="radio-matrix__input" type="radio" name="radio-matrix" value="HALT">
+    <span class="radio-matrix__cursor"></span>
+    <span class="radio-matrix__label">HALT</span>
+  </label>
+</div>
+<script src="radio-matrix.js"></script></body></html>

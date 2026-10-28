@@ -1,0 +1,34 @@
+.field-glow {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+
+.field-glow__input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid light-dark(rgba(55, 58, 64, 0.15), rgba(241, 242, 243, 0.15));
+  border-radius: 8px;
+  outline: none;
+  background: light-dark(rgba(55, 58, 64, 0.05), rgba(241, 242, 243, 0.05));
+  color: light-dark(#373a40, #f1f2f3);
+  font: inherit;
+  font-size: 15px;
+  box-shadow: 0 0 0 0 transparent;
+  transition: border-color 200ms ease-in-out, box-shadow 200ms ease-in-out;
+}
+.field-glow__input::placeholder { color: light-dark(rgba(55, 58, 64, 0.73), rgba(241, 242, 243, 0.62)); }
+
+/* Focus lights a soft halo round the field. */
+.field-glow__input:focus {
+  border-color: light-dark(#5f626a, #a7abb2);
+  box-shadow: 0 0 0 3px light-dark(rgba(95, 98, 106, 0.2), rgba(167, 171, 178, 0.2)), 0 0 20px light-dark(rgba(95, 98, 106, 0.15), rgba(167, 171, 178, 0.15));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field-glow,
+  .field-glow *,
+  .field-glow *::before,
+  .field-glow *::after { animation: none !important; transition: none !important; }
+}

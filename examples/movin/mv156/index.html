@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Progress Fill input</title><link rel="stylesheet" href="input-progress-fill.css">
+<style>html{color-scheme:light}*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:#f5f5f6;color:#222;font:15px system-ui,sans-serif;overflow:auto}</style>
+</head><body><div class="field-progress-fill" data-target="30">
+  <div class="field-progress-fill__box">
+    <span class="field-progress-fill__bar" aria-hidden="true"></span>
+    <input class="field-progress-fill__input" type="text" placeholder="Write 30 chars…" aria-label="Your text">
+  </div>
+  <div class="field-progress-fill__meta">
+    <span class="field-progress-fill__count">0 / 30</span>
+    <span class="field-progress-fill__done" hidden>Complete &#10003;</span>
+  </div>
+</div>
+<script src="input-progress-fill.js"></script></body></html>

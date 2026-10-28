@@ -1,0 +1,48 @@
+.btn-rotating-gradient {
+  position: relative;
+  padding: 12px 36px;
+  overflow: hidden;
+  border: none;
+  border-radius: 9999px;
+  background: light-dark(#fbfcfd, #121417);
+  color: light-dark(#373a40, #f1f2f3);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-rotating-gradient:focus-visible {
+  outline: 2px solid light-dark(#5f626a, #a7abb2);
+  outline-offset: 2px;
+}
+.btn-rotating-gradient__spin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  margin: -200px 0 0 -200px;
+  background: conic-gradient(from 0deg, light-dark(#6d7179, #7d8087), light-dark(#6d7179, #7d8087), light-dark(#6d7179, #7d8087), light-dark(#5f626a, #a7abb2), light-dark(#5f626a, #a7abb2), light-dark(#6d7179, #7d8087));
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.btn-rotating-gradient:hover .btn-rotating-gradient__spin {
+  opacity: 0.9;
+  animation: btn-rotating-gradient 3s linear infinite;
+}
+.btn-rotating-gradient__shade {
+  position: absolute;
+  inset: 0;
+  background: light-dark(rgba(251, 252, 253, 0.25), rgba(18, 20, 23, 0.25));
+  pointer-events: none;
+}
+.btn-rotating-gradient__label {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 4px light-dark(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.6));
+}
+@keyframes btn-rotating-gradient {
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-rotating-gradient:hover .btn-rotating-gradient__spin { animation: none; }
+}
