@@ -32,7 +32,7 @@ window.addEventListener('popstate',event=>{const marker=event.state?.[expandStat
 window.addEventListener('resize',positionExpanded);
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&expanded&&!$('#code-dialog').open){event.preventDefault();clearExpanded();}});
 document.querySelectorAll('[data-back-to-top]').forEach(button=>button.addEventListener('click',()=>{if(expanded)clearExpanded({focus:false});window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}));
-const mobileTop=$('#mobile-back-to-top');function updateBackToTop(){if(mobileTop)mobileTop.hidden=window.scrollY<400;}window.addEventListener('scroll',updateBackToTop,{passive:true});updateBackToTop();
+const mobileTop=$('#mobile-back-to-top');function updateBackToTop(){if(mobileTop)mobileTop.hidden=window.scrollY<80;}window.addEventListener('scroll',updateBackToTop,{passive:true});updateBackToTop();
 function needsGPU(e){return Boolean(e.requiresGPU || e.category==='3D');}
 function frame(e, eager=true){
  const height=Number(e.previewHeight);const style=Number.isFinite(height)&&height>=200&&height<=650?` style="height:${height}px"`:'';

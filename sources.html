@@ -5,18 +5,25 @@
  <meta name="description" content="UI·UX 설계와 인터랙션을 조사할 때 참고한 원천 목록">
  <title>참고 원천 — 모음</title>
  <link rel="stylesheet" href="./info.css?v=nav-20261028"><link rel="stylesheet" href="./site-nav.css?v=20261028">
+ <link rel="stylesheet" href="./shell.css?v=20261028-layout">
 </head>
-<body>
+<body class="page-info">
  <a class="skip" href="#main">본문으로 바로가기</a>
  <!-- SITE NAV START -->
 <header class="site-header"><a class="site-brand" href="./index.html#main"><span class="site-mark">m.</span><span>모음<small>INTERACTION LIBRARY</small></span></a><nav class="site-nav" aria-label="주 메뉴"><a href="./index.html#main">예시 둘러보기</a><a href="./theory.html">설계 지식</a><a href="./course.html">강좌 아카이브</a><a href="./sources.html" aria-current="page">참고 원천</a><a href="./about.html">이용 안내</a></nav><span class="site-header-label">DESIGN LIBRARY</span></header>
 <!-- SITE NAV END -->
  <div class="info-hero"><span>REFERENCE DIRECTORY</span><h1>참고 원천</h1><p>설계 원리와 패턴, 실제 예시와 구현 자료를 조사하기 위한 원문 목록입니다.</p></div>
- <main id="main" class="info-main">
+ <main id="main" class="layout">
+ <aside class="rail"><div class="rail-label"><span>EXPLORE</span><span>BY CATEGORY</span></div><h2>원천 분야</h2><nav id="source-nav" class="rail-links" aria-label="원천 분야"></nav><div class="rail-note"><b>참고 원천</b><p>분야를 선택해 해당 원천 목록으로 이동합니다.</p></div><button class="back-to-top" type="button" data-back-to-top><span>맨 위로</span><span class="top-arrow" aria-hidden="true">↑</span></button></aside>
+ <div class="info-main">
+ <nav id="source-mobile-nav" class="info-mobile-links" aria-label="원천 분야"></nav>
   <div class="info-intro"><div><h2>출처 찾아보기</h2><p>이름, 분야 또는 주소로 검색하고 원문을 열 수 있습니다.</p></div><label class="info-search"><span class="sr-only">원천 이름 또는 분야 검색</span><input id="source-search" type="search" placeholder="원천 이름 또는 분야 검색" autocomplete="off"></label></div>
   <div class="notice">이 목록에는 조사 후보와 이미 활용한 출처가 함께 있습니다. 수집·재게시 여부와 이용 조건은 원천마다 다르므로 각 원문을 확인하세요.</div>
   <p id="source-count" class="source-meta" role="status"></p><div id="source-list"></div><p id="source-error" class="source-error" role="status"></p>
+ </div>
  </main>
- <script type="module" src="./sources.js?v=20261028"></script>
+ <script type="module" src="./sources.js?v=20261028-layout"></script>
+<button class="back-to-top mobile-back-to-top" type="button" data-back-to-top hidden><span>맨 위로</span><span class="top-arrow" aria-hidden="true">↑</span></button>
+ <script type="module" src="./back-top.js?v=20261028-layout"></script>
 </body>
 </html>

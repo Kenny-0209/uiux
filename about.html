@@ -5,22 +5,29 @@
  <meta name="description" content="모음 사이트의 메뉴별 용도와 자료 범위 안내">
  <title>이용 안내 — 모음</title>
  <link rel="stylesheet" href="./info.css?v=nav-20261028"><link rel="stylesheet" href="./site-nav.css?v=20261028">
+ <link rel="stylesheet" href="./shell.css?v=20261028-layout">
 </head>
-<body>
+<body class="page-info">
  <a class="skip" href="#main">본문으로 바로가기</a>
  <!-- SITE NAV START -->
 <header class="site-header"><a class="site-brand" href="./index.html#main"><span class="site-mark">m.</span><span>모음<small>INTERACTION LIBRARY</small></span></a><nav class="site-nav" aria-label="주 메뉴"><a href="./index.html#main">예시 둘러보기</a><a href="./theory.html">설계 지식</a><a href="./course.html">강좌 아카이브</a><a href="./sources.html">참고 원천</a><a href="./about.html" aria-current="page">이용 안내</a></nav><span class="site-header-label">DESIGN LIBRARY</span></header>
 <!-- SITE NAV END -->
  <div class="info-hero"><span>HOW TO USE</span><h1>이용 안내</h1><p>필요한 자료의 종류에 따라 메뉴를 선택하고, 원문과 실제 예시를 함께 확인하세요.</p></div>
- <main id="main" class="info-main">
+ <main id="main" class="layout">
+ <aside class="rail"><div class="rail-label"><span>EXPLORE</span><span>PAGE GUIDE</span></div><h2>이용 안내 목차</h2><nav class="rail-links" aria-label="이용 안내 목차"><a href="#guide-examples">예시 둘러보기</a><a href="#guide-theory">설계 지식</a><a href="#guide-course">강좌 아카이브</a><a href="#guide-sources">참고 원천</a><a href="#guide-scope">자료의 범위</a></nav><div class="rail-note"><b>모음 사용하기</b><p>메뉴별 역할과 자료 범위를 확인하세요.</p></div><button class="back-to-top" type="button" data-back-to-top><span>맨 위로</span><span class="top-arrow" aria-hidden="true">↑</span></button></aside>
+ <div class="info-main">
+ <nav class="info-mobile-links" aria-label="이용 안내 목차"><a href="#guide-examples">예시 둘러보기</a><a href="#guide-theory">설계 지식</a><a href="#guide-course">강좌 아카이브</a><a href="#guide-sources">참고 원천</a><a href="#guide-scope">자료의 범위</a></nav>
   <div class="info-intro"><div><h2>메뉴별 역할</h2><p>다섯 메뉴는 각기 다른 자료와 작업을 위한 입구입니다.</p></div></div>
   <div class="guide-grid">
-   <article class="guide-card"><span class="number">01 / EXAMPLES</span><h3>예시 둘러보기</h3><p>수집한 실제 화면과 UI·모션 예시를 패널에서 살펴봅니다. 분야·기기·태그로 찾고, 각 패널에서 원본 코드와 라이선스를 확인할 수 있습니다.</p><a href="./index.html#main">예시 둘러보기 ↗</a></article>
-   <article class="guide-card"><span class="number">02 / KNOWLEDGE</span><h3>설계 지식</h3><p>사용자와 과업부터 정보 구조, 화면, 행동과 모션까지 개념과 판단 방법을 읽습니다. 일부 개념에는 관련 원본 예시가 연결되어 있습니다.</p><a href="./theory.html">설계 지식 읽기 ↗</a></article>
-   <article class="guide-card"><span class="number">03 / COURSE</span><h3>강좌 아카이브</h3><p>수집한 강좌의 편별 정보와 확인한 내용을 살펴봅니다. 공개 강좌의 정리와 본문을 확인하지 못한 회원 전용 강좌를 구분합니다.</p><a href="./course.html">강좌 아카이브 보기 ↗</a></article>
-   <article class="guide-card"><span class="number">04 / SOURCES</span><h3>참고 원천</h3><p>조사에 활용했거나 확인할 후보인 외부 사이트와 원문을 찾습니다. 원천 목록에 있다고 해서 해당 자료 전체를 수집하거나 사용할 권리가 있다는 뜻은 아닙니다.</p><a href="./sources.html">참고 원천 보기 ↗</a></article>
+   <article class="guide-card" id="guide-examples"><span class="number">01 / EXAMPLES</span><h3>예시 둘러보기</h3><p>수집한 실제 화면과 UI·모션 예시를 패널에서 살펴봅니다. 분야·기기·태그로 찾고, 각 패널에서 원본 코드와 라이선스를 확인할 수 있습니다.</p><a href="./index.html#main">예시 둘러보기 ↗</a></article>
+   <article class="guide-card" id="guide-theory"><span class="number">02 / KNOWLEDGE</span><h3>설계 지식</h3><p>사용자와 과업부터 정보 구조, 화면, 행동과 모션까지 개념과 판단 방법을 읽습니다. 일부 개념에는 관련 원본 예시가 연결되어 있습니다.</p><a href="./theory.html">설계 지식 읽기 ↗</a></article>
+   <article class="guide-card" id="guide-course"><span class="number">03 / COURSE</span><h3>강좌 아카이브</h3><p>수집한 강좌의 편별 정보와 확인한 내용을 살펴봅니다. 공개 강좌의 정리와 본문을 확인하지 못한 회원 전용 강좌를 구분합니다.</p><a href="./course.html">강좌 아카이브 보기 ↗</a></article>
+   <article class="guide-card" id="guide-sources"><span class="number">04 / SOURCES</span><h3>참고 원천</h3><p>조사에 활용했거나 확인할 후보인 외부 사이트와 원문을 찾습니다. 원천 목록에 있다고 해서 해당 자료 전체를 수집하거나 사용할 권리가 있다는 뜻은 아닙니다.</p><a href="./sources.html">참고 원천 보기 ↗</a></article>
   </div>
-  <section class="guide-detail"><h2>자료와 예시의 범위</h2><p>설계 지식은 수집 자료를 정리한 편집 체계입니다. 예시의 동작과 원본의 이용 조건은 각각 다르며, 외부 자산에는 인터넷 연결이 필요할 수 있습니다. 예시는 화면에서 멀어지면 해제되고 다시 돌아오면 초기 상태로 불러옵니다.</p><p>사이트의 공개 버전과 변경 이력은 <a href="https://github.com/Kenny-0209/uiux" target="_blank" rel="noopener noreferrer">GitHub 저장소 ↗</a>에서 확인할 수 있습니다.</p></section>
+  <section class="guide-detail" id="guide-scope"><h2>자료와 예시의 범위</h2><p>설계 지식은 수집 자료를 정리한 편집 체계입니다. 예시의 동작과 원본의 이용 조건은 각각 다르며, 외부 자산에는 인터넷 연결이 필요할 수 있습니다. 예시는 화면에서 멀어지면 해제되고 다시 돌아오면 초기 상태로 불러옵니다.</p><p>사이트의 공개 버전과 변경 이력은 <a href="https://github.com/Kenny-0209/uiux" target="_blank" rel="noopener noreferrer">GitHub 저장소 ↗</a>에서 확인할 수 있습니다.</p></section>
+ </div>
  </main>
+<button class="back-to-top mobile-back-to-top" type="button" data-back-to-top hidden><span>맨 위로</span><span class="top-arrow" aria-hidden="true">↑</span></button>
+ <script type="module" src="./back-top.js?v=20261028-layout"></script>
 </body>
 </html>

@@ -6,15 +6,16 @@
  <title>강좌 아카이브 — 모음</title>
  <link rel="stylesheet" href="./course.css">
  <link rel="stylesheet" href="./site-nav.css?v=20261028">
+ <link rel="stylesheet" href="./shell.css?v=20261028-layout">
 </head>
-<body>
+<body class="page-course">
  <a class="skip" href="#main">본문으로 바로가기</a>
  <!-- SITE NAV START -->
 <header class="site-header"><a class="site-brand" href="./index.html#main"><span class="site-mark">m.</span><span>모음<small>INTERACTION LIBRARY</small></span></a><nav class="site-nav" aria-label="주 메뉴"><a href="./index.html#main">예시 둘러보기</a><a href="./theory.html">설계 지식</a><a href="./course.html" aria-current="page">강좌 아카이브</a><a href="./sources.html">참고 원천</a><a href="./about.html">이용 안내</a></nav><span class="site-header-label">DESIGN LIBRARY</span></header>
 <!-- SITE NAV END -->
  <div class="intro"><div><span class="kicker">DESIGN KNOWLEDGE / 01</span><h1>UX/UI 강좌 아카이브</h1><p>앱과 모바일 중심 강좌의 개념과 화면 설계 적용점을 편별로 연결합니다.</p></div><a class="playlist" href="https://www.youtube.com/playlist?list=PLkbzizJk4Ae815Tj0A8eZMtJSttcNa-Od" target="_blank" rel="noopener noreferrer">원본 재생목록 ↗</a></div>
  <main id="main" class="layout">
-  <aside class="rail"><div class="rail-label">EXPLORE / CHAPTER</div><h2>분야별 탐색</h2><div id="chapters" class="chapter-list" aria-label="강좌 분야"></div><div class="rail-note"><b>확인 범위</b><p>공개편은 영상 자막을 바탕으로 정리했습니다. 회원 전용편은 제목과 링크만 확인했습니다.</p></div></aside>
+  <aside class="rail"><div class="rail-label">EXPLORE / CHAPTER</div><h2>분야별 탐색</h2><div id="chapters" class="chapter-list" aria-label="강좌 분야"></div><div class="rail-note"><b>확인 범위</b><p>공개편은 영상 자막을 바탕으로 정리했습니다. 회원 전용편은 제목과 링크만 확인했습니다.</p></div><button class="back-to-top" type="button" data-back-to-top><span>맨 위로</span><span class="top-arrow" aria-hidden="true">↑</span></button></aside>
   <section class="main-col">
    <div class="main-head"><div><span class="kicker muted">COURSE INDEX</span><h2>영상으로 배우는 설계</h2><p>분야를 선택하거나 강의 이름·내용으로 찾아보세요.</p></div><label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">강좌 이름과 내용 검색</span><input id="search" type="search" placeholder="강좌 이름 또는 개념 검색" autocomplete="off"></label></div>
    <div id="mobile-chapters" class="mobile-chapters" aria-label="강좌 분야"></div>
@@ -27,5 +28,7 @@
   </section>
  </main>
  <script type="module" src="./course.js"></script>
+<button class="back-to-top mobile-back-to-top" type="button" data-back-to-top hidden><span>맨 위로</span><span class="top-arrow" aria-hidden="true">↑</span></button>
+ <script type="module" src="./back-top.js?v=20261028-layout"></script>
 </body>
 </html>
