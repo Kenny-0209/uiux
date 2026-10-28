@@ -1,4 +1,5 @@
 import {inspectDemo,showDemo,setDemoSlow,resetDemo} from './demo-adapter.js?v=20261028-controls';
+import {usage,analyses} from './theory-analysis.js?v=20261028-context';
 const $=s=>document.querySelector(s);
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const normalize=v=>String(v??'').normalize('NFKC').toLocaleLowerCase().trim();
@@ -9,15 +10,17 @@ const caseContext={grouping:'결제 정보와 주문 내역을 한 화면에서 
 const caseAdvice={grouping:'관련 입력은 묶고, 결제할 내역은 별도 영역에서 확인할 수 있게 하세요.',navigation:'현재 위치가 보이는지, 메뉴 이름만으로 목적지를 알 수 있는지 확인하세요.',disclosure:'자주 필요한 내용은 쉽게 찾게 하고, 접힌 항목의 제목을 명확하게 써 보세요.',workspace:'메뉴를 접어 넓어진 작업 영역과, 숨긴 메뉴를 다시 찾는 비용을 함께 비교하세요.',sidebar:'자주 쓰는 기능을 계속 보여줄지, 필요할 때만 열지 실제 작업 흐름에 맞춰 결정하세요.',density:'정보를 줄이기 전에 함께 비교해야 할 항목이 무엇인지 먼저 확인하세요.',responsive:'화면 폭을 바꾸며 열 수와 읽는 순서가 자연스럽게 바뀌는지 확인하세요.',table:'정렬 기준과 정렬 방향이 보이는지, 키보드로도 조작할 수 있는지 확인하세요.',tooltip:'중요한 정보가 호버에서만 보이지 않도록 터치와 키보드 사용도 확인하세요.',loading:'기다리는 상태를 보여 주되, 실제 콘텐츠가 준비됐는지는 별도로 알려주세요.',error:'흔들림만으로 끝내지 말고 무엇이 잘못됐고 어떻게 고칠 수 있는지 알려주세요.',crossfade:'부드러움뿐 아니라 전환 전후의 내용과 현재 위치를 이해할 수 있는지도 확인하세요.'};
 function conceptHTML(item,chapterNo,itemNo,sources,liveExamples){
  const index=`${String(chapterNo).padStart(2,'0')}.${String(itemNo).padStart(2,'0')}`;
- const searchable=[item.title,item.english,item.kind,item.meaning,item.application,item.caution,item.aliases,item.relations,...item.refs.map(r=>sources[r]?.name||'')].join(' ');
+ const analysis=liveExamples[item.id]&&analyses[item.id]?.example===liveExamples[item.id].id?analyses[item.id]:null;
+ const searchable=[item.title,item.english,item.kind,item.meaning,item.application,item.caution,item.aliases,item.relations,usage[item.id],analysis?.context,...(analysis?.points||[]).flatMap(p=>[p.where,p.observed,p.reason]),...item.refs.map(r=>sources[r]?.name||'')].join(' ');
  const refs=item.refs.map(key=>sourceLink(sources[key])).join('');
  const relation=item.relations?`<div class="relation"><b>개념 관계</b> · ${esc(item.relations)}</div>`:'';
  const aliases=item.aliases?`<p class="aliases">다른 이름 · ${esc(item.aliases)}</p>`:'';
  const example=item.example?`<a class="example-link" href="./index.html?q=${encodeURIComponent(item.example)}#main">관련 예시 더 보기 ↗</a>`:'';
  const live=liveExamples[item.id];
- const panel=live?`<div class="theory-example" data-preview="${esc(live.preview)}" data-name="${esc(live.name)}"><div class="theory-example-head"><div><span>원본 사례</span><strong>${esc(live.name)}</strong></div><a href="${esc(safeURL(live.sourceUrl))}" target="_blank" rel="noopener noreferrer">${esc(live.sourceName)} · 원본 ↗</a></div><div class="theory-example-stage" aria-busy="true"><div class="theory-skeleton" aria-hidden="true"></div></div><div class="theory-player"><button type="button" data-show disabled>▶ Show me</button><button type="button" data-slow disabled aria-pressed="false">◷ Slow motion</button><button type="button" data-reset disabled>↺ Reset</button><span>직접 살펴보는 원본 예시</span></div></div><p class="case-observation"><b>화면에서 확인</b> ${esc(live.note)}</p>`:`<div class="missing-example">직접 확인할 사례를 찾는 중입니다. ${example}</div>`;
- const situation=caseContext[item.id]?`<p class="case-situation"><b>이럴 때</b> ${esc(caseContext[item.id])}</p>`:'';
- return `<article class="concept" id="${esc(item.id)}" data-search="${esc(normalize(searchable))}"><div class="concept-no">${index}</div><div class="concept-body"><div class="concept-title"><h3>${esc(item.title)}</h3><span class="english">${esc(item.english)}</span><span class="kind">${esc(item.kind)}</span></div>${situation}${panel}<div class="case-apply"><b>설계할 때</b><span>${esc(caseAdvice[item.id]||item.application)}</span></div><details class="concept-detail"><summary>개념과 주의할 점 · 출처</summary><p class="definition">${esc(item.meaning)}</p><div class="decision"><h4>함께 살필 점</h4><p>${esc(item.caution)}</p></div>${aliases}${relation}<div class="refs" aria-label="참고 근거">${refs}</div></details>${live&&example?`<div class="concept-footer">${example}</div>`:''}</div></article>`;
+ const panel=live?`<div class="theory-example" data-preview="${esc(live.preview)}" data-name="${esc(live.name)}"><div class="theory-example-head"><div><span>원본 사례</span><strong>${esc(live.name)}</strong><small class="preview-width" data-frame-width></small></div><a href="${esc(safeURL(live.sourceUrl))}" target="_blank" rel="noopener noreferrer">${esc(live.sourceName)} · 원본 ↗</a></div><div class="theory-example-stage" aria-busy="true"><div class="theory-skeleton" aria-hidden="true"></div></div><div class="theory-player"><button type="button" data-show disabled>▶ Show me</button><button type="button" data-slow disabled aria-pressed="false">◷ Slow motion</button><button type="button" data-reset disabled>↺ Reset</button><span>직접 살펴보는 원본 예시</span></div></div><p class="case-observation"><b>화면에서 확인</b> ${esc(live.note)}</p>`:`<div class="missing-example">직접 확인할 사례를 찾는 중입니다. ${example}</div>`;
+ const situation=`<div class="usage-context"><b>언제 쓰는가</b><p>${esc(usage[item.id]||caseContext[item.id]||item.application)}</p></div>`;
+ const breakdown=analysis?`<section class="case-breakdown" aria-label="${esc(item.title)} 사례 분석"><div class="breakdown-heading"><div><span>CASE ANALYSIS</span><h4>이 화면은 이렇게 구성되어 있습니다</h4></div><p>관찰한 구성과 가능한 설계 이유를 구분했습니다. 이유는 원 제작자의 확정된 의도가 아닌 이 사이트의 해석입니다.</p></div><p class="breakdown-context"><b>이 사례에서 다루는 상황</b> ${esc(analysis.context)}</p><div class="breakdown-rows">${analysis.points.map((point,i)=>`<div class="breakdown-row"><div class="breakdown-place"><span>${String(i+1).padStart(2,'0')}</span><strong>${esc(point.where)}</strong>${point.selector?`<button type="button" class="locate-point" data-case-selector="${esc(point.selector)}">화면에서 보기 ↗</button>`:''}</div><div class="breakdown-cell"><b>화면·코드에서 확인</b><p>${esc(point.observed)}</p></div><div class="breakdown-cell"><b>가능한 설계 이유</b><p>${esc(point.reason)}</p></div></div>`).join('')}</div><div class="breakdown-limit"><b>적용할 때 함께 볼 점</b><p>${esc(analysis.tradeoff)}</p></div>${analysis.refs?.length?`<div class="breakdown-sources">관련 근거 ${analysis.refs.map(([name,url])=>sourceLink({name,url})).join('')}</div>`:''}<p class="locate-status" role="status"></p></section>`:live?'<p class="case-analysis-pending">이 원본의 세부 구성 분석은 아직 작성하지 않았습니다.</p>':'';
+ return `<article class="concept" id="${esc(item.id)}" data-search="${esc(normalize(searchable))}"><div class="concept-no">${index}</div><div class="concept-body"><div class="concept-title"><h3>${esc(item.title)}</h3><span class="english">${esc(item.english)}</span><span class="kind">${esc(item.kind)}</span></div>${situation}${panel}${breakdown}<div class="case-apply"><b>설계할 때</b><span>${esc(caseAdvice[item.id]||item.application)}</span></div><details class="concept-detail"><summary>개념과 주의할 점 · 출처</summary><p class="definition">${esc(item.meaning)}</p><div class="decision"><h4>함께 살필 점</h4><p>${esc(item.caution)}</p></div>${aliases}${relation}<div class="refs" aria-label="참고 근거">${refs}</div></details>${live&&example?`<div class="concept-footer">${example}</div>`:''}</div></article>`;
 }
 function render(data,catalog,course,liveExamples){
  const all=data.sections.flatMap(s=>s.items),names=new Map(all.map(x=>[x.id,x.title]));
@@ -66,6 +69,7 @@ function mountExamples(){
   const frame=panel.querySelector('iframe'),cap=ready?inspectDemo(frame):{show:false,slow:false,reset:false,slowActive:false};
   panel.querySelector('[data-show]').disabled=!cap.show;panel.querySelector('[data-slow]').disabled=!cap.slow;panel.querySelector('[data-slow]').setAttribute('aria-pressed',String(cap.slowActive));panel.querySelector('[data-reset]').disabled=!cap.reset;
  };
+ const sizeObserver=new ResizeObserver(entries=>{for(const entry of entries){const label=entry.target.closest('.theory-example')?.querySelector('[data-frame-width]');if(label)label.textContent=`예시 폭 ${Math.round(entry.contentRect.width)}px`;}});
  const observer=new IntersectionObserver(entries=>{for(const entry of entries){
   const panel=entry.target,stage=panel.querySelector('.theory-example-stage');
   if(entry.isIntersecting&&!stage.querySelector('iframe')){
@@ -73,13 +77,30 @@ function mountExamples(){
    frame.addEventListener('load',()=>{fitExample(frame,stage);stage.classList.add('ready');stage.setAttribute('aria-busy','false');controls(panel,true)});frame.src=panel.dataset.preview;stage.append(frame);
   }else if(!entry.isIntersecting&&stage.querySelector('iframe')){const frame=stage.querySelector('iframe');frameResizeObservers.get(frame)?.disconnect();frame.remove();stage.classList.remove('ready');stage.setAttribute('aria-busy','true');controls(panel,false)}
  }},{rootMargin:'200px 0px'});
- document.querySelectorAll('.theory-example').forEach(panel=>{observer.observe(panel);panel.addEventListener('click',event=>{
+ document.querySelectorAll('.theory-example').forEach(panel=>{observer.observe(panel);sizeObserver.observe(panel.querySelector('.theory-example-stage'));panel.addEventListener('click',event=>{
   const button=event.target.closest('button'),frame=panel.querySelector('iframe');if(!button||!frame)return;
   if(button.hasAttribute('data-show'))showDemo(frame);
   if(button.hasAttribute('data-slow'))setDemoSlow(frame,button.getAttribute('aria-pressed')!=='true');
   if(button.hasAttribute('data-reset')){const stage=panel.querySelector('.theory-example-stage');stage.classList.remove('ready');stage.setAttribute('aria-busy','true');controls(panel,false);resetDemo(frame);return}
   controls(panel,true);
  })});
+ // Focus a described area in the local original; frame loading remains lazy.
+ document.addEventListener('click',event=>{
+  const button=event.target.closest('[data-case-selector]');if(!button)return;
+  const article=button.closest('.concept'),panel=article?.querySelector('.theory-example'),status=article?.querySelector('.locate-status');if(!panel||!status)return;
+  status.textContent='해당 영역으로 이동합니다.';panel.scrollIntoView({block:'center',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  const deadline=Date.now()+6000;
+  function locate(){
+   if(!article.isConnected)return;
+   const frame=panel.querySelector('iframe');let doc=null;try{doc=frame?.contentDocument}catch{}
+   if(doc?.readyState==='complete'){
+    const target=doc.querySelector(button.dataset.caseSelector);
+    if(target){let style=doc.getElementById('uiux-case-highlight');if(!style){style=doc.createElement('style');style.id='uiux-case-highlight';style.textContent='.uiux-case-target{outline:4px solid #f5aa19!important;outline-offset:3px!important}';doc.head.append(style)}doc.querySelectorAll('.uiux-case-target').forEach(el=>el.classList.remove('uiux-case-target'));target.classList.add('uiux-case-target');target.scrollIntoView({block:'start',behavior:'auto'});setTimeout(()=>target.classList.remove('uiux-case-target'),5000);status.textContent='원본 화면에서 해당 영역을 표시했습니다.';return;}
+   }
+   if(Date.now()<deadline)setTimeout(locate,120);else status.textContent='예시를 불러오지 못했거나 해당 영역을 찾지 못했습니다.';
+  }
+  setTimeout(locate,120);
+ });
 }
 // Link only examples already collected from their original sources.
 async function addSourceExamples(liveExamples){
