@@ -41,8 +41,9 @@ export function createSearchTools({examples, tagGroups, onChange, chooseTag, cho
   const q=norm(input.value); if(!q){closeSuggestions();return;}
   const last=q.match(/(?:^|\s)(?:-?)(?:"([^"]*)"|(\S+))$/); const needle=norm(last?.[1]||last?.[2]||q);
   if(!needle){closeSuggestions();return;}
-  const tagResults=tags.filter(x=>norm(x.tag).includes(needle)).sort((a,b)=>(norm(a.tag).startsWith(needle)?0:1)-(norm(b.tag).startsWith(needle)?0:1)||b.count-a.count).slice(0,6);
-  const exampleResults=/(?:^|\s)-\S+$/.test(input.value)?[]:examples.filter(e=>norm(e.name).includes(needle)||norm(e.english).includes(needle)).slice(0,4);
+  const priority=value=>{const v=norm(value);return v===q?0:v.startsWith(q)?1:v.startsWith(needle)?2:3;};
+  const tagResults=tags.filter(x=>norm(x.tag).includes(needle)).sort((a,b)=>priority(a.tag)-priority(b.tag)||b.count-a.count).slice(0,6);
+  const exampleResults=/(?:^|\s)-\S+$/.test(input.value)?[]:examples.filter(e=>norm(e.name).includes(needle)||norm(e.english).includes(needle)).sort((a,b)=>Math.min(priority(a.name),priority(a.english))-Math.min(priority(b.name),priority(b.english))).slice(0,4);
   suggestions=[...tagResults.map(t=>({type:'tag',value:t.tag,count:t.count,groups:[...t.groups]})),...exampleResults.map(e=>({type:'example',value:e.name,category:e.category}))];
   if(!suggestions.length){closeSuggestions();return;}
   menu.innerHTML=suggestions.map((s,i)=>`<div id="search-option-${i}" role="option" aria-selected="false" class="suggestion" data-suggestion="${i}"><span class="suggestion-icon">${s.type==='tag'?'#':'↗'}</span><span class="suggestion-text"><strong>${esc(s.value)}</strong><small>${esc(s.type==='tag'?s.groups.slice(0,2).join(' · '):s.category)}</small></span><span class="suggestion-meta">${s.type==='tag'?`${s.count}개`:'예시'}</span></div>`).join('');

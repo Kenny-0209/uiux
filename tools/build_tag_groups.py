@@ -3,6 +3,7 @@ from pathlib import Path
 import collections
 import json
 import re
+import unicodedata
 
 root = Path(__file__).resolve().parent.parent
 taxonomy = json.loads((root / 'taxonomy.json').read_text(encoding='utf-8'))['items']
@@ -11,6 +12,7 @@ script = (root / 'real-app.js').read_text(encoding='utf-8')
 files = re.findall(r"'([^']+)'", re.search(r'const manifests=\[(.*?)\];', script, re.S).group(1))
 examples = [item for name in files for item in json.loads((root / 'examples' / name).read_text(encoding='utf-8'))]
 names = {str(item.get(k, '')).strip().casefold() for item in examples for k in ('name', 'english')}
+title_terms = {unicodedata.normalize('NFKC', tag).strip().casefold() for item in taxonomy.values() for tag in item.get('titleTags', [])}
 sources = {str(item.get('sourceName', '')).strip().casefold() for item in examples}
 
 rules = [
@@ -25,7 +27,7 @@ rules = [
  ('기기·환경', r'데스크톱|모바일|반응형|터치|키보드|마우스|태블릿|desktop|mobile|responsive|touch|keyboard|mouse|tablet|기기|\bdevice\b'),
 ]
 compiled = [(label,re.compile(pattern,re.I)) for label,pattern in rules]
-groups = [label for label,_ in rules] + ['예시 이름·별칭','출처·라이브러리','기타·검토']
+groups = [label for label,_ in rules] + ['예시 이름·키워드','출처·라이브러리','기타·검토']
 # Short and domain-specific terms need explicit meanings; substring matching
 # alone would turn terms such as "빛" or "표" into unrelated labels.
 explicit = {
@@ -43,7 +45,7 @@ explicit = {label:{x.casefold() for x in values.split('|')} for label,values in 
 mapping = {}
 for tag in tags:
     labels = [label for label,pattern in compiled if pattern.search(tag) or tag.casefold() in explicit.get(label,set())]
-    if tag.strip().casefold() in names: labels.append('예시 이름·별칭')
+    if unicodedata.normalize('NFKC',tag).strip().casefold() in title_terms or tag.strip().casefold() in names: labels.append('예시 이름·키워드')
     if tag.strip().casefold() in sources or re.search(r'\b(?:Codrops|Magic CSS|Vanta)\b',tag,re.I): labels.append('출처·라이브러리')
     mapping[tag] = labels or ['기타·검토']
 

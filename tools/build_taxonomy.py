@@ -1,5 +1,5 @@
 from pathlib import Path
-import re, json, collections
+import re, json, collections, unicodedata
 
 root=Path(__file__).resolve().parent.parent
 script=(root/'real-app.js').read_text(encoding='utf-8')
@@ -252,6 +252,40 @@ def patterns(rules):
     return [(label,re.compile(pattern,re.IGNORECASE)) for label,pattern in rules]
 tag_rules=patterns(common)
 facet_rules={cat:patterns(rules) for cat,rules in by_category.items()}
+def tag_key(value):
+    return unicodedata.normalize('NFKC', value).strip().casefold()
+
+# Keep the full Korean/English names, their visible sections, and meaningful
+# words from the titles. Do not turn articles and grammatical particles into
+# tags; they do not describe an example on their own.
+title_stopwords={
+    'a','an','and','or','the','of','to','in','out','on','off','for','with',
+    'from','by','as','at','is','are','vs','via','using','및','그리고','또는',
+    '의','와','과','을','를','이','가','에','에서','로','으로','위한','통한',
+}
+def title_tags_for(entry):
+    values=[];seen=set()
+    def add(value):
+        value=str(value or '').strip();key=tag_key(value)
+        if value and key not in seen and key not in title_stopwords:
+            seen.add(key);values.append(value)
+    for field in ('name','english'):
+        title=str(entry.get(field) or '').strip()
+        if not title: continue
+        add(title)
+        for section in re.split(r'\s*[·/|｜]\s*',title):
+            section=section.strip()
+            if section and section!=title: add(section)
+        for word in re.findall(r'[^\W_]+(?:[.+-][^\W_]+)*',title,flags=re.UNICODE):
+            if word.isdecimal(): continue
+            add(word)
+            # A hyphenated title remains searchable both as a phrase and by
+            # its original component words, without inventing new synonyms.
+            if '-' in word:
+                for part in word.split('-'):
+                    if not part.isdecimal():add(part)
+    return values
+
 data={};unclassified=collections.defaultdict(list)
 for id,e in examples.items():
     existing=[str(t).strip() for t in (e.get('tags') or []) if str(t).strip()]
@@ -270,10 +304,12 @@ for id,e in examples.items():
     if category in ('3D','카메라') and '로딩' in generated and not re.search(r'스켈레톤|스피너|시머|skeleton|spinner|shimmer|loading indicator|로딩 상태',evidence,re.I):
         generated.remove('로딩')
     # Purpose-first tags make frequently searched uses visible in the panel.
-    all_tags=[]
-    for tag in generated+existing:
-        if tag.casefold() not in {x.casefold() for x in all_tags} and tag!=category:
-            all_tags.append(tag)
+    all_tags=[];seen_tags=set();title_tags=title_tags_for(e)
+    title_keys={tag_key(x) for x in title_tags}
+    for tag in generated+existing+title_tags:
+        key=tag_key(tag)
+        if key not in seen_tags and (tag!=category or key in title_keys):
+            all_tags.append(tag);seen_tags.add(key)
     if not all_tags:
         all_tags=[str(e.get('name') or e.get('english') or '분류 검토')]
     related={}
@@ -286,10 +322,10 @@ for id,e in examples.items():
         # only matching interaction facets, based on source type and wording.
         motion_facets=[label for label,regex in facet_rules['모션과 인터랙션'] if regex.search(facet_evidence)]
         if motion_facets:related['모션과 인터랙션']=motion_facets
-    data[id]={'subcategories':facets,'tags':all_tags,'related':related,'needsReview':facets==['세부 분류 검토']}
+    data[id]={'subcategories':facets,'tags':all_tags,'titleTags':title_tags,'related':related,'needsReview':facets==['세부 분류 검토']}
 
 out=root/'taxonomy.json'
-out.write_text(json.dumps({'version':2,'method':'항목명·영문명·예시 설명·기존 태그·원본 파일명을 기준으로 생성한 다중 분류. 자동 분류는 원문과 대조가 필요하며 의미가 불명확한 항목은 검토 대상으로 둡니다.','items':data},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+out.write_text(json.dumps({'version':3,'method':'항목명·영문명과 제목의 주요 단어, 예시 설명·기존 태그·원본 파일명을 기준으로 생성한 다중 분류. 자동 분류는 원문과 대조가 필요하며 의미가 불명확한 항목은 검토 대상으로 둡니다.','items':data},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 print('entries',len(data),'without_tags',sum(not v['tags'] for v in data.values()),'unclassified',sum(map(len,unclassified.values())))
 for cat,items in unclassified.items():
  print('\n'+cat, len(items))
