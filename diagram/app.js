@@ -47,6 +47,13 @@
     $('#documentCards').innerHTML = guides.documents.map((d,i)=>`<article class="doc-card"><span class="number">0${i+1} / DOCUMENT</span><h3>${esc(d.title)}</h3><p>${esc(d.summary)}</p><button type="button" data-document="${esc(d.id)}">문서별 도식 살펴보기 ↗</button></article>`).join('');
     $('#theoryCards').innerHTML = guides.theories.map((t,i)=>`<article class="theory-card"><span class="num">${String(i+1).padStart(2,'0')} / PRINCIPLE</span><h3>${esc(t.title)}</h3><p>${esc(t.summary)}</p><details><summary>적용과 주의점</summary><p><b>적용</b> · ${esc(t.apply)}</p><p><b>주의</b> · ${esc(t.caution)}</p><p>${sourceLink(t.source)}</p></details></article>`).join('');
   }
+  fetch('data/sources.json').then(r=>r.ok?r.json():Promise.reject()).then(items=>{
+    const section=document.querySelector('.sources-section');
+    const details=document.createElement('details'); details.className='all-sources';
+    const groups=[...new Set(items.map(x=>x.section))];
+    details.innerHTML=`<summary>\uc870\uc0ac\ud55c \ucc38\uace0 \uc790\ub8cc ${items.length}\uac1c \ud3bc\uccd0 \ubcf4\uae30</summary><div class="source-groups">${groups.map(g=>`<div><h3>${esc(g)}</h3>${items.filter(x=>x.section===g).map(x=>`<a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${esc(x.title)} &#8599;</a>`).join('')}</div>`).join('')}</div>`;
+    section.append(details);
+  }).catch(()=>{});
   document.addEventListener('click', e => {
     const filter = e.target.closest('[data-type]');
     if(filter){ if(filter.dataset.type==='doc') selectedDoc=filter.dataset.value; else selectedCategory=filter.dataset.value; renderFilters(); drawCards(); }

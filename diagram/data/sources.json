@@ -1,0 +1,237 @@
+[
+  {
+    "title": "Visualization Methods 주기율표",
+    "url": "https://www.visual-literacy.org/periodic_table/periodic_table.html",
+    "section": "1. 가장 가까운 출발점"
+  },
+  {
+    "title": "해설 논문",
+    "url": "https://www.visual-literacy.org/periodic_table/periodic_table.pdf",
+    "section": "1. 가장 가까운 출발점"
+  },
+  {
+    "title": "Data Visualisation Catalogue",
+    "url": "https://datavizcatalogue.com/",
+    "section": "1. 가장 가까운 출발점"
+  },
+  {
+    "title": "UNHCR Chart Types",
+    "url": "https://dataviz.unhcr.org/chart-types/",
+    "section": "1. 가장 가까운 출발점"
+  },
+  {
+    "title": "From Data to Viz",
+    "url": "https://www.data-to-viz.com/",
+    "section": "1. 가장 가까운 출발점"
+  },
+  {
+    "title": "Nature 연구 그림 안내",
+    "url": "https://research-figure-guide.nature.com/",
+    "section": "1. 가장 가까운 출발점"
+  },
+  {
+    "title": "IEEE Visual Communication",
+    "url": "https://procomm.ieee.org/elements-of-visual-communication/",
+    "section": "1. 가장 가까운 출발점"
+  },
+  {
+    "title": "The Language of Graphics — Engelhardt",
+    "url": "https://dare.uva.nl/en/record/105970",
+    "section": "4. 이론과 설계 원리 출처"
+  },
+  {
+    "title": "The DNA of visualisation",
+    "url": "https://infodesign.emnuvens.com.br/infodesign/article/view/975",
+    "section": "4. 이론과 설계 원리 출처"
+  },
+  {
+    "title": "Diagrams — Stanford Encyclopedia of Philosophy",
+    "url": "https://plato.stanford.edu/entries/diagrams/",
+    "section": "4. 이론과 설계 원리 출처"
+  },
+  {
+    "title": "IHMC 개념도 이론 — Novak & Cañas",
+    "url": "https://cmap.ihmc.us/docs/theory-of-concept-maps.php",
+    "section": "4. 이론과 설계 원리 출처"
+  },
+  {
+    "title": "Munzner의 중첩 설계·검증 모델",
+    "url": "https://www.cs.ubc.ca/labs/imager/tr/2009/NestedModel/NestedModel.pdf",
+    "section": "4. 이론과 설계 원리 출처"
+  },
+  {
+    "title": "Cleveland & McGill 그래프 지각 실험",
+    "url": "https://doi.org/10.1080/01621459.1984.10478080",
+    "section": "4. 이론과 설계 원리 출처"
+  },
+  {
+    "title": "Mayer 멀티미디어 학습 인지이론",
+    "url": "https://www.cambridge.org/core/books/abs/cambridge-handbook-of-multimedia-learning/cognitive-theory-of-multimedia-learning/A49922ACB5BC6A37DDCCE4131AC217E5",
+    "section": "4. 이론과 설계 원리 출처"
+  },
+  {
+    "title": "게슈탈트 지각 원리 교육자료",
+    "url": "https://opentextbc.ca/psychologymtdisupplement/chapter/gestalt-principles-of-form-perception/",
+    "section": "4. 이론과 설계 원리 출처"
+  },
+  {
+    "title": "The Science of Visual Data Communication",
+    "url": "https://data.europa.eu/sites/default/files/course/1.1_ScienceOfVisualDataCommunication.FranconeriEtAl2021.pdf",
+    "section": "4. 이론과 설계 원리 출처"
+  },
+  {
+    "title": "Principles of Effective Data Visualization",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7733875/",
+    "section": "4. 이론과 설계 원리 출처"
+  },
+  {
+    "title": "NSW 교육청 인지부하와 발표",
+    "url": "https://education.nsw.gov.au/about-us/education-data-and-research/cese/publications/practical-guides-for-educators/managing-cognitive-load-through-effective-presentations",
+    "section": "4. 이론과 설계 원리 출처"
+  },
+  {
+    "title": "W3C 복잡한 이미지 접근성",
+    "url": "https://www.w3.org/WAI/tutorials/images/complex/",
+    "section": "4. 이론과 설계 원리 출처"
+  },
+  {
+    "title": "Visual Literacy 지식지도",
+    "url": "https://www.visual-literacy.org/maps/",
+    "section": "분류·선택·실무"
+  },
+  {
+    "title": "FT Visual Vocabulary",
+    "url": "https://raw.githubusercontent.com/Financial-Times/chart-doctor/main/visual-vocabulary/Visual-vocabulary-en.pdf",
+    "section": "분류·선택·실무"
+  },
+  {
+    "title": "Royal Statistical Society 데이터 시각화 지침",
+    "url": "https://royal-statistical-society.github.io/datavisguide/docs/choosing.html",
+    "section": "분류·선택·실무"
+  },
+  {
+    "title": "EU 데이터 시각화 안내",
+    "url": "https://data.europa.eu/apps/data-visualisation-guide/visual-vocabulary",
+    "section": "분류·선택·실무"
+  },
+  {
+    "title": "C4 model",
+    "url": "https://c4model.com/introduction",
+    "section": "분류·선택·실무"
+  },
+  {
+    "title": "UCL 데이터 시각화 접근성",
+    "url": "https://www.ucl.ac.uk/isd/services/digital-accessibility-services/creating-accessible-content/data-visualisation",
+    "section": "분류·선택·실무"
+  },
+  {
+    "title": "NIH 제안서 작성 가이드",
+    "url": "https://www.grants.nih.gov/grants-process/write-application/advice-on-application-sections",
+    "section": "제안·성과·연구 보고"
+  },
+  {
+    "title": "NIH 선정 제안서 예시",
+    "url": "https://www.grants.nih.gov/grants-process/write-application/samples-applications-and-documents",
+    "section": "제안·성과·연구 보고"
+  },
+  {
+    "title": "NIH 연구성과 진행보고 RPPR",
+    "url": "https://grants.nih.gov/grants-process/post-award-monitoring-and-reporting/reporting-requirements/research-performance-progress-report-rppr",
+    "section": "제안·성과·연구 보고"
+  },
+  {
+    "title": "Fordham 논리모형",
+    "url": "https://www.fordham.edu/give/ways-to-give/institutional-giving/resources-for-proposal-writing/logic-model-template/",
+    "section": "제안·성과·연구 보고"
+  },
+  {
+    "title": "미국 법무부 논리모형 안내",
+    "url": "https://www.ojp.gov/library/publications/logic-model-tip-sheet-and-template",
+    "section": "제안·성과·연구 보고"
+  },
+  {
+    "title": "캐나다 국제개발 성과관리 가이드",
+    "url": "https://www.international.gc.ca/world-monde/assets/pdfs/funding-financement/how-to-guide.pdf",
+    "section": "제안·성과·연구 보고"
+  },
+  {
+    "title": "EQUATOR 지침 라이브러리",
+    "url": "https://www.equator-network.org/Library/",
+    "section": "논문·연구 유형별 지침"
+  },
+  {
+    "title": "PRISMA 2020 흐름도",
+    "url": "https://www.prisma-statement.org/prisma-2020-flow-diagram",
+    "section": "논문·연구 유형별 지침"
+  },
+  {
+    "title": "CONSORT·SPIRIT",
+    "url": "https://www.consort-spirit.org/",
+    "section": "논문·연구 유형별 지침"
+  },
+  {
+    "title": "Nature 그림 제출 규격",
+    "url": "https://research-figure-guide.nature.com/figures/preparing-figures-our-specifications/",
+    "section": "논문·연구 유형별 지침"
+  },
+  {
+    "title": "Nature 이미지 무결성",
+    "url": "https://research-figure-guide.nature.com/figures/image-integrity/",
+    "section": "논문·연구 유형별 지침"
+  },
+  {
+    "title": "PLOS Biology figure guidance",
+    "url": "https://journals.plos.org/plosbiology/s/figures",
+    "section": "논문·연구 유형별 지침"
+  },
+  {
+    "title": "Cochrane 도표 가이드",
+    "url": "https://www.cochrane.org/authors/handbooks-and-manuals/style-manual/tables-and-figures/figures",
+    "section": "논문·연구 유형별 지침"
+  },
+  {
+    "title": "Elsevier graphical abstract",
+    "url": "https://www.elsevier.com/en-gb/researcher/author/tools-and-resources/graphical-abstract",
+    "section": "논문·연구 유형별 지침"
+  },
+  {
+    "title": "Harvard Catalyst 과학 발표 슬라이드",
+    "url": "https://catalyst.harvard.edu/writing-communication-center/visualize-science/slides/",
+    "section": "교육·발표 및 사례"
+  },
+  {
+    "title": "American Evaluation Association 슬라이드 가이드",
+    "url": "https://www.eval.org/Education-Programs/Potent-Presentations/Slide-Design-Guidelines",
+    "section": "교육·발표 및 사례"
+  },
+  {
+    "title": "Johns Hopkins 발표 전략",
+    "url": "https://ctei.jhu.edu/teaching/presentation-strategies/",
+    "section": "교육·발표 및 사례"
+  },
+  {
+    "title": "Monash 강의용 슬라이드",
+    "url": "https://www.monash.edu/learning-teaching/teachhq/Teaching-practices/using-multimedia/how-to/powerpoint-slides",
+    "section": "교육·발표 및 사례"
+  },
+  {
+    "title": "BioRender 템플릿",
+    "url": "https://www.biorender.com/templates",
+    "section": "교육·발표 및 사례"
+  },
+  {
+    "title": "라이선스 안내",
+    "url": "https://help.biorender.com/hc/en-gb/articles/17605388551197-Licensing-and-usage-of-figures-made-in-BioRender",
+    "section": "교육·발표 및 사례"
+  },
+  {
+    "title": "Servier Medical Art",
+    "url": "https://smart.servier.com/",
+    "section": "교육·발표 및 사례"
+  },
+  {
+    "title": "EU Council 인포그래픽",
+    "url": "https://www.consilium.europa.eu/en/infographics/",
+    "section": "교육·발표 및 사례"
+  }
+]
