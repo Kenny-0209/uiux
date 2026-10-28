@@ -1,0 +1,994 @@
+﻿[
+    {
+        "id":  "process",
+        "name":  "선형 과정도",
+        "english":  "Linear process",
+        "category":  "과정·흐름",
+        "purpose":  [
+                        "순서",
+                        "방법"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서",
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "단계를 일정한 방향으로 연결해 진행 순서를 보여준다.",
+        "when":  "분기보다 주요 단계와 입력·출력의 순서가 중요한 경우에 사용한다.",
+        "caution":  "반복이나 조건이 있으면 생략하지 말고 별도로 표시한다.",
+        "alternatives":  [
+                             "flowchart",
+                             "pipeline"
+                         ],
+        "example":  "문제 정의 → 자료 수집 → 분석 → 결과",
+        "source":  {
+                       "url":  "https://asq.org/quality-resources/quality-tools",
+                       "title":  "ASQ · 품질 도구"
+                   }
+    },
+    {
+        "id":  "flowchart",
+        "name":  "순서도",
+        "english":  "Flowchart",
+        "category":  "과정·흐름",
+        "purpose":  [
+                        "순서",
+                        "의사결정"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "처리 단계와 조건 분기를 기호와 선으로 나타낸다.",
+        "when":  "조건에 따라 서로 다른 경로를 따르는 절차를 설명할 때 적합하다.",
+        "caution":  "판단 기준과 분기 방향을 적고 모든 경로가 어디로 이어지는지 확인한다.",
+        "alternatives":  [
+                             "process",
+                             "pipeline"
+                         ],
+        "example":  "자료 수집 → 품질 검사 → 분석 또는 재수집",
+        "source":  {
+                       "url":  "https://asq.org/quality-resources/quality-tools",
+                       "title":  "ASQ · 품질 도구"
+                   }
+    },
+    {
+        "id":  "pipeline",
+        "name":  "연구 파이프라인",
+        "english":  "Research pipeline",
+        "category":  "과정·흐름",
+        "purpose":  [
+                        "연구방법",
+                        "데이터 흐름"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "데이터나 시료가 수집부터 처리·분석·결과까지 변환되는 과정을 표시한다.",
+        "when":  "각 단계의 입력, 처리 방법과 산출물을 함께 설명할 때 적합하다.",
+        "caution":  "화살표가 데이터 이동인지 처리 순서인지 구분하고 반복 실험을 생략하지 않는다.",
+        "alternatives":  [
+                             "process",
+                             "system"
+                         ],
+        "example":  "현장 이미지 → 전처리 → 모델 추론 → 정확도 평가",
+        "source":  {
+                       "url":  "https://research-figure-guide.nature.com/",
+                       "title":  "Nature · 연구 그림 가이드"
+                   }
+    },
+    {
+        "id":  "swimlane",
+        "name":  "스윔레인",
+        "english":  "Swimlane diagram",
+        "category":  "과정·흐름",
+        "purpose":  [
+                        "업무 분담",
+                        "순서"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서",
+                          "수업 발표"
+                      ],
+        "description":  "진행 단계를 담당자나 조직별 구획에 배치해 협력 과정을 나타낸다.",
+        "when":  "여러 기관이나 역할 사이의 전달과 책임을 보여줄 때 유용하다.",
+        "caution":  "역할과 작업의 경계를 명확히 하고 너무 많은 교차선을 피한다.",
+        "alternatives":  [
+                             "flowchart",
+                             "org-chart"
+                         ],
+        "example":  "연구팀 자료 수집 → 분석팀 검증 → 책임자 승인",
+        "source":  {
+                       "url":  "https://asq.org/quality-resources/quality-tools",
+                       "title":  "ASQ · 품질 도구"
+                   }
+    },
+    {
+        "id":  "cycle",
+        "name":  "순환도",
+        "english":  "Cycle diagram",
+        "category":  "과정·흐름",
+        "purpose":  [
+                        "반복",
+                        "개선"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서",
+                          "수업 발표"
+                      ],
+        "description":  "반복되거나 되돌아가는 활동을 원형 경로로 나타낸다.",
+        "when":  "개선 활동이나 피드백처럼 각 단계가 다시 시작점으로 이어질 때 적합하다.",
+        "caution":  "실제로 순환하지 않는 선형 절차를 원형으로 꾸미지 않는다.",
+        "alternatives":  [
+                             "process",
+                             "flowchart"
+                         ],
+        "example":  "계획 → 수행 → 평가 → 개선 → 계획",
+        "source":  {
+                       "url":  "https://asq.org/quality-resources/quality-tools",
+                       "title":  "ASQ · 품질 도구"
+                   }
+    },
+    {
+        "id":  "fishbone",
+        "name":  "원인·결과도",
+        "english":  "Fishbone diagram",
+        "category":  "관계·원인",
+        "purpose":  [
+                        "원인 분석",
+                        "문제 정의"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서",
+                          "수업 발표"
+                      ],
+        "description":  "하나의 문제와 그에 영향을 줄 수 있는 원인들을 가지 형태로 분류한다.",
+        "when":  "가능한 원인을 체계적으로 수집하고 검토할 때 사용한다.",
+        "caution":  "가지의 항목은 가설일 수 있으며 도식만으로 인과관계를 증명하지 않는다.",
+        "alternatives":  [
+                             "problem-tree",
+                             "causal-dag"
+                         ],
+        "example":  "인식 오류 ← 데이터 품질·환경·모델·작업 조건",
+        "source":  {
+                       "url":  "https://asq.org/quality-resources/fishbone",
+                       "title":  "ASQ · 원인과 결과 도식"
+                   }
+    },
+    {
+        "id":  "problem-tree",
+        "name":  "문제 트리",
+        "english":  "Problem tree",
+        "category":  "관계·원인",
+        "purpose":  [
+                        "문제 정의",
+                        "원인 분석"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서"
+                      ],
+        "description":  "핵심 문제를 중심으로 원인과 그 결과를 계층적으로 정리한다.",
+        "when":  "사업이나 연구의 필요성을 여러 원인과 영향으로 나누어 설명할 때 적합하다.",
+        "caution":  "원인으로 추정한 내용은 근거와 함께 검증한다.",
+        "alternatives":  [
+                             "fishbone",
+                             "logic-model"
+                         ],
+        "example":  "작업 지연 ← 정보 누락 ← 기록 체계 부재",
+        "source":  {
+                       "url":  "https://www.ojp.gov/library/publications/logic-model-tip-sheet-and-template",
+                       "title":  "미국 법무부 · 논리모형"
+                   }
+    },
+    {
+        "id":  "concept-map",
+        "name":  "개념도",
+        "english":  "Concept map",
+        "category":  "관계·원인",
+        "purpose":  [
+                        "개념 설명",
+                        "관계"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "개념을 노드로 놓고 관계를 나타내는 연결어와 함께 연결한다.",
+        "when":  "개념 사이의 의미 있는 관계를 문장처럼 읽어야 할 때 적합하다.",
+        "caution":  "단순 선만 긋지 말고 연결어를 적는다. 마인드맵과 동일한 체계가 아니다.",
+        "alternatives":  [
+                             "mind-map",
+                             "causal-dag"
+                         ],
+        "example":  "센서 데이터 — 입력된다 → 분석 모델 — 생성한다 → 예측 결과",
+        "source":  {
+                       "url":  "https://cmap.ihmc.us/docs/theory-of-concept-maps.php",
+                       "title":  "IHMC · 개념도 이론"
+                   }
+    },
+    {
+        "id":  "mind-map",
+        "name":  "마인드맵",
+        "english":  "Mind map",
+        "category":  "관계·원인",
+        "purpose":  [
+                        "아이디어 정리",
+                        "분류"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "수업 발표"
+                      ],
+        "description":  "중심 주제에서 연관 아이디어를 방사형으로 확장한다.",
+        "when":  "초기 아이디어를 발산하고 주제의 범위를 살필 때 적합하다.",
+        "caution":  "가지의 연결이 엄밀한 인과나 검증된 관계를 뜻한다고 오해하지 않도록 한다.",
+        "alternatives":  [
+                             "concept-map",
+                             "tree"
+                         ],
+        "example":  "연구 주제에서 데이터·방법·평가·활용으로 가지 확장",
+        "source":  {
+                       "url":  "https://www.visual-literacy.org/maps/",
+                       "title":  "Visual Literacy · 시각화 방법"
+                   }
+    },
+    {
+        "id":  "causal-dag",
+        "name":  "인과 방향 비순환 그래프",
+        "english":  "Causal DAG",
+        "category":  "관계·원인",
+        "purpose":  [
+                        "인과 가정",
+                        "연구설계"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "논문"
+                      ],
+        "description":  "변수와 가정된 직접 인과관계를 방향이 있는 선으로 표현한다.",
+        "when":  "노출·결과·교란 변수의 관계와 분석 가정을 명시할 때 사용한다.",
+        "caution":  "화살표는 연구자가 제시한 가정이다. 순환 화살표는 DAG의 정의에 맞지 않는다.",
+        "alternatives":  [
+                             "concept-map",
+                             "scatter"
+                         ],
+        "example":  "훈련량 → 성능, 데이터 품질 → 훈련량과 성능",
+        "source":  {
+                       "url":  "https://pmc.ncbi.nlm.nih.gov/articles/PMC8821727/",
+                       "title":  "DAG 입문 논문"
+                   }
+    },
+    {
+        "id":  "venn",
+        "name":  "벤 다이어그램",
+        "english":  "Venn diagram",
+        "category":  "관계·원인",
+        "purpose":  [
+                        "포함",
+                        "중복 비교"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "집합과 집합 간 교집합을 겹치는 영역으로 표현한다.",
+        "when":  "소수 집합의 공통점과 차이점을 설명할 때 적합하다.",
+        "caution":  "영역 크기가 수량을 정확히 뜻하지 않을 수 있고 집합이 많아지면 읽기 어렵다.",
+        "alternatives":  [
+                             "matrix",
+                             "network"
+                         ],
+        "example":  "영상 분석 연구와 센서 연구의 공통 영역",
+        "source":  {
+                       "url":  "https://dataviz.unhcr.org/chart-types/",
+                       "title":  "UNHCR · 차트 유형"
+                   }
+    },
+    {
+        "id":  "network",
+        "name":  "네트워크도",
+        "english":  "Network diagram",
+        "category":  "관계·원인",
+        "purpose":  [
+                        "연결",
+                        "협력"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서",
+                          "논문"
+                      ],
+        "description":  "대상은 노드, 관계는 선으로 나타내어 연결 구조를 보여준다.",
+        "when":  "기관 간 협력, 인용, 관련 개념 등 다대다 관계를 볼 때 적합하다.",
+        "caution":  "선의 의미와 방향, 크기와 색의 기준을 밝히고 지나친 겹침을 줄인다.",
+        "alternatives":  [
+                             "concept-map",
+                             "tree"
+                         ],
+        "example":  "기관 A·B·C와 공동 연구 과제 연결",
+        "source":  {
+                       "url":  "https://dataviz.unhcr.org/chart-types/",
+                       "title":  "UNHCR · 차트 유형"
+                   }
+    },
+    {
+        "id":  "logic-model",
+        "name":  "논리모형",
+        "english":  "Logic model",
+        "category":  "연구·평가",
+        "purpose":  [
+                        "목표와 성과",
+                        "변화 경로"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서"
+                      ],
+        "description":  "투입·활동·산출물·성과를 연결해 사업이 변화를 만들 것으로 기대하는 경로를 나타낸다.",
+        "when":  "목표, 수행 내용, 성과 지표를 함께 점검하거나 평가 계획을 세울 때 적합하다.",
+        "caution":  "산출과 성과를 구별하고 화살표가 보장된 인과가 아닌 가정임을 명시한다.",
+        "alternatives":  [
+                             "process",
+                             "problem-tree"
+                         ],
+        "example":  "인력·장비 → 교육 → 참여자 수 → 역량 변화",
+        "source":  {
+                       "url":  "https://www.ojp.gov/library/publications/logic-model-tip-sheet-and-template",
+                       "title":  "미국 법무부 · 논리모형"
+                   }
+    },
+    {
+        "id":  "prisma",
+        "name":  "PRISMA 문헌 선정 흐름도",
+        "english":  "PRISMA flow diagram",
+        "category":  "연구·평가",
+        "purpose":  [
+                        "문헌 선정",
+                        "연구설계"
+                    ],
+        "documents":  [
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "문헌 검색·선별·포함과 제외의 단계별 기록 수를 나타낸다.",
+        "when":  "체계적 문헌고찰에서 검색 및 선정 경로를 투명하게 보고할 때 사용한다.",
+        "caution":  "해당 유형의 지침이다. 원문에서 연구 상황에 맞는 버전과 제외 이유를 확인한다.",
+        "alternatives":  [
+                             "flowchart",
+                             "study-design"
+                         ],
+        "example":  "검색 240건 → 중복 제거 → 초록 심사 → 최종 포함",
+        "source":  {
+                       "url":  "https://www.prisma-statement.org/prisma-2020-flow-diagram",
+                       "title":  "PRISMA · 2020 흐름도"
+                   }
+    },
+    {
+        "id":  "study-design",
+        "name":  "연구설계도",
+        "english":  "Study design diagram",
+        "category":  "연구·평가",
+        "purpose":  [
+                        "연구설계",
+                        "실험"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "대상 집단, 처치·비교 조건, 측정 시점과 평가를 한눈에 정리한다.",
+        "when":  "실험·관찰연구의 구조와 측정 순서를 설명할 때 적합하다.",
+        "caution":  "집단 할당 방식과 실제 측정 시점, 표본 수를 명확히 밝힌다.",
+        "alternatives":  [
+                             "timeline",
+                             "prisma"
+                         ],
+        "example":  "실험군·대조군 → 사전 측정 → 처치 → 사후 측정",
+        "source":  {
+                       "url":  "https://www.equator-network.org/Library/",
+                       "title":  "EQUATOR · 연구 보고 지침"
+                   }
+    },
+    {
+        "id":  "forest",
+        "name":  "포리스트 플롯",
+        "english":  "Forest plot",
+        "category":  "연구·평가",
+        "purpose":  [
+                        "효과크기",
+                        "불확실성"
+                    ],
+        "documents":  [
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "연구별 또는 집단별 추정치와 구간을 공통 축 위에 표시한다.",
+        "when":  "여러 효과크기와 불확실성을 비교하거나 근거합성을 설명할 때 적합하다.",
+        "caution":  "효과 척도, 기준선, 신뢰구간과 가중치의 의미를 밝힌다.",
+        "alternatives":  [
+                             "interval",
+                             "bar"
+                         ],
+        "example":  "연구 A·B·C의 효과 추정치와 95% 신뢰구간",
+        "source":  {
+                       "url":  "https://www.cochrane.org/authors/handbooks-and-manuals/style-manual/tables-and-figures/figures",
+                       "title":  "Cochrane · 그림과 그래프"
+                   }
+    },
+    {
+        "id":  "org-chart",
+        "name":  "조직도",
+        "english":  "Organization chart",
+        "category":  "계층·구성",
+        "purpose":  [
+                        "역할",
+                        "계층"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서"
+                      ],
+        "description":  "조직이나 담당자의 보고·책임 관계를 계층으로 표현한다.",
+        "when":  "기관과 책임자, 협력 조직의 역할 구조를 보여줄 때 적합하다.",
+        "caution":  "관리상 상하 관계와 실제 업무 흐름은 다르므로 선의 의미를 명시한다.",
+        "alternatives":  [
+                             "swimlane",
+                             "network"
+                         ],
+        "example":  "총괄 책임자 아래 실험팀·분석팀·현장팀",
+        "source":  {
+                       "url":  "https://www.visual-literacy.org/maps/",
+                       "title":  "Visual Literacy · 시각화 방법"
+                   }
+    },
+    {
+        "id":  "objective-tree",
+        "name":  "목표 트리",
+        "english":  "Objective tree",
+        "category":  "계층·구성",
+        "purpose":  [
+                        "목표 분해",
+                        "계층"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서"
+                      ],
+        "description":  "상위 목표를 달성하기 위한 하위 목표와 세부 과제로 나눈다.",
+        "when":  "총괄 목표와 세부 연구 내용 사이의 관계를 설명할 때 적합하다.",
+        "caution":  "목표, 활동, 지표를 구분하고 각 가지의 분해 기준을 일관되게 유지한다.",
+        "alternatives":  [
+                             "tree",
+                             "logic-model"
+                         ],
+        "example":  "최종 목표 → 인식 성능·처리 속도 → 세부 검증 과제",
+        "source":  {
+                       "url":  "https://www.ojp.gov/library/publications/logic-model-tip-sheet-and-template",
+                       "title":  "미국 법무부 · 논리모형"
+                   }
+    },
+    {
+        "id":  "system",
+        "name":  "시스템 구성도",
+        "english":  "System architecture diagram",
+        "category":  "계층·구성",
+        "purpose":  [
+                        "시스템 구조",
+                        "연결"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "시스템의 구성요소, 경계, 외부 사용자와 주요 연결을 보여준다.",
+        "when":  "구성 요소의 역할과 데이터 또는 상호작용 경로를 설명할 때 적합하다.",
+        "caution":  "같은 그림에 서로 다른 상세 수준을 과도하게 섞지 않고 선의 의미를 표시한다.",
+        "alternatives":  [
+                             "pipeline",
+                             "block-diagram"
+                         ],
+        "example":  "센서 → 수집 서버 → 분석 모델 → 사용자 화면",
+        "source":  {
+                       "url":  "https://c4model.com/introduction",
+                       "title":  "C4 모델 · 시스템 구조"
+                   }
+    },
+    {
+        "id":  "block-diagram",
+        "name":  "블록도",
+        "english":  "Block diagram",
+        "category":  "계층·구성",
+        "purpose":  [
+                        "작동 원리",
+                        "구성"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "기능 단위를 블록으로 단순화하고 입출력 관계를 표시한다.",
+        "when":  "시스템이 어떻게 작동하는지 핵심 기능과 경로 위주로 보여줄 때 적합하다.",
+        "caution":  "물리 부품과 논리 기능을 혼합하지 말고 생략한 세부 사항을 밝힌다.",
+        "alternatives":  [
+                             "system",
+                             "pipeline"
+                         ],
+        "example":  "입력 신호 → 필터 → 분석기 → 결과",
+        "source":  {
+                       "url":  "https://c4model.com/introduction",
+                       "title":  "C4 모델 · 시스템 구조"
+                   }
+    },
+    {
+        "id":  "section",
+        "name":  "단면·구조 설명도",
+        "english":  "Cutaway or section diagram",
+        "category":  "계층·구성",
+        "purpose":  [
+                        "공간 구조",
+                        "원리 설명"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "대상의 내부 구조를 자른 면이나 분해된 구성으로 보여준다.",
+        "when":  "겉에서 보이지 않는 부품 배치나 공간 관계를 설명할 때 적합하다.",
+        "caution":  "절단 방향, 확대 여부와 실제 치수의 관계를 명시한다.",
+        "alternatives":  [
+                             "block-diagram",
+                             "system"
+                         ],
+        "example":  "벽체 단면에서 센서 위치와 내부 구조 표시",
+        "source":  {
+                       "url":  "https://www.nature.com/documents/natrev-artworkguide_PS.pdf",
+                       "title":  "Nature · 그림 설계 안내"
+                   }
+    },
+    {
+        "id":  "tree",
+        "name":  "분류 트리",
+        "english":  "Tree diagram",
+        "category":  "계층·구성",
+        "purpose":  [
+                        "분류",
+                        "계층"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "상위 범주에서 하위 범주로 가지를 뻗어 포함 관계를 표현한다.",
+        "when":  "명확한 계층 분류나 분해 구조를 보여줄 때 적합하다.",
+        "caution":  "분류 기준을 통일하고 항목이 여러 범주에 동시에 속하면 그 사실을 표시한다.",
+        "alternatives":  [
+                             "mind-map",
+                             "matrix"
+                         ],
+        "example":  "연구 방법 → 정량·정성 → 각 세부 방법",
+        "source":  {
+                       "url":  "https://dataviz.unhcr.org/chart-types/",
+                       "title":  "UNHCR · 차트 유형"
+                   }
+    },
+    {
+        "id":  "timeline",
+        "name":  "타임라인",
+        "english":  "Timeline",
+        "category":  "시간·계획",
+        "purpose":  [
+                        "시간",
+                        "진행"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서",
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "사건과 주요 시점을 시간 순서로 배치한다.",
+        "when":  "연구의 주요 사건이나 측정 시점, 기술 발전의 흐름을 설명할 때 적합하다.",
+        "caution":  "간격이 실제 시간에 비례하는지 표시하고 계획과 실제 시점을 구분한다.",
+        "alternatives":  [
+                             "gantt",
+                             "roadmap"
+                         ],
+        "example":  "2024 기초연구 → 2025 실험 → 2026 현장 검증",
+        "source":  {
+                       "url":  "https://dataviz.unhcr.org/chart-types/",
+                       "title":  "UNHCR · 차트 유형"
+                   }
+    },
+    {
+        "id":  "gantt",
+        "name":  "간트 차트",
+        "english":  "Gantt chart",
+        "category":  "시간·계획",
+        "purpose":  [
+                        "일정",
+                        "진행 관리"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서"
+                      ],
+        "description":  "활동별 시작·종료와 기간을 시간축 위의 막대로 나타낸다.",
+        "when":  "여러 작업이 언제 진행되고 겹치는지 관리할 때 적합하다.",
+        "caution":  "계획과 실적, 작업 의존성과 기준 날짜를 구분한다.",
+        "alternatives":  [
+                             "timeline",
+                             "roadmap"
+                         ],
+        "example":  "1~3월 조사, 3~7월 실험, 7~9월 분석",
+        "source":  {
+                       "url":  "https://asq.org/quality-resources/quality-tools",
+                       "title":  "ASQ · 품질 도구"
+                   }
+    },
+    {
+        "id":  "roadmap",
+        "name":  "로드맵",
+        "english":  "Roadmap",
+        "category":  "시간·계획",
+        "purpose":  [
+                        "중장기 계획",
+                        "단계"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서",
+                          "수업 발표"
+                      ],
+        "description":  "기간에 따른 목표와 주요 이정표를 단계적으로 배치한다.",
+        "when":  "장기 방향과 단계별 성과를 큰 흐름으로 보여줄 때 적합하다.",
+        "caution":  "확정된 일정과 불확실한 전망을 구분하고 목표의 측정 기준을 함께 제시한다.",
+        "alternatives":  [
+                             "gantt",
+                             "timeline"
+                         ],
+        "example":  "기술 개발 → 현장 실증 → 운영 확산",
+        "source":  {
+                       "url":  "https://www.visual-literacy.org/maps/",
+                       "title":  "Visual Literacy · 시각화 방법"
+                   }
+    },
+    {
+        "id":  "matrix",
+        "name":  "비교 행렬",
+        "english":  "Comparison matrix",
+        "category":  "비교·판단",
+        "purpose":  [
+                        "비교",
+                        "분류"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서",
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "대상과 평가 기준을 행과 열로 배치해 차이를 비교한다.",
+        "when":  "여러 방법의 장단점, 조건 또는 기준별 성능을 나란히 살필 때 적합하다.",
+        "caution":  "동일한 기준과 측정 조건을 쓰고 추정치와 정성 평가를 구별한다.",
+        "alternatives":  [
+                             "bar",
+                             "venn"
+                         ],
+        "example":  "기존 방법과 제안 방법을 정확도·비용·현장 적용성으로 비교",
+        "source":  {
+                       "url":  "https://procomm.ieee.org/elements-of-visual-communication/",
+                       "title":  "IEEE · 시각 커뮤니케이션"
+                   }
+    },
+    {
+        "id":  "quadrant",
+        "name":  "2×2 매트릭스",
+        "english":  "Two-by-two matrix",
+        "category":  "비교·판단",
+        "purpose":  [
+                        "우선순위",
+                        "선택"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서",
+                          "수업 발표"
+                      ],
+        "description":  "두 기준을 축으로 삼아 대상을 네 영역에 배치한다.",
+        "when":  "중요도와 실행 난도처럼 두 판단 기준을 함께 비교할 때 적합하다.",
+        "caution":  "각 축의 의미와 구분 기준을 설명하고 임의의 배치를 객관적 측정처럼 표현하지 않는다.",
+        "alternatives":  [
+                             "matrix",
+                             "risk-matrix"
+                         ],
+        "example":  "과제별 영향도 × 실행 난도",
+        "source":  {
+                       "url":  "https://www.visual-literacy.org/maps/",
+                       "title":  "Visual Literacy · 시각화 방법"
+                   }
+    },
+    {
+        "id":  "risk-matrix",
+        "name":  "위험 행렬",
+        "english":  "Risk matrix",
+        "category":  "비교·판단",
+        "purpose":  [
+                        "위험",
+                        "우선순위"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서"
+                      ],
+        "description":  "발생 가능성과 영향 크기의 조합으로 위험을 배치한다.",
+        "when":  "여러 위험을 분류하고 우선 대응 대상을 논의할 때 적합하다.",
+        "caution":  "확률과 영향의 등급 기준을 제시하고 색상 등급만으로 위험을 정밀한 수치로 해석하지 않는다.",
+        "alternatives":  [
+                             "quadrant",
+                             "matrix"
+                         ],
+        "example":  "데이터 손실·장비 고장·일정 지연의 가능성과 영향",
+        "source":  {
+                       "url":  "https://asq.org/quality-resources/quality-tools",
+                       "title":  "ASQ · 품질 도구"
+                   }
+    },
+    {
+        "id":  "bar",
+        "name":  "막대그래프",
+        "english":  "Bar chart",
+        "category":  "데이터·증거",
+        "purpose":  [
+                        "크기 비교",
+                        "순위"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서",
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "막대 길이를 사용해 범주별 수량이나 크기를 비교한다.",
+        "when":  "조건이나 항목 간 수치의 차이를 비교할 때 적합하다.",
+        "caution":  "막대 길이는 공통 기준선에서 비교하며 일반적으로 0에서 시작한다. 단위와 표본 조건을 밝힌다.",
+        "alternatives":  [
+                             "interval",
+                             "matrix"
+                         ],
+        "example":  "기존 방법과 제안 방법의 처리 시간 비교",
+        "source":  {
+                       "url":  "https://dataviz.unhcr.org/chart-types/",
+                       "title":  "UNHCR · 차트 유형"
+                   }
+    },
+    {
+        "id":  "line",
+        "name":  "선그래프",
+        "english":  "Line chart",
+        "category":  "데이터·증거",
+        "purpose":  [
+                        "시간 변화",
+                        "추세"
+                    ],
+        "documents":  [
+                          "연차 보고서",
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "시간이나 연속 순서에 따른 값의 변화를 선으로 연결한다.",
+        "when":  "시점별 측정값의 변화와 추세를 보여줄 때 적합하다.",
+        "caution":  "시간 간격과 측정 단위를 정확히 표시하고 선이 너무 많아 겹치지 않게 한다.",
+        "alternatives":  [
+                             "timeline",
+                             "bar"
+                         ],
+        "example":  "월별 시스템 정확도 변화",
+        "source":  {
+                       "url":  "https://dataviz.unhcr.org/chart-types/",
+                       "title":  "UNHCR · 차트 유형"
+                   }
+    },
+    {
+        "id":  "scatter",
+        "name":  "산점도",
+        "english":  "Scatterplot",
+        "category":  "데이터·증거",
+        "purpose":  [
+                        "관계",
+                        "분포"
+                    ],
+        "documents":  [
+                          "논문",
+                          "연차 보고서",
+                          "수업 발표"
+                      ],
+        "description":  "각 관측치를 두 수치 변수에 따라 점의 위치로 나타낸다.",
+        "when":  "두 변수의 관계, 경향과 이상치를 살펴볼 때 적합하다.",
+        "caution":  "상관관계만으로 인과관계를 주장하지 않고 겹치는 점과 표본 수를 고려한다.",
+        "alternatives":  [
+                             "heatmap",
+                             "bar"
+                         ],
+        "example":  "데이터 양과 모델 정확도 사이의 관계",
+        "source":  {
+                       "url":  "https://dataviz.unhcr.org/chart-types/",
+                       "title":  "UNHCR · 차트 유형"
+                   }
+    },
+    {
+        "id":  "histogram",
+        "name":  "히스토그램",
+        "english":  "Histogram",
+        "category":  "데이터·증거",
+        "purpose":  [
+                        "분포",
+                        "빈도"
+                    ],
+        "documents":  [
+                          "논문",
+                          "연차 보고서",
+                          "수업 발표"
+                      ],
+        "description":  "연속 수치의 구간별 관측 빈도를 인접한 막대로 표시한다.",
+        "when":  "값의 분포 모양과 치우침을 살펴볼 때 적합하다.",
+        "caution":  "구간 너비와 경계에 따라 모양이 달라지므로 명시하고 과도한 해석을 피한다.",
+        "alternatives":  [
+                             "boxplot",
+                             "bar"
+                         ],
+        "example":  "작업 시간 측정값의 빈도 분포",
+        "source":  {
+                       "url":  "https://dataviz.unhcr.org/chart-types/",
+                       "title":  "UNHCR · 차트 유형"
+                   }
+    },
+    {
+        "id":  "boxplot",
+        "name":  "상자그림",
+        "english":  "Box plot",
+        "category":  "데이터·증거",
+        "purpose":  [
+                        "분포",
+                        "집단 비교"
+                    ],
+        "documents":  [
+                          "논문",
+                          "연차 보고서",
+                          "수업 발표"
+                      ],
+        "description":  "중앙값과 사분위 범위 등을 사용해 분포를 요약한다.",
+        "when":  "여러 집단의 중심과 퍼짐을 비교할 때 적합하다.",
+        "caution":  "수염의 정의와 표본 수를 설명한다. 요약 그림만으로 분포의 모든 형태를 알 수 없다.",
+        "alternatives":  [
+                             "histogram",
+                             "interval"
+                         ],
+        "example":  "방법 A·B의 측정 오차 분포 비교",
+        "source":  {
+                       "url":  "https://dataviz.unhcr.org/chart-types/",
+                       "title":  "UNHCR · 차트 유형"
+                   }
+    },
+    {
+        "id":  "heatmap",
+        "name":  "히트맵",
+        "english":  "Heatmap",
+        "category":  "데이터·증거",
+        "purpose":  [
+                        "패턴",
+                        "행렬 비교"
+                    ],
+        "documents":  [
+                          "논문",
+                          "연차 보고서",
+                          "수업 발표"
+                      ],
+        "description":  "행과 열로 이루어진 값의 크기를 색으로 나타낸다.",
+        "when":  "많은 조건과 변수의 패턴을 한 화면에서 살펴볼 때 적합하다.",
+        "caution":  "색 범례와 기준을 표시하고 필요하면 값을 함께 적는다.",
+        "alternatives":  [
+                             "matrix",
+                             "scatter"
+                         ],
+        "example":  "방법별 데이터셋의 성능을 행렬로 비교",
+        "source":  {
+                       "url":  "https://dataviz.unhcr.org/chart-types/",
+                       "title":  "UNHCR · 차트 유형"
+                   }
+    },
+    {
+        "id":  "interval",
+        "name":  "점·구간 그래프",
+        "english":  "Point and interval plot",
+        "category":  "데이터·증거",
+        "purpose":  [
+                        "효과크기",
+                        "불확실성"
+                    ],
+        "documents":  [
+                          "논문",
+                          "연차 보고서",
+                          "수업 발표"
+                      ],
+        "description":  "점으로 추정치를, 선으로 불확실성 또는 변동 구간을 표시한다.",
+        "when":  "효과나 차이의 크기와 정밀도를 함께 비교할 때 적합하다.",
+        "caution":  "선이 신뢰구간, 표준편차 또는 다른 구간인지 구분하고 추정 방식과 표본을 밝힌다.",
+        "alternatives":  [
+                             "forest",
+                             "bar"
+                         ],
+        "example":  "방법별 평균 차이와 95% 신뢰구간",
+        "source":  {
+                       "url":  "https://www.data-to-viz.com/",
+                       "title":  "From Data to Viz · 차트 선택"
+                   }
+    },
+    {
+        "id":  "sankey",
+        "name":  "생키 다이어그램",
+        "english":  "Sankey diagram",
+        "category":  "데이터·증거",
+        "purpose":  [
+                        "흐름",
+                        "양적 이동"
+                    ],
+        "documents":  [
+                          "과제 제안서",
+                          "연차 보고서",
+                          "논문"
+                      ],
+        "description":  "연결선의 폭으로 범주 사이에 이동하는 양을 표현한다.",
+        "when":  "자원·인원·데이터가 여러 경로로 이동하거나 분기하는 양을 비교할 때 적합하다.",
+        "caution":  "선의 폭과 단위의 관계, 집계 기준과 누락된 흐름을 확인한다.",
+        "alternatives":  [
+                             "flowchart",
+                             "bar"
+                         ],
+        "example":  "수집 자료가 전처리 후 학습·검증·평가로 분배되는 양",
+        "source":  {
+                       "url":  "https://dataviz.unhcr.org/chart-types/",
+                       "title":  "UNHCR · 차트 유형"
+                   }
+    },
+    {
+        "id":  "graphical-abstract",
+        "name":  "그래픽 초록",
+        "english":  "Graphical abstract",
+        "category":  "요약·전달",
+        "purpose":  [
+                        "연구 요약",
+                        "핵심 메시지"
+                    ],
+        "documents":  [
+                          "논문",
+                          "수업 발표"
+                      ],
+        "description":  "연구 질문·방법·핵심 결과를 하나의 시각적 요약으로 구성한다.",
+        "when":  "독자가 논문의 핵심을 빠르게 파악하도록 전체 이야기를 압축할 때 적합하다.",
+        "caution":  "정확한 메시지를 우선하고 수치·이미지 출처와 제출처의 별도 규격을 확인한다.",
+        "alternatives":  [
+                             "pipeline",
+                             "process"
+                         ],
+        "example":  "연구 문제 → 제안 방법 → 핵심 결과와 활용",
+        "source":  {
+                       "url":  "https://www.elsevier.com/en-gb/researcher/author/tools-and-resources/graphical-abstract",
+                       "title":  "Elsevier · 그래픽 초록"
+                   }
+    }
+]
