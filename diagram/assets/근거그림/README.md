@@ -15,3 +15,8 @@
 - `review02.png`: Robert C, Prista von Bonhorst F, Dupont G, Gonze D, De Decker Y (2025), *Role of tristability in the robustness of the differentiation mechanism*, Figure 1. https://doi.org/10.1371/journal.pone.0316666.g001, CC BY 4.0. 원본 그대로, 사이트에서 축소 표시.
 - `review10.png`: van Aert RCM, Wicherts JM, van Assen MALM (2019), *Publication bias examined in meta-analyses from psychology and medicine*, Figure 1. https://doi.org/10.1371/journal.pone.0215052.g001, CC BY 4.0. 원본 그대로, 사이트에서 축소 표시.
 - `review17.png`: Sekar JAP, Tapia J-J, Faeder JR (2017), *Automated visualization of rule-based models*, Figure 1. https://doi.org/10.1371/journal.pcbi.1005857.g001, CC BY 4.0. 원본 그대로, 사이트에서 축소 표시.
+# 2026-10-29: 비교 사례 추가 원본 그림
+
+- `compare-flow1.png`: Zhang S 외, “Long Noncoding RNA HOTAIR as an Independent Prognostic Marker in Cancer”, Figure 1 (2014), [원본과 논문](https://doi.org/10.1371/journal.pone.0105538.g001). 원문은 [CC0](https://creativecommons.org/publicdomain/zero/1.0/)로 공개한다. 그림을 변경하지 않았다.
+- `compare-flow2.png`: Palmer KS 외, “Activity-Based Funding of Hospitals and Its Impact…”, Figure 1 (2014), [원본과 논문](https://doi.org/10.1371/journal.pone.0109975.g001). [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). 그림을 변경하지 않았다.
+- `compare-flow3.png`: Gheorghe A, Roberts TE, Ives JC, Fletcher BR, Calvert M, “Centre Selection for Clinical Trials and the Generalisability of Results”, Figure 1 (2013), [원본과 논문](https://doi.org/10.1371/journal.pone.0056560.g001). 논문에 Creative Commons Attribution License가 명시되어 있으나 버전은 명시되지 않는다. 그림을 변경하지 않았다.
