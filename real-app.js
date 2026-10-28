@@ -331,4 +331,5 @@ if(failed.length){$('#load-note').textContent=`일부 예시 목록을 불러오
 if(taxonomy.error){$('#load-note').textContent+=' 세부 분류를 불러오지 못해 기존 태그만 표시합니다.';console.warn('세부 분류 오류',taxonomy.error);}
 if(tagGroups.error){$('#load-note').textContent+=' 태그 구조를 불러오지 못했습니다.';console.warn('태그 구조 오류',tagGroups.error);}
 searchController=createSearchTools({examples,tagGroups,onChange:()=>{renderFilters();render()},chooseTag:(tag,negative)=>{if(!negative)selectedTag=tag;query=norm(query)===norm(tag)?'':query.replace(/(?:^|\s)-?(?:"[^"]*"|\S+)$/,'').trim();$('#search').value=query;renderFilters();render()},chooseExample:name=>{selectedTag='';query=name;$('#search').value=name;renderFilters();render()}});
+const linkedQuery=new URLSearchParams(location.search).get('q');if(linkedQuery){query=linkedQuery;$('#search').value=linkedQuery;}
 $('#total').textContent=String(examples.length).padStart(2,'0');renderPlatforms();renderFilters();render();
