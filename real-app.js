@@ -8,7 +8,7 @@ const motion = [
  {id:'motion-hover',name:'호버 반응',english:'Hover',category:'인터랙션',description:'포인터를 올리면 반응하는 원본 예시입니다.',tags:['호버','포인터'],preview:'https://examples.motion.dev/js/hover',sourceName:'Motion',sourceUrl:'https://motion.dev/examples/js-hover',license:'원본 제공 · 온라인',remote:true},
  {id:'motion-press',name:'누르기 반응',english:'Press',category:'인터랙션',description:'포인터나 키보드로 눌러 반응을 확인하세요.',tags:['클릭','키보드','제스처'],preview:'https://examples.motion.dev/js/press',sourceName:'Motion',sourceUrl:'https://motion.dev/examples/js-press',license:'원본 제공 · 온라인',remote:true},
 ];
-import {inspectDemo, showDemo, setDemoSlow, resetDemo} from './demo-adapter.js';
+import {inspectDemo, showDemo, setDemoSlow, resetDemo} from './demo-adapter.js?v=20261028-controls';
 import {createSearchTools} from './search-tools.js?v=20261028-2';
 let searchController=null;
 const initialCategories=['전체','화면 구성','UI 패턴','모션과 인터랙션','화면 전환','카메라','3D'];
@@ -262,27 +262,37 @@ function setupNativePlayer(frame,doc){
  reset.addEventListener('click',()=>{showFrameSkeleton(frame);playerLoading(frame.closest('.demo-wrap'));resetDemo(frame)});native.append(reset);
  return true;
 }
+const observedPlayerDocs=new WeakSet();
 function setupPlayer(frame){
  const p=playerFor(frame);if(!p)return;
  const show=p.querySelector('[data-player-show]'),slow=p.querySelector('[data-player-slow]'),reset=p.querySelector('[data-player-reset]'),status=p.querySelector('.demo-player-status');
  const supported=inspectDemo(frame);
  reset.disabled=!supported.reset;
  let doc;try{doc=frame.contentDocument;}catch(_){doc=null}
+ if(doc&&!observedPlayerDocs.has(doc)){
+  observedPlayerDocs.add(doc);
+  doc.addEventListener('uiux-demo-state',()=>{if(frame.isConnected&&frame.contentDocument===doc)updateLoadedFrame(frame)});
+ }
  const speed=doc?.querySelector('input[type="checkbox"][data-hb-slowmo]');
  p.hidden=setupNativePlayer(frame,doc);
  show.disabled=!supported.show;slow.disabled=!supported.slow;
  show.title=show.disabled?'이 원본은 자동 시연을 제공하지 않습니다.':'예시의 자동 시연을 시작합니다.';
- slow.title=slow.disabled?'이 원본은 느린 재생을 제공하지 않습니다.':'예시의 느린 재생을 전환합니다.';
+ slow.title=slow.disabled?'이 원본은 느린 재생을 제공하지 않습니다.':/\/examples\/(?:ui0[678]|ai0(?:49|50|52|53|54))\//.test(frame.src)?'속도를 바꾸면 예시를 처음부터 다시 재생합니다.':'예시의 느린 재생을 전환합니다.';
  slow.setAttribute('aria-pressed',String(supported.slowActive));
  if(speed)speed.addEventListener('change',()=>slow.setAttribute('aria-pressed',String(speed.checked)));
- status.textContent=!doc?'외부 원본: 자동 시연·느린 재생 미지원':show.disabled&&slow.disabled?'이 예시는 자동 시연·느린 재생 미지원':show.disabled?'자동 시연 미지원':slow.disabled?'느린 재생 미지원':'';
+ const shader=/\/examples\/gt\d+\//.test(frame.src);
+ status.textContent=!doc?'외부 원본: 자동 시연·느린 재생 미지원':shader&&!doc.body?.dataset.renderState?'전환 예시를 준비하고 있습니다.':shader&&doc.body?.dataset.renderState==='error'?'전환 예시를 초기화하지 못했습니다.':show.disabled&&slow.disabled?'이 예시는 자동 시연·느린 재생 미지원':show.disabled?'자동 시연 미지원':slow.disabled?'느린 재생 미지원':'';
 }
-document.addEventListener('load',event=>{if(event.target.matches?.('.demo-content iframe')){
- const host=event.target.closest('[data-gpu-watch]'),entry=host&&gpuActive.get(host);
- if(host&&(!entry||host.querySelector('iframe')!==event.target))return;
- setupPlayer(event.target);frameReady(event.target);
+function updateLoadedFrame(frame){
+ const host=frame.closest('[data-gpu-watch]'),entry=host&&gpuActive.get(host);
+ if(host&&(!entry||host.querySelector('iframe')!==frame))return;
+ setupPlayer(frame);
+ let doc;try{doc=frame.contentDocument}catch(_){doc=null}
+ if(doc&&/\/examples\/gt\d+\//.test(frame.src)&&!['ready','error'].includes(doc.body?.dataset.renderState))return;
+ frameReady(frame);
  if(entry&&entry.loading){clearTimeout(entry.timer);entry.loading=false;scheduleGpu()}
-}},true);
+}
+document.addEventListener('load',event=>{if(event.target.matches?.('.demo-content iframe'))updateLoadedFrame(event.target)},true);
 document.addEventListener('click',async event=>{
  const tagToggle=event.target.closest('[data-tags-toggle]');if(tagToggle){const group=tagToggle.closest('.tags'),expanded=tagToggle.getAttribute('aria-expanded')==='true';group.querySelectorAll('.tag-extra').forEach(tag=>tag.hidden=expanded);tagToggle.setAttribute('aria-expanded',String(!expanded));tagToggle.textContent=expanded?`+${group.querySelectorAll('.tag-extra').length}`:'접기';tagToggle.setAttribute('aria-label',expanded?'태그 더 보기':'추가 태그 접기');return;}
  const tag=event.target.closest('[data-tag]');if(tag){selectedTag=tag.dataset.tag;renderFilters();render();document.querySelector('.library-bar')?.scrollIntoView({block:'start',behavior:'auto'});return;}
