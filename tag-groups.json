@@ -1,0 +1,3909 @@
+{
+  "version": 1,
+  "method": "태그 표기와 원본 항목명에 근거한 다중 분류. 표현만으로 알 수 없는 태그는 기타·검토로 표시하며 분위기를 추측하지 않습니다.",
+  "groups": [
+    "기능·목적",
+    "요소·형태",
+    "동작·입력",
+    "모션·전환",
+    "시각 스타일·분위기",
+    "콘텐츠·주제",
+    "공간·카메라",
+    "기술·구현",
+    "기기·환경",
+    "예시 이름·별칭",
+    "출처·라이브러리",
+    "기타·검토"
+  ],
+  "tags": {
+    "1인칭": [
+      "공간·카메라"
+    ],
+    "2 5d pseudo 3d": [
+      "공간·카메라"
+    ],
+    "2.5D / Pseudo-3D": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "2D Physics": [
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "3D": [
+      "공간·카메라"
+    ],
+    "3D Carousel": [
+      "요소·형태",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D carousel transition": [
+      "요소·형태",
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D Extruded Text Effect": [
+      "요소·형태",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D Flip Card": [
+      "요소·형태",
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D fold / fade in": [
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D Model Orbit": [
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D page flip": [
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D push / pull": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D push / slide in": [
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D room rotation": [
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D sides transition": [
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D slide transition": [
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D unfold / slide out": [
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D 곡선 편집": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D 복셀 그리기": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D 선 선택": [
+      "기능·목적",
+      "동작·입력",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D 점 선택": [
+      "기능·목적",
+      "동작·입력",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D 큐브 포인터 선택": [
+      "기능·목적",
+      "동작·입력",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "3D 텍스트 형상": [
+      "요소·형태",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "Abstract Geometric Motion": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Action Approval Request": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "add to cart fly": [
+      "기능·목적",
+      "동작·입력",
+      "모션·전환"
+    ],
+    "Add-to-Cart Fly": [
+      "예시 이름·별칭"
+    ],
+    "advanced parameters": [
+      "기능·목적"
+    ],
+    "Advanced Parameters Panel": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Agent Activity Timeline": [
+      "요소·형태",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "Agent Run Log": [
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "agent timeline": [
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "agents": [
+      "콘텐츠·주제"
+    ],
+    "AI": [
+      "콘텐츠·주제"
+    ],
+    "AI Disclaimer Banner": [
+      "요소·형태",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "AI Error States": [
+      "기능·목적",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "ai generated label": [
+      "콘텐츠·주제"
+    ],
+    "AI Memory Manager": [
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "AI Orb": [
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "AI-Generated Label": [
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "ambient ripple": [
+      "모션·전환"
+    ],
+    "Ambient Ripple Effect": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Anaglyph 3D Text Effect": [
+      "요소·형태",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "Android": [
+      "기기·환경"
+    ],
+    "Animate.css": [
+      "모션·전환",
+      "기술·구현"
+    ],
+    "Animated Gradient Background": [
+      "요소·형태",
+      "모션·전환",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "Animated Gradient Border": [
+      "모션·전환",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "Animated Long Shadow Text": [
+      "요소·형태",
+      "모션·전환",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "animation": [
+      "모션·전환"
+    ],
+    "anisotropy": [
+      "시각 스타일·분위기",
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "Answer Length Control": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "Answer Versions": [
+      "예시 이름·별칭"
+    ],
+    "App Connectors List": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "approval request": [
+      "기능·목적"
+    ],
+    "ASCII / Halftone": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "ascii halftone": [
+      "시각 스타일·분위기"
+    ],
+    "Assistant Persona Cards": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Asymmetric easing slide": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Audio Answer Player": [
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "Audio Equalizer Text Animation": [
+      "요소·형태",
+      "모션·전환",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "Audio Visualizer": [
+      "시각 스타일·분위기",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "aurora": [
+      "시각 스타일·분위기"
+    ],
+    "Aurora / Northern Lights": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "auto grow prompt": [
+      "요소·형태"
+    ],
+    "Auto-Growing Prompt": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "badge pulse": [
+      "요소·형태"
+    ],
+    "Barcode Scanner Text Effect": [
+      "요소·형태",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "Basic Prompt Box": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "before after slider": [
+      "요소·형태",
+      "모션·전환"
+    ],
+    "Before/After Slider": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "birds": [
+      "콘텐츠·주제",
+      "공간·카메라"
+    ],
+    "blending": [
+      "모션·전환",
+      "시각 스타일·분위기",
+      "기술·구현"
+    ],
+    "Blueprint Grid Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Blur In": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "Blur Transition": [
+      "모션·전환",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "boingInUp": [
+      "예시 이름·별칭"
+    ],
+    "boingOutDown": [
+      "예시 이름·별칭"
+    ],
+    "bombRightOut": [
+      "예시 이름·별칭"
+    ],
+    "Bounce In": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Breathing / Pulsing Glow": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "breathing glow": [
+      "시각 스타일·분위기"
+    ],
+    "buffergeometry": [
+      "공간·카메라"
+    ],
+    "BurnThrough": [
+      "예시 이름·별칭"
+    ],
+    "Button Anthe": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Button Atlas": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Button Hyperion": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Button Janus": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Button Loading States": [
+      "기능·목적",
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Button Mimas": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Button Pan": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Button Pandora": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Button Telesto": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "camera capture": [
+      "공간·카메라"
+    ],
+    "Camera Photo Capture": [
+      "콘텐츠·주제",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "Canvas Particle Effect": [
+      "공간·카메라",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "car": [
+      "콘텐츠·주제",
+      "공간·카메라"
+    ],
+    "Card Deck Swipe": [
+      "요소·형태",
+      "동작·입력",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "carousel 3d": [
+      "요소·형태",
+      "공간·카메라"
+    ],
+    "cells": [
+      "공간·카메라"
+    ],
+    "Chat Bubbles": [
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "chat item menu": [
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "Chat List Item Menu": [
+      "요소·형태",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "chat-layout": [
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "Checkmark Draw": [
+      "예시 이름·별칭"
+    ],
+    "Chromatic Aberration": [
+      "예시 이름·별칭"
+    ],
+    "Chrome Metallic Text Effect": [
+      "요소·형태",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "Circle Reveal": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Circuit Board Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "clearcoat": [
+      "시각 스타일·분위기",
+      "공간·카메라"
+    ],
+    "clip path reveal": [
+      "모션·전환"
+    ],
+    "Clip-Path Reveal": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Cloth / Soft-Body Simulation": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "cloth simulation": [
+      "모션·전환",
+      "공간·카메라"
+    ],
+    "clouds": [
+      "콘텐츠·주제",
+      "공간·카메라"
+    ],
+    "clouds2": [
+      "콘텐츠·주제",
+      "공간·카메라"
+    ],
+    "Codrops": [
+      "출처·라이브러리"
+    ],
+    "collada": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "Collada 스키닝 모델": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "ColorPhase": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "compare answers": [
+      "기능·목적"
+    ],
+    "Compare Two Answers": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "Confidence Badge": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "connectors list": [
+      "요소·형태"
+    ],
+    "content warning": [
+      "기능·목적"
+    ],
+    "Context Window Bar": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "convex": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "Copy to Clipboard": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "Cost per Message": [
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "Counter Animation": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Cover Card to Fixed Header": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "credits card": [
+      "요소·형태"
+    ],
+    "Credits Remaining Card": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "CRM": [
+      "콘텐츠·주제"
+    ],
+    "Crosshatch": [
+      "예시 이름·별칭"
+    ],
+    "csg": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "CSS scroll timelines": [
+      "요소·형태",
+      "동작·입력",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "CSS 스크롤 타임라인 모음": [
+      "요소·형태",
+      "동작·입력",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "CSS 타임라인": [
+      "요소·형태",
+      "기술·구현"
+    ],
+    "CTA": [
+      "기능·목적",
+      "요소·형태"
+    ],
+    "Cube Transition": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "cubes": [
+      "공간·카메라"
+    ],
+    "Curtain Reveal": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "daily limit ring": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "Daily Usage Chart": [
+      "기능·목적",
+      "요소·형태",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "depth map photo": [
+      "콘텐츠·주제",
+      "공간·카메라"
+    ],
+    "Depth-Map Photo": [
+      "콘텐츠·주제",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "dispersion": [
+      "시각 스타일·분위기",
+      "공간·카메라"
+    ],
+    "displacementmap": [
+      "시각 스타일·분위기",
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "Domino Falling Letters Animation": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "DoomMelt": [
+      "예시 이름·별칭"
+    ],
+    "dots": [
+      "요소·형태"
+    ],
+    "dp": [
+      "기술·구현",
+      "기기·환경"
+    ],
+    "dpi": [
+      "기술·구현",
+      "기기·환경"
+    ],
+    "Dreamy": [
+      "예시 이름·별칭"
+    ],
+    "drop overlay upload": [
+      "기능·목적"
+    ],
+    "Dynamic Island": [
+      "예시 이름·별칭"
+    ],
+    "Echo Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "edit message": [
+      "콘텐츠·주제"
+    ],
+    "Editable Task Plan": [
+      "기능·목적",
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Editable User Message": [
+      "요소·형태",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "editor": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "Elastic Transition": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "empty chat state": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "Empty Chat Welcome Screen": [
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "enter exit typography": [
+      "요소·형태",
+      "모션·전환"
+    ],
+    "Enter/Exit Typography": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Error Message with Retry": [
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "error retry": [
+      "기능·목적"
+    ],
+    "Error Shake": [
+      "예시 이름·별칭"
+    ],
+    "error states": [
+      "기능·목적"
+    ],
+    "Expanding Search": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "extrude": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "Fact Check Panel": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Fade In / Fade Out": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "fade in out": [
+      "모션·전환"
+    ],
+    "Fade out / slide in": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Falling Letters Animation": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Falling page": [
+      "예시 이름·별칭"
+    ],
+    "FAQ": [
+      "기능·목적",
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "feedback": [
+      "기능·목적"
+    ],
+    "File Change Preview": [
+      "기능·목적",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "file diff": [
+      "콘텐츠·주제"
+    ],
+    "file message": [
+      "콘텐츠·주제"
+    ],
+    "Fire Effect": [
+      "예시 이름·별칭"
+    ],
+    "Fireworks": [
+      "예시 이름·별칭"
+    ],
+    "First Run Consent": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "Flash / Light Leak Transition": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "flash transition": [
+      "모션·전환"
+    ],
+    "flip card 3d": [
+      "요소·형태",
+      "모션·전환",
+      "공간·카메라"
+    ],
+    "Flip In": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "FLIP Technique": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "flipInX": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "flipOutX": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Floating Elements": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Flocking": [
+      "예시 이름·별칭"
+    ],
+    "Flow Field": [
+      "예시 이름·별칭"
+    ],
+    "Fluid / Liquid Simulation": [
+      "예시 이름·별칭"
+    ],
+    "fluid simulation": [
+      "모션·전환",
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "fly in fly out contact list": [
+      "요소·형태"
+    ],
+    "Fly-in Fly-out Contact List": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "focus ring": [
+      "동작·입력"
+    ],
+    "Focus Ring Animation": [
+      "동작·입력",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "fog": [
+      "콘텐츠·주제",
+      "공간·카메라"
+    ],
+    "foolishIn": [
+      "예시 이름·별칭"
+    ],
+    "foolishOut": [
+      "예시 이름·별칭"
+    ],
+    "Form Field Morph": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Formatted Answer": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Frosted Glass Text Effect": [
+      "요소·형태",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "Frozen Ice Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Full Chat Window": [
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "Game of Life": [
+      "예시 이름·별칭"
+    ],
+    "geometry": [
+      "공간·카메라"
+    ],
+    "Glassmorphism Animated": [
+      "모션·전환",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "Glitch Text": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "GlitchFlicker": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "globe": [
+      "콘텐츠·주제",
+      "공간·카메라"
+    ],
+    "GLTF": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "gltf": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "glTF 무지갯빛 재질": [
+      "시각 스타일·분위기",
+      "공간·카메라",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "glTF 빛 분산 재질": [
+      "시각 스타일·분위기",
+      "공간·카메라",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "glTF 이방성 재질": [
+      "시각 스타일·분위기",
+      "공간·카메라",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "glTF 재질 변형 선택": [
+      "기능·목적",
+      "동작·입력",
+      "모션·전환",
+      "시각 스타일·분위기",
+      "공간·카메라",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "glTF 점진적 상세도": [
+      "공간·카메라",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "glTF 직물 광택 재질": [
+      "시각 스타일·분위기",
+      "공간·카메라",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "glTF 투과 재질": [
+      "시각 스타일·분위기",
+      "공간·카메라",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "Gold Foil Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Gooey Menu": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "GPGPU Particle System": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "gradient border": [
+      "시각 스타일·분위기"
+    ],
+    "Grain / Film Noise Overlay": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "grain overlay": [
+      "시각 스타일·분위기"
+    ],
+    "Grid / Dot Pattern Parallax": [
+      "요소·형태",
+      "모션·전환",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "grid dot pattern parallax": [
+      "요소·형태",
+      "모션·전환",
+      "시각 스타일·분위기"
+    ],
+    "halo": [
+      "시각 스타일·분위기"
+    ],
+    "Handwriting Draw": [
+      "예시 이름·별칭"
+    ],
+    "Heart / Like Burst": [
+      "예시 이름·별칭"
+    ],
+    "heart burst": [
+      "모션·전환"
+    ],
+    "Heartbeat Pulse Text Animation": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "helpful bar": [
+      "기능·목적",
+      "요소·형태"
+    ],
+    "hemisphere": [
+      "공간·카메라"
+    ],
+    "Hexagonalize": [
+      "예시 이름·별칭"
+    ],
+    "hide on scroll header": [
+      "요소·형태",
+      "동작·입력"
+    ],
+    "Hide-on-Scroll Header": [
+      "요소·형태",
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "Highlighter Sweep": [
+      "예시 이름·별칭"
+    ],
+    "Hinged rotation / slide in": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Hold to Confirm": [
+      "예시 이름·별칭"
+    ],
+    "holeOut": [
+      "예시 이름·별칭"
+    ],
+    "Hologram Text Effect": [
+      "요소·형태",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "Holographic Card": [
+      "요소·형태",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "Horizontal Scroll": [
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "hover state": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "Hover State Animation": [
+      "기능·목적",
+      "동작·입력",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "ifc": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "IFC 건축 모델": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "ik": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "image distortion hover": [
+      "요소·형태",
+      "동작·입력",
+      "콘텐츠·주제"
+    ],
+    "Image Distortion on Hover": [
+      "요소·형태",
+      "동작·입력",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "Image Generation Progress": [
+      "기능·목적",
+      "요소·형태",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "Image Prompt Builder": [
+      "요소·형태",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "image prompt editor": [
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "Image Trail": [
+      "요소·형태",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "image upload preview": [
+      "기능·목적",
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "Image Upload with Preview": [
+      "기능·목적",
+      "요소·형태",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "Infinite Zoom": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Ink Spread Reveal": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Inline Citations": [
+      "예시 이름·별칭"
+    ],
+    "interactive": [
+      "동작·입력"
+    ],
+    "Inverted Negative Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "iOS": [
+      "기기·환경"
+    ],
+    "iridescence": [
+      "시각 스타일·분위기",
+      "공간·카메라"
+    ],
+    "ISO": [
+      "공간·카메라"
+    ],
+    "jackInTheBox": [
+      "예시 이름·별칭"
+    ],
+    "Kaleidoscope": [
+      "예시 이름·별칭"
+    ],
+    "ken burns": [
+      "모션·전환"
+    ],
+    "Ken Burns Effect": [
+      "예시 이름·별칭"
+    ],
+    "keyboard shortcuts": [
+      "동작·입력",
+      "기기·환경"
+    ],
+    "Keyboard Shortcuts Panel": [
+      "요소·형태",
+      "동작·입력",
+      "기기·환경",
+      "예시 이름·별칭"
+    ],
+    "keyframes": [
+      "모션·전환",
+      "기술·구현"
+    ],
+    "Kinetic Typography": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "language picker": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "LED Sign Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "LED 전광판 텍스트": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "letter by letter stagger": [
+      "모션·전환"
+    ],
+    "Letter-by-Letter Stagger": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Light Leak": [
+      "예시 이름·별칭"
+    ],
+    "Light Rays": [
+      "예시 이름·별칭"
+    ],
+    "Lightning": [
+      "예시 이름·별칭"
+    ],
+    "lights": [
+      "공간·카메라"
+    ],
+    "lines": [
+      "요소·형태"
+    ],
+    "Liquid Fill Text Animation": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Liquid Glass": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "LissajousTiles": [
+      "예시 이름·별칭"
+    ],
+    "Live Transcript": [
+      "예시 이름·별칭"
+    ],
+    "loader": [
+      "기능·목적"
+    ],
+    "Loading Spinner": [
+      "기능·목적",
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "lod": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "magic": [
+      "예시 이름·별칭"
+    ],
+    "Magic CSS": [
+      "기술·구현",
+      "출처·라이브러리"
+    ],
+    "Magnifier Lens": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "Marquee / Ticker": [
+      "예시 이름·별칭"
+    ],
+    "marquee ticker": [
+      "요소·형태",
+      "모션·전환"
+    ],
+    "materials": [
+      "시각 스타일·분위기"
+    ],
+    "Matrix Rain": [
+      "예시 이름·별칭"
+    ],
+    "Melting Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "memory panel": [
+      "요소·형태"
+    ],
+    "mesh gradient": [
+      "시각 스타일·분위기",
+      "공간·카메라"
+    ],
+    "Mesh Gradient Animation": [
+      "모션·전환",
+      "시각 스타일·분위기",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "message cost": [
+      "콘텐츠·주제"
+    ],
+    "Message with Attached Files": [
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "messages": [
+      "콘텐츠·주제"
+    ],
+    "Messages Left Today": [
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "mobile chat": [
+      "콘텐츠·주제",
+      "기기·환경"
+    ],
+    "Mobile Chat Screen": [
+      "콘텐츠·주제",
+      "기기·환경",
+      "예시 이름·별칭"
+    ],
+    "model cards": [
+      "요소·형태",
+      "공간·카메라"
+    ],
+    "Model Price Calculator": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "Model Selection Cards": [
+      "기능·목적",
+      "요소·형태",
+      "동작·입력",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "Moiré Pattern Text Effect": [
+      "요소·형태",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "morph": [
+      "모션·전환"
+    ],
+    "Morph Transition": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Morphing Blob": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Move with fade": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "multiple": [
+      "기타·검토"
+    ],
+    "Neon Flicker": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "net": [
+      "요소·형태"
+    ],
+    "Newspaper spin": [
+      "모션·전환",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "noise based motion": [
+      "모션·전환",
+      "시각 스타일·분위기"
+    ],
+    "Noise-Based Motion": [
+      "모션·전환",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "Notification Badge Pulse": [
+      "기능·목적",
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Onboarding Tour": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "openDownLeft": [
+      "예시 이름·별칭"
+    ],
+    "openDownLeftOut": [
+      "예시 이름·별칭"
+    ],
+    "openDownLeftReturn": [
+      "예시 이름·별칭"
+    ],
+    "Orbiting Letters Animation": [
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "Origami Fold Text Animation": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "ortho": [
+      "공간·카메라"
+    ],
+    "Outline to Fill": [
+      "예시 이름·별칭"
+    ],
+    "Page Drop Zone with Upload Progress": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "Parallax 3D Tilt": [
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "Parallax depth comparison": [
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "parallax depth of field": [
+      "모션·전환",
+      "공간·카메라"
+    ],
+    "Parallax Depth-of-Field": [
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "Parallax Scrolling": [
+      "동작·입력",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Parallel Agents Status": [
+      "기능·목적",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "Particle Constellation": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "pcd": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "PCD 포인트 클라우드": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "pdb": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "persona cards": [
+      "요소·형태"
+    ],
+    "perspectiveDown": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "perspectiveDownReturn": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "perspectiveLeft": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "perspectiveLeftReturn": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "physical": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "physics 2d": [
+      "기술·구현"
+    ],
+    "Pin Animation": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Pinned scrolling story": [
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "Pixel Sort Text Effect": [
+      "기능·목적",
+      "요소·형태",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "plasma": [
+      "시각 스타일·분위기"
+    ],
+    "Plasma Field": [
+      "예시 이름·별칭"
+    ],
+    "pointlight": [
+      "공간·카메라"
+    ],
+    "points": [
+      "요소·형태",
+      "공간·카메라"
+    ],
+    "PolkaDotsCurtain": [
+      "예시 이름·별칭"
+    ],
+    "Pop Art Comic Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "price calculator": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "Prism Refraction Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Privacy Controls": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "Progress Animation": [
+      "기능·목적",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Progress Bar": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "progressive": [
+      "기능·목적"
+    ],
+    "prompt history": [
+      "요소·형태"
+    ],
+    "Prompt Suggestions": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "prompt tips": [
+      "요소·형태"
+    ],
+    "Prompt Tips Card": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "prompt token counter": [
+      "요소·형태"
+    ],
+    "prompt with attachments": [
+      "요소·형태"
+    ],
+    "Prompt with File Attachments": [
+      "요소·형태",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "Prompt with History": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Prompt with Send Shortcut Setting": [
+      "기능·목적",
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Prompt with Slash Commands": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Prompt with Token Counter": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Prompt with Voice Input": [
+      "기능·목적",
+      "요소·형태",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "prompt-input": [
+      "기능·목적",
+      "요소·형태"
+    ],
+    "puffIn": [
+      "예시 이름·별칭"
+    ],
+    "puffOut": [
+      "예시 이름·별칭"
+    ],
+    "Pull to Refresh": [
+      "예시 이름·별칭"
+    ],
+    "Ransom Note Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Rate Limit Banner": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Ray Marching / SDF Scene": [
+      "예시 이름·별칭"
+    ],
+    "ray marching sdf": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "raycast": [
+      "동작·입력",
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "raycasting": [
+      "동작·입력",
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "Reading progress and table of contents": [
+      "기능·목적",
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "rectarealight": [
+      "공간·카메라"
+    ],
+    "Reply Language Picker": [
+      "예시 이름·별칭"
+    ],
+    "Report a Problem Dialog": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "report dialog": [
+      "요소·형태"
+    ],
+    "response length": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "Reveal on Scroll": [
+      "동작·입력",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Reveal on scroll laboratory": [
+      "동작·입력",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "reverse scrolling columns": [
+      "동작·입력"
+    ],
+    "Reverse-Scrolling Columns": [
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "rewrite options": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "Rewrite Options Menu": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "rings": [
+      "요소·형태",
+      "공간·카메라"
+    ],
+    "Ripple": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "rollIn": [
+      "예시 이름·별칭"
+    ],
+    "Rolling Numbers": [
+      "예시 이름·별칭"
+    ],
+    "rollOut": [
+      "예시 이름·별칭"
+    ],
+    "Rotate In": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Rotate Word Carousel": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "rotateDown": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "rotateLeft": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Rubber Band Text Animation": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Rubber Stamp Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "run log console": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "Satisfaction Scale": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Scale down / delayed zoom": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Scale down / slide in": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "scale in": [
+      "모션·전환"
+    ],
+    "Scale In / Zoom In": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Scale up / delayed zoom": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "scanline": [
+      "시각 스타일·분위기"
+    ],
+    "Scanline Effect": [
+      "예시 이름·별칭"
+    ],
+    "Scanning Highlight Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "scattering": [
+      "시각 스타일·분위기",
+      "공간·카메라"
+    ],
+    "Scramble / Glitch Text": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "scramble text": [
+      "요소·형태"
+    ],
+    "scroll background color": [
+      "요소·형태",
+      "동작·입력",
+      "시각 스타일·분위기"
+    ],
+    "scroll driven 3d rotation": [
+      "동작·입력",
+      "모션·전환",
+      "공간·카메라"
+    ],
+    "Scroll Image Sequence": [
+      "요소·형태",
+      "동작·입력",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "scroll trigger": [
+      "동작·입력"
+    ],
+    "Scroll Velocity Skew": [
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "Scroll-Driven 3D Rotation": [
+      "동작·입력",
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "Scroll-Driven Background Color": [
+      "요소·형태",
+      "동작·입력",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "Scroll-Triggered Animation": [
+      "동작·입력",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "scrollspy nav": [
+      "동작·입력"
+    ],
+    "Scrollspy Navigation": [
+      "요소·형태",
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "Scrollytelling": [
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "Scrub Animation": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Section Wipe": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Segmented Control": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "send shortcut prompt": [
+      "요소·형태"
+    ],
+    "Sensitive Content Notice": [
+      "예시 이름·별칭"
+    ],
+    "settings": [
+      "기능·목적"
+    ],
+    "shadowmap": [
+      "시각 스타일·분위기"
+    ],
+    "Shatter": [
+      "예시 이름·별칭"
+    ],
+    "Shatter Effect": [
+      "예시 이름·별칭"
+    ],
+    "sheen": [
+      "시각 스타일·분위기",
+      "공간·카메라"
+    ],
+    "Shimmer Effect": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "sidebar folders": [
+      "요소·형태"
+    ],
+    "Sidebar with Pinned Chats and Folders": [
+      "요소·형태",
+      "동작·입력",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "Skeleton Message": [
+      "요소·형태",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "skinning": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "slash commands prompt": [
+      "요소·형태"
+    ],
+    "Sliced Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Slide away / scale in": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Slide In": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Slide Up Reveal": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "slideDown": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "slideDownReturn": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Smoke Text Animation": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Smooth (Inertia) Scroll": [
+      "동작·입력",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "smooth scroll": [
+      "동작·입력",
+      "시각 스타일·분위기"
+    ],
+    "Snap Scrolling": [
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "Snow / Rain": [
+      "예시 이름·별칭"
+    ],
+    "snow rain": [
+      "콘텐츠·주제",
+      "공간·카메라"
+    ],
+    "spaceInUp": [
+      "예시 이름·별칭"
+    ],
+    "spaceOutDown": [
+      "예시 이름·별칭"
+    ],
+    "spend alerts": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "Spending Alerts": [
+      "예시 이름·별칭"
+    ],
+    "Spinner with Status Text": [
+      "기능·목적",
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "spline": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "splines": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "split flap board": [
+      "요소·형태",
+      "모션·전환"
+    ],
+    "Split Text Reveal": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Split-Flap Board": [
+      "예시 이름·별칭"
+    ],
+    "spotlight": [
+      "공간·카메라"
+    ],
+    "spotlight hover": [
+      "동작·입력"
+    ],
+    "Spotlight Hover Glow": [
+      "동작·입력",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "Spotlight Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Stacking Cards": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Stagger Reveal": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Star Rating": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "starfield": [
+      "공간·카메라"
+    ],
+    "Starfield / Space Particles": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "StaticWipe": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "status spinner": [
+      "기능·목적",
+      "요소·형태",
+      "모션·전환"
+    ],
+    "Sticky Section": [
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "stop generating": [
+      "기능·목적"
+    ],
+    "Stop Generating Button": [
+      "기능·목적",
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "subagent grid": [
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "subsurface": [
+      "시각 스타일·분위기",
+      "공간·카메라"
+    ],
+    "Success Confetti": [
+      "예시 이름·별칭"
+    ],
+    "sunlight": [
+      "공간·카메라"
+    ],
+    "SVG": [
+      "기술·구현"
+    ],
+    "svg line draw": [
+      "기술·구현"
+    ],
+    "SVG Line Draw on Scroll": [
+      "동작·입력",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "SVG Path Animation": [
+      "모션·전환",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "swap": [
+      "예시 이름·별칭"
+    ],
+    "swashIn": [
+      "예시 이름·별칭"
+    ],
+    "swashOut": [
+      "예시 이름·별칭"
+    ],
+    "Swinging Pendulum Text Animation": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Swipe to Dismiss": [
+      "동작·입력",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Synthwave Grid": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "System Prompt Editor": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "task plan": [
+      "기능·목적"
+    ],
+    "teapot": [
+      "공간·카메라"
+    ],
+    "terrain": [
+      "공간·카메라"
+    ],
+    "text": [
+      "요소·형태"
+    ],
+    "Text Blur Focus Effect": [
+      "요소·형태",
+      "동작·입력",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "text clip path reveal": [
+      "요소·형태",
+      "모션·전환"
+    ],
+    "Text Clip-Path Reveal": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Text Fill on Scroll": [
+      "요소·형태",
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "Text Gradient Animation": [
+      "요소·형태",
+      "모션·전환",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "Text Morphing": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Text on a Path": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "text on path": [
+      "요소·형태",
+      "모션·전환"
+    ],
+    "Text Particles": [
+      "요소·형태",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "Theme Toggle Morph": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Thermal Heatmap Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "thinking": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "Thinking Shimmer": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "three.js": [
+      "공간·카메라",
+      "기술·구현",
+      "출처·라이브러리"
+    ],
+    "thumbs down reasons": [
+      "기능·목적"
+    ],
+    "Thumbs Down with Reasons": [
+      "예시 이름·별칭"
+    ],
+    "thumbs feedback": [
+      "기능·목적"
+    ],
+    "Thumbs Up and Down": [
+      "예시 이름·별칭"
+    ],
+    "tinDownOut": [
+      "예시 이름·별칭"
+    ],
+    "tinUpIn": [
+      "예시 이름·별칭"
+    ],
+    "token ring": [
+      "기능·목적",
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "Token Ring Meter": [
+      "예시 이름·별칭"
+    ],
+    "Tone Selector": [
+      "기능·목적",
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "Tool Call Card": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "tool call indicator": [
+      "기능·목적",
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "Tooltip Reveal": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "toon": [
+      "시각 스타일·분위기"
+    ],
+    "Topographic Contour Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Topographic Lines": [
+      "예시 이름·별칭"
+    ],
+    "topology": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "transmission": [
+      "시각 스타일·분위기",
+      "공간·카메라"
+    ],
+    "trunk": [
+      "콘텐츠·주제",
+      "공간·카메라"
+    ],
+    "trust": [
+      "기능·목적"
+    ],
+    "twisterInDown": [
+      "예시 이름·별칭"
+    ],
+    "Typewriter Effect": [
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "Typing Dots": [
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "Typing Indicator": [
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "upgrade banner": [
+      "요소·형태"
+    ],
+    "Upgrade Plan Banner": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "usage": [
+      "기능·목적"
+    ],
+    "usage chart": [
+      "기능·목적",
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "usdz": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "USDZ 모델": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "vanishIn": [
+      "예시 이름·별칭"
+    ],
+    "vanishOut": [
+      "예시 이름·별칭"
+    ],
+    "Vanta": [
+      "출처·라이브러리"
+    ],
+    "Variable Font Morph": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "variants": [
+      "기타·검토"
+    ],
+    "Vertigo": [
+      "공간·카메라"
+    ],
+    "View Transitions API": [
+      "모션·전환",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "Voice and Speech Settings": [
+      "기능·목적",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "voice input prompt": [
+      "기능·목적",
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "voice mode": [
+      "콘텐츠·주제"
+    ],
+    "Voice Mode Screen": [
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "voice recorder": [
+      "콘텐츠·주제"
+    ],
+    "Voice Recorder with Waveform": [
+      "모션·전환",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "voice settings": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "voice-media": [
+      "콘텐츠·주제"
+    ],
+    "volumetric smoke": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "Volumetric Smoke / 3D Noise": [
+      "시각 스타일·분위기",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "voxelpainter": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "vsm": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "walk": [
+      "동작·입력",
+      "모션·전환",
+      "공간·카메라"
+    ],
+    "Was This Helpful Bar": [
+      "예시 이름·별칭"
+    ],
+    "Water Reflection Text Effect": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Water Ripple": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Wave Layers": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "waves": [
+      "모션·전환"
+    ],
+    "Wavy Text": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Web Results Card": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "Web Search Indicator": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "WebGL Shader Animation": [
+      "모션·전환",
+      "공간·카메라",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "What's New Dialog": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "whats new dialog": [
+      "요소·형태"
+    ],
+    "WindowBlinds": [
+      "예시 이름·별칭"
+    ],
+    "wireframe": [
+      "시각 스타일·분위기",
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "word by word reveal": [
+      "모션·전환"
+    ],
+    "Word-by-Word Reveal": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "Zoom Into Image": [
+      "요소·형태",
+      "모션·전환",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "가격": [
+      "콘텐츠·주제"
+    ],
+    "가독성": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "가로": [
+      "요소·형태"
+    ],
+    "각도": [
+      "공간·카메라"
+    ],
+    "값 조절": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "강의": [
+      "콘텐츠·주제"
+    ],
+    "갤러리": [
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "거래": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "거리": [
+      "공간·카메라"
+    ],
+    "거터": [
+      "요소·형태"
+    ],
+    "검색": [
+      "기능·목적"
+    ],
+    "격자": [
+      "요소·형태",
+      "시각 스타일·분위기"
+    ],
+    "결제": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "경계": [
+      "공간·카메라"
+    ],
+    "경로": [
+      "모션·전환"
+    ],
+    "계획": [
+      "기능·목적"
+    ],
+    "고객": [
+      "콘텐츠·주제"
+    ],
+    "고정": [
+      "동작·입력"
+    ],
+    "고정 화면의 스크롤 스토리": [
+      "동작·입력",
+      "예시 이름·별칭"
+    ],
+    "곡선 경로 돌출": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "공유": [
+      "기능·목적"
+    ],
+    "공유 요소": [
+      "기능·목적"
+    ],
+    "관리": [
+      "기능·목적"
+    ],
+    "교육": [
+      "콘텐츠·주제"
+    ],
+    "구매": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "구형": [
+      "공간·카메라"
+    ],
+    "굵기": [
+      "요소·형태",
+      "시각 스타일·분위기"
+    ],
+    "그라디언트": [
+      "시각 스타일·분위기"
+    ],
+    "그룹": [
+      "요소·형태"
+    ],
+    "그리드": [
+      "요소·형태"
+    ],
+    "그림자": [
+      "시각 스타일·분위기"
+    ],
+    "글꼴": [
+      "요소·형태",
+      "시각 스타일·분위기"
+    ],
+    "글로우": [
+      "시각 스타일·분위기"
+    ],
+    "글리치": [
+      "모션·전환"
+    ],
+    "글자": [
+      "요소·형태"
+    ],
+    "글자별 초점 이동": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "금박 텍스트": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "금속 표면 텍스트": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "기록": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "긴 그림자 텍스트": [
+      "요소·형태",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "내비게이션": [
+      "요소·형태"
+    ],
+    "넘기기": [
+      "모션·전환",
+      "기기·환경"
+    ],
+    "노이즈": [
+      "시각 스타일·분위기"
+    ],
+    "노출": [
+      "공간·카메라"
+    ],
+    "녹아내리는 글자": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "다중 손잡이": [
+      "요소·형태",
+      "동작·입력"
+    ],
+    "다중 시점": [
+      "공간·카메라"
+    ],
+    "다중시점": [
+      "공간·카메라"
+    ],
+    "단계": [
+      "기능·목적",
+      "요소·형태"
+    ],
+    "단계적공개": [
+      "기능·목적"
+    ],
+    "단어": [
+      "요소·형태"
+    ],
+    "달리": [
+      "공간·카메라"
+    ],
+    "달리 줌": [
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "답변": [
+      "콘텐츠·주제"
+    ],
+    "대기": [
+      "기능·목적"
+    ],
+    "대비": [
+      "시각 스타일·분위기"
+    ],
+    "대상 맞춤": [
+      "공간·카메라"
+    ],
+    "대시보드": [
+      "요소·형태"
+    ],
+    "대화": [
+      "콘텐츠·주제"
+    ],
+    "대화·채팅": [
+      "콘텐츠·주제"
+    ],
+    "대화상자": [
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "더보기": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "더블 탭": [
+      "요소·형태"
+    ],
+    "데스크톱": [
+      "기기·환경"
+    ],
+    "데이터": [
+      "콘텐츠·주제"
+    ],
+    "도미노처럼 넘어지는 글자": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "도장 찍기 텍스트": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "돋보기": [
+      "기능·목적"
+    ],
+    "동작 줄이기": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "뒤집기": [
+      "동작·입력",
+      "모션·전환"
+    ],
+    "드래그": [
+      "동작·입력"
+    ],
+    "드러내기": [
+      "모션·전환"
+    ],
+    "드로어": [
+      "요소·형태"
+    ],
+    "드론": [
+      "공간·카메라"
+    ],
+    "등고선 텍스트": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "등장": [
+      "모션·전환"
+    ],
+    "등장·퇴장": [
+      "모션·전환"
+    ],
+    "디졸브": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "라디오": [
+      "요소·형태"
+    ],
+    "랜딩": [
+      "요소·형태"
+    ],
+    "레이아웃": [
+      "요소·형태"
+    ],
+    "로그인": [
+      "기능·목적"
+    ],
+    "로딩": [
+      "기능·목적"
+    ],
+    "리스트박스": [
+      "요소·형태"
+    ],
+    "리플": [
+      "요소·형태",
+      "모션·전환"
+    ],
+    "링크": [
+      "요소·형태"
+    ],
+    "마그네틱": [
+      "동작·입력",
+      "모션·전환"
+    ],
+    "마스크": [
+      "모션·전환"
+    ],
+    "마우스": [
+      "요소·형태",
+      "동작·입력",
+      "기기·환경"
+    ],
+    "마우스·커서": [
+      "요소·형태",
+      "동작·입력",
+      "기기·환경"
+    ],
+    "마진": [
+      "요소·형태"
+    ],
+    "만화풍 팝 텍스트": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "매물": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "매장": [
+      "콘텐츠·주제"
+    ],
+    "메뉴": [
+      "요소·형태"
+    ],
+    "메시": [
+      "공간·카메라"
+    ],
+    "메시지": [
+      "콘텐츠·주제",
+      "공간·카메라"
+    ],
+    "메이슨리": [
+      "요소·형태"
+    ],
+    "명도": [
+      "시각 스타일·분위기"
+    ],
+    "모달": [
+      "요소·형태"
+    ],
+    "모달·대화상자": [
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "모델": [
+      "공간·카메라"
+    ],
+    "모바일": [
+      "기기·환경"
+    ],
+    "모션": [
+      "모션·전환"
+    ],
+    "모아레 텍스트": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "모핑": [
+      "모션·전환"
+    ],
+    "목록": [
+      "요소·형태"
+    ],
+    "무한 반복": [
+      "모션·전환"
+    ],
+    "문자 비처럼 떨어지기": [
+      "예시 이름·별칭"
+    ],
+    "물결": [
+      "모션·전환"
+    ],
+    "물결 채우기 텍스트": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "물리 기반 투과 재질": [
+      "시각 스타일·분위기",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "물리 조명과 노출": [
+      "공간·카메라",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "밀도": [
+      "요소·형태"
+    ],
+    "바": [
+      "요소·형태"
+    ],
+    "바다 파도와 태양": [
+      "예시 이름·별칭"
+    ],
+    "바운스": [
+      "모션·전환"
+    ],
+    "바코드 텍스트": [
+      "요소·형태",
+      "콘텐츠·주제",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "박동 텍스트": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "반구광과 지면색": [
+      "예시 이름·별칭"
+    ],
+    "반응형": [
+      "기능·목적",
+      "기기·환경"
+    ],
+    "반전 텍스트": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "방향": [
+      "동작·입력",
+      "공간·카메라"
+    ],
+    "배경": [
+      "요소·형태"
+    ],
+    "배지": [
+      "요소·형태"
+    ],
+    "버튼": [
+      "요소·형태"
+    ],
+    "범위": [
+      "기능·목적"
+    ],
+    "변위 맵 재질": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "변형": [
+      "모션·전환"
+    ],
+    "별": [
+      "공간·카메라"
+    ],
+    "별점": [
+      "기능·목적"
+    ],
+    "병원": [
+      "콘텐츠·주제"
+    ],
+    "보드": [
+      "요소·형태"
+    ],
+    "보케": [
+      "시각 스타일·분위기",
+      "공간·카메라"
+    ],
+    "복사": [
+      "기능·목적"
+    ],
+    "복사·공유": [
+      "기능·목적"
+    ],
+    "볼록 껍질 형상": [
+      "예시 이름·별칭"
+    ],
+    "부동산": [
+      "콘텐츠·주제"
+    ],
+    "부드러움": [
+      "시각 스타일·분위기"
+    ],
+    "부분 선택": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "분산 그림자 맵": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "분석": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "분자 구조 모델": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "분할": [
+      "요소·형태"
+    ],
+    "분할 화면": [
+      "요소·형태"
+    ],
+    "분할화면": [
+      "요소·형태"
+    ],
+    "뷰포트": [
+      "기기·환경"
+    ],
+    "블러": [
+      "시각 스타일·분위기"
+    ],
+    "블로그": [
+      "콘텐츠·주제"
+    ],
+    "비교": [
+      "기능·목적"
+    ],
+    "비행": [
+      "모션·전환",
+      "공간·카메라"
+    ],
+    "사각형": [
+      "요소·형태"
+    ],
+    "사이드바": [
+      "요소·형태"
+    ],
+    "삼각형 메시 선택": [
+      "기능·목적",
+      "동작·입력",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "상단바": [
+      "요소·형태"
+    ],
+    "상세": [
+      "기타·검토"
+    ],
+    "상태": [
+      "기능·목적"
+    ],
+    "상태 선택": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "상태 전환": [
+      "기능·목적",
+      "모션·전환"
+    ],
+    "상품": [
+      "콘텐츠·주제"
+    ],
+    "상품상세": [
+      "콘텐츠·주제"
+    ],
+    "색상": [
+      "시각 스타일·분위기"
+    ],
+    "색상 변화": [
+      "시각 스타일·분위기"
+    ],
+    "색상·그라데이션": [
+      "시각 스타일·분위기"
+    ],
+    "생략": [
+      "기능·목적"
+    ],
+    "생성": [
+      "기능·목적"
+    ],
+    "서로 다른 글자 조합": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "서리 텍스트": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "서비스": [
+      "콘텐츠·주제"
+    ],
+    "선택": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "설명": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "설정": [
+      "기능·목적"
+    ],
+    "성공": [
+      "기능·목적"
+    ],
+    "셔터": [
+      "공간·카메라"
+    ],
+    "셰이더": [
+      "기술·구현"
+    ],
+    "소개": [
+      "콘텐츠·주제"
+    ],
+    "쇼핑": [
+      "콘텐츠·주제"
+    ],
+    "쇼핑몰": [
+      "콘텐츠·주제"
+    ],
+    "수량": [
+      "기능·목적"
+    ],
+    "숙소": [
+      "콘텐츠·주제"
+    ],
+    "순서 변경": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "순차": [
+      "모션·전환"
+    ],
+    "스냅": [
+      "동작·입력"
+    ],
+    "스와이프": [
+      "동작·입력",
+      "모션·전환"
+    ],
+    "스위치": [
+      "요소·형태"
+    ],
+    "스캐너 강조": [
+      "예시 이름·별칭"
+    ],
+    "스케일": [
+      "모션·전환"
+    ],
+    "스켈레톤": [
+      "요소·형태"
+    ],
+    "스크롤": [
+      "동작·입력"
+    ],
+    "스크롤 등장 방식과 발동 시점": [
+      "동작·입력",
+      "모션·전환",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "스키닝과 모프 타깃": [
+      "예시 이름·별칭"
+    ],
+    "스토리": [
+      "콘텐츠·주제"
+    ],
+    "스트리밍": [
+      "기능·목적",
+      "모션·전환",
+      "콘텐츠·주제"
+    ],
+    "스포트라이트": [
+      "시각 스타일·분위기",
+      "공간·카메라"
+    ],
+    "스포트라이트 설정": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "스프링": [
+      "모션·전환"
+    ],
+    "스피너": [
+      "요소·형태"
+    ],
+    "스핀버튼": [
+      "요소·형태"
+    ],
+    "슬라이더": [
+      "요소·형태"
+    ],
+    "슬라이드": [
+      "모션·전환"
+    ],
+    "승인": [
+      "기능·목적"
+    ],
+    "시각 보정": [
+      "시각 스타일·분위기"
+    ],
+    "시각적 강조": [
+      "시각 스타일·분위기"
+    ],
+    "시간": [
+      "기능·목적"
+    ],
+    "시선": [
+      "동작·입력",
+      "공간·카메라"
+    ],
+    "시야": [
+      "공간·카메라"
+    ],
+    "시야각": [
+      "공간·카메라"
+    ],
+    "시점": [
+      "공간·카메라"
+    ],
+    "시점 전환": [
+      "모션·전환",
+      "공간·카메라"
+    ],
+    "시퀀스": [
+      "모션·전환",
+      "콘텐츠·주제"
+    ],
+    "신고": [
+      "기능·목적"
+    ],
+    "신청": [
+      "기능·목적"
+    ],
+    "쌓기": [
+      "요소·형태",
+      "동작·입력",
+      "모션·전환"
+    ],
+    "아이콘": [
+      "요소·형태"
+    ],
+    "아코디언": [
+      "요소·형태"
+    ],
+    "아크볼": [
+      "공간·카메라"
+    ],
+    "알림": [
+      "기능·목적"
+    ],
+    "알림 배지": [
+      "기능·목적",
+      "요소·형태"
+    ],
+    "애니메이션": [
+      "모션·전환"
+    ],
+    "업로드": [
+      "기능·목적"
+    ],
+    "업무": [
+      "콘텐츠·주제"
+    ],
+    "에이전트": [
+      "콘텐츠·주제"
+    ],
+    "여러 캐릭터 애니메이션": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "여백": [
+      "요소·형태",
+      "시각 스타일·분위기"
+    ],
+    "여행": [
+      "콘텐츠·주제"
+    ],
+    "역운동학 관절 조작": [
+      "예시 이름·별칭"
+    ],
+    "연기처럼 번지는 글자": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "열": [
+      "요소·형태"
+    ],
+    "열지도 색상 텍스트": [
+      "요소·형태",
+      "시각 스타일·분위기",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "예약": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "오디오": [
+      "콘텐츠·주제"
+    ],
+    "오디오·비디오": [
+      "콘텐츠·주제"
+    ],
+    "오류": [
+      "기능·목적"
+    ],
+    "오빗": [
+      "공간·카메라"
+    ],
+    "오프셋": [
+      "기타·검토"
+    ],
+    "와이어프레임": [
+      "요소·형태"
+    ],
+    "와이어프레임 표시": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "와이프": [
+      "모션·전환"
+    ],
+    "요소 진입": [
+      "동작·입력",
+      "모션·전환"
+    ],
+    "요약": [
+      "기능·목적"
+    ],
+    "원": [
+      "요소·형태"
+    ],
+    "원근": [
+      "공간·카메라"
+    ],
+    "원형 궤도 글자": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "웨비나": [
+      "콘텐츠·주제"
+    ],
+    "위 방향": [
+      "공간·카메라"
+    ],
+    "유리": [
+      "시각 스타일·분위기"
+    ],
+    "유리 질감 글자": [
+      "요소·형태",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "유효성 검사": [
+      "기능·목적"
+    ],
+    "음성": [
+      "콘텐츠·주제"
+    ],
+    "이동": [
+      "모션·전환"
+    ],
+    "이미지": [
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "이징": [
+      "모션·전환",
+      "기술·구현"
+    ],
+    "이퀄라이저 글자": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "인사": [
+      "콘텐츠·주제"
+    ],
+    "인터랙티브 배경": [
+      "요소·형태"
+    ],
+    "읽기 진행률과 현재 위치": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "입력": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "입력 상태": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "입력 설정": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "입력창": [
+      "기능·목적",
+      "요소·형태",
+      "동작·입력"
+    ],
+    "입자": [
+      "공간·카메라"
+    ],
+    "입체 도형 불리언 연산": [
+      "요소·형태",
+      "시각 스타일·분위기",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "입체 색 분리 텍스트": [
+      "요소·형태",
+      "시각 스타일·분위기",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "입체로 돌출된 글자": [
+      "요소·형태",
+      "시각 스타일·분위기",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "자동 완성": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "자동 회전": [
+      "모션·전환"
+    ],
+    "자동완성": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "자동차 재질과 색": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "자료": [
+      "콘텐츠·주제"
+    ],
+    "자유 이동": [
+      "모션·전환"
+    ],
+    "자유 카메라": [
+      "공간·카메라"
+    ],
+    "자유회전": [
+      "모션·전환"
+    ],
+    "작업": [
+      "기능·목적"
+    ],
+    "작업물": [
+      "기능·목적"
+    ],
+    "작업영역": [
+      "기능·목적"
+    ],
+    "잘린 텍스트 레이어": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "장바구니": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "장애물": [
+      "공간·카메라"
+    ],
+    "재고": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "재무": [
+      "콘텐츠·주제"
+    ],
+    "재생": [
+      "기능·목적",
+      "동작·입력",
+      "모션·전환"
+    ],
+    "재질": [
+      "시각 스타일·분위기"
+    ],
+    "전": [
+      "기타·검토"
+    ],
+    "전환": [
+      "모션·전환"
+    ],
+    "전환 완료": [
+      "모션·전환"
+    ],
+    "점광원 그림자": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "접근성": [
+      "기능·목적"
+    ],
+    "접기": [
+      "동작·입력"
+    ],
+    "접기·펼치기": [
+      "동작·입력"
+    ],
+    "정렬": [
+      "기능·목적"
+    ],
+    "정보위계": [
+      "기능·목적"
+    ],
+    "제스처": [
+      "동작·입력"
+    ],
+    "제품": [
+      "콘텐츠·주제"
+    ],
+    "조리개": [
+      "공간·카메라"
+    ],
+    "조명": [
+      "공간·카메라"
+    ],
+    "종이처럼 접히는 글자": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "줄바꿈": [
+      "요소·형태"
+    ],
+    "줌": [
+      "모션·전환"
+    ],
+    "줌·확대": [
+      "모션·전환"
+    ],
+    "중앙": [
+      "요소·형태"
+    ],
+    "즐겨찾기": [
+      "기능·목적"
+    ],
+    "지도": [
+      "콘텐츠·주제"
+    ],
+    "지표": [
+      "기타·검토"
+    ],
+    "지형과 표면 충돌": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "직교": [
+      "공간·카메라"
+    ],
+    "직교 투영 객체 선택": [
+      "기능·목적",
+      "동작·입력",
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "직사각형 면광원": [
+      "예시 이름·별칭"
+    ],
+    "직원": [
+      "콘텐츠·주제"
+    ],
+    "진자처럼 흔들리는 글자": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "진행": [
+      "기능·목적"
+    ],
+    "진행 상태": [
+      "기능·목적"
+    ],
+    "찻주전자 형상 설정": [
+      "기능·목적",
+      "예시 이름·별칭"
+    ],
+    "채용": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "채팅": [
+      "콘텐츠·주제"
+    ],
+    "청사진 텍스트": [
+      "요소·형태",
+      "콘텐츠·주제",
+      "예시 이름·별칭"
+    ],
+    "체크": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "체크박스": [
+      "요소·형태"
+    ],
+    "초점": [
+      "공간·카메라"
+    ],
+    "촬영경로": [
+      "모션·전환"
+    ],
+    "추가": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "축": [
+      "공간·카메라"
+    ],
+    "축소": [
+      "모션·전환"
+    ],
+    "출시": [
+      "콘텐츠·주제"
+    ],
+    "출처": [
+      "기능·목적"
+    ],
+    "충돌": [
+      "공간·카메라"
+    ],
+    "충돌체": [
+      "공간·카메라"
+    ],
+    "카드": [
+      "요소·형태"
+    ],
+    "카메라": [
+      "공간·카메라"
+    ],
+    "카메라 경로": [
+      "모션·전환",
+      "공간·카메라"
+    ],
+    "카메라 이동": [
+      "모션·전환",
+      "공간·카메라"
+    ],
+    "카운터": [
+      "기능·목적"
+    ],
+    "카페": [
+      "콘텐츠·주제"
+    ],
+    "캐러셀": [
+      "요소·형태"
+    ],
+    "캐릭터 걷기 조작": [
+      "예시 이름·별칭"
+    ],
+    "캐릭터 동작 혼합": [
+      "예시 이름·별칭"
+    ],
+    "커리큘럼": [
+      "콘텐츠·주제"
+    ],
+    "커버": [
+      "요소·형태"
+    ],
+    "커서": [
+      "요소·형태"
+    ],
+    "커튼": [
+      "모션·전환"
+    ],
+    "코드": [
+      "콘텐츠·주제",
+      "기술·구현"
+    ],
+    "콤보박스": [
+      "요소·형태"
+    ],
+    "큐브": [
+      "요소·형태",
+      "공간·카메라"
+    ],
+    "크기": [
+      "요소·형태"
+    ],
+    "크로스 디졸브": [
+      "모션·전환"
+    ],
+    "크로스페이드": [
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "클리핑": [
+      "모션·전환",
+      "기술·구현"
+    ],
+    "클릭": [
+      "동작·입력"
+    ],
+    "클릭·탭": [
+      "요소·형태",
+      "동작·입력"
+    ],
+    "클립": [
+      "모션·전환"
+    ],
+    "클립보드": [
+      "동작·입력",
+      "기술·구현"
+    ],
+    "키보드": [
+      "동작·입력",
+      "기기·환경"
+    ],
+    "키프레임": [
+      "요소·형태",
+      "모션·전환",
+      "기술·구현"
+    ],
+    "키프레임 모델 애니메이션": [
+      "요소·형태",
+      "모션·전환",
+      "공간·카메라",
+      "기술·구현",
+      "예시 이름·별칭"
+    ],
+    "타이포그래피": [
+      "요소·형태"
+    ],
+    "타이핑": [
+      "동작·입력"
+    ],
+    "타임라인": [
+      "요소·형태"
+    ],
+    "타자기": [
+      "동작·입력",
+      "모션·전환"
+    ],
+    "탄성": [
+      "모션·전환"
+    ],
+    "탄성 텍스트": [
+      "요소·형태",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "탄성·스프링": [
+      "모션·전환"
+    ],
+    "탐색": [
+      "기능·목적"
+    ],
+    "태양광과 대기": [
+      "예시 이름·별칭"
+    ],
+    "탭": [
+      "요소·형태"
+    ],
+    "터치": [
+      "동작·입력",
+      "기기·환경"
+    ],
+    "테두리": [
+      "시각 스타일·분위기"
+    ],
+    "테마": [
+      "시각 스타일·분위기"
+    ],
+    "텍스트": [
+      "요소·형태"
+    ],
+    "텍스트 메아리": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "텍스트 반사": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "텍스트 스포트라이트": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "토글": [
+      "요소·형태"
+    ],
+    "토스트": [
+      "요소·형태"
+    ],
+    "토큰": [
+      "콘텐츠·주제"
+    ],
+    "톤 매핑과 노출": [
+      "예시 이름·별칭"
+    ],
+    "퇴장": [
+      "모션·전환"
+    ],
+    "투명 코팅 재질": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "투영": [
+      "공간·카메라"
+    ],
+    "툰 셰이딩": [
+      "예시 이름·별칭"
+    ],
+    "툴팁": [
+      "요소·형태"
+    ],
+    "트랙볼": [
+      "공간·카메라"
+    ],
+    "트럭": [
+      "공간·카메라"
+    ],
+    "티켓": [
+      "콘텐츠·주제"
+    ],
+    "파도": [
+      "모션·전환",
+      "시각 스타일·분위기"
+    ],
+    "파일": [
+      "콘텐츠·주제"
+    ],
+    "파티클": [
+      "공간·카메라",
+      "기술·구현"
+    ],
+    "파편": [
+      "모션·전환"
+    ],
+    "패널": [
+      "요소·형태"
+    ],
+    "패닝": [
+      "공간·카메라"
+    ],
+    "패딩": [
+      "요소·형태"
+    ],
+    "패럴랙스": [
+      "모션·전환"
+    ],
+    "패럴랙스 속도 비교": [
+      "기능·목적",
+      "모션·전환",
+      "예시 이름·별칭"
+    ],
+    "팬": [
+      "공간·카메라"
+    ],
+    "펄스": [
+      "모션·전환"
+    ],
+    "페이드": [
+      "모션·전환"
+    ],
+    "페이지": [
+      "요소·형태"
+    ],
+    "편집": [
+      "동작·입력"
+    ],
+    "펼치기": [
+      "동작·입력"
+    ],
+    "평가": [
+      "기능·목적"
+    ],
+    "평가·반응": [
+      "기능·목적"
+    ],
+    "평점": [
+      "기능·목적",
+      "콘텐츠·주제"
+    ],
+    "포인터": [
+      "동작·입력"
+    ],
+    "포인트 클라우드 레이캐스팅": [
+      "공간·카메라",
+      "예시 이름·별칭"
+    ],
+    "포커스": [
+      "동작·입력"
+    ],
+    "포털": [
+      "요소·형태",
+      "모션·전환"
+    ],
+    "포트폴리오": [
+      "콘텐츠·주제"
+    ],
+    "폼": [
+      "요소·형태"
+    ],
+    "표": [
+      "요소·형태"
+    ],
+    "표·데이터": [
+      "요소·형태",
+      "콘텐츠·주제"
+    ],
+    "표면 아래 빛 산란": [
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "표시 영역": [
+      "기타·검토"
+    ],
+    "푸터": [
+      "요소·형태"
+    ],
+    "프레이밍": [
+      "공간·카메라"
+    ],
+    "프로젝트": [
+      "콘텐츠·주제"
+    ],
+    "프로필": [
+      "콘텐츠·주제"
+    ],
+    "프롬프트": [
+      "요소·형태"
+    ],
+    "프리즘 분할 글자": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "플로팅": [
+      "요소·형태"
+    ],
+    "피드백": [
+      "기능·목적"
+    ],
+    "피사계심도": [
+      "공간·카메라"
+    ],
+    "픽셀": [
+      "시각 스타일·분위기"
+    ],
+    "픽셀 오프셋 글자": [
+      "요소·형태",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "필터": [
+      "기능·목적"
+    ],
+    "하늘과 태양 위치": [
+      "예시 이름·별칭"
+    ],
+    "하단": [
+      "요소·형태"
+    ],
+    "하단바": [
+      "요소·형태"
+    ],
+    "하트": [
+      "요소·형태",
+      "시각 스타일·분위기"
+    ],
+    "해상도": [
+      "공간·카메라",
+      "기술·구현",
+      "기기·환경"
+    ],
+    "행간": [
+      "요소·형태",
+      "시각 스타일·분위기"
+    ],
+    "행동": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "행사": [
+      "콘텐츠·주제"
+    ],
+    "헤더": [
+      "요소·형태"
+    ],
+    "호버": [
+      "동작·입력"
+    ],
+    "홀로그램 글자": [
+      "요소·형태",
+      "예시 이름·별칭"
+    ],
+    "화각": [
+      "공간·카메라"
+    ],
+    "화면 중심": [
+      "요소·형태"
+    ],
+    "화면영역": [
+      "요소·형태"
+    ],
+    "화면전환": [
+      "모션·전환"
+    ],
+    "확인": [
+      "기능·목적"
+    ],
+    "확장": [
+      "기능·목적",
+      "동작·입력"
+    ],
+    "환경": [
+      "공간·카메라"
+    ],
+    "회로 패턴 텍스트": [
+      "요소·형태",
+      "시각 스타일·분위기",
+      "예시 이름·별칭"
+    ],
+    "회전": [
+      "모션·전환"
+    ],
+    "회전 운동": [
+      "모션·전환"
+    ],
+    "회전 중심": [
+      "모션·전환"
+    ],
+    "효과": [
+      "모션·전환",
+      "시각 스타일·분위기"
+    ],
+    "후": [
+      "기타·검토"
+    ],
+    "흔들림": [
+      "동작·입력",
+      "모션·전환",
+      "공간·카메라"
+    ],
+    "히어로": [
+      "요소·형태"
+    ]
+  }
+}

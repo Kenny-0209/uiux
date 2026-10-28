@@ -9,6 +9,8 @@ const motion = [
  {id:'motion-press',name:'누르기 반응',english:'Press',category:'인터랙션',description:'포인터나 키보드로 눌러 반응을 확인하세요.',tags:['클릭','키보드','제스처'],preview:'https://examples.motion.dev/js/press',sourceName:'Motion',sourceUrl:'https://motion.dev/examples/js-press',license:'원본 제공 · 온라인',remote:true},
 ];
 import {inspectDemo, showDemo, setDemoSlow, resetDemo} from './demo-adapter.js';
+import {createSearchTools} from './search-tools.js?v=20261028-2';
+let searchController=null;
 const initialCategories=['전체','화면 구성','UI 패턴','모션과 인터랙션','화면 전환','카메라','3D'];
 for(const e of motion) e.category=e.category==='인터랙션'||e.category==='모션'?'모션과 인터랙션':e.category;
 let examples=[], category='전체', subcategory='전체', selectedTag='', platform='전체', query='', currentFiles=[], codeRequest=0;
@@ -89,7 +91,7 @@ function platformList(e){return Array.isArray(e.platforms)?e.platforms.filter(x=
 function matchesPlatform(e){const p=platformList(e);return platform==='전체'||(platform==='미확인'?!p.length:p.includes(platform));}
 function categoryFacets(e,name){return e.category===name?(e.taxonomy?.subcategories||[]):(e.taxonomy?.related?.[name]||[]);}
 function matchesCategory(e,name=category){return name==='전체'||e.category===name||categoryFacets(e,name).length>0;}
-function matchesSearch(e){const q=norm(query);return !q||[e.name,e.english,e.category,e.sourceName,...(e.tags||[]),...(e.taxonomy?.subcategories||[]),...Object.values(e.taxonomy?.related||{}).flat()].some(x=>norm(x).includes(q));}
+function matchesSearch(e){return searchController?searchController.matches(e,query):true;}
 function matchesTag(e){return !selectedTag||(e.tags||[]).some(t=>norm(t)===norm(selectedTag));}
 function eligible(e){return matchesPlatform(e)&&matchesSearch(e)&&matchesTag(e);}
 function renderPlatforms(){const choices=['전체','데스크톱','모바일','미확인'];$('#platform-filters').innerHTML=choices.map(x=>{const n=x==='전체'?examples.length:examples.filter(e=>x==='미확인'?!platformList(e).length:platformList(e).includes(x)).length;return `<button type="button" class="platform-chip ${platform===x?'is-active':''}" data-platform="${x}" aria-pressed="${platform===x}">${x}<span>${n}</span></button>`}).join('');}
@@ -304,14 +306,17 @@ document.addEventListener('click',async event=>{
  const license=event.target.closest('[data-license]');if(license){const e=examples.find(x=>x.id===license.dataset.license);if(!e)return;$('#code-title').textContent=`${e.sourceName} · ${e.license} 라이선스`;$('#code-description').textContent='원본 저장소에서 함께 제공한 라이선스 고지입니다.';$('#code-source').href=e.sourceUrl;currentFiles=[{label:'라이선스',path:e.licensePath}];$('#code-dialog').showModal();selectCode(0);return;}
  if(event.target.closest('[data-close]')){codeRequest++;$('#code-dialog').close();}
 });
-$('#search').addEventListener('input',e=>{query=e.target.value;renderFilters();render()});
+$('#search').addEventListener('input',e=>{query=e.target.value;renderFilters();render();searchController?.drawSuggestions()});
 document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'&&!$('#code-dialog').open){event.preventDefault();$('#search').focus();}});
 const manifests=['manifest.json','camera-manifest.json','spatial-manifest.json','ui-more.json','hand-all.json','ai-all.json','apg-more.json','bootstrap.json','templates.json','camera-more.json','3d-more.json','motion-more.json','text-more.json','scroll-more.json','vanta-more.json','env-more.json','entry-more.json','animate-more.json','course-labs.json','codscroll.json','ics-scroll.json','scroll-drive.json','transition-manifest.json','movin.json'];
 const taxonomyRequest=fetch('./taxonomy.json?v=20261028-4').then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}).catch(error=>({error}));
 const batches=await Promise.all(manifests.map(async name=>{try{const res=await fetch(`./examples/${name}`);if(!res.ok)throw new Error(`HTTP ${res.status}`);const data=await res.json();if(!Array.isArray(data))throw new Error('잘못된 목록 형식');return {name,data};}catch(error){return {name,error};}}));
 const taxonomy=await taxonomyRequest;
+const tagGroups=await fetch('./tag-groups.json?v=20261028-1').then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}).catch(error=>({error,groups:['기타·검토'],tags:{}}));
 const failed=batches.filter(x=>x.error);const seen=new Set();examples=[...batches.flatMap(x=>x.data||[]),...motion].filter(e=>{if(!e||!e.id||seen.has(e.id))return false;seen.add(e.id);return true});
 examples.forEach(e=>{const detail=taxonomy.items?.[e.id];e.taxonomy=detail||{subcategories:['세부 분류 검토'],related:{},needsReview:true};if(detail?.tags?.length)e.tags=detail.tags;});
 if(failed.length){$('#load-note').textContent=`일부 예시 목록을 불러오지 못했습니다: ${failed.map(x=>x.name).join(', ')}`;failed.forEach(x=>console.warn('목록 오류',x.name,x.error));}
 if(taxonomy.error){$('#load-note').textContent+=' 세부 분류를 불러오지 못해 기존 태그만 표시합니다.';console.warn('세부 분류 오류',taxonomy.error);}
+if(tagGroups.error){$('#load-note').textContent+=' 태그 구조를 불러오지 못했습니다.';console.warn('태그 구조 오류',tagGroups.error);}
+searchController=createSearchTools({examples,tagGroups,onChange:()=>{renderFilters();render()},chooseTag:(tag,negative)=>{if(!negative)selectedTag=tag;query=query.replace(/(?:^|\s)-?(?:"[^"]*"|\S+)$/,'').trim();$('#search').value=query;renderFilters();render()},chooseExample:name=>{selectedTag='';query=name;$('#search').value=name;renderFilters();render()}});
 $('#total').textContent=String(examples.length).padStart(2,'0');renderPlatforms();renderFilters();render();
