@@ -8,3 +8,10 @@
 
 사이트의 자체 설명과 이 원본 그림은 별개이다. 예시 그림은 원저자의 맥락에서 확인하고 다른 목적으로 재사용할 때 포함된 제3자 소재의 권리와 구체적 적용 조건을 다시 확인한다.
 - `sfm.png`: Xingyi He, Jiaming Sun, Yifan Wang, Sida Peng, Qixing Huang, Hujun Bao, Xiaowei Zhou, Detector-Free Structure from Motion (2023), arXiv:2306.15669v1 Figure 3, PDF 4쪽. https://arxiv.org/abs/2306.15669. 원문에 표시된 CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. PDF에서 Figure 3 영역만 잘라 이미지로 변환했다. 캡션은 그림에서 분리되었으며 사이트에서 출처·변경 및 논문 원문 링크를 제공한다.
+
+## 20회 검증에서 수록한 원본 그림
+
+- `review01.png`: Stoudt S, Vásquez VN, Martinez CC (2021), *Principles for data analysis workflows*, Figure 1. https://doi.org/10.1371/journal.pcbi.1008770.g001, CC BY 4.0 https://creativecommons.org/licenses/by/4.0/. 원본 그대로, 사이트에서 축소 표시.
+- `review02.png`: Robert C, Prista von Bonhorst F, Dupont G, Gonze D, De Decker Y (2025), *Role of tristability in the robustness of the differentiation mechanism*, Figure 1. https://doi.org/10.1371/journal.pone.0316666.g001, CC BY 4.0. 원본 그대로, 사이트에서 축소 표시.
+- `review10.png`: van Aert RCM, Wicherts JM, van Assen MALM (2019), *Publication bias examined in meta-analyses from psychology and medicine*, Figure 1. https://doi.org/10.1371/journal.pone.0215052.g001, CC BY 4.0. 원본 그대로, 사이트에서 축소 표시.
+- `review17.png`: Sekar JAP, Tapia J-J, Faeder JR (2017), *Automated visualization of rule-based models*, Figure 1. https://doi.org/10.1371/journal.pcbi.1005857.g001, CC BY 4.0. 원본 그대로, 사이트에서 축소 표시.
