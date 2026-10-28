@@ -1,4 +1,4 @@
-﻿/* 도식백과에서 만든 개념 예시. 특정 보고서나 논문의 원본이 아닙니다. */
+/* 도식백과에서 만든 개념 예시. 특정 보고서나 논문의 원본이 아닙니다. */
 (function () {
   const C = { ink:'#183132', muted:'#69817f', line:'#b9cbbe', pale:'#e9f1e8', white:'#ffffff', green:'#bce3bf', dark:'#17695a', orange:'#ffcfab', blue:'#bbd9ef', purple:'#d8cbef', grid:'#dae6db', pink:'#edbbc1' };
   const esc = x => String(x ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -10,7 +10,7 @@
   const rect = (x,y,w,h,fill,rx=3) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="${fill}"/>`;
   const path = (d,stroke=C.dark,width=2,fill='none') => `<path d="${d}" stroke="${stroke}" stroke-width="${width}" fill="${fill}" stroke-linecap="round" stroke-linejoin="round"/>`;
   const axis = () => line(50,30,50,170,C.muted,1)+line(50,170,318,170,C.muted,1)+line(50,115,318,115,C.grid,1)+line(50,60,318,60,C.grid,1);
-  const svg = (name,content) => `<svg viewBox="0 0 360 210" role="img" aria-label="${esc(name)} 개념 예시" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;font-family:system-ui,'Malgun Gothic',sans-serif"><rect width="360" height="210" fill="#f4f8f1"/>${content}</svg>`;
+  const svg = (name,content) => `<svg viewBox="0 0 360 210" role="img" aria-label="${esc(name)} 개념 예시" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;font-family:DiagramNanum,system-ui,sans-serif"><rect width="360" height="210" fill="#f4f8f1"/>${content}</svg>`;
   const nodes = (arr) => arr.map(a=>box(...a)).join('');
   const step = labels => labels.map((s,i)=>box(21+i*84,80,70,46,s,[C.pale,C.blue,C.green,C.orange][i%4])).join('')+[0,1,2].map(i=>arrow(92+i*84,103,104+i*84,103)).join('');
   const tree = labels => `${box(126,24,108,39,labels[0],C.green)}${line(180,63,180,88)}${line(70,88,290,88)}${[70,180,290].map(x=>line(x,88,x,108)).join('')}${[0,1,2].map((i)=>box(25+i*110,108,90,42,labels[i+1],i===1?C.blue:C.pale)).join('')}`;
