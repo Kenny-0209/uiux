@@ -19,12 +19,20 @@ const mobileSubfilters=document.createElement('div');mobileSubfilters.id='subfil
 const activeTag=document.createElement('div');activeTag.id='active-tag';activeTag.className='active-tag';activeTag.setAttribute('aria-live','polite');$('#platform-filters').closest('.platform-bar').after(activeTag);
 const norm = x => String(x || '').normalize('NFKC').toLocaleLowerCase().trim();
 function updateExpandButton(wrap,active){const btn=wrap?.querySelector('[data-expand]');if(!btn)return;btn.textContent=active?'↙  축소':'↗  크게 보기';btn.setAttribute('aria-expanded',String(active));btn.setAttribute('aria-label',`${btn.dataset.title} ${active?'축소':'크게 보기'}`);}
-let expandedSpacer=null,expandedPreviewHeight='',previousBodyOverflow='';
-function clearExpanded({focus=true}={}){if(!expanded)return;const wrap=expanded;expanded=null;const card=wrap.closest('.work-card');card?.classList.remove('is-expanded');card?.style.removeProperty('--expanded-left');const preview=wrap.querySelector('iframe, .gpu-placeholder, .preview-placeholder');if(preview)preview.style.height=expandedPreviewHeight;expandedSpacer?.remove();expandedSpacer=null;document.body.style.overflow=previousBodyOverflow;updateExpandButton(wrap,false);if(focus&&wrap.isConnected)wrap.querySelector('[data-expand]')?.focus({preventScroll:true});}
+let expandedSpacer=null,expandedPreviewHeight='',previousBodyOverflow='',expandedToken=null;
+// A same-URL history entry lets the browser Back button dismiss the preview.
+// Remove a stale entry's marker on reload without changing the URL.
+const expandStateKey='uiuxExpanded';
+if(history.state?.[expandStateKey]){const state={...history.state};delete state[expandStateKey];history.replaceState(state,'',location.href);}
+function clearExpanded({focus=true,fromHistory=false}={}){if(!expanded)return;const wrap=expanded,token=expandedToken;expanded=null;expandedToken=null;const card=wrap.closest('.work-card');card?.classList.remove('is-expanded');card?.style.removeProperty('--expanded-left');const preview=wrap.querySelector('iframe, .gpu-placeholder, .preview-placeholder');if(preview)preview.style.height=expandedPreviewHeight;expandedSpacer?.remove();expandedSpacer=null;document.body.style.overflow=previousBodyOverflow;updateExpandButton(wrap,false);if(focus&&wrap.isConnected)wrap.querySelector('[data-expand]')?.focus({preventScroll:true});if(!fromHistory&&history.state?.[expandStateKey]?.token===token)history.back();}
 function positionExpanded(){const card=expanded?.closest('.work-card');if(!card)return;const rail=$('.rail');const railVisible=rail&&getComputedStyle(rail).display!=='none';card.style.setProperty('--expanded-left',`${railVisible?Math.max(0,Math.round(rail.getBoundingClientRect().right)):0}px`);}
-function toggleExpanded(wrap){if(expanded===wrap){clearExpanded();return}if(expanded)clearExpanded({focus:false});const card=wrap.closest('.work-card');if(!card)return;const preview=wrap.querySelector('iframe, .gpu-placeholder, .preview-placeholder');expandedPreviewHeight=preview?.style.height||'';expandedSpacer=document.createElement('div');expandedSpacer.setAttribute('aria-hidden','true');expandedSpacer.style.height=`${card.getBoundingClientRect().height}px`;card.before(expandedSpacer);previousBodyOverflow=document.body.style.overflow;document.body.style.overflow='hidden';expanded=wrap;positionExpanded();card.classList.add('is-expanded');updateExpandButton(wrap,true);}
+function openExpanded(wrap,{fromHistory=false,marker=null}={}){const card=wrap?.closest('.work-card');if(!card)return;const preview=wrap.querySelector('iframe, .gpu-placeholder, .preview-placeholder');expandedPreviewHeight=preview?.style.height||'';expandedSpacer=document.createElement('div');expandedSpacer.setAttribute('aria-hidden','true');expandedSpacer.style.height=`${card.getBoundingClientRect().height}px`;card.before(expandedSpacer);previousBodyOverflow=document.body.style.overflow;document.body.style.overflow='hidden';expanded=wrap;expandedToken=marker?.token||`${Date.now()}-${Math.random().toString(36).slice(2)}`;positionExpanded();card.classList.add('is-expanded');updateExpandButton(wrap,true);if(!fromHistory){const state={...(history.state&&typeof history.state==='object'?history.state:{}),[expandStateKey]:{token:expandedToken,id:card.dataset.example}};history.pushState(state,'',location.href);}}
+function toggleExpanded(wrap){if(expanded===wrap){clearExpanded();return}if(expanded){clearExpanded({focus:false,fromHistory:true});const state={...(history.state||{})};delete state[expandStateKey];history.replaceState(state,'',location.href);}openExpanded(wrap);}
+window.addEventListener('popstate',event=>{const marker=event.state?.[expandStateKey];if(expanded&&marker?.token!==expandedToken)clearExpanded({fromHistory:true});if(!expanded&&marker?.id){const card=[...document.querySelectorAll('.work-card')].find(item=>item.dataset.example===marker.id);if(card)openExpanded(card.querySelector('.demo-wrap'),{fromHistory:true,marker});}});
 window.addEventListener('resize',positionExpanded);
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&expanded&&!$('#code-dialog').open){event.preventDefault();clearExpanded();}});
+document.querySelectorAll('[data-back-to-top]').forEach(button=>button.addEventListener('click',()=>{if(expanded)clearExpanded({focus:false});window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}));
+const mobileTop=$('#mobile-back-to-top');function updateBackToTop(){if(mobileTop)mobileTop.hidden=window.scrollY<400;}window.addEventListener('scroll',updateBackToTop,{passive:true});updateBackToTop();
 function needsGPU(e){return Boolean(e.requiresGPU || e.category==='3D');}
 function frame(e, eager=true){
  const height=Number(e.previewHeight);const style=Number.isFinite(height)&&height>=200&&height<=650?` style="height:${height}px"`:'';
@@ -247,6 +255,7 @@ function playerLoading(wrap, waiting=false, preserveVisibility=false){
  p.querySelector('[data-player-slow]').setAttribute('aria-pressed','false');
  p.querySelector('.demo-player-status').textContent=waiting?'화면에 가까워지면 자동으로 불러옵니다.':'지원 여부 확인 중';
 }
+function resetGalleryFrame(frame){if(expanded===frame.closest('.demo-wrap')){try{frame.contentWindow.location.replace(frame.src);return}catch(error){console.warn('예시 초기화 방식 대체',error)}}resetDemo(frame);}
 // Preserve the original Handbook controls inside the example instead of showing a duplicate bar.
 function setupNativePlayer(frame,doc){
  if(!doc?.body?.matches('[data-hb-kind]'))return false;
@@ -264,7 +273,7 @@ function setupNativePlayer(frame,doc){
  const originalReset=native.querySelector('[data-hb-reset]');if(originalReset)originalReset.style.display='none';
  const reset=doc.createElement('button');reset.type='button';reset.className='hb-play';reset.title='예시를 처음 상태로 되돌립니다.';
  reset.innerHTML='<svg class="hb-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>Reset';
- reset.addEventListener('click',()=>{showFrameSkeleton(frame);playerLoading(frame.closest('.demo-wrap'));resetDemo(frame)});native.append(reset);
+ reset.addEventListener('click',()=>{showFrameSkeleton(frame);playerLoading(frame.closest('.demo-wrap'));resetGalleryFrame(frame)});native.append(reset);
  return true;
 }
 const observedPlayerDocs=new WeakSet();
@@ -278,6 +287,9 @@ function setupPlayer(frame){
   observedPlayerDocs.add(doc);
   doc.addEventListener('uiux-demo-state',()=>{if(frame.isConnected&&frame.contentDocument===doc)updateLoadedFrame(frame)});
   doc.addEventListener('keydown',event=>{if(event.key==='Escape'&&expanded===frame.closest('.demo-wrap')&&!$('#code-dialog').open){event.preventDefault();clearExpanded();}});
+  // In an enlarged local demo, ordinary same-origin links should still work,
+  // but should not insert iframe-only history entries ahead of the close step.
+  doc.addEventListener('click',event=>{if(expanded!==frame.closest('.demo-wrap')||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;const link=event.target.closest?.('a[href]');if(!link||link.hasAttribute('download')||(link.target&&link.target!=='_self'))return;try{const url=new URL(link.href,doc.baseURI);if(url.origin!==location.origin||!['http:','https:'].includes(url.protocol))return;event.preventDefault();frame.contentWindow.location.replace(url.href)}catch(error){console.warn('예시 링크 이동 실패',error)}});
  }
  const speed=doc?.querySelector('input[type="checkbox"][data-hb-slowmo]');
  p.hidden=setupNativePlayer(frame,doc);
@@ -307,7 +319,7 @@ document.addEventListener('click',async event=>{
  const playerButton=event.target.closest('[data-player-show], [data-player-slow], [data-player-reset]');
  if(playerButton){
   const wrap=playerButton.closest('.demo-wrap'),frame=wrap?.querySelector('.demo-content iframe');if(!frame)return;
-  if(playerButton.matches('[data-player-reset]')){showFrameSkeleton(frame);playerLoading(wrap);resetDemo(frame);return;}
+  if(playerButton.matches('[data-player-reset]')){showFrameSkeleton(frame);playerLoading(wrap);resetGalleryFrame(frame);return;}
   if(playerButton.matches('[data-player-show]'))showDemo(frame);
   if(playerButton.matches('[data-player-slow]')){setDemoSlow(frame,playerButton.getAttribute('aria-pressed')!=='true');playerButton.setAttribute('aria-pressed',String(inspectDemo(frame).slowActive));}
   return;

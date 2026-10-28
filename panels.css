@@ -1,0 +1,7 @@
+/* Keep the return action available at the bottom of the sticky category rail. */
+@media(min-width:701px){.rail{height:calc(100vh - 28px);height:calc(100dvh - 28px);display:flex;flex-direction:column}.rail .back-to-top{position:sticky;bottom:0;margin-top:auto;flex-shrink:0;width:100%}}
+.back-to-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 12px;border:1px solid #435e4c;border-radius:4px;background:#1b3023;color:#dceee0;font:inherit;font-size:11px;font-weight:700;cursor:pointer}.back-to-top:hover{background:#294834;border-color:#76ae8a}.back-to-top:focus-visible{outline:2px solid #71b2ff;outline-offset:3px}.back-to-top .top-arrow{font-size:15px;line-height:1;color:#a8d6b5}.back-to-top[hidden]{display:none}
+.mobile-back-to-top{display:none}
+@media(max-width:700px){.mobile-back-to-top:not([hidden]){display:flex;position:fixed;right:14px;bottom:16px;z-index:20;box-shadow:0 4px 16px #0008}}
+/* The metadata bar is brighter than the surrounding player and canvas. */
+.work-card .work-content{background:#192a20;border-top:1px solid #3c5545}.work-card .work-footer{border-top-color:#405849}
