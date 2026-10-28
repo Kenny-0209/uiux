@@ -25,7 +25,8 @@ document.addEventListener('keydown',event=>{if(event.key==='Escape'&&expanded&&!
 function needsGPU(e){return Boolean(e.requiresGPU || e.category==='3D');}
 function frame(e, eager=true){
  const height=Number(e.previewHeight);const style=Number.isFinite(height)&&height>=200&&height<=650?` style="height:${height}px"`:'';
- return `<iframe src="${escapeHTML(e.preview)}" title="${escapeHTML(e.name)} 실시간 예시" loading="${eager?'eager':'lazy'}" sandbox="allow-scripts allow-forms allow-same-origin allow-popups" allow="clipboard-write" referrerpolicy="no-referrer"${style}></iframe>`;
+ const src=/\/examples\/gt\d+\/index\.html(?:$|\?)/.test(e.preview)?`${e.preview}${e.preview.includes('?')?'&':'?'}v=20261028-controls`:e.preview;
+ return `<iframe src="${escapeHTML(src)}" title="${escapeHTML(e.name)} 실시간 예시" loading="${eager?'eager':'lazy'}" sandbox="allow-scripts allow-forms allow-same-origin allow-popups" allow="clipboard-write" referrerpolicy="no-referrer"${style}></iframe>`;
 }
 function previewPlaceholder(e){
  const height=Number(e.previewHeight);const style=Number.isFinite(height)&&height>=200&&height<=650?` style="height:${height}px"`:'';
