@@ -8,6 +8,7 @@ UI·UX 패턴과 모션을 검색하고 인터랙티브 예시와 출처를 확�
 - `examples/`: 원본 또는 패널용으로 조정한 예시, 분류 데이터, 각 원천의 라이선스 및 출처. 자세한 내용은 `examples/README.md`와 각 예시를 확인하세요.
 - `course.html`, `course.js`, `course.json`: 강좌 목록과 조사한 내용. 확인하지 못한 강의는 그 상태를 표시합니다.
 - `previous.html`, `sources.json`: 이전 아카이브와 참고 원천 목록.
+- `taxonomy.json`, `tools/`: 항목별 세부 분류·태그와 재생성 도구. 원본 메타데이터를 바탕으로 한 규칙 기반 분류이며 하나의 예시가 여러 분류에 포함될 수 있습니다.
 - `icons/`: 아이콘과 해당 라이선스.
 - `.nojekyll`: GitHub Pages가 정적 파일을 그대로 제공하도록 하는 설정.
 

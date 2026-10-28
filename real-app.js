@@ -11,8 +11,10 @@ const motion = [
 import {inspectDemo, showDemo, setDemoSlow, resetDemo} from './demo-adapter.js';
 const initialCategories=['전체','화면 구성','UI 패턴','모션과 인터랙션','화면 전환','카메라','3D'];
 for(const e of motion) e.category=e.category==='인터랙션'||e.category==='모션'?'모션과 인터랙션':e.category;
-let examples=[], category='전체', platform='전체', query='', currentFiles=[], codeRequest=0;
+let examples=[], category='전체', subcategory='전체', selectedTag='', platform='전체', query='', currentFiles=[], codeRequest=0;
 let expanded=null;
+const mobileSubfilters=document.createElement('div');mobileSubfilters.id='subfilters-mobile';mobileSubfilters.className='subfilters-mobile';mobileSubfilters.setAttribute('aria-label','세부 분류');$('#mobile-filters').after(mobileSubfilters);
+const activeTag=document.createElement('div');activeTag.id='active-tag';activeTag.className='active-tag';activeTag.setAttribute('aria-live','polite');$('#platform-filters').closest('.platform-bar').after(activeTag);
 const norm = x => String(x || '').normalize('NFKC').toLocaleLowerCase().trim();
 function updateExpandButton(wrap,active){const btn=wrap?.querySelector('[data-expand]');if(!btn)return;btn.textContent=active?'↙  축소':'↗  크게 보기';btn.setAttribute('aria-expanded',String(active));btn.setAttribute('aria-label',`${btn.dataset.title} ${active?'축소':'크게 보기'}`);}
 function clearExpanded({focus=true}={}){if(!expanded)return;const wrap=expanded;expanded=null;const card=wrap.closest('.work-card');card?.classList.remove('is-expanded');card?.style.removeProperty('--expanded-preview-height');updateExpandButton(wrap,false);if(focus&&wrap.isConnected)wrap.querySelector('[data-expand]')?.focus({preventScroll:true});}
@@ -81,11 +83,21 @@ async function selectCode(index){
 }
 function platformList(e){return Array.isArray(e.platforms)?e.platforms.filter(x=>x==='데스크톱'||x==='모바일'):[];}
 function matchesPlatform(e){const p=platformList(e);return platform==='전체'||(platform==='미확인'?!p.length:p.includes(platform));}
+function categoryFacets(e,name){return e.category===name?(e.taxonomy?.subcategories||[]):(e.taxonomy?.related?.[name]||[]);}
+function matchesCategory(e,name=category){return name==='전체'||e.category===name||categoryFacets(e,name).length>0;}
+function matchesSearch(e){const q=norm(query);return !q||[e.name,e.english,e.category,e.sourceName,...(e.tags||[]),...(e.taxonomy?.subcategories||[]),...Object.values(e.taxonomy?.related||{}).flat()].some(x=>norm(x).includes(q));}
+function matchesTag(e){return !selectedTag||(e.tags||[]).some(t=>norm(t)===norm(selectedTag));}
+function eligible(e){return matchesPlatform(e)&&matchesSearch(e)&&matchesTag(e);}
 function renderPlatforms(){const choices=['전체','데스크톱','모바일','미확인'];$('#platform-filters').innerHTML=choices.map(x=>{const n=x==='전체'?examples.length:examples.filter(e=>x==='미확인'?!platformList(e).length:platformList(e).includes(x)).length;return `<button type="button" class="platform-chip ${platform===x?'is-active':''}" data-platform="${x}" aria-pressed="${platform===x}">${x}<span>${n}</span></button>`}).join('');}
 function renderFilters(){
   const names=[...new Set([...initialCategories,...examples.map(x=>x.category)])];
-  $('#filters').innerHTML=names.map(name=>{const n=name==='전체'?examples.filter(matchesPlatform).length:examples.filter(x=>x.category===name&&matchesPlatform(x)).length;return `<button class="filter ${name===category?'is-active':''}" type="button" data-filter="${escapeHTML(name)}" aria-pressed="${name===category}"><span>${escapeHTML(name)}</span><span>${n}</span></button>`}).join('');
+  const counts=new Map();if(category!=='전체')examples.filter(e=>eligible(e)&&matchesCategory(e)).forEach(e=>categoryFacets(e,category).forEach(f=>counts.set(f,(counts.get(f)||0)+1)));
+  const facets=[...counts].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'ko'));
+  const subButtons=facets.map(([name,n])=>`<button type="button" class="subfilter ${name===subcategory?'is-active':''}" data-subcategory="${escapeHTML(name)}" aria-pressed="${name===subcategory}"><span>${escapeHTML(name)}</span><span>${n}</span></button>`).join('');
+  $('#filters').innerHTML=names.map(name=>{const n=examples.filter(e=>eligible(e)&&matchesCategory(e,name)).length;const nested=name===category&&name!=='전체'&&facets.length?`<div class="subfilter-list" aria-label="${escapeHTML(name)} 세부 분류"><button type="button" class="subfilter ${subcategory==='전체'?'is-active':''}" data-subcategory="전체" aria-pressed="${subcategory==='전체'}"><span>전체 보기</span><span>${n}</span></button>${subButtons}</div>`:'';return `<button class="filter ${name===category?'is-active':''}" type="button" data-filter="${escapeHTML(name)}" aria-pressed="${name===category}"><span>${escapeHTML(name)}</span><span>${n}</span></button>${nested}`}).join('');
   $('#mobile-filters').innerHTML=names.map(name=>`<button class="chip ${name===category?'is-active':''}" type="button" data-filter="${escapeHTML(name)}" aria-pressed="${name===category}">${escapeHTML(name)}</button>`).join('');
+  $('#subfilters-mobile').innerHTML=category!=='전체'&&facets.length?`<span>세부 분류</span><button class="subchip ${subcategory==='전체'?'is-active':''}" data-subcategory="전체" type="button" aria-pressed="${subcategory==='전체'}">전체</button>${facets.map(([name,n])=>`<button class="subchip ${name===subcategory?'is-active':''}" data-subcategory="${escapeHTML(name)}" type="button" aria-pressed="${name===subcategory}">${escapeHTML(name)} <small>${n}</small></button>`).join('')}`:'';
+  $('#active-tag').innerHTML=selectedTag?`<span>태그</span><button type="button" data-clear-tag aria-label="${escapeHTML(selectedTag)} 태그 필터 해제">#${escapeHTML(selectedTag)} <b aria-hidden="true">×</b></button>`:'';
 }
 let matchesToShow=[], visibleCount=0;
 const PAGE_SIZE=24;
@@ -129,7 +141,12 @@ function queueMore(){
 }
 const pageObserver=new IntersectionObserver(records=>{if(records.some(r=>r.isIntersecting))queueMore()},{rootMargin:'0px 0px 1000px 0px'});
 pageObserver.observe(sentinel);
-function cardHTML(e,i){return `<article class="work-card" data-example="${escapeHTML(e.id)}"><div class="demo-wrap"><div class="demo-top"><span>${escapeHTML(e.sourceName)}</span><span class="demo-actions"><span>${escapeHTML(e.displayOrigin||(e.remote?'원본 연결 · 온라인':e.networkRequired?'원본 코드 · 온라인 자산':'원본 코드 · 로컬'))}</span><button type="button" data-expand data-title="${escapeHTML(e.name)}" aria-label="${escapeHTML(e.name)} 크게 보기" aria-expanded="false">↗ 크게 보기</button></span></div><div class="demo-content"${needsGPU(e)?` data-gpu-watch="${escapeHTML(e.id)}"`:""}>${needsGPU(e)?gpuPlaceholder(e):frame(e,i<2)}</div><div class="demo-player" role="group" aria-label="예시 재생 조작"><button type="button" data-player-show disabled title="예시를 불러온 뒤 지원 여부를 확인합니다.">▶ <span>Show me</span></button><button type="button" data-player-slow disabled aria-pressed="false" title="예시를 불러온 뒤 지원 여부를 확인합니다.">◷ <span>Slow motion</span></button><button type="button" data-player-reset disabled title="예시를 처음 상태로 되돌립니다.">↺ <span>Reset</span></button><span class="demo-player-status" aria-live="polite">지원 여부 확인 중</span></div></div><div class="work-content"><div class="work-label"><span>${escapeHTML(e.category)}</span><span>${escapeHTML(e.license||'원문 확인')}</span></div><div class="work-platform">${escapeHTML(platformList(e).length?platformList(e).join(' · '):'기기 구분 미확인')}${e.platformNote?` <span>· ${escapeHTML(e.platformNote)}</span>`:''}</div><div class="work-heading"><div><h3>${escapeHTML(e.name)}</h3><span>${escapeHTML(e.english||'')}</span></div><a class="open-icon" href="${escapeHTML(e.sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML(e.name)} 원본 보기">↗</a></div><p>${escapeHTML(e.description)}</p><div class="work-footer"><div class="tags">${(e.tags||[]).slice(0,3).map(t=>`<span>#${escapeHTML(t)}</span>`).join('')}</div><div class="work-links">${!e.remote||e.codePath?`<button type="button" data-code="${escapeHTML(e.id)}">\uCF54\uB4DC \uBCF4\uAE30</button>`:''}<a href="${escapeHTML(e.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHTML(e.sourceLabel||'\uC6D0\uBCF8 \uCF54\uB4DC')} \u2197</a>${e.licensePath?`<button type="button" data-license="${escapeHTML(e.id)}">\uB77C\uC774\uC120\uC2A4</button>`:''}</div></div></div></article>`;}
+function tagHTML(e){
+ const tags=e.tags||[];if(!tags.length)return '';
+ const items=tags.map((tag,i)=>`<button type="button" class="tag-chip${i>=3?' tag-extra':''}" data-tag="${escapeHTML(tag)}"${i>=3?' hidden':''} title="이 태그로 찾기">#${escapeHTML(tag)}</button>`).join('');
+ return items+(tags.length>3?`<button type="button" class="tag-more" data-tags-toggle aria-expanded="false" aria-label="${tags.length-3}개 태그 더 보기">+${tags.length-3}</button>`:'');
+}
+function cardHTML(e,i){return `<article class="work-card" data-example="${escapeHTML(e.id)}"><div class="demo-wrap"><div class="demo-top"><span>${escapeHTML(e.sourceName)}</span><span class="demo-actions"><span>${escapeHTML(e.displayOrigin||(e.remote?'원본 연결 · 온라인':e.networkRequired?'원본 코드 · 온라인 자산':'원본 코드 · 로컬'))}</span><button type="button" data-expand data-title="${escapeHTML(e.name)}" aria-label="${escapeHTML(e.name)} 크게 보기" aria-expanded="false">↗ 크게 보기</button></span></div><div class="demo-content"${needsGPU(e)?` data-gpu-watch="${escapeHTML(e.id)}"`:""}>${needsGPU(e)?gpuPlaceholder(e):frame(e,i<2)}</div><div class="demo-player" role="group" aria-label="예시 재생 조작"><button type="button" data-player-show disabled title="예시를 불러온 뒤 지원 여부를 확인합니다.">▶ <span>Show me</span></button><button type="button" data-player-slow disabled aria-pressed="false" title="예시를 불러온 뒤 지원 여부를 확인합니다.">◷ <span>Slow motion</span></button><button type="button" data-player-reset disabled title="예시를 처음 상태로 되돌립니다.">↺ <span>Reset</span></button><span class="demo-player-status" aria-live="polite">지원 여부 확인 중</span></div></div><div class="work-content"><div class="work-label"><span>${escapeHTML(e.category)}${e.taxonomy?.subcategories?.length?` / ${escapeHTML(e.taxonomy.subcategories[0])}`:''}</span><span>${escapeHTML(e.license||'원문 확인')}</span></div><div class="work-platform">${escapeHTML(platformList(e).length?platformList(e).join(' · '):'기기 구분 미확인')}${e.platformNote?` <span>· ${escapeHTML(e.platformNote)}</span>`:''}</div><div class="work-heading"><div><h3>${escapeHTML(e.name)}</h3><span>${escapeHTML(e.english||'')}</span></div><a class="open-icon" href="${escapeHTML(e.sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML(e.name)} 원본 보기">↗</a></div><p>${escapeHTML(e.description)}</p><div class="work-footer"><div class="tags">${tagHTML(e)}</div><div class="work-links">${!e.remote||e.codePath?`<button type="button" data-code="${escapeHTML(e.id)}">\uCF54\uB4DC \uBCF4\uAE30</button>`:''}<a href="${escapeHTML(e.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHTML(e.sourceLabel||'\uC6D0\uBCF8 \uCF54\uB4DC')} \u2197</a>${e.licensePath?`<button type="button" data-license="${escapeHTML(e.id)}">\uB77C\uC774\uC120\uC2A4</button>`:''}</div></div></div></article>`;}
 function compactCard(card){
  const info=card.querySelector('.work-content'),label=info.querySelector('.work-label'),platform=info.querySelector('.work-platform');
  const categoryLabel=label.firstElementChild,license=label.lastElementChild,preview=card.querySelector('.demo-content iframe, .demo-content .gpu-placeholder');
@@ -166,9 +183,9 @@ function render(){
   if(expanded)clearExpanded({focus:false});
   document.querySelectorAll('[data-gpu-watch]').forEach(host=>{gpuObserver.unobserve(host);gpuVisible.delete(host);stopGpu(host,{reset:false})});
   document.querySelectorAll('#cards .work-card').forEach(card=>{skeletonObserver.unobserve(card);const state=skeletonStates.get(card);if(state)clearTimeout(state.timer)});
-  const q=norm(query), matches=examples.filter(e=>matchesPlatform(e)&&(!q||[e.name,e.english,e.category,e.sourceName,...(e.tags||[])].some(x=>norm(x).includes(q)))), filtered=matches.filter(e=>category==='전체'||e.category===category);
+  const matches=examples.filter(eligible), filtered=matches.filter(e=>matchesCategory(e)&&(subcategory==='전체'||categoryFacets(e,category).includes(subcategory)));
   $('#result-count').textContent=`${filtered.length}개 예시`;
-  $('#current-category').textContent=category==='전체'?'모든 예시':category;
+  $('#current-category').textContent=category==='전체'?'모든 예시':subcategory==='전체'?category:`${category} / ${subcategory}`;
   matchesToShow=filtered;visibleCount=0;$('#cards').innerHTML='';
   if(filtered.length){appendCards();queueMore()}else{$('#more-examples').hidden=true;sentinel.textContent='';$('#cards').innerHTML=`<div class="empty"><span>NO EXAMPLES</span><h3>현재 분야에 일치하는 예시가 없습니다.</h3>${category!=='전체'&&matches.length?`<button type="button" data-filter="전체">전체 분야에서 ${matches.length}개 보기 ↗</button>`:'<p>다른 이름이나 태그로 찾아보세요.</p>'}</div>`;}
 
@@ -224,6 +241,10 @@ document.addEventListener('load',event=>{if(event.target.matches?.('.demo-conten
  if(entry&&entry.loading){clearTimeout(entry.timer);entry.loading=false;scheduleGpu()}
 }},true);
 document.addEventListener('click',async event=>{
+ const tagToggle=event.target.closest('[data-tags-toggle]');if(tagToggle){const group=tagToggle.closest('.tags'),expanded=tagToggle.getAttribute('aria-expanded')==='true';group.querySelectorAll('.tag-extra').forEach(tag=>tag.hidden=expanded);tagToggle.setAttribute('aria-expanded',String(!expanded));tagToggle.textContent=expanded?`+${group.querySelectorAll('.tag-extra').length}`:'접기';tagToggle.setAttribute('aria-label',expanded?'태그 더 보기':'추가 태그 접기');return;}
+ const tag=event.target.closest('[data-tag]');if(tag){selectedTag=tag.dataset.tag;renderFilters();render();document.querySelector('.library-bar')?.scrollIntoView({block:'start',behavior:'auto'});return;}
+ if(event.target.closest('[data-clear-tag]')){selectedTag='';renderFilters();render();return;}
+ const sub=event.target.closest('[data-subcategory]');if(sub){subcategory=sub.dataset.subcategory;renderFilters();render();document.querySelector('.library-bar')?.scrollIntoView({block:'start',behavior:'auto'});return;}
  const playerButton=event.target.closest('[data-player-show], [data-player-slow], [data-player-reset]');
  if(playerButton){
   const wrap=playerButton.closest('.demo-wrap'),frame=wrap?.querySelector('.demo-content iframe');if(!frame)return;
@@ -234,7 +255,7 @@ document.addEventListener('click',async event=>{
  }
  const platformButton=event.target.closest('[data-platform]');if(platformButton){platform=platformButton.dataset.platform;renderPlatforms();renderFilters();render();return;}
  const more=event.target.closest('#more-examples');if(more){appendCards();return;}
- const filter=event.target.closest('[data-filter]');if(filter){category=filter.dataset.filter;renderFilters();render();document.querySelector('.library-bar')?.scrollIntoView({block:'start',behavior:'auto'});return;}
+ const filter=event.target.closest('[data-filter]');if(filter){category=filter.dataset.filter;subcategory='전체';renderFilters();render();document.querySelector('.library-bar')?.scrollIntoView({block:'start',behavior:'auto'});return;}
  const expand=event.target.closest('[data-expand]');if(expand){toggleExpanded(expand.closest('.demo-wrap'));return;}
  const retry=event.target.closest('[data-retry-gpu]');if(retry){const host=retry.closest('[data-gpu-watch]');if(host){delete host.dataset.gpuFailed;setGpuWaiting(host);gpuVisible.add(host);scheduleGpu()}return;}
  const code=event.target.closest('[data-code]');if(code){const e=examples.find(x=>x.id===code.dataset.code);if(!e)return;$('#code-title').textContent=`${e.name} · 코드`;$('#code-description').textContent=(e.adaptation||'원본 코드입니다.')+' 원본은 링크에서 확인할 수 있습니다.';$('#code-source').href=e.sourceUrl;currentFiles=[{label:e.codeLabel||'원본 HTML',path:e.codePath||e.preview},...(Array.isArray(e.codeFiles)?e.codeFiles.filter(f=>f&&f.path&&f.label):[])];if(/^mo\d+$/.test(e.id)&&!e.codeFiles)currentFiles.push({label:'공통 CSS',path:'./examples/asset/demo.css'},{label:'공통 JavaScript',path:'./examples/asset/demo.js'});currentFiles=currentFiles.filter((f,i,a)=>a.findIndex(other=>other.path===f.path)===i);$('#code-dialog').showModal();selectCode(0);return;}
@@ -242,10 +263,14 @@ document.addEventListener('click',async event=>{
  const license=event.target.closest('[data-license]');if(license){const e=examples.find(x=>x.id===license.dataset.license);if(!e)return;$('#code-title').textContent=`${e.sourceName} · ${e.license} 라이선스`;$('#code-description').textContent='원본 저장소에서 함께 제공한 라이선스 고지입니다.';$('#code-source').href=e.sourceUrl;currentFiles=[{label:'라이선스',path:e.licensePath}];$('#code-dialog').showModal();selectCode(0);return;}
  if(event.target.closest('[data-close]')){codeRequest++;$('#code-dialog').close();}
 });
-$('#search').addEventListener('input',e=>{query=e.target.value;render()});
+$('#search').addEventListener('input',e=>{query=e.target.value;renderFilters();render()});
 document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'&&!$('#code-dialog').open){event.preventDefault();$('#search').focus();}});
 const manifests=['manifest.json','camera-manifest.json','spatial-manifest.json','ui-more.json','hand-all.json','ai-all.json','apg-more.json','bootstrap.json','templates.json','camera-more.json','3d-more.json','motion-more.json','text-more.json','scroll-more.json','vanta-more.json','env-more.json','entry-more.json','animate-more.json','course-labs.json','codscroll.json','ics-scroll.json','scroll-drive.json','transition-manifest.json'];
+const taxonomyRequest=fetch('./taxonomy.json?v=20261028-3').then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}).catch(error=>({error}));
 const batches=await Promise.all(manifests.map(async name=>{try{const res=await fetch(`./examples/${name}`);if(!res.ok)throw new Error(`HTTP ${res.status}`);const data=await res.json();if(!Array.isArray(data))throw new Error('잘못된 목록 형식');return {name,data};}catch(error){return {name,error};}}));
+const taxonomy=await taxonomyRequest;
 const failed=batches.filter(x=>x.error);const seen=new Set();examples=[...batches.flatMap(x=>x.data||[]),...motion].filter(e=>{if(!e||!e.id||seen.has(e.id))return false;seen.add(e.id);return true});
+examples.forEach(e=>{const detail=taxonomy.items?.[e.id];e.taxonomy=detail||{subcategories:['세부 분류 검토'],related:{},needsReview:true};if(detail?.tags?.length)e.tags=detail.tags;});
 if(failed.length){$('#load-note').textContent=`일부 예시 목록을 불러오지 못했습니다: ${failed.map(x=>x.name).join(', ')}`;failed.forEach(x=>console.warn('목록 오류',x.name,x.error));}
+if(taxonomy.error){$('#load-note').textContent+=' 세부 분류를 불러오지 못해 기존 태그만 표시합니다.';console.warn('세부 분류 오류',taxonomy.error);}
 $('#total').textContent=String(examples.length).padStart(2,'0');renderPlatforms();renderFilters();render();

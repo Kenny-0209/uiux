@@ -1,0 +1,8894 @@
+{
+  "version": 1,
+  "method": "기존 항목명·영문명·기존 태그·원본 파일명을 기준으로 생성한 다중 분류. 의미가 확인되지 않는 항목은 검토 대상으로 둡니다.",
+  "items": {
+    "mo01": {
+      "subcategories": [
+        "버튼·클릭",
+        "마우스·호버"
+      ],
+      "tags": [
+        "버튼",
+        "마우스·커서",
+        "마그네틱",
+        "커서"
+      ],
+      "related": {
+        "UI 패턴": [
+          "버튼·행동",
+          "마우스·커서"
+        ]
+      },
+      "needsReview": false
+    },
+    "mo02": {
+      "subcategories": [
+        "마우스·호버"
+      ],
+      "tags": [
+        "마우스·커서",
+        "커서",
+        "마우스",
+        "포인터"
+      ],
+      "related": {
+        "UI 패턴": [
+          "마우스·커서"
+        ]
+      },
+      "needsReview": false
+    },
+    "mo03": {
+      "subcategories": [
+        "버튼·클릭",
+        "알림·피드백"
+      ],
+      "tags": [
+        "버튼",
+        "클릭·탭",
+        "피드백",
+        "줌·확대",
+        "클릭"
+      ],
+      "related": {
+        "UI 패턴": [
+          "버튼·행동",
+          "알림·피드백"
+        ]
+      },
+      "needsReview": false
+    },
+    "mo04": {
+      "subcategories": [
+        "토글·선택",
+        "상태·진행 표시"
+      ],
+      "tags": [
+        "토글",
+        "상태",
+        "스위치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "mo05": {
+      "subcategories": [
+        "알림·피드백"
+      ],
+      "tags": [
+        "알림",
+        "피드백",
+        "토스트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "mo06": {
+      "subcategories": [
+        "패널·사이드바"
+      ],
+      "tags": [
+        "패널",
+        "슬라이드",
+        "드로어"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "mo07": {
+      "subcategories": [
+        "목록·카드"
+      ],
+      "tags": [
+        "드래그",
+        "목록",
+        "정렬"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "mo08": {
+      "subcategories": [
+        "로딩·진행",
+        "상태·진행 표시"
+      ],
+      "tags": [
+        "로딩",
+        "상태",
+        "스켈레톤"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "mo09": {
+      "subcategories": [
+        "모달·오버레이"
+      ],
+      "tags": [
+        "접기·펼치기",
+        "모달·대화상자",
+        "모달",
+        "확장",
+        "전환"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "mo10": {
+      "subcategories": [
+        "입력·선택",
+        "검색·내비게이션"
+      ],
+      "tags": [
+        "토글",
+        "내비게이션",
+        "메뉴",
+        "아이콘",
+        "전환"
+      ],
+      "related": {
+        "UI 패턴": [
+          "토글·선택",
+          "내비게이션·탭"
+        ]
+      },
+      "needsReview": false
+    },
+    "mo11": {
+      "subcategories": [
+        "버튼·클릭",
+        "알림·피드백"
+      ],
+      "tags": [
+        "클릭·탭",
+        "피드백",
+        "리플",
+        "클릭"
+      ],
+      "related": {
+        "UI 패턴": [
+          "알림·피드백"
+        ]
+      },
+      "needsReview": false
+    },
+    "mo12": {
+      "subcategories": [
+        "아코디언·단계적 공개"
+      ],
+      "tags": [
+        "아코디언",
+        "접기·펼치기",
+        "펼치기",
+        "접기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui01": {
+      "subcategories": [
+        "패널·분할 화면"
+      ],
+      "tags": [
+        "사이드바",
+        "대화·채팅",
+        "대화",
+        "레이아웃"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui02": {
+      "subcategories": [
+        "패널·분할 화면"
+      ],
+      "tags": [
+        "분할",
+        "작업영역",
+        "레이아웃"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui03": {
+      "subcategories": [
+        "검색·필터",
+        "목록·카드",
+        "대화·메시지"
+      ],
+      "tags": [
+        "검색",
+        "필터",
+        "목록",
+        "대화·채팅"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui04": {
+      "subcategories": [
+        "모달·오버레이",
+        "파일·도구"
+      ],
+      "tags": [
+        "모달·대화상자",
+        "복사·공유",
+        "공유",
+        "모달",
+        "대화상자"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui05": {
+      "subcategories": [
+        "패널·사이드바",
+        "대화·메시지"
+      ],
+      "tags": [
+        "패널",
+        "대화·채팅",
+        "플로팅",
+        "채팅"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui06": {
+      "subcategories": [
+        "패널·사이드바",
+        "상태·진행 표시",
+        "아코디언·단계적 공개"
+      ],
+      "tags": [
+        "패널",
+        "아코디언",
+        "접기·펼치기",
+        "단계적공개",
+        "상세"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui07": {
+      "subcategories": [
+        "텍스트·숫자"
+      ],
+      "tags": [
+        "텍스트",
+        "스트리밍",
+        "생성"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui08": {
+      "subcategories": [
+        "로딩·진행",
+        "상태·진행 표시"
+      ],
+      "tags": [
+        "진행 상태",
+        "상태",
+        "진행",
+        "단계"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui09": {
+      "subcategories": [
+        "버튼·행동",
+        "대화·메시지"
+      ],
+      "tags": [
+        "버튼",
+        "대화·채팅",
+        "메시지",
+        "행동"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui10": {
+      "subcategories": [
+        "토글·선택",
+        "대화·메시지",
+        "아코디언·단계적 공개"
+      ],
+      "tags": [
+        "토글",
+        "접기·펼치기",
+        "대화·채팅",
+        "텍스트",
+        "더보기",
+        "접기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui11": {
+      "subcategories": [
+        "토글·선택",
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "토글",
+        "설정",
+        "스위치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui12": {
+      "subcategories": [
+        "토글·선택",
+        "입력·폼",
+        "비교·평가"
+      ],
+      "tags": [
+        "입력",
+        "평가·반응",
+        "평가",
+        "별점"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui13": {
+      "subcategories": [
+        "토글·선택",
+        "입력·폼",
+        "내비게이션·탭"
+      ],
+      "tags": [
+        "입력",
+        "선택",
+        "내비게이션",
+        "입력창",
+        "메뉴"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui14": {
+      "subcategories": [
+        "알림·피드백"
+      ],
+      "tags": [
+        "알림",
+        "피드백",
+        "토스트"
+      ],
+      "related": {
+        "UI 패턴": [
+          "알림·피드백"
+        ]
+      },
+      "needsReview": false
+    },
+    "ui15": {
+      "subcategories": [
+        "버튼·행동",
+        "파일·도구"
+      ],
+      "tags": [
+        "버튼",
+        "복사·공유",
+        "코드",
+        "복사"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ui16": {
+      "subcategories": [
+        "입력·폼",
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "입력",
+        "슬라이더",
+        "설정"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tr01": {
+      "subcategories": [
+        "페이드·디졸브"
+      ],
+      "tags": [
+        "페이드",
+        "크로스페이드",
+        "크로스 디졸브",
+        "전환"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tr02": {
+      "subcategories": [
+        "페이드·디졸브",
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "페이드",
+        "디졸브",
+        "전환",
+        "픽셀"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tr03": {
+      "subcategories": [
+        "슬라이드·이동"
+      ],
+      "tags": [
+        "슬라이드",
+        "화면전환",
+        "이동"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tr04": {
+      "subcategories": [
+        "줌·크기"
+      ],
+      "tags": [
+        "줌·확대",
+        "줌",
+        "스케일",
+        "화면전환"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tr05": {
+      "subcategories": [
+        "줌·크기",
+        "마스크·와이프"
+      ],
+      "tags": [
+        "줌·확대",
+        "포털",
+        "줌",
+        "전환"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tr06": {
+      "subcategories": [
+        "마스크·와이프"
+      ],
+      "tags": [
+        "와이프",
+        "마스크",
+        "전환"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tr07": {
+      "subcategories": [
+        "회전·뒤집기"
+      ],
+      "tags": [
+        "페이지",
+        "넘기기",
+        "전환"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tr08": {
+      "subcategories": [
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "픽셀",
+        "전환",
+        "모션"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tr09": {
+      "subcategories": [
+        "변형·공유 요소"
+      ],
+      "tags": [
+        "복사·공유",
+        "상태",
+        "공유 요소",
+        "전환"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cam01": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "줌·화각·렌즈",
+        "시점·투영"
+      ],
+      "tags": [
+        "비교",
+        "줌·확대",
+        "달리",
+        "줌",
+        "원근"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cam02": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "회전·오빗·팬"
+      ],
+      "tags": [
+        "비교",
+        "트럭",
+        "팬",
+        "이동"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cam03": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "줌·화각·렌즈",
+        "시점·투영"
+      ],
+      "tags": [
+        "줌·확대",
+        "달리 줌",
+        "Vertigo",
+        "원근",
+        "화각"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "sp01": {
+      "subcategories": [
+        "모델·뷰어",
+        "카메라·회전"
+      ],
+      "tags": [
+        "회전",
+        "GLTF",
+        "모델",
+        "오빗"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "sp02": {
+      "subcategories": [
+        "3D 상호작용·선택"
+      ],
+      "tags": [
+        "회전",
+        "이동",
+        "스케일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "sp03": {
+      "subcategories": [
+        "모델·뷰어",
+        "형상·메시·곡선",
+        "재질·표면"
+      ],
+      "tags": [
+        "SVG",
+        "와이어프레임"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "lay01": {
+      "subcategories": [
+        "패널·분할 화면"
+      ],
+      "tags": [
+        "패널",
+        "사이드바",
+        "반응형"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "lay02": {
+      "subcategories": [
+        "패널·분할 화면",
+        "대시보드·관리 화면",
+        "내비게이션·헤더·푸터"
+      ],
+      "tags": [
+        "사이드바",
+        "내비게이션",
+        "표·데이터",
+        "반응형",
+        "대시보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb001": {
+      "subcategories": [
+        "그래픽·변형"
+      ],
+      "tags": [
+        "애니메이션",
+        "Counter Animation",
+        "카운터"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb002": {
+      "subcategories": [
+        "고정·스티키",
+        "패널·카드",
+        "그래픽·변형"
+      ],
+      "tags": [
+        "카드",
+        "고정",
+        "Cover Card to Fixed Header",
+        "헤더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb003": {
+      "subcategories": [
+        "등장·순차",
+        "패널·카드"
+      ],
+      "tags": [
+        "목록",
+        "등장·퇴장",
+        "Fly-in Fly-out Contact List",
+        "fly in fly out contact list"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb004": {
+      "subcategories": [
+        "그래픽·변형"
+      ],
+      "tags": [
+        "Hide-on-Scroll Header",
+        "hide on scroll header",
+        "헤더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb005": {
+      "subcategories": [
+        "가로·스냅·관성"
+      ],
+      "tags": [
+        "Horizontal Scroll",
+        "가로"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb006": {
+      "subcategories": [
+        "패럴랙스·깊이"
+      ],
+      "tags": [
+        "입력",
+        "패럴랙스",
+        "Parallax Depth-of-Field",
+        "parallax depth of field"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb007": {
+      "subcategories": [
+        "패럴랙스·깊이"
+      ],
+      "tags": [
+        "패럴랙스",
+        "Parallax Scrolling"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb008": {
+      "subcategories": [
+        "고정·스티키"
+      ],
+      "tags": [
+        "고정",
+        "애니메이션",
+        "Pin Animation"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb009": {
+      "subcategories": [
+        "진행·내비게이션"
+      ],
+      "tags": [
+        "진행 상태",
+        "Progress Bar",
+        "진행",
+        "바"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb010": {
+      "subcategories": [
+        "등장·순차"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "Reveal on Scroll",
+        "드러내기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb011": {
+      "subcategories": [
+        "패널·카드"
+      ],
+      "tags": [
+        "Reverse-Scrolling Columns",
+        "reverse scrolling columns"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb012": {
+      "subcategories": [
+        "스토리·연동"
+      ],
+      "tags": [
+        "색상·그라데이션",
+        "Scroll-Driven Background Color",
+        "scroll background color",
+        "배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb013": {
+      "subcategories": [
+        "이미지·미디어"
+      ],
+      "tags": [
+        "이미지",
+        "Scroll Image Sequence"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb014": {
+      "subcategories": [
+        "스토리·연동"
+      ],
+      "tags": [
+        "애니메이션",
+        "Scroll-Triggered Animation",
+        "scroll trigger"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb015": {
+      "subcategories": [
+        "그래픽·변형"
+      ],
+      "tags": [
+        "Scroll Velocity Skew"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb016": {
+      "subcategories": [
+        "진행·내비게이션"
+      ],
+      "tags": [
+        "내비게이션",
+        "Scrollspy Navigation",
+        "scrollspy nav"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb017": {
+      "subcategories": [
+        "스토리·연동"
+      ],
+      "tags": [
+        "Scrollytelling"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb018": {
+      "subcategories": [
+        "스토리·연동"
+      ],
+      "tags": [
+        "애니메이션",
+        "Scrub Animation"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb019": {
+      "subcategories": [
+        "그래픽·변형"
+      ],
+      "tags": [
+        "Section Wipe",
+        "와이프"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb020": {
+      "subcategories": [
+        "가로·스냅·관성"
+      ],
+      "tags": [
+        "Smooth (Inertia) Scroll",
+        "smooth scroll",
+        "부드러움"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb021": {
+      "subcategories": [
+        "가로·스냅·관성"
+      ],
+      "tags": [
+        "Snap Scrolling",
+        "스냅"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb022": {
+      "subcategories": [
+        "패널·카드"
+      ],
+      "tags": [
+        "카드",
+        "Stacking Cards",
+        "쌓기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb023": {
+      "subcategories": [
+        "등장·순차"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "Stagger Reveal",
+        "순차",
+        "드러내기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb024": {
+      "subcategories": [
+        "고정·스티키"
+      ],
+      "tags": [
+        "고정",
+        "Sticky Section"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb025": {
+      "subcategories": [
+        "그래픽·변형"
+      ],
+      "tags": [
+        "SVG Line Draw on Scroll",
+        "svg line draw"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb026": {
+      "subcategories": [
+        "텍스트·타이포"
+      ],
+      "tags": [
+        "텍스트",
+        "Text Fill on Scroll"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb027": {
+      "subcategories": [
+        "이미지·미디어"
+      ],
+      "tags": [
+        "줌·확대",
+        "이미지",
+        "Zoom Into Image",
+        "줌"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb028": {
+      "subcategories": [
+        "페이드·블러"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "Blur In",
+        "블러"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb029": {
+      "subcategories": [
+        "탄성·튀기"
+      ],
+      "tags": [
+        "탄성·스프링",
+        "등장·퇴장",
+        "Bounce In",
+        "바운스"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb030": {
+      "subcategories": [
+        "마스크·드러내기"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "Clip-Path Reveal",
+        "clip path reveal",
+        "클립",
+        "경로",
+        "드러내기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb031": {
+      "subcategories": [
+        "마스크·드러내기"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "Curtain Reveal",
+        "커튼",
+        "드러내기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb032": {
+      "subcategories": [
+        "페이드·블러"
+      ],
+      "tags": [
+        "페이드",
+        "등장·퇴장",
+        "Fade In / Fade Out",
+        "fade in out"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb033": {
+      "subcategories": [
+        "회전·뒤집기"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "Flip In",
+        "뒤집기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb034": {
+      "subcategories": [
+        "마스크·드러내기"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "Ink Spread Reveal",
+        "드러내기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb035": {
+      "subcategories": [
+        "텍스트·순차"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "텍스트",
+        "Letter-by-Letter Stagger",
+        "letter by letter stagger",
+        "글자",
+        "순차"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb036": {
+      "subcategories": [
+        "회전·뒤집기"
+      ],
+      "tags": [
+        "회전",
+        "등장·퇴장",
+        "Rotate In"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb037": {
+      "subcategories": [
+        "확대·축소"
+      ],
+      "tags": [
+        "줌·확대",
+        "등장·퇴장",
+        "Scale In / Zoom In",
+        "scale in",
+        "크기",
+        "줌"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb038": {
+      "subcategories": [
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "Shatter Effect",
+        "파편"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb039": {
+      "subcategories": [
+        "슬라이드·이동"
+      ],
+      "tags": [
+        "슬라이드",
+        "등장·퇴장",
+        "Slide In"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb040": {
+      "subcategories": [
+        "슬라이드·이동",
+        "마스크·드러내기"
+      ],
+      "tags": [
+        "슬라이드",
+        "등장·퇴장",
+        "Slide Up Reveal",
+        "드러내기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb041": {
+      "subcategories": [
+        "마스크·드러내기",
+        "텍스트·순차"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "텍스트",
+        "Split Text Reveal",
+        "분할",
+        "드러내기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb042": {
+      "subcategories": [
+        "마스크·드러내기",
+        "텍스트·순차"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "Word-by-Word Reveal",
+        "word by word reveal",
+        "단어",
+        "드러내기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb043": {
+      "subcategories": [
+        "블러·빛·색상"
+      ],
+      "tags": [
+        "Blur Transition",
+        "블러"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb044": {
+      "subcategories": [
+        "마스크·와이프"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "Circle Reveal",
+        "원",
+        "드러내기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb045": {
+      "subcategories": [
+        "입체 화면 전환"
+      ],
+      "tags": [
+        "Cube Transition",
+        "큐브"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb046": {
+      "subcategories": [
+        "전환 기술·물리 효과"
+      ],
+      "tags": [
+        "탄성·스프링",
+        "Elastic Transition",
+        "탄성"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb047": {
+      "subcategories": [
+        "블러·빛·색상"
+      ],
+      "tags": [
+        "조명",
+        "Flash / Light Leak Transition",
+        "flash transition"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb048": {
+      "subcategories": [
+        "회전·뒤집기",
+        "변형·공유 요소"
+      ],
+      "tags": [
+        "FLIP Technique",
+        "뒤집기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb049": {
+      "subcategories": [
+        "변형·공유 요소"
+      ],
+      "tags": [
+        "변형",
+        "Morph Transition",
+        "모핑"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb050": {
+      "subcategories": [
+        "전환 기술·물리 효과"
+      ],
+      "tags": [
+        "View Transitions API"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb051": {
+      "subcategories": [
+        "시각 효과·경로"
+      ],
+      "tags": [
+        "Add-to-Cart Fly",
+        "add to cart fly",
+        "추가",
+        "장바구니"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb052": {
+      "subcategories": [
+        "알림·피드백"
+      ],
+      "tags": [
+        "알림",
+        "Notification Badge Pulse",
+        "badge pulse",
+        "배지",
+        "펄스"
+      ],
+      "related": {
+        "UI 패턴": [
+          "알림·피드백"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb053": {
+      "subcategories": [
+        "입력·선택"
+      ],
+      "tags": [
+        "슬라이더",
+        "비교",
+        "Before/After Slider",
+        "before after slider",
+        "전",
+        "후"
+      ],
+      "related": {
+        "UI 패턴": [
+          "입력·폼",
+          "비교·평가"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb054": {
+      "subcategories": [
+        "버튼·클릭",
+        "로딩·진행"
+      ],
+      "tags": [
+        "로딩",
+        "버튼",
+        "상태",
+        "Button Loading States"
+      ],
+      "related": {
+        "UI 패턴": [
+          "버튼·행동",
+          "로딩·진행"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb055": {
+      "subcategories": [
+        "드래그·제스처"
+      ],
+      "tags": [
+        "스와이프",
+        "카드",
+        "Card Deck Swipe"
+      ],
+      "related": {
+        "UI 패턴": [
+          "목록·카드"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb056": {
+      "subcategories": [
+        "시각 효과·경로"
+      ],
+      "tags": [
+        "Checkmark Draw",
+        "체크"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb057": {
+      "subcategories": [
+        "알림·피드백"
+      ],
+      "tags": [
+        "피드백",
+        "복사·공유",
+        "Copy to Clipboard",
+        "복사",
+        "클립보드"
+      ],
+      "related": {
+        "UI 패턴": [
+          "알림·피드백",
+          "파일·도구"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb058": {
+      "subcategories": [
+        "시각 효과·경로"
+      ],
+      "tags": [
+        "Dynamic Island"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb059": {
+      "subcategories": [
+        "입력·선택",
+        "알림·피드백"
+      ],
+      "tags": [
+        "입력",
+        "피드백",
+        "Error Shake",
+        "오류"
+      ],
+      "related": {
+        "UI 패턴": [
+          "입력·폼",
+          "알림·피드백"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb060": {
+      "subcategories": [
+        "검색·내비게이션"
+      ],
+      "tags": [
+        "검색",
+        "Expanding Search"
+      ],
+      "related": {
+        "UI 패턴": [
+          "검색·필터"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb061": {
+      "subcategories": [
+        "시각 효과·경로"
+      ],
+      "tags": [
+        "애니메이션",
+        "접근성",
+        "Focus Ring Animation",
+        "focus ring",
+        "포커스"
+      ],
+      "related": {
+        "UI 패턴": [
+          "접근성·키보드"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb062": {
+      "subcategories": [
+        "입력·선택"
+      ],
+      "tags": [
+        "입력",
+        "폼",
+        "변형",
+        "Form Field Morph",
+        "모핑"
+      ],
+      "related": {
+        "UI 패턴": [
+          "입력·폼"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb063": {
+      "subcategories": [
+        "검색·내비게이션"
+      ],
+      "tags": [
+        "내비게이션",
+        "Gooey Menu",
+        "메뉴"
+      ],
+      "related": {
+        "UI 패턴": [
+          "내비게이션·탭"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb064": {
+      "subcategories": [
+        "시각 효과·경로"
+      ],
+      "tags": [
+        "색상·그라데이션",
+        "애니메이션",
+        "Animated Gradient Border",
+        "gradient border",
+        "그라디언트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb065": {
+      "subcategories": [
+        "시각 효과·경로"
+      ],
+      "tags": [
+        "평가·반응",
+        "Heart / Like Burst",
+        "heart burst",
+        "하트"
+      ],
+      "related": {
+        "UI 패턴": [
+          "비교·평가"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb066": {
+      "subcategories": [
+        "버튼·클릭"
+      ],
+      "tags": [
+        "Hold to Confirm"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb067": {
+      "subcategories": [
+        "마우스·호버"
+      ],
+      "tags": [
+        "호버",
+        "애니메이션",
+        "상태",
+        "Hover State Animation",
+        "hover state"
+      ],
+      "related": {
+        "UI 패턴": [
+          "마우스·커서"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb068": {
+      "subcategories": [
+        "이미지·미디어"
+      ],
+      "tags": [
+        "이미지",
+        "Image Trail"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb069": {
+      "subcategories": [
+        "로딩·진행"
+      ],
+      "tags": [
+        "로딩",
+        "Loading Spinner",
+        "스피너"
+      ],
+      "related": {
+        "UI 패턴": [
+          "로딩·진행"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb070": {
+      "subcategories": [
+        "확대·렌즈"
+      ],
+      "tags": [
+        "줌·확대",
+        "Magnifier Lens",
+        "돋보기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb071": {
+      "subcategories": [
+        "로딩·진행"
+      ],
+      "tags": [
+        "진행 상태",
+        "애니메이션",
+        "Progress Animation",
+        "진행"
+      ],
+      "related": {
+        "UI 패턴": [
+          "로딩·진행"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb072": {
+      "subcategories": [
+        "드래그·제스처"
+      ],
+      "tags": [
+        "Pull to Refresh"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb073": {
+      "subcategories": [
+        "텍스트·숫자"
+      ],
+      "tags": [
+        "Rolling Numbers"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb074": {
+      "subcategories": [
+        "입력·선택"
+      ],
+      "tags": [
+        "선택",
+        "Segmented Control"
+      ],
+      "related": {
+        "UI 패턴": [
+          "토글·선택"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb075": {
+      "subcategories": [
+        "로딩·진행"
+      ],
+      "tags": [
+        "로딩",
+        "Shimmer Effect"
+      ],
+      "related": {
+        "UI 패턴": [
+          "로딩·진행"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb076": {
+      "subcategories": [
+        "마우스·호버"
+      ],
+      "tags": [
+        "호버",
+        "조명",
+        "Spotlight Hover Glow",
+        "spotlight hover",
+        "스포트라이트"
+      ],
+      "related": {
+        "UI 패턴": [
+          "마우스·커서"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb077": {
+      "subcategories": [
+        "입력·선택"
+      ],
+      "tags": [
+        "선택",
+        "평가·반응",
+        "Star Rating",
+        "별",
+        "평점"
+      ],
+      "related": {
+        "UI 패턴": [
+          "토글·선택",
+          "비교·평가"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb078": {
+      "subcategories": [
+        "알림·피드백"
+      ],
+      "tags": [
+        "피드백",
+        "Success Confetti",
+        "성공"
+      ],
+      "related": {
+        "UI 패턴": [
+          "알림·피드백"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb079": {
+      "subcategories": [
+        "드래그·제스처"
+      ],
+      "tags": [
+        "스와이프",
+        "Swipe to Dismiss"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb080": {
+      "subcategories": [
+        "입력·선택"
+      ],
+      "tags": [
+        "토글",
+        "변형",
+        "Theme Toggle Morph",
+        "테마",
+        "모핑"
+      ],
+      "related": {
+        "UI 패턴": [
+          "토글·선택"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb081": {
+      "subcategories": [
+        "툴팁·안내"
+      ],
+      "tags": [
+        "툴팁",
+        "등장·퇴장",
+        "Tooltip Reveal",
+        "드러내기"
+      ],
+      "related": {
+        "UI 패턴": [
+          "모달·오버레이"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb082": {
+      "subcategories": [
+        "입력·선택",
+        "텍스트·숫자"
+      ],
+      "tags": [
+        "입력",
+        "Typing Indicator",
+        "타이핑"
+      ],
+      "related": {
+        "UI 패턴": [
+          "입력·폼",
+          "로딩·진행"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb083": {
+      "subcategories": [
+        "등장·퇴장·순차"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "텍스트",
+        "Enter/Exit Typography",
+        "enter exit typography"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb084": {
+      "subcategories": [
+        "글리치·픽셀"
+      ],
+      "tags": [
+        "텍스트",
+        "Glitch Text",
+        "글리치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb085": {
+      "subcategories": [
+        "드로잉·손글씨"
+      ],
+      "tags": [
+        "텍스트",
+        "Handwriting Draw"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb086": {
+      "subcategories": [
+        "색상·채우기"
+      ],
+      "tags": [
+        "텍스트",
+        "Highlighter Sweep"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb087": {
+      "subcategories": [
+        "움직임·경로"
+      ],
+      "tags": [
+        "텍스트",
+        "Kinetic Typography"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb088": {
+      "subcategories": [
+        "움직임·경로"
+      ],
+      "tags": [
+        "텍스트",
+        "Marquee / Ticker",
+        "marquee ticker"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb089": {
+      "subcategories": [
+        "질감·재질"
+      ],
+      "tags": [
+        "텍스트",
+        "Neon Flicker"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb090": {
+      "subcategories": [
+        "색상·채우기"
+      ],
+      "tags": [
+        "텍스트",
+        "Outline to Fill"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb091": {
+      "subcategories": [
+        "움직임·경로"
+      ],
+      "tags": [
+        "캐러셀",
+        "회전",
+        "텍스트",
+        "Rotate Word Carousel",
+        "단어"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb092": {
+      "subcategories": [
+        "타이핑·문자 변화",
+        "글리치·픽셀"
+      ],
+      "tags": [
+        "텍스트",
+        "Scramble / Glitch Text",
+        "scramble text",
+        "글리치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb093": {
+      "subcategories": [
+        "글리치·픽셀"
+      ],
+      "tags": [
+        "텍스트",
+        "Split-Flap Board",
+        "split flap board",
+        "분할"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb094": {
+      "subcategories": [
+        "등장·퇴장·순차",
+        "움직임·경로"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "텍스트",
+        "Text Clip-Path Reveal",
+        "text clip path reveal",
+        "클립",
+        "경로",
+        "드러내기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb095": {
+      "subcategories": [
+        "색상·채우기"
+      ],
+      "tags": [
+        "텍스트",
+        "색상·그라데이션",
+        "애니메이션",
+        "Text Gradient Animation",
+        "그라디언트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb096": {
+      "subcategories": [
+        "변형·가변 글꼴"
+      ],
+      "tags": [
+        "변형",
+        "텍스트",
+        "Text Morphing"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb097": {
+      "subcategories": [
+        "움직임·경로"
+      ],
+      "tags": [
+        "텍스트",
+        "Text on a Path",
+        "text on path",
+        "경로"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb098": {
+      "subcategories": [
+        "입체·입자"
+      ],
+      "tags": [
+        "텍스트",
+        "입자",
+        "Text Particles",
+        "파티클"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb099": {
+      "subcategories": [
+        "타이핑·문자 변화"
+      ],
+      "tags": [
+        "텍스트",
+        "Typewriter Effect",
+        "타자기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb100": {
+      "subcategories": [
+        "변형·가변 글꼴"
+      ],
+      "tags": [
+        "변형",
+        "텍스트",
+        "Variable Font Morph",
+        "모핑"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb101": {
+      "subcategories": [
+        "움직임·경로"
+      ],
+      "tags": [
+        "텍스트",
+        "Wavy Text"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb102": {
+      "subcategories": [
+        "카드·2.5D"
+      ],
+      "tags": [
+        "2.5D / Pseudo-3D",
+        "2 5d pseudo 3d"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb103": {
+      "subcategories": [
+        "모델·뷰어",
+        "카메라·회전"
+      ],
+      "tags": [
+        "회전",
+        "3D Model Orbit",
+        "모델"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb104": {
+      "subcategories": [
+        "노이즈·필름·글리치"
+      ],
+      "tags": [
+        "ASCII / Halftone",
+        "ascii halftone"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb105": {
+      "subcategories": [
+        "이미지·미디어"
+      ],
+      "tags": [
+        "오디오·비디오",
+        "Audio Visualizer",
+        "오디오"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb106": {
+      "subcategories": [
+        "입자·점·별"
+      ],
+      "tags": [
+        "입자",
+        "Canvas Particle Effect",
+        "파티클"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb107": {
+      "subcategories": [
+        "카드·2.5D"
+      ],
+      "tags": [
+        "캐러셀",
+        "3D Carousel",
+        "carousel 3d"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb108": {
+      "subcategories": [
+        "시각 효과·사진"
+      ],
+      "tags": [
+        "Chromatic Aberration"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb109": {
+      "subcategories": [
+        "물리·시뮬레이션"
+      ],
+      "tags": [
+        "Cloth / Soft-Body Simulation",
+        "cloth simulation"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb110": {
+      "subcategories": [
+        "깊이·그림자"
+      ],
+      "tags": [
+        "이미지",
+        "Depth-Map Photo",
+        "depth map photo"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb111": {
+      "subcategories": [
+        "카드·2.5D"
+      ],
+      "tags": [
+        "카드",
+        "3D Flip Card",
+        "flip card 3d",
+        "뒤집기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb112": {
+      "subcategories": [
+        "물리·시뮬레이션"
+      ],
+      "tags": [
+        "Flocking"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb113": {
+      "subcategories": [
+        "물·유체·파동",
+        "3D·셰이더"
+      ],
+      "tags": [
+        "Fluid / Liquid Simulation",
+        "fluid simulation",
+        "셰이더",
+        "배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb114": {
+      "subcategories": [
+        "시각 효과·사진"
+      ],
+      "tags": [
+        "애니메이션",
+        "Glassmorphism Animated"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb115": {
+      "subcategories": [
+        "입자·점·별"
+      ],
+      "tags": [
+        "입자",
+        "GPGPU Particle System",
+        "파티클"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb116": {
+      "subcategories": [
+        "카드·2.5D"
+      ],
+      "tags": [
+        "카드",
+        "Holographic Card"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb117": {
+      "subcategories": [
+        "마우스·호버",
+        "이미지·미디어"
+      ],
+      "tags": [
+        "호버",
+        "변형",
+        "이미지",
+        "Image Distortion on Hover",
+        "image distortion hover"
+      ],
+      "related": {
+        "UI 패턴": [
+          "마우스·커서"
+        ]
+      },
+      "needsReview": false
+    },
+    "hb118": {
+      "subcategories": [
+        "확대·렌즈"
+      ],
+      "tags": [
+        "줌·확대",
+        "Infinite Zoom",
+        "줌"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb119": {
+      "subcategories": [
+        "물·유체·파동"
+      ],
+      "tags": [
+        "Liquid Glass",
+        "유리"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb120": {
+      "subcategories": [
+        "물·유체·파동"
+      ],
+      "tags": [
+        "변형",
+        "Morphing Blob"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb121": {
+      "subcategories": [
+        "시각 효과·경로"
+      ],
+      "tags": [
+        "Noise-Based Motion",
+        "noise based motion",
+        "노이즈"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb122": {
+      "subcategories": [
+        "카드·2.5D"
+      ],
+      "tags": [
+        "패럴랙스",
+        "Parallax 3D Tilt"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb123": {
+      "subcategories": [
+        "물리·시뮬레이션"
+      ],
+      "tags": [
+        "2D Physics",
+        "physics 2d"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb124": {
+      "subcategories": [
+        "셰이더·공간 효과"
+      ],
+      "tags": [
+        "Ray Marching / SDF Scene",
+        "ray marching sdf"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb125": {
+      "subcategories": [
+        "스크롤·연동"
+      ],
+      "tags": [
+        "스크롤",
+        "회전",
+        "Scroll-Driven 3D Rotation",
+        "scroll driven 3d rotation"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb126": {
+      "subcategories": [
+        "시각 효과·경로"
+      ],
+      "tags": [
+        "애니메이션",
+        "SVG Path Animation",
+        "경로"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb127": {
+      "subcategories": [
+        "셰이더·공간 효과"
+      ],
+      "tags": [
+        "Volumetric Smoke / 3D Noise",
+        "volumetric smoke",
+        "노이즈"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb128": {
+      "subcategories": [
+        "물·유체·파동"
+      ],
+      "tags": [
+        "Water Ripple",
+        "물결"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb129": {
+      "subcategories": [
+        "3D·셰이더"
+      ],
+      "tags": [
+        "3D",
+        "애니메이션",
+        "WebGL Shader Animation",
+        "셰이더",
+        "배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb130": {
+      "subcategories": [
+        "기하·추상 패턴"
+      ],
+      "tags": [
+        "Abstract Geometric Motion"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb131": {
+      "subcategories": [
+        "물·유체·파동"
+      ],
+      "tags": [
+        "Ambient Ripple Effect",
+        "ambient ripple",
+        "물결"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb132": {
+      "subcategories": [
+        "그라데이션·색상"
+      ],
+      "tags": [
+        "색상·그라데이션",
+        "애니메이션",
+        "Animated Gradient Background",
+        "그라디언트",
+        "배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb133": {
+      "subcategories": [
+        "그라데이션·색상"
+      ],
+      "tags": [
+        "Aurora / Northern Lights",
+        "aurora"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb134": {
+      "subcategories": [
+        "빛·불꽃"
+      ],
+      "tags": [
+        "Breathing / Pulsing Glow",
+        "breathing glow"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb135": {
+      "subcategories": [
+        "빛·불꽃"
+      ],
+      "tags": [
+        "Fire Effect"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb136": {
+      "subcategories": [
+        "빛·불꽃"
+      ],
+      "tags": [
+        "Fireworks"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb137": {
+      "subcategories": [
+        "기하·추상 패턴"
+      ],
+      "tags": [
+        "Floating Elements"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb138": {
+      "subcategories": [
+        "기하·추상 패턴"
+      ],
+      "tags": [
+        "입력",
+        "Flow Field"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb139": {
+      "subcategories": [
+        "기하·추상 패턴"
+      ],
+      "tags": [
+        "Game of Life"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb140": {
+      "subcategories": [
+        "노이즈·필름·글리치"
+      ],
+      "tags": [
+        "Grain / Film Noise Overlay",
+        "grain overlay",
+        "노이즈"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb141": {
+      "subcategories": [
+        "입자·점·별",
+        "패턴·격자·선"
+      ],
+      "tags": [
+        "표·데이터",
+        "패럴랙스",
+        "Grid / Dot Pattern Parallax",
+        "grid dot pattern parallax",
+        "격자"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb142": {
+      "subcategories": [
+        "시각 효과·사진"
+      ],
+      "tags": [
+        "Ken Burns Effect",
+        "ken burns"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb143": {
+      "subcategories": [
+        "빛·불꽃"
+      ],
+      "tags": [
+        "조명",
+        "Light Leak"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb144": {
+      "subcategories": [
+        "빛·불꽃",
+        "기하·추상 패턴"
+      ],
+      "tags": [
+        "조명",
+        "Light Rays"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb145": {
+      "subcategories": [
+        "빛·불꽃"
+      ],
+      "tags": [
+        "Lightning"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb146": {
+      "subcategories": [
+        "날씨·자연",
+        "패턴·격자·선"
+      ],
+      "tags": [
+        "텍스트",
+        "Matrix Rain"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb147": {
+      "subcategories": [
+        "그라데이션·색상"
+      ],
+      "tags": [
+        "색상·그라데이션",
+        "애니메이션",
+        "Mesh Gradient Animation",
+        "mesh gradient",
+        "메시",
+        "그라디언트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb148": {
+      "subcategories": [
+        "입자·점·별"
+      ],
+      "tags": [
+        "입자",
+        "Particle Constellation",
+        "파티클"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb149": {
+      "subcategories": [
+        "그라데이션·색상"
+      ],
+      "tags": [
+        "입력",
+        "Plasma Field",
+        "plasma"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb150": {
+      "subcategories": [
+        "노이즈·필름·글리치"
+      ],
+      "tags": [
+        "Scanline Effect",
+        "scanline"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb151": {
+      "subcategories": [
+        "날씨·자연"
+      ],
+      "tags": [
+        "Snow / Rain",
+        "snow rain"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb152": {
+      "subcategories": [
+        "입자·점·별",
+        "빛·불꽃",
+        "날씨·자연"
+      ],
+      "tags": [
+        "입자",
+        "Starfield / Space Particles",
+        "starfield",
+        "파티클"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb153": {
+      "subcategories": [
+        "패턴·격자·선"
+      ],
+      "tags": [
+        "표·데이터",
+        "Synthwave Grid",
+        "격자"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb154": {
+      "subcategories": [
+        "패턴·격자·선"
+      ],
+      "tags": [
+        "Topographic Lines"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "hb155": {
+      "subcategories": [
+        "물·유체·파동"
+      ],
+      "tags": [
+        "Wave Layers",
+        "파도"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai001": {
+      "subcategories": [
+        "목록·카드"
+      ],
+      "tags": [
+        "Agent Activity Timeline",
+        "agent timeline",
+        "agents",
+        "에이전트",
+        "타임라인"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai002": {
+      "subcategories": [
+        "버튼·행동"
+      ],
+      "tags": [
+        "Action Approval Request",
+        "approval request",
+        "agents",
+        "승인"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai003": {
+      "subcategories": [
+        "목록·카드"
+      ],
+      "tags": [
+        "목록",
+        "App Connectors List",
+        "connectors list",
+        "agents"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai004": {
+      "subcategories": [
+        "비교·평가",
+        "파일·도구"
+      ],
+      "tags": [
+        "평가·반응",
+        "파일",
+        "File Change Preview",
+        "file diff",
+        "agents"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai005": {
+      "subcategories": [
+        "패널·사이드바"
+      ],
+      "tags": [
+        "패널",
+        "AI Memory Manager",
+        "memory panel",
+        "agents"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai006": {
+      "subcategories": [
+        "데이터·표"
+      ],
+      "tags": [
+        "Agent Run Log",
+        "run log console",
+        "agents",
+        "에이전트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai007": {
+      "subcategories": [
+        "데이터·표",
+        "상태·진행 표시"
+      ],
+      "tags": [
+        "표·데이터",
+        "상태",
+        "Parallel Agents Status",
+        "subagent grid",
+        "agents"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai008": {
+      "subcategories": [
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "Editable Task Plan",
+        "task plan",
+        "agents",
+        "작업",
+        "계획"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai009": {
+      "subcategories": [
+        "목록·카드",
+        "파일·도구"
+      ],
+      "tags": [
+        "카드",
+        "Tool Call Card",
+        "agents"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai010": {
+      "subcategories": [
+        "검색·필터",
+        "목록·카드"
+      ],
+      "tags": [
+        "검색",
+        "카드",
+        "Web Results Card",
+        "agents"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai011": {
+      "subcategories": [
+        "목록·카드",
+        "내비게이션·탭",
+        "대화·메시지"
+      ],
+      "tags": [
+        "내비게이션",
+        "목록",
+        "대화·채팅",
+        "Chat List Item Menu",
+        "chat item menu",
+        "chat-layout",
+        "채팅",
+        "메뉴"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai012": {
+      "subcategories": [
+        "대화·메시지",
+        "상태·진행 표시"
+      ],
+      "tags": [
+        "대화·채팅",
+        "상태",
+        "Empty Chat Welcome Screen",
+        "empty chat state",
+        "chat-layout",
+        "채팅"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai013": {
+      "subcategories": [
+        "대화·메시지"
+      ],
+      "tags": [
+        "대화·채팅",
+        "Full Chat Window",
+        "chat-layout",
+        "채팅"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai014": {
+      "subcategories": [
+        "대화·메시지"
+      ],
+      "tags": [
+        "대화·채팅",
+        "Mobile Chat Screen",
+        "mobile chat",
+        "chat-layout",
+        "모바일",
+        "채팅"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai015": {
+      "subcategories": [
+        "패널·사이드바",
+        "대화·메시지"
+      ],
+      "tags": [
+        "사이드바",
+        "대화·채팅",
+        "고정",
+        "Sidebar with Pinned Chats and Folders",
+        "sidebar folders",
+        "chat-layout"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai016": {
+      "subcategories": [
+        "알림·피드백",
+        "비교·평가"
+      ],
+      "tags": [
+        "피드백",
+        "비교",
+        "Compare Two Answers",
+        "compare answers",
+        "feedback"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai017": {
+      "subcategories": [
+        "알림·피드백"
+      ],
+      "tags": [
+        "알림",
+        "피드백",
+        "Confidence Badge",
+        "feedback",
+        "배지"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai018": {
+      "subcategories": [
+        "알림·피드백",
+        "비교·평가"
+      ],
+      "tags": [
+        "피드백",
+        "평가·반응",
+        "Was This Helpful Bar",
+        "helpful bar",
+        "feedback",
+        "바"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai019": {
+      "subcategories": [
+        "모달·오버레이",
+        "알림·피드백"
+      ],
+      "tags": [
+        "모달·대화상자",
+        "피드백",
+        "Report a Problem Dialog",
+        "report dialog",
+        "feedback",
+        "신고"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai020": {
+      "subcategories": [
+        "내비게이션·탭",
+        "알림·피드백"
+      ],
+      "tags": [
+        "내비게이션",
+        "피드백",
+        "Rewrite Options Menu",
+        "rewrite options",
+        "feedback",
+        "메뉴"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai021": {
+      "subcategories": [
+        "알림·피드백"
+      ],
+      "tags": [
+        "피드백",
+        "줌·확대",
+        "Satisfaction Scale",
+        "feedback",
+        "크기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai022": {
+      "subcategories": [
+        "토글·선택",
+        "알림·피드백",
+        "비교·평가"
+      ],
+      "tags": [
+        "선택",
+        "피드백",
+        "평가·반응",
+        "Thumbs Down with Reasons",
+        "thumbs down reasons",
+        "feedback"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai023": {
+      "subcategories": [
+        "알림·피드백",
+        "비교·평가"
+      ],
+      "tags": [
+        "피드백",
+        "평가·반응",
+        "Thumbs Up and Down",
+        "thumbs feedback",
+        "feedback"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai024": {
+      "subcategories": [
+        "대화·메시지"
+      ],
+      "tags": [
+        "대화·채팅",
+        "Answer Versions",
+        "messages",
+        "답변"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai025": {
+      "subcategories": [
+        "대화·메시지"
+      ],
+      "tags": [
+        "대화·채팅",
+        "Chat Bubbles",
+        "messages",
+        "채팅"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai026": {
+      "subcategories": [
+        "대화·메시지"
+      ],
+      "tags": [
+        "대화·채팅",
+        "Editable User Message",
+        "edit message",
+        "messages",
+        "메시지"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai027": {
+      "subcategories": [
+        "알림·피드백",
+        "대화·메시지"
+      ],
+      "tags": [
+        "피드백",
+        "대화·채팅",
+        "Error Message with Retry",
+        "error retry",
+        "messages",
+        "오류",
+        "메시지"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai028": {
+      "subcategories": [
+        "대화·메시지",
+        "파일·도구"
+      ],
+      "tags": [
+        "대화·채팅",
+        "파일",
+        "Message with Attached Files",
+        "file message",
+        "messages",
+        "메시지"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai029": {
+      "subcategories": [
+        "대화·메시지"
+      ],
+      "tags": [
+        "대화·채팅",
+        "Formatted Answer",
+        "messages",
+        "답변"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai030": {
+      "subcategories": [
+        "대화·메시지"
+      ],
+      "tags": [
+        "대화·채팅",
+        "Inline Citations",
+        "messages",
+        "출처"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai031": {
+      "subcategories": [
+        "입력·폼"
+      ],
+      "tags": [
+        "입력",
+        "Auto-Growing Prompt",
+        "auto grow prompt",
+        "prompt-input",
+        "프롬프트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai032": {
+      "subcategories": [
+        "입력·폼"
+      ],
+      "tags": [
+        "입력",
+        "Basic Prompt Box",
+        "prompt-input",
+        "프롬프트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai033": {
+      "subcategories": [
+        "입력·폼"
+      ],
+      "tags": [
+        "입력",
+        "Prompt with History",
+        "prompt history",
+        "prompt-input",
+        "프롬프트",
+        "기록"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai034": {
+      "subcategories": [
+        "입력·폼"
+      ],
+      "tags": [
+        "입력",
+        "Prompt Suggestions",
+        "prompt-input",
+        "프롬프트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai035": {
+      "subcategories": [
+        "입력·폼",
+        "안내·배너·사용량"
+      ],
+      "tags": [
+        "입력",
+        "Prompt with Token Counter",
+        "prompt token counter",
+        "prompt-input",
+        "프롬프트",
+        "토큰",
+        "카운터"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai036": {
+      "subcategories": [
+        "입력·폼",
+        "파일·도구"
+      ],
+      "tags": [
+        "입력",
+        "파일",
+        "Prompt with File Attachments",
+        "prompt with attachments",
+        "prompt-input",
+        "프롬프트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai037": {
+      "subcategories": [
+        "입력·폼",
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "입력",
+        "Prompt with Send Shortcut Setting",
+        "send shortcut prompt",
+        "prompt-input",
+        "프롬프트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai038": {
+      "subcategories": [
+        "버튼·행동",
+        "입력·폼"
+      ],
+      "tags": [
+        "입력",
+        "Prompt with Slash Commands",
+        "slash commands prompt",
+        "prompt-input",
+        "프롬프트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai039": {
+      "subcategories": [
+        "입력·폼",
+        "음성·미디어"
+      ],
+      "tags": [
+        "입력",
+        "Prompt with Voice Input",
+        "voice input prompt",
+        "prompt-input",
+        "프롬프트",
+        "음성"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai040": {
+      "subcategories": [
+        "패널·사이드바",
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "패널",
+        "Advanced Parameters Panel",
+        "advanced parameters",
+        "settings"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai041": {
+      "subcategories": [
+        "토글·선택",
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "선택",
+        "Reply Language Picker",
+        "language picker",
+        "settings"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai042": {
+      "subcategories": [
+        "토글·선택",
+        "목록·카드",
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "선택",
+        "카드",
+        "Model Selection Cards",
+        "model cards",
+        "settings",
+        "모델"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai043": {
+      "subcategories": [
+        "목록·카드",
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "카드",
+        "Assistant Persona Cards",
+        "persona cards",
+        "settings"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai044": {
+      "subcategories": [
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "Privacy Controls",
+        "settings"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai045": {
+      "subcategories": [
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "Answer Length Control",
+        "response length",
+        "settings",
+        "답변"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai046": {
+      "subcategories": [
+        "입력·폼",
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "System Prompt Editor",
+        "settings",
+        "프롬프트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai047": {
+      "subcategories": [
+        "토글·선택",
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "선택",
+        "Tone Selector",
+        "settings"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai048": {
+      "subcategories": [
+        "상태·진행 표시"
+      ],
+      "tags": [
+        "상태",
+        "AI Orb",
+        "thinking"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai049": {
+      "subcategories": [
+        "로딩·진행",
+        "대화·메시지"
+      ],
+      "tags": [
+        "로딩",
+        "대화·채팅",
+        "Skeleton Message",
+        "thinking",
+        "스켈레톤",
+        "메시지"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai050": {
+      "subcategories": [
+        "로딩·진행",
+        "상태·진행 표시"
+      ],
+      "tags": [
+        "로딩",
+        "텍스트",
+        "상태",
+        "Spinner with Status Text",
+        "status spinner",
+        "thinking",
+        "스피너"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai051": {
+      "subcategories": [
+        "버튼·행동",
+        "토글·선택",
+        "비교·평가"
+      ],
+      "tags": [
+        "버튼",
+        "평가·반응",
+        "Stop Generating Button",
+        "stop generating",
+        "thinking"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai052": {
+      "subcategories": [
+        "로딩·진행"
+      ],
+      "tags": [
+        "로딩",
+        "Thinking Shimmer",
+        "thinking"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai053": {
+      "subcategories": [
+        "검색·필터",
+        "파일·도구",
+        "상태·진행 표시"
+      ],
+      "tags": [
+        "검색",
+        "상태",
+        "Web Search Indicator",
+        "tool call indicator",
+        "thinking"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai054": {
+      "subcategories": [
+        "입력·폼",
+        "로딩·진행"
+      ],
+      "tags": [
+        "입력",
+        "Typing Dots",
+        "thinking",
+        "타이핑"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai055": {
+      "subcategories": [
+        "안내·배너·사용량"
+      ],
+      "tags": [
+        "AI Disclaimer Banner",
+        "trust"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai056": {
+      "subcategories": [
+        "안내·배너·사용량"
+      ],
+      "tags": [
+        "AI-Generated Label",
+        "ai generated label",
+        "trust"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai057": {
+      "subcategories": [
+        "알림·피드백",
+        "안내·배너·사용량"
+      ],
+      "tags": [
+        "피드백",
+        "Sensitive Content Notice",
+        "content warning",
+        "trust"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai058": {
+      "subcategories": [
+        "알림·피드백",
+        "상태·진행 표시"
+      ],
+      "tags": [
+        "피드백",
+        "상태",
+        "AI Error States",
+        "error states",
+        "trust",
+        "오류"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai059": {
+      "subcategories": [
+        "패널·사이드바"
+      ],
+      "tags": [
+        "패널",
+        "Fact Check Panel",
+        "trust"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai060": {
+      "subcategories": [
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "First Run Consent",
+        "trust"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai061": {
+      "subcategories": [
+        "패널·사이드바",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "패널",
+        "접근성",
+        "Keyboard Shortcuts Panel",
+        "keyboard shortcuts",
+        "trust"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai062": {
+      "subcategories": [
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "Onboarding Tour",
+        "trust"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai063": {
+      "subcategories": [
+        "입력·폼",
+        "목록·카드"
+      ],
+      "tags": [
+        "카드",
+        "Prompt Tips Card",
+        "prompt tips",
+        "trust",
+        "프롬프트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai064": {
+      "subcategories": [
+        "모달·오버레이",
+        "안내·배너·사용량"
+      ],
+      "tags": [
+        "모달·대화상자",
+        "What's New Dialog",
+        "whats new dialog",
+        "trust"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai065": {
+      "subcategories": [
+        "데이터·표",
+        "안내·배너·사용량"
+      ],
+      "tags": [
+        "텍스트",
+        "Context Window Bar",
+        "usage",
+        "바"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai066": {
+      "subcategories": [
+        "목록·카드"
+      ],
+      "tags": [
+        "카드",
+        "Credits Remaining Card",
+        "credits card",
+        "usage"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai067": {
+      "subcategories": [
+        "대화·메시지"
+      ],
+      "tags": [
+        "대화·채팅",
+        "Messages Left Today",
+        "daily limit ring",
+        "usage"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai068": {
+      "subcategories": [
+        "대화·메시지"
+      ],
+      "tags": [
+        "대화·채팅",
+        "Cost per Message",
+        "message cost",
+        "usage",
+        "메시지"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai069": {
+      "subcategories": [
+        "안내·배너·사용량"
+      ],
+      "tags": [
+        "Model Price Calculator",
+        "price calculator",
+        "usage",
+        "모델"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai070": {
+      "subcategories": [
+        "안내·배너·사용량"
+      ],
+      "tags": [
+        "Rate Limit Banner",
+        "usage"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai071": {
+      "subcategories": [
+        "알림·피드백",
+        "설정·동의·온보딩"
+      ],
+      "tags": [
+        "알림",
+        "Spending Alerts",
+        "spend alerts",
+        "usage"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai072": {
+      "subcategories": [
+        "안내·배너·사용량"
+      ],
+      "tags": [
+        "Token Ring Meter",
+        "token ring",
+        "usage",
+        "토큰"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai073": {
+      "subcategories": [
+        "안내·배너·사용량"
+      ],
+      "tags": [
+        "Upgrade Plan Banner",
+        "upgrade banner",
+        "usage",
+        "계획"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai074": {
+      "subcategories": [
+        "데이터·표",
+        "안내·배너·사용량"
+      ],
+      "tags": [
+        "표·데이터",
+        "Daily Usage Chart",
+        "usage chart",
+        "usage"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai075": {
+      "subcategories": [
+        "음성·미디어"
+      ],
+      "tags": [
+        "오디오·비디오",
+        "Audio Answer Player",
+        "voice-media",
+        "오디오",
+        "답변"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai076": {
+      "subcategories": [
+        "음성·미디어"
+      ],
+      "tags": [
+        "이미지",
+        "카메라",
+        "Camera Photo Capture",
+        "camera capture",
+        "voice-media"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai077": {
+      "subcategories": [
+        "모달·오버레이",
+        "로딩·진행",
+        "파일·도구",
+        "상태·진행 표시",
+        "음성·미디어"
+      ],
+      "tags": [
+        "진행 상태",
+        "파일",
+        "Page Drop Zone with Upload Progress",
+        "drop overlay upload",
+        "voice-media",
+        "페이지",
+        "업로드",
+        "진행"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai078": {
+      "subcategories": [
+        "로딩·진행",
+        "상태·진행 표시",
+        "음성·미디어"
+      ],
+      "tags": [
+        "진행 상태",
+        "이미지",
+        "Image Generation Progress",
+        "voice-media",
+        "진행"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai079": {
+      "subcategories": [
+        "입력·폼",
+        "음성·미디어"
+      ],
+      "tags": [
+        "이미지",
+        "Image Prompt Builder",
+        "image prompt editor",
+        "voice-media",
+        "프롬프트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai080": {
+      "subcategories": [
+        "비교·평가",
+        "파일·도구",
+        "음성·미디어"
+      ],
+      "tags": [
+        "평가·반응",
+        "이미지",
+        "파일",
+        "Image Upload with Preview",
+        "image upload preview",
+        "voice-media",
+        "업로드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai081": {
+      "subcategories": [
+        "음성·미디어"
+      ],
+      "tags": [
+        "Live Transcript",
+        "voice-media"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai082": {
+      "subcategories": [
+        "대화·메시지",
+        "음성·미디어"
+      ],
+      "tags": [
+        "대화·채팅",
+        "Voice Mode Screen",
+        "voice mode",
+        "voice-media",
+        "음성"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai083": {
+      "subcategories": [
+        "음성·미디어"
+      ],
+      "tags": [
+        "Voice Recorder with Waveform",
+        "voice recorder",
+        "voice-media",
+        "음성"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ai084": {
+      "subcategories": [
+        "설정·동의·온보딩",
+        "음성·미디어"
+      ],
+      "tags": [
+        "Voice and Speech Settings",
+        "voice settings",
+        "voice-media",
+        "음성",
+        "설정"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-01": {
+      "subcategories": [
+        "접근성·키보드",
+        "아코디언·단계적 공개"
+      ],
+      "tags": [
+        "폼",
+        "아코디언",
+        "접근성"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-02": {
+      "subcategories": [
+        "내비게이션·탭",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "탭",
+        "접근성",
+        "키보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-03": {
+      "subcategories": [
+        "내비게이션·탭",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "탭",
+        "접근성",
+        "키보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-04": {
+      "subcategories": [
+        "토글·선택",
+        "입력·폼",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "선택",
+        "접근성",
+        "콤보박스",
+        "키보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-05": {
+      "subcategories": [
+        "모달·오버레이",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "모달·대화상자",
+        "접근성",
+        "모달",
+        "대화상자",
+        "포커스"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-06": {
+      "subcategories": [
+        "버튼·행동",
+        "토글·선택",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "버튼",
+        "토글",
+        "접근성"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-07": {
+      "subcategories": [
+        "토글·선택",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "선택",
+        "접근성",
+        "체크박스"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-08": {
+      "subcategories": [
+        "토글·선택",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "선택",
+        "접근성",
+        "라디오",
+        "키보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-09": {
+      "subcategories": [
+        "버튼·행동",
+        "토글·선택",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "버튼",
+        "토글",
+        "접근성",
+        "스위치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-10": {
+      "subcategories": [
+        "버튼·행동",
+        "내비게이션·탭",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "버튼",
+        "내비게이션",
+        "접근성",
+        "메뉴",
+        "키보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-11": {
+      "subcategories": [
+        "토글·선택",
+        "목록·카드",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "선택",
+        "목록",
+        "스크롤",
+        "접근성",
+        "리스트박스",
+        "키보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-12": {
+      "subcategories": [
+        "입력·폼",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "슬라이더",
+        "접근성",
+        "값 조절",
+        "키보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-13": {
+      "subcategories": [
+        "버튼·행동",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "버튼",
+        "접근성",
+        "스핀버튼",
+        "수량",
+        "키보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-14": {
+      "subcategories": [
+        "알림·피드백",
+        "접근성·키보드",
+        "상태·진행 표시"
+      ],
+      "tags": [
+        "알림",
+        "접근성",
+        "상태"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-15": {
+      "subcategories": [
+        "모달·오버레이",
+        "알림·피드백",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "모달·대화상자",
+        "알림",
+        "접근성",
+        "확인",
+        "대화상자"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-16": {
+      "subcategories": [
+        "토글·선택",
+        "접근성·키보드",
+        "상태·진행 표시"
+      ],
+      "tags": [
+        "선택",
+        "접근성",
+        "상태",
+        "체크박스",
+        "부분 선택"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-17": {
+      "subcategories": [
+        "입력·폼",
+        "목록·카드"
+      ],
+      "tags": [
+        "입력",
+        "목록",
+        "콤보박스",
+        "자동완성"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-18": {
+      "subcategories": [
+        "입력·폼",
+        "목록·카드"
+      ],
+      "tags": [
+        "목록",
+        "콤보박스",
+        "자동완성"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-19": {
+      "subcategories": [
+        "입력·폼",
+        "목록·카드"
+      ],
+      "tags": [
+        "입력",
+        "목록",
+        "콤보박스"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-20": {
+      "subcategories": [
+        "입력·폼",
+        "검색·필터",
+        "데이터·표"
+      ],
+      "tags": [
+        "검색",
+        "표·데이터",
+        "콤보박스",
+        "격자"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-21": {
+      "subcategories": [
+        "접근성·키보드",
+        "아코디언·단계적 공개"
+      ],
+      "tags": [
+        "접기·펼치기",
+        "접근성",
+        "FAQ",
+        "펼치기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-22": {
+      "subcategories": [
+        "목록·카드",
+        "아코디언·단계적 공개"
+      ],
+      "tags": [
+        "접기·펼치기",
+        "카드",
+        "펼치기",
+        "상세"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-23": {
+      "subcategories": [
+        "접근성·키보드",
+        "아코디언·단계적 공개"
+      ],
+      "tags": [
+        "접기·펼치기",
+        "이미지",
+        "접근성",
+        "설명"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-24": {
+      "subcategories": [
+        "목록·카드"
+      ],
+      "tags": [
+        "목록",
+        "리스트박스",
+        "순서 변경",
+        "즐겨찾기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-25": {
+      "subcategories": [
+        "토글·선택",
+        "목록·카드",
+        "아코디언·단계적 공개"
+      ],
+      "tags": [
+        "선택",
+        "접기·펼치기",
+        "목록",
+        "리스트박스",
+        "펼치기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-26": {
+      "subcategories": [
+        "토글·선택",
+        "목록·카드"
+      ],
+      "tags": [
+        "선택",
+        "목록",
+        "리스트박스",
+        "그룹"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-27": {
+      "subcategories": [
+        "토글·선택",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "선택",
+        "접근성",
+        "라디오",
+        "키보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-28": {
+      "subcategories": [
+        "토글·선택",
+        "비교·평가",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "선택",
+        "평가·반응",
+        "접근성",
+        "별점",
+        "라디오",
+        "키보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-29": {
+      "subcategories": [
+        "토글·선택",
+        "입력·폼",
+        "비교·평가"
+      ],
+      "tags": [
+        "슬라이더",
+        "평가·반응",
+        "별점",
+        "값 조절"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-30": {
+      "subcategories": [
+        "입력·폼",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "슬라이더",
+        "접근성",
+        "재생",
+        "키보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-31": {
+      "subcategories": [
+        "입력·폼"
+      ],
+      "tags": [
+        "슬라이더",
+        "색상·그라데이션",
+        "색상",
+        "값 조절"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-32": {
+      "subcategories": [
+        "토글·선택",
+        "입력·폼"
+      ],
+      "tags": [
+        "선택",
+        "슬라이더",
+        "범위",
+        "다중 손잡이"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-33": {
+      "subcategories": [
+        "토글·선택"
+      ],
+      "tags": [
+        "토글",
+        "선택",
+        "스위치",
+        "체크박스"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-34": {
+      "subcategories": [
+        "토글·선택",
+        "접근성·키보드",
+        "상태·진행 표시"
+      ],
+      "tags": [
+        "토글",
+        "접근성",
+        "상태",
+        "스위치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-35": {
+      "subcategories": [
+        "데이터·표"
+      ],
+      "tags": [
+        "표·데이터",
+        "표",
+        "정렬",
+        "데이터"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "apg-36": {
+      "subcategories": [
+        "버튼·행동",
+        "내비게이션·탭",
+        "접근성·키보드"
+      ],
+      "tags": [
+        "버튼",
+        "내비게이션",
+        "접근성",
+        "메뉴",
+        "키보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp001": {
+      "subcategories": [
+        "그리드·목록·카드",
+        "콘텐츠·미디어"
+      ],
+      "tags": [
+        "목록",
+        "카드",
+        "이미지",
+        "갤러리"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp002": {
+      "subcategories": [
+        "패널·분할 화면",
+        "콘텐츠·미디어"
+      ],
+      "tags": [
+        "사이드바",
+        "블로그",
+        "편집"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp003": {
+      "subcategories": [
+        "소개·랜딩·히어로",
+        "콘텐츠·미디어"
+      ],
+      "tags": [
+        "캐러셀",
+        "슬라이드",
+        "랜딩"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp004": {
+      "subcategories": [
+        "상품·쇼핑·결제",
+        "로그인·입력·신청"
+      ],
+      "tags": [
+        "입력",
+        "폼",
+        "결제",
+        "요약"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp005": {
+      "subcategories": [
+        "소개·랜딩·히어로"
+      ],
+      "tags": [
+        "커버",
+        "중앙",
+        "랜딩"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp006": {
+      "subcategories": [
+        "패널·분할 화면",
+        "대시보드·관리 화면"
+      ],
+      "tags": [
+        "사이드바",
+        "표·데이터",
+        "대시보드",
+        "표"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp007": {
+      "subcategories": [
+        "그리드·목록·카드"
+      ],
+      "tags": [
+        "표·데이터",
+        "그리드",
+        "열",
+        "반응형"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp008": {
+      "subcategories": [
+        "소개·랜딩·히어로"
+      ],
+      "tags": [
+        "버튼",
+        "히어로",
+        "랜딩",
+        "CTA"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp009": {
+      "subcategories": [
+        "내비게이션·헤더·푸터"
+      ],
+      "tags": [
+        "내비게이션",
+        "헤더",
+        "상단바"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp010": {
+      "subcategories": [
+        "패널·분할 화면",
+        "내비게이션·헤더·푸터",
+        "그리드·목록·카드"
+      ],
+      "tags": [
+        "사이드바",
+        "내비게이션",
+        "목록"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp011": {
+      "subcategories": [
+        "내비게이션·헤더·푸터"
+      ],
+      "tags": [
+        "푸터",
+        "하단",
+        "링크"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp012": {
+      "subcategories": [
+        "내비게이션·헤더·푸터"
+      ],
+      "tags": [
+        "내비게이션",
+        "고정",
+        "하단바"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp013": {
+      "subcategories": [
+        "내비게이션·헤더·푸터"
+      ],
+      "tags": [
+        "내비게이션",
+        "스크롤",
+        "고정",
+        "헤더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp014": {
+      "subcategories": [
+        "내비게이션·헤더·푸터"
+      ],
+      "tags": [
+        "내비게이션",
+        "스크롤",
+        "헤더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp015": {
+      "subcategories": [
+        "내비게이션·헤더·푸터"
+      ],
+      "tags": [
+        "내비게이션",
+        "비교",
+        "반응형",
+        "상단바"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp016": {
+      "subcategories": [
+        "패널·분할 화면",
+        "내비게이션·헤더·푸터"
+      ],
+      "tags": [
+        "패널",
+        "내비게이션",
+        "드로어",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp017": {
+      "subcategories": [
+        "패널·분할 화면"
+      ],
+      "tags": [
+        "패널",
+        "사이드바",
+        "드로어",
+        "상세"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp018": {
+      "subcategories": [
+        "패널·분할 화면",
+        "내비게이션·헤더·푸터",
+        "그리드·목록·카드",
+        "콘텐츠·미디어"
+      ],
+      "tags": [
+        "패널",
+        "내비게이션",
+        "목록",
+        "메뉴",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp019": {
+      "subcategories": [
+        "그리드·목록·카드",
+        "상품·쇼핑·결제"
+      ],
+      "tags": [
+        "카드",
+        "비교",
+        "가격"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp020": {
+      "subcategories": [
+        "상품·쇼핑·결제",
+        "소개·랜딩·히어로"
+      ],
+      "tags": [
+        "제품",
+        "랜딩",
+        "소개"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp021": {
+      "subcategories": [
+        "로그인·입력·신청"
+      ],
+      "tags": [
+        "입력",
+        "폼",
+        "로그인"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp022": {
+      "subcategories": [
+        "내비게이션·헤더·푸터"
+      ],
+      "tags": [
+        "내비게이션",
+        "고정",
+        "헤더",
+        "푸터"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp023": {
+      "subcategories": [
+        "그리드·목록·카드",
+        "소개·랜딩·히어로"
+      ],
+      "tags": [
+        "카드",
+        "히어로",
+        "소개"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "bsp024": {
+      "subcategories": [
+        "그리드·목록·카드"
+      ],
+      "tags": [
+        "카드",
+        "그리드",
+        "메이슨리"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl001": {
+      "subcategories": [
+        "대시보드·관리 화면"
+      ],
+      "tags": [
+        "표·데이터",
+        "분석",
+        "대시보드",
+        "지표"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl002": {
+      "subcategories": [
+        "대시보드·관리 화면"
+      ],
+      "tags": [
+        "표·데이터",
+        "CRM",
+        "고객",
+        "대시보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl003": {
+      "subcategories": [
+        "대시보드·관리 화면",
+        "상품·쇼핑·결제"
+      ],
+      "tags": [
+        "표·데이터",
+        "쇼핑몰",
+        "관리",
+        "대시보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl004": {
+      "subcategories": [
+        "대시보드·관리 화면",
+        "그리드·목록·카드"
+      ],
+      "tags": [
+        "목록",
+        "표·데이터",
+        "재고",
+        "관리"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl005": {
+      "subcategories": [
+        "행사·프로젝트"
+      ],
+      "tags": [
+        "업무",
+        "보드",
+        "프로젝트"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl006": {
+      "subcategories": [
+        "대시보드·관리 화면"
+      ],
+      "tags": [
+        "표·데이터",
+        "인사",
+        "직원",
+        "관리"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl007": {
+      "subcategories": [
+        "대시보드·관리 화면"
+      ],
+      "tags": [
+        "표·데이터",
+        "재무",
+        "거래",
+        "대시보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl008": {
+      "subcategories": [
+        "대시보드·관리 화면"
+      ],
+      "tags": [
+        "표·데이터",
+        "병원",
+        "예약",
+        "관리"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl009": {
+      "subcategories": [
+        "그리드·목록·카드",
+        "검색·탐색"
+      ],
+      "tags": [
+        "검색",
+        "목록",
+        "채용"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl010": {
+      "subcategories": [
+        "행사·프로젝트"
+      ],
+      "tags": [
+        "선택",
+        "행사",
+        "티켓"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl011": {
+      "subcategories": [
+        "콘텐츠·미디어"
+      ],
+      "tags": [
+        "프로필",
+        "링크",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl012": {
+      "subcategories": [
+        "로그인·입력·신청",
+        "소개·랜딩·히어로"
+      ],
+      "tags": [
+        "입력",
+        "폼",
+        "파일",
+        "자료",
+        "소개"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl013": {
+      "subcategories": [
+        "로그인·입력·신청",
+        "소개·랜딩·히어로",
+        "행사·프로젝트"
+      ],
+      "tags": [
+        "폼",
+        "웨비나",
+        "신청",
+        "행사"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl014": {
+      "subcategories": [
+        "그리드·목록·카드",
+        "로그인·입력·신청",
+        "소개·랜딩·히어로"
+      ],
+      "tags": [
+        "목록",
+        "출시",
+        "대기",
+        "랜딩"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl015": {
+      "subcategories": [
+        "그리드·목록·카드",
+        "상품·쇼핑·결제",
+        "검색·탐색"
+      ],
+      "tags": [
+        "카드",
+        "쇼핑",
+        "상품"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl016": {
+      "subcategories": [
+        "상품·쇼핑·결제",
+        "검색·탐색"
+      ],
+      "tags": [
+        "검색",
+        "상품",
+        "쇼핑"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl017": {
+      "subcategories": [
+        "상품·쇼핑·결제"
+      ],
+      "tags": [
+        "선택",
+        "상품상세",
+        "구매"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl018": {
+      "subcategories": [
+        "소개·랜딩·히어로"
+      ],
+      "tags": [
+        "강의",
+        "커리큘럼",
+        "교육"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl019": {
+      "subcategories": [
+        "검색·탐색"
+      ],
+      "tags": [
+        "폼",
+        "교육",
+        "강의",
+        "탐색"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl020": {
+      "subcategories": [
+        "검색·탐색"
+      ],
+      "tags": [
+        "검색",
+        "부동산",
+        "매물",
+        "상세"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl021": {
+      "subcategories": [
+        "소개·랜딩·히어로"
+      ],
+      "tags": [
+        "숙소",
+        "예약",
+        "여행"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl022": {
+      "subcategories": [
+        "상품·쇼핑·결제"
+      ],
+      "tags": [
+        "내비게이션",
+        "카페",
+        "메뉴",
+        "매장"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl023": {
+      "subcategories": [
+        "소개·랜딩·히어로",
+        "콘텐츠·미디어"
+      ],
+      "tags": [
+        "포트폴리오",
+        "서비스",
+        "소개"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl024": {
+      "subcategories": [
+        "콘텐츠·미디어"
+      ],
+      "tags": [
+        "작업물",
+        "포트폴리오",
+        "프로필"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "tpl025": {
+      "subcategories": [
+        "소개·랜딩·히어로"
+      ],
+      "tags": [
+        "대화·채팅",
+        "AI",
+        "채팅",
+        "제품"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm04": {
+      "subcategories": [
+        "시점·투영"
+      ],
+      "tags": [
+        "비교",
+        "원근",
+        "직교",
+        "투영",
+        "시야각"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm05": {
+      "subcategories": [
+        "회전·오빗·팬",
+        "줌·화각·렌즈"
+      ],
+      "tags": [
+        "줌·확대",
+        "회전",
+        "오빗",
+        "줌"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm06": {
+      "subcategories": [
+        "회전·오빗·팬",
+        "시점·투영"
+      ],
+      "tags": [
+        "회전",
+        "트랙볼",
+        "자유회전",
+        "직교"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm07": {
+      "subcategories": [
+        "회전·오빗·팬",
+        "시점·투영"
+      ],
+      "tags": [
+        "회전",
+        "아크볼",
+        "직교",
+        "원근"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm08": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "줌·화각·렌즈"
+      ],
+      "tags": [
+        "마우스·커서",
+        "줌·확대",
+        "지도",
+        "이동",
+        "줌",
+        "포인터"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm09": {
+      "subcategories": [
+        "시점·투영"
+      ],
+      "tags": [
+        "비교",
+        "다중시점",
+        "분할화면",
+        "시점"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm10": {
+      "subcategories": [
+        "줌·화각·렌즈",
+        "대상 맞춤·포커스",
+        "촬영·노출"
+      ],
+      "tags": [
+        "진행 상태",
+        "피사계심도",
+        "초점",
+        "조리개",
+        "보케"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm11": {
+      "subcategories": [
+        "시점·투영"
+      ],
+      "tags": [
+        "직교",
+        "오프셋",
+        "화면영역"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm12": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "회전·오빗·팬"
+      ],
+      "tags": [
+        "회전",
+        "1인칭",
+        "자유 이동"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm13": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "시점·투영",
+        "경로·스토리"
+      ],
+      "tags": [
+        "스크롤",
+        "카메라 경로",
+        "스토리",
+        "시점"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm14": {
+      "subcategories": [
+        "시점·투영",
+        "경로·스토리"
+      ],
+      "tags": [
+        "버튼",
+        "시점 전환",
+        "카메라 경로",
+        "스토리"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm15": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "경로·스토리",
+        "입력·제스처"
+      ],
+      "tags": [
+        "스크롤",
+        "접근성",
+        "경로",
+        "카메라 이동",
+        "키보드"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm16": {
+      "subcategories": [
+        "경로·스토리"
+      ],
+      "tags": [
+        "키프레임",
+        "경로",
+        "편집"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm17": {
+      "subcategories": [
+        "회전·오빗·팬",
+        "경로·스토리"
+      ],
+      "tags": [
+        "회전",
+        "자유 카메라",
+        "비행",
+        "패닝",
+        "오빗"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm18": {
+      "subcategories": [
+        "회전·오빗·팬",
+        "시점·투영",
+        "경로·스토리",
+        "촬영·노출"
+      ],
+      "tags": [
+        "비교",
+        "회전",
+        "드론",
+        "촬영경로",
+        "오빗",
+        "시점"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm19": {
+      "subcategories": [
+        "회전·오빗·팬"
+      ],
+      "tags": [
+        "회전",
+        "자동 회전",
+        "오빗",
+        "각도"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm20": {
+      "subcategories": [
+        "경로·스토리"
+      ],
+      "tags": [
+        "화면 전환",
+        "시퀀스",
+        "전환"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm21": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "회전·오빗·팬",
+        "줌·화각·렌즈",
+        "시점·투영"
+      ],
+      "tags": [
+        "줌·확대",
+        "회전",
+        "달리",
+        "줌",
+        "트럭"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm22": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "충돌·경계"
+      ],
+      "tags": [
+        "경계",
+        "이동"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm23": {
+      "subcategories": [
+        "회전·오빗·팬"
+      ],
+      "tags": [
+        "회전",
+        "축",
+        "위 방향"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm24": {
+      "subcategories": [
+        "회전·오빗·팬"
+      ],
+      "tags": [
+        "클릭·탭",
+        "선택",
+        "회전",
+        "오빗",
+        "회전 중심"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm25": {
+      "subcategories": [
+        "충돌·경계"
+      ],
+      "tags": [
+        "충돌",
+        "장애물"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm26": {
+      "subcategories": [
+        "충돌·경계"
+      ],
+      "tags": [
+        "충돌",
+        "충돌체"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm27": {
+      "subcategories": [
+        "회전·오빗·팬",
+        "줌·화각·렌즈",
+        "입력·제스처"
+      ],
+      "tags": [
+        "줌·확대",
+        "회전",
+        "터치",
+        "더블 탭",
+        "줌"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm28": {
+      "subcategories": [
+        "입력·제스처"
+      ],
+      "tags": [
+        "마우스·커서",
+        "입력",
+        "입력 설정",
+        "터치",
+        "마우스",
+        "제스처"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm29": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "줌·화각·렌즈",
+        "입력·제스처"
+      ],
+      "tags": [
+        "마우스·커서",
+        "줌·확대",
+        "커서",
+        "달리",
+        "줌"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm30": {
+      "subcategories": [
+        "회전·오빗·팬"
+      ],
+      "tags": [
+        "회전",
+        "이징",
+        "시간"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm31": {
+      "subcategories": [
+        "촬영·노출"
+      ],
+      "tags": [
+        "비교",
+        "흔들림",
+        "효과"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm32": {
+      "subcategories": [
+        "입력·제스처"
+      ],
+      "tags": [
+        "입력",
+        "상태"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm33": {
+      "subcategories": [
+        "대상 맞춤·포커스"
+      ],
+      "tags": [
+        "프레이밍",
+        "패딩"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm34": {
+      "subcategories": [
+        "대상 맞춤·포커스",
+        "충돌·경계"
+      ],
+      "tags": [
+        "대상 맞춤",
+        "구형",
+        "프레이밍"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm35": {
+      "subcategories": [
+        "대상 맞춤·포커스"
+      ],
+      "tags": [
+        "사각형",
+        "대상 맞춤",
+        "프레이밍"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm36": {
+      "subcategories": [
+        "회전·오빗·팬",
+        "대상 맞춤·포커스"
+      ],
+      "tags": [
+        "회전",
+        "초점",
+        "오프셋",
+        "회전 중심"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm37": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "충돌·경계"
+      ],
+      "tags": [
+        "달리",
+        "거리",
+        "경계"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm38": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "회전·오빗·팬",
+        "입력·제스처"
+      ],
+      "tags": [
+        "회전",
+        "접근성",
+        "키보드",
+        "이동"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm39": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "회전·오빗·팬",
+        "시점·투영"
+      ],
+      "tags": [
+        "방향",
+        "시선"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm40": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "입력·제스처"
+      ],
+      "tags": [
+        "마우스·커서",
+        "드래그",
+        "접근성",
+        "키보드",
+        "달리"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm41": {
+      "subcategories": [
+        "시점·투영"
+      ],
+      "tags": [
+        "다중 시점",
+        "분할 화면"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm42": {
+      "subcategories": [
+        "이동·달리·트럭",
+        "줌·화각·렌즈",
+        "시점·투영"
+      ],
+      "tags": [
+        "줌·확대",
+        "직교",
+        "줌"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm43": {
+      "subcategories": [
+        "시점·투영",
+        "대상 맞춤·포커스"
+      ],
+      "tags": [
+        "패딩",
+        "오프셋",
+        "프레이밍"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm44": {
+      "subcategories": [
+        "경로·스토리"
+      ],
+      "tags": [
+        "애니메이션",
+        "경로"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm45": {
+      "subcategories": [
+        "이동·달리·트럭"
+      ],
+      "tags": [
+        "피드백",
+        "상태",
+        "전환 완료"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm46": {
+      "subcategories": [
+        "시점·투영"
+      ],
+      "tags": [
+        "오프셋",
+        "화면 중심"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm47": {
+      "subcategories": [
+        "시점·투영"
+      ],
+      "tags": [
+        "뷰포트",
+        "표시 영역"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm48": {
+      "subcategories": [
+        "줌·화각·렌즈",
+        "시점·투영"
+      ],
+      "tags": [
+        "원근",
+        "화각",
+        "클리핑",
+        "시야"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm49": {
+      "subcategories": [
+        "줌·화각·렌즈",
+        "시점·투영"
+      ],
+      "tags": [
+        "줌·확대",
+        "직교",
+        "줌",
+        "클리핑",
+        "시야"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cm50": {
+      "subcategories": [
+        "촬영·노출"
+      ],
+      "tags": [
+        "조리개",
+        "셔터",
+        "ISO",
+        "노출"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-01": {
+      "subcategories": [
+        "형상·메시·곡선"
+      ],
+      "tags": [
+        "볼록 껍질 형상",
+        "geometry",
+        "convex"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-02": {
+      "subcategories": [
+        "형상·메시·곡선"
+      ],
+      "tags": [
+        "입체 도형 불리언 연산",
+        "geometry",
+        "csg"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-03": {
+      "subcategories": [
+        "형상·메시·곡선"
+      ],
+      "tags": [
+        "곡선 경로 돌출",
+        "geometry",
+        "extrude",
+        "splines"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-04": {
+      "subcategories": [
+        "형상·메시·곡선",
+        "3D 상호작용·선택"
+      ],
+      "tags": [
+        "3D 곡선 편집",
+        "geometry",
+        "spline",
+        "editor"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-05": {
+      "subcategories": [
+        "형상·메시·곡선"
+      ],
+      "tags": [
+        "찻주전자 형상 설정",
+        "geometry",
+        "teapot"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-06": {
+      "subcategories": [
+        "형상·메시·곡선",
+        "3D 상호작용·선택",
+        "재질·표면"
+      ],
+      "tags": [
+        "지형과 표면 충돌",
+        "geometry",
+        "terrain",
+        "raycast"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-07": {
+      "subcategories": [
+        "형상·메시·곡선"
+      ],
+      "tags": [
+        "텍스트",
+        "3D 텍스트 형상",
+        "geometry",
+        "text"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-08": {
+      "subcategories": [
+        "형상·메시·곡선",
+        "3D 상호작용·선택"
+      ],
+      "tags": [
+        "선택",
+        "삼각형 메시 선택",
+        "interactive",
+        "buffergeometry"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-09": {
+      "subcategories": [
+        "3D 상호작용·선택"
+      ],
+      "tags": [
+        "마우스·커서",
+        "선택",
+        "3D 큐브 포인터 선택",
+        "interactive",
+        "cubes"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-10": {
+      "subcategories": [
+        "3D 상호작용·선택"
+      ],
+      "tags": [
+        "선택",
+        "직교 투영 객체 선택",
+        "interactive",
+        "cubes",
+        "ortho"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-11": {
+      "subcategories": [
+        "3D 상호작용·선택"
+      ],
+      "tags": [
+        "선택",
+        "3D 선 선택",
+        "interactive",
+        "lines"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-12": {
+      "subcategories": [
+        "3D 상호작용·선택"
+      ],
+      "tags": [
+        "선택",
+        "3D 점 선택",
+        "interactive",
+        "points"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-13": {
+      "subcategories": [
+        "3D 상호작용·선택",
+        "셰이더·공간 효과"
+      ],
+      "tags": [
+        "입자",
+        "포인트 클라우드 레이캐스팅",
+        "interactive",
+        "raycasting",
+        "points"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-14": {
+      "subcategories": [
+        "형상·메시·곡선",
+        "3D 상호작용·선택"
+      ],
+      "tags": [
+        "3D 복셀 그리기",
+        "interactive",
+        "voxelpainter"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-15": {
+      "subcategories": [
+        "조명·환경"
+      ],
+      "tags": [
+        "반구광과 지면색",
+        "lights",
+        "hemisphere"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-16": {
+      "subcategories": [
+        "조명·환경"
+      ],
+      "tags": [
+        "조명",
+        "물리 조명과 노출",
+        "lights",
+        "physical"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-17": {
+      "subcategories": [
+        "조명·환경"
+      ],
+      "tags": [
+        "조명",
+        "스포트라이트 설정",
+        "lights",
+        "spotlight"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-18": {
+      "subcategories": [
+        "조명·환경"
+      ],
+      "tags": [
+        "조명",
+        "태양광과 대기",
+        "lights",
+        "sunlight"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-19": {
+      "subcategories": [
+        "조명·환경"
+      ],
+      "tags": [
+        "직사각형 면광원",
+        "lights",
+        "rectarealight"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-20": {
+      "subcategories": [
+        "모델·뷰어",
+        "캐릭터·애니메이션"
+      ],
+      "tags": [
+        "애니메이션",
+        "키프레임 모델 애니메이션",
+        "animation",
+        "keyframes"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-21": {
+      "subcategories": [
+        "캐릭터·애니메이션"
+      ],
+      "tags": [
+        "애니메이션",
+        "캐릭터 동작 혼합",
+        "animation",
+        "skinning",
+        "blending"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-22": {
+      "subcategories": [
+        "캐릭터·애니메이션"
+      ],
+      "tags": [
+        "애니메이션",
+        "역운동학 관절 조작",
+        "animation",
+        "skinning",
+        "ik"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-23": {
+      "subcategories": [
+        "캐릭터·애니메이션"
+      ],
+      "tags": [
+        "변형",
+        "애니메이션",
+        "스키닝과 모프 타깃",
+        "animation",
+        "skinning",
+        "morph"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-24": {
+      "subcategories": [
+        "캐릭터·애니메이션"
+      ],
+      "tags": [
+        "애니메이션",
+        "여러 캐릭터 애니메이션",
+        "animation",
+        "multiple"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-25": {
+      "subcategories": [
+        "캐릭터·애니메이션"
+      ],
+      "tags": [
+        "애니메이션",
+        "캐릭터 걷기 조작",
+        "animation",
+        "walk"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-26": {
+      "subcategories": [
+        "모델·뷰어",
+        "캐릭터·애니메이션"
+      ],
+      "tags": [
+        "Collada 스키닝 모델",
+        "loader",
+        "collada",
+        "skinning"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-27": {
+      "subcategories": [
+        "모델·뷰어"
+      ],
+      "tags": [
+        "진행 상태",
+        "glTF 점진적 상세도",
+        "loader",
+        "gltf",
+        "progressive",
+        "lod"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-28": {
+      "subcategories": [
+        "모델·뷰어",
+        "재질·표면"
+      ],
+      "tags": [
+        "재질",
+        "glTF 빛 분산 재질",
+        "loader",
+        "gltf",
+        "dispersion"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-29": {
+      "subcategories": [
+        "모델·뷰어",
+        "재질·표면"
+      ],
+      "tags": [
+        "재질",
+        "glTF 무지갯빛 재질",
+        "loader",
+        "gltf",
+        "iridescence"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-30": {
+      "subcategories": [
+        "모델·뷰어",
+        "재질·표면"
+      ],
+      "tags": [
+        "재질",
+        "glTF 직물 광택 재질",
+        "loader",
+        "gltf",
+        "sheen"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-31": {
+      "subcategories": [
+        "모델·뷰어",
+        "재질·표면"
+      ],
+      "tags": [
+        "재질",
+        "glTF 투과 재질",
+        "loader",
+        "gltf",
+        "transmission"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-32": {
+      "subcategories": [
+        "모델·뷰어",
+        "3D 상호작용·선택",
+        "재질·표면"
+      ],
+      "tags": [
+        "선택",
+        "변형",
+        "재질",
+        "glTF 재질 변형 선택",
+        "loader",
+        "gltf",
+        "variants"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-33": {
+      "subcategories": [
+        "모델·뷰어",
+        "재질·표면"
+      ],
+      "tags": [
+        "재질",
+        "glTF 이방성 재질",
+        "loader",
+        "gltf",
+        "anisotropy"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-34": {
+      "subcategories": [
+        "모델·뷰어"
+      ],
+      "tags": [
+        "IFC 건축 모델",
+        "loader",
+        "ifc"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-35": {
+      "subcategories": [
+        "모델·뷰어",
+        "셰이더·공간 효과"
+      ],
+      "tags": [
+        "입자",
+        "PCD 포인트 클라우드",
+        "loader",
+        "pcd"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-36": {
+      "subcategories": [
+        "모델·뷰어"
+      ],
+      "tags": [
+        "분자 구조 모델",
+        "loader",
+        "pdb"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-37": {
+      "subcategories": [
+        "모델·뷰어"
+      ],
+      "tags": [
+        "USDZ 모델",
+        "loader",
+        "usdz"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-38": {
+      "subcategories": [
+        "재질·표면"
+      ],
+      "tags": [
+        "재질",
+        "자동차 재질과 색",
+        "materials",
+        "car"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-39": {
+      "subcategories": [
+        "재질·표면"
+      ],
+      "tags": [
+        "재질",
+        "변위 맵 재질",
+        "materials",
+        "displacementmap"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-40": {
+      "subcategories": [
+        "재질·표면"
+      ],
+      "tags": [
+        "재질",
+        "투명 코팅 재질",
+        "materials",
+        "physical",
+        "clearcoat"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-41": {
+      "subcategories": [
+        "재질·표면"
+      ],
+      "tags": [
+        "재질",
+        "물리 기반 투과 재질",
+        "materials",
+        "physical",
+        "transmission"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-42": {
+      "subcategories": [
+        "재질·표면"
+      ],
+      "tags": [
+        "표면 아래 빛 산란",
+        "materials",
+        "subsurface",
+        "scattering"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-43": {
+      "subcategories": [
+        "재질·표면"
+      ],
+      "tags": [
+        "툰 셰이딩",
+        "materials",
+        "toon"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-44": {
+      "subcategories": [
+        "재질·표면"
+      ],
+      "tags": [
+        "와이어프레임 표시",
+        "materials",
+        "wireframe"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-45": {
+      "subcategories": [
+        "깊이·그림자"
+      ],
+      "tags": [
+        "점광원 그림자",
+        "shadowmap",
+        "pointlight"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "th3-46": {
+      "subcategories": [
+        "깊이·그림자"
+      ],
+      "tags": [
+        "분산 그림자 맵",
+        "shadowmap",
+        "vsm"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt05": {
+      "subcategories": [
+        "페이드·디졸브",
+        "슬라이드·이동"
+      ],
+      "tags": [
+        "페이드",
+        "슬라이드",
+        "등장·퇴장",
+        "접근성",
+        "Codrops",
+        "Fade out / slide in",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt09": {
+      "subcategories": [
+        "페이드·디졸브",
+        "슬라이드·이동"
+      ],
+      "tags": [
+        "페이드",
+        "접근성",
+        "Codrops",
+        "Move with fade",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt13": {
+      "subcategories": [
+        "슬라이드·이동"
+      ],
+      "tags": [
+        "슬라이드",
+        "접근성",
+        "Codrops",
+        "Asymmetric easing slide",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt17": {
+      "subcategories": [
+        "슬라이드·이동",
+        "줌·크기"
+      ],
+      "tags": [
+        "슬라이드",
+        "줌·확대",
+        "접근성",
+        "Codrops",
+        "Scale down / slide in",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt21": {
+      "subcategories": [
+        "줌·크기"
+      ],
+      "tags": [
+        "줌·확대",
+        "접근성",
+        "Codrops",
+        "Scale down / delayed zoom",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt22": {
+      "subcategories": [
+        "줌·크기"
+      ],
+      "tags": [
+        "줌·확대",
+        "접근성",
+        "Codrops",
+        "Scale up / delayed zoom",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt23": {
+      "subcategories": [
+        "슬라이드·이동",
+        "줌·크기"
+      ],
+      "tags": [
+        "슬라이드",
+        "줌·확대",
+        "접근성",
+        "Codrops",
+        "Slide away / scale in",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt28": {
+      "subcategories": [
+        "슬라이드·이동",
+        "회전·뒤집기"
+      ],
+      "tags": [
+        "슬라이드",
+        "회전",
+        "접근성",
+        "Codrops",
+        "Hinged rotation / slide in",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt32": {
+      "subcategories": [
+        "회전·뒤집기",
+        "입체 화면 전환"
+      ],
+      "tags": [
+        "3D",
+        "접근성",
+        "Codrops",
+        "3D page flip",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt36": {
+      "subcategories": [
+        "전환 기술·물리 효과"
+      ],
+      "tags": [
+        "접근성",
+        "Codrops",
+        "Falling page",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt37": {
+      "subcategories": [
+        "회전·뒤집기"
+      ],
+      "tags": [
+        "회전",
+        "접근성",
+        "Codrops",
+        "Newspaper spin",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt38": {
+      "subcategories": [
+        "슬라이드·이동",
+        "입체 화면 전환"
+      ],
+      "tags": [
+        "슬라이드",
+        "3D",
+        "접근성",
+        "Codrops",
+        "3D push / slide in",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt42": {
+      "subcategories": [
+        "슬라이드·이동",
+        "입체 화면 전환"
+      ],
+      "tags": [
+        "3D",
+        "접근성",
+        "Codrops",
+        "3D push / pull",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt46": {
+      "subcategories": [
+        "페이드·디졸브",
+        "회전·뒤집기",
+        "입체 화면 전환"
+      ],
+      "tags": [
+        "페이드",
+        "3D",
+        "접근성",
+        "Codrops",
+        "3D fold / fade in",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt50": {
+      "subcategories": [
+        "슬라이드·이동",
+        "회전·뒤집기",
+        "입체 화면 전환"
+      ],
+      "tags": [
+        "슬라이드",
+        "3D",
+        "접근성",
+        "Codrops",
+        "3D unfold / slide out",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt54": {
+      "subcategories": [
+        "회전·뒤집기",
+        "입체 화면 전환"
+      ],
+      "tags": [
+        "회전",
+        "3D",
+        "접근성",
+        "Codrops",
+        "3D room rotation",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt62": {
+      "subcategories": [
+        "회전·뒤집기",
+        "입체 화면 전환"
+      ],
+      "tags": [
+        "캐러셀",
+        "회전",
+        "3D",
+        "접근성",
+        "Codrops",
+        "3D carousel transition",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt66": {
+      "subcategories": [
+        "회전·뒤집기",
+        "입체 화면 전환"
+      ],
+      "tags": [
+        "회전",
+        "3D",
+        "접근성",
+        "Codrops",
+        "3D sides transition",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codpt67": {
+      "subcategories": [
+        "슬라이드·이동",
+        "입체 화면 전환"
+      ],
+      "tags": [
+        "슬라이드",
+        "3D",
+        "접근성",
+        "Codrops",
+        "3D slide transition",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "codhover01": {
+      "subcategories": [
+        "버튼·클릭",
+        "마우스·호버",
+        "드래그·제스처"
+      ],
+      "tags": [
+        "버튼",
+        "호버",
+        "접근성",
+        "Button Pan",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {
+        "UI 패턴": [
+          "버튼·행동",
+          "마우스·커서",
+          "접근성·키보드"
+        ]
+      },
+      "needsReview": false
+    },
+    "codhover02": {
+      "subcategories": [
+        "버튼·클릭",
+        "마우스·호버",
+        "드래그·제스처",
+        "텍스트·숫자"
+      ],
+      "tags": [
+        "버튼",
+        "호버",
+        "텍스트",
+        "접근성",
+        "Button Hyperion",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {
+        "UI 패턴": [
+          "버튼·행동",
+          "마우스·커서",
+          "접근성·키보드"
+        ]
+      },
+      "needsReview": false
+    },
+    "codhover03": {
+      "subcategories": [
+        "버튼·클릭",
+        "마우스·호버",
+        "드래그·제스처"
+      ],
+      "tags": [
+        "버튼",
+        "호버",
+        "슬라이드",
+        "접근성",
+        "Button Mimas",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {
+        "UI 패턴": [
+          "버튼·행동",
+          "마우스·커서",
+          "접근성·키보드"
+        ]
+      },
+      "needsReview": false
+    },
+    "codhover04": {
+      "subcategories": [
+        "버튼·클릭",
+        "마우스·호버",
+        "드래그·제스처",
+        "텍스트·숫자"
+      ],
+      "tags": [
+        "버튼",
+        "호버",
+        "텍스트",
+        "접근성",
+        "Button Atlas",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {
+        "UI 패턴": [
+          "버튼·행동",
+          "마우스·커서",
+          "접근성·키보드"
+        ]
+      },
+      "needsReview": false
+    },
+    "codhover05": {
+      "subcategories": [
+        "버튼·클릭",
+        "마우스·호버",
+        "드래그·제스처"
+      ],
+      "tags": [
+        "버튼",
+        "호버",
+        "접근성",
+        "Button Pandora",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {
+        "UI 패턴": [
+          "버튼·행동",
+          "마우스·커서",
+          "접근성·키보드"
+        ]
+      },
+      "needsReview": false
+    },
+    "codhover06": {
+      "subcategories": [
+        "버튼·클릭",
+        "마우스·호버",
+        "드래그·제스처"
+      ],
+      "tags": [
+        "버튼",
+        "호버",
+        "변형",
+        "접근성",
+        "Button Janus",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {
+        "UI 패턴": [
+          "버튼·행동",
+          "마우스·커서",
+          "접근성·키보드"
+        ]
+      },
+      "needsReview": false
+    },
+    "codhover07": {
+      "subcategories": [
+        "버튼·클릭",
+        "마우스·호버",
+        "드래그·제스처"
+      ],
+      "tags": [
+        "버튼",
+        "호버",
+        "표·데이터",
+        "변형",
+        "접근성",
+        "Button Anthe",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {
+        "UI 패턴": [
+          "버튼·행동",
+          "마우스·커서",
+          "접근성·키보드"
+        ]
+      },
+      "needsReview": false
+    },
+    "codhover08": {
+      "subcategories": [
+        "버튼·클릭",
+        "마우스·호버",
+        "드래그·제스처",
+        "텍스트·숫자"
+      ],
+      "tags": [
+        "버튼",
+        "호버",
+        "텍스트",
+        "접근성",
+        "Button Telesto",
+        "데스크톱",
+        "모바일",
+        "키보드",
+        "터치"
+      ],
+      "related": {
+        "UI 패턴": [
+          "버튼·행동",
+          "마우스·커서",
+          "접근성·키보드"
+        ]
+      },
+      "needsReview": false
+    },
+    "ctextt01": {
+      "subcategories": [
+        "움직임·경로",
+        "색상·채우기"
+      ],
+      "tags": [
+        "텍스트",
+        "애니메이션",
+        "물결 채우기 텍스트",
+        "Liquid Fill Text Animation",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt02": {
+      "subcategories": [
+        "질감·재질"
+      ],
+      "tags": [
+        "텍스트",
+        "금속 표면 텍스트",
+        "Chrome Metallic Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt03": {
+      "subcategories": [
+        "타이핑·문자 변화"
+      ],
+      "tags": [
+        "텍스트",
+        "접근성",
+        "글자별 초점 이동",
+        "Text Blur Focus Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt04": {
+      "subcategories": [
+        "글리치·픽셀"
+      ],
+      "tags": [
+        "텍스트",
+        "잘린 텍스트 레이어",
+        "Sliced Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt05": {
+      "subcategories": [
+        "색상·채우기"
+      ],
+      "tags": [
+        "텍스트",
+        "스캐너 강조",
+        "Scanning Highlight Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt06": {
+      "subcategories": [
+        "시각 스타일·패턴"
+      ],
+      "tags": [
+        "텍스트",
+        "텍스트 메아리",
+        "Echo Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt07": {
+      "subcategories": [
+        "입체·입자"
+      ],
+      "tags": [
+        "텍스트",
+        "3D",
+        "입체로 돌출된 글자",
+        "3D Extruded Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt08": {
+      "subcategories": [
+        "글리치·픽셀",
+        "입체·입자"
+      ],
+      "tags": [
+        "텍스트",
+        "3D",
+        "입체 색 분리 텍스트",
+        "Anaglyph 3D Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt09": {
+      "subcategories": [
+        "시각 스타일·패턴"
+      ],
+      "tags": [
+        "텍스트",
+        "만화풍 팝 텍스트",
+        "Pop Art Comic Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt10": {
+      "subcategories": [
+        "시각 스타일·패턴"
+      ],
+      "tags": [
+        "텍스트",
+        "조명",
+        "텍스트 스포트라이트",
+        "Spotlight Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt11": {
+      "subcategories": [
+        "변형·가변 글꼴"
+      ],
+      "tags": [
+        "탄성·스프링",
+        "텍스트",
+        "애니메이션",
+        "탄성 텍스트",
+        "Rubber Band Text Animation",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt12": {
+      "subcategories": [
+        "질감·재질"
+      ],
+      "tags": [
+        "텍스트",
+        "재질",
+        "텍스트 반사",
+        "Water Reflection Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt13": {
+      "subcategories": [
+        "시각 스타일·패턴"
+      ],
+      "tags": [
+        "텍스트",
+        "서로 다른 글자 조합",
+        "Ransom Note Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt14": {
+      "subcategories": [
+        "시각 스타일·패턴"
+      ],
+      "tags": [
+        "텍스트",
+        "녹아내리는 글자",
+        "Melting Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt15": {
+      "subcategories": [
+        "움직임·경로"
+      ],
+      "tags": [
+        "텍스트",
+        "애니메이션",
+        "박동 텍스트",
+        "Heartbeat Pulse Text Animation",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt16": {
+      "subcategories": [
+        "질감·재질"
+      ],
+      "tags": [
+        "텍스트",
+        "애니메이션",
+        "긴 그림자 텍스트",
+        "Animated Long Shadow Text",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt17": {
+      "subcategories": [
+        "글리치·픽셀"
+      ],
+      "tags": [
+        "텍스트",
+        "반전 텍스트",
+        "Inverted Negative Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt18": {
+      "subcategories": [
+        "질감·재질"
+      ],
+      "tags": [
+        "텍스트",
+        "홀로그램 글자",
+        "Hologram Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt19": {
+      "subcategories": [
+        "질감·재질"
+      ],
+      "tags": [
+        "텍스트",
+        "금박 텍스트",
+        "Gold Foil Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt20": {
+      "subcategories": [
+        "글리치·픽셀"
+      ],
+      "tags": [
+        "텍스트",
+        "픽셀 오프셋 글자",
+        "Pixel Sort Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt21": {
+      "subcategories": [
+        "시각 스타일·패턴"
+      ],
+      "tags": [
+        "표·데이터",
+        "텍스트",
+        "이미지",
+        "청사진 텍스트",
+        "Blueprint Grid Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt22": {
+      "subcategories": [
+        "질감·재질"
+      ],
+      "tags": [
+        "텍스트",
+        "유리 질감 글자",
+        "Frosted Glass Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt23": {
+      "subcategories": [
+        "움직임·경로"
+      ],
+      "tags": [
+        "텍스트",
+        "애니메이션",
+        "원형 궤도 글자",
+        "Orbiting Letters Animation",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt24": {
+      "subcategories": [
+        "글리치·픽셀"
+      ],
+      "tags": [
+        "텍스트",
+        "프리즘 분할 글자",
+        "Prism Refraction Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt25": {
+      "subcategories": [
+        "시각 스타일·패턴"
+      ],
+      "tags": [
+        "텍스트",
+        "회로 패턴 텍스트",
+        "Circuit Board Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt26": {
+      "subcategories": [
+        "색상·채우기"
+      ],
+      "tags": [
+        "텍스트",
+        "색상·그라데이션",
+        "열지도 색상 텍스트",
+        "Thermal Heatmap Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt27": {
+      "subcategories": [
+        "시각 스타일·패턴"
+      ],
+      "tags": [
+        "텍스트",
+        "등고선 텍스트",
+        "Topographic Contour Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt28": {
+      "subcategories": [
+        "움직임·경로"
+      ],
+      "tags": [
+        "텍스트",
+        "애니메이션",
+        "문자 비처럼 떨어지기",
+        "Falling Letters Animation",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt29": {
+      "subcategories": [
+        "움직임·경로"
+      ],
+      "tags": [
+        "텍스트",
+        "애니메이션",
+        "진자처럼 흔들리는 글자",
+        "Swinging Pendulum Text Animation",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt30": {
+      "subcategories": [
+        "시각 스타일·패턴"
+      ],
+      "tags": [
+        "텍스트",
+        "애니메이션",
+        "연기처럼 번지는 글자",
+        "Smoke Text Animation",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt31": {
+      "subcategories": [
+        "색상·채우기"
+      ],
+      "tags": [
+        "텍스트",
+        "바코드 텍스트",
+        "Barcode Scanner Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt32": {
+      "subcategories": [
+        "시각 스타일·패턴"
+      ],
+      "tags": [
+        "텍스트",
+        "서리 텍스트",
+        "Frozen Ice Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt33": {
+      "subcategories": [
+        "시각 스타일·패턴"
+      ],
+      "tags": [
+        "텍스트",
+        "모아레 텍스트",
+        "Moiré Pattern Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt34": {
+      "subcategories": [
+        "변형·가변 글꼴"
+      ],
+      "tags": [
+        "탄성·스프링",
+        "텍스트",
+        "도장 찍기 텍스트",
+        "Rubber Stamp Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt35": {
+      "subcategories": [
+        "시각 스타일·패턴"
+      ],
+      "tags": [
+        "텍스트",
+        "LED 전광판 텍스트",
+        "LED Sign Text Effect",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt36": {
+      "subcategories": [
+        "움직임·경로"
+      ],
+      "tags": [
+        "텍스트",
+        "애니메이션",
+        "종이처럼 접히는 글자",
+        "Origami Fold Text Animation",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt37": {
+      "subcategories": [
+        "움직임·경로"
+      ],
+      "tags": [
+        "텍스트",
+        "애니메이션",
+        "도미노처럼 넘어지는 글자",
+        "Domino Falling Letters Animation",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "ctextt38": {
+      "subcategories": [
+        "시각 스타일·패턴"
+      ],
+      "tags": [
+        "텍스트",
+        "오디오·비디오",
+        "애니메이션",
+        "이퀄라이저 글자",
+        "Audio Equalizer Text Animation",
+        "데스크톱",
+        "모바일"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "scstory01": {
+      "subcategories": [
+        "등장·순차"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "카메라",
+        "스크롤 등장 방식과 발동 시점",
+        "Reveal on scroll laboratory",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "scstory02": {
+      "subcategories": [
+        "패럴랙스·깊이"
+      ],
+      "tags": [
+        "비교",
+        "패럴랙스",
+        "패럴랙스 속도 비교",
+        "Parallax depth comparison",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "scstory03": {
+      "subcategories": [
+        "고정·스티키",
+        "스토리·연동"
+      ],
+      "tags": [
+        "고정",
+        "고정 화면의 스크롤 스토리",
+        "Pinned scrolling story",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "scstory04": {
+      "subcategories": [
+        "스토리·연동"
+      ],
+      "tags": [
+        "CSS 스크롤 타임라인 모음",
+        "CSS scroll timelines",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "scstory05": {
+      "subcategories": [
+        "진행·내비게이션"
+      ],
+      "tags": [
+        "진행 상태",
+        "표·데이터",
+        "읽기 진행률과 현재 위치",
+        "Reading progress and table of contents",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "vn-01": {
+      "subcategories": [
+        "날씨·자연"
+      ],
+      "tags": [
+        "Vanta",
+        "birds",
+        "인터랙티브 배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "vn-02": {
+      "subcategories": [
+        "날씨·자연"
+      ],
+      "tags": [
+        "Vanta",
+        "fog",
+        "인터랙티브 배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "vn-03": {
+      "subcategories": [
+        "물·유체·파동",
+        "3D·셰이더"
+      ],
+      "tags": [
+        "3D",
+        "Vanta",
+        "waves",
+        "인터랙티브 배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "vn-04": {
+      "subcategories": [
+        "날씨·자연"
+      ],
+      "tags": [
+        "Vanta",
+        "clouds",
+        "인터랙티브 배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "vn-05": {
+      "subcategories": [
+        "날씨·자연",
+        "3D·셰이더"
+      ],
+      "tags": [
+        "3D",
+        "Vanta",
+        "clouds2",
+        "인터랙티브 배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "vn-06": {
+      "subcategories": [
+        "3D·셰이더"
+      ],
+      "tags": [
+        "Vanta",
+        "globe",
+        "인터랙티브 배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "vn-07": {
+      "subcategories": [
+        "패턴·격자·선"
+      ],
+      "tags": [
+        "Vanta",
+        "net",
+        "인터랙티브 배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "vn-08": {
+      "subcategories": [
+        "입자·점·별"
+      ],
+      "tags": [
+        "Vanta",
+        "dots",
+        "인터랙티브 배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "vn-09": {
+      "subcategories": [
+        "3D·셰이더"
+      ],
+      "tags": [
+        "회전",
+        "Vanta",
+        "rings",
+        "인터랙티브 배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "vn-10": {
+      "subcategories": [
+        "빛·불꽃",
+        "3D·셰이더"
+      ],
+      "tags": [
+        "Vanta",
+        "halo",
+        "인터랙티브 배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "vn-11": {
+      "subcategories": [
+        "패턴·격자·선"
+      ],
+      "tags": [
+        "Vanta",
+        "cells",
+        "인터랙티브 배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "vn-12": {
+      "subcategories": [
+        "기하·추상 패턴"
+      ],
+      "tags": [
+        "Vanta",
+        "trunk",
+        "인터랙티브 배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "vn-13": {
+      "subcategories": [
+        "패턴·격자·선"
+      ],
+      "tags": [
+        "Vanta",
+        "topology",
+        "인터랙티브 배경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "thenv-1": {
+      "subcategories": [
+        "3D·셰이더"
+      ],
+      "tags": [
+        "3D",
+        "three.js",
+        "바다 파도와 태양",
+        "환경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "thenv-2": {
+      "subcategories": [
+        "날씨·자연",
+        "3D·셰이더"
+      ],
+      "tags": [
+        "3D",
+        "three.js",
+        "하늘과 태양 위치",
+        "환경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "thenv-3": {
+      "subcategories": [
+        "시각 효과·사진"
+      ],
+      "tags": [
+        "3D",
+        "three.js",
+        "톤 매핑과 노출",
+        "환경"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss01": {
+      "subcategories": [
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "회전",
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "magic",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss02": {
+      "subcategories": [
+        "확대·축소",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "줌·확대",
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "swap",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss03": {
+      "subcategories": [
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "twisterInDown",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss04": {
+      "subcategories": [
+        "페이드·블러",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "puffIn",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss05": {
+      "subcategories": [
+        "페이드·블러",
+        "확대·축소",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "줌·확대",
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "puffOut",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss06": {
+      "subcategories": [
+        "페이드·블러",
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "회전",
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "vanishIn",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss07": {
+      "subcategories": [
+        "페이드·블러",
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "회전",
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "vanishOut",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss08": {
+      "subcategories": [
+        "탄성·튀기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "탄성·스프링",
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "swashIn",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss09": {
+      "subcategories": [
+        "탄성·튀기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "탄성·스프링",
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "swashOut",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss10": {
+      "subcategories": [
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "회전",
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "foolishIn",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss11": {
+      "subcategories": [
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "회전",
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "foolishOut",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss12": {
+      "subcategories": [
+        "마스크·드러내기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "holeOut",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss13": {
+      "subcategories": [
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "회전",
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "bombRightOut",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss14": {
+      "subcategories": [
+        "회전·뒤집기",
+        "탄성·튀기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "회전",
+        "탄성·스프링",
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "boingInUp",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss15": {
+      "subcategories": [
+        "회전·뒤집기",
+        "탄성·튀기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "회전",
+        "탄성·스프링",
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "boingOutDown",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss16": {
+      "subcategories": [
+        "슬라이드·이동",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "spaceInUp",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss17": {
+      "subcategories": [
+        "슬라이드·이동",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "spaceOutDown",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss18": {
+      "subcategories": [
+        "슬라이드·이동",
+        "탄성·튀기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "tinUpIn",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss19": {
+      "subcategories": [
+        "슬라이드·이동",
+        "탄성·튀기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "tinDownOut",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss20": {
+      "subcategories": [
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "openDownLeft",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss21": {
+      "subcategories": [
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "openDownLeftReturn",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss22": {
+      "subcategories": [
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "openDownLeftOut",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss23": {
+      "subcategories": [
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "perspectiveDown",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss24": {
+      "subcategories": [
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "perspectiveDownReturn",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss25": {
+      "subcategories": [
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "perspectiveLeft",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss26": {
+      "subcategories": [
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "perspectiveLeftReturn",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss27": {
+      "subcategories": [
+        "슬라이드·이동",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "slideDown",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss28": {
+      "subcategories": [
+        "슬라이드·이동",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "slideDownReturn",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss29": {
+      "subcategories": [
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "회전",
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "rotateDown",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "magiccss30": {
+      "subcategories": [
+        "회전·뒤집기",
+        "분해·특수 효과"
+      ],
+      "tags": [
+        "회전",
+        "등장·퇴장",
+        "등장",
+        "퇴장",
+        "Magic CSS",
+        "rotateLeft",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "animate37rollIn": {
+      "subcategories": [
+        "슬라이드·이동"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "애니메이션",
+        "등장",
+        "퇴장",
+        "Animate.css",
+        "rollIn",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "animate37rollOut": {
+      "subcategories": [
+        "슬라이드·이동"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "애니메이션",
+        "등장",
+        "퇴장",
+        "Animate.css",
+        "rollOut",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "animate37jackInTheBox": {
+      "subcategories": [
+        "탄성·튀기"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "애니메이션",
+        "등장",
+        "퇴장",
+        "Animate.css",
+        "jackInTheBox",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "animate37flipInX": {
+      "subcategories": [
+        "회전·뒤집기"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "애니메이션",
+        "등장",
+        "퇴장",
+        "Animate.css",
+        "flipInX",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "animate37flipOutX": {
+      "subcategories": [
+        "회전·뒤집기"
+      ],
+      "tags": [
+        "등장·퇴장",
+        "애니메이션",
+        "등장",
+        "퇴장",
+        "Animate.css",
+        "flipOutX",
+        "모바일",
+        "데스크톱"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "learn01": {
+      "subcategories": [
+        "그리드·목록·카드"
+      ],
+      "tags": [
+        "표·데이터",
+        "그리드",
+        "열",
+        "거터",
+        "마진"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "learn02": {
+      "subcategories": [
+        "화면 원리·가독성"
+      ],
+      "tags": [
+        "텍스트",
+        "색상·그라데이션",
+        "색상",
+        "명도",
+        "대비",
+        "가독성"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "learn03": {
+      "subcategories": [
+        "화면 원리·가독성"
+      ],
+      "tags": [
+        "아이콘",
+        "굵기",
+        "크기",
+        "시각 보정"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "learn04": {
+      "subcategories": [
+        "화면 원리·가독성"
+      ],
+      "tags": [
+        "텍스트",
+        "타이포그래피",
+        "글꼴",
+        "행간",
+        "가독성"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "learn05": {
+      "subcategories": [
+        "화면 원리·가독성"
+      ],
+      "tags": [
+        "Android",
+        "dp",
+        "dpi",
+        "밀도",
+        "해상도"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "learn06": {
+      "subcategories": [
+        "화면 원리·가독성"
+      ],
+      "tags": [
+        "줌·확대",
+        "텍스트",
+        "iOS",
+        "축소",
+        "줄바꿈",
+        "생략"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "learn07": {
+      "subcategories": [
+        "상품·쇼핑·결제"
+      ],
+      "tags": [
+        "정보위계",
+        "그룹",
+        "여백",
+        "상품상세"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0101": {
+      "subcategories": [
+        "슬라이드·이동",
+        "텍스트·순차"
+      ],
+      "tags": [
+        "스크롤",
+        "텍스트",
+        "애니메이션",
+        "타이포그래피",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0102": {
+      "subcategories": [
+        "슬라이드·이동",
+        "텍스트·순차"
+      ],
+      "tags": [
+        "스크롤",
+        "텍스트",
+        "애니메이션",
+        "타이포그래피",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0103": {
+      "subcategories": [
+        "텍스트·순차"
+      ],
+      "tags": [
+        "스크롤",
+        "텍스트",
+        "애니메이션",
+        "타이포그래피",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0104": {
+      "subcategories": [
+        "슬라이드·이동",
+        "텍스트·순차"
+      ],
+      "tags": [
+        "스크롤",
+        "변형",
+        "텍스트",
+        "애니메이션",
+        "타이포그래피",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0105": {
+      "subcategories": [
+        "슬라이드·이동",
+        "확대·축소",
+        "텍스트·순차"
+      ],
+      "tags": [
+        "스크롤",
+        "줌·확대",
+        "텍스트",
+        "애니메이션",
+        "타이포그래피",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0201": {
+      "subcategories": [
+        "가로·스냅·관성"
+      ],
+      "tags": [
+        "레이아웃",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0202": {
+      "subcategories": [
+        "가로·스냅·관성"
+      ],
+      "tags": [
+        "레이아웃",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0203": {
+      "subcategories": [
+        "가로·스냅·관성"
+      ],
+      "tags": [
+        "레이아웃",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0204": {
+      "subcategories": [
+        "가로·스냅·관성"
+      ],
+      "tags": [
+        "레이아웃",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0301": {
+      "subcategories": [
+        "패널·카드"
+      ],
+      "tags": [
+        "패널",
+        "레이아웃",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0302": {
+      "subcategories": [
+        "패널·카드"
+      ],
+      "tags": [
+        "패널",
+        "줌·확대",
+        "레이아웃",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0303": {
+      "subcategories": [
+        "패널·카드"
+      ],
+      "tags": [
+        "패널",
+        "색상·그라데이션",
+        "레이아웃",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0304": {
+      "subcategories": [
+        "패널·카드"
+      ],
+      "tags": [
+        "패널",
+        "레이아웃",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0305": {
+      "subcategories": [
+        "패널·카드"
+      ],
+      "tags": [
+        "패널",
+        "레이아웃",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0401": {
+      "subcategories": [
+        "텍스트·타이포"
+      ],
+      "tags": [
+        "텍스트",
+        "애니메이션",
+        "레이아웃",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0501": {
+      "subcategories": [
+        "그래픽·변형"
+      ],
+      "tags": [
+        "애니메이션",
+        "레이아웃",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "cdscroll0601": {
+      "subcategories": [
+        "패널·카드"
+      ],
+      "tags": [
+        "토글",
+        "레이아웃",
+        "Codrops"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "icscroll01": {
+      "subcategories": [
+        "진행·내비게이션",
+        "스토리·연동"
+      ],
+      "tags": [
+        "진행 상태",
+        "애니메이션",
+        "CSS 타임라인",
+        "요소 진입"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "icscroll02": {
+      "subcategories": [
+        "진행·내비게이션",
+        "스토리·연동"
+      ],
+      "tags": [
+        "진행 상태",
+        "애니메이션",
+        "CSS 타임라인",
+        "요소 진입"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "icscroll03": {
+      "subcategories": [
+        "스토리·연동"
+      ],
+      "tags": [
+        "CSS 타임라인",
+        "요소 진입"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "scroll-dv01": {
+      "subcategories": [
+        "진행·내비게이션",
+        "스토리·연동"
+      ],
+      "tags": [
+        "진행 상태",
+        "캐러셀",
+        "상태",
+        "CSS 타임라인"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "scroll-dv02": {
+      "subcategories": [
+        "패럴랙스·깊이",
+        "진행·내비게이션",
+        "이미지·미디어",
+        "스토리·연동"
+      ],
+      "tags": [
+        "진행 상태",
+        "캐러셀",
+        "패럴랙스",
+        "이미지",
+        "상태",
+        "CSS 타임라인"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "scroll-dv03": {
+      "subcategories": [
+        "진행·내비게이션",
+        "스토리·연동"
+      ],
+      "tags": [
+        "진행 상태",
+        "상태",
+        "CSS 타임라인"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "glt01": {
+      "subcategories": [
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "BurnThrough",
+        "셰이더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "glt02": {
+      "subcategories": [
+        "블러·빛·색상",
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "색상·그라데이션",
+        "ColorPhase",
+        "셰이더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "glt03": {
+      "subcategories": [
+        "마스크·와이프",
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "Crosshatch",
+        "셰이더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "glt04": {
+      "subcategories": [
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "DoomMelt",
+        "셰이더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "glt05": {
+      "subcategories": [
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "Dreamy",
+        "셰이더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "glt06": {
+      "subcategories": [
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "GlitchFlicker",
+        "셰이더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "glt07": {
+      "subcategories": [
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "Hexagonalize",
+        "셰이더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "glt08": {
+      "subcategories": [
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "Kaleidoscope",
+        "셰이더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "glt09": {
+      "subcategories": [
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "LissajousTiles",
+        "셰이더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "glt10": {
+      "subcategories": [
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "PolkaDotsCurtain",
+        "셰이더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "glt11": {
+      "subcategories": [
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "Ripple",
+        "셰이더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "glt12": {
+      "subcategories": [
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "Shatter",
+        "셰이더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "glt13": {
+      "subcategories": [
+        "마스크·와이프",
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "StaticWipe",
+        "셰이더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "glt14": {
+      "subcategories": [
+        "픽셀·셰이더"
+      ],
+      "tags": [
+        "WindowBlinds",
+        "셰이더"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "motion-gestures": {
+      "subcategories": [
+        "버튼·클릭",
+        "마우스·호버",
+        "드래그·제스처"
+      ],
+      "tags": [
+        "호버",
+        "클릭·탭",
+        "클릭",
+        "제스처"
+      ],
+      "related": {
+        "UI 패턴": [
+          "마우스·커서"
+        ]
+      },
+      "needsReview": false
+    },
+    "motion-accordion": {
+      "subcategories": [
+        "아코디언·단계적 공개"
+      ],
+      "tags": [
+        "아코디언",
+        "접기·펼치기",
+        "펼치기"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "motion-drag": {
+      "subcategories": [
+        "드래그·제스처"
+      ],
+      "tags": [
+        "드래그",
+        "제스처"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "motion-spring": {
+      "subcategories": [
+        "물리·시뮬레이션"
+      ],
+      "tags": [
+        "탄성·스프링",
+        "스프링",
+        "탄성"
+      ],
+      "related": {},
+      "needsReview": false
+    },
+    "motion-hover": {
+      "subcategories": [
+        "마우스·호버"
+      ],
+      "tags": [
+        "마우스·커서",
+        "호버",
+        "포인터"
+      ],
+      "related": {
+        "UI 패턴": [
+          "마우스·커서"
+        ]
+      },
+      "needsReview": false
+    },
+    "motion-press": {
+      "subcategories": [
+        "버튼·클릭",
+        "드래그·제스처"
+      ],
+      "tags": [
+        "클릭·탭",
+        "접근성",
+        "클릭",
+        "키보드",
+        "제스처"
+      ],
+      "related": {
+        "UI 패턴": [
+          "접근성·키보드"
+        ]
+      },
+      "needsReview": false
+    }
+  }
+}
