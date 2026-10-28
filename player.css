@@ -32,8 +32,14 @@
 .work-grid>.work-card,.work-grid>.work-card:only-child{display:flex;flex-direction:column}
 .work-card .demo-wrap{display:flex;flex-direction:column;flex:1 0 auto;min-height:0}
 .work-card .demo-content{display:flex;flex-direction:column;flex:1 0 auto;min-height:0}
-.work-card .demo-content iframe,.work-card .demo-content .gpu-placeholder{flex:1 0 auto}
+.work-card .demo-content iframe,.work-card .demo-content .gpu-placeholder,.work-card .demo-content .preview-placeholder{flex:1 0 auto}
 .work-card .work-content{flex:0 0 auto}
+.preview-placeholder{height:290px;background:#0c110e}
+@media(max-width:900px){.preview-placeholder{height:260px}}
+@media(max-width:700px){.preview-placeholder{height:280px}}
+@media(min-width:701px){.preview-placeholder{height:270px}}
+.work-card[data-example="mo07"] .demo-content .preview-placeholder{height:360px}
+.work-card.is-expanded .demo-content .preview-placeholder{height:var(--expanded-preview-height,540px)!important}
 
 /* Loading placeholders use the same footprint as the card and enter from the right. */
 .work-card{position:relative}

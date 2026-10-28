@@ -18,18 +18,22 @@ const activeTag=document.createElement('div');activeTag.id='active-tag';activeTa
 const norm = x => String(x || '').normalize('NFKC').toLocaleLowerCase().trim();
 function updateExpandButton(wrap,active){const btn=wrap?.querySelector('[data-expand]');if(!btn)return;btn.textContent=active?'↙  축소':'↗  크게 보기';btn.setAttribute('aria-expanded',String(active));btn.setAttribute('aria-label',`${btn.dataset.title} ${active?'축소':'크게 보기'}`);}
 function clearExpanded({focus=true}={}){if(!expanded)return;const wrap=expanded;expanded=null;const card=wrap.closest('.work-card');card?.classList.remove('is-expanded');card?.style.removeProperty('--expanded-preview-height');updateExpandButton(wrap,false);if(focus&&wrap.isConnected)wrap.querySelector('[data-expand]')?.focus({preventScroll:true});}
-function toggleExpanded(wrap){if(expanded===wrap){clearExpanded();return}if(expanded)clearExpanded({focus:false});const card=wrap.closest('.work-card');if(!card)return;const preview=wrap.querySelector('iframe, .gpu-placeholder');const height=preview?.getBoundingClientRect().height||270;card.style.setProperty('--expanded-preview-height',`${Math.round(height*2)}px`);expanded=wrap;card.classList.add('is-expanded');updateExpandButton(wrap,true);card.scrollIntoView({block:'start',behavior:'smooth'});}
+function toggleExpanded(wrap){if(expanded===wrap){clearExpanded();return}if(expanded)clearExpanded({focus:false});const card=wrap.closest('.work-card');if(!card)return;const preview=wrap.querySelector('iframe, .gpu-placeholder, .preview-placeholder');const height=preview?.getBoundingClientRect().height||270;card.style.setProperty('--expanded-preview-height',`${Math.round(height*2)}px`);expanded=wrap;card.classList.add('is-expanded');updateExpandButton(wrap,true);card.scrollIntoView({block:'start',behavior:'smooth'});}
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&expanded&&!$('#code-dialog').open){event.preventDefault();clearExpanded();}});
 function needsGPU(e){return Boolean(e.requiresGPU || e.category==='3D');}
 function frame(e, eager=true){
  const height=Number(e.previewHeight);const style=Number.isFinite(height)&&height>=200&&height<=650?` style="height:${height}px"`:'';
  return `<iframe src="${escapeHTML(e.preview)}" title="${escapeHTML(e.name)} 실시간 예시" loading="${eager?'eager':'lazy'}" sandbox="allow-scripts allow-forms allow-same-origin allow-popups" allow="clipboard-write" referrerpolicy="no-referrer"${style}></iframe>`;
 }
+function previewPlaceholder(e){
+ const height=Number(e.previewHeight);const style=Number.isFinite(height)&&height>=200&&height<=650?` style="height:${height}px"`:'';
+ return `<div class="preview-placeholder" aria-hidden="true"${style}></div>`;
+}
 function gpuPlaceholder(e,failed=false){return `<div class="gpu-placeholder"><span>INTERACTIVE DEMO</span><p>${failed?'예시를 불러오지 못했습니다.':'화면에 보이면 자동으로 불러옵니다.'}</p>${failed?`<button type="button" data-retry-gpu="${escapeHTML(e.id)}">다시 시도</button>`:''}</div>`;}
 // Keep GPU use bounded and load only panels in or immediately near the viewport.
 const gpuVisible=new Set(),gpuActive=new Map();
 const MAX_GPU_ACTIVE=4,MAX_GPU_LOADING=1;
-function setGpuWaiting(host){
+function setHostWaiting(host){
  const card=host.closest('.work-card'),state=card&&skeletonStates.get(card);if(!state)return;
  clearTimeout(state.timer);state.ready=false;state.entered=false;card.classList.remove('skeleton-entering');
  card.classList.add('is-loading');card.setAttribute('aria-busy','true');skeletonObserver.observe(card);
@@ -40,7 +44,7 @@ function stopGpu(host,{reset=true}={}){
  if(reset&&host.isConnected){
   const preview=host.querySelector('iframe'),height=preview?.getBoundingClientRect().height||0;
   host.innerHTML=gpuPlaceholder(entry.example);const placeholder=host.querySelector('.gpu-placeholder');if(height)placeholder.style.height=`${height}px`;
-  setGpuWaiting(host);playerLoading(host.closest('.demo-wrap'),true);
+  setHostWaiting(host);playerLoading(host.closest('.demo-wrap'),true);
  }
 }
 function startGpu(host){
@@ -116,7 +120,7 @@ function finishSkeleton(card){
  state.timer=setTimeout(()=>{if(!card.isConnected)return;card.classList.remove('is-loading','skeleton-entering');card.setAttribute('aria-busy','false');},remaining);
 }
 function prepareSkeleton(card){
- const state={ready:!card.querySelector('iframe, [data-gpu-watch]'),entered:false,started:0,timer:0};skeletonStates.set(card,state);
+ const state={ready:!card.querySelector('iframe, [data-gpu-watch], [data-preview-watch]'),entered:false,started:0,timer:0};skeletonStates.set(card,state);
  card.classList.add('is-loading');card.setAttribute('aria-busy','true');
  card.insertAdjacentHTML('beforeend','<div class="panel-skeleton" aria-hidden="true"><div class="skeleton-top"><i></i><i></i></div><div class="skeleton-preview"><span></span><b></b></div><div class="skeleton-bottom"><i></i><i></i><i></i></div></div>');
  skeletonObserver.observe(card);
@@ -130,6 +134,41 @@ function frameReady(frame){
  state.ready=true;finishSkeleton(card);
 }
 function placeholderReady(host){const card=host.closest('.work-card'),state=card&&skeletonStates.get(card);if(state){state.ready=true;finishSkeleton(card)}}
+// Only keep ordinary preview frames near the viewport. Removing a frame also
+// cancels its in-flight requests and releases its isolated document resources.
+const previewsNearby=new Set();
+function loadPreview(host){
+ if(document.hidden||!host.isConnected||host.dataset.previewActive)return;
+ const rect=host.getBoundingClientRect();if(rect.bottom < -800||rect.top > window.innerHeight+800)return;
+ const e=examples.find(x=>x.id===host.dataset.previewWatch);if(!e)return;
+ const placeholder=host.querySelector('.preview-placeholder');
+ const height=parseFloat(placeholder?.style.height)||placeholder?.getBoundingClientRect().height||0;
+ host.dataset.previewActive=e.id;host.innerHTML=frame(e);
+ const preview=host.querySelector('iframe');if(height)preview.style.height=`${height}px`;
+ showFrameSkeleton(preview);playerLoading(host.closest('.demo-wrap'),false,true);
+}
+function unloadPreview(host){
+ if(!host.dataset.previewActive)return;
+ const preview=host.querySelector('iframe'),e=examples.find(x=>x.id===host.dataset.previewWatch);
+ const inlineHeight=parseFloat(preview?.style.height)||0;
+ const height=inlineHeight||(preview?.getBoundingClientRect().height||0);
+ delete host.dataset.previewActive;if(!e)return;
+ host.innerHTML=previewPlaceholder(e);
+ const placeholder=host.querySelector('.preview-placeholder');if(height)placeholder.style.height=`${height}px`;
+ setHostWaiting(host);playerLoading(host.closest('.demo-wrap'),true,true);
+}
+const previewLoadObserver=new IntersectionObserver(records=>{
+ for(const record of records){const host=record.target;
+  if(record.isIntersecting){previewsNearby.add(host);loadPreview(host)}else previewsNearby.delete(host);
+ }
+},{rootMargin:'800px 0px 800px 0px'});
+const previewUnloadObserver=new IntersectionObserver(records=>{
+ for(const record of records)if(!record.isIntersecting){const rect=record.target.getBoundingClientRect();if(rect.bottom < -1400||rect.top > window.innerHeight+1400)unloadPreview(record.target)}
+},{rootMargin:'1400px 0px 1400px 0px'});
+document.addEventListener('visibilitychange',()=>{
+ if(document.hidden)document.querySelectorAll('[data-preview-active]').forEach(unloadPreview);
+ else previewsNearby.forEach(loadPreview);
+});
 const sentinel=document.createElement('div');sentinel.className='load-sentinel';sentinel.setAttribute('role','status');sentinel.setAttribute('aria-live','polite');
 $('#more-examples').before(sentinel);
 let pagingQueued=false;
@@ -146,10 +185,10 @@ function tagHTML(e){
  const items=tags.map((tag,i)=>`<button type="button" class="tag-chip${i>=3?' tag-extra':''}" data-tag="${escapeHTML(tag)}"${i>=3?' hidden':''} title="이 태그로 찾기">#${escapeHTML(tag)}</button>`).join('');
  return items+(tags.length>3?`<button type="button" class="tag-more" data-tags-toggle aria-expanded="false" aria-label="${tags.length-3}개 태그 더 보기">+${tags.length-3}</button>`:'');
 }
-function cardHTML(e,i){return `<article class="work-card" data-example="${escapeHTML(e.id)}"><div class="demo-wrap"><div class="demo-top"><span>${escapeHTML(e.sourceName)}</span><span class="demo-actions"><span>${escapeHTML(e.displayOrigin||(e.remote?'원본 연결 · 온라인':e.networkRequired?'원본 코드 · 온라인 자산':'원본 코드 · 로컬'))}</span><button type="button" data-expand data-title="${escapeHTML(e.name)}" aria-label="${escapeHTML(e.name)} 크게 보기" aria-expanded="false">↗ 크게 보기</button></span></div><div class="demo-content"${needsGPU(e)?` data-gpu-watch="${escapeHTML(e.id)}"`:""}>${needsGPU(e)?gpuPlaceholder(e):frame(e,i<2)}</div><div class="demo-player" role="group" aria-label="예시 재생 조작"><button type="button" data-player-show disabled title="예시를 불러온 뒤 지원 여부를 확인합니다.">▶ <span>Show me</span></button><button type="button" data-player-slow disabled aria-pressed="false" title="예시를 불러온 뒤 지원 여부를 확인합니다.">◷ <span>Slow motion</span></button><button type="button" data-player-reset disabled title="예시를 처음 상태로 되돌립니다.">↺ <span>Reset</span></button><span class="demo-player-status" aria-live="polite">지원 여부 확인 중</span></div></div><div class="work-content"><div class="work-label"><span>${escapeHTML(e.category)}${e.taxonomy?.subcategories?.length?` / ${escapeHTML(e.taxonomy.subcategories[0])}`:''}</span><span>${escapeHTML(e.license||'원문 확인')}</span></div><div class="work-platform">${escapeHTML(platformList(e).length?platformList(e).join(' · '):'기기 구분 미확인')}${e.platformNote?` <span>· ${escapeHTML(e.platformNote)}</span>`:''}</div><div class="work-heading"><div><h3>${escapeHTML(e.name)}</h3><span>${escapeHTML(e.english||'')}</span></div><a class="open-icon" href="${escapeHTML(e.sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML(e.name)} 원본 보기">↗</a></div><p>${escapeHTML(e.description)}</p><div class="work-footer"><div class="tags">${tagHTML(e)}</div><div class="work-links">${!e.remote||e.codePath?`<button type="button" data-code="${escapeHTML(e.id)}">\uCF54\uB4DC \uBCF4\uAE30</button>`:''}<a href="${escapeHTML(e.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHTML(e.sourceLabel||'\uC6D0\uBCF8 \uCF54\uB4DC')} \u2197</a>${e.licensePath?`<button type="button" data-license="${escapeHTML(e.id)}">\uB77C\uC774\uC120\uC2A4</button>`:''}</div></div></div></article>`;}
+function cardHTML(e,i){return `<article class="work-card" data-example="${escapeHTML(e.id)}"><div class="demo-wrap"><div class="demo-top"><span>${escapeHTML(e.sourceName)}</span><span class="demo-actions"><span>${escapeHTML(e.displayOrigin||(e.remote?'원본 연결 · 온라인':e.networkRequired?'원본 코드 · 온라인 자산':'원본 코드 · 로컬'))}</span><button type="button" data-expand data-title="${escapeHTML(e.name)}" aria-label="${escapeHTML(e.name)} 크게 보기" aria-expanded="false">↗ 크게 보기</button></span></div><div class="demo-content"${needsGPU(e)?` data-gpu-watch="${escapeHTML(e.id)}"`:` data-preview-watch="${escapeHTML(e.id)}"`}>${needsGPU(e)?gpuPlaceholder(e):previewPlaceholder(e)}</div><div class="demo-player" role="group" aria-label="예시 재생 조작"><button type="button" data-player-show disabled title="예시를 불러온 뒤 지원 여부를 확인합니다.">▶ <span>Show me</span></button><button type="button" data-player-slow disabled aria-pressed="false" title="예시를 불러온 뒤 지원 여부를 확인합니다.">◷ <span>Slow motion</span></button><button type="button" data-player-reset disabled title="예시를 처음 상태로 되돌립니다.">↺ <span>Reset</span></button><span class="demo-player-status" aria-live="polite">지원 여부 확인 중</span></div></div><div class="work-content"><div class="work-label"><span>${escapeHTML(e.category)}${e.taxonomy?.subcategories?.length?` / ${escapeHTML(e.taxonomy.subcategories[0])}`:''}</span><span>${escapeHTML(e.license||'원문 확인')}</span></div><div class="work-platform">${escapeHTML(platformList(e).length?platformList(e).join(' · '):'기기 구분 미확인')}${e.platformNote?` <span>· ${escapeHTML(e.platformNote)}</span>`:''}</div><div class="work-heading"><div><h3>${escapeHTML(e.name)}</h3><span>${escapeHTML(e.english||'')}</span></div><a class="open-icon" href="${escapeHTML(e.sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML(e.name)} 원본 보기">↗</a></div><p>${escapeHTML(e.description)}</p><div class="work-footer"><div class="tags">${tagHTML(e)}</div><div class="work-links">${!e.remote||e.codePath?`<button type="button" data-code="${escapeHTML(e.id)}">\uCF54\uB4DC \uBCF4\uAE30</button>`:''}<a href="${escapeHTML(e.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHTML(e.sourceLabel||'\uC6D0\uBCF8 \uCF54\uB4DC')} \u2197</a>${e.licensePath?`<button type="button" data-license="${escapeHTML(e.id)}">\uB77C\uC774\uC120\uC2A4</button>`:''}</div></div></div></article>`;}
 function compactCard(card){
  const info=card.querySelector('.work-content'),label=info.querySelector('.work-label'),platform=info.querySelector('.work-platform');
- const categoryLabel=label.firstElementChild,license=label.lastElementChild,preview=card.querySelector('.demo-content iframe, .demo-content .gpu-placeholder');
+ const categoryLabel=label.firstElementChild,license=label.lastElementChild,preview=card.querySelector('.demo-content iframe, .demo-content .gpu-placeholder, .demo-content .preview-placeholder');
  const before=info.getBoundingClientRect().height,previewHeight=preview?.getBoundingClientRect().height||0;
  const note=platform.querySelector('span');if(note)platform.title=note.textContent.replace(/^\s*·\s*/, '');
  const group=document.createElement('div');group.className='work-meta-left';
@@ -174,6 +213,7 @@ function appendCards(){
  document.querySelectorAll('#cards .work-card:not(.compact-card)').forEach(compactCard);
  visibleCount=end;
  $('#cards').querySelectorAll('[data-gpu-watch]:not([data-gpu-observed])').forEach(host=>{host.dataset.gpuObserved='true';playerLoading(host.closest('.demo-wrap'),true);gpuObserver.observe(host)});
+ $('#cards').querySelectorAll('[data-preview-watch]:not([data-preview-observed])').forEach(host=>{host.dataset.previewObserved='true';playerLoading(host.closest('.demo-wrap'),true);previewLoadObserver.observe(host);previewUnloadObserver.observe(host)});
  const more=$('#more-examples');
  more.hidden=true;
  more.textContent=`\uC608\uC2DC \uB354 \uBCF4\uAE30 \u00B7 ${end} / ${matchesToShow.length}`;
@@ -182,6 +222,7 @@ function appendCards(){
 function render(){
   if(expanded)clearExpanded({focus:false});
   document.querySelectorAll('[data-gpu-watch]').forEach(host=>{gpuObserver.unobserve(host);gpuVisible.delete(host);stopGpu(host,{reset:false})});
+  document.querySelectorAll('[data-preview-watch]').forEach(host=>{previewLoadObserver.unobserve(host);previewUnloadObserver.unobserve(host);previewsNearby.delete(host)});
   document.querySelectorAll('#cards .work-card').forEach(card=>{skeletonObserver.unobserve(card);const state=skeletonStates.get(card);if(state)clearTimeout(state.timer)});
   const matches=examples.filter(eligible), filtered=matches.filter(e=>matchesCategory(e)&&(subcategory==='전체'||categoryFacets(e,category).includes(subcategory)));
   $('#result-count').textContent=`${filtered.length}개 예시`;
@@ -192,12 +233,12 @@ function render(){
 }
 // The preview controls only claim capabilities exposed by the example itself.
 function playerFor(frame){return frame.closest('.demo-wrap')?.querySelector('.demo-player');}
-function playerLoading(wrap, waiting=false){
+function playerLoading(wrap, waiting=false, preserveVisibility=false){
  const p=wrap?.querySelector('.demo-player');if(!p)return;
- p.hidden=false;
+ if(!preserveVisibility)p.hidden=false;
  p.querySelectorAll('button').forEach(b=>b.disabled=true);
  p.querySelector('[data-player-slow]').setAttribute('aria-pressed','false');
- p.querySelector('.demo-player-status').textContent=waiting?'예시 시작 후 사용할 수 있습니다.':'지원 여부 확인 중';
+ p.querySelector('.demo-player-status').textContent=waiting?'화면에 가까워지면 자동으로 불러옵니다.':'지원 여부 확인 중';
 }
 // Preserve the original Handbook controls inside the example instead of showing a duplicate bar.
 function setupNativePlayer(frame,doc){
@@ -226,7 +267,7 @@ function setupPlayer(frame){
  reset.disabled=!supported.reset;
  let doc;try{doc=frame.contentDocument;}catch(_){doc=null}
  const speed=doc?.querySelector('input[type="checkbox"][data-hb-slowmo]');
- if(setupNativePlayer(frame,doc))p.hidden=true;
+ p.hidden=setupNativePlayer(frame,doc);
  show.disabled=!supported.show;slow.disabled=!supported.slow;
  show.title=show.disabled?'이 원본은 자동 시연을 제공하지 않습니다.':'예시의 자동 시연을 시작합니다.';
  slow.title=slow.disabled?'이 원본은 느린 재생을 제공하지 않습니다.':'예시의 느린 재생을 전환합니다.';
@@ -257,7 +298,7 @@ document.addEventListener('click',async event=>{
  const more=event.target.closest('#more-examples');if(more){appendCards();return;}
  const filter=event.target.closest('[data-filter]');if(filter){category=filter.dataset.filter;subcategory='전체';renderFilters();render();document.querySelector('.library-bar')?.scrollIntoView({block:'start',behavior:'auto'});return;}
  const expand=event.target.closest('[data-expand]');if(expand){toggleExpanded(expand.closest('.demo-wrap'));return;}
- const retry=event.target.closest('[data-retry-gpu]');if(retry){const host=retry.closest('[data-gpu-watch]');if(host){delete host.dataset.gpuFailed;setGpuWaiting(host);gpuVisible.add(host);scheduleGpu()}return;}
+ const retry=event.target.closest('[data-retry-gpu]');if(retry){const host=retry.closest('[data-gpu-watch]');if(host){delete host.dataset.gpuFailed;setHostWaiting(host);gpuVisible.add(host);scheduleGpu()}return;}
  const code=event.target.closest('[data-code]');if(code){const e=examples.find(x=>x.id===code.dataset.code);if(!e)return;$('#code-title').textContent=`${e.name} · 코드`;$('#code-description').textContent=(e.adaptation||'원본 코드입니다.')+' 원본은 링크에서 확인할 수 있습니다.';$('#code-source').href=e.sourceUrl;currentFiles=[{label:e.codeLabel||'원본 HTML',path:e.codePath||e.preview},...(Array.isArray(e.codeFiles)?e.codeFiles.filter(f=>f&&f.path&&f.label):[])];if(/^mo\d+$/.test(e.id)&&!e.codeFiles)currentFiles.push({label:'공통 CSS',path:'./examples/asset/demo.css'},{label:'공통 JavaScript',path:'./examples/asset/demo.js'});currentFiles=currentFiles.filter((f,i,a)=>a.findIndex(other=>other.path===f.path)===i);$('#code-dialog').showModal();selectCode(0);return;}
  const file=event.target.closest('[data-file]');if(file){selectCode(Number(file.dataset.file));return;}
  const license=event.target.closest('[data-license]');if(license){const e=examples.find(x=>x.id===license.dataset.license);if(!e)return;$('#code-title').textContent=`${e.sourceName} · ${e.license} 라이선스`;$('#code-description').textContent='원본 저장소에서 함께 제공한 라이선스 고지입니다.';$('#code-source').href=e.sourceUrl;currentFiles=[{label:'라이선스',path:e.licensePath}];$('#code-dialog').showModal();selectCode(0);return;}
