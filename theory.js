@@ -42,6 +42,25 @@ function render(data,catalog,course,liveExamples){
  window.addEventListener('hashchange',revealHash);revealHash();
  mountExamples();
 }
+// Grow local examples to fit their content, while keeping very long pages bounded.
+const frameResizeObservers=new WeakMap();
+function fitExample(frame,stage,kind='example'){
+ frameResizeObservers.get(frame)?.disconnect();
+ let doc;try{doc=frame.contentDocument;if(!doc?.body)return}catch(_){return}
+ const base=()=>kind==='inline'?(innerWidth<=700?320:380):(innerWidth<=700?300:Math.min(460,Math.max(310,innerHeight*.4)));
+ const measure=()=>{
+  if(!frame.isConnected||!doc.body)return;
+  const minimum=base(),maximum=Math.round(minimum*2.5);
+  const content=Math.max(doc.body.scrollHeight,doc.documentElement.scrollHeight);
+  const height=Math.max(minimum,Math.min(maximum,content));
+  const current=stage.getBoundingClientRect().height;
+  if(height>current+1||current>maximum+1)stage.style.height=`${Math.ceil(height)}px`;
+ };
+ const observer=new ResizeObserver(measure);observer.observe(doc.body);observer.observe(doc.documentElement);
+ frameResizeObservers.set(frame,observer);requestAnimationFrame(measure);
+}
+const inlineExample=$('.inline-case');
+if(inlineExample){inlineExample.addEventListener('load',()=>fitExample(inlineExample,inlineExample,'inline'));if(inlineExample.contentDocument?.readyState==='complete')fitExample(inlineExample,inlineExample,'inline');}
 function mountExamples(){
  const controls=(panel,ready)=>{
   const frame=panel.querySelector('iframe'),cap=ready?inspectDemo(frame):{show:false,slow:false,reset:false,slowActive:false};
@@ -51,8 +70,8 @@ function mountExamples(){
   const panel=entry.target,stage=panel.querySelector('.theory-example-stage');
   if(entry.isIntersecting&&!stage.querySelector('iframe')){
    const frame=document.createElement('iframe');frame.title=panel.dataset.name+' 원본 예시';frame.setAttribute('sandbox','allow-scripts allow-forms allow-same-origin allow-popups');frame.referrerPolicy='no-referrer';
-   frame.addEventListener('load',()=>{stage.classList.add('ready');stage.setAttribute('aria-busy','false');controls(panel,true)});frame.src=panel.dataset.preview;stage.append(frame);
-  }else if(!entry.isIntersecting&&stage.querySelector('iframe')){stage.querySelector('iframe').remove();stage.classList.remove('ready');stage.setAttribute('aria-busy','true');controls(panel,false)}
+   frame.addEventListener('load',()=>{fitExample(frame,stage);stage.classList.add('ready');stage.setAttribute('aria-busy','false');controls(panel,true)});frame.src=panel.dataset.preview;stage.append(frame);
+  }else if(!entry.isIntersecting&&stage.querySelector('iframe')){const frame=stage.querySelector('iframe');frameResizeObservers.get(frame)?.disconnect();frame.remove();stage.classList.remove('ready');stage.setAttribute('aria-busy','true');controls(panel,false)}
  }},{rootMargin:'200px 0px'});
  document.querySelectorAll('.theory-example').forEach(panel=>{observer.observe(panel);panel.addEventListener('click',event=>{
   const button=event.target.closest('button'),frame=panel.querySelector('iframe');if(!button||!frame)return;
