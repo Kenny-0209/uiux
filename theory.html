@@ -4,7 +4,7 @@
  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
  <meta name="description" content="사용자 경험, 정보 구조, 화면 구성, 인터랙션과 모션을 근거와 함께 읽는 UI·UX 이론 문서">
  <title>UI·UX 설계 지식 — 모음</title>
- <link rel="stylesheet" href="./theory.css?v=20261028-layout">
+ <link rel="stylesheet" href="./theory.css?v=20261028-cases">
  <link rel="stylesheet" href="./site-nav.css?v=20261028">
 </head>
 <body>
@@ -20,13 +20,13 @@
     <div class="scale-grid"><div><b>01</b><strong>경험</strong><span>사용자 · 목표 · 여정</span></div><div><b>02</b><strong>구조</strong><span>정보 · 탐색 · 흐름</span></div><div><b>03</b><strong>화면</strong><span>우선순위 · 배치 · 밀도</span></div><div><b>04</b><strong>요소</strong><span>행동 · 상태 · 피드백</span></div><div><b>05</b><strong>표현·기술</strong><span>모션 · 카메라 · 구현</span></div></div>
     <p class="intro-note">원리, 연구 방법, UI 패턴, 플랫폼 지침과 구현 기술은 서로 다른 종류의 지식입니다. 한 개념이 여러 규모와 분야에 걸칠 수 있습니다. 일부 항목에는 수집한 원본 화면을 직접 넣었습니다. 예시는 개념을 살펴보는 편집자의 연결이며 모든 상황의 정답은 아닙니다.</p>
    </section>
-   <section class="case" aria-labelledby="case-title"><div><span class="section-label">APPLIED READING</span><h2 id="case-title">3D 작업 화면에 적용하면</h2></div><div class="case-body"><p>모델을 보는 일이 핵심인데 좌우 사이드바와 하단 바가 공간을 차지한다면, 먼저 <strong>무엇을 동시에 비교해야 하는지</strong>와 각 패널의 사용 빈도를 확인합니다. 단계 설명과 결과 목록의 역할을 구분한 뒤 접기·분할·탭 등의 대안을 비교합니다.</p><p>텍스트의 개수와 길이, 글자 크기, 패널 너비, 대비와 여백도 함께 검토합니다. 뷰어를 크게 만드는 것만으로 답을 정하지 않고 경고·검색·비교에 필요한 정보가 유지되는지 살펴봅니다.</p><div class="case-links"><a href="#priority">중요도와 우선순위 ↗</a><a href="#workspace">작업 공간 배분 ↗</a><a href="#tradeoffs">설계의 상충관계 ↗</a></div></div></section>
+   <section class="case" aria-labelledby="case-title"><div><span class="section-label">EXAMPLE / WORKSPACE</span><h2 id="case-title">중요한 화면에 공간을 돌려주기</h2></div><div class="case-body"><p>보조 메뉴가 작업 영역을 차지할 때, 메뉴를 접으면 본문이 얼마나 넓어질까요?</p><div class="inline-source"><span>실제 사례 · Start Bootstrap</span><a href="https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/72f0de1eda0350496100c8a077795fe93752d419/dist/index.html" target="_blank" rel="noopener noreferrer">원본 보기 ↗</a></div><iframe class="inline-case" src="./examples/lay01/index.html" title="Start Bootstrap 접을 수 있는 사이드바 예시" loading="lazy" sandbox="allow-scripts allow-forms allow-same-origin allow-popups"></iframe><p class="inline-reading">메뉴 버튼을 눌러 사이드바를 접고 본문 너비 변화를 확인하세요. 실제 작업에서는 숨겨진 정보가 필요할 때 다시 찾기 쉬운지도 살펴봐야 합니다.</p><div class="case-links"><a href="#workspace">작업 공간 배분 ↗</a><a href="#sidebar">사이드바 ↗</a></div></div></section>
    <section class="index-head" aria-labelledby="knowledge-title"><div><div class="section-label">KNOWLEDGE INDEX</div><h2 id="knowledge-title">분야별 설계 지식</h2><p>개념을 검색하거나 왼쪽 목차에서 분야를 선택해 읽으세요.</p></div><label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">개념과 설명 검색</span><input id="theory-search" type="search" placeholder="개념, 영문명 또는 설명 검색" autocomplete="off"></label></section>
    <p id="result-status" class="result-status" role="status"></p><div id="chapters"></div><p id="load-error" class="load-error" role="status"></p>
    <section id="relations" class="appendix"><div class="section-label">CONCEPT RELATIONSHIPS</div><h2>겹치는 개념과 구분</h2><p>같은 뜻으로 쓰이는 이름과, 관련은 있지만 범위가 다른 개념을 구별했습니다.</p><div id="relations-list" class="relations-list"></div></section>
    <section id="inventory" class="appendix"><div class="section-label">SOURCE TRACEABILITY</div><h2>기존 자료와의 대응</h2><p>기존 지식 목록 35개 항목의 통합 위치와 원천을 기록했습니다. 원리, 기술, 실제 사례는 같은 종류의 근거로 취급하지 않습니다.</p><details class="inventory"><summary>기존 35개 항목의 연결 보기 <span>＋</span></summary><div id="inventory-list"></div></details><div class="scope"><b>강좌의 확인 범위</b><p>디자인베이스 강좌 52편 중 공개 18편의 자막을 확인했고, 회원 전용 34편은 제목과 목록만 확인했습니다. 자동 자막에는 오류나 누락이 있을 수 있습니다. 확인하지 못한 강의 내용은 추정해 채우지 않았습니다.</p><a href="./course.html">편별 강좌 아카이브 보기 ↗</a></div><details class="inventory"><summary>내용을 확인한 강좌 18편의 연결 보기 <span>＋</span></summary><div id="course-map"></div></details><p class="foot">각 항목은 원문을 바탕으로 이 사이트의 설계 판단에 맞게 정리한 해석입니다. 원문과 플랫폼별 최신 조건을 함께 확인하세요.</p></section>
   </div>
  </main>
- <script type="module" src="./theory.js?v=20261028-layout"></script>
+ <script type="module" src="./theory.js?v=20261028-cases"></script>
 </body>
 </html>
