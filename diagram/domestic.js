@@ -22,5 +22,5 @@
   group.addEventListener('change',renderElements);search.addEventListener('input',renderElements);
   $('#expand-all').addEventListener('click',()=>document.querySelectorAll('#elements details').forEach(x=>{x.open=true;}));
   $('#collapse-all').addEventListener('click',()=>document.querySelectorAll('#elements details').forEach(x=>{x.open=false;}));
-  fetch('data/domestic.json').then(r=>{if(!r.ok)throw new Error('data');return r.json();}).then(d=>{cases=d.cases;selectCase(0);}).catch(()=>{$('#case-overview').textContent='사례 데이터를 불러오지 못했습니다. 다시 시도해 주세요.';});
+  Promise.all(['data/domestic.json','data/domestic-extra.json'].map(url=>fetch(url).then(r=>{if(!r.ok)throw new Error('data');return r.json();}))).then(data=>{cases=data.flatMap(d=>d.cases);selectCase(0);}).catch(()=>{$('#case-overview').textContent='사례 데이터를 불러오지 못했습니다. 다시 시도해 주세요.';});
 })();

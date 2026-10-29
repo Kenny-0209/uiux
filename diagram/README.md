@@ -23,4 +23,4 @@
 
 ## 국내 대학원 교육사업 도식의 요소별 분석 (2026-10-29)
 
-`domestic.html`, `domestic.css`, `domestic.js`, `data/domestic.json`은 공개 BK21 신청서 두 편에서 선정한 도식 세 개와 한 도식의 부분 패널을 문서와 함께 분석한다. 60개 요소는 서로 다른 실험이 아닌 그림의 상자·아이콘·선의 기록 단위다. 글꼴명·원본 색 등이 PDF 래스터에서 확인되지 않으면 명시적으로 미확인으로 둔다. 원문은 대학의 공개 페이지로 연결하고 복제하지 않는다. 분석과 PDF의 검토 자료는 `G:\mcpbox\workspace\Project_G\UIUX조사\2026-10-29\국내도식`에 저장한다.
+`domestic.html`, `domestic.css`, `domestic.js`, `data/domestic.json`, `data/domestic-extra.json`은 공개 BK21 신청서 네 편에서 선정한 도식 다섯 개와 두 도식의 부분 패널을 문서와 함께 분석한다. 153개 요소는 서로 다른 실험이 아닌 그림의 상자·아이콘·선의 기록 단위다. 글꼴명·원본 색 등이 PDF 래스터에서 확인되지 않으면 명시적으로 미확인으로 둔다. 원문은 대학의 공개 페이지로 연결하고 복제하지 않는다. 분석과 PDF의 검토 자료는 `G:\mcpbox\workspace\Project_G\UIUX조사\2026-10-29\국내도식`에 저장한다.
